@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E772FD74-56DC-4398-B85D-F33D34C2F11B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VKSaver.Core.Services</RootNamespace>
+    <AssemblyName>VKSaver.Core.Services</AssemblyName>
+    <DefaultLanguage>ru-RU</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile32</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseFull|AnyCPU'">
+    <OutputPath>bin\ReleaseFull\</OutputPath>
+    <DefineConstants>TRACE;RELEASE_FULL</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <TargetPlatform Include="Windows, Version=8.1" />
+    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\TaskQueue.cs" />
+    <Compile Include="DialogsService.cs" />
+    <Compile Include="DownloadsService.cs" />
+    <Compile Include="DownloadsServiceHelper.cs" />
+    <Compile Include="GrooveMusicService.cs" />
+    <Compile Include="Interfaces\IDownloadsService.cs" />
+    <Compile Include="ImagesCacheService.cs" />
+    <Compile Include="Interfaces\ICultureProvider.cs" />
+    <Compile Include="Interfaces\IDialogsService.cs" />
+    <Compile Include="Interfaces\IDownloadsServiceHelper.cs" />
+    <Compile Include="Interfaces\IGrooveMusicService.cs" />
+    <Compile Include="Interfaces\IImagesCacheService.cs" />
+    <Compile Include="Interfaces\ILogService.cs" />
+    <Compile Include="Interfaces\INetworkInfoService.cs" />
+    <Compile Include="Interfaces\IPlayerPlaylistService.cs" />
+    <Compile Include="Interfaces\IPlayerService.cs" />
+    <Compile Include="Interfaces\IPurchaseService.cs" />
+    <Compile Include="Interfaces\IServiceResolver.cs" />
+    <Compile Include="Interfaces\ITracksShuffleService.cs" />
+    <Compile Include="LogService.cs" />
+    <Compile Include="NetworkInfoService.cs" />
+    <Compile Include="PlayerService\PlayerConstants.cs" />
+    <Compile Include="PlayerService\PlayerPlaylistService.cs" />
+    <Compile Include="PlayerService\PlayerStateChangedEventArgs.cs" />
+    <Compile Include="PlayerService\TrackChangedEventArgs.cs" />
+    <Compile Include="PlayerService\TracksShuffleService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseService\PurchaseServiceDebug.cs" />
+    <Compile Include="PurchaseService\PurchaseServiceReleaseFull.cs" />
+    <Compile Include="PurchaseService\PurchaseServiceRelease.cs" />
+    <Compile Include="SettingsService.cs" />
+    <Compile Include="PurchaseService\StoreConstants.cs" />
+    <Compile Include="Transfer\DownloadOperationErrorEventArgs.cs" />
+    <Compile Include="Transfer\TransferStatusComparer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OneTeam.SDK.Core">
+      <HintPath>..\..\Libs\OneTeam.SDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="OneTeam.SDK.LastFm">
+      <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
+    </Reference>
+    <Reference Include="XboxMusicService, Version=1.0.5542.27830, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XboxMusicSDK.1.7\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\XboxMusicService.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
+      <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
+      <Name>VKSaver.Core.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

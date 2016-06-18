@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="SharedProjectFile_SccProperties">
+    <SharedProjectFile_ProjectGuid>{1234cdd5-1a68-4d7c-a280-8783a7175de6}</SharedProjectFile_ProjectGuid>
+    <SharedProjectFile_SccProjectName>SAK</SharedProjectFile_SccProjectName>
+    <SharedProjectFile_SccAuxPath>SAK</SharedProjectFile_SccAuxPath>
+    <SharedProjectFile_SccLocalPath>SAK</SharedProjectFile_SccLocalPath>
+    <SharedProjectFile_SccProvider>SAK</SharedProjectFile_SccProvider>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>463fb7c8-7399-4d98-ba23-cfdef2bb66ae</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VKSaver</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ShowAttachedFlyoutAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VisualTreeHelperExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\StoryboardServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagePlaceholder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerBackground.xaml.cs">
+      <DependentUpon>PlayerBackground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerShapesType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\TextImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MoreStatesOptionButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrentTrackToBrushConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FileSizeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ItemClickEventArgsToClickedItemConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NegateConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NotNullToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\PercentageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\PlayerRepeatModeToIntConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ScreenHeightConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ScreenWidthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanToSecondsConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ToLowerConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NoTracksView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AccessDeniedView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserCommView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserContentView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ErrorView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AboutView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ArtistInfoView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\LoginView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PlayerView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PurchaseView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RecommendedView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TopArtistsView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TopTracksView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TrackInfoView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TrackLyricsView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TransferView.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Converters\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Common.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ImagePlaceholder.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\InAppPurchase.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Providers\" />
+  </ItemGroup>
+</Project>

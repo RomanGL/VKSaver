@@ -1,0 +1,81 @@
+﻿<Page x:Class="VKSaver.Views.AboutView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VKSaver.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Style="{StaticResource DefaultPageStyle}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Margin="19,0,0,0">
+            <TextBlock Text="ВКАЧАЙ"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       Margin="0,12,0,0" />
+            <TextBlock Text="о приложении"
+                       Margin="0,-6.5,0,26.5"
+                       Style="{ThemeResource HeaderTextBlockStyle}"
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1"
+                      x:Name="ContentRoot"
+                      Margin="19,9.5,19,0">
+            <StackPanel>
+                <Grid>
+                    <Grid.ChildrenTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition />
+                            <ContentThemeTransition />
+                        </TransitionCollection>
+                    </Grid.ChildrenTransitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               Height="120"
+                               Width="120"
+                               Fill="{StaticResource ImagePlaceholderBrush}"
+                               Margin="0,0,10,0" />
+                    <StackPanel Grid.Column="1">
+                        <StackPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition />
+                                <ContentThemeTransition />
+                            </TransitionCollection>
+                        </StackPanel.ChildrenTransitions>
+                        <TextBlock Text="ВКачай 2 Beta"
+                                   FontSize="28"
+                                   Style="{StaticResource BaseItemStyle}" />
+                        <TextBlock Style="{StaticResource BaseItemStyle}"
+                                   TextWrapping="WrapWholeWords"
+                                   Margin="0,2,0,0">
+                            <Run Text="Версия:" />
+                            <Run Text="{Binding Version}" />
+                        </TextBlock>
+                        <TextBlock Text="Powered by OneVK"
+                                   Style="{StaticResource BaseItemStyle}"
+                                   TextWrapping="WrapWholeWords"
+                                   Foreground="{ThemeResource PhoneMidBrush}" />
+                    </StackPanel>
+                </Grid>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

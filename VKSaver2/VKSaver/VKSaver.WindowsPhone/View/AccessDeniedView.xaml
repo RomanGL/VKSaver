@@ -1,0 +1,58 @@
+﻿<prism:VisualStateAwarePage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:local="using:VKSaver.Views"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+                            xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+                            xmlns:Media="using:Microsoft.Xaml.Interactions.Media"
+                            xmlns:controls="using:VKSaver.Controls"
+                            xmlns:prism="using:Microsoft.Practices.Prism.StoreApps"
+                            xmlns:common="using:VKSaver.Common"
+                            x:Class="VKSaver.Views.AccessDeniedView"
+                            mc:Ignorable="d"
+                            RequestedTheme="Dark"
+                            Background="Black">
+
+    <Grid>
+        <controls:PlayerBackground x:Name="background"
+                                   DefaultTheme="Blue"
+                                   DefaultShapesType="VerticalTriangles"
+                                   NoAlbums="True"
+                                   ChangeColorDuration="0.5"/>
+        <Grid>
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1.5*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Нет доступа"
+                       Style="{StaticResource PLine1TextStyle}"
+                       Margin="20,0,20,20" />
+
+            <Image Source="ms-appx:///Assets/Images/AccessDenied.png"
+                   Grid.Row="1" />
+
+            <StackPanel Grid.Row="2"
+                        Margin="20,10,20,60">
+                <StackPanel.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition />
+                    </TransitionCollection>
+                </StackPanel.ChildrenTransitions>
+                <TextBlock Style="{StaticResource PLine2TextStyle}">
+                    <Run Text="Этот раздел еще не готов" />
+                    <LineBreak /><LineBreak />
+                    <Run Text="Вернитесь назад, чтобы продолжить" />
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</prism:VisualStateAwarePage>

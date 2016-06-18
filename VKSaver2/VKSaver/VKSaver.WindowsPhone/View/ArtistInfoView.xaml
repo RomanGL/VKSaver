@@ -1,0 +1,235 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.ArtistInfoView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:controls="using:VKSaver.Controls"
+                           xmlns:converters="using:VKSaver.Converters"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           xmlns:i="using:Microsoft.Xaml.Interactivity"
+                           xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:design="using:VKSaver.Design"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           Style="{StaticResource DefaultPageStyle}"
+                           d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=design:ArtistInfoViewModelDesign}">
+
+    <mvvm:VisualStateAwarePage.Background>
+        <ImageBrush ImageSource="{Binding Artist.MegaImage.URL}"
+                    Stretch="UniformToFill"
+                    Opacity="0.3" />
+    </mvvm:VisualStateAwarePage.Background>
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Page.Resources>        
+        <converters:HalfSizeConverter x:Key="HalfSizeConverter" />
+        <converters:PercentageConverter x:Key="PercentageConverter" />
+        <Style x:Key="PivotItemStyle"
+               TargetType="PivotItem">
+            <Setter Property="Margin"
+                    Value="19,0,0,0" />
+        </Style>
+        <DataTemplate x:Key="AlbumTemplate">
+            <Grid Margin="0,0,0,20"
+                  Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <controls:ImagePlaceholder Source="{Binding Images[2].URL}"
+                                           Text="{Binding Name}" 
+                                           Width="120"
+                                           Height="120"
+                                           Pivot.SlideInAnimationGroup="GroupOne"
+                                           Margin="0,0,10,0" />
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding Name}"
+                               Style="{StaticResource BaseItemStyle}"
+                               FontSize="28"
+                               TextWrapping="WrapWholeWords"
+                               MaxLines="2"
+                               ContinuumNavigationTransitionInfo.IsExitElement="True"
+                               Pivot.SlideInAnimationGroup="GroupTwo" />
+                    <TextBlock Text="{Binding Artist.Name}"
+                               Style="{StaticResource BaseItemStyle}"
+                               FontSize="18"
+                               Margin="0,10,0,0"
+                               Pivot.SlideInAnimationGroup="GroupThree" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="SimilarArtistTemplate">
+            <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}}"
+                  Height="{Binding Width, Converter={StaticResource HalfSizeConverter}, RelativeSource={RelativeSource Mode=Self}}"
+                  Margin="0,0,0,20">
+                <controls:ImagePlaceholder Source="{Binding Images[3].URL}"
+                                           Text="{Binding Name}" />
+
+                <TextBlock Style="{StaticResource BaseItemStyle}"
+                           FontSize="18"
+                           FontWeight="Normal"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Margin="10,0,0,5"
+                           Text="{Binding Name}"
+                           Pivot.SlideInAnimationGroup="GroupOne"
+                           ContinuumNavigationTransitionInfo.IsExitElement="True"
+                           Foreground="White" />
+                <TextBlock Style="{StaticResource BaseItemStyle}"
+                           FontSize="36"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           Margin="0,0,10,10"
+                           Text="{Binding Match, Converter={StaticResource PercentageConverter}}"
+                           Pivot.SlideInAnimationGroup="GroupTwo"
+                           Foreground="White" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Pivot SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}">
+        <Pivot.Title>
+            <TextBlock Text="{Binding Artist.Name, Converter={StaticResource ToUpperConverter}}"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       ContinuumNavigationTransitionInfo.IsEntranceElement="True" />
+        </Pivot.Title>
+        <PivotItem Header="подробнее"
+                   Style="{StaticResource PivotItemStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                          ItemsSource="{Binding Tracks}"
+                          ItemTemplate="{StaticResource TopTrackTemplate}"
+                          ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                          Grid.Row="1" IsItemClickEnabled="True"
+                          IncrementalLoadingTrigger="None">
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="ItemClick">
+                            <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
+                                                   InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                        </c:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition />
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,25">
+                                <StackPanel.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition />
+                                    </TransitionCollection>
+                                </StackPanel.ChildrenTransitions>
+
+                                <TextBlock Text="{Binding Artist.Name}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           FontWeight="Black"
+                                           FontSize="55"
+                                           CharacterSpacing="-5"
+                                           TextWrapping="NoWrap"
+                                           Pivot.SlideInAnimationGroup="GroupOne"
+                                           Height="75" />
+                                <Grid Margin="0,20,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <controls:ImagePlaceholder Source="{Binding Artist.Images[2].URL}"
+                                                               Text="{Binding Artist.Name}"
+                                                               HorizontalAlignment="Left"
+                                                               Height="120"
+                                                               Width="120"
+                                                               Margin="0,0,10,0"
+                                                               Pivot.SlideInAnimationGroup="GroupTwo" />
+                                    <ListView Grid.Column="1">
+                                        <controls:ListViewCommandItem Content="найти ВКонтакте"/>
+                                    </ListView>
+                                </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <Border MinHeight="50">
+                                <controls:StateBlock State="{Binding Tracks.ContentState}"
+                                                     ReloadCommand="{Binding Tracks.LoadCommand}"
+                                                     Margin="0,0,0,10" />
+                            </Border>
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+                </ListView>
+            </Grid>
+        </PivotItem>
+        <PivotItem Header="альбомы"
+                   Margin="19,23,0,0">
+            <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                      ItemsSource="{Binding Albums}"
+                      ItemTemplate="{StaticResource AlbumTemplate}"
+                      Grid.Row="1"
+                      IsItemClickEnabled="True"
+                      ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <Border MinHeight="70">
+                            <controls:StateBlock State="{Binding Albums.ContentState}"
+                                                 ReloadCommand="{Binding Albums.LoadCommand}"
+                                                 Margin="0,0,0,10" />
+                        </Border>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+
+                <i:Interaction.Behaviors>
+                    <c:EventTriggerBehavior EventName="ItemClick">
+                        <c:InvokeCommandAction Command="{Binding GoToAlbumInfoCommand}"
+                                               InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                    </c:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+            </ListView>
+        </PivotItem>
+        <PivotItem Header="похожие">
+            <controls:ContentContainer State="{Binding Similar.ContentState}"
+                                       ReloadCommand="{Binding Similar.LoadCommand}">
+                <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                          ItemsSource="{Binding Similar}"
+                          ItemTemplate="{StaticResource SimilarArtistTemplate}"
+                          IsItemClickEnabled="True"
+                          ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition />
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="ItemClick">
+                            <c:InvokeCommandAction Command="{Binding GoToSimilarArtistInfoCommand}"
+                                                   InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                        </c:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ListView>
+            </controls:ContentContainer>
+        </PivotItem>
+    </Pivot>
+</mvvm:VisualStateAwarePage>

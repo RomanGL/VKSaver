@@ -1,0 +1,344 @@
+﻿<prism:VisualStateAwarePage x:Class="VKSaver.Views.MainView"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:local="using:VKSaver.Views"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:controls="using:VKSaver.Controls"
+                            xmlns:i="using:Microsoft.Xaml.Interactivity"
+                            xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                            xmlns:b="using:VKSaver.Behaviors"
+                            xmlns:prism="using:Microsoft.Practices.Prism.StoreApps"
+                            mc:Ignorable="d"
+                            prism:ViewModelLocator.AutoWireViewModel="True"
+                            IsTextScaleFactorEnabled="False"
+                            RequestedTheme="Default">
+
+    <Page.Resources>
+        <DataTemplate x:Key="RecommendedTrackTemplate">
+            <StackPanel Margin="0,0,0,20">
+                <TextBlock Text="{Binding Title}"
+                           Style="{StaticResource BaseItemStyle}"
+                           FontSize="28"
+                           FontWeight="Bold" />
+                <TextBlock Text="{Binding Artist}"
+                           Style="{StaticResource BaseItemStyle}"
+                           FontSize="18"
+                           Margin="0,10,0,0" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TopArtistsFooterTemplate">
+            <Border Height="150"
+                    Width="150"
+                    Background="#FFFF006F"
+                    VerticalAlignment="Top">
+                <TextBlock Text="показать еще"
+                           FontSize="28"
+                           Style="{StaticResource BaseTextBlockStyle}"
+                           TextWrapping="WrapWholeWords"
+                           FontWeight="SemiLight"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Margin="10,0,0,5"
+                           Foreground="White" />
+                <i:Interaction.Behaviors>
+                    <c:EventTriggerBehavior EventName="Tapped">
+                        <c:InvokeCommandAction Command="{Binding GoToTopArtistsCommand}" />
+                    </c:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TopListFooterTemplate">
+            <StackPanel>
+                <ListViewItem Content="показать больше"
+                              ContentTemplate="{StaticResource MenuItemTemplate}"
+                              Margin="0,0,0,25">
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="Tapped">
+                            <c:InvokeCommandAction Command="{Binding GoToTopTracksCommand}" />
+                        </c:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ListViewItem>
+                <Border Height="45" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RecommendedListFooterTemplate">
+            <StackPanel>
+                <ListViewItem Content="показать больше"
+                              ContentTemplate="{StaticResource MenuItemTemplate}"
+                              Margin="0,0,0,25">
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="Tapped">
+                            <c:InvokeCommandAction Command="{Binding GoToRecommendedViewCommand}" />
+                        </c:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ListViewItem>
+                <Border Height="45" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar Background="{ThemeResource ContentDialogDimmingThemeBrush}"
+                    ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="проигрыватель"
+                              Command="{Binding GoToPlayerViewCommand}"/>
+                <AppBarButton Label="менеджер загрузок"
+                              Command="{Binding GoToTransferViewCommand}"
+                              CommandParameter="downloads" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Margin="0,0,0,-25">
+        <Hub Header="вкачай beta"
+             Style="{StaticResource HubDimmingStyle}">
+            <Hub.Background>
+                <ImageBrush ImageSource="{Binding TopTrackArtistImageURL}"
+                            Stretch="UniformToFill" />
+            </Hub.Background>
+            <Hub.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               Foreground="{StaticResource TitleBrush}"/>
+                </DataTemplate>
+            </Hub.HeaderTemplate>
+
+            <HubSection Header="ПОПУЛЯРНЫЕ">
+                <DataTemplate>
+                    <controls:ContentContainer State="{Binding TopTracksLF.ContentState}"
+                                               ReloadCommand="{Binding TopTracksLF.LoadCommand}">
+                        <ListView ItemsSource="{Binding TopTracksLF, Mode=OneTime}"
+                                  ItemTemplate="{StaticResource TopTrackTemplate}"
+                                  FooterTemplate="{StaticResource TopListFooterTemplate}"
+                                  IncrementalLoadingTrigger="None"
+                                  SelectionMode="None"
+                                  IsSwipeEnabled="False"
+                                  IsItemClickEnabled="True">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="ItemClick">
+                                    <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
+                                                           InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+
+                            <ListView.HeaderTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,0,0,25"
+                                                Background="Transparent">
+                                        <i:Interaction.Behaviors>
+                                            <c:EventTriggerBehavior EventName="Tapped">
+                                                <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
+                                                                       CommandParameter="{Binding TopTrack}" />
+                                            </c:EventTriggerBehavior>
+                                        </i:Interaction.Behaviors>
+
+                                        <StackPanel.Resources>
+                                            <Style x:Key="TrackTitleStyle"
+                                                   TargetType="TextBlock"
+                                                   BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                <Setter Property="FontWeight"
+                                                        Value="Black" />
+                                                <Setter Property="TextLineBounds"
+                                                        Value="Tight" />
+                                                <Setter Property="CharacterSpacing"
+                                                        Value="-5" />
+                                                <Setter Property="TextWrapping"
+                                                        Value="NoWrap" />
+                                                <Setter Property="FontSize"
+                                                        Value="55" />
+                                            </Style>
+                                        </StackPanel.Resources>
+
+                                        <TextBlock Text="{Binding TopTrack.Name}"
+                                                   Style="{StaticResource TrackTitleStyle}" />
+                                        <TextBlock Text="{Binding TopTrack.Artist.Name}"
+                                                   Style="{StaticResource TrackTitleStyle}"
+                                                   Margin="0,15,0,0" />
+                                        <controls:ImagePlaceholder Source="{Binding TopTrack.ExtraLargeImage.URL}"
+                                                                   Text="{Binding TopTrack.Name}"
+                                                                   HorizontalAlignment="Left"
+                                                                   Height="120"
+                                                                   Width="120"
+                                                                   Margin="0,20,0,0" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.HeaderTemplate>
+                        </ListView>
+                    </controls:ContentContainer>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="ЛУЧШИЕ ИСПОЛНИТЕЛИ"
+                        Width="Auto">
+                <DataTemplate>
+                    <controls:ContentContainer State="{Binding TopArtistsLF.ContentState}"
+                                               ReloadCommand="{Binding TopArtistsLF.LoadCommand}">
+                        <GridView SelectionMode="None"
+                                  Width="Auto"
+                                  ItemsSource="{Binding TopArtistsLF}"
+                                  ItemTemplate="{StaticResource TopArtistItem}"
+                                  FooterTemplate="{StaticResource TopArtistsFooterTemplate}"
+                                  IncrementalLoadingTrigger="None"
+                                  IsItemClickEnabled="True">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid MaximumRowsOrColumns="3" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="ItemClick">
+                                    <c:InvokeCommandAction Command="{Binding GoToArtistInfoCommand}"
+                                                           InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </GridView>
+                    </controls:ContentContainer>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="РЕКОМЕНДУЕМ">
+                <DataTemplate>
+                    <controls:ContentContainer State="{Binding RecommendedTracksVK.ContentState}"
+                                               ReloadCommand="{Binding RecommendedTracksVK.LoadCommand}">
+                        <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                                  ItemsSource="{Binding RecommendedTracksVK}"
+                                  ItemTemplate="{StaticResource RecommendedTrackTemplate}"
+                                  FooterTemplate="{StaticResource RecommendedListFooterTemplate}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="ItemClick">
+                                    <c:InvokeCommandAction Command="{Binding PlayRecommendedTracksCommand}"
+                                                           InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListView>
+                    </controls:ContentContainer>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Header="СМОТРИТЕ ТАКЖЕ">
+                <DataTemplate>
+                    <ListView SelectionMode="None"
+                              IsSwipeEnabled="False">
+                        <ListViewItem Content="аудиозаписи"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToUserContentCommand}"
+                                                           CommandParameter="audios" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="видеозаписи"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToUserContentCommand}"
+                                                           CommandParameter="videos" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="документы"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToUserContentCommand}"
+                                                           CommandParameter="docs" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="сообщества"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToUserCommCommand}"
+                                                           CommandParameter="groups" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="друзья"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToUserCommCommand}"
+                                                           CommandParameter="friends" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="новости"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding NotImplementedCommand}"/>
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="поиск"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+
+                        <ListViewItem Content="топ треков"
+                                      Style="{StaticResource ListViewMenuItemStyle}"
+                                      Margin="0,30,0,5">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToTopTracksCommand}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="топ исполнителей"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToTopArtistsCommand}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="рекомендации"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToRecommendedViewCommand}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+
+                        <ListViewItem Content="менеджер загрузок"
+                                      Style="{StaticResource ListViewMenuItemStyle}"
+                                      Margin="0,30,0,5">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToTransferViewCommand}"
+                                                           CommandParameter="downloads" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="настройки"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="о программе"
+                                      Style="{StaticResource ListViewMenuItemStyle}"
+                                      Margin="0,0,0,60">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToAboutViewCommand}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                    </ListView>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+    </Grid>
+</prism:VisualStateAwarePage>

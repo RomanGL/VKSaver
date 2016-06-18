@@ -1,0 +1,97 @@
+﻿<prism:VisualStateAwarePage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:local="using:VKSaver.Views"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+                            xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+                            xmlns:controls="using:VKSaver.Controls"
+                            xmlns:converters="using:VKSaver.Converters"
+                            xmlns:prism="using:Microsoft.Practices.Prism.StoreApps"
+                            xmlns:i="using:Microsoft.Xaml.Interactivity"
+                            xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                            x:Class="VKSaver.Views.TopArtistsView"
+                            mc:Ignorable="d"
+                            prism:ViewModelLocator.AutoWireViewModel="True"
+                            Style="{StaticResource DefaultPageStyle}">
+
+    <prism:VisualStateAwarePage.Resources>
+        <converters:TwoItemsListSizeConverter x:Key="TwoItemsListSizeConverter" />
+    </prism:VisualStateAwarePage.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Margin="19,0,0,0">
+            <TextBlock Text="ВКАЧАЙ"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       Margin="0,12,0,0" />
+            <TextBlock Text="лучшие исполнители"
+                       Margin="0,-6.5,0,26.5"
+                       Style="{ThemeResource HeaderTextBlockStyle}"
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+        </StackPanel>
+
+        <Grid Grid.Row="1"
+              x:Name="ContentRoot"
+              Margin="19,9.5,0,0">
+            <GridView ItemsSource="{Binding Artists}"
+                      SelectionMode="None"
+                      IsItemClickEnabled="True"
+                      IsSwipeEnabled="False"
+                      IncrementalLoadingThreshold="4"
+                      ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+
+                <GridView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition />
+                    </TransitionCollection>
+                </GridView.ItemContainerTransitions>
+
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,0,15,20"
+                                    Width="{Binding Converter={StaticResource TwoItemsListSizeConverter}}">
+                            <controls:ImagePlaceholder Height="{Binding Converter={StaticResource TwoItemsListSizeConverter}}"
+                                                       Text="{Binding Name}"
+                                                       Source="{Binding LargeImage.URL}"/>
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource BaseItemStyle}"
+                                       FontWeight="Bold"
+                                       FontSize="18"
+                                       Margin="0,8,0,0"
+                                       ContinuumNavigationTransitionInfo.IsExitElement="True" />
+                            <TextBlock Style="{StaticResource BaseItemStyle}"
+                                       FontWeight="Normal"
+                                       FontSize="18">
+                                <Run Text="{Binding ListenersCount}" />
+                                <Run Text="слушателей" />
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+
+                <GridView.FooterTemplate>
+                    <DataTemplate>
+                        <Border MinHeight="50">
+                            <controls:StateBlock State="{Binding Artists.ContentState}"
+                                                 ReloadCommand="{Binding Artists.LoadCommand}"
+                                                 Margin="0,0,0,60" />
+                        </Border>
+                    </DataTemplate>
+                </GridView.FooterTemplate>
+
+                <i:Interaction.Behaviors>
+                    <c:EventTriggerBehavior EventName="ItemClick">
+                        <c:InvokeCommandAction Command="{Binding GoToArtistInfoCommand}"
+                                               InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                    </c:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+            </GridView>
+        </Grid>
+    </Grid>
+</prism:VisualStateAwarePage>

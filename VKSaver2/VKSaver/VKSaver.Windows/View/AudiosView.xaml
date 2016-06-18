@@ -1,0 +1,59 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="VKSaver.Views.AudiosView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VKSaver.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:VKSaver.Controls"
+    xmlns:converters="using:VKSaver.Converters"
+    xmlns:i="using:Microsoft.Xaml.Interactivity" 
+    xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:b="using:VKSaver.Behaviors"
+    mc:Ignorable="d"
+    DataContext="{Binding AudiosVM, Source={StaticResource Locator}}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding WindowsNavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Text="Музыка ВКонтакте" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+        </Grid>
+        <ListView 
+            Grid.Row="1"
+			Style="{StaticResource NoSelectionListViewStyle}"
+			ItemsSource="{Binding Audios}"
+			ItemTemplate="{StaticResource CommonAudioTemplate}"
+			DataFetchSize="3" 
+			IncrementalLoadingThreshold="5" Margin="120,0,0,0">
+            <i:Interaction.Behaviors>
+                <c:EventTriggerBehavior EventName="ItemClick">
+                    <b:PlayTrackAction 
+                            InputConverter="{StaticResource ItemClickEventArgsConverter}"
+                            TracksList="{Binding AudiosVM.Audios, Source={StaticResource Locator}}"/>
+                </c:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+        </ListView>
+    </Grid>
+</Page>

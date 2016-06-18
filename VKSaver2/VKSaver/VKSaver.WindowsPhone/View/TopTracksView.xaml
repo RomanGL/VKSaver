@@ -1,0 +1,102 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.TopTracksView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:i="using:Microsoft.Xaml.Interactivity"
+                           xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           xmlns:controls="using:VKSaver.Controls"
+                           xmlns:design="using:VKSaver.Design"
+                           mc:Ignorable="d"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           Style="{StaticResource DefaultPageStyle}"
+                           d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=design:TopTracksViewModelDesign}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="TopTrackTemplate">
+            <Grid Margin="0,0,0,20"
+                  Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <controls:ImagePlaceholder Source="{Binding Images[2].URL}"
+                                           Text="{Binding Name}"
+                                           Width="80"
+                                           Height="80"
+                                           Margin="0,0,15,0" />
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding Name}"
+                               Style="{StaticResource BaseItemStyle}"
+                               FontSize="28"
+                               ContinuumNavigationTransitionInfo.IsExitElement="True" />
+                    <TextBlock Text="{Binding Artist.Name}"
+                               Style="{StaticResource BaseItemStyle}"
+                               FontSize="18"
+                               Margin="0,10,0,0" />
+                    <TextBlock Style="{StaticResource BaseItemStyle}"
+                               FontSize="18"
+                               Margin="0,5,0,0">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="{ThemeResource PhoneTextLowColor}" />
+                        </TextBlock.Foreground>
+                        <Run Text="{Binding PlayCount}" />
+                        <Run Text="воспроизведений" />
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Margin="19,0,0,0">
+            <TextBlock Text="ВКАЧАЙ"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       Margin="0,12,0,0" />
+            <TextBlock Text="популярные"
+                       Margin="0,-6.5,0,26.5"
+                       Style="{ThemeResource HeaderTextBlockStyle}"
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+        </StackPanel>
+
+        <Grid Grid.Row="1"
+              x:Name="ContentRoot"
+              Margin="19,9.5,0,0">
+            <ListView ItemsSource="{Binding Tracks}"
+                      ItemTemplate="{StaticResource TopTrackTemplate}"
+                      SelectionMode="None"
+                      IsItemClickEnabled="True"
+                      IsTextScaleFactorEnabled="False"
+                      ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                <i:Interaction.Behaviors>
+                    <c:EventTriggerBehavior EventName="ItemClick">
+                        <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
+                                               InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                    </c:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <Border MinHeight="70">
+                            <controls:StateBlock State="{Binding Tracks.ContentState}"
+                                                 ReloadCommand="{Binding Tracks.LoadCommand}"
+                                                 Margin="0,0,0,60" />
+                        </Border>
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</mvvm:VisualStateAwarePage>

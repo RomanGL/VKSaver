@@ -1,0 +1,57 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.TrackLyricsView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:converters="using:VKSaver.Converters"
+                           xmlns:controls="using:VKSaver.Controls"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           RequestedTheme="Dark"
+                           Style="{StaticResource DefaultPageStyle}">
+
+    <Grid>
+        <controls:PlayerBackground x:Name="plBackground"
+                                   ArtistImage="{Binding ArtistImage}"
+                                   NoAlbums="True"
+                                   DefaultShapesType="VerticalTriangles"
+                                   DefaultTheme="Black"
+                                   ChangeColorDuration="0.5"/>
+        <Grid>
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Margin="19,0,0,0">
+                <TextBlock Text="{Binding Track.Artist, Converter={StaticResource ToUpperConverter}}"
+                           Style="{ThemeResource TitleTextBlockStyle}"
+                           Margin="0,12,0,0" />
+                <TextBlock Text="{Binding Track.Title, Converter={StaticResource ToLowerConverter}}"
+                           Margin="0,-6.5,0,26.5"
+                           Style="{ThemeResource HeaderTextBlockStyle}"
+                           CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            </StackPanel>
+
+
+            <ScrollViewer Grid.Row="1"
+                          Margin="19,9.5,0,0">
+                <controls:ContentContainer State="{Binding LyricsState}"
+                                           ReloadCommand="{Binding ReloadLyricsCommand}">
+                    <TextBlock Text="{Binding Lyrics}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Margin="0,0,19,20" />
+                </controls:ContentContainer>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</mvvm:VisualStateAwarePage>

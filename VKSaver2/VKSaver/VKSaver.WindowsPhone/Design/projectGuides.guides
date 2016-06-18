@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<ProjectGuidesConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectItemGuides>
+    <ProjectItemGuide TargetFile="View\LoginView.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Top" Position="295" />
+            <Guide Alignment="Top" Position="280" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
+    <ProjectItemGuide TargetFile="View\MainView.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Top" Position="245" />
+            <Guide Alignment="Top" Position="190" />
+            <Guide Alignment="Top" Position="265" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
+    <ProjectItemGuide TargetFile="..\VKSaver.Shared\Controls\PlayerBackground.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Left" Position="-128" />
+            <Guide Alignment="Left" Position="256" />
+            <Guide Alignment="Left" Position="384" />
+            <Guide Alignment="Left" Position="512" />
+            <Guide Alignment="Left" Position="128" />
+            <Guide Alignment="Top" Position="0" />
+            <Guide Alignment="Top" Position="128" />
+            <Guide Alignment="Top" Position="256" />
+            <Guide Alignment="Top" Position="384" />
+            <Guide Alignment="Top" Position="640" />
+            <Guide Alignment="Left" Position="0" />
+            <Guide Alignment="Top" Position="512" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
+    <ProjectItemGuide TargetFile="View\BlankPage1.xaml">
+      <GuideModels>
+        <GuideModel>
+          <Guides>
+            <Guide Alignment="Left" Position="-128" />
+            <Guide Alignment="Left" Position="512" />
+          </Guides>
+        </GuideModel>
+      </GuideModels>
+    </ProjectItemGuide>
+  </ProjectItemGuides>
+</ProjectGuidesConfiguration>
