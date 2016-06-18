@@ -102,7 +102,7 @@
         <Hub Header="вкачай beta"
              Style="{StaticResource HubDimmingStyle}">
             <Hub.Background>
-                <ImageBrush ImageSource="{Binding TopTrackArtistImageURL}"
+                <ImageBrush ImageSource="{Binding HubBackgroundImage}"
                             Stretch="UniformToFill" />
             </Hub.Background>
             <Hub.HeaderTemplate>
@@ -170,13 +170,13 @@
                                             </Style>
                                         </StackPanel.Resources>
 
-                                        <TextBlock Text="{Binding FirstTrack.Name}"
+                                        <TextBlock Text="{Binding FirstTrack.Title}"
                                                    Style="{StaticResource TrackTitleStyle}" />
                                         <TextBlock Text="{Binding FirstTrack.Artist}"
                                                    Style="{StaticResource TrackTitleStyle}"
                                                    Margin="0,15,0,0" />
                                         <controls:ImagePlaceholder Source="{Binding FirstTrack.ImageURL}"
-                                                                   Text="{Binding FirstTrack.Name}"
+                                                                   Text="{Binding FirstTrack.Title}"
                                                                    HorizontalAlignment="Left"
                                                                    Height="120"
                                                                    Width="120"

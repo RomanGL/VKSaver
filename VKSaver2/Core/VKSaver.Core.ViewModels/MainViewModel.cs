@@ -20,6 +20,9 @@ using OneTeam.SDK.VK.Models.Audio;
 using OneTeam.SDK.VK.Models.Common;
 using VKSaver.Core.ViewModels.Common;
 using VKSaver.Core.Models.Player;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -29,7 +32,7 @@ namespace VKSaver.Core.ViewModels
         public MainViewModel(IVKService vkService, ILFService lfService, 
             ISettingsService settingsService, INavigationService navigationService,
             IPurchaseService purchaseService, IPlayerService playerService,
-            IDownloadsServiceHelper downloadsServiceHelper)
+            IDownloadsServiceHelper downloadsServiceHelper, IImagesCacheService imagesCacheService)
         {
             _vkService = vkService;
             _lfService = lfService;
@@ -38,6 +41,7 @@ namespace VKSaver.Core.ViewModels
             _purchaseService = purchaseService;
             _playerService = playerService;
             _downloadsServiceHelper = downloadsServiceHelper;
+            _imagesCacheService = imagesCacheService;
 
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
             GoToArtistInfoCommand = new DelegateCommand<LFArtistExtended>(OnGoToArtistInfoCommand);
@@ -107,17 +111,18 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand<VKAudio> DownloadTrackCommand { get; private set; }
 
-        public VKAudioWithLastFm FirstTrack { get; private set; }
+        public VKAudioWithImage FirstTrack { get; private set; }
 
-        public string TopTrackArtistImageURL { get; private set; }
+        public string HubBackgroundImage { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
+            _backgroundLoaded = false;
             if (viewModelState.Count > 0)
             {
                 UserTracks = JsonConvert.DeserializeObject<SimpleStateSupportCollection<VKAudio>>(
                     viewModelState[nameof(UserTracks)].ToString());
-                FirstTrack = JsonConvert.DeserializeObject<VKAudioWithLastFm>(
+                FirstTrack = JsonConvert.DeserializeObject<VKAudioWithImage>(
                     viewModelState[nameof(FirstTrack)].ToString());
                 TopArtistsLF = JsonConvert.DeserializeObject<SimpleStateSupportCollection<LFArtistExtended>>(
                     viewModelState[nameof(TopArtistsLF)].ToString());
@@ -139,7 +144,9 @@ namespace VKSaver.Core.ViewModels
             TopArtistsLF.Load();
             RecommendedTracksVK.Load();
 
-            TryLoadBackground();
+            //TryLoadBackground(FirstTrack);
+            TryLoadTopArtistBackground(TopArtistsLF?.FirstOrDefault());
+
             base.OnNavigatedTo(e, viewModelState);
         }
 
@@ -170,12 +177,13 @@ namespace VKSaver.Core.ViewModels
                 if (response.Response.Count == 0)
                     return new List<VKAudio>();
 
-                FirstTrack = new VKAudioWithLastFm
+                FirstTrack = new VKAudioWithImage
                 {
                     VKTrack = response.Response.Items[0]
                 };
 
-                TryLoadFirstTrackInfo();
+                TryLoadFirstTrackInfo(FirstTrack);
+                //TryLoadBackground(FirstTrack);
                 return response.Response.Items.Skip(1);
             }
             else
@@ -192,7 +200,10 @@ namespace VKSaver.Core.ViewModels
             var response = await _lfService.ExecuteRequestAsync(request);
 
             if (response.IsValid())
+            {
+                TryLoadTopArtistBackground(response.Data.Artists[0]);
                 return response.Data.Artists;
+            }
             else
                 throw new Exception("LFChartArtistsResponse isn't valid.");
         }
@@ -212,17 +223,64 @@ namespace VKSaver.Core.ViewModels
                 throw new Exception(response.Error.ToString());
         }
 
-        private async void TryLoadBackground()
+        private async void TryLoadBackground(VKAudioWithImage track)
         {
             if (_backgroundLoaded)
                 return;
+            else if (track == null)
+            {
+                HubBackgroundImage = HUB_BACKGROUND_DEFAULT;
+                return;
+            }
 
-            TopTrackArtistImageURL = HUB_BACKGROUND_DEFAULT;
+            _backgroundLoaded = true;
+
+            string imagePath = await _imagesCacheService.GetCachedArtistImage(track.Artist);
+            if (imagePath == null)
+            {
+                HubBackgroundImage = HUB_BACKGROUND_DEFAULT;
+                imagePath = await _imagesCacheService.CacheAndGetArtistImage(track.Artist);
+            }
+
+            if (imagePath != null)
+                HubBackgroundImage = imagePath;
+            else
+                _backgroundLoaded = false;
         }
 
-        private async void TryLoadFirstTrackInfo()
+        private async void TryLoadTopArtistBackground(LFArtistExtended artist)
         {
+            if (_backgroundLoaded)
+                return;
+            else if (artist == null)
+            {
+                HubBackgroundImage = HUB_BACKGROUND_DEFAULT;
+                return;
+            }
+
+            _backgroundLoaded = true;
+
+            string imagePath = await _imagesCacheService.GetCachedArtistImage(artist.Name);
+            if (imagePath == null)
+            {
+                HubBackgroundImage = HUB_BACKGROUND_DEFAULT;
+                imagePath = await _imagesCacheService.CacheAndGetArtistImage(artist.Name);
+            }
+
+            if (imagePath != null)
+                HubBackgroundImage = imagePath;
+            else
+                _backgroundLoaded = false;
+        }
+
+        private async void TryLoadFirstTrackInfo(VKAudioWithImage track)
+        {
+            string imagePath = await _imagesCacheService.GetCachedAlbumImage(track.Title);
+            if (imagePath == null)
+                imagePath = await _imagesCacheService.CacheAndGetAlbumImage(track.Title, track.Artist);
             
+            if (imagePath != null)
+                track.ImageURL = imagePath;
         }
 
         private void OnGoToTrackInfoCommand(LFAudioBase audio)
@@ -329,6 +387,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IPurchaseService _purchaseService;
         private readonly IPlayerService _playerService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
+        private readonly IImagesCacheService _imagesCacheService;
 
         private const string HUB_BACKGROUND_DEFAULT = "ms-appx:///Assets/HubBackground.jpg";
     }
