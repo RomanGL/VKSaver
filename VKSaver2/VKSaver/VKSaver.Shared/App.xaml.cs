@@ -124,6 +124,9 @@ namespace VKSaver
                 NavigationService.ClearHistory();
             };
 
+            var playerService = container.Resolve<IPlayerService>();
+            playerService.StartService();
+
 #if DEBUG
             LoadPurchaseFile();
 #endif
@@ -134,7 +137,6 @@ namespace VKSaver
         protected override Task OnLaunchApplication(LaunchActivatedEventArgs args)
         {
             var playerService = container.Resolve<IPlayerService>();
-            playerService.StartService();
 
             if (container.Resolve<IVKLoginService>().IsAuthorized)
                 NavigationService.Navigate("MainView", null);

@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 using OneTeam.SDK.VK.Models.Audio;
 using OneTeam.SDK.VK.Models.Common;
 using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.Models.Player;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -27,7 +28,8 @@ namespace VKSaver.Core.ViewModels
     {
         public MainViewModel(IVKService vkService, ILFService lfService, 
             ISettingsService settingsService, INavigationService navigationService,
-            IPurchaseService purchaseService, IPlayerService playerService)
+            IPurchaseService purchaseService, IPlayerService playerService,
+            IDownloadsServiceHelper downloadsServiceHelper)
         {
             _vkService = vkService;
             _lfService = lfService;
@@ -35,7 +37,8 @@ namespace VKSaver.Core.ViewModels
             _navigationService = navigationService;
             _purchaseService = purchaseService;
             _playerService = playerService;
-                        
+            _downloadsServiceHelper = downloadsServiceHelper;
+
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
             GoToArtistInfoCommand = new DelegateCommand<LFArtistExtended>(OnGoToArtistInfoCommand);
             GoToTopTracksCommand = new DelegateCommand(OnGoToTopTracksCommand);
@@ -47,12 +50,14 @@ namespace VKSaver.Core.ViewModels
             GoToRecommendedViewCommand = new DelegateCommand(OnGoToRecommendedViewCommand);
             GoToPlayerViewCommand = new DelegateCommand(OnGoToPlayerViewCommand);
             PlayRecommendedTracksCommand = new DelegateCommand<VKAudio>(OnPlayRecommendedTracksCommand);
+            PlayUserTracksCommand = new DelegateCommand<VKAudio>(OnPlayUserTracksCommand);
+            DownloadTrackCommand = new DelegateCommand<VKAudio>(OnDownloadTrackCommand);
 
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
         
-        public SimpleStateSupportCollection<LFAudioBase> TopTracksLF { get; private set; }
-        
+        public SimpleStateSupportCollection<VKAudio> UserTracks { get; private set; }
+                
         public SimpleStateSupportCollection<LFArtistExtended> TopArtistsLF { get; private set; }
         
         public SimpleStateSupportCollection<VKAudio> RecommendedTracksVK { get; private set; }
@@ -94,9 +99,15 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand<VKAudio> PlayRecommendedTracksCommand { get; private set; }
 
         [DoNotNotify]
+        public DelegateCommand<VKAudio> PlayUserTracksCommand { get; private set; }
+
+        [DoNotNotify]
         public DelegateCommand NotImplementedCommand { get; private set; }
 
-        public LFAudioBase TopTrack { get; private set; }
+        [DoNotNotify]
+        public DelegateCommand<VKAudio> DownloadTrackCommand { get; private set; }
+
+        public VKAudioWithLastFm FirstTrack { get; private set; }
 
         public string TopTrackArtistImageURL { get; private set; }
 
@@ -104,27 +115,27 @@ namespace VKSaver.Core.ViewModels
         {
             if (viewModelState.Count > 0)
             {
-                TopTrack = JsonConvert.DeserializeObject<LFAudioBase>(
-                    viewModelState[nameof(TopTrack)].ToString());
-                TopTracksLF = JsonConvert.DeserializeObject<SimpleStateSupportCollection<LFAudioBase>>(
-                    viewModelState[nameof(TopTracksLF)].ToString());
+                UserTracks = JsonConvert.DeserializeObject<SimpleStateSupportCollection<VKAudio>>(
+                    viewModelState[nameof(UserTracks)].ToString());
+                FirstTrack = JsonConvert.DeserializeObject<VKAudioWithLastFm>(
+                    viewModelState[nameof(FirstTrack)].ToString());
                 TopArtistsLF = JsonConvert.DeserializeObject<SimpleStateSupportCollection<LFArtistExtended>>(
                     viewModelState[nameof(TopArtistsLF)].ToString());
                 RecommendedTracksVK = JsonConvert.DeserializeObject<SimpleStateSupportCollection<VKAudio>>(
                     viewModelState[nameof(RecommendedTracksVK)].ToString());
 
-                TopTracksLF.LoadItems = LoadTopTracks;
+                UserTracks.LoadItems = LoadUserTracks;
                 TopArtistsLF.LoadItems = LoadTopArtists;
                 RecommendedTracksVK.LoadItems = LoadRecommendedTracks;
             }
             else
             {
-                TopTracksLF = new SimpleStateSupportCollection<LFAudioBase>(LoadTopTracks);
+                UserTracks = new SimpleStateSupportCollection<VKAudio>(LoadUserTracks);
                 TopArtistsLF = new SimpleStateSupportCollection<LFArtistExtended>(LoadTopArtists);
                 RecommendedTracksVK = new SimpleStateSupportCollection<VKAudio>(LoadRecommendedTracks);
             }
 
-            TopTracksLF.Load();
+            UserTracks.Load();
             TopArtistsLF.Load();
             RecommendedTracksVK.Load();
 
@@ -136,8 +147,8 @@ namespace VKSaver.Core.ViewModels
         {
             if (e.NavigationMode == NavigationMode.New)
             {
-                viewModelState[nameof(TopTrack)] = JsonConvert.SerializeObject(TopTrack);
-                viewModelState[nameof(TopTracksLF)] = JsonConvert.SerializeObject(TopTracksLF.ToList());
+                viewModelState[nameof(FirstTrack)] = JsonConvert.SerializeObject(FirstTrack);
+                viewModelState[nameof(UserTracks)] = JsonConvert.SerializeObject(UserTracks.ToList());
                 viewModelState[nameof(TopArtistsLF)] = JsonConvert.SerializeObject(TopArtistsLF.ToList());
                 viewModelState[nameof(RecommendedTracksVK)] = JsonConvert.SerializeObject(RecommendedTracksVK.ToList());
             }
@@ -145,23 +156,30 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
-        private async Task<IEnumerable<LFAudioBase>> LoadTopTracks()
+        private async Task<IEnumerable<VKAudio>> LoadUserTracks()
         {
-            if (TopTracksLF.Any())
-                return new List<LFAudioBase>();
+            if (UserTracks.Any())
+                return new List<VKAudio>();
 
-            var request = new Request<LFChartTracksResponse>("chart.getTopTracks", 
-                new Dictionary<string, string> { { "limit", "10" } });
-            var response = await _lfService.ExecuteRequestAsync(request);
+            var request = new Request<VKCountedItemsObject<VKAudio>>("audio.get", 
+                new Dictionary<string, string> { { "count", "10" } });
+            var response = await _vkService.ExecuteRequestAsync(request);
 
-            if (response.IsValid())
+            if (response.IsSuccess)
             {
-                TopTrack = response.Items.Tracks[0];
-                TryLoadBackground();
-                return response.Items.Tracks.Skip(1);
+                if (response.Response.Count == 0)
+                    return new List<VKAudio>();
+
+                FirstTrack = new VKAudioWithLastFm
+                {
+                    VKTrack = response.Response.Items[0]
+                };
+
+                TryLoadFirstTrackInfo();
+                return response.Response.Items.Skip(1);
             }
             else
-                throw new Exception("LFChartTracksResponse isn't valid.");
+                throw new Exception(response.Error.ToString());
         } 
 
         private async Task<IEnumerable<LFArtistExtended>> LoadTopArtists()
@@ -196,7 +214,15 @@ namespace VKSaver.Core.ViewModels
 
         private async void TryLoadBackground()
         {
+            if (_backgroundLoaded)
+                return;
+
             TopTrackArtistImageURL = HUB_BACKGROUND_DEFAULT;
+        }
+
+        private async void TryLoadFirstTrackInfo()
+        {
+            
         }
 
         private void OnGoToTrackInfoCommand(LFAudioBase audio)
@@ -270,12 +296,39 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("PlayerView", null);
         }
 
+        private async void OnPlayUserTracksCommand(VKAudio track)
+        {
+            List<IPlayerTrack> tracksToPlay = null;
+            await Task.Run(() =>
+            {
+                tracksToPlay = new List<IPlayerTrack>(UserTracks.Count + 1);
+                tracksToPlay.Add(FirstTrack.VKTrack.ToPlayerTrack());
+                tracksToPlay.AddRange(UserTracks.Select(a => a.ToPlayerTrack()));
+            });
+
+            if (tracksToPlay == null)
+                return;
+
+            await _playerService.PlayNewTracks(tracksToPlay, 
+                track == FirstTrack.VKTrack ? 
+                0 : UserTracks.IndexOf(track) + 1);
+            _navigationService.Navigate("PlayerView", null);
+        }
+
+        private async void OnDownloadTrackCommand(VKAudio track)
+        {
+            await _downloadsServiceHelper.StartDownloadingAsync(track.ToDownloadable());
+        }
+
+        private bool _backgroundLoaded;
+
         private readonly IVKService _vkService;
         private readonly ILFService _lfService;
         private readonly ISettingsService _settingsService;
         private readonly INavigationService _navigationService;
         private readonly IPurchaseService _purchaseService;
         private readonly IPlayerService _playerService;
+        private readonly IDownloadsServiceHelper _downloadsServiceHelper;
 
         private const string HUB_BACKGROUND_DEFAULT = "ms-appx:///Assets/HubBackground.jpg";
     }

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="ArtistInfoViewModel.cs" />
     <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\VKAudioWithLastFm.cs" />
     <Compile Include="PlayerViewModel.cs" />
     <Compile Include="RecommendedViewModel.cs" />
     <Compile Include="TrackLyricsViewModel.cs" />

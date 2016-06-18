@@ -85,6 +85,12 @@ namespace VKSaver.Core.ViewModels
             get { return _position; }
             set
             {
+                if (_noPositionUpdates)
+                {
+                    _noPositionUpdates = false;
+                    return;
+                }
+
                 _position = value;
                 _playerService.Position = value;
             }
@@ -112,6 +118,8 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
+            _noPositionUpdates = true;
+
             if (!_isSubscribed)
             {
                 _playerService.TrackChanged += PlayerService_TrackChanged;
@@ -357,12 +365,13 @@ namespace VKSaver.Core.ViewModels
         }
 
         private bool _isSubscribed;
-        private bool _isShuffleMode;
+        private bool _isShuffleMode;        
         private PlayerRepeatMode _repeatMode;
         private int _currentTrackID;
         private TimeSpan _position;
         private List<IPlayerTrack> _tracks;
         private string _artistImageUrl;
+        private bool _noPositionUpdates;    // Позволяет убрать заикание при переходе на страницу с работающим плеером.
 
         private readonly DispatcherTimer _timer;
         private readonly INavigationService _navigationService;

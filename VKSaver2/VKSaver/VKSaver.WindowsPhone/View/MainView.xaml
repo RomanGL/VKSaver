@@ -8,6 +8,7 @@
                             xmlns:i="using:Microsoft.Xaml.Interactivity"
                             xmlns:c="using:Microsoft.Xaml.Interactions.Core"
                             xmlns:b="using:VKSaver.Behaviors"
+                            xmlns:common="using:VKSaver.Common"
                             xmlns:prism="using:Microsoft.Practices.Prism.StoreApps"
                             mc:Ignorable="d"
                             prism:ViewModelLocator.AutoWireViewModel="True"
@@ -15,6 +16,8 @@
                             RequestedTheme="Default">
 
     <Page.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+        
         <DataTemplate x:Key="RecommendedTrackTemplate">
             <StackPanel Margin="0,0,0,20">
                 <TextBlock Text="{Binding Title}"
@@ -50,14 +53,15 @@
             </Border>
         </DataTemplate>
 
-        <DataTemplate x:Key="TopListFooterTemplate">
+        <DataTemplate x:Key="UserTracksFooterTemplate">
             <StackPanel>
                 <ListViewItem Content="показать больше"
                               ContentTemplate="{StaticResource MenuItemTemplate}"
                               Margin="0,0,0,25">
                     <i:Interaction.Behaviors>
                         <c:EventTriggerBehavior EventName="Tapped">
-                            <c:InvokeCommandAction Command="{Binding GoToTopTracksCommand}" />
+                            <c:InvokeCommandAction Command="{Binding GoToUserContentCommand}"
+                                                   CommandParameter="audios" />
                         </c:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                 </ListViewItem>
@@ -108,32 +112,44 @@
                 </DataTemplate>
             </Hub.HeaderTemplate>
 
-            <HubSection Header="ПОПУЛЯРНЫЕ">
+            <HubSection Header="ВАША МУЗЫКА">
                 <DataTemplate>
-                    <controls:ContentContainer State="{Binding TopTracksLF.ContentState}"
-                                               ReloadCommand="{Binding TopTracksLF.LoadCommand}">
-                        <ListView ItemsSource="{Binding TopTracksLF, Mode=OneTime}"
-                                  ItemTemplate="{StaticResource TopTrackTemplate}"
-                                  FooterTemplate="{StaticResource TopListFooterTemplate}"
+                    <controls:ContentContainer State="{Binding UserTracks.ContentState}"
+                                               ReloadCommand="{Binding UserTracks.LoadCommand}">
+                        <ListView ItemsSource="{Binding UserTracks, Mode=OneTime}"
+                                  ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                                  FooterTemplate="{StaticResource UserTracksFooterTemplate}"
                                   IncrementalLoadingTrigger="None"
                                   SelectionMode="None"
                                   IsSwipeEnabled="False"
                                   IsItemClickEnabled="True">
                             <i:Interaction.Behaviors>
                                 <c:EventTriggerBehavior EventName="ItemClick">
-                                    <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
-                                                           InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                                    <c:InvokeCommandAction Command="{Binding PlayUserTracksCommand}"
+                                                           InputConverter="{StaticResource ItemClickEventArgsConverter}"/>
                                 </c:EventTriggerBehavior>
                             </i:Interaction.Behaviors>
 
                             <ListView.HeaderTemplate>
                                 <DataTemplate>
                                     <StackPanel Margin="0,0,0,25"
-                                                Background="Transparent">
+                                                Background="Transparent"
+                                                x:Name="FirstTrackRoot">
+                                        <FlyoutBase.AttachedFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem Text="загрузить"
+                                                                Command="{Binding DataSource.DownloadTrackCommand, Source={StaticResource DataContextProxy}}"
+                                                                CommandParameter="{Binding FirstTrack.VKTrack}" />
+                                            </MenuFlyout>
+                                        </FlyoutBase.AttachedFlyout>
+                                        
                                         <i:Interaction.Behaviors>
                                             <c:EventTriggerBehavior EventName="Tapped">
-                                                <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
-                                                                       CommandParameter="{Binding TopTrack}" />
+                                                <c:InvokeCommandAction Command="{Binding PlayUserTracksCommand}"
+                                                                       CommandParameter="{Binding DataSource.FirstTrack.VKTrack, Source={StaticResource DataContextProxy}}" />
+                                            </c:EventTriggerBehavior>
+                                            <c:EventTriggerBehavior EventName="Holding">
+                                                <b:ShowAttachedFlyoutAction />
                                             </c:EventTriggerBehavior>
                                         </i:Interaction.Behaviors>
 
@@ -154,13 +170,13 @@
                                             </Style>
                                         </StackPanel.Resources>
 
-                                        <TextBlock Text="{Binding TopTrack.Name}"
+                                        <TextBlock Text="{Binding FirstTrack.Name}"
                                                    Style="{StaticResource TrackTitleStyle}" />
-                                        <TextBlock Text="{Binding TopTrack.Artist.Name}"
+                                        <TextBlock Text="{Binding FirstTrack.Artist}"
                                                    Style="{StaticResource TrackTitleStyle}"
                                                    Margin="0,15,0,0" />
-                                        <controls:ImagePlaceholder Source="{Binding TopTrack.ExtraLargeImage.URL}"
-                                                                   Text="{Binding TopTrack.Name}"
+                                        <controls:ImagePlaceholder Source="{Binding FirstTrack.ImageURL}"
+                                                                   Text="{Binding FirstTrack.Name}"
                                                                    HorizontalAlignment="Left"
                                                                    Height="120"
                                                                    Width="120"
@@ -168,6 +184,22 @@
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.HeaderTemplate>
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="FlyoutBase.AttachedFlyout">
+                                        <Setter.Value>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem Text="загрузить"
+                                                                Command="{Binding DataSource.DownloadTrackCommand, Source={StaticResource DataContextProxy}}"
+                                                                CommandParameter="{Binding}" />
+                                            </MenuFlyout>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                                            Value="True" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
                         </ListView>
                     </controls:ContentContainer>
                 </DataTemplate>
