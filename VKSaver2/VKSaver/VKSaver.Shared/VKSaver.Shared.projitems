@@ -52,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NoTracksView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AccessDeniedView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AudioAlbumView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserCommView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserContentView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ErrorView.cs" />

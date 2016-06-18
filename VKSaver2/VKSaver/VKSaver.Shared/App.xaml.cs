@@ -138,10 +138,14 @@ namespace VKSaver
         {
             var playerService = container.Resolve<IPlayerService>();
 
-            if (container.Resolve<IVKLoginService>().IsAuthorized)
-                NavigationService.Navigate("MainView", null);
-            else
-                NavigationService.Navigate("LoginView", null);
+            if (args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
+                args.PreviousExecutionState == ApplicationExecutionState.NotRunning)
+            {
+                if (container.Resolve<IVKLoginService>().IsAuthorized)
+                    NavigationService.Navigate("MainView", null);
+                else
+                    NavigationService.Navigate("LoginView", null);
+            }
 
             try
             {

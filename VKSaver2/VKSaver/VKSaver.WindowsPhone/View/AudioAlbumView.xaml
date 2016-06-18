@@ -1,0 +1,82 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.AudioAlbumView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:converters="using:VKSaver.Converters"
+                           xmlns:controls="using:VKSaver.Controls"
+                           xmlns:i="using:Microsoft.Xaml.Interactivity"
+                           xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:b="using:VKSaver.Behaviors"
+                           xmlns:common="using:VKSaver.Common"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           Style="{StaticResource DefaultPageStyle}">
+
+    <mvvm:VisualStateAwarePage.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+
+        <Style x:Key="DownloadableItemStyle"
+               TargetType="ListViewItem">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="загрузить"
+                                        Command="{Binding DataSource.DownloadTrackCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+    </mvvm:VisualStateAwarePage.Resources>
+
+    <Grid>
+        <Grid>
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Margin="19,0,0,0">
+                <TextBlock Text="ВКАЧАЙ"
+                           Style="{ThemeResource TitleTextBlockStyle}"
+                           Margin="0,12,0,0" />
+                <TextBlock Text="{Binding Album.Title, Converter={StaticResource ToLowerConverter}}"
+                           Margin="0,-6.5,0,26.5"
+                           Style="{ThemeResource HeaderTextBlockStyle}" />
+            </StackPanel>
+
+            <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                      ItemsSource="{Binding Tracks}"
+                      ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                      ItemContainerStyle="{StaticResource DownloadableItemStyle}"
+                      Grid.Row="1"
+                      Margin="19,0,0,0">
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <controls:StateBlock State="{Binding Tracks.ContentState}"
+                                             ReloadCommand="{Binding Tracks.LoadCommand}"
+                                             Margin="0,0,0,60" />
+                    </DataTemplate>
+                </ListView.FooterTemplate>
+                <i:Interaction.Behaviors>
+                    <c:EventTriggerBehavior EventName="ItemClick">
+                        <c:InvokeCommandAction Command="{Binding PlayTracksCommand}"
+                                               InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                    </c:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+            </ListView>
+        </Grid>
+    </Grid>
+</mvvm:VisualStateAwarePage>

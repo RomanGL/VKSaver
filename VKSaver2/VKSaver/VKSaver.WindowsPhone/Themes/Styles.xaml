@@ -132,6 +132,8 @@
                 Value="46" />
         <Setter Property="TextWrapping"
                 Value="NoWrap" />
+        <Setter Property="CharacterSpacing"
+                Value="{ThemeResource PivotHeaderItemCharacterSpacing}" />
     </Style>
 
     <Style x:Key="PivotHeaderTextBlockStyle"
@@ -146,6 +148,8 @@
                 Value="NoWrap" />
         <Setter Property="Margin"
                 Value="2,4,0,0" />
+        <Setter Property="CharacterSpacing"
+                Value="{ThemeResource PivotHeaderItemCharacterSpacing}" />
     </Style>
     
     <DataTemplate x:Key="PivotHeaderTemplate">

@@ -63,8 +63,7 @@
                        Margin="0,12,0,0" />
             <TextBlock Text="популярные"
                        Margin="0,-6.5,0,26.5"
-                       Style="{ThemeResource HeaderTextBlockStyle}"
-                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+                       Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
 
         <Grid Grid.Row="1"

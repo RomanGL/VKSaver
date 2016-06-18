@@ -319,7 +319,7 @@ namespace VKSaver.Core.ViewModels
         {
             if (item is VKAudioAlbum)
             {
-                _navigationService.Navigate("AccessDeniedView", null);
+                _navigationService.Navigate("AudioAlbumView", JsonConvert.SerializeObject(item));
             }
             else if (item is VKAudio)
             {
@@ -327,9 +327,9 @@ namespace VKSaver.Core.ViewModels
                 if (audios == null)
                     throw new Exception("Не найдена группа аудиозаписей.");
 
-                await _playerService.PlayNewTracks(audios.Select(
-                    a => ((VKAudio)a).ToPlayerTrack()),
+                await _playerService.PlayNewTracks(audios.Cast<VKAudio>().ToPlayerTracks(),
                     audios.IndexOf(item));
+
                 _navigationService.Navigate("PlayerView", null);
             }
         }
