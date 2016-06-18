@@ -171,9 +171,11 @@
                                         </StackPanel.Resources>
 
                                         <TextBlock Text="{Binding FirstTrack.Title}"
-                                                   Style="{StaticResource TrackTitleStyle}" />
+                                                   Style="{StaticResource TrackTitleStyle}" 
+                                                   TextTrimming="CharacterEllipsis"/>
                                         <TextBlock Text="{Binding FirstTrack.Artist}"
                                                    Style="{StaticResource TrackTitleStyle}"
+                                                   TextTrimming="CharacterEllipsis"
                                                    Margin="0,15,0,0" />
                                         <controls:ImagePlaceholder Source="{Binding FirstTrack.ImageURL}"
                                                                    Text="{Binding FirstTrack.Title}"

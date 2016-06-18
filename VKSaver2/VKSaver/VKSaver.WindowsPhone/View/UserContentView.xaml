@@ -153,7 +153,7 @@
         </Style>
     </mvvm:VisualStateAwarePage.Resources>
 
-    <mvvm:VisualStateAwarePage.BottomAppBar>
+    <!--<mvvm:VisualStateAwarePage.BottomAppBar>
         <CommandBar Background="{ThemeResource ContentDialogDimmingThemeBrush}">
             <AppBarButton Label="выбрать">
                 <AppBarButton.Icon>
@@ -161,7 +161,7 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </CommandBar>
-    </mvvm:VisualStateAwarePage.BottomAppBar>
+    </mvvm:VisualStateAwarePage.BottomAppBar>-->
     
     <Pivot Title="{Binding PageTitle, Converter={StaticResource ToUpperConverter}}"
            SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
