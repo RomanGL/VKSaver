@@ -367,9 +367,9 @@ namespace VKSaver.Core.ViewModels
             if (tracksToPlay == null)
                 return;
 
-            await _playerService.PlayNewTracks(tracksToPlay, 
-                track == FirstTrack.VKTrack ? 
-                0 : UserTracks.IndexOf(track) + 1);
+            IPlayerTrack plTrack = track.ToPlayerTrack();
+            await _playerService.PlayNewTracks(tracksToPlay, tracksToPlay.IndexOf(plTrack));
+
             _navigationService.Navigate("PlayerView", null);
         }
 
