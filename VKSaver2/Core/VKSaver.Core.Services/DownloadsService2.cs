@@ -16,36 +16,24 @@ using static VKSaver.Core.Services.Common.DownloadsExtensions;
 
 namespace VKSaver.Core.Services
 {
-    /// <summary>
-    /// Представляет сервис для рабоы с загрузками.
-    /// </summary>
-    public sealed class DownloadsService : IDownloadsService
-    {        
-        /// <summary>
-        /// Происходит при изменении прогресса загрузки.
-        /// </summary>
+    public class DownloadsService2 : IDownloadsService
+    {
         public event EventHandler<DownloadItem> ProgressChanged;
-        /// <summary>
-        /// Происходит при возникновении серьезной ошибки загрузки.
-        /// </summary>
         public event EventHandler<DownloadOperationErrorEventArgs> DownloadError;
         
-        public DownloadsService()
+        public DownloadsService2()
         {
             _transferGroup = BackgroundTransferGroup.CreateGroup(DOWNLOAD_TRASNFER_GROUP_NAME);
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
+            _downloader = new BackgroundDownloader();
+            _downloader.TransferGroup = _transferGroup;
+
             _downloads = new List<DownloadOperation>(INIT_DOWNLOADS_LIST_CAPACITY);
             _cts = new Dictionary<Guid, CancellationTokenSource>(INIT_DOWNLOADS_LIST_CAPACITY);
         }
-
-        /// <summary>
-        /// Выполняется ли в данный момент загрузка текущих загрузок.
-        /// </summary>
+        
         public bool IsLoading { get; private set; }
-
-        /// <summary>
-        /// Возвращает массив со всеми выполняющимися загрузками.
-        /// </summary>
+        
         public DownloadItem[] GetAllDownloads()
         {
             if (_downloads.Count == 0) return null;
@@ -59,21 +47,26 @@ namespace VKSaver.Core.Services
                 DownloadedSize = FileSize.FromBytes(e.Progress.BytesReceived)
             }).ToArray();
         }
-
-        /// <summary>
-        /// Найти все фоновые загрузки и обработать их.
-        /// </summary>
+        
         public async void DiscoverActiveDownloadsAsync()
         {
             IsLoading = true;
             IReadOnlyList<DownloadOperation> downloads = null;
 
-            try { downloads = await BackgroundDownloader.GetCurrentDownloadsForTransferGroupAsync(_transferGroup); }
-            catch (Exception ex) { WebErrorStatus error = BackgroundTransferError.GetStatus(ex.HResult); }
+            try
+            {
+                downloads = await BackgroundDownloader.GetCurrentDownloadsForTransferGroupAsync(_transferGroup);
+            }
+            catch (Exception ex)
+            {
+                WebErrorStatus error = BackgroundTransferError.GetStatus(ex.HResult);
+            }
 
             if (downloads != null && downloads.Count > 0)
+            {
                 for (int i = 0; i < downloads.Count; i++)
                     HandleDownloadAsync(downloads[i], false);
+            }
             IsLoading = false;
         }
 
@@ -104,11 +97,7 @@ namespace VKSaver.Core.Services
             }
             catch (Exception) { }
         }
-
-        /// <summary>
-        /// Запускает процесс фоновой загрузки переданных элементов и возвращает список произошедших ошибок.
-        /// </summary>
-        /// <param name="items">Список элементов для загрузки.</param>
+        
         public async Task<List<DownloadInitError>> StartDownloadingAsync(IList<IDownloadable> items)
         {
             StorageFolder musicFolder = null;
@@ -120,12 +109,6 @@ namespace VKSaver.Core.Services
 
             for (int i = 0; i < items.Count; i++)
             {
-                if (_downloads.Count == INIT_DOWNLOADS_LIST_CAPACITY)
-                {
-                    errors.Add(new DownloadInitError(DownloadInitErrorType.MaxDownloadsExceeded, items[i]));
-                    continue;
-                }
-
                 var item = items[i];
                 StorageFolder currentFolder = null;
                 switch (item.ContentType)
@@ -163,12 +146,11 @@ namespace VKSaver.Core.Services
                 {
                     errors.Add(new DownloadInitError(DownloadInitErrorType.CantCreateFile, item));
                     continue;
-                }                
+                }
 
                 try
                 {
-                    var downloader = new BackgroundDownloader() { TransferGroup = _transferGroup };
-                    var download = downloader.CreateDownload(new Uri(item.Source), resultFile);
+                    var download = _downloader.CreateDownload(new Uri(item.Source), resultFile);
                     HandleDownloadAsync(download);
                 }
                 catch (Exception)
@@ -192,18 +174,16 @@ namespace VKSaver.Core.Services
 
             try
             {
-                if (start)
-                    await operation.StartAsync().AsTask(tokenSource.Token, callback);
-                else
-                    await operation.AttachAsync().AsTask(tokenSource.Token, callback);
+                if (start) await operation.StartAsync().AsTask(tokenSource.Token, callback);
+                else await operation.AttachAsync().AsTask(tokenSource.Token, callback);
             }
             catch (OperationCanceledException) { }
             catch (Exception ex)
             {
                 DownloadError?.Invoke(this, new DownloadOperationErrorEventArgs(
-                    operation.Guid, 
+                    operation.Guid,
                     GetOperationNameFromFileName(operation.ResultFile.Name),
-                    GetContentTypeFromExtension(operation.ResultFile.FileType), 
+                    GetContentTypeFromExtension(operation.ResultFile.FileType),
                     ex));
             }
 
@@ -211,14 +191,11 @@ namespace VKSaver.Core.Services
             if (operation.Progress.Status == BackgroundTransferStatus.Canceled ||
                 operation.Progress.Status == BackgroundTransferStatus.Error)
                 await operation.ResultFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
-            
+
             _cts.Remove(operation.Guid);
             _downloads.Remove(operation);
         }
-
-        /// <summary>
-        /// Вызывается при изменении прогресса какой-либо загрузки.
-        /// </summary>
+        
         private void OnDownloadProgressChanged(DownloadOperation e)
         {
             ProgressChanged?.Invoke(this, new DownloadItem
@@ -232,33 +209,25 @@ namespace VKSaver.Core.Services
             });
         }
         
-        /// <summary>
-        /// Возвращает название операции загрузки из имени файла.
-        /// </summary>
-        /// <param name="fileName">Имя результирующего файла.</param>
         private static string GetOperationNameFromFileName(string fileName)
         {
             return fileName.Split(new char[] { '.' })[0];
         }
-
-        /// <summary>
-        /// Возвращает файл, в который будет выполняться загрузка.
-        /// </summary>
-        /// <param name="item">Элемент, для которого требуется создать файл.</param>
-        /// <param name="folder">Папка, в которой требуется создать файл.</param>
+        
         private static async Task<StorageFile> GetFileForDownload(IDownloadable item, StorageFolder folder)
         {
             try
             {
-                return await folder.CreateFileAsync(GetSafeFileName(item.FileName) + item.Extension, 
+                return await folder.CreateFileAsync(GetSafeFileName(item.FileName) + item.Extension,
                     CreationCollisionOption.GenerateUniqueName);
             }
             catch (Exception) { return null; }
-        }   
+        }
 
         private readonly BackgroundTransferGroup _transferGroup;
         private readonly List<DownloadOperation> _downloads;
         private readonly Dictionary<Guid, CancellationTokenSource> _cts;
+        private readonly BackgroundDownloader _downloader;
 
         private const string DOWNLOAD_TRASNFER_GROUP_NAME = "VKSaverDownloader";
         private const string DOWNLOADS_FOLDER_NAME = "VKSaver";

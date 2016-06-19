@@ -55,6 +55,7 @@
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="DialogsService.cs" />
     <Compile Include="DownloadsService.cs" />
+    <Compile Include="DownloadsService2.cs" />
     <Compile Include="DownloadsServiceHelper.cs" />
     <Compile Include="GrooveMusicService.cs" />
     <Compile Include="Interfaces\IDownloadsService.cs" />

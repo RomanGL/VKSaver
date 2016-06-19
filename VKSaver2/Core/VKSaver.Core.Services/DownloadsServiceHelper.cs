@@ -51,6 +51,8 @@ namespace VKSaver.Core.Services
                     return "Не удалось создать папку";
                 case DownloadInitErrorType.CantCreateFile:
                     return "Не удалось создать файл";
+                case DownloadInitErrorType.MaxDownloadsExceeded:
+                    return "Достигнуто максимальное количество одновременных загрузок";
                 default:
                     return "Неизвестная ошибка";
             }

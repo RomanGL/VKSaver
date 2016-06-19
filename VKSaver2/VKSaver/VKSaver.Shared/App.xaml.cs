@@ -114,7 +114,7 @@ namespace VKSaver
             container.RegisterType<IGrooveMusicService, GrooveMusicService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IImagesCacheService, ImagesCacheService>(new ContainerControlledLifetimeManager());
             container.RegisterType<INetworkInfoService, NetworkInfoService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IDownloadsService, DownloadsService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IDownloadsService, DownloadsService2>(new ContainerControlledLifetimeManager());
             container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
 
             vkLoginService.UserLogin += (s, e) => NavigationService.Navigate("MainView", null);

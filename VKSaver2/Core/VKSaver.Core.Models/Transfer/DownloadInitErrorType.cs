@@ -16,6 +16,10 @@
         /// <summary>
         /// Не удалось создать файл для загрузки.
         /// </summary>
-        CantCreateFile
+        CantCreateFile,
+        /// <summary>
+        /// Достигнуто максимальное количествол загрузок.
+        /// </summary>
+        MaxDownloadsExceeded
     }
 }
