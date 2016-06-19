@@ -51,6 +51,7 @@
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DownloadsExtensions.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="DialogsService.cs" />
     <Compile Include="DownloadsService.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="PurchaseService\StoreConstants.cs" />
     <Compile Include="Transfer\DownloadOperationErrorEventArgs.cs" />
     <Compile Include="Transfer\TransferStatusComparer.cs" />
+    <Compile Include="Transfer\TransferStatusExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

@@ -9,12 +9,14 @@
                            xmlns:b="using:VKSaver.Behaviors"
                            xmlns:i="using:Microsoft.Xaml.Interactivity"
                            xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:common="using:VKSaver.Common"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
                            mc:Ignorable="d"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            Style="{StaticResource DefaultPageStyle}">
 
     <Page.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
         <converters:FileSizeConverter x:Key="FileSizeConverter" />
         <converters:TransferStatusConverter x:Key="TransferStatusConverter" />
 
@@ -22,12 +24,6 @@
             <Grid Margin="0,0,0,20"
                   Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}"
                   Background="Transparent">
-                <FlyoutBase.AttachedFlyout>
-                    <MenuFlyout Placement="Bottom">
-                        <MenuFlyoutItem Text="пауза" />
-                        <MenuFlyoutItem Text="отмена" />
-                    </MenuFlyout>
-                </FlyoutBase.AttachedFlyout>
                 <Grid.ChildrenTransitions>
                     <TransitionCollection>
                         <EntranceThemeTransition />
@@ -78,14 +74,31 @@
                         <Run Text="{Binding TotalSize, Converter={StaticResource FileSizeConverter}}" />
                     </TextBlock>
                 </StackPanel>
-
-                <i:Interaction.Behaviors>
-                    <c:EventTriggerBehavior EventName="Holding">
-                        <b:ShowAttachedFlyoutAction />
-                    </c:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
             </Grid>
         </DataTemplate>
+
+        <Style x:Key="DownloadItemContainerStyle"
+               TargetType="ListViewItem">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="пауза"
+                                        Command="{Binding DataSource.PauseDownloadCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" 
+                                        IsEnabled="{Binding CanPause}"/>
+                        <MenuFlyoutItem Text="возобновить"
+                                        Command="{Binding DataSource.ResumeDownloadCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" 
+                                        IsEnabled="{Binding CanResume}"/>
+                        <MenuFlyoutItem Text="отменить"
+                                        Command="{Binding DataSource.CancelDownloadCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
     </Page.Resources>
 
     <Pivot Title="ВКАЧАЙ">
@@ -94,6 +107,7 @@
                 <ListView Style="{StaticResource NoSelectionListViewStyle}"
                           ItemsSource="{Binding Downloads}"
                           ItemTemplate="{StaticResource DownloadTemplate}"
+                          ItemContainerStyle="{StaticResource DownloadItemContainerStyle}"
                           HorizontalContentAlignment="Stretch">
                     <ListView.ItemContainerTransitions>
                         <TransitionCollection>

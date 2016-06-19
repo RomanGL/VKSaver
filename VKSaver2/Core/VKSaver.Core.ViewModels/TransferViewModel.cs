@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Services.Transfer;
 using VKSaver.Core.Transfer;
 using VKSaver.Core.ViewModels.Transfer;
 using Windows.Networking.BackgroundTransfer;
@@ -28,6 +29,9 @@ namespace VKSaver.Core.ViewModels
             Downloads = new ObservableCollection<DownloadItemViewModel>();
 
             ShowInfoCommand = new DelegateCommand<DownloadItemViewModel>(OnShowInfoCommand);
+            CancelDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnCancelDownloadCommand);
+            PauseDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnPauseResumeDownloadCommand);
+            ResumeDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnPauseResumeDownloadCommand);
         }
         
         [DoNotNotify]
@@ -39,6 +43,15 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand<DownloadItemViewModel> ShowInfoCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<DownloadItemViewModel> PauseDownloadCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<DownloadItemViewModel> ResumeDownloadCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<DownloadItemViewModel> CancelDownloadCommand { get; private set; }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -73,7 +86,8 @@ namespace VKSaver.Core.ViewModels
 
                 Downloads.Add(new DownloadItemViewModel(e));
                 item = Downloads.FirstOrDefault(d => d.OpeartionGuid == e.OperationGuid);
-                if (item == null) return;
+                if (item == null)
+                    return;
             }
             else
                 item.Download = e;
@@ -94,7 +108,7 @@ namespace VKSaver.Core.ViewModels
             DownloadsState = ContentState.Loading;
 
             while (_downloadsService.IsLoading)
-                await Task.Delay(2000);
+                await Task.Delay(1000);
 
             var downloads = _downloadsService.GetAllDownloads();
             if (downloads == null)
@@ -120,17 +134,31 @@ namespace VKSaver.Core.ViewModels
                     GetMessageTitleFromStatus(item.Status));
             }
         }
+
+        private void OnCancelDownloadCommand(DownloadItemViewModel item)
+        {
+            if (item == null)
+                return;
+            _downloadsService.CancelDownload(item.OpeartionGuid);
+        }
+
+        private void OnPauseResumeDownloadCommand(DownloadItemViewModel item)
+        {
+            if (item == null)
+                return;
+            _downloadsService.PauseResume(item.OpeartionGuid);
+        }
         
         private static string GetMessageTitleFromStatus(BackgroundTransferStatus status)
         {
             switch (status)
             {
                 case BackgroundTransferStatus.Idle:
-                    return "Ожидание скачивания";
+                    return "Ожидание очереди";
                 case BackgroundTransferStatus.PausedCostedNetwork:
                     return "Платная сеть";
                 case BackgroundTransferStatus.PausedNoNetwork:
-                    return "Соединение отсутствует";
+                    return "Ожидание соединения";
                 case BackgroundTransferStatus.Error:
                     return "Произошла ошибка";
             }
@@ -144,7 +172,7 @@ namespace VKSaver.Core.ViewModels
                 case BackgroundTransferStatus.Idle:
                     return "Ожидание очереди загрузки.";
                 case BackgroundTransferStatus.PausedCostedNetwork:
-                    return "Windows заблокировала загрузку. Попробуйте убрать все ограничения в \"Контроле данных\" и отключите лимит трафика.";
+                    return "Windows заблокировала загрузку, так как за использование соединения может взиматься плата. Попробуйте убрать все ограничения в \"Контроле данных\" и отключите лимит трафика.";
                 case BackgroundTransferStatus.PausedNoNetwork:
                     return "Нет доступа к сети. Проверьте настройки передачи данных и повторите попытку.";
                 case BackgroundTransferStatus.Error:

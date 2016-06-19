@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Services.Transfer;
 using VKSaver.Core.Transfer;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.Web;
+using static VKSaver.Core.Services.Common.DownloadsExtensions;
 
 namespace VKSaver.Core.Services
 {
@@ -76,6 +78,34 @@ namespace VKSaver.Core.Services
                 for (int i = 0; i < downloads.Count; i++)
                     HandleDownloadAsync(downloads[i], false);
             IsLoading = false;
+        }
+
+        public void CancelDownload(Guid operationGuid)
+        {
+            CancellationTokenSource cts = null;
+            if (!_cts.TryGetValue(operationGuid, out cts))
+                return;
+            try
+            {
+                cts.Cancel();
+            }
+            catch (Exception) { }
+        }
+
+        public void PauseResume(Guid operationGuid)
+        {
+            var download = _downloads.FirstOrDefault(d => d.Guid == operationGuid);
+            if (download == null)
+                return;
+
+            try
+            {
+                if (download.Progress.Status.IsPaused())
+                    download.Resume();
+                else if (download.Progress.Status.IsRunning())
+                    download.Pause();
+            }
+            catch (Exception) { }
         }
 
         /// <summary>
@@ -207,72 +237,6 @@ namespace VKSaver.Core.Services
         }
 
         /// <summary>
-        /// Возвращает тип содержимого по расширению файла.
-        /// </summary>
-        /// <param name="fileExtension">Расширение файла, например ".mp3".</param>
-        private static FileContentType GetContentTypeFromExtension(string fileExtension)
-        {
-            switch (fileExtension)
-            {
-                case ".mp3": return FileContentType.Music;
-                case ".wma": return FileContentType.Music;
-                case ".wav": return FileContentType.Music;
-                case ".aac": return FileContentType.Music;                
-                case ".m4a": return FileContentType.Music;
-                case ".flac": return FileContentType.Music;
-
-                case ".mp4": return FileContentType.Video;
-                case ".mkv": return FileContentType.Video;
-                case ".avi": return FileContentType.Video;
-                case ".3gp": return FileContentType.Video;
-
-                case ".jpg": return FileContentType.Image;                
-                case ".jpe": return FileContentType.Image;
-                case ".jpeg": return FileContentType.Image;
-                case ".bmp": return FileContentType.Image;
-                case ".png": return FileContentType.Image;
-                case ".gif": return FileContentType.Image;
-
-                default: return FileContentType.Other;
-            }
-        }
-
-        /// <summary>
-        /// Возвращает папку для загрузки содержимого переданного типа.
-        /// </summary>
-        /// <param name="type">Тип содержимого.</param>
-        private static async Task<StorageFolder> GetFolderFromType(FileContentType type)
-        {
-            try
-            {
-                StorageFolder rootFolder = null;
-
-                switch (type)
-                {
-                    case FileContentType.Music:
-                        rootFolder = KnownFolders.MusicLibrary;
-                        break;
-                    case FileContentType.Video:
-                        rootFolder = KnownFolders.VideosLibrary;
-                        break;
-                    case FileContentType.Image:
-                        rootFolder = KnownFolders.SavedPictures;
-                        break;
-                    default:
-                        return await KnownFolders.PicturesLibrary.CreateFolderAsync(DOWNLOADS_OTHER_FOLDER_NAME,
-                            CreationCollisionOption.OpenIfExists);
-                }
-                                
-                return await rootFolder.CreateFolderAsync(DOWNLOADS_FOLDER_NAME, 
-                    CreationCollisionOption.OpenIfExists);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
         /// Возвращает файл, в который будет выполняться загрузка.
         /// </summary>
         /// <param name="item">Элемент, для которого требуется создать файл.</param>
@@ -285,20 +249,7 @@ namespace VKSaver.Core.Services
                     CreationCollisionOption.GenerateUniqueName);
             }
             catch (Exception) { return null; }
-        }
-
-        /// <summary>
-        /// Возвращает допустимое имя файла.
-        /// </summary>
-        /// <param name="fileName">Исходное имя файла, которое требуется обработать.</param>
-        private static string GetSafeFileName(string fileName)
-        {
-            if (fileName.Length > 50)
-                fileName = fileName.Remove(50);
-
-            var regex = new Regex("[?*.<>:|&/\"]");
-            return regex.Replace(fileName, String.Empty);
-        }        
+        }   
 
         private readonly BackgroundTransferGroup _transferGroup;
         private readonly List<DownloadOperation> _downloads;
