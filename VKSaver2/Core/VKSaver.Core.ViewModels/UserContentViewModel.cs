@@ -19,6 +19,10 @@ using OneTeam.SDK.VK.Models.Video;
 using OneTeam.SDK.VK.Models.Docs;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Common;
+using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Controls;
+using System.Collections.Specialized;
+using VKSaver.Core.Models.Transfer;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -33,9 +37,15 @@ namespace VKSaver.Core.ViewModels
             _playerService = playerService;
             _downloadsServiceHelper = downloadsServiceHelper;
 
+            SelectedItems = new ObservableCollection<object>();
+            AppBarItems = new ObservableCollection<ICommandBarElement>();
+
             ExecuteTracksListItemCommand = new DelegateCommand<object>(OnExecuteTracksListItemCommand);
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
             DownloadItemCommand = new DelegateCommand<object>(OnDownloadItemCommand, CanExecuteDownloadItemCommand);
+            ActivateSelectionMode = new DelegateCommand(SetSelectionMode);
+            ReloadContentCommand = new DelegateCommand(OnReloadContentCommand);
+            DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, CanExecuteDownloadSelectedCommand);
         }
 
         public string PageTitle { get; private set; }
@@ -45,6 +55,19 @@ namespace VKSaver.Core.ViewModels
         public IncrementalLoadingJumpListCollection VideoGroup { get; private set; }
 
         public PaginatedCollection<VKDocument> Documents { get; private set; }
+        
+
+        public bool IsSelectionMode { get; private set; }
+
+        public bool IsItemClickEnabled { get; private set; }
+
+        public bool IsLockedPivot { get; private set; }
+
+        [DoNotNotify]
+        public ObservableCollection<ICommandBarElement> AppBarItems { get; private set; }
+
+        [DoNotNotify]
+        public ObservableCollection<object> SelectedItems { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand<object> ExecuteTracksListItemCommand { get; private set; }
@@ -53,7 +76,16 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand<object> DownloadItemCommand { get; private set; }
 
         [DoNotNotify]
+        public DelegateCommand DownloadSelectedCommand { get; private set; }
+
+        [DoNotNotify]
         public DelegateCommand NotImplementedCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand ActivateSelectionMode { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand ReloadContentCommand { get; private set; }
 
         public int LastPivotIndex { get; set; }
 
@@ -92,6 +124,7 @@ namespace VKSaver.Core.ViewModels
                 _audiosOffset = (uint)viewModelState[nameof(_audiosOffset)];
                 _videoAlbumsOffset = (uint)viewModelState[nameof(_videoAlbumsOffset)];
                 _videosOffset = (uint)viewModelState[nameof(_videosOffset)];
+                _docsOffset = (uint)viewModelState[nameof(_docsOffset)];
 
                 var audioAlbums = JsonConvert.DeserializeObject<List<VKAudioAlbum>>(
                     viewModelState["AudioAlbums"].ToString());
@@ -137,6 +170,9 @@ namespace VKSaver.Core.ViewModels
                 LoadUserInfo(_userID);
             }
 
+            SetDefaultMode();
+            SelectedItems.CollectionChanged += SelectedAudios_CollectionChanged;
+
             base.OnNavigatedTo(e, viewModelState);
         }
 
@@ -169,6 +205,9 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(_videoAlbumsOffset)] = _videoAlbumsOffset;
                 viewModelState[nameof(_docsOffset)] = _docsOffset;           
             }
+
+            AppBarItems.Clear();
+            SelectedItems.Clear();
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
@@ -314,6 +353,105 @@ namespace VKSaver.Core.ViewModels
                     PageTitle = response.Response[0].Name;
             }
         } 
+
+        private void CreateDefaultAppBarButtons()
+        {
+            AppBarItems.Clear();
+
+            AppBarItems.Add(new AppBarButton
+            {
+                Label = "обновить",
+                Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
+                Command = ReloadContentCommand
+            });
+            AppBarItems.Add(new AppBarButton
+            {
+                Label = "выбрать",
+                Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
+                Command = ActivateSelectionMode
+            });
+        }
+
+        private void CreateSelectionAppBarButtons()
+        {
+            AppBarItems.Clear();
+            AppBarItems.Add(new AppBarButton
+            {
+                Label = "загрузить",
+                Icon = new FontIcon { Glyph = "\uE118" },
+                Command = DownloadSelectedCommand
+            });
+        }
+
+        private void SetSelectionMode()
+        {
+            IsSelectionMode = true;
+            IsItemClickEnabled = false;
+            IsLockedPivot = true;
+
+            CreateSelectionAppBarButtons();
+        }
+
+        private void SetDefaultMode()
+        {
+            IsSelectionMode = false;
+            IsItemClickEnabled = true;
+            IsLockedPivot = false;
+            
+            CreateDefaultAppBarButtons();
+        }
+
+        private void OnReloadContentCommand()
+        {
+            switch (LastPivotIndex)
+            {
+                case 0:
+                    _audioAlbumsOffset = 0;
+                    _audiosOffset = 0;
+                    AudioGroup.Refresh();
+                    break;
+                case 1:
+                    _videoAlbumsOffset = 0;
+                    _videosOffset = 0;
+                    VideoGroup.Refresh();
+                    break;
+                case 2:
+                    _docsOffset = 0;
+                    Documents.Refresh();
+                    break;
+            }
+                        
+        }
+
+        private async void OnDownloadSelectedCommand()
+        {
+            SetDefaultMode();
+
+            var items = SelectedItems.ToList();
+            var toDownload = new List<IDownloadable>(items.Count);
+            for (int i = 0; i < items.Count; i++)
+            {
+                var audio = items[i] as VKAudio;
+                var doc = items[i] as VKDocument;
+
+                if (audio != null)
+                    toDownload.Add(audio.ToDownloadable());
+                else if (doc != null)
+                    toDownload.Add(doc.ToDownloadable());
+            }
+
+            await _downloadsServiceHelper.StartDownloadingAsync(toDownload);
+        }
+
+        private bool CanExecuteDownloadSelectedCommand()
+        {
+            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio || o is VKDocument);
+        }
+
+        private void SelectedAudios_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            DownloadSelectedCommand.RaiseCanExecuteChanged();
+        }
 
         private async void OnExecuteTracksListItemCommand(object item)
         {

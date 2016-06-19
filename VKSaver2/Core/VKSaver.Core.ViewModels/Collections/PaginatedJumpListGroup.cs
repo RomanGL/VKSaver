@@ -21,5 +21,11 @@ namespace VKSaver.Core.ViewModels.Collections
             : base(collection, func) { }
 
         public object Key { get; set; }
+
+        public override void Refresh()
+        {
+            Clear();
+            Reset();
+        }
     }
 }

@@ -125,6 +125,17 @@ namespace VKSaver.Core.ViewModels.Collections
             await LoadMore();
         }
 
+        protected override void Reset()
+        {
+            if (LoadMoreItems != null)
+            {
+                HasMoreItems = true;
+                ContentState = ContentState.None;
+            }
+
+            ContentState = ContentState.NoData;
+        }
+
         #endregion
 
         #region Properties

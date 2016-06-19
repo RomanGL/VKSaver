@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="ArtistInfoViewModel.cs" />
     <Compile Include="AudioAlbumViewModel.cs" />
+    <Compile Include="Collections\IMultiSelectCollectionView.cs" />
+    <Compile Include="Collections\StateSupportMultiSelectCollection.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\VKAudioWithLastFm.cs" />
     <Compile Include="PlayerViewModel.cs" />

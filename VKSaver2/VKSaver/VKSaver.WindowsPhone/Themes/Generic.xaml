@@ -20,6 +20,12 @@
     
     <converters:OneItemsListSizeConverter x:Key="OneItemsListSizeConverter" />
 
+    <Style x:Key="MarginListViewItemStyle"
+           TargetType="ListViewItem">
+        <Setter Property="Margin"
+                Value="0,0,0,20" />
+    </Style>
+
     <DataTemplate x:Key="ListFooterTemplate">
         <Border Height="80"/>
     </DataTemplate>    
@@ -70,7 +76,7 @@
     </LinearGradientBrush>
 
     <DataTemplate x:Key="TopTrackTemplate">
-        <StackPanel Margin="0,0,0,20">
+        <StackPanel>
             <TextBlock Text="{Binding Name}" Style="{StaticResource BaseItemStyle}" FontSize="28"
                        ContinuumNavigationTransitionInfo.IsExitElement="True"
                        Pivot.SlideInAnimationGroup="GroupOne"/>
@@ -80,8 +86,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="CommonAudioTemplate">
-        <StackPanel Margin="0,0,0,20"
-                    Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+        <StackPanel Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
             <TextBlock Text="{Binding Title}" Style="{StaticResource BaseItemStyle}" FontSize="28" FontWeight="SemiLight"
                        ContinuumNavigationTransitionInfo.IsExitElement="True"
                        Pivot.SlideInAnimationGroup="GroupOne"/>
@@ -91,8 +96,7 @@
     </DataTemplate>
     
     <DataTemplate x:Key="WithDurationAudioTemplate">
-        <StackPanel Margin="0,0,0,20"
-                    Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+        <StackPanel Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
             <TextBlock Text="{Binding Title}"
                        Style="{StaticResource BaseItemStyle}"
                        FontSize="28"
@@ -116,7 +120,6 @@
         <TextBlock Text="{Binding Name}"
                    Style="{StaticResource ListLine1TextStyle}"
                    ContinuumNavigationTransitionInfo.IsExitElement="True"
-                   Margin="0,0,0,20"
                    Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}" />
     </DataTemplate>
 
@@ -124,7 +127,6 @@
         <TextBlock Text="{Binding Title}"
                    Style="{StaticResource ListLine1TextStyle}"
                    ContinuumNavigationTransitionInfo.IsExitElement="True"
-                   Margin="0,0,0,20"
                    Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}" />
     </DataTemplate>
 
@@ -148,10 +150,6 @@
         </StackPanel>
     </DataTemplate>    
 
-    <x:Int32 x:Key="HubHeaderCharacterSpacing">-22</x:Int32>
-    <x:Double x:Key="HubHeaderFontSize">78</x:Double>
-    <FontFamily x:Key="PhoneFontFamilyNormal">Segoe WP</FontFamily>
-    <Thickness x:Key="HubHeaderMarginThickness">15,1,0,0</Thickness>
     <Style x:Key="HubDimmingStyle" TargetType="Hub">
         <Setter Property="Template">
             <Setter.Value>
@@ -223,4 +221,139 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <ControlTemplate x:Key="NoSelectionListViewItem" TargetType="ListViewItem">
+        <Border x:Name="OuterContainer"
+                RenderTransformOrigin="0.5,0.5"
+                MinHeight="40">
+            <Border.RenderTransform>
+                <ScaleTransform x:Name="ContentScaleTransform" />
+            </Border.RenderTransform>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition From="Pressed"
+                                          To="Normal">
+                            <Storyboard>
+                                <PointerUpThemeAnimation Storyboard.TargetName="TiltContainer" />
+                            </Storyboard>
+                        </VisualTransition>
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <PointerDownThemeAnimation Storyboard.TargetName="TiltContainer" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="CheckboxPressed">
+                        <Storyboard>
+                            <PointerDownThemeAnimation Storyboard.TargetName="CheckboxTiltContainer" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0"
+                                             To="{ThemeResource ListViewItemDisabledThemeOpacity}"
+                                             Storyboard.TargetProperty="Opacity"
+                                             Storyboard.TargetName="contentPresenter" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="SelectionStates">
+                    <VisualState x:Name="Unselected" />
+                    <VisualState x:Name="Selected" />
+                    <VisualState x:Name="SelectedUnfocused" />
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="DataVirtualizationStates">
+                    <VisualState x:Name="DataAvailable" />
+                    <VisualState x:Name="DataPlaceholder">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Duration="0"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           Storyboard.TargetName="PlaceholderTextBlock">
+                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                        Value="Visible" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Duration="0"
+                                                           Storyboard.TargetProperty="Visibility"
+                                                           Storyboard.TargetName="PlaceholderRect">
+                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                        Value="Visible" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="ReorderHintStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="0:0:0.2"
+                                          To="NoReorderHint" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="NoReorderHint" />
+                    <VisualState x:Name="BottomReorderHint">
+                        <Storyboard>
+                            <DragOverThemeAnimation Direction="Bottom"
+                                                    ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}"
+                                                    Storyboard.TargetName="ReorderHintContent" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="RightReorderHint">
+                        <Storyboard>
+                            <DragOverThemeAnimation Direction="Right"
+                                                    ToOffset="{ThemeResource ListViewItemReorderHintThemeOffset}"
+                                                    Storyboard.TargetName="ReorderHintContent" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="TopReorderHint">
+                        <Storyboard>
+                            <DragOverThemeAnimation Direction="Top"
+                                                    ToOffset="0"
+                                                    Storyboard.TargetName="ReorderHintContent" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="LeftReorderHint">
+                        <Storyboard>
+                            <DragOverThemeAnimation Direction="Left"
+                                                    ToOffset="0"
+                                                    Storyboard.TargetName="ReorderHintContent" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Grid x:Name="ReorderHintContent"
+                  Background="Transparent">
+                <Border x:Name="ContentContainer">
+                    <Border x:Name="TiltContainer">
+                        <Border x:Name="ContentBorder"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}">
+                            <Border.RenderTransform>
+                                <TranslateTransform x:Name="ContentBorderTranslateTransform" />
+                            </Border.RenderTransform>
+                            <Grid>
+                                <ContentPresenter x:Name="contentPresenter"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                <TextBlock x:Name="PlaceholderTextBlock"
+                                           AutomationProperties.AccessibilityView="Raw"
+                                           Foreground="{x:Null}"
+                                           IsHitTestVisible="False"
+                                           Margin="{TemplateBinding Padding}"
+                                           Opacity="0"
+                                           Text="Xg" />
+                                <Rectangle x:Name="PlaceholderRect"
+                                           Fill="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}"
+                                           IsHitTestVisible="False"
+                                           Visibility="Collapsed" />
+                            </Grid>
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+        </Border>
+    </ControlTemplate>
 </ResourceDictionary>

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.Practices.Prism.StoreApps;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using VKSaver.Core.Models.Common;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Microsoft.Practices.Prism.StoreApps;
-using VKSaver.Core.Models.Common;
-using Newtonsoft.Json;
 
 namespace VKSaver.Core.ViewModels.Collections
 {
@@ -16,7 +16,25 @@ namespace VKSaver.Core.ViewModels.Collections
     /// <typeparam name="T">The type of elements in collection.</typeparam>
     public abstract class StateSupportCollection<T> : ObservableCollection<T>, IStateProviderCollection
     {
-        private ContentState _state = ContentState.Normal;
+        /// <summary>
+        /// Creates the new instance of <see cref="StateSupportCollection"/> class.
+        /// </summary>
+        /// <param name="collection">Collection with elements of type <paramref name="T"/>.</param>
+        protected StateSupportCollection(IEnumerable<T> collection)
+            : base(collection)
+        {
+            this.LoadCommand = new DelegateCommand(() => this.Load());
+            this.RefreshCommand = new DelegateCommand(() => this.Refresh());
+        }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="StateSupportCollection{T}"/> class.
+        /// </summary>
+        protected StateSupportCollection()
+        {
+            this.LoadCommand = new DelegateCommand(() => this.Load());
+            this.RefreshCommand = new DelegateCommand(() => this.Refresh());
+        }
 
         /// <summary>
         /// Gets a command of load data to collection.
@@ -89,24 +107,6 @@ namespace VKSaver.Core.ViewModels.Collections
             }));            
         }
 
-        /// <summary>
-        /// Creates the new instance of <see cref="StateSupportCollection"/> class.
-        /// </summary>
-        /// <param name="collection">Collection with elements of type <paramref name="T"/>.</param>
-        protected StateSupportCollection(IEnumerable<T> collection)
-            : base(collection)
-        {
-            this.LoadCommand = new DelegateCommand(() => this.Load());
-            this.RefreshCommand = new DelegateCommand(() => this.Refresh());
-        }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="StateSupportCollection{T}"/> class.
-        /// </summary>
-        protected StateSupportCollection()
-        {
-            this.LoadCommand = new DelegateCommand(() => this.Load());
-            this.RefreshCommand = new DelegateCommand(() => this.Refresh());
-        }
+        private ContentState _state = ContentState.Normal;
     }
 }

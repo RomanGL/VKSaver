@@ -40,8 +40,7 @@
                     Value="19,0,0,0" />
         </Style>
         <DataTemplate x:Key="AlbumTemplate">
-            <Grid Margin="0,0,0,20"
-                  Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+            <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
@@ -70,8 +69,7 @@
         </DataTemplate>
         <DataTemplate x:Key="SimilarArtistTemplate">
             <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}}"
-                  Height="{Binding Width, Converter={StaticResource HalfSizeConverter}, RelativeSource={RelativeSource Mode=Self}}"
-                  Margin="0,0,0,20">
+                  Height="{Binding Width, Converter={StaticResource HalfSizeConverter}, RelativeSource={RelativeSource Mode=Self}}">
                 <controls:ImagePlaceholder Source="{Binding Images[3].URL}"
                                            Text="{Binding Name}" />
 

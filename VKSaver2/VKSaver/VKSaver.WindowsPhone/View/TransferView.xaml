@@ -19,8 +19,7 @@
         <converters:TransferStatusConverter x:Key="TransferStatusConverter" />
 
         <DataTemplate x:Key="DownloadTemplate">
-            <Grid Margin="0,0,0,20"
-                  Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}"
+            <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}"
                   Background="Transparent">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout Placement="Bottom">

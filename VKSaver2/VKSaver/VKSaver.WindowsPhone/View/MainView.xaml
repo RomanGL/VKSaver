@@ -19,7 +19,7 @@
         <common:DataContextProxy x:Key="DataContextProxy" />
         
         <DataTemplate x:Key="RecommendedTrackTemplate">
-            <StackPanel Margin="0,0,0,20">
+            <StackPanel>
                 <TextBlock Text="{Binding Title}"
                            Style="{StaticResource BaseItemStyle}"
                            FontSize="28"
@@ -132,7 +132,7 @@
 
                             <ListView.HeaderTemplate>
                                 <DataTemplate>
-                                    <StackPanel Margin="0,0,0,25"
+                                    <StackPanel Margin="0,0,0,20"
                                                 Background="Transparent"
                                                 x:Name="FirstTrackRoot">
                                         <FlyoutBase.AttachedFlyout>
@@ -188,7 +188,8 @@
                             </ListView.HeaderTemplate>
 
                             <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
+                                <Style TargetType="ListViewItem"
+                                       BasedOn="{StaticResource MarginListViewItemStyle}">
                                     <Setter Property="FlyoutBase.AttachedFlyout">
                                         <Setter.Value>
                                             <MenuFlyout>
@@ -200,6 +201,8 @@
                                     </Setter>
                                     <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
                                             Value="True" />
+                                    <Setter Property="Margin"
+                                            Value="0,0,0,15" />
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>

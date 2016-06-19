@@ -28,7 +28,17 @@ namespace VKSaver.Core.ViewModels.Collections
         {
             await LoadMore();
         }
-        
+
+        public override void Refresh()
+        {
+            for (int i = 0; i < this.Count; i++)
+            {
+                this[i].Refresh();
+            }
+
+            Load();
+        }
+
         private async Task<LoadMoreItemsResult> LoadMore()
         {
             try

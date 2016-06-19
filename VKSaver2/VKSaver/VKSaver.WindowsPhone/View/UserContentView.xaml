@@ -14,15 +14,14 @@
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            mc:Ignorable="d"
                            Style="{StaticResource DefaultPageStyle}">
-    
+
     <mvvm:VisualStateAwarePage.Resources>
         <converters:UserContentGroupKeyToStringConverter x:Key="GroupKeyToStringConverter" />
+        <converters:BoolToListViewSelectionModeConverter x:Key="BoolToSelectionModeConverter" />
         <common:DataContextProxy x:Key="DataContextProxy" />
 
         <DataTemplate x:Key="VideoTemplate">
-            <Grid Margin="0,0,0,20"
-                  Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
-
+            <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
@@ -31,15 +30,15 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                
+
                 <controls:ImagePlaceholder Height="62"
                                            Width="110"
                                            Text="{Binding Title}"
-                                           Source="{Binding Photo320}" 
+                                           Source="{Binding Photo320}"
                                            Grid.RowSpan="2"
                                            VerticalAlignment="Top"
-                                           Pivot.SlideInAnimationGroup="GroupOne"/>
-                
+                                           Pivot.SlideInAnimationGroup="GroupOne" />
+
                 <TextBlock Text="{Binding Title}"
                            Style="{StaticResource BaseItemStyle}"
                            FontSize="28"
@@ -58,7 +57,7 @@
                            MaxLines="2"
                            Grid.Column="1"
                            Grid.Row="1"
-                           Pivot.SlideInAnimationGroup="GroupThree"/>
+                           Pivot.SlideInAnimationGroup="GroupThree" />
             </Grid>
         </DataTemplate>
 
@@ -96,8 +95,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="DocumentTemplate">
-            <Grid Margin="0,0,0,20"
-                  Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+            <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
@@ -132,13 +130,14 @@
 
         <common:AudioGroupTemplateSelector x:Key="AudioGroupTemplateSelector"
                                            AudioTemplate="{StaticResource WithDurationAudioTemplate}"
-                                           AlbumTemplate="{StaticResource OnlyTitleListItemTemplate}"/>
+                                           AlbumTemplate="{StaticResource OnlyTitleListItemTemplate}" />
         <common:VideoGroupTemplateSelector x:Key="VideoGroupTemplateSelector"
                                            AlbumTemplate="{StaticResource OnlyTitleListItemTemplate}"
-                                           VideoTemplate="{StaticResource VideoTemplate}"/>
+                                           VideoTemplate="{StaticResource VideoTemplate}" />
 
         <Style x:Key="DownloadableItemStyle"
-               TargetType="ListViewItem">
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
             <Setter Property="FlyoutBase.AttachedFlyout">
                 <Setter.Value>
                     <MenuFlyout>
@@ -151,28 +150,39 @@
             <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
                     Value="True" />
         </Style>
+
+        <Style x:Key="AlbumItemStyle"
+               TargetType="ListViewItem">
+            <Setter Property="Margin"
+                    Value="0,0,0,5" />
+            <Setter Property="Template"
+                    Value="{StaticResource NoSelectionListViewItem}" />
+        </Style>
+
+        <common:ContentViewItemContainerStyleSelector x:Key="ItemContainerStyleSelector"
+                                                      DefaultStyle="{StaticResource DownloadableItemStyle}"
+                                                      AlbumStyle="{StaticResource AlbumItemStyle}" />
     </mvvm:VisualStateAwarePage.Resources>
 
-    <!--<mvvm:VisualStateAwarePage.BottomAppBar>
-        <CommandBar Background="{ThemeResource ContentDialogDimmingThemeBrush}">
-            <AppBarButton Label="выбрать">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE133;" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-        </CommandBar>
-    </mvvm:VisualStateAwarePage.BottomAppBar>-->
-    
+    <mvvm:VisualStateAwarePage.BottomAppBar>
+        <CommandBar Background="{ThemeResource ContentDialogDimmingThemeBrush}"
+                    common:CommandBarExtensions.CommandBarItems="{Binding AppBarItems}" />
+    </mvvm:VisualStateAwarePage.BottomAppBar>
+
     <Pivot Title="{Binding PageTitle, Converter={StaticResource ToUpperConverter}}"
            SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
+           IsLocked="{Binding IsLockedPivot}"
            Margin="0,0,0,-60">
         <PivotItem Header="музыка">
             <SemanticZoom Style="{StaticResource GenericJumpListStyle}">
                 <SemanticZoom.ZoomedInView>
-                    <ListView Style="{StaticResource NoSelectionListViewStyle}"
-                              ItemsSource="{Binding Source={StaticResource AudioGroupSource}}"
-                              ItemTemplateSelector="{StaticResource AudioGroupTemplateSelector}"
-                              ItemContainerStyle="{StaticResource DownloadableItemStyle}">
+                    <controls:FixedListView Style="{StaticResource NoSelectionListViewStyle}"
+                                            ItemsSource="{Binding Source={StaticResource AudioGroupSource}}"
+                                            ItemTemplateSelector="{StaticResource AudioGroupTemplateSelector}"
+                                            ItemContainerStyleSelector="{StaticResource ItemContainerStyleSelector}"
+                                            IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                                            SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
+                                            common:SelectedItemsBinding.SelectedItems="{Binding SelectedItems}">
                         <ListView.GroupStyle>
                             <GroupStyle HeaderTemplate="{StaticResource JumpListHeaderTemplate}"
                                         HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
@@ -190,24 +200,25 @@
                                 <c:InvokeCommandAction Command="{Binding ExecuteTracksListItemCommand}"
                                                        InputConverter="{StaticResource ItemClickEventArgsConverter}" />
                             </c:EventTriggerBehavior>
-                            <b:IncrementalUpDownLoadingBehavior ScrollHeightTriggerOffset="1400" 
-                                                                ItemsSource="{Binding AudioGroup}"/>
+                            <b:IncrementalUpDownLoadingBehavior ScrollHeightTriggerOffset="1400"
+                                                                ItemsSource="{Binding AudioGroup}" />
                         </i:Interaction.Behaviors>
-                    </ListView>
+                    </controls:FixedListView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
                     <ListView ItemsSource="{Binding CollectionGroups, Source={StaticResource AudioGroupSource}}"
                               Style="{StaticResource GenericJumpListPickerStyle}"
-                              ItemTemplate="{StaticResource JumpListPickerItemTemplate}"/>
+                              ItemTemplate="{StaticResource JumpListPickerItemTemplate}" />
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </PivotItem>
         <PivotItem Header="видео">
             <SemanticZoom Style="{StaticResource GenericJumpListStyle}">
                 <SemanticZoom.ZoomedInView>
-                    <ListView Style="{StaticResource NoSelectionListViewStyle}"
-                              ItemsSource="{Binding Source={StaticResource VideoGroupSource}}"
-                              ItemTemplateSelector="{StaticResource VideoGroupTemplateSelector}">
+                    <controls:FixedListView Style="{StaticResource NoSelectionListViewStyle}"
+                                            ItemsSource="{Binding Source={StaticResource VideoGroupSource}}"
+                                            ItemTemplateSelector="{StaticResource VideoGroupTemplateSelector}"
+                                            ItemContainerStyleSelector="{StaticResource ItemContainerStyleSelector}">
                         <ListView.GroupStyle>
                             <GroupStyle HeaderTemplate="{StaticResource JumpListHeaderTemplate}"
                                         HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
@@ -227,7 +238,7 @@
                             <b:IncrementalUpDownLoadingBehavior ScrollHeightTriggerOffset="1400"
                                                                 ItemsSource="{Binding VideoGroup}" />
                         </i:Interaction.Behaviors>
-                    </ListView>
+                    </controls:FixedListView>
                 </SemanticZoom.ZoomedInView>
                 <SemanticZoom.ZoomedOutView>
                     <ListView ItemsSource="{Binding CollectionGroups, Source={StaticResource VideoGroupSource}}"

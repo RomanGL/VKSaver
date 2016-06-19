@@ -19,7 +19,8 @@
         <common:DataContextProxy x:Key="DataContextProxy" />
 
         <Style x:Key="DownloadableItemStyle"
-               TargetType="ListViewItem">
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
             <Setter Property="FlyoutBase.AttachedFlyout">
                 <Setter.Value>
                     <MenuFlyout>

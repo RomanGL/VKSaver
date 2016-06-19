@@ -718,5 +718,7 @@
                 </TransitionCollection>
             </Setter.Value>
         </Setter>
+        <Setter Property="ItemContainerStyle"
+                Value="{StaticResource MarginListViewItemStyle}" />
     </Style>
 </ResourceDictionary>

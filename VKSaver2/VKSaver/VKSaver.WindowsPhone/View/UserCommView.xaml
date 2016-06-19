@@ -16,8 +16,7 @@
 
     <mvvm:VisualStateAwarePage.Resources>
         <DataTemplate x:Key="UserTemplate">
-            <Grid Margin="0,0,0,20"
-                  Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+            <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
@@ -60,8 +59,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="GroupTemplate">
-            <Grid Margin="0,0,0,20"
-                  Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+            <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
@@ -120,6 +118,13 @@
                                              Margin="0,0,0,60" />
                     </DataTemplate>
                 </ListView.FooterTemplate>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Margin"
+                                Value="0,0,0,5" />
+                    </Style>
+                </ListView.ItemContainerStyle>
 
                 <i:Interaction.Behaviors>
                     <c:EventTriggerBehavior EventName="ItemClick">
