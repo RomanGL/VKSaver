@@ -101,6 +101,15 @@
         </Style>
     </Page.Resources>
 
+    <mvvm:VisualStateAwarePage.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="отменить все загрузки" 
+                              Command="{Binding CancelAllDownloadsCommand}"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </mvvm:VisualStateAwarePage.BottomAppBar>
+    
     <Pivot Title="ВКАЧАЙ">
         <PivotItem Header="загрузки">
             <controls:ContentContainer State="{Binding DownloadsState}">

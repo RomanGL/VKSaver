@@ -32,6 +32,7 @@ namespace VKSaver.Core.ViewModels
             CancelDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnCancelDownloadCommand);
             PauseDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnPauseResumeDownloadCommand);
             ResumeDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnPauseResumeDownloadCommand);
+            CancelAllDownloadsCommand = new DelegateCommand(OnCancelAllDownloadsCommand);
         }
         
         [DoNotNotify]
@@ -52,6 +53,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand<DownloadItemViewModel> CancelDownloadCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand CancelAllDownloadsCommand { get; private set; }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -139,7 +143,7 @@ namespace VKSaver.Core.ViewModels
         {
             if (item == null)
                 return;
-            _downloadsService.CancelDownload(item.OpeartionGuid);
+            _downloadsService.Cancel(item.OpeartionGuid);
         }
 
         private void OnPauseResumeDownloadCommand(DownloadItemViewModel item)
@@ -147,6 +151,16 @@ namespace VKSaver.Core.ViewModels
             if (item == null)
                 return;
             _downloadsService.PauseResume(item.OpeartionGuid);
+        }
+
+        private async void OnCancelAllDownloadsCommand()
+        {
+            await _downloadsService.CancelAll();
+        }
+
+        private bool CanExecuteCancelAllDownloadsCommand()
+        {
+            return Downloads.Count > 0;
         }
         
         private static string GetMessageTitleFromStatus(BackgroundTransferStatus status)
