@@ -77,7 +77,8 @@
         </DataTemplate>
 
         <Style x:Key="DownloadItemContainerStyle"
-               TargetType="ListViewItem">
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
             <Setter Property="FlyoutBase.AttachedFlyout">
                 <Setter.Value>
                     <MenuFlyout>

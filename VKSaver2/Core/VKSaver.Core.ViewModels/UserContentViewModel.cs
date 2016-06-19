@@ -424,10 +424,10 @@ namespace VKSaver.Core.ViewModels
         }
 
         private async void OnDownloadSelectedCommand()
-        {
+        {           
+            var items = SelectedItems.ToList();
             SetDefaultMode();
 
-            var items = SelectedItems.ToList();
             var toDownload = new List<IDownloadable>(items.Count);
             for (int i = 0; i < items.Count; i++)
             {
