@@ -70,7 +70,7 @@ namespace VKSaver.Core.Services
             IsLoading = false;
         }
 
-        public void CancelDownload(Guid operationGuid)
+        public void Cancel(Guid operationGuid)
         {
             CancellationTokenSource cts = null;
             if (!_cts.TryGetValue(operationGuid, out cts))
@@ -97,7 +97,21 @@ namespace VKSaver.Core.Services
             }
             catch (Exception) { }
         }
-        
+
+        public Task CancelAll()
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    var guids = _cts.Keys.ToList();
+                    foreach (var g in guids)
+                        _cts[g].Cancel();
+                }
+                catch (Exception) { }
+            });
+        }
+
         public async Task<List<DownloadInitError>> StartDownloadingAsync(IList<IDownloadable> items)
         {
             StorageFolder musicFolder = null;
