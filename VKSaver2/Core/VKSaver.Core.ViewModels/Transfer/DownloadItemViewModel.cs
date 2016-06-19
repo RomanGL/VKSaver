@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
 using System;
 using VKSaver.Core.Models.Common;
+using VKSaver.Core.Services.Transfer;
 using VKSaver.Core.Transfer;
 using Windows.Networking.BackgroundTransfer;
 
@@ -88,5 +89,9 @@ namespace VKSaver.Core.ViewModels.Transfer
                     Status == BackgroundTransferStatus.Idle;
             }
         }
+
+        public bool CanPause { get { return Status.IsRunning(); } }
+
+        public bool CanResume { get { return Status.IsPaused(); } }
     }
 }

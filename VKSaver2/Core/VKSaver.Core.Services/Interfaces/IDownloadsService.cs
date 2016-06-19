@@ -14,7 +14,9 @@ namespace VKSaver.Core.Services.Interfaces
         bool IsLoading { get; }
 
         void DiscoverActiveDownloadsAsync();
+        void CancelDownload(Guid operationGuid);
+        void PauseResume(Guid operationGuid);
         DownloadItem[] GetAllDownloads();
-        Task<List<DownloadInitError>> StartDownloadingAsync(IList<IDownloadable> items);
+        Task<List<DownloadInitError>> StartDownloadingAsync(IList<IDownloadable> items);        
     }
 }
