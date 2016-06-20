@@ -40,6 +40,7 @@ namespace VKSaver.Controls
             {
                 _appBarHided = false;
                 page.BottomAppBar.Visibility = Visibility.Visible;
+                page.BottomAppBar.Tag = null;
             }
         }
 
@@ -50,6 +51,7 @@ namespace VKSaver.Controls
             {
                 _appBarHided = false;
                 page.BottomAppBar.Visibility = Visibility.Visible;
+                page.BottomAppBar.Tag = null;
             }
 
             base.OnContentChanged(oldContent, newContent);
@@ -61,9 +63,10 @@ namespace VKSaver.Controls
             VisualStateManager.GoToState(this, "Showed", true);
 
             var page = Content as Page;
-            if (page != null && page.BottomAppBar != null)
+            if (page != null && page.BottomAppBar != null && page.BottomAppBar.Visibility == Visibility.Visible)
             {
                 page.BottomAppBar.Visibility = Visibility.Collapsed;
+                page.BottomAppBar.Tag = true;
                 _appBarHided = true;
             }
         }

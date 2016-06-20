@@ -23,6 +23,16 @@ namespace VKSaver.Behaviors
             DependencyProperty.Register("SelectedItems", typeof(IList), 
                 typeof(SelectedItemsBindingBehavior), new PropertyMetadata(null, OnSelectedItemsChanged));
 
+        public bool SelectAll
+        {
+            get { return (bool)GetValue(SelectAllProperty); }
+            set { SetValue(SelectAllProperty, value); }
+        }
+        
+        public static readonly DependencyProperty SelectAllProperty =
+            DependencyProperty.Register("SelectAll", typeof(bool), 
+                typeof(SelectedItemsBindingBehavior), new PropertyMetadata(false, OnSelectAllChanged));
+
         public void Attach(DependencyObject associatedObject)
         {
             AssociatedObject = associatedObject;
@@ -62,6 +72,15 @@ namespace VKSaver.Behaviors
                 Command.Execute(CommandParameter);
         }
 
+        private void SelectAllItems()
+        {
+            if (AttachedListView != null)
+                AttachedListView.SelectAll();
+
+            if (AttachedListBox != null)
+                AttachedListBox.SelectAll();
+        }
+
         private static void OnSelectedItemsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             var behavior = (SelectedItemsBindingBehavior)obj;
@@ -79,6 +98,12 @@ namespace VKSaver.Behaviors
                 foreach (var item in behavior.AttachedListBox.SelectedItems)
                     list.Add(item);
             }
+        }
+
+        private static void OnSelectAllChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            var behavior = (SelectedItemsBindingBehavior)obj;
+            behavior.SelectAllItems();
         }
     }
 }

@@ -46,7 +46,10 @@
             <ScrollViewer Grid.Row="1"
                           Margin="19,9.5,0,0">
                 <controls:ContentContainer State="{Binding LyricsState}"
-                                           ReloadCommand="{Binding ReloadLyricsCommand}">
+                                           ReloadCommand="{Binding ReloadLyricsCommand}"
+                                           LoadingText="Выполняем поиск текста аудиозаписи..."
+                                           ErrorText="Не удалось загрузить текст аудиозаписи"
+                                           NoDataText="У этой аудиозаписи нет текста">
                     <TextBlock Text="{Binding Lyrics}"
                                Style="{StaticResource BodyTextBlockStyle}"
                                Margin="0,0,19,20" />

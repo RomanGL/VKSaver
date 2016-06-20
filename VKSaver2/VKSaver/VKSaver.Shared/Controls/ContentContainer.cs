@@ -80,8 +80,35 @@ namespace VKSaver.Controls
 
         public static readonly DependencyProperty ReloadCommandParameterProperty =
             DependencyProperty.Register("ReloadCommandParameter", typeof(object), 
-            typeof(ContentContainer), new PropertyMetadata(null));        
+            typeof(ContentContainer), new PropertyMetadata(null));
         #endregion
+
+        public string LoadingText
+        {
+            get { return (string)GetValue(LoadingTextProperty); }
+            set { SetValue(LoadingTextProperty, value); }
+        }
+        
+        public static readonly DependencyProperty LoadingTextProperty =
+            DependencyProperty.Register("LoadingText", typeof(string), typeof(ContentContainer), new PropertyMetadata(null));
+
+        public string ErrorText
+        {
+            get { return (string)GetValue(ErrorTextProperty); }
+            set { SetValue(ErrorTextProperty, value); }
+        }
+        
+        public static readonly DependencyProperty ErrorTextProperty =
+            DependencyProperty.Register("ErrorText", typeof(string), typeof(ContentContainer), new PropertyMetadata(null));
+
+        public string NoDataText
+        {
+            get { return (string)GetValue(NoDataTextProperty); }
+            set { SetValue(NoDataTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty NoDataTextProperty =
+            DependencyProperty.Register("NoDataText", typeof(string), typeof(ContentContainer), new PropertyMetadata(null));
 
         #endregion
 

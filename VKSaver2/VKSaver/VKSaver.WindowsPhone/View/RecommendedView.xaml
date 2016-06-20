@@ -43,7 +43,10 @@
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Audios.ContentState}"
                                              ReloadCommand="{Binding Audios.LoadCommand}"
-                                             Margin="0,0,0,60" />
+                                             Margin="0,0,0,60" 
+                                             LoadingText="Изучаем ваши музыкальные предпочтения..."
+                                             ErrorText="Не удалось загрузить рекомендации"
+                                             NoDataText="Мы не можем ничего вам порекомендоать"/>
                     </DataTemplate>
                 </ListView.FooterTemplate>
                 <i:Interaction.Behaviors>

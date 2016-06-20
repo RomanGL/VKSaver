@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -53,11 +54,19 @@ namespace VKSaver.Behaviors
         private void PrimaryCommands_Changed(object sender, NotifyCollectionChangedEventArgs e)
         {
             UpdateButtons(AttachedBar.PrimaryCommands, e);
+
+            if (AttachedBar.Visibility == Visibility.Collapsed &&
+                AttachedBar.Tag == null)
+                AttachedBar.Visibility = Visibility.Visible;
         }
 
         private void SecondaryCommands_Changed(object sender, NotifyCollectionChangedEventArgs e)
         {
             UpdateButtons(AttachedBar.SecondaryCommands, e);
+
+            if (AttachedBar.Visibility == Visibility.Collapsed &&
+                AttachedBar.Tag == null)
+                AttachedBar.Visibility = Visibility.Visible;
         }
 
         private static void UpdateButtons(IList<ICommandBarElement> barElements, NotifyCollectionChangedEventArgs e)
@@ -117,6 +126,10 @@ namespace VKSaver.Behaviors
                 {
                     foreach (var item in collection)
                         behavior.AttachedBar.PrimaryCommands.Add(item);
+
+                    if (behavior.AttachedBar.Visibility == Visibility.Collapsed && 
+                        behavior.AttachedBar.Tag == null && collection.Any())
+                        behavior.AttachedBar.Visibility = Visibility.Visible;
                 }
             }
         }
@@ -143,6 +156,10 @@ namespace VKSaver.Behaviors
                 {
                     foreach (var item in collection)
                         behavior.AttachedBar.SecondaryCommands.Add(item);
+
+                    if (behavior.AttachedBar.Visibility == Visibility.Collapsed &&
+                        behavior.AttachedBar.Tag == null && collection.Any())
+                        behavior.AttachedBar.Visibility = Visibility.Visible;
                 }
             }
         }

@@ -34,7 +34,7 @@ namespace VKSaver.Core.ViewModels
             CancelDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnCancelDownloadCommand);
             PauseDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnPauseResumeDownloadCommand);
             ResumeDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnPauseResumeDownloadCommand);
-            CancelAllDownloadsCommand = new DelegateCommand(OnCancelAllDownloadsCommand);
+            CancelAllDownloadsCommand = new DelegateCommand(OnCancelAllDownloadsCommand, CanExecuteCancelAllDownloadsCommand);
         }
         
         [DoNotNotify]
@@ -108,6 +108,8 @@ namespace VKSaver.Core.ViewModels
                 DownloadsState = ContentState.NoData;
             else
                 Downloads.OrderBy(d => d.Status, new TransferStatusComparer());
+
+            CancelAllDownloadsCommand.RaiseCanExecuteChanged();
         }
 
         private void OnDownloadsCompleted(object sender, EventArgs e)

@@ -11,4 +11,5 @@
     <local:ItemClickEventArgsToClickedItemConverter x:Key="ItemClickEventArgsConverter" />
     <local:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
     <local:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <local:BoolToListViewSelectionModeConverter x:Key="BoolToSelectionModeConverter" />
 </ResourceDictionary>

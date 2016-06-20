@@ -16,8 +16,7 @@
                            Style="{StaticResource DefaultPageStyle}">
 
     <mvvm:VisualStateAwarePage.Resources>
-        <converters:UserContentGroupKeyToStringConverter x:Key="GroupKeyToStringConverter" />
-        <converters:BoolToListViewSelectionModeConverter x:Key="BoolToSelectionModeConverter" />
+        <converters:UserContentGroupKeyToStringConverter x:Key="GroupKeyToStringConverter" />        
         <common:DataContextProxy x:Key="DataContextProxy" />
 
         <DataTemplate x:Key="VideoTemplate">
@@ -204,6 +203,7 @@
                             <b:IncrementalUpDownLoadingBehavior ScrollHeightTriggerOffset="1400"
                                                                 ItemsSource="{Binding AudioGroup}" />
                             <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                            SelectAll="{Binding SelectAll}"
                                                             Command="{Binding SelectionChangedCommand}"/>
                         </i:Interaction.Behaviors>
                     </controls:FixedListView>
@@ -255,7 +255,9 @@
             <ListView Style="{StaticResource NoSelectionListViewStyle}"
                       ItemsSource="{Binding Documents}"
                       ItemTemplate="{StaticResource DocumentTemplate}"
-                      ItemContainerStyle="{StaticResource DownloadableItemStyle}">
+                      ItemContainerStyle="{StaticResource DownloadableItemStyle}"
+                      IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                      SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
                 <ListView.FooterTemplate>
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Documents.ContentState}"
@@ -267,6 +269,9 @@
                     <c:EventTriggerBehavior EventName="ItemClick">
                         <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
                     </c:EventTriggerBehavior>
+                    <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                    SelectAll="{Binding SelectAll}"
+                                                    Command="{Binding SelectionChangedCommand}" />
                 </i:Interaction.Behaviors>
             </ListView>
         </PivotItem>

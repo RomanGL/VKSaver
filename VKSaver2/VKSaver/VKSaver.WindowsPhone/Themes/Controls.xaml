@@ -197,6 +197,12 @@
 
     <!--Стиль контейнера контента, поддерживающего уведомления о состоянии-->
     <Style TargetType="controls:ContentContainer">
+        <Setter Property="LoadingText"
+                Value="Загрузка..." />
+        <Setter Property="ErrorText"
+                Value="Не удалось загрузить данные" />
+        <Setter Property="NoDataText"
+                Value="Здесь так одиноко..." />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ContentContainer">
@@ -519,7 +525,7 @@
                             </StackPanel.RenderTransform>
                             <TextBlock x:Name="ErrorTextBlock"
                                        TextWrapping="Wrap"
-                                       Text="Не удалось загрузить данные"
+                                       Text="{TemplateBinding ErrorText}"
                                        Style="{StaticResource BaseItemStyle}"
                                        HorizontalAlignment="Left"
                                        FontSize="28"
@@ -554,7 +560,7 @@
                             </StackPanel.RenderTransform>
                             <TextBlock x:Name="LoadingTextBlock"
                                        TextWrapping="Wrap"
-                                       Text="Загрузка..."
+                                       Text="{TemplateBinding LoadingText}"
                                        Style="{StaticResource BaseItemStyle}"
                                        HorizontalAlignment="Left"
                                        FontSize="28"
@@ -581,7 +587,7 @@
                         </StackPanel>
                         <TextBlock x:Name="NoDataTextblock"
                                    TextWrapping="Wrap"
-                                   Text="Здесь так одиноко..."
+                                   Text="{TemplateBinding NoDataText}"
                                    Style="{StaticResource BaseItemStyle}"
                                    FontSize="28"
                                    RenderTransformOrigin="0.5,0.5"
@@ -608,6 +614,12 @@
     </Style>
 
     <Style TargetType="controls:StateBlock">
+        <Setter Property="LoadingText"
+                Value="Загрузка..." />
+        <Setter Property="ErrorText"
+                Value="Не удалось загрузить данные" />
+        <Setter Property="NoDataText"
+                Value="Здесь так одиноко..." />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:StateBlock">
@@ -913,7 +925,7 @@
                             </StackPanel.RenderTransform>
                             <TextBlock x:Name="ErrorTextBlock"
                                        TextWrapping="Wrap"
-                                       Text="Не удалось загрузить данные"
+                                       Text="{TemplateBinding ErrorText}"
                                        Style="{StaticResource BaseItemStyle}"
                                        HorizontalAlignment="Left"
                                        FontSize="28"
@@ -945,7 +957,7 @@
                             </StackPanel.RenderTransform>
                             <TextBlock x:Name="LoadingTextBlock"
                                        TextWrapping="Wrap"
-                                       Text="Загрузка..."
+                                       Text="{TemplateBinding LoadingText}"
                                        Style="{StaticResource BaseItemStyle}"
                                        HorizontalAlignment="Left"
                                        FontSize="28"
@@ -970,7 +982,7 @@
                         </StackPanel>
                         <TextBlock x:Name="NoDataTextblock"
                                    TextWrapping="Wrap"
-                                   Text="Данные отсутствуют"
+                                   Text="{TemplateBinding NoDataText}"
                                    Style="{StaticResource BaseItemStyle}"
                                    FontSize="28"
                                    RenderTransformOrigin="0.5,0.5"

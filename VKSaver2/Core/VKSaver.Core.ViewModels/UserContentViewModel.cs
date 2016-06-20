@@ -45,7 +45,7 @@ namespace VKSaver.Core.ViewModels
             ExecuteTracksListItemCommand = new DelegateCommand<object>(OnExecuteTracksListItemCommand);
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
             DownloadItemCommand = new DelegateCommand<object>(OnDownloadItemCommand, CanExecuteDownloadItemCommand);
-            ActivateSelectionMode = new DelegateCommand(SetSelectionMode);
+            ActivateSelectionMode = new DelegateCommand(SetSelectionMode, () => LastPivotIndex != 1);
             ReloadContentCommand = new DelegateCommand(OnReloadContentCommand);
             DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, CanExecuteDownloadSelectedCommand);
             SelectionChangedCommand = new DelegateCommand(OnSelectionChangedCommand);
@@ -57,14 +57,16 @@ namespace VKSaver.Core.ViewModels
 
         public IncrementalLoadingJumpListCollection VideoGroup { get; private set; }
 
-        public PaginatedCollection<VKDocument> Documents { get; private set; }
-        
+        public PaginatedCollection<VKDocument> Documents { get; private set; }        
 
         public bool IsSelectionMode { get; private set; }
 
         public bool IsItemClickEnabled { get; private set; }
 
         public bool IsLockedPivot { get; private set; }
+
+        [DoNotCheckEquality]
+        public bool SelectAll { get; private set; }
 
         [DoNotNotify]
         public ObservableCollection<ICommandBarElement> AppBarItems { get; private set; }
@@ -93,7 +95,15 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand SelectionChangedCommand { get; private set; }
 
-        public int LastPivotIndex { get; set; }
+        public int LastPivotIndex
+        {
+            get { return _lastPivotIndex; }
+            set
+            {
+                _lastPivotIndex = value;
+                ActivateSelectionMode.RaiseCanExecuteChanged();
+            }
+        }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -386,6 +396,12 @@ namespace VKSaver.Core.ViewModels
                 Icon = new FontIcon { Glyph = "\uE118" },
                 Command = DownloadSelectedCommand
             });
+            AppBarItems.Add(new AppBarButton
+            {
+                Label = "выбрать все",
+                Icon = new FontIcon { Glyph = "\uE0E7" },
+                Command = new DelegateCommand(() => SelectAll = !SelectAll)
+            });
         }
 
         private void SetSelectionMode()
@@ -508,6 +524,8 @@ namespace VKSaver.Core.ViewModels
         private uint _audioAlbumsOffset;
         private uint _videoAlbumsOffset;
         private uint _docsOffset;
+
+        private int _lastPivotIndex;
 
         private readonly IVKService _vkService;
         private readonly INavigationService _navigationService;

@@ -28,7 +28,8 @@ namespace VKSaver.Core.ViewModels
 
         public PlayerViewModel(INavigationService navigationService, IPlayerService playerService,
             IPlayerPlaylistService playerPlaylistService, IImagesCacheService imagesCacheService,
-            ITracksShuffleService tracksShuffleService, IDownloadsService downloadsService)
+            ITracksShuffleService tracksShuffleService, IDownloadsService downloadsService,
+            IAppLoaderService appLoaderService)
         {
             _navigationService = navigationService;
             _playerService = playerService;
@@ -36,6 +37,7 @@ namespace VKSaver.Core.ViewModels
             _imagesCacheService = imagesCacheService;
             _tracksShuffleSevice = tracksShuffleService;
             _downloadsService = downloadsService;
+            _appLoaderService = appLoaderService;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
 
@@ -151,6 +153,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void LoadPlayerState()
         {
+            _appLoaderService.Show();
             RepeatMode = _playerService.RepeatMode;
             _isShuffleMode = _playerService.IsShuffleMode;
             OnPropertyChanged(nameof(IsShuffleMode));
@@ -192,6 +195,7 @@ namespace VKSaver.Core.ViewModels
             }
 
             CanShuffle = true;
+            _appLoaderService.Hide();
         }
 
         private void Timer_Tick(object sender, object e)
@@ -380,6 +384,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IImagesCacheService _imagesCacheService;
         private readonly ITracksShuffleService _tracksShuffleSevice;
         private readonly IDownloadsService _downloadsService;
+        private readonly IAppLoaderService _appLoaderService;
 
         private const string DEFAULT_BACKGROUND_IMAGE = "ms-appx:///Assets/Background/PlayerBackground.png";
 

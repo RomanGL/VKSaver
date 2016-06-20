@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
@@ -15,6 +16,13 @@ namespace VKSaver.Converters
             if (value is String)
             {
                 if (String.IsNullOrEmpty(value.ToString()))
+                    return reverse ? Visibility.Visible : Visibility.Collapsed;
+                else
+                    return reverse ? Visibility.Collapsed : Visibility.Visible;
+            }
+            else if (value is IList)
+            {
+                if (((IList)value).Count == 0)
                     return reverse ? Visibility.Visible : Visibility.Collapsed;
                 else
                     return reverse ? Visibility.Collapsed : Visibility.Visible;

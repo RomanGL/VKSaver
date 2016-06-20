@@ -35,6 +35,14 @@
         </Style>
     </mvvm:VisualStateAwarePage.Resources>
 
+    <mvvm:VisualStateAwarePage.BottomAppBar>
+        <CommandBar Visibility="Collapsed">
+            <i:Interaction.Behaviors>
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}" />
+            </i:Interaction.Behaviors>
+        </CommandBar>
+    </mvvm:VisualStateAwarePage.BottomAppBar>
+    
     <Grid>
         <Grid>
             <Grid.ChildrenTransitions>
@@ -62,13 +70,18 @@
                       ItemsSource="{Binding Tracks}"
                       ItemTemplate="{StaticResource WithDurationAudioTemplate}"
                       ItemContainerStyle="{StaticResource DownloadableItemStyle}"
+                      IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                      SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
                       Grid.Row="1"
                       Margin="19,0,0,0">
                 <ListView.FooterTemplate>
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Tracks.ContentState}"
                                              ReloadCommand="{Binding Tracks.LoadCommand}"
-                                             Margin="0,0,0,60" />
+                                             Margin="0,0,0,60" 
+                                             LoadingText="Загружаем список треков альбома..."
+                                             ErrorText="Не удалось загрузить содержимое альбома"
+                                             NoDataText="Это очень пустой альбом"/>
                     </DataTemplate>
                 </ListView.FooterTemplate>
                 <i:Interaction.Behaviors>
@@ -76,6 +89,9 @@
                         <c:InvokeCommandAction Command="{Binding PlayTracksCommand}"
                                                InputConverter="{StaticResource ItemClickEventArgsConverter}" />
                     </c:EventTriggerBehavior>
+                    <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                    SelectAll="{Binding SelectAll}"
+                                                    Command="{Binding SelectionChangedCommand}" />
                 </i:Interaction.Behaviors>
             </ListView>
         </Grid>

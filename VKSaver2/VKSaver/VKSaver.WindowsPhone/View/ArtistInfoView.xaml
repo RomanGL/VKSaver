@@ -168,7 +168,9 @@
                             <Border MinHeight="50">
                                 <controls:StateBlock State="{Binding Tracks.ContentState}"
                                                      ReloadCommand="{Binding Tracks.LoadCommand}"
-                                                     Margin="0,0,0,10" />
+                                                     Margin="0,0,0,10" 
+                                                     LoadingText="Собираем досье на исполнителя..."
+                                                     ErrorText="Не удалось загрузить данные об исполнителе"/>
                             </Border>
                         </DataTemplate>
                     </ListView.FooterTemplate>
@@ -193,7 +195,10 @@
                         <Border MinHeight="70">
                             <controls:StateBlock State="{Binding Albums.ContentState}"
                                                  ReloadCommand="{Binding Albums.LoadCommand}"
-                                                 Margin="0,0,0,10" />
+                                                 Margin="0,0,0,10" 
+                                                 LoadingText="Прослушиваем пластинки исполнителя..."
+                                                 ErrorText="Не удалось загрузить список альбомов"
+                                                 NoDataText="Похоже, этот исполнитель дежит свои альбомы в тайне"/>
                         </Border>
                     </DataTemplate>
                 </ListView.FooterTemplate>
@@ -208,7 +213,10 @@
         </PivotItem>
         <PivotItem Header="похожие">
             <controls:ContentContainer State="{Binding Similar.ContentState}"
-                                       ReloadCommand="{Binding Similar.LoadCommand}">
+                                       ReloadCommand="{Binding Similar.LoadCommand}"
+                                       LoadingText="Ищем похожих..."
+                                       ErrorText="Не удалось найти похожих исполнителей"
+                                       NoDataText="У этого исполнителя уникальная внешность!">
                 <ListView Style="{StaticResource NoSelectionListViewStyle}"
                           ItemsSource="{Binding Similar}"
                           ItemTemplate="{StaticResource SimilarArtistTemplate}"
