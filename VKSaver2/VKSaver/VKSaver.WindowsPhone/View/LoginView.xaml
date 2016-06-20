@@ -8,7 +8,8 @@
                             xmlns:prism="using:Microsoft.Practices.Prism.StoreApps"
                             x:Class="VKSaver.Views.LoginView"
                             mc:Ignorable="d"
-                            prism:ViewModelLocator.AutoWireViewModel="True">
+                            prism:ViewModelLocator.AutoWireViewModel="True"
+                            Style="{StaticResource DefaultPageStyle}">
 
     <prism:VisualStateAwarePage.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal"

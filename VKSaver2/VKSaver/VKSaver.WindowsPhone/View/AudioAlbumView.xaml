@@ -26,7 +26,7 @@
                     <MenuFlyout>
                         <MenuFlyoutItem Text="загрузить"
                                         Command="{Binding DataSource.DownloadTrackCommand, Source={StaticResource DataContextProxy}}"
-                                        CommandParameter="{Binding}" />
+                                        CommandParameter="{Binding}" />                        
                     </MenuFlyout>
                 </Setter.Value>
             </Setter>
@@ -38,7 +38,8 @@
     <mvvm:VisualStateAwarePage.BottomAppBar>
         <CommandBar Visibility="Collapsed">
             <i:Interaction.Behaviors>
-                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}" />
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}"
+                                                    SecondaryCommands="{Binding SecondaryItems}"/>
             </i:Interaction.Behaviors>
         </CommandBar>
     </mvvm:VisualStateAwarePage.BottomAppBar>

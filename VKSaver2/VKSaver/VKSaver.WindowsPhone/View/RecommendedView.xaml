@@ -8,12 +8,45 @@
                            xmlns:i="using:Microsoft.Xaml.Interactivity"
                            xmlns:c="using:Microsoft.Xaml.Interactions.Core"
                            xmlns:b="using:VKSaver.Behaviors"
+                           xmlns:common="using:VKSaver.Common"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
                            x:Class="VKSaver.Views.RecommendedView"
                            mc:Ignorable="d"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            Style="{StaticResource DefaultPageStyle}">
 
+    <mvvm:VisualStateAwarePage.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+
+        <Style x:Key="DownloadableItemStyle"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="загрузить"
+                                        Command="{Binding DataSource.DownloadTrackCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="в мои аудиозаписи"
+                                        Command="{Binding DataSource.AddToMyAudiosCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+    </mvvm:VisualStateAwarePage.Resources>
+    
+    <mvvm:VisualStateAwarePage.BottomAppBar>
+        <CommandBar Visibility="Collapsed">
+            <i:Interaction.Behaviors>
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}" 
+                                                    SecondaryCommands="{Binding SecondaryItems}"/>
+            </i:Interaction.Behaviors>
+        </CommandBar>
+    </mvvm:VisualStateAwarePage.BottomAppBar>
+    
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -31,31 +64,33 @@
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
         </StackPanel>
 
-        <Grid Grid.Row="1"
-              x:Name="ContentRoot"
-              Margin="19,9.5,0,0">
-            <ListView Style="{StaticResource NoSelectionListViewStyle}"
-                      ItemsSource="{Binding Audios}"
-                      ItemTemplate="{StaticResource WithDurationAudioTemplate}"
-                      DataFetchSize="3"
-                      IncrementalLoadingThreshold="5">
-                <ListView.FooterTemplate>
-                    <DataTemplate>
-                        <controls:StateBlock State="{Binding Audios.ContentState}"
-                                             ReloadCommand="{Binding Audios.LoadCommand}"
-                                             Margin="0,0,0,60" 
-                                             LoadingText="Изучаем ваши музыкальные предпочтения..."
-                                             ErrorText="Не удалось загрузить рекомендации"
-                                             NoDataText="Мы не можем ничего вам порекомендоать"/>
-                    </DataTemplate>
-                </ListView.FooterTemplate>
-                <i:Interaction.Behaviors>
-                    <c:EventTriggerBehavior EventName="ItemClick">
-                        <c:InvokeCommandAction Command="{Binding PlayTracksCommand}"
-                                               InputConverter="{StaticResource ItemClickEventArgsConverter}" />
-                    </c:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
-            </ListView>
-        </Grid>
+        <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                  ItemsSource="{Binding Audios}"
+                  ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                  ItemContainerStyle="{StaticResource DownloadableItemStyle}"
+                  IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                  SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
+                  Grid.Row="1"
+                  Margin="19,0,0,0">
+            <ListView.FooterTemplate>
+                <DataTemplate>
+                    <controls:StateBlock State="{Binding Audios.ContentState}"
+                                         ReloadCommand="{Binding Audios.LoadCommand}"
+                                         Margin="0,0,0,60"
+                                         LoadingText="Изучаем ваши музыкальные предпочтения..."
+                                         ErrorText="Не удалось загрузить рекомендации"
+                                         NoDataText="Мы не можем ничего вам порекомендоать" />
+                </DataTemplate>
+            </ListView.FooterTemplate>
+            <i:Interaction.Behaviors>
+                <c:EventTriggerBehavior EventName="ItemClick">
+                    <c:InvokeCommandAction Command="{Binding PlayTracksCommand}"
+                                           InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                </c:EventTriggerBehavior>
+                <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                SelectAll="{Binding SelectAll}"
+                                                Command="{Binding SelectionChangedCommand}" />
+            </i:Interaction.Behaviors>
+        </ListView>
     </Grid>
 </mvvm:VisualStateAwarePage>

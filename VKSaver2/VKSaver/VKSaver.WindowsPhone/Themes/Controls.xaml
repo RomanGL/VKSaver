@@ -11,7 +11,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:WithLoaderFrame">
-                    <Grid>
+                    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="LoaderStates">
                                 <VisualStateGroup.Transitions>

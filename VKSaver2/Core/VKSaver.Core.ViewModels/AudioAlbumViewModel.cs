@@ -36,14 +36,17 @@ namespace VKSaver.Core.ViewModels
 
             IsItemClickEnabled = true;
             AppBarItems = new ObservableCollection<ICommandBarElement>();
+            SecondaryItems = new ObservableCollection<ICommandBarElement>();
             SelectedItems = new List<object>();
 
             PlayTracksCommand = new DelegateCommand<VKAudio>(OnPlayTracksCommand);
             DownloadTrackCommand = new DelegateCommand<VKAudio>(OnDownloadTrackCommand);
-            DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, CanExecuteDownloadSelectedCommand);
+            DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, HasSelectedItems);
             SelectionChangedCommand = new DelegateCommand(OnSelectionChangedCommand);
-            ReloadContentCommand = new DelegateCommand(() => Tracks.Refresh());
+            ReloadContentCommand = new DelegateCommand(OnReloadContentCommand);
             ActivateSelectionMode = new DelegateCommand(SetSelectionMode);
+
+            PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
         }
 
         public PaginatedCollection<VKAudio> Tracks { get; private set; }
@@ -59,10 +62,16 @@ namespace VKSaver.Core.ViewModels
         public ObservableCollection<ICommandBarElement> AppBarItems { get; private set; }
 
         [DoNotNotify]
+        public ObservableCollection<ICommandBarElement> SecondaryItems { get; private set; }
+
+        [DoNotNotify]
         public List<object> SelectedItems { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand<VKAudio> PlayTracksCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand PlaySelectedCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand<VKAudio> DownloadTrackCommand { get; private set; }
@@ -114,6 +123,7 @@ namespace VKSaver.Core.ViewModels
             }
 
             AppBarItems.Clear();
+            SecondaryItems.Clear();
             SelectedItems.Clear();
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
@@ -146,6 +156,7 @@ namespace VKSaver.Core.ViewModels
         private void CreateDefaultAppBarButtons()
         {
             AppBarItems.Clear();
+            SecondaryItems.Clear();
 
             AppBarItems.Add(new AppBarButton
             {
@@ -164,6 +175,8 @@ namespace VKSaver.Core.ViewModels
         private void CreateSelectionAppBarButtons()
         {
             AppBarItems.Clear();
+            SecondaryItems.Clear();
+
             AppBarItems.Add(new AppBarButton
             {
                 Label = "загрузить",
@@ -172,10 +185,16 @@ namespace VKSaver.Core.ViewModels
             });
             AppBarItems.Add(new AppBarButton
             {
+                Label = "воспроизвести",
+                Icon = new FontIcon { Glyph = "\uE102" },
+                Command = PlaySelectedCommand
+            });
+            AppBarItems.Add(new AppBarButton
+            {
                 Label = "выбрать все",
                 Icon = new FontIcon { Glyph = "\uE0E7" },
                 Command = new DelegateCommand(() => SelectAll = !SelectAll)
-            });
+            });            
         }
 
         private void SetSelectionMode()
@@ -196,8 +215,23 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnPlayTracksCommand(VKAudio track)
         {
+            _appLoaderService.Show();
+
             await _playerService.PlayNewTracks(Tracks.ToPlayerTracks(), Tracks.IndexOf(track));
             _navigationService.Navigate("PlayerView", null);
+
+            _appLoaderService.Hide();
+        }
+
+        private async void OnPlaySelectedCommand()
+        {
+            _appLoaderService.Show();
+
+            var toPlay = SelectedItems.Cast<VKAudio>().ToPlayerTracks();
+            await _playerService.PlayNewTracks(toPlay, 0);
+            _navigationService.Navigate("PlayerView", null);
+
+            _appLoaderService.Hide();
         }
 
         private async void OnDownloadTrackCommand(VKAudio track)
@@ -221,7 +255,7 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService.Hide();
         }
 
-        private bool CanExecuteDownloadSelectedCommand()
+        private bool HasSelectedItems()
         {
             return SelectedItems.Count > 0;
         }
@@ -229,6 +263,13 @@ namespace VKSaver.Core.ViewModels
         private void OnSelectionChangedCommand()
         {
             DownloadSelectedCommand.RaiseCanExecuteChanged();
+            PlaySelectedCommand.RaiseCanExecuteChanged();
+        }
+
+        private void OnReloadContentCommand()
+        {
+            _offset = 0;
+            Tracks.Refresh();
         }
 
         private uint _offset;

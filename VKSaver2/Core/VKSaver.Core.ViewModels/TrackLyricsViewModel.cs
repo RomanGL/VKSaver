@@ -50,15 +50,21 @@ namespace VKSaver.Core.ViewModels
                 Lyrics = viewModelState[nameof(Lyrics)].ToString();
                 Track = JsonConvert.DeserializeObject<PlayerTrack>(
                     viewModelState[nameof(Track)].ToString());
+                _artistImage = viewModelState[nameof(_artistImage)] as string;
 
+                if (_artistImage != null)
+                    ArtistImage = new BitmapImage(new Uri(_artistImage));
             }
             else if (e.Parameter != null)
             {
                 var data = JsonConvert.DeserializeObject<KeyValuePair<string, string>>(e.Parameter.ToString());                
                 Track = JsonConvert.DeserializeObject<PlayerTrack>(data.Key);
 
-                if (data.Key != null)
+                if (data.Value != null)
+                {
                     ArtistImage = new BitmapImage(new Uri(data.Value));
+                    _artistImage = data.Value;
+                }
             }
 
             if (String.IsNullOrEmpty(Lyrics))
@@ -73,6 +79,7 @@ namespace VKSaver.Core.ViewModels
             {
                 viewModelState[nameof(Track)] = JsonConvert.SerializeObject(Track);
                 viewModelState[nameof(Lyrics)] = Lyrics;
+                viewModelState[nameof(_artistImage)] = _artistImage;
             }
 
             LyricsState = ContentState.None;
@@ -122,7 +129,9 @@ namespace VKSaver.Core.ViewModels
             _dialogService.Show("Не удалось найти текст для этой аудиозаписи.", "Ошибка");
             LyricsState = ContentState.NoData;
         }
-        
+
+        private string _artistImage;
+
         private readonly IVKService _vkService;
         private readonly INavigationService _navigationService;
         private readonly IDialogsService _dialogService;
