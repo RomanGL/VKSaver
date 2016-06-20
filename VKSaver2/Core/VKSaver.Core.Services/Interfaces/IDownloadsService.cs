@@ -10,6 +10,7 @@ namespace VKSaver.Core.Services.Interfaces
     {
         event EventHandler<DownloadOperationErrorEventArgs> DownloadError;
         event EventHandler<DownloadItem> ProgressChanged;
+        event EventHandler DownloadsCompleted;
 
         bool IsLoading { get; }
 

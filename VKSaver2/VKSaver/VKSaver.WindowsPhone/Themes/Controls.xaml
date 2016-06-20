@@ -7,6 +7,159 @@
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                     mc:Ignorable="d">
 
+    <Style TargetType="controls:WithLoaderFrame">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:WithLoaderFrame">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="LoaderStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Showed"
+                                                      GeneratedDuration="0"
+                                                      To="Normal">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.5"
+                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                             Storyboard.TargetName="LoaderGrid" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ProgressRing.IsActive)"
+                                                                           Storyboard.TargetName="LoaderProgress">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <x:Boolean>True</x:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.517">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <x:Boolean>False</x:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                           Storyboard.TargetName="LoaderGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.517">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <!--<DoubleAnimation Duration="0:0:0.5"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                                                             Storyboard.TargetName="contentPresenter">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseInOut"
+                                                                     Exponent="4" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Duration="0:0:0.5"
+                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                                                             Storyboard.TargetName="contentPresenter">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseInOut"
+                                                                     Exponent="4" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Duration="0:0:0.5"
+                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                             Storyboard.TargetName="contentPresenter" />-->
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Showed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="LoaderGrid">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="LoaderGrid">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ProgressRing.IsActive)"
+                                                                       Storyboard.TargetName="LoaderProgress">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <x:Boolean>True</x:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <!--<DoubleAnimation Duration="0:0:0.5"
+                                                         To="0.95"
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                                                         Storyboard.TargetName="contentPresenter"
+                                                         d:IsOptimized="True">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseInOut"
+                                                                 Exponent="2" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Duration="0:0:0.5"
+                                                         To="0.95"
+                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                                                         Storyboard.TargetName="contentPresenter"
+                                                         d:IsOptimized="True">
+                                            <DoubleAnimation.EasingFunction>
+                                                <ExponentialEase EasingMode="EaseInOut"
+                                                                 Exponent="2" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Duration="0:0:0.5"
+                                                         To="0.8"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         Storyboard.TargetName="contentPresenter"
+                                                         d:IsOptimized="True" />-->
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          RenderTransformOrigin="0.5,0.5">
+                            <ContentPresenter.RenderTransform>
+                                <CompositeTransform />
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
+                        <Grid Background="{ThemeResource ContentDialogDimmingThemeBrush}"
+                              Visibility="Collapsed"
+                              Opacity="0"
+                              x:Name="LoaderGrid">
+                            <StackPanel VerticalAlignment="Center"
+                                        Margin="19">
+                                <ProgressRing IsActive="False"
+                                              HorizontalAlignment="Center"
+                                              Foreground="{StaticResource AccentBrush}"
+                                              Background="Transparent"
+                                              Width="80"
+                                              Height="80"
+                                              x:Name="LoaderProgress" />
+                                <TextBlock Text="{TemplateBinding LoaderText}"
+                                           Style="{StaticResource BaseTextBlockStyle}"
+                                           TextAlignment="Center"
+                                           OpticalMarginAlignment="None"
+                                           TextWrapping="WrapWholeWords"
+                                           x:Name="LoaderText" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!--Стиль контейнера, поддерживающего эффект нажатия-->
     <Style TargetType="controls:TiltContainer">
         <Setter Property="Template">

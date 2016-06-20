@@ -30,12 +30,14 @@ namespace VKSaver.Core.ViewModels
     public sealed class UserContentViewModel : ViewModelBase
     {
         public UserContentViewModel(IVKService vkService, INavigationService navigationService,
-            IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper)
+            IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
+            IAppLoaderService appLoaderService)
         {
             _vkService = vkService;
             _navigationService = navigationService;
             _playerService = playerService;
             _downloadsServiceHelper = downloadsServiceHelper;
+            _appLoaderService = appLoaderService;
 
             SelectedItems = new List<object>();
             AppBarItems = new ObservableCollection<ICommandBarElement>();
@@ -427,7 +429,8 @@ namespace VKSaver.Core.ViewModels
         }
 
         private async void OnDownloadSelectedCommand()
-        {           
+        {
+            _appLoaderService.Show("Подготовка файлов для загрузки");
             var items = SelectedItems.ToList();
             SetDefaultMode();
 
@@ -444,6 +447,7 @@ namespace VKSaver.Core.ViewModels
             }
 
             await _downloadsServiceHelper.StartDownloadingAsync(toDownload);
+            _appLoaderService.Hide();
         }
 
         private bool CanExecuteDownloadSelectedCommand()
@@ -457,13 +461,14 @@ namespace VKSaver.Core.ViewModels
         }
 
         private async void OnExecuteTracksListItemCommand(object item)
-        {
+        {     
             if (item is VKAudioAlbum)
             {
                 _navigationService.Navigate("AudioAlbumView", JsonConvert.SerializeObject(item));
             }
             else if (item is VKAudio)
             {
+                _appLoaderService.Show();
                 var audios = AudioGroup.FirstOrDefault(g => (string)g.Key == "audios");
                 if (audios == null)
                     throw new Exception("Не найдена группа аудиозаписей.");
@@ -472,11 +477,13 @@ namespace VKSaver.Core.ViewModels
                     audios.IndexOf(item));
 
                 _navigationService.Navigate("PlayerView", null);
+                _appLoaderService.Hide();
             }
         }
 
         private async void OnDownloadItemCommand(object item)
         {
+            _appLoaderService.Show();
             if (item is VKAudio)
             {
                 var audio = (VKAudio)item;
@@ -487,6 +494,7 @@ namespace VKSaver.Core.ViewModels
                 var doc = (VKDocument)item;
                 await _downloadsServiceHelper.StartDownloadingAsync(doc.ToDownloadable());
             }
+            _appLoaderService.Hide();
         }
 
         private bool CanExecuteDownloadItemCommand(object item)
@@ -505,5 +513,6 @@ namespace VKSaver.Core.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IPlayerService _playerService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
+        private readonly IAppLoaderService _appLoaderService;
     }
 }

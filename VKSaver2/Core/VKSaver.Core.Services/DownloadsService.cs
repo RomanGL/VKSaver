@@ -29,7 +29,11 @@ namespace VKSaver.Core.Services
         /// Происходит при возникновении серьезной ошибки загрузки.
         /// </summary>
         public event EventHandler<DownloadOperationErrorEventArgs> DownloadError;
-        
+        /// <summary>
+        /// Происходит при завершении всех загрузок.
+        /// </summary>
+        public event EventHandler DownloadsCompleted;
+
         public DownloadsService()
         {
             _transferGroup = BackgroundTransferGroup.CreateGroup(DOWNLOAD_TRASNFER_GROUP_NAME);
@@ -228,6 +232,9 @@ namespace VKSaver.Core.Services
             
             _cts.Remove(operation.Guid);
             _downloads.Remove(operation);
+
+            if (_downloads.Count == 0)
+                DownloadsCompleted?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

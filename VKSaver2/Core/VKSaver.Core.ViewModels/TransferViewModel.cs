@@ -21,10 +21,12 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public class TransferViewModel : ViewModelBase
     {
-        public TransferViewModel(IDownloadsService downloadsService, IDialogsService dialogsService)
+        public TransferViewModel(IDownloadsService downloadsService, IDialogsService dialogsService,
+            IAppLoaderService appLoaderService)
         {
             _downloadsService = downloadsService;
             _dialogsService = dialogsService;
+            _appLoaderService = appLoaderService;
 
             Downloads = new ObservableCollection<DownloadItemViewModel>();
 
@@ -60,6 +62,7 @@ namespace VKSaver.Core.ViewModels
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             _downloadsService.ProgressChanged += OnDownloadProgressChanged;
+            _downloadsService.DownloadsCompleted += OnDownloadsCompleted;
             await LoadDownloads();
 
             UploadsState = ContentState.NoData;
@@ -71,6 +74,7 @@ namespace VKSaver.Core.ViewModels
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             _downloadsService.ProgressChanged -= OnDownloadProgressChanged;
+            _downloadsService.DownloadsCompleted -= OnDownloadsCompleted;
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
@@ -105,7 +109,12 @@ namespace VKSaver.Core.ViewModels
             else
                 Downloads.OrderBy(d => d.Status, new TransferStatusComparer());
         }
-        
+
+        private void OnDownloadsCompleted(object sender, EventArgs e)
+        {
+            _appLoaderService.Hide();
+        }
+
         private async Task LoadDownloads()
         {
             Downloads.Clear();
@@ -155,6 +164,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnCancelAllDownloadsCommand()
         {
+            _appLoaderService.Show("Отмена всех загрузок...");
             await _downloadsService.CancelAll();
         }
 
@@ -197,5 +207,6 @@ namespace VKSaver.Core.ViewModels
         
         private readonly IDownloadsService _downloadsService;
         private readonly IDialogsService _dialogsService;
+        private readonly IAppLoaderService _appLoaderService;
     }
 }

@@ -37,9 +37,9 @@ namespace VKSaver
 
             this.FrameFactory = () =>
             {
+                _appLoaderService = new AppLoaderService();
 #if WINDOWS_PHONE_APP
-                _frame = new Frame();
-                //ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                _frame = new WithLoaderFrame(_appLoaderService);
 
                 HardwareButtons.BackPressed += (s, e) =>
                 {
@@ -64,18 +64,18 @@ namespace VKSaver
 
         private void App_Resuming(object sender, object e)
         {
-            container.Resolve<IPlayerService>().StartService();
-            container.Resolve<IDownloadsService>().DiscoverActiveDownloadsAsync();
+            _container.Resolve<IPlayerService>().StartService();
+            _container.Resolve<IDownloadsService>().DiscoverActiveDownloadsAsync();
         }
 
         private void App_Suspending(object sender, SuspendingEventArgs e)
         {
-            container.Resolve<IPlayerService>().StopService();
+            _container.Resolve<IPlayerService>().StopService();
         }
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var logService = container.Resolve<ILogService>();
+            var logService = _container.Resolve<ILogService>();
 
             logService.LogException(e.Exception);
             NavigationService.Navigate("ErrorView", null);
@@ -83,7 +83,7 @@ namespace VKSaver
             e.Handled = true;
         }
 
-        public IUnityContainer Container { get { return container; } }
+        public IUnityContainer Container { get { return _container; } }
 
         protected override void OnInitialize(IActivatedEventArgs args)
         {
@@ -91,31 +91,32 @@ namespace VKSaver
             DebugSettings.EnableFrameRateCounter = true;
 #endif
 
-            container = new UnityContainer();
+            _container = new UnityContainer();
             ViewModelLocator.SetDefaultViewTypeToViewModelTypeResolver(GetViewModelType);
 
             var settingsService = new SettingsService();
             var vkLoginService = new VKLoginService(VKSAVER_APP_ID, settingsService);
 
-            container.RegisterInstance<IServiceResolver>(this);
-            container.RegisterInstance<ISettingsService>(settingsService);
-            container.RegisterInstance<INavigationService>(this.NavigationService);
-            container.RegisterInstance<IVKLoginService>(vkLoginService);            
-            container.RegisterInstance<ILFService>(new LFService("***REMOVED***"));
-            
-            container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IVKService, VKService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IDialogsService, DialogsService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IPurchaseService, PurchaseService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ITracksShuffleService, TracksShuffleService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IPlayerPlaylistService, PlayerPlaylistService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IPlayerService, PlayerService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ICultureProvider, CultureProvider>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IGrooveMusicService, GrooveMusicService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IImagesCacheService, ImagesCacheService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<INetworkInfoService, NetworkInfoService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IDownloadsService, DownloadsService2>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
+            _container.RegisterInstance<IServiceResolver>(this);
+            _container.RegisterInstance<ISettingsService>(settingsService);
+            _container.RegisterInstance<INavigationService>(this.NavigationService);
+            _container.RegisterInstance<IVKLoginService>(vkLoginService);            
+            _container.RegisterInstance<ILFService>(new LFService("***REMOVED***"));
+            _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
+
+            _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IVKService, VKService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IDialogsService, DialogsService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IPurchaseService, PurchaseService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<ITracksShuffleService, TracksShuffleService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IPlayerPlaylistService, PlayerPlaylistService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IPlayerService, PlayerService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<ICultureProvider, CultureProvider>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IGrooveMusicService, GrooveMusicService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IImagesCacheService, ImagesCacheService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<INetworkInfoService, NetworkInfoService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IDownloadsService, DownloadsService2>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
 
             vkLoginService.UserLogin += (s, e) => NavigationService.Navigate("MainView", null);
             vkLoginService.UserLogout += (s, e) =>
@@ -124,7 +125,7 @@ namespace VKSaver
                 NavigationService.ClearHistory();
             };
 
-            var playerService = container.Resolve<IPlayerService>();
+            var playerService = _container.Resolve<IPlayerService>();
             playerService.StartService();
 
 #if DEBUG
@@ -136,12 +137,12 @@ namespace VKSaver
 
         protected override Task OnLaunchApplication(LaunchActivatedEventArgs args)
         {
-            var playerService = container.Resolve<IPlayerService>();
+            var playerService = _container.Resolve<IPlayerService>();
 
             if (args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning)
             {
-                if (container.Resolve<IVKLoginService>().IsAuthorized)
+                if (_container.Resolve<IVKLoginService>().IsAuthorized)
                     NavigationService.Navigate("MainView", null);
                 else
                     NavigationService.Navigate("LoginView", null);
@@ -155,7 +156,7 @@ namespace VKSaver
             }
             catch (Exception) { }
 
-            container.Resolve<IDownloadsService>().DiscoverActiveDownloadsAsync();
+            _container.Resolve<IDownloadsService>().DiscoverActiveDownloadsAsync();
             return Task.FromResult<object>(null);
         }
 
@@ -196,7 +197,7 @@ namespace VKSaver
 
         protected override object Resolve(Type type)
         {
-            return container.Resolve(type);
+            return _container.Resolve(type);
         }
 
         public T Resolve<T>() where T: class
@@ -208,16 +209,17 @@ namespace VKSaver
         {
             object res = null;
             if (name == null)
-                res = container.Resolve(typeof(T));
+                res = _container.Resolve(typeof(T));
             else
-                res = container.Resolve(typeof(T), name);
+                res = _container.Resolve(typeof(T), name);
 
             if (res == null)
                 return null;
             return (T)res;
         }
 
-        private IUnityContainer container;
+        private IUnityContainer _container;
+        private IAppLoaderService _appLoaderService;
         private Frame _frame;
 
         private const string VIEW_MODEL_FORMAT = "VKSaver.Core.ViewModels.{0}Model, VKSaver.Core.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";

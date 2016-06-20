@@ -139,6 +139,7 @@
     <Compile Include="Controls\TransferProgressIndicator.xaml.cs">
       <DependentUpon>TransferProgressIndicator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WithLoaderFrame.cs" />
     <Compile Include="Converters\HalfSizeConverter.cs" />
     <Compile Include="Converters\OneItemsListSizeConverter.cs" />
     <Compile Include="Converters\TwoItemsListSizeConverter.cs" />
