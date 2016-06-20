@@ -165,14 +165,16 @@
     </mvvm:VisualStateAwarePage.Resources>
 
     <mvvm:VisualStateAwarePage.BottomAppBar>
-        <CommandBar Background="{ThemeResource ContentDialogDimmingThemeBrush}"
-                    common:CommandBarExtensions.CommandBarItems="{Binding AppBarItems}" />
+        <CommandBar>
+            <i:Interaction.Behaviors>
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}" />
+            </i:Interaction.Behaviors>
+        </CommandBar>
     </mvvm:VisualStateAwarePage.BottomAppBar>
 
     <Pivot Title="{Binding PageTitle, Converter={StaticResource ToUpperConverter}}"
            SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
-           IsLocked="{Binding IsLockedPivot}"
-           Margin="0,0,0,-60">
+           IsLocked="{Binding IsLockedPivot}">
         <PivotItem Header="музыка">
             <SemanticZoom Style="{StaticResource GenericJumpListStyle}">
                 <SemanticZoom.ZoomedInView>
@@ -181,8 +183,7 @@
                                             ItemTemplateSelector="{StaticResource AudioGroupTemplateSelector}"
                                             ItemContainerStyleSelector="{StaticResource ItemContainerStyleSelector}"
                                             IsItemClickEnabled="{Binding IsItemClickEnabled}"
-                                            SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
-                                            common:SelectedItemsBinding.SelectedItems="{Binding SelectedItems}">
+                                            SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
                         <ListView.GroupStyle>
                             <GroupStyle HeaderTemplate="{StaticResource JumpListHeaderTemplate}"
                                         HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
@@ -202,6 +203,8 @@
                             </c:EventTriggerBehavior>
                             <b:IncrementalUpDownLoadingBehavior ScrollHeightTriggerOffset="1400"
                                                                 ItemsSource="{Binding AudioGroup}" />
+                            <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                            Command="{Binding SelectionChangedCommand}"/>
                         </i:Interaction.Behaviors>
                     </controls:FixedListView>
                 </SemanticZoom.ZoomedInView>

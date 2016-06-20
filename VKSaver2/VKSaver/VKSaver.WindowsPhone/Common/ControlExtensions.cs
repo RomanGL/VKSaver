@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
@@ -21,10 +16,10 @@ namespace VKSaver.Common
         {
             obj.SetValue(ShowFlyoutOnHoldingProperty, value);
         }
-
-        // Using a DependencyProperty as the backing store for ShowFlyoutOnHolding.  This enables animation, styling, binding, etc...
+        
         public static readonly DependencyProperty ShowFlyoutOnHoldingProperty =
-            DependencyProperty.RegisterAttached("ShowFlyoutOnHolding", typeof(bool), typeof(ControlExtensions), new PropertyMetadata(false, OnShowFlyoutOnHoldingChanged));
+            DependencyProperty.RegisterAttached("ShowFlyoutOnHolding", typeof(bool), 
+                typeof(ControlExtensions), new PropertyMetadata(false, OnShowFlyoutOnHoldingChanged));
 
         private static void OnShowFlyoutOnHoldingChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {

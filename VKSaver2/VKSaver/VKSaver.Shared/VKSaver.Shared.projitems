@@ -22,7 +22,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\CommandBarButtonsBindingBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\SelectedItemsBindingBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ShowAttachedFlyoutAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\WithCommandDependencyObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VisualTreeHelperExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\StoryboardServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentContainer.cs" />

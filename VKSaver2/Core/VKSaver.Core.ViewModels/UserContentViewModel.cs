@@ -37,7 +37,7 @@ namespace VKSaver.Core.ViewModels
             _playerService = playerService;
             _downloadsServiceHelper = downloadsServiceHelper;
 
-            SelectedItems = new ObservableCollection<object>();
+            SelectedItems = new List<object>();
             AppBarItems = new ObservableCollection<ICommandBarElement>();
 
             ExecuteTracksListItemCommand = new DelegateCommand<object>(OnExecuteTracksListItemCommand);
@@ -46,6 +46,7 @@ namespace VKSaver.Core.ViewModels
             ActivateSelectionMode = new DelegateCommand(SetSelectionMode);
             ReloadContentCommand = new DelegateCommand(OnReloadContentCommand);
             DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, CanExecuteDownloadSelectedCommand);
+            SelectionChangedCommand = new DelegateCommand(OnSelectionChangedCommand);
         }
 
         public string PageTitle { get; private set; }
@@ -67,7 +68,7 @@ namespace VKSaver.Core.ViewModels
         public ObservableCollection<ICommandBarElement> AppBarItems { get; private set; }
 
         [DoNotNotify]
-        public ObservableCollection<object> SelectedItems { get; private set; }
+        public List<object> SelectedItems { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand<object> ExecuteTracksListItemCommand { get; private set; }
@@ -86,6 +87,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand ReloadContentCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand SelectionChangedCommand { get; private set; }
 
         public int LastPivotIndex { get; set; }
 
@@ -171,7 +175,6 @@ namespace VKSaver.Core.ViewModels
             }
 
             SetDefaultMode();
-            SelectedItems.CollectionChanged += SelectedAudios_CollectionChanged;
 
             base.OnNavigatedTo(e, viewModelState);
         }
@@ -448,7 +451,7 @@ namespace VKSaver.Core.ViewModels
             return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio || o is VKDocument);
         }
 
-        private void SelectedAudios_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void OnSelectionChangedCommand()
         {
             DownloadSelectedCommand.RaiseCanExecuteChanged();
         }
