@@ -5,6 +5,7 @@ using System.Linq;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Models.Transfer;
+using static VKSaver.Core.Models.Common.FileContentTypeExtensions;
 
 namespace VKSaver.Core.ViewModels.Common
 {
@@ -39,13 +40,14 @@ namespace VKSaver.Core.ViewModels.Common
 
         public static IDownloadable ToDownloadable(this VKDocument document)
         {
-            return new SimpleDownloadable
+            var downloadable = new SimpleDownloadable
             {
-                ContentType = FileContentType.Other,
                 Extension = $".{document.Extension}",
                 FileName = document.Title,
                 Source = document.Url
             };
+            downloadable.ContentType = GetContentTypeFromExtension(downloadable.Extension);
+            return downloadable;
         }
     }
 }

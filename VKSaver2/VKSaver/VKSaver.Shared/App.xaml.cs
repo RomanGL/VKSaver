@@ -13,12 +13,12 @@ using OneTeam.SDK.LastFm.Services.Interfaces;
 using OneTeam.SDK.LastFm.Services;
 using VKSaver.Core.Services;
 using OneTeam.SDK.Core.Services.Interfaces;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using Windows.UI.Xaml;
 using Windows.UI.Popups;
 using VKSaver.Core.Models.Player;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -56,7 +56,7 @@ namespace VKSaver
                 return _frame;
 #endif
             };
-
+            
             this.UnhandledException += App_UnhandledException;
             this.Suspending += App_Suspending;
             this.Resuming += App_Resuming;
@@ -99,7 +99,7 @@ namespace VKSaver
 
             _container.RegisterInstance<IServiceResolver>(this);
             _container.RegisterInstance<ISettingsService>(settingsService);
-            _container.RegisterInstance<INavigationService>(this.NavigationService);
+            _container.RegisterInstance(this.NavigationService);
             _container.RegisterInstance<IVKLoginService>(vkLoginService);            
             _container.RegisterInstance<ILFService>(new LFService("***REMOVED***"));
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);

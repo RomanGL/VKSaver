@@ -54,6 +54,7 @@
     <Compile Include="Common\ContentState.cs" />
     <Compile Include="Common\ContentStateExtensions.cs" />
     <Compile Include="Common\FileContentType.cs" />
+    <Compile Include="Common\FileContentTypeExtensions.cs" />
     <Compile Include="Common\FileSize.cs" />
     <Compile Include="Common\ILoader.cs" />
     <Compile Include="Player\IPlayerTrack.cs" />

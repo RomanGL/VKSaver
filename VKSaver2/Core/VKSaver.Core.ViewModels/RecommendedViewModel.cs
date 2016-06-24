@@ -124,6 +124,13 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
+            if (e.NavigationMode == NavigationMode.Back && IsSelectionMode)
+            {
+                SetDefaultMode();
+                e.Cancel = true;
+                return;
+            }
+
             if (e.NavigationMode == NavigationMode.New)
             {
                 viewModelState[nameof(Audios)] = JsonConvert.SerializeObject(Audios.ToList());

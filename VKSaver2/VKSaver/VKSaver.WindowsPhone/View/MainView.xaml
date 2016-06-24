@@ -99,16 +99,17 @@
     </Page.BottomAppBar>
 
     <Grid Margin="0,0,0,-25">
-        <Hub Header="вкачай beta"
-             Style="{StaticResource HubDimmingStyle}">
+        <Hub Header="вкачай beta">
             <Hub.Background>
                 <ImageBrush ImageSource="{Binding HubBackgroundImage}"
-                            Stretch="UniformToFill" />
+                            Stretch="UniformToFill" 
+                            Opacity="0.4"/>
             </Hub.Background>
             <Hub.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"
-                               Foreground="{StaticResource TitleBrush}"/>
+                               Foreground="{StaticResource TitleBrush}"
+                               Margin="-2,0,0,0"/>
                 </DataTemplate>
             </Hub.HeaderTemplate>
 

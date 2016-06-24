@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
+using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Views
 {
@@ -17,9 +18,17 @@ namespace VKSaver.Views
         public UserCommView()
         {
             this.InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Required;
 #if WINDOWS_APP
             WindowsNavigationHelper = new VKSaver.Helpers.WindowsNavigationHelper(this);
 #endif
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back)
+                NavigationCacheMode = NavigationCacheMode.Disabled;
+            base.OnNavigatedFrom(e);
         }
     }
 }

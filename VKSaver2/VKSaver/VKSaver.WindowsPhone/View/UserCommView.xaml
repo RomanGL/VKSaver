@@ -84,7 +84,7 @@
         </DataTemplate>
     </mvvm:VisualStateAwarePage.Resources>
     
-    <Pivot Title="ВКАЧАЙ"
+    <Pivot Title="{Binding PageTitle, Converter={StaticResource ToUpperConverter}}"
            SelectedIndex="{Binding LastPivotIndex}">
         <PivotItem Header="друзья">
             <ListView ItemsSource="{Binding Friends}"
@@ -95,13 +95,17 @@
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Friends.ContentState}"
                                              ReloadCommand="{Binding Friends.LoadCommand}"
-                                             Margin="0,0,0,60" />
+                                             Margin="0,0,0,60" 
+                                             LoadingText="Загружаем список ваших друзей..."
+                                             ErrorText="Не удалось загрузить список друзей"
+                                             NoDataText="Трудно жить без друзей?"/>
                     </DataTemplate>
                 </ListView.FooterTemplate>
 
                 <i:Interaction.Behaviors>
                     <c:EventTriggerBehavior EventName="ItemClick">
-                        <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
+                        <c:InvokeCommandAction Command="{Binding ExecuteItemCommand}"
+                                               InputConverter="{StaticResource ItemClickEventArgsConverter}"/>
                     </c:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
             </ListView>
@@ -115,7 +119,10 @@
                     <DataTemplate>
                         <controls:StateBlock State="{Binding FriendsLists.ContentState}"
                                              ReloadCommand="{Binding FriendsLists.LoadCommand}"
-                                             Margin="0,0,0,60" />
+                                             Margin="0,0,0,60" 
+                                             LoadingText="Загружаем ваши списки друзей..."
+                                             ErrorText="Не удалось загрузить списки друзей"
+                                             NoDataText="Ни одного списка не найдено"/>
                     </DataTemplate>
                 </ListView.FooterTemplate>
 
@@ -142,13 +149,17 @@
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Groups.ContentState}"
                                              ReloadCommand="{Binding Groups.LoadCommand}"
-                                             Margin="0,0,0,60" />
+                                             Margin="0,0,0,60" 
+                                             LoadingText="Выполняем поиск собществ, в которых вы состоите..."
+                                             ErrorText="Не удалось загрузить список сообществ"
+                                             NoDataText="Вы не состоите ни в одном сообществе. Может стоит?"/>
                     </DataTemplate>
                 </ListView.FooterTemplate>
                 
                 <i:Interaction.Behaviors>
                     <c:EventTriggerBehavior EventName="ItemClick">
-                        <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
+                        <c:InvokeCommandAction Command="{Binding ExecuteItemCommand}"
+                                               InputConverter="{StaticResource ItemClickEventArgsConverter}"/>
                     </c:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
             </ListView>

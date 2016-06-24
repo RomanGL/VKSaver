@@ -13,6 +13,7 @@ using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.Web;
 using static VKSaver.Core.Services.Common.DownloadsExtensions;
+using static VKSaver.Core.Models.Common.FileContentTypeExtensions;
 
 namespace VKSaver.Core.Services
 {
@@ -131,7 +132,7 @@ namespace VKSaver.Core.Services
         {
             StorageFolder musicFolder = null;
             StorageFolder videosFolder = null;
-            StorageFolder documentsFolder = null;
+            StorageFolder otherFolder = null;
             StorageFolder imagesFolder = null;
 
             var errors = new List<DownloadInitError>();
@@ -164,9 +165,9 @@ namespace VKSaver.Core.Services
                         currentFolder = imagesFolder;
                         break;
                     default:
-                        if (documentsFolder == null)
-                            documentsFolder = await GetFolderFromType(item.ContentType);
-                        currentFolder = documentsFolder;
+                        if (otherFolder == null)
+                            otherFolder = await GetFolderFromType(item.ContentType);
+                        currentFolder = otherFolder;
                         break;
                 }
 

@@ -26,7 +26,13 @@
                     <MenuFlyout>
                         <MenuFlyoutItem Text="загрузить"
                                         Command="{Binding DataSource.DownloadTrackCommand, Source={StaticResource DataContextProxy}}"
-                                        CommandParameter="{Binding}" />                        
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="в мои аудиозаписи"
+                                        Command="{Binding DataSource.AddToMyAudiosCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="удалить"
+                                        Command="{Binding DataSource.DeleteAudioCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
                     </MenuFlyout>
                 </Setter.Value>
             </Setter>
@@ -38,7 +44,7 @@
     <mvvm:VisualStateAwarePage.BottomAppBar>
         <CommandBar Visibility="Collapsed">
             <i:Interaction.Behaviors>
-                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}"
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding PrimaryItems}"
                                                     SecondaryCommands="{Binding SecondaryItems}"/>
             </i:Interaction.Behaviors>
         </CommandBar>

@@ -26,16 +26,19 @@ namespace VKSaver.Core.ViewModels
     {
         public AudioAlbumViewModel(INavigationService navigationService, IPlayerService playerService,
             IDownloadsServiceHelper downloadsServiceHelper, IVKService vkService,
-            IAppLoaderService appLoaderService)
+            IAppLoaderService appLoaderService, IVKLoginService vkLoginService,
+            IDialogsService dialogsService)
         {
             _navigationService = navigationService;
             _playerService = playerService;
             _downloadsServiceHelper = downloadsServiceHelper;
             _vkService = vkService;
             _appLoaderService = appLoaderService;
+            _vkLoginService = vkLoginService;
+            _dialogsService = dialogsService;
 
             IsItemClickEnabled = true;
-            AppBarItems = new ObservableCollection<ICommandBarElement>();
+            PrimaryItems = new ObservableCollection<ICommandBarElement>();
             SecondaryItems = new ObservableCollection<ICommandBarElement>();
             SelectedItems = new List<object>();
 
@@ -46,7 +49,12 @@ namespace VKSaver.Core.ViewModels
             ReloadContentCommand = new DelegateCommand(OnReloadContentCommand);
             ActivateSelectionMode = new DelegateCommand(SetSelectionMode);
 
+            AddToMyAudiosCommand = new DelegateCommand<VKAudio>(OnAddToMyAudiosCommand, CanAddToMyAudios);
+            AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, HasSelectedItems);
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
+
+            DeleteAudioCommand = new DelegateCommand<VKAudio>(OnDeleteAudioCommand, CanDeleteAudio);
+            DeleteSelectedCommand = new DelegateCommand(OnDeleteSelectedCommand, HasSelectedItems);
         }
 
         public PaginatedCollection<VKAudio> Tracks { get; private set; }
@@ -59,7 +67,7 @@ namespace VKSaver.Core.ViewModels
         public bool SelectAll { get; private set; }
 
         [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> AppBarItems { get; private set; }
+        public ObservableCollection<ICommandBarElement> PrimaryItems { get; private set; }
 
         [DoNotNotify]
         public ObservableCollection<ICommandBarElement> SecondaryItems { get; private set; }
@@ -87,6 +95,18 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand ActivateSelectionMode { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand AddSelectedToMyAudiosCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<VKAudio> AddToMyAudiosCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand DeleteSelectedCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<VKAudio> DeleteAudioCommand { get; private set; }
 
         public VKAudioAlbum Album { get; private set; }
 
@@ -116,13 +136,20 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
+            if (e.NavigationMode == NavigationMode.Back && IsSelectionMode)
+            {
+                SetDefaultMode();
+                e.Cancel = true;
+                return;
+            }
+
             if (e.NavigationMode == NavigationMode.New)
             {
                 viewModelState[nameof(Tracks)] = JsonConvert.SerializeObject(Tracks.ToList());
                 viewModelState[nameof(_offset)] = _offset;
             }
 
-            AppBarItems.Clear();
+            PrimaryItems.Clear();
             SecondaryItems.Clear();
             SelectedItems.Clear();
             base.OnNavigatingFrom(e, viewModelState, suspending);
@@ -155,16 +182,16 @@ namespace VKSaver.Core.ViewModels
 
         private void CreateDefaultAppBarButtons()
         {
-            AppBarItems.Clear();
+            PrimaryItems.Clear();
             SecondaryItems.Clear();
 
-            AppBarItems.Add(new AppBarButton
+            PrimaryItems.Add(new AppBarButton
             {
                 Label = "обновить",
                 Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
                 Command = ReloadContentCommand
             });
-            AppBarItems.Add(new AppBarButton
+            PrimaryItems.Add(new AppBarButton
             {
                 Label = "выбрать",
                 Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
@@ -174,27 +201,44 @@ namespace VKSaver.Core.ViewModels
 
         private void CreateSelectionAppBarButtons()
         {
-            AppBarItems.Clear();
+            PrimaryItems.Clear();
             SecondaryItems.Clear();
 
-            AppBarItems.Add(new AppBarButton
+            PrimaryItems.Add(new AppBarButton
             {
                 Label = "загрузить",
                 Icon = new FontIcon { Glyph = "\uE118" },
                 Command = DownloadSelectedCommand
             });
-            AppBarItems.Add(new AppBarButton
+            PrimaryItems.Add(new AppBarButton
             {
                 Label = "воспроизвести",
                 Icon = new FontIcon { Glyph = "\uE102" },
                 Command = PlaySelectedCommand
             });
-            AppBarItems.Add(new AppBarButton
+            PrimaryItems.Add(new AppBarButton
             {
                 Label = "выбрать все",
                 Icon = new FontIcon { Glyph = "\uE0E7" },
                 Command = new DelegateCommand(() => SelectAll = !SelectAll)
-            });            
+            });
+
+            if (Album.OwnerID != _vkLoginService.UserID)
+            {
+                SecondaryItems.Add(new AppBarButton
+                {
+                    Label = "в мои аудиозаписи",
+                    Command = AddSelectedToMyAudiosCommand
+                });                
+            }
+            else
+            {
+                SecondaryItems.Add(new AppBarButton
+                {
+                    Label = "удалить",
+                    Command = DeleteSelectedCommand
+                });
+            }
         }
 
         private void SetSelectionMode()
@@ -272,6 +316,146 @@ namespace VKSaver.Core.ViewModels
             Tracks.Refresh();
         }
 
+        private bool CanAddToMyAudios(VKAudio audio)
+        {
+            return audio != null && audio.OwnerID != _vkLoginService.UserID;
+        }
+
+        private bool CanDeleteAudio(VKAudio audio)
+        {
+            return audio != null && audio.OwnerID == _vkLoginService.UserID;
+        }
+
+        private async void OnDeleteAudioCommand(VKAudio audio)
+        {
+            _appLoaderService.Show("Выполняется удаление...");
+            if (!await DeleteAudio(audio))
+            {
+                _dialogsService.Show("При удалении аудиозаписи произошла ошибка. Повторите попытку позднее.",
+                    "Не удалось удалить аудиозапись");
+            }
+            else
+            {
+                Tracks.Remove(audio);
+            }
+
+            _appLoaderService.Hide();
+        }
+
+        private async void OnAddToMyAudiosCommand(VKAudio audio)
+        {
+            _appLoaderService.Show("Выполняется добавление в вашу коллекцию...");
+            if (!await AddToMyAudios(audio))
+            {
+                _dialogsService.Show("При добавлении аудиозаписи в коллекцию произошла ошибка. Повторите попытку позднее.",
+                    "Не удалось добавить в коллекцию");
+            }            
+            _appLoaderService.Hide();
+        }
+
+        private async void OnAddSelectedToMyAudiosCommand()
+        {
+            _appLoaderService.Show("Подготовка...");
+            var items = SelectedItems.Cast<VKAudio>().ToList();
+            var errors = new List<VKAudio>();
+
+            foreach (var track in items)
+            {
+                _appLoaderService.Show($"Выполняется добавление {track.Artist} - {track.Title}...");
+                if (!await AddToMyAudios(track))
+                    errors.Add(track);
+                await Task.Delay(300);
+            }
+
+            if (errors.Any())
+                ShowAddingError(errors);
+
+            _appLoaderService.Hide();
+        }
+
+        private async void OnDeleteSelectedCommand()
+        {
+            _appLoaderService.Show("Подготовка...");
+            var items = SelectedItems.Cast<VKAudio>().ToList();
+            var errors = new List<VKAudio>();
+
+            foreach (var track in items)
+            {
+                _appLoaderService.Show($"Выполняется удаление {track.Artist} - {track.Title}...");
+                if (await DeleteAudio(track))
+                    Tracks.Remove(track);
+                else
+                    errors.Add(track);
+
+                await Task.Delay(300);
+            }
+
+            if (errors.Any())
+                ShowDeletingError(errors);
+
+            _appLoaderService.Hide();
+        }
+
+        private async Task<bool> AddToMyAudios(VKAudio audio)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                { "audio_id", audio.ID.ToString() },
+                { "owner_id", audio.OwnerID.ToString() }
+            };
+
+            var request = new Request<long>("audio.add", parameters);
+            var response = await _vkService.ExecuteRequestAsync(request);
+
+            if (response.IsSuccess)
+                return true;
+
+            return false;
+        }
+
+        private async Task<bool> DeleteAudio(VKAudio audio)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                { "audio_id", audio.ID.ToString() },
+                { "owner_id", audio.OwnerID.ToString() }
+            };
+
+            var request = new Request<VKOperationIsSuccess>("audio.delete", parameters);
+            var response = await _vkService.ExecuteRequestAsync(request);
+
+            if (response.IsSuccess)
+                return true;
+
+            return false;
+        }
+
+        private void ShowAddingError(List<VKAudio> errorTracks)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Не удалось добавить указанные аудиозаписи в вашу коллекцию. Повторите попытку позднее.");
+
+            foreach (var track in errorTracks)
+            {
+                sb.AppendLine($"{track.Artist} - {track.Title}");
+            }
+
+            _dialogsService.Show(sb.ToString(), "Не удалось добавить в коллекцию");
+        }
+
+        private void ShowDeletingError(List<VKAudio> errorTracks)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Не удалось удалить указанные аудиозаписи из вашей коллекции. Повторите попытку позднее.");
+
+            foreach (var track in errorTracks)
+            {
+                sb.AppendLine($"{track.Artist} - {track.Title}");
+            }
+
+            _dialogsService.Show(sb.ToString(), "Не удалось удалить");
+        }
+
         private uint _offset;
 
         private readonly INavigationService _navigationService;
@@ -279,5 +463,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
         private readonly IVKService _vkService;
         private readonly IAppLoaderService _appLoaderService;
+        private readonly IVKLoginService _vkLoginService;
+        private readonly IDialogsService _dialogsService;
     }
 }

@@ -25,12 +25,15 @@ namespace VKSaver.Core.ViewModels
             _vkService = vkService;
             _navigationService = navigationService;
 
+            ExecuteItemCommand = new DelegateCommand<object>(OnExecuteItemCommand);
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
 
+        public string PageTitle { get; private set; }
+
         public PaginatedCollection<VKUser> Friends { get; private set; }
 
-        public PaginatedCollection<VKUserList> FriendsLists { get; private set; }
+        public SimpleStateSupportCollection<VKUserList> FriendsLists { get; private set; }
 
         public PaginatedCollection<VKGroup> Groups { get; private set; }
 
@@ -38,6 +41,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand NotImplementedCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<object> ExecuteItemCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -65,23 +71,50 @@ namespace VKSaver.Core.ViewModels
 
             if (viewModelState.Count > 0)
             {
+                Friends = JsonConvert.DeserializeObject<PaginatedCollection<VKUser>>(
+                    viewModelState[nameof(Friends)].ToString());
+                FriendsLists = JsonConvert.DeserializeObject<SimpleStateSupportCollection<VKUserList>>(
+                    viewModelState[nameof(FriendsLists)].ToString());
+                Groups = JsonConvert.DeserializeObject<PaginatedCollection<VKGroup>>(
+                    viewModelState[nameof(Groups)].ToString());
 
+                LastPivotIndex = (int)viewModelState[nameof(LastPivotIndex)];
+                _friendsOffset = (uint)viewModelState[nameof(_friendsOffset)];
+                _groupsOffset = (uint)viewModelState[nameof(_groupsOffset)];
+
+                Friends.LoadMoreItems = LoadMoreFriends;
+                FriendsLists.LoadItems = LoadLists;
+                Groups.LoadMoreItems = LoadMoreGroups;
             }
             else
             {
                 Friends = new PaginatedCollection<VKUser>(LoadMoreFriends);
-                FriendsLists = new PaginatedCollection<VKUserList>(LoadMoreLists);
+                FriendsLists = new SimpleStateSupportCollection<VKUserList>(LoadLists);
                 Groups = new PaginatedCollection<VKGroup>(LoadMoreGroups);
 
                 _friendsOffset = 0;
                 _groupsOffset = 0;
+
+                PageTitle = "ВКачай";
+                LoadUserInfo(_userID);
             }
 
+            FriendsLists.Load();
             base.OnNavigatedTo(e, viewModelState);
         }
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                viewModelState[nameof(Friends)] = JsonConvert.SerializeObject(Friends.ToList());
+                viewModelState[nameof(FriendsLists)] = JsonConvert.SerializeObject(FriendsLists.ToList());
+                viewModelState[nameof(Groups)] = JsonConvert.SerializeObject(Groups.ToList());
+                viewModelState[nameof(LastPivotIndex)] = LastPivotIndex;
+                viewModelState[nameof(_friendsOffset)] = _friendsOffset;
+                viewModelState[nameof(_groupsOffset)] = _groupsOffset;
+            }
+
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
@@ -108,10 +141,10 @@ namespace VKSaver.Core.ViewModels
                 throw new Exception();
         }
 
-        private async Task<IEnumerable<VKUserList>> LoadMoreLists(uint page)
+        private async Task<IEnumerable<VKUserList>> LoadLists()
         {
-            if (FriendsLists.Count > 0)
-                return new List<VKUserList>();
+            if (FriendsLists.Any())
+                return new List<VKUserList>(0);
 
             var parameters = new Dictionary<string, string>();
             parameters["return_system"] = "1";
@@ -150,6 +183,54 @@ namespace VKSaver.Core.ViewModels
             }
             else
                 throw new Exception(response.Error.ToString());
+        }
+
+        private async void LoadUserInfo(long userID)
+        {
+            var parameters = new Dictionary<string, string>();
+            if (userID > 0)
+                parameters["user_id"] = userID.ToString();
+            else if (userID < 0)
+                parameters["group_ids"] = (-userID).ToString();
+
+            if (userID >= 0)
+            {
+                var request = new Request<List<VKUser>>("users.get", parameters);
+                var response = await _vkService.ExecuteRequestAsync(request);
+
+                if (response.IsSuccess && userID == _userID && response.Response.Any())
+                    PageTitle = response.Response[0].Name;
+            }
+            else
+            {
+                var request = new Request<List<VKGroup>>("groups.getById", parameters);
+                var response = await _vkService.ExecuteRequestAsync(request);
+
+                if (response.IsSuccess && userID == _userID && response.Response.Any())
+                    PageTitle = response.Response[0].Name;
+            }
+        }
+
+        private void OnExecuteItemCommand(object item)
+        {
+            if (item is VKUser)
+            {
+                var user = (VKUser)item;
+                string parameter = JsonConvert.SerializeObject(new KeyValuePair<string, long>(
+                    "audios", user.ID));
+                _navigationService.Navigate("UserContentView", parameter);
+            }
+            else if (item is VKGroup)
+            {
+                var group = (VKGroup)item;
+                string parameter = JsonConvert.SerializeObject(new KeyValuePair<string, long>(
+                    "audios", -group.ID));
+                _navigationService.Navigate("UserContentView", parameter);
+            }
+            else if (item is VKUserList)
+            {
+
+            }
         }
 
         private long _userID;

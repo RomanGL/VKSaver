@@ -195,11 +195,13 @@
                                     </Border.RenderTransform>
                                     <Rectangle Fill="{ThemeResource HubBackgroundDimmingBrush}"/>
                                 </Border>
-                                <Border x:Name="MainBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-                                    <Rectangle Fill="{ThemeResource HubBackgroundDimmingBrush}"/>
-                                </Border>
+                                <Border x:Name="MainBackground"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" />
                             </Grid>
                         </Canvas>
+                        <!--<Rectangle Fill="{ThemeResource HubBackgroundDimmingBrush}" />-->
                         <ScrollViewer x:Name="ScrollViewer" HorizontalScrollMode="Auto" HorizontalSnapPointsType="None" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Hidden" Grid.RowSpan="2" Template="{StaticResource ScrollViewerScrollBarlessTemplate}" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" ZoomMode="Disabled">
                             <ItemsStackPanel x:Name="Panel" CacheLength="6" Orientation="{TemplateBinding Orientation}"/>
                         </ScrollViewer>

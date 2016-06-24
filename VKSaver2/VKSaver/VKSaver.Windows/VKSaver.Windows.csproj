@@ -273,6 +273,12 @@
   <ItemGroup>
     <Folder Include="Converters\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\VKSaver.Core.Services\VKSaver.Core.Services.csproj">
+      <Project>{E772FD74-56DC-4398-B85D-F33D34C2F11B}</Project>
+      <Name>VKSaver.Core.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

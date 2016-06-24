@@ -7,6 +7,7 @@ using System.ComponentModel;
 using VKSaver.Core.Models.Common;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using System.Collections.Specialized;
 
 namespace VKSaver.Core.ViewModels.Collections
 {

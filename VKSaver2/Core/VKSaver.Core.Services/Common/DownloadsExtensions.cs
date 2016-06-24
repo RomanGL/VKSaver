@@ -1,47 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
-using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 
 namespace VKSaver.Core.Services.Common
 {
     internal static class DownloadsExtensions
-    {        
-        internal static FileContentType GetContentTypeFromExtension(string fileExtension)
-        {
-            switch (fileExtension)
-            {
-                case ".mp3":
-                case ".wma":
-                case ".wav":
-                case ".aac":
-                case ".m4a":
-                case ".flac":
-                    return FileContentType.Music;
-
-                case ".mp4":
-                case ".mkv":
-                case ".avi":
-                case ".3gp":
-                    return FileContentType.Video;
-
-                case ".jpg":
-                case ".jpe":
-                case ".jpeg":
-                case ".bmp":
-                case ".png":
-                case ".gif":
-                    return FileContentType.Image;
-
-                default: return FileContentType.Other;
-            }
-        }
-
+    {     
         internal static async Task<StorageFolder> GetFolderFromType(FileContentType type)
         {
             try

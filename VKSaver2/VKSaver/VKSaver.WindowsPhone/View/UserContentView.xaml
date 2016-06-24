@@ -143,6 +143,34 @@
                         <MenuFlyoutItem Text="загрузить"
                                         Command="{Binding DataSource.DownloadItemCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="в мои аудиозаписи"
+                                        Command="{Binding DataSource.AddToMyAudiosCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="удалить"
+                                        Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+
+        <Style x:Key="DocumentItemStyle"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="загрузить"
+                                        Command="{Binding DataSource.DownloadItemCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="в мои документы"
+                                        Command="{Binding DataSource.AddToMyDocumentsCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="удалить"
+                                        Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
                     </MenuFlyout>
                 </Setter.Value>
             </Setter>
@@ -156,6 +184,17 @@
                     Value="0,0,0,5" />
             <Setter Property="Template"
                     Value="{StaticResource NoSelectionListViewItem}" />
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="удалить"
+                                        Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
         </Style>
 
         <common:ContentViewItemContainerStyleSelector x:Key="ItemContainerStyleSelector"
@@ -166,7 +205,8 @@
     <mvvm:VisualStateAwarePage.BottomAppBar>
         <CommandBar>
             <i:Interaction.Behaviors>
-                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}" />
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding PrimaryItems}"
+                                                    SecondaryCommands="{Binding SecondaryItems}"/>
             </i:Interaction.Behaviors>
         </CommandBar>
     </mvvm:VisualStateAwarePage.BottomAppBar>
@@ -192,7 +232,10 @@
                             <DataTemplate>
                                 <controls:StateBlock State="{Binding AudioGroup.ContentState}"
                                                      ReloadCommand="{Binding AudioGroup.LoadCommand}"
-                                                     Margin="0,0,0,60" />
+                                                     Margin="0,0,0,60" 
+                                                     LoadingText="Загружаем список аудиозаписей..."
+                                                     ErrorText="Не удалось загрузить список аудиозаписей"
+                                                     NoDataText="Аудиозаписи отсутствуют либо доступ к ним закрыт"/>
                             </DataTemplate>
                         </ListView.FooterTemplate>
                         <i:Interaction.Behaviors>
@@ -203,7 +246,7 @@
                             <b:IncrementalUpDownLoadingBehavior ScrollHeightTriggerOffset="1400"
                                                                 ItemsSource="{Binding AudioGroup}" />
                             <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
-                                                            SelectAll="{Binding SelectAll}"
+                                                            SelectAll="{Binding SelectAllAudios}"
                                                             Command="{Binding SelectionChangedCommand}"/>
                         </i:Interaction.Behaviors>
                     </controls:FixedListView>
@@ -231,7 +274,10 @@
                             <DataTemplate>
                                 <controls:StateBlock State="{Binding VideoGroup.ContentState}"
                                                      ReloadCommand="{Binding VideoGroup.LoadCommand}"
-                                                     Margin="0,0,0,60" />
+                                                     Margin="0,0,0,60"
+                                                     LoadingText="Загружаем список видеозаписей..."
+                                                     ErrorText="Не удалось загрузить список видеозаписей"
+                                                     NoDataText="Видеозаписи отсутствуют либо доступ к ним закрыт" />
                             </DataTemplate>
                         </ListView.FooterTemplate>
                         <i:Interaction.Behaviors>
@@ -255,14 +301,17 @@
             <ListView Style="{StaticResource NoSelectionListViewStyle}"
                       ItemsSource="{Binding Documents}"
                       ItemTemplate="{StaticResource DocumentTemplate}"
-                      ItemContainerStyle="{StaticResource DownloadableItemStyle}"
+                      ItemContainerStyle="{StaticResource DocumentItemStyle}"
                       IsItemClickEnabled="{Binding IsItemClickEnabled}"
                       SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
                 <ListView.FooterTemplate>
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Documents.ContentState}"
                                              ReloadCommand="{Binding Documents.LoadCommand}"
-                                             Margin="0,0,0,60" />
+                                             Margin="0,0,0,60"
+                                             LoadingText="Загружаем список документов..."
+                                             ErrorText="Не удалось загрузить список докментов"
+                                             NoDataText="Документы отсутствуют либо доступ к ним закрыт" />
                     </DataTemplate>
                 </ListView.FooterTemplate>
                 <i:Interaction.Behaviors>
@@ -270,7 +319,7 @@
                         <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
                     </c:EventTriggerBehavior>
                     <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
-                                                    SelectAll="{Binding SelectAll}"
+                                                    SelectAll="{Binding SelectAllDocuments}"
                                                     Command="{Binding SelectionChangedCommand}" />
                 </i:Interaction.Behaviors>
             </ListView>

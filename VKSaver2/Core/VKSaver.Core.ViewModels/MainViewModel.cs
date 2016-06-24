@@ -144,8 +144,8 @@ namespace VKSaver.Core.ViewModels
             TopArtistsLF.Load();
             RecommendedTracksVK.Load();
 
-            //TryLoadBackground(FirstTrack);
-            TryLoadTopArtistBackground(TopArtistsLF?.FirstOrDefault());
+            TryLoadBackground(FirstTrack);
+            //TryLoadTopArtistBackground(TopArtistsLF?.FirstOrDefault());
 
             base.OnNavigatedTo(e, viewModelState);
         }
@@ -182,8 +182,8 @@ namespace VKSaver.Core.ViewModels
                     VKTrack = response.Response.Items[0]
                 };
 
-                TryLoadFirstTrackInfo(FirstTrack);
-                //TryLoadBackground(FirstTrack);
+                //TryLoadFirstTrackInfo(FirstTrack);
+                TryLoadBackground(FirstTrack);
                 return response.Response.Items.Skip(1);
             }
             else
