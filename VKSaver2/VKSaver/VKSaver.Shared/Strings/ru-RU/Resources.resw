@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutView_About.Text" xml:space="preserve">
+    <value>о приложении</value>
+  </data>
+  <data name="AboutView_AppName.Text" xml:space="preserve">
+    <value>ВКачай 2 Beta</value>
+  </data>
+  <data name="AboutView_PoweredBy.Text" xml:space="preserve">
+    <value>Powered by OneVK</value>
+  </data>
+  <data name="AboutView_Version.Text" xml:space="preserve">
+    <value>Версия:</value>
+  </data>
+  <data name="AccessDeniedView_AccessDenied.Text" xml:space="preserve">
+    <value>Нет доступа</value>
+  </data>
+  <data name="AccessDeniedView_SectionNotCompleted.Text" xml:space="preserve">
+    <value>Этот раздел еще не готов
+
+Вернитесь назад, чтобы продолжить</value>
+  </data>
+  <data name="AddToMyAudiosFlyoutItem.Text" xml:space="preserve">
+    <value>в мои аудиозаписи</value>
+  </data>
+  <data name="AddToMyDocsFlyoutItem.Text" xml:space="preserve">
+    <value>в мои документы</value>
+  </data>
+  <data name="AddToMyVideosFlyoutItem.Text" xml:space="preserve">
+    <value>в мои видеозаписи</value>
+  </data>
+  <data name="AlbumTracksLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить содержимое альбома</value>
+  </data>
+  <data name="AlbumTracksLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список треков альбома...</value>
+  </data>
+  <data name="AlbumTracksLoader.NoDataText" xml:space="preserve">
+    <value>В этом альбоме нет треков</value>
+  </data>
+  <data name="AppName.Text" xml:space="preserve">
+    <value>ВКАЧАЙ</value>
+  </data>
+  <data name="AppNamePivot.Title" xml:space="preserve">
+    <value>ВКАЧАЙ</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список альбомов исполнителя</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.LoadingText" xml:space="preserve">
+    <value>Прослушиваем пластинки исполнителя...</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.NoDataText" xml:space="preserve">
+    <value>Похоже, этот исполнитель тщательно скрывает свои альбомы</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить данные об исполнителе</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.LoadingText" xml:space="preserve">
+    <value>Собираем досье на исполнителя...</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.NoDataText" xml:space="preserve">
+    <value>Об этом исполнителе нет никакой информации</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Albums.Header" xml:space="preserve">
+    <value>альбомы</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Details.Header" xml:space="preserve">
+    <value>подробнее</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Similar.Header" xml:space="preserve">
+    <value>похожие</value>
+  </data>
+  <data name="ArtistInfoView_SearchVKItem.Content" xml:space="preserve">
+    <value>найти ВКонтакте</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось найти похожих исполнителей</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.LoadingText" xml:space="preserve">
+    <value>Ищем похожих исполнителей...</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.NoDataText" xml:space="preserve">
+    <value>У этого исполнителя уникальные композиции!</value>
+  </data>
+  <data name="DeleteFlyoutItem.Text" xml:space="preserve">
+    <value>удалить</value>
+  </data>
+  <data name="DownloadFlyoutItem.Text" xml:space="preserve">
+    <value>загрузить</value>
+  </data>
+  <data name="ErrorView_Error.Text" xml:space="preserve">
+    <value>Произошла ошибка</value>
+  </data>
+  <data name="ErrorView_ErrorSorry.Text" xml:space="preserve">
+    <value>Мы очень сожалеем о случившемся
+
+Вернитесь назад, чтобы продолжить</value>
+  </data>
+  <data name="LoginView_Auth.Text" xml:space="preserve">
+    <value>Авторизация</value>
+  </data>
+  <data name="LoginView_JoinButton.Label" xml:space="preserve">
+    <value>зарегистрироваться</value>
+  </data>
+  <data name="LoginView_LoginButton.Content" xml:space="preserve">
+    <value>войти</value>
+  </data>
+  <data name="LoginView_RestorePasswordButton.Label" xml:space="preserve">
+    <value>восстановить пароль</value>
+  </data>
+  <data name="MainView_AboutItem.Content" xml:space="preserve">
+    <value>о программе</value>
+  </data>
+  <data name="MainView_DocsItem.Content" xml:space="preserve">
+    <value>документы</value>
+  </data>
+  <data name="MainView_DownloadFlyoutItem.Text" xml:space="preserve">
+    <value>загрузить</value>
+  </data>
+  <data name="MainView_FriendsItem.Content" xml:space="preserve">
+    <value>друзья</value>
+  </data>
+  <data name="MainView_GroupsItem.Content" xml:space="preserve">
+    <value>сообщества</value>
+  </data>
+  <data name="MainView_Hub.Header" xml:space="preserve">
+    <value>вкачай beta</value>
+  </data>
+  <data name="MainView_HubSection_Recommendations.Header" xml:space="preserve">
+    <value>РЕКОМЕНДУЕМ</value>
+  </data>
+  <data name="MainView_HubSection_SeeAlso.Header" xml:space="preserve">
+    <value>СМОТРИТЕ ТАКЖЕ</value>
+  </data>
+  <data name="MainView_HubSection_TopArtists.Header" xml:space="preserve">
+    <value>ЛУЧШИЕ ИСПОЛНИТЕЛИ</value>
+  </data>
+  <data name="MainView_HubSection_YourMusic.Header" xml:space="preserve">
+    <value>ВАША МУЗЫКА</value>
+  </data>
+  <data name="MainView_MusicItem.Content" xml:space="preserve">
+    <value>музыка</value>
+  </data>
+  <data name="MainView_NewsItem.Content" xml:space="preserve">
+    <value>новости</value>
+  </data>
+  <data name="MainView_PlayerButton.Label" xml:space="preserve">
+    <value>проигрыватель</value>
+  </data>
+  <data name="MainView_RecommendationsItem.Content" xml:space="preserve">
+    <value>рекомендации</value>
+  </data>
+  <data name="MainView_SearchItem.Content" xml:space="preserve">
+    <value>поиск</value>
+  </data>
+  <data name="MainView_SettingsItem.Content" xml:space="preserve">
+    <value>настройки</value>
+  </data>
+  <data name="MainView_ShowMore.Text" xml:space="preserve">
+    <value>показать больше</value>
+  </data>
+  <data name="MainView_ShowMoreItem.Content" xml:space="preserve">
+    <value>показать больше</value>
+  </data>
+  <data name="MainView_TopArtistsItem.Content" xml:space="preserve">
+    <value>топ исполнителей</value>
+  </data>
+  <data name="MainView_TopTracksItem.Content" xml:space="preserve">
+    <value>топ треков</value>
+  </data>
+  <data name="MainView_TransferManagerButton.Label" xml:space="preserve">
+    <value>менеджер загрузок</value>
+  </data>
+  <data name="MainView_TransferManagerItem.Content" xml:space="preserve">
+    <value>менеджер загрузок</value>
+  </data>
+  <data name="MainView_VideosItem.Content" xml:space="preserve">
+    <value>видео</value>
+  </data>
+  <data name="MainView_YourMusicLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список ваших треков</value>
+  </data>
+  <data name="MainView_YourMusicLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список ваших треков...</value>
+  </data>
+  <data name="MainView_YourMusicLoader.NoDataText" xml:space="preserve">
+    <value>В вашей коллекции не найдено ни одного трека</value>
+  </data>
+  <data name="NoTracksView_NoTracks.Text" xml:space="preserve">
+    <value>Сейчас не воспроизводится ни одного трека
+
+Вернитесь назад, чтобы продолжить</value>
+  </data>
+  <data name="NoTracksView_Silence.Text" xml:space="preserve">
+    <value>Тишина...</value>
+  </data>
+  <data name="PlayerView_PivotSection_NowPlaying.Header" xml:space="preserve">
+    <value>сейчас играет</value>
+  </data>
+  <data name="PlayerView_PivotSection_Playlist.Header" xml:space="preserve">
+    <value>плейлист</value>
+  </data>
+  <data name="PurchaseView_BuyMonthlyButton.Content" xml:space="preserve">
+    <value>купить на месяц</value>
+  </data>
+  <data name="PurchaseView_BuyNowButton.Content" xml:space="preserve">
+    <value>купить сейчас</value>
+  </data>
+  <data name="PurchaseView_BuyPermanentButton.Content" xml:space="preserve">
+    <value>купить навсегда</value>
+  </data>
+  <data name="PurchaseView_NextButton.Content" xml:space="preserve">
+    <value>далее</value>
+  </data>
+  <data name="RecommendationsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить рекомендации</value>
+  </data>
+  <data name="RecommendationsLoader.LoadingText" xml:space="preserve">
+    <value>Изучаем ваши музыкальные предпочтения...</value>
+  </data>
+  <data name="RecommendationsLoader.NoDataText" xml:space="preserve">
+    <value>Мы не можем вам ничего порекомендовать</value>
+  </data>
+  <data name="RecommendedView_Title.Text" xml:space="preserve">
+    <value>рекомендуем</value>
+  </data>
+  <data name="SettingsView_Title.Text" xml:space="preserve">
+    <value>настройки</value>
+  </data>
+  <data name="TopArtistItem_ListenersCount.Text" xml:space="preserve">
+    <value>слушателей</value>
+    <comment>Например, "12 слушателей"</comment>
+  </data>
+  <data name="TopArtistsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список лучших исполниетелей</value>
+  </data>
+  <data name="TopArtistsLoader.LoadingText" xml:space="preserve">
+    <value>Выбираем лучших исполнителей...</value>
+  </data>
+  <data name="TopArtistsLoader.NoDataText" xml:space="preserve">
+    <value>Похоже, нет ни одного лучшего исполнителя</value>
+  </data>
+  <data name="TopArtistsView_Title.Text" xml:space="preserve">
+    <value>лучшие исполнители</value>
+  </data>
+  <data name="TopTracksView_Title.Text" xml:space="preserve">
+    <value>лучшие треки</value>
+  </data>
+  <data name="TopTracksView_TrackPlaybacksCount.Text" xml:space="preserve">
+    <value>воспроизведений</value>
+    <comment>Например, "15 воспроизведений"</comment>
+  </data>
+  <data name="TopTracksView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список лучших треков</value>
+  </data>
+  <data name="TopTracksView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список лучших треков...</value>
+  </data>
+  <data name="TopTracksView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>Нет ни одного лучшего трека</value>
+  </data>
+  <data name="TrackInfoView_PlayButton.Content" xml:space="preserve">
+    <value>воспроизвести</value>
+  </data>
+  <data name="TrackInfoView_Title.Text" xml:space="preserve">
+    <value>подробнее</value>
+  </data>
+  <data name="TrackLyricView_LyricsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить текст аудиозаписи</value>
+  </data>
+  <data name="TrackLyricView_LyricsLoader.LoadingText" xml:space="preserve">
+    <value>Выполняем поиск текста аудиозаписи...</value>
+  </data>
+  <data name="TrackLyricView_LyricsLoader.NoDataText" xml:space="preserve">
+    <value>У этой аудиозаписи нет текста</value>
+  </data>
+  <data name="UserCommView_FriendListsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить списки друзей</value>
+  </data>
+  <data name="UserCommView_FriendListsLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем списки друзей...</value>
+  </data>
+  <data name="UserCommView_FriendListsLoader.NoDataText" xml:space="preserve">
+    <value>Списки друзей отсутствуют либо доступ к ним закрыт</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список друзей</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем информацию друзьях...</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.NoDataText" xml:space="preserve">
+    <value>Друзья отсутствуют либо доступ к ним закрыт</value>
+  </data>
+  <data name="UserCommView_GroupsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список сообществ</value>
+  </data>
+  <data name="UserCommView_GroupsLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем информацию о сообществах...</value>
+  </data>
+  <data name="UserCommView_GroupsLoader.NoDataText" xml:space="preserve">
+    <value>Сообщества отсутствуют либо доступ к ним закрыт</value>
+  </data>
+  <data name="UserCommView_PivotSection_FriendLists.Header" xml:space="preserve">
+    <value>списки</value>
+    <comment>списки друзей</comment>
+  </data>
+  <data name="UserCommView_PivotSection_Friends.Header" xml:space="preserve">
+    <value>друзья</value>
+  </data>
+  <data name="UserCommView_PivotSection_Groups.Header" xml:space="preserve">
+    <value>сообщества</value>
+  </data>
+  <data name="UserCommView_UserOnline.Text" xml:space="preserve">
+    <value>Онлайн</value>
+  </data>
+  <data name="UserContentView_AudiosLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список аудиозаписей</value>
+  </data>
+  <data name="UserContentView_AudiosLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список аудиозаписей...</value>
+  </data>
+  <data name="UserContentView_AudiosLoader.NoDataText" xml:space="preserve">
+    <value>Аудиозаписи отсутствуют либо доступ к ним закрыт</value>
+  </data>
+  <data name="UserContentView_DocsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список документов</value>
+  </data>
+  <data name="UserContentView_DocsLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список документов...</value>
+  </data>
+  <data name="UserContentView_DocsLoader.NoDataText" xml:space="preserve">
+    <value>Документы отсутствуют либо доступ к ним закрыт</value>
+  </data>
+  <data name="UserContentView_PivotSection_Docs.Header" xml:space="preserve">
+    <value>документы</value>
+  </data>
+  <data name="UserContentView_PivotSection_Music.Header" xml:space="preserve">
+    <value>музыка</value>
+  </data>
+  <data name="UserContentView_PivotSection_Videos.Header" xml:space="preserve">
+    <value>видео</value>
+  </data>
+  <data name="UserContentView_VideosLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список видеозаписей</value>
+  </data>
+  <data name="UserContentView_VideosLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список видеозаписей...</value>
+  </data>
+  <data name="UserContentView_VideosLoader.NoDataText" xml:space="preserve">
+    <value>Видеозаписи отсутствуют либо доступ к ним закрыт</value>
+  </data>
+</root>

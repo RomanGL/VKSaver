@@ -39,9 +39,18 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseFull|AnyCPU'">
     <OutputPath>bin\ReleaseFull\</OutputPath>
-    <DefineConstants>TRACE;RELEASE_FULL</DefineConstants>
+    <DefineConstants>TRACE;FULL;RELEASE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugFull|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugFull\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;FULL</DefineConstants>
+    <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -84,7 +93,7 @@
     <Compile Include="PlayerService\TracksShuffleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseService\PurchaseServiceDebug.cs" />
-    <Compile Include="PurchaseService\PurchaseServiceReleaseFull.cs" />
+    <Compile Include="PurchaseService\PurchaseServiceFull.cs" />
     <Compile Include="PurchaseService\PurchaseServiceRelease.cs" />
     <Compile Include="SettingsService.cs" />
     <Compile Include="PurchaseService\StoreConstants.cs" />

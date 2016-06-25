@@ -31,6 +31,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Тишина..."
+                       x:Uid="NoTracksView_Silence"
                        Style="{StaticResource PLine1TextStyle}"
                        Margin="20,0,20,20" />
 
@@ -44,11 +45,10 @@
                         <EntranceThemeTransition />
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
-                <TextBlock Style="{StaticResource PLine2TextStyle}">
-                    <Run Text="Сейчас не воспроизводится ни одного трека" />
-                    <LineBreak /><LineBreak />
-                    <Run Text="Вернитесь назад и запустите воспроизведение" />
-                </TextBlock>
+                <TextBlock Style="{StaticResource PLine2TextStyle}"
+                           x:Uid="NoTracksView_NoTracks"
+                           Text="Сейчас не воспроизводится ни одного трека
+                           Вернитесь назад, чтобы продолжить"/>
             </StackPanel>
         </Grid>
     </Grid>

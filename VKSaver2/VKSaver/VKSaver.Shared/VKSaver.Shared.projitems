@@ -92,4 +92,11 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\ImagePlaceholder.png" />
     <Content Include="$(MSBuildThisFileDirectory)Data\InAppPurchase.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ru-RU\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.Shared.en.xlf" />
+  </ItemGroup>
 </Project>

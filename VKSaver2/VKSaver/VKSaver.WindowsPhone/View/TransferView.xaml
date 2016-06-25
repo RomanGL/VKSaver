@@ -110,9 +110,13 @@
         </CommandBar>
     </mvvm:VisualStateAwarePage.BottomAppBar>
     
-    <Pivot Title="ВКАЧАЙ">
+    <Pivot Title="ВКАЧАЙ"
+           x:Uid="AppNamePivot">
         <PivotItem Header="загрузки">
-            <controls:ContentContainer State="{Binding DownloadsState}">
+            <controls:ContentContainer State="{Binding DownloadsState}"
+                                       LoadingText="Получение списока текущих загрузок..."
+                                       ErrorText="Не удалось получить список текущих загрузок"
+                                       NoDataText="Сейчас не выполняется никаких загрузок">
                 <ListView Style="{StaticResource NoSelectionListViewStyle}"
                           ItemsSource="{Binding Downloads}"
                           ItemTemplate="{StaticResource DownloadTemplate}"
@@ -137,11 +141,13 @@
             </controls:ContentContainer>
         </PivotItem>
         <PivotItem Header="отправки">
-            <controls:ContentContainer State="{Binding UploadsState}">
+            <controls:ContentContainer State="{Binding UploadsState}"
+                                       NoDataText="Отправки пока не поддерживаются">
             </controls:ContentContainer>
         </PivotItem>
         <PivotItem Header="журнал">
-            <controls:ContentContainer State="{Binding HistoryState}">
+            <controls:ContentContainer State="{Binding HistoryState}"
+                                       NoDataText="Журнал загрузок пока не поддерживается">
             </controls:ContentContainer>
         </PivotItem>
     </Pivot>

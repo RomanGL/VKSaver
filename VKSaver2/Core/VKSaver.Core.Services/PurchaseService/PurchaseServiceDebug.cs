@@ -5,7 +5,7 @@ using Windows.ApplicationModel.Store;
 
 namespace VKSaver.Core.Services
 {
-#if DEBUG
+#if DEBUG && !FULL
     public sealed class PurchaseService : IPurchaseService
     {
         public PurchaseService(ILogService logService)

@@ -34,6 +34,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Произошла ошибка"
+                       x:Uid="ErrorView_Error"
                        Style="{StaticResource PLine1TextStyle}"
                        Margin="20,0,20,20" />
 
@@ -47,11 +48,10 @@
                         <EntranceThemeTransition />
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
-                <TextBlock Style="{StaticResource PLine2TextStyle}">
-                    <Run Text="Мы очень сожалеем о случившемся" />
-                    <LineBreak /><LineBreak />
-                    <Run Text="Вернитесь назад, чтобы продолжить" />
-                </TextBlock>
+                <TextBlock Style="{StaticResource PLine2TextStyle}"
+                           x:Uid="ErrorView_ErrorSorry" 
+                           Text="Мы очень сожалеем о случившемся
+                           Вернитесь назад, чтобы продолжить"/>
             </StackPanel>
         </Grid>
     </Grid>

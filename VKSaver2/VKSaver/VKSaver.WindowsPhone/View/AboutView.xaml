@@ -22,9 +22,11 @@
         <StackPanel Grid.Row="0"
                     Margin="19,0,0,0">
             <TextBlock Text="ВКАЧАЙ"
+                       x:Uid="AppName"
                        Style="{ThemeResource TitleTextBlockStyle}"
                        Margin="0,12,0,0" />
             <TextBlock Text="о приложении"
+                       x:Uid="AboutView_About"
                        Margin="0,-6.5,0,26.5"
                        Style="{ThemeResource HeaderTextBlockStyle}"
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
@@ -60,15 +62,18 @@
                             </TransitionCollection>
                         </StackPanel.ChildrenTransitions>
                         <TextBlock Text="ВКачай 2 Beta"
+                                   x:Uid="AboutView_AppName"
                                    FontSize="28"
                                    Style="{StaticResource BaseItemStyle}" />
                         <TextBlock Style="{StaticResource BaseItemStyle}"
                                    TextWrapping="WrapWholeWords"
                                    Margin="0,2,0,0">
-                            <Run Text="Версия:" />
+                            <Run Text="Версия:"
+                                 x:Uid="AboutView_Version"/>
                             <Run Text="{Binding Version}" />
                         </TextBlock>
                         <TextBlock Text="Powered by OneVK"
+                                   x:Uid="AboutView_PoweredBy"
                                    Style="{StaticResource BaseItemStyle}"
                                    TextWrapping="WrapWholeWords"
                                    Foreground="{ThemeResource PhoneMidBrush}" />

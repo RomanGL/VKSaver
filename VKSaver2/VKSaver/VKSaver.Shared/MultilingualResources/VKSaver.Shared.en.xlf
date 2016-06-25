@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="ru-RU" target-language="en" original="VKSAVER.SHARED/STRINGS/RU-RU/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="VKSAVER.SHARED/STRINGS/RU-RU/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="LoginView_Auth.Text" translate="yes" xml:space="preserve">
+          <source>Авторизация</source>
+          <target state="translated">Authorization</target>
+        </trans-unit>
+        <trans-unit id="LoginView_JoinButton.Label" translate="yes" xml:space="preserve">
+          <source>зарегистрироваться</source>
+          <target state="translated">sign up</target>
+        </trans-unit>
+        <trans-unit id="LoginView_LoginButton.Content" translate="yes" xml:space="preserve">
+          <source>войти</source>
+          <target state="translated">sign in</target>
+        </trans-unit>
+        <trans-unit id="LoginView_RestorePasswordButton.Label" translate="yes" xml:space="preserve">
+          <source>восстановить пароль</source>
+          <target state="translated">restore the password</target>
+        </trans-unit>
+        <trans-unit id="MainView_Hub.Header" translate="yes" xml:space="preserve">
+          <source>вкачай beta</source>
+          <target state="translated">vk saver beta</target>
+        </trans-unit>
+        <trans-unit id="MainView_HubSection_YourMusic.Header" translate="yes" xml:space="preserve">
+          <source>ВАША МУЗЫКА</source>
+          <target state="translated" state-qualifier="mt-suggestion">YOUR MUSIC</target>
+        </trans-unit>
+        <trans-unit id="MainView_HubSection_TopArtists.Header" translate="yes" xml:space="preserve">
+          <source>ЛУЧШИЕ ИСПОЛНИТЕЛИ</source>
+          <target state="translated">BEST ARTISTS</target>
+        </trans-unit>
+        <trans-unit id="MainView_HubSection_Recommendations.Header" translate="yes" xml:space="preserve">
+          <source>РЕКОМЕНДУЕМ</source>
+          <target state="translated">WE RECOMMEND</target>
+        </trans-unit>
+        <trans-unit id="MainView_HubSection_SeeAlso.Header" translate="yes" xml:space="preserve">
+          <source>СМОТРИТЕ ТАКЖЕ</source>
+          <target state="translated">SEE ALSO</target>
+        </trans-unit>
+        <trans-unit id="MainView_ShowMore.Text" translate="yes" xml:space="preserve">
+          <source>показать больше</source>
+          <target state="translated">show more</target>
+        </trans-unit>
+        <trans-unit id="MainView_PlayerButton.Label" translate="yes" xml:space="preserve">
+          <source>проигрыватель</source>
+          <target state="translated">player</target>
+        </trans-unit>
+        <trans-unit id="MainView_AboutItem.Content" translate="yes" xml:space="preserve">
+          <source>о программе</source>
+          <target state="translated">about</target>
+        </trans-unit>
+        <trans-unit id="MainView_DocsItem.Content" translate="yes" xml:space="preserve">
+          <source>документы</source>
+          <target state="translated">documents</target>
+        </trans-unit>
+        <trans-unit id="MainView_FriendsItem.Content" translate="yes" xml:space="preserve">
+          <source>друзья</source>
+          <target state="translated">friends</target>
+        </trans-unit>
+        <trans-unit id="MainView_GroupsItem.Content" translate="yes" xml:space="preserve">
+          <source>сообщества</source>
+          <target state="translated">groups
+</target>
+        </trans-unit>
+        <trans-unit id="MainView_MusicItem.Content" translate="yes" xml:space="preserve">
+          <source>музыка</source>
+          <target state="translated">music</target>
+        </trans-unit>
+        <trans-unit id="MainView_NewsItem.Content" translate="yes" xml:space="preserve">
+          <source>новости</source>
+          <target state="translated">news</target>
+        </trans-unit>
+        <trans-unit id="MainView_RecommendationsItem.Content" translate="yes" xml:space="preserve">
+          <source>рекомендации</source>
+          <target state="translated">recommendations</target>
+        </trans-unit>
+        <trans-unit id="MainView_SearchItem.Content" translate="yes" xml:space="preserve">
+          <source>поиск</source>
+          <target state="translated">search</target>
+        </trans-unit>
+        <trans-unit id="MainView_SettingsItem.Content" translate="yes" xml:space="preserve">
+          <source>настройки</source>
+          <target state="translated">settings</target>
+        </trans-unit>
+        <trans-unit id="MainView_TopArtistsItem.Content" translate="yes" xml:space="preserve">
+          <source>топ исполнителей</source>
+          <target state="translated">top artists</target>
+        </trans-unit>
+        <trans-unit id="MainView_TopTracksItem.Content" translate="yes" xml:space="preserve">
+          <source>топ треков</source>
+          <target state="translated">top tracks</target>
+        </trans-unit>
+        <trans-unit id="MainView_TransferManagerButton.Label" translate="yes" xml:space="preserve">
+          <source>менеджер загрузок</source>
+          <target state="translated">transfer manager</target>
+        </trans-unit>
+        <trans-unit id="MainView_TransferManagerItem.Content" translate="yes" xml:space="preserve">
+          <source>менеджер загрузок</source>
+          <target state="translated">transfer manager</target>
+        </trans-unit>
+        <trans-unit id="MainView_DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>загрузить</source>
+          <target state="translated">download</target>
+        </trans-unit>
+        <trans-unit id="MainView_ShowMoreItem.Content" translate="yes" xml:space="preserve">
+          <source>показать больше</source>
+          <target state="translated" state-qualifier="tm-suggestion">show more</target>
+        </trans-unit>
+        <trans-unit id="AppName.Text" translate="yes" xml:space="preserve">
+          <source>ВКАЧАЙ</source>
+          <target state="translated">VK SAVER</target>
+        </trans-unit>
+        <trans-unit id="AboutView_About.Text" translate="yes" xml:space="preserve">
+          <source>о приложении</source>
+          <target state="translated">about</target>
+        </trans-unit>
+        <trans-unit id="AboutView_AppName.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай 2 Beta</source>
+          <target state="translated">VK Saver 2 Beta</target>
+        </trans-unit>
+        <trans-unit id="AboutView_PoweredBy.Text" translate="yes" xml:space="preserve">
+          <source>Powered by OneVK</source>
+          <target state="translated">Powered by OneVK</target>
+        </trans-unit>
+        <trans-unit id="AboutView_Version.Text" translate="yes" xml:space="preserve">
+          <source>Версия:</source>
+          <target state="translated">Version:</target>
+        </trans-unit>
+        <trans-unit id="MainView_YourMusicLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список ваших треков</source>
+          <target state="translated">Failed to load the list of your tracks</target>
+        </trans-unit>
+        <trans-unit id="MainView_YourMusicLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список ваших треков...</source>
+          <target state="translated">Loading the list of your tracks...</target>
+        </trans-unit>
+        <trans-unit id="MainView_YourMusicLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В вашей коллекции не найдено ни одного трека</source>
+          <target state="translated">In your collection no tracks</target>
+        </trans-unit>
+        <trans-unit id="AccessDeniedView_AccessDenied.Text" translate="yes" xml:space="preserve">
+          <source>Нет доступа</source>
+          <target state="translated">Access denied</target>
+        </trans-unit>
+        <trans-unit id="AccessDeniedView_SectionNotCompleted.Text" translate="yes" xml:space="preserve">
+          <source>Этот раздел еще не готов
+
+Вернитесь назад, чтобы продолжить</source>
+          <target state="translated">This section isn't completed
+
+Go back to continue</target>
+        </trans-unit>
+        <trans-unit id="MainView_VideosItem.Content" translate="yes" xml:space="preserve">
+          <source>видео</source>
+          <target state="translated">videos</target>
+        </trans-unit>
+        <trans-unit id="ErrorView_Error.Text" translate="yes" xml:space="preserve">
+          <source>Произошла ошибка</source>
+          <target state="translated">An error occurred</target>
+        </trans-unit>
+        <trans-unit id="ErrorView_ErrorSorry.Text" translate="yes" xml:space="preserve">
+          <source>Мы очень сожалеем о случившемся
+
+Вернитесь назад, чтобы продолжить</source>
+          <target state="translated">We are very sorry about what happened
+
+Go back to continue</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_PivotSection_Albums.Header" translate="yes" xml:space="preserve">
+          <source>альбомы</source>
+          <target state="translated">albums</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
+          <source>подробнее</source>
+          <target state="translated">details</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_PivotSection_Similar.Header" translate="yes" xml:space="preserve">
+          <source>похожие</source>
+          <target state="translated">similar</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_SearchVKItem.Content" translate="yes" xml:space="preserve">
+          <source>найти ВКонтакте</source>
+          <target state="translated">search in VK</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_AlbumsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список альбомов исполнителя</source>
+          <target state="translated">Failed to load the list of albums artist</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_AlbumsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Прослушиваем пластинки исполнителя...</source>
+          <target state="translated">Listen to music artist album...</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_AlbumsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Похоже, этот исполнитель тщательно скрывает свои альбомы</source>
+          <target state="translated">It seems this artist carefully hides their albums</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_DetailsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить данные об исполнителе</source>
+          <target state="translated">Failed to load data about the artist</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_DetailsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Собираем досье на исполнителя...</source>
+          <target state="translated">Collect info about artist...</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_DetailsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Об этом исполнителе нет никакой информации</source>
+          <target state="translated">About this artist has no information</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_SimilarLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось найти похожих исполнителей</source>
+          <target state="translated">Failed to find similar artists</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_SimilarLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Ищем похожих исполнителей...</source>
+          <target state="translated">Looking for similar artists...</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_SimilarLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>У этого исполнителя уникальные композиции!</source>
+          <target state="translated">This artist creates unique compositions!</target>
+        </trans-unit>
+        <trans-unit id="NoTracksView_NoTracks.Text" translate="yes" xml:space="preserve">
+          <source>Сейчас не воспроизводится ни одного трека
+
+Вернитесь назад, чтобы продолжить</source>
+          <target state="translated">Now won't play any track
+
+Go back to continue</target>
+        </trans-unit>
+        <trans-unit id="NoTracksView_Silence.Text" translate="yes" xml:space="preserve">
+          <source>Тишина...</source>
+          <target state="translated">Silence...</target>
+        </trans-unit>
+        <trans-unit id="PlayerView_PivotSection_NowPlaying.Header" translate="yes" xml:space="preserve">
+          <source>сейчас играет</source>
+          <target state="translated">now playing</target>
+        </trans-unit>
+        <trans-unit id="PlayerView_PivotSection_Playlist.Header" translate="yes" xml:space="preserve">
+          <source>плейлист</source>
+          <target state="translated">playlist</target>
+        </trans-unit>
+        <trans-unit id="AppNamePivot.Title" translate="yes" xml:space="preserve">
+          <source>ВКАЧАЙ</source>
+          <target state="translated">VK SAVER</target>
+        </trans-unit>
+        <trans-unit id="RecommendedView_Title.Text" translate="yes" xml:space="preserve">
+          <source>рекомендуем</source>
+          <target state="translated">we recommend</target>
+        </trans-unit>
+        <trans-unit id="DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>загрузить</source>
+          <target state="translated">download</target>
+        </trans-unit>
+        <trans-unit id="RecommendationsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить рекомендации</source>
+          <target state="translated">Failed to load recommendations</target>
+        </trans-unit>
+        <trans-unit id="RecommendationsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Изучаем ваши музыкальные предпочтения...</source>
+          <target state="translated">Exploring your musical preferences...</target>
+        </trans-unit>
+        <trans-unit id="RecommendationsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Мы не можем вам ничего порекомендовать</source>
+          <target state="translated">We can't recommend anything for you</target>
+        </trans-unit>
+        <trans-unit id="TrackInfoView_PlayButton.Content" translate="yes" xml:space="preserve">
+          <source>воспроизвести</source>
+          <target state="translated">play</target>
+        </trans-unit>
+        <trans-unit id="TrackInfoView_Title.Text" translate="yes" xml:space="preserve">
+          <source>подробнее</source>
+          <target state="translated">details</target>
+        </trans-unit>
+        <trans-unit id="TrackLyricView_LyricsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить текст аудиозаписи</source>
+          <target state="translated">Failed to load the track lyrics</target>
+        </trans-unit>
+        <trans-unit id="TrackLyricView_LyricsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Выполняем поиск текста аудиозаписи...</source>
+          <target state="translated">Seraching lyrics of this track...</target>
+        </trans-unit>
+        <trans-unit id="TrackLyricView_LyricsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>У этой аудиозаписи нет текста</source>
+          <target state="translated">This audio has no text</target>
+        </trans-unit>
+        <trans-unit id="TopTracksView_Title.Text" translate="yes" xml:space="preserve">
+          <source>лучшие треки</source>
+          <target state="translated">top tracks</target>
+        </trans-unit>
+        <trans-unit id="TopTracksView_TrackPlaybacksCount.Text" translate="yes" xml:space="preserve">
+          <source>воспроизведений</source>
+          <target state="translated">playbacks</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например, "15 воспроизведений"</note>
+        </trans-unit>
+        <trans-unit id="TopTracksView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список лучших треков</source>
+          <target state="translated">Failed to load the list of top tracks</target>
+        </trans-unit>
+        <trans-unit id="TopTracksView_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список лучших треков...</source>
+          <target state="translated">Loading the list of top tracks...</target>
+        </trans-unit>
+        <trans-unit id="TopTracksView_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Нет ни одного лучшего трека</source>
+          <target state="translated">There is no one top track</target>
+        </trans-unit>
+        <trans-unit id="TopArtistsView_Title.Text" translate="yes" xml:space="preserve">
+          <source>лучшие исполнители</source>
+          <target state="translated">best artists</target>
+        </trans-unit>
+        <trans-unit id="TopArtistItem_ListenersCount.Text" translate="yes" xml:space="preserve">
+          <source>слушателей</source>
+          <target state="translated">listeners</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например, "12 слушателей"</note>
+        </trans-unit>
+        <trans-unit id="TopArtistsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список лучших исполниетелей</source>
+          <target state="translated">Failed to load the list of best artists</target>
+        </trans-unit>
+        <trans-unit id="TopArtistsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Выбираем лучших исполнителей...</source>
+          <target state="translated">Choosing the best artists...</target>
+        </trans-unit>
+        <trans-unit id="TopArtistsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Похоже, нет ни одного лучшего исполнителя</source>
+          <target state="translated">It looks like there is no one best artist</target>
+        </trans-unit>
+        <trans-unit id="DeleteFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>удалить</source>
+          <target state="translated">remove</target>
+        </trans-unit>
+        <trans-unit id="AlbumTracksLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить содержимое альбома</source>
+          <target state="translated">Failed to load the contents of the album</target>
+        </trans-unit>
+        <trans-unit id="AlbumTracksLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список треков альбома...</source>
+          <target state="translated">Loading the list of tracks on the album...</target>
+        </trans-unit>
+        <trans-unit id="AlbumTracksLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В этом альбоме нет треков</source>
+          <target state="translated">In this album there is no tracks</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_UserOnline.Text" translate="yes" xml:space="preserve">
+          <source>Онлайн</source>
+          <target state="translated">Online</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_PivotSection_FriendLists.Header" translate="yes" xml:space="preserve">
+          <source>списки</source>
+          <target state="translated">friends lists</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">списки друзей</note>
+        </trans-unit>
+        <trans-unit id="UserCommView_PivotSection_Friends.Header" translate="yes" xml:space="preserve">
+          <source>друзья</source>
+          <target state="translated">friends</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_PivotSection_Groups.Header" translate="yes" xml:space="preserve">
+          <source>сообщества</source>
+          <target state="translated">groups</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendListsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить списки друзей</source>
+          <target state="translated">Failed to load the friends lists</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendListsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем списки друзей...</source>
+          <target state="translated">Loading friends list...</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendListsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Списки друзей отсутствуют либо доступ к ним закрыт</source>
+          <target state="translated">There are no friends lists or access denied</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список друзей</source>
+          <target state="translated">Failed to load the list of friends</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем информацию друзьях...</source>
+          <target state="translated">Loading friends list...</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Друзья отсутствуют либо доступ к ним закрыт</source>
+          <target state="translated">There are no friends or access denied</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_GroupsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список сообществ</source>
+          <target state="translated">Failed to load the list of groups</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_GroupsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем информацию о сообществах...</source>
+          <target state="translated">Loading groups list...</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_GroupsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Сообщества отсутствуют либо доступ к ним закрыт</source>
+          <target state="translated">There is no groups or access denied</target>
+        </trans-unit>
+        <trans-unit id="AddToMyVideosFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>в мои видеозаписи</source>
+          <target state="translated">to my videos</target>
+        </trans-unit>
+        <trans-unit id="AddToMyDocsFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>в мои документы</source>
+          <target state="translated">to my documents</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_AudiosLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список аудиозаписей</source>
+          <target state="translated">Failed to load the list of audios</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_AudiosLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список аудиозаписей...</source>
+          <target state="translated">Load the list of audios...</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_AudiosLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Аудиозаписи отсутствуют либо доступ к ним закрыт</source>
+          <target state="translated">There are no audios or access denied</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_DocsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список документов</source>
+          <target state="translated">Failed to load the list of documents</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_DocsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список документов...</source>
+          <target state="translated">Loading the list of documents...</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_DocsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Документы отсутствуют либо доступ к ним закрыт</source>
+          <target state="translated">There are no documents or access denied</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_VideosLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список видеозаписей</source>
+          <target state="translated">Failed to load the list of videos</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_VideosLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список видеозаписей...</source>
+          <target state="translated">Loading the list of videos...</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_VideosLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Видеозаписи отсутствуют либо доступ к ним закрыт</source>
+          <target state="translated">There are no videos or access denied</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_Title.Text" translate="yes" xml:space="preserve">
+          <source>настройки</source>
+          <target state="translated">settings</target>
+        </trans-unit>
+        <trans-unit id="PurchaseView_BuyMonthlyButton.Content" translate="yes" xml:space="preserve">
+          <source>купить на месяц</source>
+          <target state="translated">buy for the month</target>
+        </trans-unit>
+        <trans-unit id="PurchaseView_BuyNowButton.Content" translate="yes" xml:space="preserve">
+          <source>купить сейчас</source>
+          <target state="translated">buy now</target>
+        </trans-unit>
+        <trans-unit id="PurchaseView_BuyPermanentButton.Content" translate="yes" xml:space="preserve">
+          <source>купить навсегда</source>
+          <target state="translated">buy forever</target>
+        </trans-unit>
+        <trans-unit id="PurchaseView_NextButton.Content" translate="yes" xml:space="preserve">
+          <source>далее</source>
+          <target state="translated">next</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_PivotSection_Docs.Header" translate="yes" xml:space="preserve">
+          <source>документы</source>
+          <target state="translated">documents</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_PivotSection_Music.Header" translate="yes" xml:space="preserve">
+          <source>музыка</source>
+          <target state="translated">music</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_PivotSection_Videos.Header" translate="yes" xml:space="preserve">
+          <source>видео</source>
+          <target state="translated">videos</target>
+        </trans-unit>
+        <trans-unit id="AddToMyAudiosFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>в мои аудиозаписи</source>
+          <target state="translated">to my audios</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

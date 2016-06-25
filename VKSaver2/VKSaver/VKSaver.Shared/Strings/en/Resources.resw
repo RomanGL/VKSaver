@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LoginView_Auth.Text" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+  <data name="LoginView_JoinButton.Label" xml:space="preserve">
+    <value>sign up</value>
+  </data>
+  <data name="LoginView_LoginButton.Content" xml:space="preserve">
+    <value>sign in</value>
+  </data>
+  <data name="LoginView_RestorePasswordButton.Label" xml:space="preserve">
+    <value>restore the password</value>
+  </data>
+  <data name="MainView_Hub.Header" xml:space="preserve">
+    <value>vk saver beta</value>
+  </data>
+  <data name="MainView_HubSection_YourMusic.Header" xml:space="preserve">
+    <value>YOUR MUSIC</value>
+  </data>
+  <data name="MainView_HubSection_TopArtists.Header" xml:space="preserve">
+    <value>BEST ARTISTS</value>
+  </data>
+  <data name="MainView_HubSection_Recommendations.Header" xml:space="preserve">
+    <value>WE RECOMMEND</value>
+  </data>
+  <data name="MainView_HubSection_SeeAlso.Header" xml:space="preserve">
+    <value>SEE ALSO</value>
+  </data>
+  <data name="MainView_ShowMore.Text" xml:space="preserve">
+    <value>show more</value>
+  </data>
+  <data name="MainView_PlayerButton.Label" xml:space="preserve">
+    <value>player</value>
+  </data>
+  <data name="MainView_AboutItem.Content" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="MainView_DocsItem.Content" xml:space="preserve">
+    <value>documents</value>
+  </data>
+  <data name="MainView_FriendsItem.Content" xml:space="preserve">
+    <value>friends</value>
+  </data>
+  <data name="MainView_GroupsItem.Content" xml:space="preserve">
+    <value>groups
+</value>
+  </data>
+  <data name="MainView_MusicItem.Content" xml:space="preserve">
+    <value>music</value>
+  </data>
+  <data name="MainView_NewsItem.Content" xml:space="preserve">
+    <value>news</value>
+  </data>
+  <data name="MainView_RecommendationsItem.Content" xml:space="preserve">
+    <value>recommendations</value>
+  </data>
+  <data name="MainView_SearchItem.Content" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="MainView_SettingsItem.Content" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="MainView_TopArtistsItem.Content" xml:space="preserve">
+    <value>top artists</value>
+  </data>
+  <data name="MainView_TopTracksItem.Content" xml:space="preserve">
+    <value>top tracks</value>
+  </data>
+  <data name="MainView_TransferManagerButton.Label" xml:space="preserve">
+    <value>transfer manager</value>
+  </data>
+  <data name="MainView_TransferManagerItem.Content" xml:space="preserve">
+    <value>transfer manager</value>
+  </data>
+  <data name="MainView_DownloadFlyoutItem.Text" xml:space="preserve">
+    <value>download</value>
+  </data>
+  <data name="MainView_ShowMoreItem.Content" xml:space="preserve">
+    <value>show more</value>
+  </data>
+  <data name="AppName.Text" xml:space="preserve">
+    <value>VK SAVER</value>
+  </data>
+  <data name="AboutView_About.Text" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="AboutView_AppName.Text" xml:space="preserve">
+    <value>VK Saver 2 Beta</value>
+  </data>
+  <data name="AboutView_PoweredBy.Text" xml:space="preserve">
+    <value>Powered by OneVK</value>
+  </data>
+  <data name="AboutView_Version.Text" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="MainView_YourMusicLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of your tracks</value>
+  </data>
+  <data name="MainView_YourMusicLoader.LoadingText" xml:space="preserve">
+    <value>Loading the list of your tracks...</value>
+  </data>
+  <data name="MainView_YourMusicLoader.NoDataText" xml:space="preserve">
+    <value>In your collection no tracks</value>
+  </data>
+  <data name="AccessDeniedView_AccessDenied.Text" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
+  <data name="AccessDeniedView_SectionNotCompleted.Text" xml:space="preserve">
+    <value>This section isn't completed
+
+Go back to continue</value>
+  </data>
+  <data name="MainView_VideosItem.Content" xml:space="preserve">
+    <value>videos</value>
+  </data>
+  <data name="ErrorView_Error.Text" xml:space="preserve">
+    <value>An error occurred</value>
+  </data>
+  <data name="ErrorView_ErrorSorry.Text" xml:space="preserve">
+    <value>We are very sorry about what happened
+
+Go back to continue</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Albums.Header" xml:space="preserve">
+    <value>albums</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Details.Header" xml:space="preserve">
+    <value>details</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Similar.Header" xml:space="preserve">
+    <value>similar</value>
+  </data>
+  <data name="ArtistInfoView_SearchVKItem.Content" xml:space="preserve">
+    <value>search in VK</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of albums artist</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.LoadingText" xml:space="preserve">
+    <value>Listen to music artist album...</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.NoDataText" xml:space="preserve">
+    <value>It seems this artist carefully hides their albums</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load data about the artist</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.LoadingText" xml:space="preserve">
+    <value>Collect info about artist...</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.NoDataText" xml:space="preserve">
+    <value>About this artist has no information</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.ErrorText" xml:space="preserve">
+    <value>Failed to find similar artists</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.LoadingText" xml:space="preserve">
+    <value>Looking for similar artists...</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.NoDataText" xml:space="preserve">
+    <value>This artist creates unique compositions!</value>
+  </data>
+  <data name="NoTracksView_NoTracks.Text" xml:space="preserve">
+    <value>Now won't play any track
+
+Go back to continue</value>
+  </data>
+  <data name="NoTracksView_Silence.Text" xml:space="preserve">
+    <value>Silence...</value>
+  </data>
+  <data name="PlayerView_PivotSection_NowPlaying.Header" xml:space="preserve">
+    <value>now playing</value>
+  </data>
+  <data name="PlayerView_PivotSection_Playlist.Header" xml:space="preserve">
+    <value>playlist</value>
+  </data>
+  <data name="AppNamePivot.Title" xml:space="preserve">
+    <value>VK SAVER</value>
+  </data>
+  <data name="RecommendedView_Title.Text" xml:space="preserve">
+    <value>we recommend</value>
+  </data>
+  <data name="DownloadFlyoutItem.Text" xml:space="preserve">
+    <value>download</value>
+  </data>
+  <data name="RecommendationsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load recommendations</value>
+  </data>
+  <data name="RecommendationsLoader.LoadingText" xml:space="preserve">
+    <value>Exploring your musical preferences...</value>
+  </data>
+  <data name="RecommendationsLoader.NoDataText" xml:space="preserve">
+    <value>We can't recommend anything for you</value>
+  </data>
+  <data name="TrackInfoView_PlayButton.Content" xml:space="preserve">
+    <value>play</value>
+  </data>
+  <data name="TrackInfoView_Title.Text" xml:space="preserve">
+    <value>details</value>
+  </data>
+  <data name="TrackLyricView_LyricsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the track lyrics</value>
+  </data>
+  <data name="TrackLyricView_LyricsLoader.LoadingText" xml:space="preserve">
+    <value>Seraching lyrics of this track...</value>
+  </data>
+  <data name="TrackLyricView_LyricsLoader.NoDataText" xml:space="preserve">
+    <value>This audio has no text</value>
+  </data>
+  <data name="TopTracksView_Title.Text" xml:space="preserve">
+    <value>top tracks</value>
+  </data>
+  <data name="TopTracksView_TrackPlaybacksCount.Text" xml:space="preserve">
+    <value>playbacks</value>
+    <comment>Например, "15 воспроизведений"</comment>
+  </data>
+  <data name="TopTracksView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of top tracks</value>
+  </data>
+  <data name="TopTracksView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Loading the list of top tracks...</value>
+  </data>
+  <data name="TopTracksView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>There is no one top track</value>
+  </data>
+  <data name="TopArtistsView_Title.Text" xml:space="preserve">
+    <value>best artists</value>
+  </data>
+  <data name="TopArtistItem_ListenersCount.Text" xml:space="preserve">
+    <value>listeners</value>
+    <comment>Например, "12 слушателей"</comment>
+  </data>
+  <data name="TopArtistsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of best artists</value>
+  </data>
+  <data name="TopArtistsLoader.LoadingText" xml:space="preserve">
+    <value>Choosing the best artists...</value>
+  </data>
+  <data name="TopArtistsLoader.NoDataText" xml:space="preserve">
+    <value>It looks like there is no one best artist</value>
+  </data>
+  <data name="DeleteFlyoutItem.Text" xml:space="preserve">
+    <value>remove</value>
+  </data>
+  <data name="AlbumTracksLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the contents of the album</value>
+  </data>
+  <data name="AlbumTracksLoader.LoadingText" xml:space="preserve">
+    <value>Loading the list of tracks on the album...</value>
+  </data>
+  <data name="AlbumTracksLoader.NoDataText" xml:space="preserve">
+    <value>In this album there is no tracks</value>
+  </data>
+  <data name="UserCommView_UserOnline.Text" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="UserCommView_PivotSection_FriendLists.Header" xml:space="preserve">
+    <value>friends lists</value>
+    <comment>списки друзей</comment>
+  </data>
+  <data name="UserCommView_PivotSection_Friends.Header" xml:space="preserve">
+    <value>friends</value>
+  </data>
+  <data name="UserCommView_PivotSection_Groups.Header" xml:space="preserve">
+    <value>groups</value>
+  </data>
+  <data name="UserCommView_FriendListsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the friends lists</value>
+  </data>
+  <data name="UserCommView_FriendListsLoader.LoadingText" xml:space="preserve">
+    <value>Loading friends list...</value>
+  </data>
+  <data name="UserCommView_FriendListsLoader.NoDataText" xml:space="preserve">
+    <value>There are no friends lists or access denied</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of friends</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.LoadingText" xml:space="preserve">
+    <value>Loading friends list...</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.NoDataText" xml:space="preserve">
+    <value>There are no friends or access denied</value>
+  </data>
+  <data name="UserCommView_GroupsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of groups</value>
+  </data>
+  <data name="UserCommView_GroupsLoader.LoadingText" xml:space="preserve">
+    <value>Loading groups list...</value>
+  </data>
+  <data name="UserCommView_GroupsLoader.NoDataText" xml:space="preserve">
+    <value>There is no groups or access denied</value>
+  </data>
+  <data name="AddToMyVideosFlyoutItem.Text" xml:space="preserve">
+    <value>to my videos</value>
+  </data>
+  <data name="AddToMyDocsFlyoutItem.Text" xml:space="preserve">
+    <value>to my documents</value>
+  </data>
+  <data name="UserContentView_AudiosLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of audios</value>
+  </data>
+  <data name="UserContentView_AudiosLoader.LoadingText" xml:space="preserve">
+    <value>Load the list of audios...</value>
+  </data>
+  <data name="UserContentView_AudiosLoader.NoDataText" xml:space="preserve">
+    <value>There are no audios or access denied</value>
+  </data>
+  <data name="UserContentView_DocsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of documents</value>
+  </data>
+  <data name="UserContentView_DocsLoader.LoadingText" xml:space="preserve">
+    <value>Loading the list of documents...</value>
+  </data>
+  <data name="UserContentView_DocsLoader.NoDataText" xml:space="preserve">
+    <value>There are no documents or access denied</value>
+  </data>
+  <data name="UserContentView_VideosLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of videos</value>
+  </data>
+  <data name="UserContentView_VideosLoader.LoadingText" xml:space="preserve">
+    <value>Loading the list of videos...</value>
+  </data>
+  <data name="UserContentView_VideosLoader.NoDataText" xml:space="preserve">
+    <value>There are no videos or access denied</value>
+  </data>
+  <data name="SettingsView_Title.Text" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="PurchaseView_BuyMonthlyButton.Content" xml:space="preserve">
+    <value>buy for the month</value>
+  </data>
+  <data name="PurchaseView_BuyNowButton.Content" xml:space="preserve">
+    <value>buy now</value>
+  </data>
+  <data name="PurchaseView_BuyPermanentButton.Content" xml:space="preserve">
+    <value>buy forever</value>
+  </data>
+  <data name="PurchaseView_NextButton.Content" xml:space="preserve">
+    <value>next</value>
+  </data>
+  <data name="UserContentView_PivotSection_Docs.Header" xml:space="preserve">
+    <value>documents</value>
+  </data>
+  <data name="UserContentView_PivotSection_Music.Header" xml:space="preserve">
+    <value>music</value>
+  </data>
+  <data name="UserContentView_PivotSection_Videos.Header" xml:space="preserve">
+    <value>videos</value>
+  </data>
+  <data name="AddToMyAudiosFlyoutItem.Text" xml:space="preserve">
+    <value>to my audios</value>
+  </data>
+</root>

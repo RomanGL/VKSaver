@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace VKSaver.Core.Services.Interfaces
 {
-    interface ILocService
+    public interface ILocService
     {
+        string this[string resName] { get; }
+
+        string GetResource(string resName);
     }
 }

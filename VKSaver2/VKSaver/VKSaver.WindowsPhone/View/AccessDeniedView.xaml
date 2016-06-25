@@ -34,6 +34,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Нет доступа"
+                       x:Uid="AccessDeniedView_AccessDenied"
                        Style="{StaticResource PLine1TextStyle}"
                        Margin="20,0,20,20" />
 
@@ -47,11 +48,10 @@
                         <EntranceThemeTransition />
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
-                <TextBlock Style="{StaticResource PLine2TextStyle}">
-                    <Run Text="Этот раздел еще не готов" />
-                    <LineBreak /><LineBreak />
-                    <Run Text="Вернитесь назад, чтобы продолжить" />
-                </TextBlock>
+                <TextBlock Style="{StaticResource PLine2TextStyle}"
+                           x:Uid="AccessDeniedView_SectionNotCompleted" 
+                           Text="Раздел не готов                           
+                           Вернитесь, чтобы продолжить"/>
             </StackPanel>
         </Grid>
     </Grid>

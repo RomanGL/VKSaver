@@ -49,6 +49,7 @@
                            Foreground="{StaticResource AccentBrush}"
                            Visibility="{Binding Online, Converter={StaticResource BoolToVisibilityConverter}}"
                            Text="Онлайн"
+                           x:Uid="UserCommView_UserOnline"
                            Grid.Column="1"
                            Grid.Row="2"
                            FontSize="16"
@@ -86,7 +87,8 @@
     
     <Pivot Title="{Binding PageTitle, Converter={StaticResource ToUpperConverter}}"
            SelectedIndex="{Binding LastPivotIndex}">
-        <PivotItem Header="друзья">
+        <PivotItem Header="друзья"
+                   x:Uid="UserCommView_PivotSection_Friends">
             <ListView ItemsSource="{Binding Friends}"
                       ItemTemplate="{StaticResource UserTemplate}"
                       Style="{StaticResource NoSelectionListViewStyle}"
@@ -95,6 +97,7 @@
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Friends.ContentState}"
                                              ReloadCommand="{Binding Friends.LoadCommand}"
+                                             x:Uid="UserCommView_FriendsLoader"
                                              Margin="0,0,0,60" 
                                              LoadingText="Загружаем список ваших друзей..."
                                              ErrorText="Не удалось загрузить список друзей"
@@ -110,7 +113,8 @@
                 </i:Interaction.Behaviors>
             </ListView>
         </PivotItem>
-        <PivotItem Header="списки">
+        <PivotItem Header="списки"
+                   x:Uid="UserCommView_PivotSection_FriendLists">
             <ListView ItemsSource="{Binding FriendsLists}"
                       ItemTemplate="{StaticResource OnlyNameListItemTemplate}"
                       Style="{StaticResource NoSelectionListViewStyle}"
@@ -119,6 +123,7 @@
                     <DataTemplate>
                         <controls:StateBlock State="{Binding FriendsLists.ContentState}"
                                              ReloadCommand="{Binding FriendsLists.LoadCommand}"
+                                             x:Uid="UserCommView_FriendListsLoader"
                                              Margin="0,0,0,60" 
                                              LoadingText="Загружаем ваши списки друзей..."
                                              ErrorText="Не удалось загрузить списки друзей"
@@ -140,7 +145,8 @@
                 </i:Interaction.Behaviors>
             </ListView>
         </PivotItem>
-        <PivotItem Header="сообщества">
+        <PivotItem Header="сообщества"
+                   x:Uid="UserCommView_PivotSection_Groups">
             <ListView ItemsSource="{Binding Groups}"
                       ItemTemplate="{StaticResource GroupTemplate}"
                       Style="{StaticResource NoSelectionListViewStyle}"
@@ -149,6 +155,7 @@
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Groups.ContentState}"
                                              ReloadCommand="{Binding Groups.LoadCommand}"
+                                             x:Uid="UserCommView_GroupsLoader"
                                              Margin="0,0,0,60" 
                                              LoadingText="Выполняем поиск собществ, в которых вы состоите..."
                                              ErrorText="Не удалось загрузить список сообществ"

@@ -43,7 +43,8 @@
                             <SolidColorBrush Color="{ThemeResource PhoneTextLowColor}" />
                         </TextBlock.Foreground>
                         <Run Text="{Binding PlayCount}" />
-                        <Run Text="воспроизведений" />
+                        <Run Text="воспроизведений"
+                             x:Uid="TopTracksView_TrackPlaybacksCount"/>
                     </TextBlock>
                 </StackPanel>
             </Grid>
@@ -59,9 +60,11 @@
         <StackPanel Grid.Row="0"
                     Margin="19,0,0,0">
             <TextBlock Text="ВКАЧАЙ"
+                       x:Uid="AppName"
                        Style="{ThemeResource TitleTextBlockStyle}"
                        Margin="0,12,0,0" />
             <TextBlock Text="популярные"
+                       x:Uid="TopTracksView_Title"
                        Margin="0,-6.5,0,26.5"
                        Style="{ThemeResource HeaderTextBlockStyle}"/>
         </StackPanel>
@@ -91,6 +94,7 @@
                         <Border MinHeight="70">
                             <controls:StateBlock State="{Binding Tracks.ContentState}"
                                                  ReloadCommand="{Binding Tracks.LoadCommand}"
+                                                 x:Uid="TopTracksView_TracksLoader"
                                                  Margin="0,0,0,60" />
                         </Border>
                     </DataTemplate>

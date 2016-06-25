@@ -141,12 +141,15 @@
                 <Setter.Value>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="загрузить"
+                                        x:Uid="DownloadFlyoutItem"
                                         Command="{Binding DataSource.DownloadItemCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="в мои аудиозаписи"
+                                        x:Uid="AddToMyAudiosFlyoutItem"
                                         Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
                                         Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                     </MenuFlyout>
@@ -163,9 +166,11 @@
                 <Setter.Value>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="в мои видеозаписи"
+                                        x:Uid="AddToMyVideosFlyoutItem"
                                         Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
                                         Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                     </MenuFlyout>
@@ -182,12 +187,15 @@
                 <Setter.Value>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="загрузить"
+                                        x:Uid="DownloadFlyoutItem"
                                         Command="{Binding DataSource.DownloadItemCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="в мои документы"
+                                        x:Uid="AddToMyDocsFlyoutItem"
                                         Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
                                         Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                     </MenuFlyout>
@@ -207,6 +215,7 @@
                 <Setter.Value>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
                                         Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                     </MenuFlyout>
@@ -236,7 +245,8 @@
     <Pivot Title="{Binding PageTitle, Converter={StaticResource ToUpperConverter}}"
            SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
            IsLocked="{Binding IsLockedPivot}">
-        <PivotItem Header="музыка">
+        <PivotItem Header="музыка"
+                   x:Uid="UserContentView_PivotSection_Music">
             <SemanticZoom Style="{StaticResource GenericJumpListStyle}">
                 <SemanticZoom.ZoomedInView>
                     <controls:FixedListView Style="{StaticResource NoSelectionListViewStyle}"
@@ -254,6 +264,7 @@
                             <DataTemplate>
                                 <controls:StateBlock State="{Binding AudioGroup.ContentState}"
                                                      ReloadCommand="{Binding AudioGroup.LoadCommand}"
+                                                     x:Uid="UserContentView_AudiosLoader"
                                                      Margin="0,0,0,60" 
                                                      LoadingText="Загружаем список аудиозаписей..."
                                                      ErrorText="Не удалось загрузить список аудиозаписей"
@@ -280,7 +291,8 @@
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>
         </PivotItem>
-        <PivotItem Header="видео">
+        <PivotItem Header="видео"
+                   x:Uid="UserContentView_PivotSection_Videos">
             <SemanticZoom Style="{StaticResource GenericJumpListStyle}">
                 <SemanticZoom.ZoomedInView>
                     <controls:FixedListView Style="{StaticResource NoSelectionListViewStyle}"
@@ -296,6 +308,7 @@
                             <DataTemplate>
                                 <controls:StateBlock State="{Binding VideoGroup.ContentState}"
                                                      ReloadCommand="{Binding VideoGroup.LoadCommand}"
+                                                     x:Uid="UserContentView_VideosLoader"
                                                      Margin="0,0,0,60"
                                                      LoadingText="Загружаем список видеозаписей..."
                                                      ErrorText="Не удалось загрузить список видеозаписей"
@@ -319,6 +332,7 @@
             </SemanticZoom>
         </PivotItem>
         <PivotItem Header="документы"
+                   x:Uid="UserContentView_PivotSection_Docs"
                    Margin="19,20,0,0">
             <ListView Style="{StaticResource NoSelectionListViewStyle}"
                       ItemsSource="{Binding Documents}"
@@ -330,6 +344,7 @@
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Documents.ContentState}"
                                              ReloadCommand="{Binding Documents.LoadCommand}"
+                                             x:Uid="UserContentView_DocsLoader"
                                              Margin="0,0,0,60"
                                              LoadingText="Загружаем список документов..."
                                              ErrorText="Не удалось загрузить список докментов"

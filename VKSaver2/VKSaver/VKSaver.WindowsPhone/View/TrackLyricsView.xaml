@@ -47,6 +47,7 @@
                           Margin="19,9.5,0,0">
                 <controls:ContentContainer State="{Binding LyricsState}"
                                            ReloadCommand="{Binding ReloadLyricsCommand}"
+                                           x:Uid="TrackLyricView_LyricsLoader"
                                            LoadingText="Выполняем поиск текста аудиозаписи..."
                                            ErrorText="Не удалось загрузить текст аудиозаписи"
                                            NoDataText="У этой аудиозаписи нет текста">

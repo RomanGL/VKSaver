@@ -5,7 +5,7 @@ using Windows.ApplicationModel.Store;
 
 namespace VKSaver.Core.Services
 {
-#if RELEASE_FULL
+#if FULL && (DEBUG || RELEASE)
     public sealed class PurchaseService : IPurchaseService
     {
         public bool IsFullVersionPurchased { get { return true; } }
