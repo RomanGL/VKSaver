@@ -364,4 +364,52 @@ Go back to continue</value>
   <data name="AddToMyAudiosFlyoutItem.Text" xml:space="preserve">
     <value>to my audios</value>
   </data>
+  <data name="TransferView_CancelAllDownloadsButton.Label" xml:space="preserve">
+    <value>cancel all downloads</value>
+  </data>
+  <data name="TransferView_PivotSection_History.Header" xml:space="preserve">
+    <value>history</value>
+  </data>
+  <data name="TransferView_PivotSection_Uploads.Header" xml:space="preserve">
+    <value>uploads</value>
+  </data>
+  <data name="TransferView_PivotSection_Downloads.Header" xml:space="preserve">
+    <value>downloads</value>
+  </data>
+  <data name="TransferView_DownloadsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to get the list of current downloads</value>
+  </data>
+  <data name="TransferView_DownloadsLoader.LoadingText" xml:space="preserve">
+    <value>Retrieving the list of the current downloads...</value>
+  </data>
+  <data name="TransferView_DownloadsLoader.NoDataText" xml:space="preserve">
+    <value>Currently not running any downloads</value>
+  </data>
+  <data name="TransferView_HistoryLoader.ErrorText" xml:space="preserve">
+    <value>Failed to retrieve downloads history</value>
+  </data>
+  <data name="TransferView_HistoryLoader.LoadingText" xml:space="preserve">
+    <value>Retrieving the downloads history...</value>
+  </data>
+  <data name="TransferView_HistoryLoader.NoDataText" xml:space="preserve">
+    <value>Downloads history are not supported yet</value>
+  </data>
+  <data name="TransferView_UploadsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to get the list of current uploads</value>
+  </data>
+  <data name="TransferView_UploadsLoader.LoadingText" xml:space="preserve">
+    <value>Retrieving the list of the current uploads...</value>
+  </data>
+  <data name="TransferView_CancelFlyoutItem.Text" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="TransferView_PauseFlyoutItem.Text" xml:space="preserve">
+    <value>pause</value>
+  </data>
+  <data name="TransferView_ResumeFlyoutItem.Text" xml:space="preserve">
+    <value>resume</value>
+  </data>
+  <data name="TransferView_UploadsLoader.NoDataText" xml:space="preserve">
+    <value>Uploads are not supported yet</value>
+  </data>
 </root>

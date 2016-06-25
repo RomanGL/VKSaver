@@ -392,6 +392,54 @@
   <data name="TrackLyricView_LyricsLoader.NoDataText" xml:space="preserve">
     <value>У этой аудиозаписи нет текста</value>
   </data>
+  <data name="TransferView_CancelAllDownloadsButton.Label" xml:space="preserve">
+    <value>отменить все загрузки</value>
+  </data>
+  <data name="TransferView_CancelFlyoutItem.Text" xml:space="preserve">
+    <value>отменить</value>
+  </data>
+  <data name="TransferView_DownloadsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось получить список текущих загрузок</value>
+  </data>
+  <data name="TransferView_DownloadsLoader.LoadingText" xml:space="preserve">
+    <value>Получение списка текущих загрузок...</value>
+  </data>
+  <data name="TransferView_DownloadsLoader.NoDataText" xml:space="preserve">
+    <value>Сейчас не выполняется никаких загрузок</value>
+  </data>
+  <data name="TransferView_HistoryLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось получить журнал загрузок</value>
+  </data>
+  <data name="TransferView_HistoryLoader.LoadingText" xml:space="preserve">
+    <value>Получение журнала загрузок...</value>
+  </data>
+  <data name="TransferView_HistoryLoader.NoDataText" xml:space="preserve">
+    <value>Журнал загрузок пока не поддерживается</value>
+  </data>
+  <data name="TransferView_PauseFlyoutItem.Text" xml:space="preserve">
+    <value>пауза</value>
+  </data>
+  <data name="TransferView_PivotSection_Downloads.Header" xml:space="preserve">
+    <value>загрузки</value>
+  </data>
+  <data name="TransferView_PivotSection_History.Header" xml:space="preserve">
+    <value>журнал</value>
+  </data>
+  <data name="TransferView_PivotSection_Uploads.Header" xml:space="preserve">
+    <value>отправки</value>
+  </data>
+  <data name="TransferView_ResumeFlyoutItem.Text" xml:space="preserve">
+    <value>возобновить</value>
+  </data>
+  <data name="TransferView_UploadsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось получить список текущих отправок</value>
+  </data>
+  <data name="TransferView_UploadsLoader.LoadingText" xml:space="preserve">
+    <value>Получение списка текущих отправок...</value>
+  </data>
+  <data name="TransferView_UploadsLoader.NoDataText" xml:space="preserve">
+    <value>Отправки пока не поддерживаются</value>
+  </data>
   <data name="UserCommView_FriendListsLoader.ErrorText" xml:space="preserve">
     <value>Не удалось загрузить списки друзей</value>
   </data>

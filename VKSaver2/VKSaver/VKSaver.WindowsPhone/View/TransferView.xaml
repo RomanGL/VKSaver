@@ -83,14 +83,17 @@
                 <Setter.Value>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="пауза"
+                                        x:Uid="TransferView_PauseFlyoutItem"
                                         Command="{Binding DataSource.PauseDownloadCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" 
                                         IsEnabled="{Binding CanPause}"/>
                         <MenuFlyoutItem Text="возобновить"
+                                        x:Uid="TransferView_ResumeFlyoutItem"
                                         Command="{Binding DataSource.ResumeDownloadCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" 
                                         IsEnabled="{Binding CanResume}"/>
                         <MenuFlyoutItem Text="отменить"
+                                        x:Uid="TransferView_CancelFlyoutItem"
                                         Command="{Binding DataSource.CancelDownloadCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                     </MenuFlyout>
@@ -104,7 +107,8 @@
     <mvvm:VisualStateAwarePage.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="отменить все загрузки" 
+                <AppBarButton Label="отменить все загрузки"
+                              x:Uid="TransferView_CancelAllDownloadsButton"
                               Command="{Binding CancelAllDownloadsCommand}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
@@ -112,8 +116,10 @@
     
     <Pivot Title="ВКАЧАЙ"
            x:Uid="AppNamePivot">
-        <PivotItem Header="загрузки">
+        <PivotItem Header="загрузки"
+                   x:Uid="TransferView_PivotSection_Downloads">
             <controls:ContentContainer State="{Binding DownloadsState}"
+                                       x:Uid="TransferView_DownloadsLoader"
                                        LoadingText="Получение списока текущих загрузок..."
                                        ErrorText="Не удалось получить список текущих загрузок"
                                        NoDataText="Сейчас не выполняется никаких загрузок">
@@ -140,13 +146,17 @@
                 </ListView>
             </controls:ContentContainer>
         </PivotItem>
-        <PivotItem Header="отправки">
+        <PivotItem Header="отправки"
+                   x:Uid="TransferView_PivotSection_Uploads">
             <controls:ContentContainer State="{Binding UploadsState}"
+                                       x:Uid="TransferView_UploadsLoader"
                                        NoDataText="Отправки пока не поддерживаются">
             </controls:ContentContainer>
         </PivotItem>
-        <PivotItem Header="журнал">
+        <PivotItem Header="журнал"
+                   x:Uid="TransferView_PivotSection_History">
             <controls:ContentContainer State="{Binding HistoryState}"
+                                       x:Uid="TransferView_HistoryLoader"
                                        NoDataText="Журнал загрузок пока не поддерживается">
             </controls:ContentContainer>
         </PivotItem>

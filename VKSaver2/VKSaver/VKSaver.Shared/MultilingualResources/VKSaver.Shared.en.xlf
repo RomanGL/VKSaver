@@ -478,6 +478,70 @@ Go back to continue</target>
           <source>в мои аудиозаписи</source>
           <target state="translated">to my audios</target>
         </trans-unit>
+        <trans-unit id="TransferView_CancelAllDownloadsButton.Label" translate="yes" xml:space="preserve">
+          <source>отменить все загрузки</source>
+          <target state="translated">cancel all downloads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_PivotSection_History.Header" translate="yes" xml:space="preserve">
+          <source>журнал</source>
+          <target state="translated">history</target>
+        </trans-unit>
+        <trans-unit id="TransferView_PivotSection_Uploads.Header" translate="yes" xml:space="preserve">
+          <source>отправки</source>
+          <target state="translated">uploads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_PivotSection_Downloads.Header" translate="yes" xml:space="preserve">
+          <source>загрузки</source>
+          <target state="translated">downloads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_DownloadsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось получить список текущих загрузок</source>
+          <target state="translated">Failed to get the list of current downloads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_DownloadsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Получение списка текущих загрузок...</source>
+          <target state="translated">Retrieving the list of the current downloads...</target>
+        </trans-unit>
+        <trans-unit id="TransferView_DownloadsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Сейчас не выполняется никаких загрузок</source>
+          <target state="translated">Currently not running any downloads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_HistoryLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось получить журнал загрузок</source>
+          <target state="translated">Failed to retrieve downloads history</target>
+        </trans-unit>
+        <trans-unit id="TransferView_HistoryLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Получение журнала загрузок...</source>
+          <target state="translated">Retrieving the downloads history...</target>
+        </trans-unit>
+        <trans-unit id="TransferView_HistoryLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Журнал загрузок пока не поддерживается</source>
+          <target state="translated">Downloads history are not supported yet</target>
+        </trans-unit>
+        <trans-unit id="TransferView_UploadsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось получить список текущих отправок</source>
+          <target state="translated">Failed to get the list of current uploads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_UploadsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Получение списка текущих отправок...</source>
+          <target state="translated">Retrieving the list of the current uploads...</target>
+        </trans-unit>
+        <trans-unit id="TransferView_CancelFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>отменить</source>
+          <target state="translated">cancel</target>
+        </trans-unit>
+        <trans-unit id="TransferView_PauseFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>пауза</source>
+          <target state="translated">pause</target>
+        </trans-unit>
+        <trans-unit id="TransferView_ResumeFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>возобновить</source>
+          <target state="translated">resume</target>
+        </trans-unit>
+        <trans-unit id="TransferView_UploadsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Отправки пока не поддерживаются</source>
+          <target state="translated">Uploads are not supported yet</target>
+        </trans-unit>
       </group>
     </body>
   </file>
