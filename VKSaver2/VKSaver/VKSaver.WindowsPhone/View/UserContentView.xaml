@@ -134,7 +134,7 @@
                                            AlbumTemplate="{StaticResource OnlyTitleListItemTemplate}"
                                            VideoTemplate="{StaticResource VideoTemplate}" />
 
-        <Style x:Key="DownloadableItemStyle"
+        <Style x:Key="AudioItemTemplate"
                TargetType="ListViewItem"
                BasedOn="{StaticResource MarginListViewItemStyle}">
             <Setter Property="FlyoutBase.AttachedFlyout">
@@ -144,7 +144,26 @@
                                         Command="{Binding DataSource.DownloadItemCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="в мои аудиозаписи"
-                                        Command="{Binding DataSource.AddToMyAudiosCommand, Source={StaticResource DataContextProxy}}"
+                                        Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="удалить"
+                                        Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+
+        <Style x:Key="VideoItemTemplate"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="в мои видеозаписи"
+                                        Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="удалить"
                                         Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
@@ -166,7 +185,7 @@
                                         Command="{Binding DataSource.DownloadItemCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="в мои документы"
-                                        Command="{Binding DataSource.AddToMyDocumentsCommand, Source={StaticResource DataContextProxy}}"
+                                        Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="удалить"
                                         Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
@@ -197,8 +216,11 @@
                     Value="True" />
         </Style>
 
-        <common:ContentViewItemContainerStyleSelector x:Key="ItemContainerStyleSelector"
-                                                      DefaultStyle="{StaticResource DownloadableItemStyle}"
+        <common:ContentViewItemContainerStyleSelector x:Key="AudioItemContainerSelector"
+                                                      DefaultStyle="{StaticResource AudioItemTemplate}"
+                                                      AlbumStyle="{StaticResource AlbumItemStyle}" />
+        <common:ContentViewItemContainerStyleSelector x:Key="VideoItemContainerSelector"
+                                                      DefaultStyle="{StaticResource VideoItemTemplate}"
                                                       AlbumStyle="{StaticResource AlbumItemStyle}" />
     </mvvm:VisualStateAwarePage.Resources>
 
@@ -220,7 +242,7 @@
                     <controls:FixedListView Style="{StaticResource NoSelectionListViewStyle}"
                                             ItemsSource="{Binding Source={StaticResource AudioGroupSource}}"
                                             ItemTemplateSelector="{StaticResource AudioGroupTemplateSelector}"
-                                            ItemContainerStyleSelector="{StaticResource ItemContainerStyleSelector}"
+                                            ItemContainerStyleSelector="{StaticResource AudioItemContainerSelector}"
                                             IsItemClickEnabled="{Binding IsItemClickEnabled}"
                                             SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
                         <ListView.GroupStyle>
@@ -264,7 +286,7 @@
                     <controls:FixedListView Style="{StaticResource NoSelectionListViewStyle}"
                                             ItemsSource="{Binding Source={StaticResource VideoGroupSource}}"
                                             ItemTemplateSelector="{StaticResource VideoGroupTemplateSelector}"
-                                            ItemContainerStyleSelector="{StaticResource ItemContainerStyleSelector}">
+                                            ItemContainerStyleSelector="{StaticResource VideoItemContainerSelector}">
                         <ListView.GroupStyle>
                             <GroupStyle HeaderTemplate="{StaticResource JumpListHeaderTemplate}"
                                         HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"

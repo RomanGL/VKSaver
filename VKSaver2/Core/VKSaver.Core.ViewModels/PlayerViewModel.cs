@@ -177,6 +177,7 @@ namespace VKSaver.Core.ViewModels
                 await Task.Delay(1);
                 _navigationService.Navigate("NoTracksView", null);
                 _navigationService.RemoveLastPage("PlayerView");
+                _appLoaderService.Hide();
                 return;
             }
             else

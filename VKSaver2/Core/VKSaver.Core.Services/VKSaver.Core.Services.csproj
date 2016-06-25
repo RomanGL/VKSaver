@@ -67,6 +67,7 @@
     <Compile Include="Interfaces\IDownloadsServiceHelper.cs" />
     <Compile Include="Interfaces\IGrooveMusicService.cs" />
     <Compile Include="Interfaces\IImagesCacheService.cs" />
+    <Compile Include="Interfaces\ILocService.cs" />
     <Compile Include="Interfaces\ILogService.cs" />
     <Compile Include="Interfaces\INetworkInfoService.cs" />
     <Compile Include="Interfaces\IPlayerPlaylistService.cs" />

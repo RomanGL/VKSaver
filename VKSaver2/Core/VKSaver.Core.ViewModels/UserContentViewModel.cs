@@ -55,8 +55,8 @@ namespace VKSaver.Core.ViewModels
             SelectionChangedCommand = new DelegateCommand(OnSelectionChangedCommand);
             SelectAllCommand = new DelegateCommand(OnSelectAllCommand, CanSelectionMode);
 
-            AddToMyAudiosCommand = new DelegateCommand<VKAudio>(OnAddToMyAudiosCommand, CanAddToMyAudios);
-            AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, HasSelectedAudios);
+            AddToMyCollectionCommand = new DelegateCommand<object>(OnAddToMyCollection, CanAddToMyCollection);
+            AddSelectedToMyCollectionCommand = new DelegateCommand(OnAddSelectedToMyCollection, CanAddSelected);
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedAudios);
 
             DeleteCommand = new DelegateCommand<object>(OnDeleteCommand, CanDelete);
@@ -92,6 +92,8 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public List<object> SelectedItems { get; private set; }
 
+        #region Команды
+
         [DoNotNotify]
         public DelegateCommand<object> ExecuteTracksListItemCommand { get; private set; }
 
@@ -117,13 +119,10 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand SelectAllCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand AddSelectedToMyAudiosCommand { get; private set; }
+        public DelegateCommand AddSelectedToMyCollectionCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<VKAudio> AddToMyAudiosCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<VKDocument> AddToMyDocumentsCommand { get; private set; }
+        public DelegateCommand<object> AddToMyCollectionCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand PlaySelectedCommand { get; private set; }
@@ -133,6 +132,8 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand<object> DeleteCommand { get; private set; }
+
+        #endregion
 
         public int LastPivotIndex
         {
@@ -490,11 +491,30 @@ namespace VKSaver.Core.ViewModels
 
             if (_userID != 0 && _userID != _vkLoginService.UserID)
             {
-                SecondaryItems.Add(new AppBarButton
+                switch (LastPivotIndex)
                 {
-                    Label = "в мои аудиозаписи",
-                    Command = AddSelectedToMyAudiosCommand
-                });
+                    case 0:
+                        SecondaryItems.Add(new AppBarButton
+                        {
+                            Label = "в мои аудиозаписи",
+                            Command = AddSelectedToMyCollectionCommand
+                        });
+                        break;
+                    case 1:
+                        SecondaryItems.Add(new AppBarButton
+                        {
+                            Label = "в мои видеозаписи",
+                            Command = AddSelectedToMyCollectionCommand
+                        });
+                        break;
+                    case 2:
+                        SecondaryItems.Add(new AppBarButton
+                        {
+                            Label = "в мои документы",
+                            Command = AddSelectedToMyCollectionCommand
+                        });
+                        break;
+                }                
             }
             else
             {
@@ -576,7 +596,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnDownloadSelectedCommand()
         {
-            _appLoaderService.Show("Подготовка файлов для загрузки");
+            _appLoaderService.Show("Подготовка файлов для загрузки...");
             var items = SelectedItems.ToList();
             SetDefaultMode();
 
@@ -605,7 +625,7 @@ namespace VKSaver.Core.ViewModels
         {
             DownloadSelectedCommand.RaiseCanExecuteChanged();
             PlaySelectedCommand.RaiseCanExecuteChanged();
-            AddSelectedToMyAudiosCommand.RaiseCanExecuteChanged();
+            AddSelectedToMyCollectionCommand.RaiseCanExecuteChanged();
             DeleteSelectedCommand.RaiseCanExecuteChanged();
         }
 
@@ -634,11 +654,12 @@ namespace VKSaver.Core.ViewModels
         {
             _appLoaderService.Show();
 
-            var toPlay = SelectedItems.Cast<VKAudio>().ToPlayerTracks();
+            var toPlay = SelectedItems.Where(o => o is VKAudio).Cast<VKAudio>().ToPlayerTracks();
             await _playerService.PlayNewTracks(toPlay, 0);
             _navigationService.Navigate("PlayerView", null);
 
             _appLoaderService.Hide();
+            SetDefaultMode();
         }
 
         private async void OnDownloadItemCommand(object item)
@@ -667,14 +688,35 @@ namespace VKSaver.Core.ViewModels
             return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio);
         }
 
-        private bool CanAddToMyAudios(VKAudio audio)
+        private bool CanAddSelected()
         {
-            return audio == null || audio.OwnerID != _vkLoginService.UserID;
+            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio || o is VKVideo || o is VKDocument);
         }
 
-        private bool CanAddDocument(VKDocument doc)
+        private bool CanDeleteSelected()
         {
-            return doc == null || doc.OwnerID != _vkLoginService.UserID;
+            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio || o is VKVideo || o is VKDocument);
+        }
+
+        private bool CanAddToMyCollection(object obj)
+        {
+            if (obj is VKAudio)
+            {
+                var audio = (VKAudio)obj;
+                return audio.OwnerID != _vkLoginService.UserID;
+            }
+            else if (obj is VKVideo)
+            {
+                var video = (VKVideo)obj;
+                return video.OwnerID != _vkLoginService.UserID && _userID != 0;
+            }
+            else if (obj is VKDocument)
+            {
+                var doc = (VKDocument)obj;
+                return doc.OwnerID != _vkLoginService.UserID;
+            }
+
+            return false;
         }
 
         private bool CanDelete(object obj)
@@ -706,11 +748,6 @@ namespace VKSaver.Core.ViewModels
             }
 
             return false;
-        }
-
-        private bool CanDeleteSelected()
-        {
-            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio || o is VKVideo || o is VKDocument);
         }
 
         private async void OnDeleteCommand(object obj)
@@ -760,7 +797,7 @@ namespace VKSaver.Core.ViewModels
             {
                 if (!success)
                 {
-                    _dialogsService.Show("При удалении альбома видеозаписей произошла ошибка. Повторите попытку позднее.",
+                    _dialogsService.Show("При удалении альбома аудиозаписей произошла ошибка. Повторите попытку позднее.",
                         "Не удалось удалить альбом аудиозаписей");
                 }
                 else
@@ -809,58 +846,61 @@ namespace VKSaver.Core.ViewModels
                 ShowDeletingError(errors);
 
             _appLoaderService.Hide();
+            SetDefaultMode();
         }
 
-        private async void OnAddToMyAudiosCommand(VKAudio track)
+        private async void OnAddToMyCollection(object obj)
         {
             _appLoaderService.Show("Выполняется добавление в вашу коллекцию...");
-            if (!await AddToMyAudios(track))
+            if (!await AddToMyCollection(obj))
             {
-                _dialogsService.Show("При добавлении аудиозаписи в коллекцию произошла ошибка. Повторите попытку позднее.",
-                    "Не удалось добавить в коллекцию");
+                if (obj is VKAudio)
+                {
+                    _dialogsService.Show("При добавлении аудиозаписи в коллекцию произошла ошибка. Повторите попытку позднее.",
+                        "Не удалось добавить аудиозапись");
+                }
+                else if (obj is VKVideo)
+                {
+                    _dialogsService.Show("При добавлении видеозаписи в коллекцию произошла ошибка. Повторите попытку позднее.",
+                    "Не удалось добавить видеозапись");
+                }
+                else if (obj is VKDocument)
+                {
+                    _dialogsService.Show("При добавлении документа в коллекцию произошла ошибка. Повторите попытку позднее.",
+                    "Не удалось добавить документ");
+                }
             }
             _appLoaderService.Hide();
         }
 
-        private async void OnAddDocumentCommand(VKDocument doc)
-        {
-
-        }
-
-        private async void OnAddSelectedToMyAudiosCommand()
+        private async void OnAddSelectedToMyCollection()
         {
             _appLoaderService.Show("Подготовка...");
-            var items = SelectedItems.ToList();
-            var errors = new List<VKAudio>();
+            var items = SelectedItems.Where(o => o is VKAudio || o is VKVideo || o is VKDocument).ToList();
+            var errors = new List<object>();
+            var success = new List<object>();
 
-            foreach (var item in items)
+            foreach (var obj in items)
             {
-                var track = item as VKAudio;
-                if (track == null)
-                    continue;
+                _appLoaderService.Show(GetAddingText(obj));
+                if (await AddToMyCollection(obj))
+                    success.Add(obj);
+                else
+                    errors.Add(obj);
 
-                _appLoaderService.Show($"Выполняется добавление {track.Artist} - {track.Title}...");
-
-                if (!await AddToMyAudios(track))
-                    errors.Add(track);
                 await Task.Delay(300);
             }
-
+            
             if (errors.Any())
                 ShowAddingError(errors);
 
             _appLoaderService.Hide();
+            SetDefaultMode();
         }
 
-        private async Task<bool> AddToMyAudios(VKAudio audio)
+        private async Task<bool> AddToMyCollection(object obj)
         {
-            var parameters = new Dictionary<string, string>
-            {
-                { "audio_id", audio.ID.ToString() },
-                { "owner_id", audio.OwnerID.ToString() }
-            };
-
-            var request = new Request<long>("audio.add", parameters);
+            var request = GetRequestForAdd(obj);
             var response = await _vkService.ExecuteRequestAsync(request);
 
             if (response.IsSuccess)
@@ -879,18 +919,47 @@ namespace VKSaver.Core.ViewModels
             return false;
         }
 
+        private Request<long> GetRequestForAdd(object obj)
+        {
+            Request<long> request = null;
+
+            if (obj is VKAudio)
+                request = new Request<long>("audio.add", GetParametersForObject(obj));
+            else if (obj is VKVideo)
+                request = new Request<long>("video.add", GetParametersForObject(obj));
+            else if (obj is VKDocument)
+                request = new Request<long>("docs.add", GetParametersForObject(obj));
+
+            return request;
+        }
+
         private Request<VKOperationIsSuccess> GetRequestForDelete(object obj)
         {
-            var parameters = new Dictionary<string, string>();
             Request<VKOperationIsSuccess> request = null;
+
+            if (obj is VKAudio)
+                request = new Request<VKOperationIsSuccess>("audio.delete", GetParametersForObject(obj));
+            else if (obj is VKVideo)
+                request = new Request<VKOperationIsSuccess>("video.delete", GetParametersForObject(obj));
+            else if (obj is VKDocument)
+                request = new Request<VKOperationIsSuccess>("docs.delete", GetParametersForObject(obj));
+            else if (obj is VKAudioAlbum)
+                request = new Request<VKOperationIsSuccess>("audio.deleteAlbum", GetParametersForObject(obj));
+            else if (obj is VKVideoAlbum)
+                request = new Request<VKOperationIsSuccess>("video.deleteAlbum", GetParametersForObject(obj));
+
+            return request;
+        }
+
+        private Dictionary<string, string> GetParametersForObject(object obj)
+        {
+            var parameters = new Dictionary<string, string>();
 
             if (obj is VKAudio)
             {
                 var audio = (VKAudio)obj;
                 parameters["audio_id"] = audio.ID.ToString();
                 parameters["owner_id"] = audio.OwnerID.ToString();
-
-                request = new Request<VKOperationIsSuccess>("audio.delete", parameters);
             }
             else if (obj is VKVideo)
             {
@@ -898,33 +967,25 @@ namespace VKSaver.Core.ViewModels
                 parameters["video_id"] = video.ID.ToString();
                 parameters["owner_id"] = video.OwnerID.ToString();
                 parameters["target_id"] = _vkLoginService.UserID.ToString();
-
-                request = new Request<VKOperationIsSuccess>("video.delete", parameters);
             }
             else if (obj is VKDocument)
             {
                 var doc = (VKDocument)obj;
                 parameters["doc_id"] = doc.ID.ToString();
                 parameters["owner_id"] = doc.OwnerID.ToString();
-
-                request = new Request<VKOperationIsSuccess>("docs.delete", parameters);
             }
             else if (obj is VKAudioAlbum)
             {
                 var audioAlbum = (VKAudioAlbum)obj;
                 parameters["album_id"] = audioAlbum.ID.ToString();
-
-                request = new Request<VKOperationIsSuccess>("audio.deleteAlbum", parameters);
             }
             else if (obj is VKVideoAlbum)
             {
                 var videoAlbum = (VKVideoAlbum)obj;
                 parameters["album_id"] = videoAlbum.ID.ToString();
-
-                request = new Request<VKOperationIsSuccess>("video.deleteAlbum", parameters);
             }
 
-            return request;
+            return parameters;
         }
 
         private string GetDeletingText(object obj)
@@ -958,6 +1019,37 @@ namespace VKSaver.Core.ViewModels
             return null;
         }
 
+        private string GetAddingText(object obj)
+        {
+            if (obj is VKAudio)
+            {
+                var audio = (VKAudio)obj;
+                return $"Выполняется добавление {audio.Artist} - {audio.Title}...";
+            }
+            else if (obj is VKVideo)
+            {
+                var video = (VKVideo)obj;
+                return $"Выполняется добавление {video.Title}...";
+            }
+            else if (obj is VKDocument)
+            {
+                var doc = (VKDocument)obj;
+                return $"Выполняется добавление {doc.Title}...";
+            }
+            else if (obj is VKAudioAlbum)
+            {
+                var audioAlbum = (VKAudioAlbum)obj;
+                return $"Выполняется добавление {audioAlbum.Title}...";
+            }
+            else if (obj is VKVideoAlbum)
+            {
+                var videoAlbum = (VKVideoAlbum)obj;
+                return $"Выполняется добавление {videoAlbum.Title}...";
+            }
+
+            return null;
+        }
+
         private void RemoveDeletedItems(List<object> items)
         {
             var audios = AudioGroup.FirstOrDefault(g => (string)g.Key == "audios");
@@ -972,19 +1064,6 @@ namespace VKSaver.Core.ViewModels
                 else if (item is VKDocument)
                     Documents.Remove((VKDocument)item);
             }
-        }
-
-        private void ShowAddingError(List<VKAudio> errorTracks)
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine("Не удалось добавить указанные треки в вашу коллекцию. Повторите попытку позднее.");
-
-            foreach (var track in errorTracks)
-            {
-                sb.AppendLine($"{track.Artist} - {track.Title}");
-            }
-
-            _dialogsService.Show(sb.ToString(), "Не удалось добавить в коллекцию");
         }
 
         private void ShowDeletingError(List<object> errorObjects)
@@ -1022,6 +1101,33 @@ namespace VKSaver.Core.ViewModels
             }
 
             _dialogsService.Show(sb.ToString(), "Не удалось удалить");
+        }
+
+        private void ShowAddingError(List<object> errorObjects)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Не удалось добавить указанные элементы в вашу коллекцию. Повторите попытку позднее.");
+
+            foreach (var obj in errorObjects)
+            {
+                if (obj is VKAudio)
+                {
+                    var audio = (VKAudio)obj;
+                    sb.Append($"{audio.Artist} - {audio.Title}");
+                }
+                else if (obj is VKVideo)
+                {
+                    var video = (VKVideo)obj;
+                    sb.Append(video.Title);
+                }
+                else if (obj is VKDocument)
+                {
+                    var doc = (VKDocument)obj;
+                    sb.Append(doc.Title);
+                }
+            }
+
+            _dialogsService.Show(sb.ToString(), "Не удалось добавить");
         }
 
         private long _userID;
