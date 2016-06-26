@@ -66,6 +66,20 @@ namespace VKSaver.Core.Services
             }
         }
 
+        public async Task<IList<string>> GetCachedAlbumsImages(uint count)
+        {
+            try
+            {
+                var folder = await GetCreateFolder(ALBUMS_FOLDER_NAME);
+                var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, count);
+                return files.Select(f => f.Path).ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public async Task<bool> ClearAlbumsCache()
         {
             try

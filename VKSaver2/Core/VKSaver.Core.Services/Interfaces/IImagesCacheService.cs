@@ -18,6 +18,8 @@ namespace VKSaver.Core.Services.Interfaces
 
         Task<string> GetCachedAlbumImage(string trackTitle);
 
+        Task<IList<string>> GetCachedAlbumsImages(uint count);
+
         /// <summary>
         /// Очистить кэш изображений альбомов треков.
         /// </summary>

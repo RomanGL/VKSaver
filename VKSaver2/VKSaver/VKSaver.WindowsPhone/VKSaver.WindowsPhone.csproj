@@ -19,7 +19,8 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
@@ -100,6 +101,10 @@
     <Content Include="Assets\Images\Error.png" />
     <Content Include="Assets\Images\AccessDenied.png" />
     <Content Include="Assets\Images\NoTracks.png" />
+    <Content Include="Assets\Images\PlayerLogo1.png" />
+    <Content Include="Assets\Images\PlayerLogo2.png" />
+    <Content Include="Assets\Images\PlayerLogo3.png" />
+    <Content Include="Assets\Images\PlayerLogo4.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\LogoPlay.scale-240.png" />
     <Content Include="Assets\PurchaseBackground.jpg" />

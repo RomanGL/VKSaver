@@ -611,7 +611,7 @@ Operation will resume once the connection becomes available.</value>
     <value>Thanks for your purchase</value>
   </data>
   <data name="PurchaseView_Screen0_Line1_Text" xml:space="preserve">
-    <value>VKSaver 2</value>
+    <value>VK Saver 2</value>
   </data>
   <data name="PurchaseView_Screen0_Line2_Text" xml:space="preserve">
     <value>All the best - just for you!</value>

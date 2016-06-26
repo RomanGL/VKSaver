@@ -20,6 +20,8 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.ViewManagement;
 using System.Threading.Tasks;
 using VKSaver.Controls.Common;
+using VKSaver.Core.Services.Interfaces;
+using Microsoft.Practices.ServiceLocation;
 
 namespace VKSaver.Controls
 {
@@ -136,6 +138,7 @@ namespace VKSaver.Controls
 #if WINDOWS_PHONE_APP
                 UpdateMargins();
 #endif
+                _imagesCacheService = ServiceLocator.Current.GetInstance<IImagesCacheService>();
             }
 
             this.SizeChanged += (s, e) =>
@@ -281,7 +284,7 @@ namespace VKSaver.Controls
         private int ElementsOnScreenCount = 0;
         private PlayerTheme _backgroundTheme;
         private PlayerShapesType _type;
-        //private IImagesCacheService imagesCacheService;
+        private IImagesCacheService _imagesCacheService;
         #endregion
 
         #region Свойства зависимостей
@@ -625,7 +628,7 @@ namespace VKSaver.Controls
             ThemeTimer.Start();
         }
 
-#region Обработчики событий
+        #region Обработчики событий
         /// <summary>
         /// Вызывает событие изменения темы.
         /// </summary>
@@ -658,7 +661,7 @@ namespace VKSaver.Controls
                 if (--albumsGridCounter == 0)
                 {
                     albumsGridCounter = 2;
-                    //GoToAlbumsGridState();
+                    GoToAlbumsGridState();
                 }
                 else
                     CancelAlbumsGridState();
@@ -703,90 +706,90 @@ namespace VKSaver.Controls
         /// <summary>
         /// Перейти к состоянию сетки альбомов.
         /// </summary>
-        //private async void GoToAlbumsGridState()
-        //{
-        //    AlbumsPanel.Children.Clear();
+        private async void GoToAlbumsGridState()
+        {
+            AlbumsPanel.Children.Clear();
 
-        //    int lineSize = LineSize;
-        //    int halfLineSize = HalfLineSize;
-        //    int currentLeft = -lineSize / 2;
-        //    int currentTop = -lineSize / 2;
+            int lineSize = LineSize;
+            int halfLineSize = HalfLineSize;
+            int currentLeft = -lineSize / 2;
+            int currentTop = -lineSize / 2;
 
-        //    List<string> images = await imagesCacheService.GetCachedAlbumsImages(MAX_ALBUMS_IMAGES_COUNT);
+            IList<string> images = await _imagesCacheService.GetCachedAlbumsImages(MAX_ALBUMS_IMAGES_COUNT);
 
-        //    if (images == null) images = new List<string>();
+            if (images == null) images = new List<string>();
 
-        //    if (images.Count <= 4)
-        //    {
-        //        for (int i = 1; i <= 4; i++)
-        //            images.Add(String.Format("ms-appx:///Assets/Images/PlayerLogo{0}.png", i));
-        //    }
+            if (images.Count <= 4)
+            {
+                for (int i = 1; i <= 4; i++)
+                    images.Add(String.Format("ms-appx:///Assets/Images/PlayerLogo{0}.png", i));
+            }
 
-        //    var storyboard = new Storyboard();
+            var storyboard = new Storyboard();
 
-        //    while (currentTop < Window.Current.Bounds.Height)
-        //    {
-        //        while (currentLeft < Window.Current.Bounds.Width)
-        //        {
-        //            int mode = RandomFactory.Next(1, 3);
+            while (currentTop < Window.Current.Bounds.Height)
+            {
+                while (currentLeft < Window.Current.Bounds.Width)
+                {
+                    int mode = RandomFactory.Next(1, 3);
 
-        //            if (mode == 1) // Выставляем 1 большой.
-        //            {
-        //                var img = GetAlbumImage(lineSize, lineSize, images);
-        //                var timelines = GetAlbumShowTransitions(img);
+                    if (mode == 1) // Выставляем 1 большой.
+                    {
+                        var img = GetAlbumImage(lineSize, lineSize, images);
+                        var timelines = GetAlbumShowTransitions(img);
 
-        //                for (int i = 0; i < timelines.Length; i++)
-        //                    storyboard.Children.Add(timelines[i]);
+                        for (int i = 0; i < timelines.Length; i++)
+                            storyboard.Children.Add(timelines[i]);
 
-        //                Canvas.SetLeft(img, currentLeft);
-        //                Canvas.SetTop(img, currentTop);
+                        Canvas.SetLeft(img, currentLeft);
+                        Canvas.SetTop(img, currentTop);
 
-        //                AlbumsPanel.Children.Add(img);
-        //            }
-        //            else if (mode == 2) // Выставляем 4 маленьких.
-        //            {
-        //                for (int i = 0; i < 4; i++)
-        //                {
-        //                    var img = GetAlbumImage(halfLineSize, halfLineSize, images);
-        //                    var timelines = GetAlbumShowTransitions(img);
+                        AlbumsPanel.Children.Add(img);
+                    }
+                    else if (mode == 2) // Выставляем 4 маленьких.
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            var img = GetAlbumImage(halfLineSize, halfLineSize, images);
+                            var timelines = GetAlbumShowTransitions(img);
 
-        //                    for (int j = 0; j < timelines.Length; j++)
-        //                        storyboard.Children.Add(timelines[j]);
+                            for (int j = 0; j < timelines.Length; j++)
+                                storyboard.Children.Add(timelines[j]);
 
-        //                    if (i == 0)
-        //                    {
-        //                        Canvas.SetTop(img, currentTop);
-        //                        Canvas.SetLeft(img, currentLeft);
-        //                    }
-        //                    else if (i == 1)
-        //                    {
-        //                        Canvas.SetTop(img, currentTop + halfLineSize);
-        //                        Canvas.SetLeft(img, currentLeft);
-        //                    }
-        //                    else if (i == 2)
-        //                    {
-        //                        Canvas.SetTop(img, currentTop);
-        //                        Canvas.SetLeft(img, currentLeft + halfLineSize);
-        //                    }
-        //                    else if (i == 3)
-        //                    {
-        //                        Canvas.SetTop(img, currentTop + halfLineSize);
-        //                        Canvas.SetLeft(img, currentLeft + halfLineSize);
-        //                    }
+                            if (i == 0)
+                            {
+                                Canvas.SetTop(img, currentTop);
+                                Canvas.SetLeft(img, currentLeft);
+                            }
+                            else if (i == 1)
+                            {
+                                Canvas.SetTop(img, currentTop + halfLineSize);
+                                Canvas.SetLeft(img, currentLeft);
+                            }
+                            else if (i == 2)
+                            {
+                                Canvas.SetTop(img, currentTop);
+                                Canvas.SetLeft(img, currentLeft + halfLineSize);
+                            }
+                            else if (i == 3)
+                            {
+                                Canvas.SetTop(img, currentTop + halfLineSize);
+                                Canvas.SetLeft(img, currentLeft + halfLineSize);
+                            }
 
-        //                    AlbumsPanel.Children.Add(img);
-        //                }
-        //            }
+                            AlbumsPanel.Children.Add(img);
+                        }
+                    }
 
-        //            currentLeft += lineSize;
-        //        }
+                    currentLeft += lineSize;
+                }
 
-        //        currentTop += lineSize;
-        //        currentLeft = -lineSize / 2;
-        //    }
+                currentTop += lineSize;
+                currentLeft = -lineSize / 2;
+            }
 
-        //    storyboard.Begin();
-        //}
+            storyboard.Begin();
+        }
 
         /// <summary>
         /// Возвращает коллекцию анимаций появления картинки альбома.
@@ -811,7 +814,7 @@ namespace VKSaver.Controls
         /// <param name="width">Ширина.</param>
         /// <param name="height">Высота</param>
         /// <param name="images">Список всех доступных картинок.</param>
-        private Image GetAlbumImage(int width, int height, List<string> images)
+        private Image GetAlbumImage(int width, int height, IList<string> images)
         {
             var img = new Image
             {
@@ -844,9 +847,9 @@ namespace VKSaver.Controls
             storyboard.Begin();
         }
 
-#endregion
+        #endregion
 
-#region Shapes Helpers
+        #region Shapes Helpers
         /// <summary>
         /// Возвращает базовый полигон.
         /// </summary>
@@ -1002,9 +1005,9 @@ namespace VKSaver.Controls
 
             return triangle;
         }
-#endregion
+        #endregion
 
-#region Storyboards Helper
+        #region Storyboards Helper
         /// <summary>
         /// Анимировано изменяет цвет подложки.
         /// </summary>
@@ -1181,7 +1184,7 @@ namespace VKSaver.Controls
 
             return timeline;
         }
-#endregion
+        #endregion
         
         /// <summary>
         /// Перечисление основных состояний.

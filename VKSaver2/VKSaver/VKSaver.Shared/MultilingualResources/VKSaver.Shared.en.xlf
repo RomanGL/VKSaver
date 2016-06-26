@@ -810,7 +810,7 @@ Operation will resume once the connection becomes available.</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen0_Line1_Text" translate="yes" xml:space="preserve">
           <source>ВКачай 2</source>
-          <target state="translated">VKSaver 2</target>
+          <target state="translated">VK Saver 2</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen0_Line2_Text" translate="yes" xml:space="preserve">
           <source>Все самое лучшее - только для Вас!</source>
