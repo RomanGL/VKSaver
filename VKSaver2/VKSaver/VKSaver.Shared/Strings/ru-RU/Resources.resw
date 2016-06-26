@@ -155,11 +155,61 @@
   <data name="AlbumTracksLoader.NoDataText" xml:space="preserve">
     <value>В этом альбоме нет треков</value>
   </data>
+  <data name="AppBarButton_AddToMyAudios_Text" xml:space="preserve">
+    <value>в мои аудиозаписи</value>
+  </data>
+  <data name="AppBarButton_AddToMyDocs_Text" xml:space="preserve">
+    <value>в мои документы</value>
+  </data>
+  <data name="AppBarButton_AddToMyVideos_Text" xml:space="preserve">
+    <value>в мои видеозаписи</value>
+  </data>
+  <data name="AppBarButton_Delete_Text" xml:space="preserve">
+    <value>удалить</value>
+  </data>
+  <data name="AppBarButton_Download_Text" xml:space="preserve">
+    <value>загрузить</value>
+  </data>
+  <data name="AppBarButton_Play_Text" xml:space="preserve">
+    <value>воспроизвести</value>
+  </data>
+  <data name="AppBarButton_Refresh_Text" xml:space="preserve">
+    <value>обновить</value>
+  </data>
+  <data name="AppBarButton_SelectAll_Text" xml:space="preserve">
+    <value>выбрать все</value>
+  </data>
+  <data name="AppBarButton_Select_Text" xml:space="preserve">
+    <value>выбрать</value>
+  </data>
+  <data name="AppLoader_AddingItem" xml:space="preserve">
+    <value>Выполняется добавление {0}...</value>
+    <comment>Например, "Выполняется добавление Imagine Dragons - Warriors..."</comment>
+  </data>
+  <data name="AppLoader_CancelAllDownloads" xml:space="preserve">
+    <value>Отмена всех загрузок...</value>
+  </data>
+  <data name="AppLoader_DeletingItem" xml:space="preserve">
+    <value>Выполняется удаление {0}...</value>
+    <comment>Например, "Выполняется удаление Photo0122.jpg..."</comment>
+  </data>
+  <data name="AppLoader_Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="AppLoader_Preparing" xml:space="preserve">
+    <value>Подготовка...</value>
+  </data>
+  <data name="AppLoader_PreparingFilesToDownload" xml:space="preserve">
+    <value>Подготовка файлов для загрузки...</value>
+  </data>
   <data name="AppName.Text" xml:space="preserve">
     <value>ВКАЧАЙ</value>
   </data>
   <data name="AppNamePivot.Title" xml:space="preserve">
     <value>ВКАЧАЙ</value>
+  </data>
+  <data name="AppNameText" xml:space="preserve">
+    <value>ВКачай</value>
   </data>
   <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
     <value>Не удалось загрузить список альбомов исполнителя</value>
@@ -213,6 +263,9 @@
     <value>Мы очень сожалеем о случившемся
 
 Вернитесь назад, чтобы продолжить</value>
+  </data>
+  <data name="Loader_ReloadButton.Content" xml:space="preserve">
+    <value>повторить</value>
   </data>
   <data name="LoginView_Auth.Text" xml:space="preserve">
     <value>Авторизация</value>
@@ -304,6 +357,142 @@
   <data name="MainView_YourMusicLoader.NoDataText" xml:space="preserve">
     <value>В вашей коллекции не найдено ни одного трека</value>
   </data>
+  <data name="Message_AddSelectedError_Text" xml:space="preserve">
+    <value>Не удалось добавить указанные элементы в вашу коллекцию. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_AddSelectedError_Title" xml:space="preserve">
+    <value>Не удалось добавить</value>
+  </data>
+  <data name="Message_AudioAddError_Text" xml:space="preserve">
+    <value>При добавлении аудиозаписи в коллекцию произошла ошибка. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_AudioAddError_Title" xml:space="preserve">
+    <value>Не удалось добавить аудиозапись</value>
+  </data>
+  <data name="Message_AudioAlbumDeleteError_Text" xml:space="preserve">
+    <value>При удалении альбома аудиозаписей произошла ошибка. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_AudioAlbumDeleteError_Title" xml:space="preserve">
+    <value>Не удалось удалить альбом аудиозаписей</value>
+  </data>
+  <data name="Message_AudioDeleteError_Text" xml:space="preserve">
+    <value>При удалении аудиозаписи произошла ошибка. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_AudioDeleteError_Title" xml:space="preserve">
+    <value>Не удалось удалить аудиозапись</value>
+  </data>
+  <data name="Message_CanrFindLyrics_Title" xml:space="preserve">
+    <value>Не удалось найти текст</value>
+  </data>
+  <data name="Message_CantFindLyrics_Text" xml:space="preserve">
+    <value>Не удалось найти текст для данной аудиозаписи. Мы очень сожалеем.</value>
+  </data>
+  <data name="Message_DeleteSelectedError_Text" xml:space="preserve">
+    <value>Не удалось удалить указанные элементы из вашей коллекции. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_DeleteSelectedError_Title" xml:space="preserve">
+    <value>Не удалось удалить</value>
+  </data>
+  <data name="Message_DocAddError_Text" xml:space="preserve">
+    <value>При добавлении документа в коллекцию произошла ошибка. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_DocAddError_Title" xml:space="preserve">
+    <value>Не удалось добавить документ</value>
+  </data>
+  <data name="Message_DocDeleteError_Text" xml:space="preserve">
+    <value>При удалении документа произошла ошибка. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_DocDeleteError_Title" xml:space="preserve">
+    <value>Не удалось удалить документ</value>
+  </data>
+  <data name="Message_Downloads_CantCreateFile_Text" xml:space="preserve">
+    <value>Не удалось создать файл:</value>
+  </data>
+  <data name="Message_Downloads_CantCreateFolder_Text" xml:space="preserve">
+    <value>Не удалось создать папку:</value>
+  </data>
+  <data name="Message_Downloads_MaxDownloadsExceeded_Text" xml:space="preserve">
+    <value>Достигнуто максимальное количество одновременных загрузок:</value>
+  </data>
+  <data name="Message_Downloads_StartFailed_Title" xml:space="preserve">
+    <value>Не удалось начать загрузку</value>
+  </data>
+  <data name="Message_Downloads_UnknownError_Text" xml:space="preserve">
+    <value>Неизвестная ошибка:</value>
+  </data>
+  <data name="Message_Login_AccessDenied_Text" xml:space="preserve">
+    <value>Не удалось выполнить авторизацию, так как ВКачай было отказано в доступе. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_Login_AccessDenied_Title" xml:space="preserve">
+    <value>Ошибка доступа</value>
+  </data>
+  <data name="Message_Login_AuthorizationFailed_Title" xml:space="preserve">
+    <value>Авторизация не удалась</value>
+  </data>
+  <data name="Message_Login_ConnectionError_Text" xml:space="preserve">
+    <value>Не удалось подключиться к ВКонтакте. Проверьте доступ к интернету и повторите попытку.</value>
+  </data>
+  <data name="Message_Login_UnknownError_Text" xml:space="preserve">
+    <value>Не удалось выполнить авторизацию. Повторите попытку позднее.
+Код ошибки: {0}</value>
+  </data>
+  <data name="Message_Purchase_Failed_Text" xml:space="preserve">
+    <value>Не удалось произвести покупку. Мы очень сожалеем, повторите попытку позднее.</value>
+  </data>
+  <data name="Message_Purchase_Failed_Title" xml:space="preserve">
+    <value>Покупка не удалась</value>
+  </data>
+  <data name="Message_Purchase_Success_Text" xml:space="preserve">
+    <value>Теперь вы счастливый владелец полной версии ВКачай 2!</value>
+  </data>
+  <data name="Message_Purchase_Success_Title" xml:space="preserve">
+    <value>Спасибо за покупку</value>
+  </data>
+  <data name="Message_Transfer_Error_Text" xml:space="preserve">
+    <value>К сожалению, при выполнении операции произошла ошибка, и мы не можем ее завершить. </value>
+  </data>
+  <data name="Message_Transfer_Error_Title" xml:space="preserve">
+    <value>Произошла ошибка</value>
+  </data>
+  <data name="Message_Transfer_Idle_Text" xml:space="preserve">
+    <value>Загрузка ожидает своей очереди.</value>
+  </data>
+  <data name="Message_Transfer_Idle_Title" xml:space="preserve">
+    <value>Ожидание очереди</value>
+  </data>
+  <data name="Message_Transfer_PausedCostedNetwork_Text" xml:space="preserve">
+    <value>Система заблокировала передачу данных, так как за исползование интернет-соединения может взиматься плата оператором.
+
+Уберите все ограничения в "Контроле данных" и отключите лимит трафика. Операция продолжится, как только система разрешит передачу данных.</value>
+  </data>
+  <data name="Message_Transfer_PausedCostedNetwork_Title" xml:space="preserve">
+    <value>Платная сеть</value>
+  </data>
+  <data name="Message_Transfer_PausedNoNetwork_Text" xml:space="preserve">
+    <value>Нет доступа к сети. Проверьте настройки передачи данных. 
+Операция продолжится, как только соединение станет доступно.</value>
+  </data>
+  <data name="Message_Transfer_PausedNoNetwork_Title" xml:space="preserve">
+    <value>Ожидание соединения</value>
+  </data>
+  <data name="Message_VideoAddError_Text" xml:space="preserve">
+    <value>При добавлении видеозаписи в коллекцию произошла ошибка. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_VideoAddError_Title" xml:space="preserve">
+    <value>Не удалось добавить видеозапись</value>
+  </data>
+  <data name="Message_VideoAlbumDeleteError_Text" xml:space="preserve">
+    <value>При удалении альбома видеозаписей произошла ошибка. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_VideoAlbumDeleteError_Title" xml:space="preserve">
+    <value>Не удалось удалить альбом видеозаписей</value>
+  </data>
+  <data name="Message_VideoDeleteError_Text" xml:space="preserve">
+    <value>При удалении видеозаписи произошла ошибка. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_VideoDeleteError_Title" xml:space="preserve">
+    <value>Не удалось удалить видеозапись</value>
+  </data>
   <data name="NoTracksView_NoTracks.Text" xml:space="preserve">
     <value>Сейчас не воспроизводится ни одного трека
 
@@ -329,6 +518,42 @@
   </data>
   <data name="PurchaseView_NextButton.Content" xml:space="preserve">
     <value>далее</value>
+  </data>
+  <data name="PurchaseView_Screen0_Line1_Text" xml:space="preserve">
+    <value>ВКачай 2</value>
+  </data>
+  <data name="PurchaseView_Screen0_Line2_Text" xml:space="preserve">
+    <value>Все самое лучшее - только для Вас!</value>
+  </data>
+  <data name="PurchaseView_Screen1_Line1_Text" xml:space="preserve">
+    <value>Только самые лучшие треки!</value>
+  </data>
+  <data name="PurchaseView_Screen1_Line2_Text" xml:space="preserve">
+    <value>В полной версии ВКачай</value>
+  </data>
+  <data name="PurchaseView_Screen2_Line1_Text" xml:space="preserve">
+    <value>Мировые чарты исполнителей и треков</value>
+  </data>
+  <data name="PurchaseView_Screen2_Line2_Text" xml:space="preserve">
+    <value>Будьте в тренде!</value>
+  </data>
+  <data name="PurchaseView_Screen3_Line1_Text" xml:space="preserve">
+    <value>Персональные рекомендации</value>
+  </data>
+  <data name="PurchaseView_Screen3_Line2_Text" xml:space="preserve">
+    <value>Слушайте то, что вам нравится!</value>
+  </data>
+  <data name="PurchaseView_Screen4_Line1_Text" xml:space="preserve">
+    <value>Ни один документ не потеряется!</value>
+  </data>
+  <data name="PurchaseView_Screen4_Line2_Text" xml:space="preserve">
+    <value>Отправка и загрузка документов ВКонтакте</value>
+  </data>
+  <data name="PurchaseView_Screen5_Line1_Text" xml:space="preserve">
+    <value>Все видеозаписи под рукой</value>
+  </data>
+  <data name="PurchaseView_Screen5_Line2_Text" xml:space="preserve">
+    <value>Смотрите и загружайте любимые видео!</value>
   </data>
   <data name="RecommendationsLoader.ErrorText" xml:space="preserve">
     <value>Не удалось загрузить рекомендации</value>
@@ -480,6 +705,12 @@
   <data name="UserCommView_UserOnline.Text" xml:space="preserve">
     <value>Онлайн</value>
   </data>
+  <data name="UserContentView_AlbumsGroup_Text" xml:space="preserve">
+    <value>альбомы</value>
+  </data>
+  <data name="UserContentView_AudiosGroup_Text" xml:space="preserve">
+    <value>аудиозаписи</value>
+  </data>
   <data name="UserContentView_AudiosLoader.ErrorText" xml:space="preserve">
     <value>Не удалось загрузить список аудиозаписей</value>
   </data>
@@ -506,6 +737,9 @@
   </data>
   <data name="UserContentView_PivotSection_Videos.Header" xml:space="preserve">
     <value>видео</value>
+  </data>
+  <data name="UserContentView_VideosGroup_Text" xml:space="preserve">
+    <value>видеозаписи</value>
   </data>
   <data name="UserContentView_VideosLoader.ErrorText" xml:space="preserve">
     <value>Не удалось загрузить список видеозаписей</value>

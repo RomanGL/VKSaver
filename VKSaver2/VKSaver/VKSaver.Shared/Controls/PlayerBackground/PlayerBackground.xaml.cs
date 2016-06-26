@@ -145,14 +145,14 @@ namespace VKSaver.Controls
         }
 #endregion
 
-#region События
+        #region События
         /// <summary>
         /// Происходит при изменении темы проигрывателя.
         /// </summary>
         public event EventHandler<Color> ThemeChanged;
-#endregion
+        #endregion
 
-#region Указатели свойств для анимаций
+        #region Указатели свойств для анимаций
         private const string OpacityPropertyPath = "(UIElement.Opacity)";
         private const string ScaleXPropertyPath = "(UIElement.RenderTransform).(CompositeTransform.ScaleX)";
         private const string ScaleYPropertyPath = "(UIElement.RenderTransform).(CompositeTransform.ScaleY)";
@@ -242,9 +242,9 @@ namespace VKSaver.Controls
             new Color { A = 255, R = 0, G = 255, B = 100 },
             new Color { A = 255, R = 80, G = 0, B = 255 }
         };
-#endregion
+        #endregion
 
-#region Свойства
+        #region Свойства
         public PlayerTheme BackgroundTheme
         {
             get { return _backgroundTheme; }
@@ -275,16 +275,16 @@ namespace VKSaver.Controls
         private bool IsHiding { get; set; }
 
         private bool IsFirstRoot = true;
-#endregion
+        #endregion
 
-#region Приватные поля        
+        #region Приватные поля        
         private int ElementsOnScreenCount = 0;
         private PlayerTheme _backgroundTheme;
         private PlayerShapesType _type;
         //private IImagesCacheService imagesCacheService;
-#endregion
+        #endregion
 
-#region Свойства зависимостей
+        #region Свойства зависимостей
 
         /// <summary>
         /// Цвет текущей темы.
@@ -312,7 +312,7 @@ namespace VKSaver.Controls
             DependencyProperty.Register("ArtistName", typeof(string), 
                 typeof(PlayerBackground), new PropertyMetadata(default(string)));
 
-#region ArtistImage DependencyProperty
+        #region ArtistImage DependencyProperty
         /// <summary>
         /// Изображение исполнителя.
         /// </summary>
@@ -350,9 +350,9 @@ namespace VKSaver.Controls
                 control.AnimateIn.Begin();
             control.NextTheme();
         }
-#endregion
+        #endregion
 
-#region DefaultTheme DependencyProperty
+        #region DefaultTheme DependencyProperty
 
         public PlayerTheme DefaultTheme
         {
@@ -364,9 +364,9 @@ namespace VKSaver.Controls
             DependencyProperty.Register("DefaultTheme", typeof(PlayerTheme),
                 typeof(PlayerBackground), new PropertyMetadata(PlayerTheme.None));
 
-#endregion
+        #endregion
 
-#region DefaultShapeType DependencyProperty
+        #region DefaultShapeType DependencyProperty
         public PlayerShapesType DefaultShapesType
         {
             get { return (PlayerShapesType)GetValue(DefaultShapesTypeProperty); }
@@ -377,9 +377,9 @@ namespace VKSaver.Controls
             DependencyProperty.Register("DefaultShapesType", typeof(PlayerShapesType),
                 typeof(PlayerBackground), new PropertyMetadata(PlayerShapesType.None));
 
-#endregion
+        #endregion
 
-#region NoAlbums DependencyProperty
+        #region NoAlbums DependencyProperty
 
         public bool NoAlbums
         {
@@ -391,9 +391,9 @@ namespace VKSaver.Controls
             DependencyProperty.Register("NoAlbums", typeof(bool), 
                 typeof(PlayerBackground), new PropertyMetadata(false));
 
-#endregion
+        #endregion
 
-#region ChangeColorDuration DependencyProperty
+        #region ChangeColorDuration DependencyProperty
 
         public double ChangeColorDuration
         {
@@ -405,9 +405,9 @@ namespace VKSaver.Controls
             DependencyProperty.Register("ChangeColorDuration", typeof(double), 
                 typeof(PlayerBackground), new PropertyMetadata(SUBSTRATE_COLOR_ANIMATION_DURATION));
 
-#endregion
+        #endregion
 
-#endregion
+        #endregion
 
         /// <summary>
         /// Вызывается при срабатывании таймера.

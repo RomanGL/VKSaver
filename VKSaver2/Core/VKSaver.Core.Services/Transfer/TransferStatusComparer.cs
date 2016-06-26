@@ -16,7 +16,17 @@ namespace VKSaver.Core.Services
         public int Compare(BackgroundTransferStatus x, BackgroundTransferStatus y)
         {
             if (x == y) return 0;
-            return x == BackgroundTransferStatus.Running ? 1 : -1;
+            if (x == BackgroundTransferStatus.Running)
+                return -1;
+            else if (y == BackgroundTransferStatus.Running)
+                return 1;
+            else
+            {
+                int xn = (int)x;
+                int yn = (int)y;
+
+                return xn > yn ? -1 : 1;
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ namespace VKSaver.Core.ViewModels
         public AudioAlbumViewModel(INavigationService navigationService, IPlayerService playerService,
             IDownloadsServiceHelper downloadsServiceHelper, IVKService vkService,
             IAppLoaderService appLoaderService, IVKLoginService vkLoginService,
-            IDialogsService dialogsService)
+            IDialogsService dialogsService, ILocService locService)
         {
             _navigationService = navigationService;
             _playerService = playerService;
@@ -36,6 +36,7 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService = appLoaderService;
             _vkLoginService = vkLoginService;
             _dialogsService = dialogsService;
+            _locService = locService;
 
             IsItemClickEnabled = true;
             PrimaryItems = new ObservableCollection<ICommandBarElement>();
@@ -187,13 +188,13 @@ namespace VKSaver.Core.ViewModels
 
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "обновить",
+                Label = _locService["AppBarButton_Refresh_Text"],
                 Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
                 Command = ReloadContentCommand
             });
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "выбрать",
+                Label = _locService["AppBarButton_Select_Text"],
                 Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionMode
             });
@@ -206,19 +207,19 @@ namespace VKSaver.Core.ViewModels
 
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "загрузить",
+                Label = _locService["AppBarButton_Download_Text"],
                 Icon = new FontIcon { Glyph = "\uE118" },
                 Command = DownloadSelectedCommand
             });
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "воспроизвести",
+                Label = _locService["AppBarButton_Play_Text"],
                 Icon = new FontIcon { Glyph = "\uE102" },
                 Command = PlaySelectedCommand
             });
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "выбрать все",
+                Label = _locService["AppBarButton_SelectAll_Text"],
                 Icon = new FontIcon { Glyph = "\uE0E7" },
                 Command = new DelegateCommand(() => SelectAll = !SelectAll)
             });
@@ -227,7 +228,7 @@ namespace VKSaver.Core.ViewModels
             {
                 SecondaryItems.Add(new AppBarButton
                 {
-                    Label = "в мои аудиозаписи",
+                    Label = _locService["AppBarButton_AddToMyAudios_Text"],
                     Command = AddSelectedToMyAudiosCommand
                 });                
             }
@@ -235,7 +236,7 @@ namespace VKSaver.Core.ViewModels
             {
                 SecondaryItems.Add(new AppBarButton
                 {
-                    Label = "удалить",
+                    Label = _locService["AppBarButton_Delete_Text"],
                     Command = DeleteSelectedCommand
                 });
             }
@@ -285,7 +286,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnDownloadSelectedCommand()
         {
-            _appLoaderService.Show("Подготовка файлов для загрузки");
+            _appLoaderService.Show(_locService["AppLoader_PreparingFilesToDownload"]);
             var items = SelectedItems.ToList();
             SetDefaultMode();
 
@@ -328,11 +329,11 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnDeleteAudioCommand(VKAudio audio)
         {
-            _appLoaderService.Show("Выполняется удаление...");
+            _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], audio.ToString()));
             if (!await DeleteAudio(audio))
             {
-                _dialogsService.Show("При удалении аудиозаписи произошла ошибка. Повторите попытку позднее.",
-                    "Не удалось удалить аудиозапись");
+                _dialogsService.Show(_locService["Message_AudioDeleteError_Text"],
+                    _locService["Message_AudioDeleteError_Title"]);
             }
             else
             {
@@ -344,24 +345,24 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnAddToMyAudiosCommand(VKAudio audio)
         {
-            _appLoaderService.Show("Выполняется добавление в вашу коллекцию...");
+            _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], audio.ToString()));
             if (!await AddToMyAudios(audio))
             {
-                _dialogsService.Show("При добавлении аудиозаписи в коллекцию произошла ошибка. Повторите попытку позднее.",
-                    "Не удалось добавить в коллекцию");
+                _dialogsService.Show(_locService["Message_AudioAddError_Text"],
+                    _locService["Message_AudioAddError_Title"]);
             }            
             _appLoaderService.Hide();
         }
 
         private async void OnAddSelectedToMyAudiosCommand()
         {
-            _appLoaderService.Show("Подготовка...");
+            _appLoaderService.Show(_locService["AppLoader_Preparing"]);
             var items = SelectedItems.Cast<VKAudio>().ToList();
             var errors = new List<VKAudio>();
 
             foreach (var track in items)
             {
-                _appLoaderService.Show($"Выполняется добавление {track.Artist} - {track.Title}...");
+                _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
                 if (!await AddToMyAudios(track))
                     errors.Add(track);
                 await Task.Delay(300);
@@ -375,13 +376,13 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnDeleteSelectedCommand()
         {
-            _appLoaderService.Show("Подготовка...");
+            _appLoaderService.Show(_locService["AppLoader_Preparing"]);
             var items = SelectedItems.Cast<VKAudio>().ToList();
             var errors = new List<VKAudio>();
 
             foreach (var track in items)
             {
-                _appLoaderService.Show($"Выполняется удаление {track.Artist} - {track.Title}...");
+                _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.ToString()));
                 if (await DeleteAudio(track))
                     Tracks.Remove(track);
                 else
@@ -433,27 +434,29 @@ namespace VKSaver.Core.ViewModels
         private void ShowAddingError(List<VKAudio> errorTracks)
         {
             var sb = new StringBuilder();
-            sb.AppendLine("Не удалось добавить указанные аудиозаписи в вашу коллекцию. Повторите попытку позднее.");
+            sb.AppendLine(_locService["Message_AddSelectedError_Text"]);
+            sb.AppendLine();
 
             foreach (var track in errorTracks)
             {
-                sb.AppendLine($"{track.Artist} - {track.Title}");
+                sb.AppendLine(track.ToString());
             }
 
-            _dialogsService.Show(sb.ToString(), "Не удалось добавить в коллекцию");
+            _dialogsService.Show(sb.ToString(), _locService["Message_AddSelectedError_Title"]);
         }
 
         private void ShowDeletingError(List<VKAudio> errorTracks)
         {
             var sb = new StringBuilder();
-            sb.AppendLine("Не удалось удалить указанные аудиозаписи из вашей коллекции. Повторите попытку позднее.");
+            sb.AppendLine(_locService["Message_DeleteSelectedError_Text"]);
+            sb.AppendLine();
 
             foreach (var track in errorTracks)
             {
-                sb.AppendLine($"{track.Artist} - {track.Title}");
+                sb.AppendLine(track.ToString());
             }
 
-            _dialogsService.Show(sb.ToString(), "Не удалось удалить");
+            _dialogsService.Show(sb.ToString(), _locService["Message_DeleteSelectedError_Title"]);
         }
 
         private uint _offset;
@@ -465,5 +468,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IAppLoaderService _appLoaderService;
         private readonly IVKLoginService _vkLoginService;
         private readonly IDialogsService _dialogsService;
+        private readonly ILocService _locService;
     }
 }

@@ -23,11 +23,12 @@ namespace VKSaver.Core.ViewModels
     public sealed class TrackLyricsViewModel : ViewModelBase
     {
         public TrackLyricsViewModel(IVKService vkService, INavigationService navigationService,
-            IDialogsService dialogService)
+            IDialogsService dialogService, ILocService locService)
         {
             _vkService = vkService;
             _navigationService = navigationService;
             _dialogService = dialogService;
+            _locService = locService;
 
             ReloadLyricsCommand = new DelegateCommand(OnReloadLyricsCommand);
         }
@@ -126,7 +127,8 @@ namespace VKSaver.Core.ViewModels
 
         private void ShowError()
         {
-            _dialogService.Show("Не удалось найти текст для этой аудиозаписи.", "Ошибка");
+            _dialogService.Show(_locService["Message_CantFindLyrics_Text"], 
+                _locService["Message_CantFindLyrics_Title"]);
             LyricsState = ContentState.NoData;
         }
 
@@ -135,5 +137,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IVKService _vkService;
         private readonly INavigationService _navigationService;
         private readonly IDialogsService _dialogService;
+        private readonly ILocService _locService;
     }
 }

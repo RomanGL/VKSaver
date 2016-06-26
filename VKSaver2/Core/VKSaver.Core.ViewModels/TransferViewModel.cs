@@ -22,11 +22,12 @@ namespace VKSaver.Core.ViewModels
     public class TransferViewModel : ViewModelBase
     {
         public TransferViewModel(IDownloadsService downloadsService, IDialogsService dialogsService,
-            IAppLoaderService appLoaderService)
+            IAppLoaderService appLoaderService, ILocService locService)
         {
             _downloadsService = downloadsService;
             _dialogsService = dialogsService;
             _appLoaderService = appLoaderService;
+            _locService = locService;
 
             Downloads = new ObservableCollection<DownloadItemViewModel>();
 
@@ -166,7 +167,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnCancelAllDownloadsCommand()
         {
-            _appLoaderService.Show("Отмена всех загрузок...");
+            _appLoaderService.Show(_locService["AppLoader_CancelAllDownloads"]);
             await _downloadsService.CancelAll();
         }
 
@@ -175,34 +176,34 @@ namespace VKSaver.Core.ViewModels
             return Downloads.Count > 0;
         }
         
-        private static string GetMessageTitleFromStatus(BackgroundTransferStatus status)
+        private string GetMessageTitleFromStatus(BackgroundTransferStatus status)
         {
             switch (status)
             {
                 case BackgroundTransferStatus.Idle:
-                    return "Ожидание очереди";
+                    return _locService["Message_Transfer_Idle_Title"];
                 case BackgroundTransferStatus.PausedCostedNetwork:
-                    return "Платная сеть";
+                    return _locService["Message_Transfer_PausedCostedNetwork_Title"];
                 case BackgroundTransferStatus.PausedNoNetwork:
-                    return "Ожидание соединения";
+                    return _locService["Message_Transfer_PausedNoNetwork_Title"];
                 case BackgroundTransferStatus.Error:
-                    return "Произошла ошибка";
+                    return _locService["Message_Transfer_Error_Title"];
             }
             return String.Empty;
         }
         
-        private static string GetMessageTextFromStatus(BackgroundTransferStatus status)
+        private string GetMessageTextFromStatus(BackgroundTransferStatus status)
         {
             switch (status)
             {
                 case BackgroundTransferStatus.Idle:
-                    return "Ожидание очереди загрузки.";
+                    return _locService["Message_Transfer_Idle_Text"];
                 case BackgroundTransferStatus.PausedCostedNetwork:
-                    return "Windows заблокировала загрузку, так как за использование соединения может взиматься плата. Попробуйте убрать все ограничения в \"Контроле данных\" и отключите лимит трафика.";
+                    return _locService["Message_Transfer_PausedCostedNetwork_Text"];
                 case BackgroundTransferStatus.PausedNoNetwork:
-                    return "Нет доступа к сети. Проверьте настройки передачи данных и повторите попытку.";
+                    return _locService["Message_Transfer_PausedNoNetwork_Text"];
                 case BackgroundTransferStatus.Error:
-                    return "К сожалению, при загрузке произошла ошибка и мы не можем ее закончить.";
+                    return _locService["Message_Transfer_Error_Text"];
             }
             return String.Empty;
         }
@@ -210,5 +211,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IDownloadsService _downloadsService;
         private readonly IDialogsService _dialogsService;
         private readonly IAppLoaderService _appLoaderService;
+        private readonly ILocService _locService;
     }
 }

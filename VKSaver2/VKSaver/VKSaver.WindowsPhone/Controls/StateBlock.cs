@@ -91,7 +91,8 @@ namespace VKSaver.Controls
         }
 
         public static readonly DependencyProperty LoadingTextProperty =
-            DependencyProperty.Register("LoadingText", typeof(string), typeof(StateBlock), new PropertyMetadata(null));
+            DependencyProperty.Register("LoadingText", typeof(string), 
+                typeof(StateBlock), new PropertyMetadata("Empty resource"));
 
         public string ErrorText
         {
@@ -100,7 +101,8 @@ namespace VKSaver.Controls
         }
 
         public static readonly DependencyProperty ErrorTextProperty =
-            DependencyProperty.Register("ErrorText", typeof(string), typeof(StateBlock), new PropertyMetadata(null));
+            DependencyProperty.Register("ErrorText", typeof(string), 
+                typeof(StateBlock), new PropertyMetadata("Empty resource"));
 
         public string NoDataText
         {
@@ -109,7 +111,8 @@ namespace VKSaver.Controls
         }
 
         public static readonly DependencyProperty NoDataTextProperty =
-            DependencyProperty.Register("NoDataText", typeof(string), typeof(StateBlock), new PropertyMetadata(null));
+            DependencyProperty.Register("NoDataText", typeof(string), 
+                typeof(StateBlock), new PropertyMetadata("Empty resource"));
 
         #endregion
 

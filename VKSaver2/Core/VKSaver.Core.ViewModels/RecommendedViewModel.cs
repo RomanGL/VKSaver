@@ -26,7 +26,8 @@ namespace VKSaver.Core.ViewModels
     {
         public RecommendedViewModel(IVKService vkService, INavigationService navigationService,
             IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
-            IAppLoaderService appLoaderService, IDialogsService dialogsService)
+            IAppLoaderService appLoaderService, IDialogsService dialogsService,
+            ILocService locService)
         {
             _navigationService = navigationService;
             _playerService = playerService;
@@ -34,6 +35,7 @@ namespace VKSaver.Core.ViewModels
             _vkService = vkService;
             _appLoaderService = appLoaderService;
             _dialogsService = dialogsService;
+            _locService = locService;
 
             IsItemClickEnabled = true;
             AppBarItems = new ObservableCollection<ICommandBarElement>();
@@ -176,13 +178,13 @@ namespace VKSaver.Core.ViewModels
 
             AppBarItems.Add(new AppBarButton
             {
-                Label = "обновить",
+                Label = _locService["AppBarButton_Refresh_Text"],
                 Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
                 Command = ReloadContentCommand
             });
             AppBarItems.Add(new AppBarButton
             {
-                Label = "выбрать",
+                Label = _locService["AppBarButton_Select_Text"],
                 Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionMode
             });
@@ -195,26 +197,26 @@ namespace VKSaver.Core.ViewModels
 
             AppBarItems.Add(new AppBarButton
             {
-                Label = "загрузить",
+                Label = _locService["AppBarButton_Download_Text"],
                 Icon = new FontIcon { Glyph = "\uE118" },
                 Command = DownloadSelectedCommand
             });
             AppBarItems.Add(new AppBarButton
             {
-                Label = "воспроизвести",
+                Label = _locService["AppBarButton_Play_Text"],
                 Icon = new FontIcon { Glyph = "\uE102" },
                 Command = PlaySelectedCommand
             });
             AppBarItems.Add(new AppBarButton
             {
-                Label = "выбрать все",
+                Label = _locService["AppBarButton_SelectAll_Text"],
                 Icon = new FontIcon { Glyph = "\uE0E7" },
                 Command = new DelegateCommand(() => SelectAll = !SelectAll)
             });            
             
             SecondaryItems.Add(new AppBarButton
             {
-                Label = "в мои аудиозаписи",
+                Label = _locService["AppBarButton_AddToMyAudios_Text"],
                 Command = AddSelectedToMyAudiosCommand
             });
         }
@@ -263,7 +265,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnDownloadSelectedCommand()
         {
-            _appLoaderService.Show("Подготовка файлов для загрузки");
+            _appLoaderService.Show(_locService["AppLoader_PreparingFilesToDownload"]);
             var items = SelectedItems.ToList();
             SetDefaultMode();
 
@@ -297,23 +299,24 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnAddToMyAudiosCommand(VKAudio track)
         {
-            _appLoaderService.Show("Выполняется добавление в вашу коллекцию...");
+            _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
             if (!await AddToMyAudios(track))
             {
-                _dialogsService.Show("При добавлении аудиозаписи в коллекцию произошла ошибка. Повторите попытку позднее.",
-                    "Не удалось добавить в коллекцию");
+                _dialogsService.Show(_locService["Message_AudioAddError_Text"],
+                    _locService["Message_AudioAddError_Title"]);
             }
             _appLoaderService.Hide();
         }
 
         private async void OnAddSelectedToMyAudiosCommand()
         {
-            _appLoaderService.Show("Выполняется добавление в вашу коллекцию...");
+            _appLoaderService.Show(_locService["AppLoader_Preparing"]);
             var items = SelectedItems.Cast<VKAudio>().ToList();
             var errors = new List<VKAudio>();
 
             foreach (var track in items)
             {
+                _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
                 if (!await AddToMyAudios(track))
                     errors.Add(track);
                 await Task.Delay(200);
@@ -345,14 +348,15 @@ namespace VKSaver.Core.ViewModels
         private void ShowAddingError(List<VKAudio> errorTracks)
         {
             var sb = new StringBuilder();
-            sb.AppendLine("Не удалось добавить указанные треки в вашу коллекцию. Повторите попытку позднее.");
+            sb.AppendLine(_locService["Message_AddSelectedError_Text"]);
+            sb.AppendLine();
 
             foreach (var track in errorTracks)
             {
-                sb.AppendLine($"{track.Artist} - {track.Title}");
+                sb.AppendLine(track.ToString());
             }
 
-            _dialogsService.Show(sb.ToString(), "Не удалось добавить в коллекцию");
+            _dialogsService.Show(sb.ToString(), _locService["Message_AddSelectedError_Title"]);
         }
 
         private uint _audiosOffset;
@@ -364,5 +368,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IVKService _vkService;
         private readonly IAppLoaderService _appLoaderService;
         private readonly IDialogsService _dialogsService;
+        private readonly ILocService _locService;
     }
 }

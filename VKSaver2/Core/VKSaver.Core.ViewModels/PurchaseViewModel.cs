@@ -4,9 +4,6 @@ using Newtonsoft.Json;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using Windows.ApplicationModel.Store;
 
@@ -16,20 +13,27 @@ namespace VKSaver.Core.ViewModels
     public sealed class PurchaseViewModel : ViewModelBase
     {
         public PurchaseViewModel(IPurchaseService purchaseService, INavigationService navigationService,
-            IDialogsService dialogsService)
+            IDialogsService dialogsService, ILocService locService)
         {
             _purchaseService = purchaseService;
             _navigationService = navigationService;
             _dialogsService = dialogsService;
+            _locService = locService;
 
             _screenItems = new ScreenItem[]
             {
-                new ScreenItem("Только самые лучшие треки!", "В полной версии ВКачай", 1),
-                new ScreenItem("Мировые чарты исполнителей и треков", "Будьте в тренде!", 2),
-                new ScreenItem("Персональные рекомендации", "Слушайте то, что Вам нравится!", 3),
-                new ScreenItem("Ни один документ не потеряется!", "Отправка и загрузка документов ВКонтакте", 4),
-                new ScreenItem("Все видеозаписи под рукой", "Смотрите и загружайте любимые видео!", 5),
-                new ScreenItem("ВКачай 2", "Все самое лучшее - только для Вас!", 0, true)
+                new ScreenItem(_locService["PurchaseView_Screen1_Line1_Text"], 
+                    _locService["PurchaseView_Screen1_Line2_Text"], 1),
+                new ScreenItem(_locService["PurchaseView_Screen2_Line1_Text"],
+                    _locService["PurchaseView_Screen2_Line2_Text"], 2),
+                new ScreenItem(_locService["PurchaseView_Screen3_Line1_Text"],
+                    _locService["PurchaseView_Screen3_Line2_Text"], 3),
+                new ScreenItem(_locService["PurchaseView_Screen4_Line1_Text"],
+                    _locService["PurchaseView_Screen4_Line2_Text"], 4),
+                new ScreenItem(_locService["PurchaseView_Screen5_Line1_Text"],
+                    _locService["PurchaseView_Screen5_Line2_Text"], 5),
+                new ScreenItem(_locService["PurchaseView_Screen0_Line1_Text"],
+                    _locService["PurchaseView_Screen0_Line2_Text"], 0, true)
                 {
                     BuyPermanentCommand = new DelegateCommand(OnBuyPermanentCommand),
                     BuyMonthlyCommand = new DelegateCommand(OnBuyMonthlyCommand)
@@ -74,8 +78,8 @@ namespace VKSaver.Core.ViewModels
             if (result == ProductPurchaseStatus.Succeeded ||
                 result == ProductPurchaseStatus.AlreadyPurchased)
             {
-                _dialogsService.Show("Теперь вы счастливый владелец полной версии ВКачай 2!",
-                    "Спасибо за покупку");
+                _dialogsService.Show(_locService["Message_Purchase_Success_Text"],
+                    _locService["Message_Purchase_Success_Title"]);
 
                 if (_destinationView == null)
                     _navigationService.GoBack();
@@ -87,8 +91,8 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-                _dialogsService.Show("Не удалось произвести покупку. Мы очень сожалеем, повторите попытку позднее.",
-                    "Покупка не удалась");
+                _dialogsService.Show(_locService["Message_Purchase_Failed_Text"],
+                    _locService["Message_Purchase_Failed_Title"]);
             }
         }
 
@@ -99,6 +103,7 @@ namespace VKSaver.Core.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IDialogsService _dialogsService;
         private readonly ScreenItem[] _screenItems;
+        private readonly ILocService _locService;
 
         public sealed class ScreenItem
         {

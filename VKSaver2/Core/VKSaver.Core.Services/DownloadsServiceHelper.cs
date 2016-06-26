@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Transfer;
@@ -9,10 +10,11 @@ namespace VKSaver.Core.Services
     public sealed class DownloadsServiceHelper : IDownloadsServiceHelper
     {
         public DownloadsServiceHelper(IDialogsService dialogsService, 
-            IDownloadsService downloadsService)
+            IDownloadsService downloadsService, ILocService locService)
         {
             _dialogsService = dialogsService;
             _downloadsService = downloadsService;
+            _locService = locService;
         }
 
         public Task<bool> StartDownloadingAsync(IDownloadable item)
@@ -34,31 +36,37 @@ namespace VKSaver.Core.Services
 
         private void ShowError(List<DownloadInitError> errors)
         {
+            var groups = errors.GroupBy(e => e.ErrorType);
             var sb = new StringBuilder();
-            foreach (var error in errors)
+            foreach (var group in groups)
             {
-                sb.AppendLine($"{error.DownloadItem.FileName} - {GetDownloadInitErrorNameFromType(error.ErrorType)}");
+                sb.AppendLine(GetDownloadInitErrorNameFromType(group.Key));
+                foreach (var error in group)
+                    sb.AppendLine(error.DownloadItem.FileName);
+
+                sb.AppendLine();
             }
 
-            _dialogsService.Show(sb.ToString(), "Не удалось начать загрузку");
+            _dialogsService.Show(sb.ToString(), _locService["Message_Downloads_StartFailed_Title"]);
         }
 
-        private static string GetDownloadInitErrorNameFromType(DownloadInitErrorType error)
+        private string GetDownloadInitErrorNameFromType(DownloadInitErrorType error)
         {
             switch (error)
             {
                 case DownloadInitErrorType.CantCreateFolder:
-                    return "Не удалось создать папку";
+                    return _locService["Message_Downloads_CantCreateFolder_Text"];
                 case DownloadInitErrorType.CantCreateFile:
-                    return "Не удалось создать файл";
+                    return _locService["Message_Downloads_CantCreateFile_Text"];
                 case DownloadInitErrorType.MaxDownloadsExceeded:
-                    return "Достигнуто максимальное количество одновременных загрузок";
+                    return _locService["Message_Downloads_MaxDownloadsExceeded_Text"];
                 default:
-                    return "Неизвестная ошибка";
+                    return _locService["Message_Downloads_UnknownError_Text"];
             }
         }
 
         private readonly IDialogsService _dialogsService;
         private readonly IDownloadsService _downloadsService;
+        private readonly ILocService _locService;
     }
 }

@@ -197,12 +197,6 @@
 
     <!--Стиль контейнера контента, поддерживающего уведомления о состоянии-->
     <Style TargetType="controls:ContentContainer">
-        <Setter Property="LoadingText"
-                Value="Загрузка..." />
-        <Setter Property="ErrorText"
-                Value="Не удалось загрузить данные" />
-        <Setter Property="NoDataText"
-                Value="Здесь так одиноко..." />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ContentContainer">
@@ -536,7 +530,8 @@
                                 </TextBlock.RenderTransform>
                             </TextBlock>
                             <Button x:Name="ReloadButton"
-                                    Content="Повторить"
+                                    Content="повторить"
+                                    x:Uid="Loader_ReloadButton"
                                     Style="{StaticResource ButtonStyle}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -613,13 +608,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="controls:StateBlock">
-        <Setter Property="LoadingText"
-                Value="Загрузка..." />
-        <Setter Property="ErrorText"
-                Value="Не удалось загрузить данные" />
-        <Setter Property="NoDataText"
-                Value="Здесь так одиноко..." />
+    <Style TargetType="controls:StateBlock">        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:StateBlock">
@@ -935,7 +924,8 @@
                                 </TextBlock.RenderTransform>
                             </TextBlock>
                             <Button x:Name="ReloadButton"
-                                    Content="Повторить"
+                                    Content="повторить"
+                                    x:Uid="Loader_ReloadButton"
                                     Style="{StaticResource ButtonStyle}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"

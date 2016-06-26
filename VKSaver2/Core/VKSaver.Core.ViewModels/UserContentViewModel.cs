@@ -32,7 +32,7 @@ namespace VKSaver.Core.ViewModels
         public UserContentViewModel(IVKService vkService, INavigationService navigationService,
             IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
             IAppLoaderService appLoaderService, IVKLoginService vkLoginService,
-            IDialogsService dialogsService)
+            IDialogsService dialogsService, ILocService locService)
         {
             _vkService = vkService;
             _navigationService = navigationService;
@@ -41,6 +41,7 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService = appLoaderService;
             _vkLoginService = vkLoginService;
             _dialogsService = dialogsService;
+            _locService = locService;
 
             SelectedItems = new List<object>();
             PrimaryItems = new ObservableCollection<ICommandBarElement>();
@@ -231,7 +232,7 @@ namespace VKSaver.Core.ViewModels
                 _videoAlbumsOffset = 0;
                 _docsOffset = 0;
 
-                PageTitle = "ВКачай";
+                PageTitle = _locService["AppNameText"];
                 LoadUserInfo(_userID);
             }
 
@@ -453,13 +454,13 @@ namespace VKSaver.Core.ViewModels
 
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "обновить",
+                Label = _locService["AppBarButton_Refresh_Text"],
                 Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
                 Command = ReloadContentCommand
             });
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "выбрать",
+                Label = _locService["AppBarButton_Select_Text"],
                 Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionMode
             });
@@ -472,19 +473,19 @@ namespace VKSaver.Core.ViewModels
 
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "загрузить",
+                Label = _locService["AppBarButton_Download_Text"],
                 Icon = new FontIcon { Glyph = "\uE118" },
                 Command = DownloadSelectedCommand
             });
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "воспроизвести",
+                Label = _locService["AppBarButton_Play_Text"],
                 Icon = new FontIcon { Glyph = "\uE102" },
                 Command = PlaySelectedCommand
             });
             PrimaryItems.Add(new AppBarButton
             {
-                Label = "выбрать все",
+                Label = _locService["AppBarButton_SelectAll_Text"],
                 Icon = new FontIcon { Glyph = "\uE0E7" },
                 Command = SelectAllCommand
             });
@@ -496,21 +497,21 @@ namespace VKSaver.Core.ViewModels
                     case 0:
                         SecondaryItems.Add(new AppBarButton
                         {
-                            Label = "в мои аудиозаписи",
+                            Label = _locService["AppBarButton_AddToMyAudios_Text"],
                             Command = AddSelectedToMyCollectionCommand
                         });
                         break;
                     case 1:
                         SecondaryItems.Add(new AppBarButton
                         {
-                            Label = "в мои видеозаписи",
+                            Label = _locService["AppBarButton_AddToMyVideos_Text"],
                             Command = AddSelectedToMyCollectionCommand
                         });
                         break;
                     case 2:
                         SecondaryItems.Add(new AppBarButton
                         {
-                            Label = "в мои документы",
+                            Label = _locService["AppBarButton_AddToMyDocs_Text"],
                             Command = AddSelectedToMyCollectionCommand
                         });
                         break;
@@ -520,7 +521,7 @@ namespace VKSaver.Core.ViewModels
             {
                 SecondaryItems.Add(new AppBarButton
                 {
-                    Label = "удалить",
+                    Label = _locService["AppBarButton_Delete_Text"],
                     Command = DeleteSelectedCommand
                 });
             }
@@ -596,7 +597,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnDownloadSelectedCommand()
         {
-            _appLoaderService.Show("Подготовка файлов для загрузки...");
+            _appLoaderService.Show(_locService["AppLoader_PreparingFilesToDownload"]);
             var items = SelectedItems.ToList();
             SetDefaultMode();
 
@@ -752,15 +753,15 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnDeleteCommand(object obj)
         {
-            _appLoaderService.Show(GetDeletingText(obj));
+            _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], obj.ToString()));
             bool success = await DeleteObject(obj);
 
             if (obj is VKAudio)
             {
                 if (!success)
                 {
-                    _dialogsService.Show("При удалении аудиозаписи произошла ошибка. Повторите попытку позднее.",
-                        "Не удалось удалить аудиозапись");
+                    _dialogsService.Show(_locService["Message_AudioDeleteError_Text"],
+                        _locService["Message_AudioDeleteError_Title"]);
                 }
                 else
                 {
@@ -772,8 +773,8 @@ namespace VKSaver.Core.ViewModels
             {
                 if (!success)
                 {
-                    _dialogsService.Show("При удалении видеозаписи произошла ошибка. Повторите попытку позднее.",
-                        "Не удалось удалить видеозапись");
+                    _dialogsService.Show(_locService["Message_VideoDeleteError_Text"],
+                        _locService["Message_VideoDeleteError_Title"]);
                 }
                 else
                 {
@@ -785,8 +786,8 @@ namespace VKSaver.Core.ViewModels
             {
                 if (!success)
                 {
-                    _dialogsService.Show("При удалении документа произошла ошибка. Повторите попытку позднее.",
-                        "Не удалось удалить документ");
+                    _dialogsService.Show(_locService["Message_DocDeleteError_Text"],
+                        _locService["Message_DocDeleteError_Title"]);
                 }
                 else
                 {
@@ -797,8 +798,8 @@ namespace VKSaver.Core.ViewModels
             {
                 if (!success)
                 {
-                    _dialogsService.Show("При удалении альбома аудиозаписей произошла ошибка. Повторите попытку позднее.",
-                        "Не удалось удалить альбом аудиозаписей");
+                    _dialogsService.Show(_locService["Message_AudioAlbumDeleteError_Text"],
+                        _locService["Message_AudioAlbumDeleteError_Title"]);
                 }
                 else
                 {
@@ -810,8 +811,8 @@ namespace VKSaver.Core.ViewModels
             {
                 if (!success)
                 {
-                    _dialogsService.Show("При удалении альбома видеозаписей произошла ошибка. Повторите попытку позднее.",
-                        "Не удалось удалить альбом видеозаписей");
+                    _dialogsService.Show(_locService["Message_VideoAlbumDeleteError_Text"],
+                        _locService["Message_VideoAlbumDeleteError_Title"]);
                 }
                 else
                 {
@@ -825,14 +826,14 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnDeleteSelectedCommand()
         {
-            _appLoaderService.Show("Подготовка...");
+            _appLoaderService.Show(_locService["AppLoader_Preparing"]);
             var items = SelectedItems.Where(o => o is VKAudio || o is VKVideo || o is VKDocument).ToList();
             var errors = new List<object>();
             var success = new List<object>();
 
             foreach (var obj in items)
             {
-                _appLoaderService.Show(GetDeletingText(obj));
+                _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], obj.ToString()));
                 if (await DeleteObject(obj))
                     success.Add(obj);
                 else
@@ -851,23 +852,23 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnAddToMyCollection(object obj)
         {
-            _appLoaderService.Show("Выполняется добавление в вашу коллекцию...");
+            _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], obj.ToString()));
             if (!await AddToMyCollection(obj))
             {
                 if (obj is VKAudio)
                 {
-                    _dialogsService.Show("При добавлении аудиозаписи в коллекцию произошла ошибка. Повторите попытку позднее.",
-                        "Не удалось добавить аудиозапись");
+                    _dialogsService.Show(_locService["Message_AudioAddError_Text"],
+                        _locService["Message_AudioAddError_Title"]);
                 }
                 else if (obj is VKVideo)
                 {
-                    _dialogsService.Show("При добавлении видеозаписи в коллекцию произошла ошибка. Повторите попытку позднее.",
-                    "Не удалось добавить видеозапись");
+                    _dialogsService.Show(_locService["Message_VideoAddError_Text"],
+                        _locService["Message_VideoAddError_Title"]);
                 }
                 else if (obj is VKDocument)
                 {
-                    _dialogsService.Show("При добавлении документа в коллекцию произошла ошибка. Повторите попытку позднее.",
-                    "Не удалось добавить документ");
+                    _dialogsService.Show(_locService["Message_DocAddError_Text"],
+                        _locService["Message_DocAddError_Title"]);
                 }
             }
             _appLoaderService.Hide();
@@ -875,14 +876,14 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnAddSelectedToMyCollection()
         {
-            _appLoaderService.Show("Подготовка...");
+            _appLoaderService.Show(_locService["AppLoader_Preparing"]);
             var items = SelectedItems.Where(o => o is VKAudio || o is VKVideo || o is VKDocument).ToList();
             var errors = new List<object>();
             var success = new List<object>();
 
             foreach (var obj in items)
             {
-                _appLoaderService.Show(GetAddingText(obj));
+                _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], obj.ToString()));
                 if (await AddToMyCollection(obj))
                     success.Add(obj);
                 else
@@ -988,68 +989,6 @@ namespace VKSaver.Core.ViewModels
             return parameters;
         }
 
-        private string GetDeletingText(object obj)
-        {
-            if (obj is VKAudio)
-            {
-                var audio = (VKAudio)obj;
-                return $"Выполняется удаление {audio.Artist} - {audio.Title}...";
-            }
-            else if (obj is VKVideo)
-            {
-                var video = (VKVideo)obj;
-                return $"Выполняется удаление {video.Title}...";
-            }
-            else if (obj is VKDocument)
-            {
-                var doc = (VKDocument)obj;
-                return $"Выполняется удаление {doc.Title}...";
-            }
-            else if (obj is VKAudioAlbum)
-            {
-                var audioAlbum = (VKAudioAlbum)obj;
-                return $"Выполняется удаление {audioAlbum.Title}...";
-            }
-            else if (obj is VKVideoAlbum)
-            {
-                var videoAlbum = (VKVideoAlbum)obj;
-                return $"Выполняется удаление {videoAlbum.Title}...";
-            }
-
-            return null;
-        }
-
-        private string GetAddingText(object obj)
-        {
-            if (obj is VKAudio)
-            {
-                var audio = (VKAudio)obj;
-                return $"Выполняется добавление {audio.Artist} - {audio.Title}...";
-            }
-            else if (obj is VKVideo)
-            {
-                var video = (VKVideo)obj;
-                return $"Выполняется добавление {video.Title}...";
-            }
-            else if (obj is VKDocument)
-            {
-                var doc = (VKDocument)obj;
-                return $"Выполняется добавление {doc.Title}...";
-            }
-            else if (obj is VKAudioAlbum)
-            {
-                var audioAlbum = (VKAudioAlbum)obj;
-                return $"Выполняется добавление {audioAlbum.Title}...";
-            }
-            else if (obj is VKVideoAlbum)
-            {
-                var videoAlbum = (VKVideoAlbum)obj;
-                return $"Выполняется добавление {videoAlbum.Title}...";
-            }
-
-            return null;
-        }
-
         private void RemoveDeletedItems(List<object> items)
         {
             var audios = AudioGroup.FirstOrDefault(g => (string)g.Key == "audios");
@@ -1069,65 +1008,29 @@ namespace VKSaver.Core.ViewModels
         private void ShowDeletingError(List<object> errorObjects)
         {
             var sb = new StringBuilder();
-            sb.AppendLine("Не удалось удалить указанные элементы из вашей коллекции. Повторите попытку позднее.");
+            sb.AppendLine(_locService["Message_DeleteSelectedError_Text"]);
+            sb.AppendLine();
 
             foreach (var obj in errorObjects)
             {
-                if (obj is VKAudio)
-                {
-                    var audio = (VKAudio)obj;
-                    sb.Append($"{audio.Artist} - {audio.Title}");
-                }
-                else if (obj is VKVideo)
-                {
-                    var video = (VKVideo)obj;
-                    sb.Append(video.Title);
-                }
-                else if (obj is VKDocument)
-                {
-                    var doc = (VKDocument)obj;
-                    sb.Append(doc.Title);
-                }
-                else if (obj is VKAudioAlbum)
-                {
-                    var audioAlbum = (VKAudioAlbum)obj;
-                    sb.Append(audioAlbum.Title);
-                }
-                else if (obj is VKVideoAlbum)
-                {
-                    var videoAlbum = (VKVideoAlbum)obj;
-                    sb.Append(videoAlbum.Title);
-                }
+                sb.AppendLine(obj.ToString());
             }
 
-            _dialogsService.Show(sb.ToString(), "Не удалось удалить");
+            _dialogsService.Show(sb.ToString(), _locService["Message_DeleteSelectedError_Title"]);
         }
 
         private void ShowAddingError(List<object> errorObjects)
         {
             var sb = new StringBuilder();
-            sb.AppendLine("Не удалось добавить указанные элементы в вашу коллекцию. Повторите попытку позднее.");
+            sb.AppendLine(_locService["Message_AddSelectedError_Text"]);
+            sb.AppendLine();
 
             foreach (var obj in errorObjects)
             {
-                if (obj is VKAudio)
-                {
-                    var audio = (VKAudio)obj;
-                    sb.Append($"{audio.Artist} - {audio.Title}");
-                }
-                else if (obj is VKVideo)
-                {
-                    var video = (VKVideo)obj;
-                    sb.Append(video.Title);
-                }
-                else if (obj is VKDocument)
-                {
-                    var doc = (VKDocument)obj;
-                    sb.Append(doc.Title);
-                }
+                sb.AppendLine(obj.ToString());
             }
 
-            _dialogsService.Show(sb.ToString(), "Не удалось добавить");
+            _dialogsService.Show(sb.ToString(), _locService["Message_AddSelectedError_Title"]);
         }
 
         private long _userID;
@@ -1146,5 +1049,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IAppLoaderService _appLoaderService;
         private readonly IVKLoginService _vkLoginService;
         private readonly IDialogsService _dialogsService;
+        private readonly ILocService _locService;
     }
 }

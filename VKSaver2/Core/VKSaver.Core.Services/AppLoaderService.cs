@@ -6,9 +6,14 @@ namespace VKSaver.Core.Services
 {
     public sealed class AppLoaderService : IAppLoaderService
     {
+        public AppLoaderService(ILocService locService)
+        {
+            _locService = locService;
+        }
+
         public void Show()
         {
-            Show("Загрузка");
+            Show(_locService["AppLoader_Loading"]);
         }
 
         public void Show(string text)
@@ -43,5 +48,6 @@ namespace VKSaver.Core.Services
 
         private readonly List<ILoader> _loaders = new List<ILoader>();
         private readonly object _lockObject = new object();
+        private readonly ILocService _locService;
     }
 }

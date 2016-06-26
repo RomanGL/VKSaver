@@ -19,6 +19,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Popups;
 using VKSaver.Core.Models.Player;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Microsoft.Practices.ServiceLocation;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -37,7 +38,8 @@ namespace VKSaver
 
             this.FrameFactory = () =>
             {
-                _appLoaderService = new AppLoaderService();
+                _locService = new LocService();
+                _appLoaderService = new AppLoaderService(_locService);
 #if WINDOWS_PHONE_APP
                 _frame = new WithLoaderFrame(_appLoaderService);
 
@@ -88,10 +90,13 @@ namespace VKSaver
         protected override void OnInitialize(IActivatedEventArgs args)
         {
 #if DEBUG
-            DebugSettings.EnableFrameRateCounter = true;
+            //DebugSettings.EnableFrameRateCounter = true;
 #endif
 
             _container = new UnityContainer();
+            _unityServiceLocator = new UnityServiceLocator(_container);
+            ServiceLocator.SetLocatorProvider(() => _unityServiceLocator);
+
             ViewModelLocator.SetDefaultViewTypeToViewModelTypeResolver(GetViewModelType);
 
             var settingsService = new SettingsService();
@@ -103,6 +108,8 @@ namespace VKSaver
             _container.RegisterInstance<IVKLoginService>(vkLoginService);            
             _container.RegisterInstance<ILFService>(new LFService("***REMOVED***"));
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
+            _container.RegisterInstance<ILocService>(_locService);
+            _container.RegisterInstance<ILanguageProvider>(_locService);
 
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IVKService, VKService>(new ContainerControlledLifetimeManager());
@@ -220,6 +227,8 @@ namespace VKSaver
 
         private IUnityContainer _container;
         private IAppLoaderService _appLoaderService;
+        private ILocService _locService;
+        private UnityServiceLocator _unityServiceLocator;
         private Frame _frame;
 
         private const string VIEW_MODEL_FORMAT = "VKSaver.Core.ViewModels.{0}Model, VKSaver.Core.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";

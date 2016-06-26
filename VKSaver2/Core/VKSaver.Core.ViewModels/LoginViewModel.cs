@@ -2,10 +2,6 @@
 using OneTeam.SDK.VK.Models.Common;
 using OneTeam.SDK.VK.Services.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using Windows.System;
 
@@ -13,10 +9,12 @@ namespace VKSaver.Core.ViewModels
 {
     public sealed class LoginViewModel : ViewModelBase
     {
-        public LoginViewModel(IVKLoginService vkLoginService, IDialogsService dialogsService)
+        public LoginViewModel(IVKLoginService vkLoginService, IDialogsService dialogsService,
+            ILocService locService)
         {
             _vkLoginService = vkLoginService;
             _dialogsService = dialogsService;
+            _locService = locService;
 
             JoinCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/join")));
             RestoreCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/restore")));
@@ -54,21 +52,22 @@ namespace VKSaver.Core.ViewModels
             switch (error)
             {
                 case "connection_error":
-                    _dialogsService.Show("Не удалось подключиться к ВКонтакте. Проверьте доступ к интернету и повторите попытку.",
-                        "Авторизация не удалась");
+                    _dialogsService.Show(_locService["Message_Login_ConnectionError_Text"],
+                        _locService["Message_Login_AuthorizationFailed_Title"]);
                     break;
                 case "access_denied":
-                    _dialogsService.Show("Не удалось выполнить авторизацию, так как ВКачай было отказано в доступе. Повторите попытку позднее.",
-                        "Ошибка доступа");
+                    _dialogsService.Show(_locService["Message_Login_AccessDenied_Text"],
+                        _locService["Message_Login_AccessDenied_Title"]);
                     break;
                 default:
-                    _dialogsService.Show($"Не удалось выполнить авторизацию. Повторите попытку позднее.\nКод ошибки: {error}",
-                        "Авторизация не удалась");
+                    _dialogsService.Show(String.Format(_locService["Message_Login_UnknownError_Text"], error),
+                        _locService["Message_Login_AuthorizationFailed_Title"]);
                     break;
             }
         }
 
         private readonly IVKLoginService _vkLoginService;
         private readonly IDialogsService _dialogsService;
+        private readonly ILocService _locService;
     }
 }
