@@ -105,6 +105,9 @@
     <Reference Include="Microsoft.Practices.Prism.StoreApps">
       <HintPath>..\..\Libs\Microsoft.Practices.Prism.StoreApps.dll</HintPath>
     </Reference>
+    <Reference Include="ModernDev.InTouch">
+      <HintPath>..\..\Libs\ModernDev.InTouch.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using OneTeam.SDK.Core.Services.Interfaces;
 using System.Collections.Generic;
+using VKSaver.Core.Services.Interfaces;
 using Windows.Storage;
 
 namespace VKSaver.Core.Services

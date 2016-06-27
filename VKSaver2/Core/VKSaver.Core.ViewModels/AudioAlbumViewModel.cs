@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using OneTeam.SDK.Core;
 using OneTeam.SDK.VK.Models.Audio;
 using OneTeam.SDK.VK.Models.Common;
-using OneTeam.SDK.VK.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -25,7 +24,7 @@ namespace VKSaver.Core.ViewModels
     public sealed class AudioAlbumViewModel : ViewModelBase
     {
         public AudioAlbumViewModel(INavigationService navigationService, IPlayerService playerService,
-            IDownloadsServiceHelper downloadsServiceHelper, IVKService vkService,
+            IDownloadsServiceHelper downloadsServiceHelper, OneTeam.SDK.VK.Services.Interfaces.IVKService vkService,
             IAppLoaderService appLoaderService, IVKLoginService vkLoginService,
             IDialogsService dialogsService, ILocService locService)
         {
@@ -464,7 +463,7 @@ namespace VKSaver.Core.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IPlayerService _playerService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
-        private readonly IVKService _vkService;
+        private readonly OneTeam.SDK.VK.Services.Interfaces.IVKService _vkService;
         private readonly IAppLoaderService _appLoaderService;
         private readonly IVKLoginService _vkLoginService;
         private readonly IDialogsService _dialogsService;

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
-using OneTeam.SDK.Core.Services.Interfaces;
 using OneTeam.SDK.LastFm.Models.Audio;
 using OneTeam.SDK.LastFm.Services.Interfaces;
-using OneTeam.SDK.VK.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +27,7 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class MainViewModel : ViewModelBase
     {
-        public MainViewModel(IVKService vkService, ILFService lfService, 
+        public MainViewModel(OneTeam.SDK.VK.Services.Interfaces.IVKService vkService, ILFService lfService, 
             ISettingsService settingsService, INavigationService navigationService,
             IPurchaseService purchaseService, IPlayerService playerService,
             IDownloadsServiceHelper downloadsServiceHelper, IImagesCacheService imagesCacheService)
@@ -380,7 +378,7 @@ namespace VKSaver.Core.ViewModels
 
         private bool _backgroundLoaded;
 
-        private readonly IVKService _vkService;
+        private readonly OneTeam.SDK.VK.Services.Interfaces.IVKService _vkService;
         private readonly ILFService _lfService;
         private readonly ISettingsService _settingsService;
         private readonly INavigationService _navigationService;

@@ -13,10 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
-using OneTeam.SDK.VK.Models.Common;
-using OneTeam.SDK.VK.Services.Interfaces;
 using Microsoft.Practices.Prism.StoreApps;
 using VKSaver.Core.ViewModels;
+using ModernDev.InTouch;
 
 namespace VKSaver.Views
 {
@@ -60,10 +59,9 @@ namespace VKSaver.Views
                 _isCompleted = true;
                 var parts = args.Uri.Fragment.Substring(1).Split('&').ToArray();
                 string token = parts[0].Split('=')[1];
-                ulong userID = ulong.Parse(parts[2].Split('=')[1]);
-
-                var accessToken = new VKAccessToken { AccessToken = token, UserID = (long)userID };
-                ViewModel.LoginToken(accessToken);
+                int userID = int.Parse(parts[2].Split('=')[1]);
+                
+                ViewModel.LoginToken(userID, token);
             }
             else if (args.Uri.AbsoluteUri.Contains("error="))
             {

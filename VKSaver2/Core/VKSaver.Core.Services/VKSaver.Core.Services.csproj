@@ -83,7 +83,9 @@
     <Compile Include="Interfaces\IPlayerService.cs" />
     <Compile Include="Interfaces\IPurchaseService.cs" />
     <Compile Include="Interfaces\IServiceResolver.cs" />
+    <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Interfaces\ITracksShuffleService.cs" />
+    <Compile Include="Interfaces\IVKLoginService.cs" />
     <Compile Include="LocService.cs" />
     <Compile Include="LogService.cs" />
     <Compile Include="NetworkInfoService.cs" />
@@ -101,10 +103,14 @@
     <Compile Include="Transfer\DownloadOperationErrorEventArgs.cs" />
     <Compile Include="Transfer\TransferStatusComparer.cs" />
     <Compile Include="Transfer\TransferStatusExtensions.cs" />
+    <Compile Include="VKLoginService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism.StoreApps">
       <HintPath>..\..\Libs\Microsoft.Practices.Prism.StoreApps.dll</HintPath>
+    </Reference>
+    <Reference Include="ModernDev.InTouch">
+      <HintPath>..\..\Libs\ModernDev.InTouch.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>

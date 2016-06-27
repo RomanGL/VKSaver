@@ -1,6 +1,5 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
-using OneTeam.SDK.VK.Models.Common;
-using OneTeam.SDK.VK.Services.Interfaces;
+using ModernDev.InTouch;
 using System;
 using VKSaver.Core.Services.Interfaces;
 using Windows.System;
@@ -37,10 +36,9 @@ namespace VKSaver.Core.ViewModels
         /// <summary>
         /// Завершить авторизацию по токену.
         /// </summary>
-        /// <param name="accessToken">Ключ доступа ВКонтакте.</param>
-        public void LoginToken(VKAccessToken accessToken)
+        public void LoginToken(int userID, string accessToken)
         {
-            _vkLoginService.Login(accessToken);
+            _vkLoginService.Login(new APISession(accessToken, userID));
         }
 
         /// <summary>

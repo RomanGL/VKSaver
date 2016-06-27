@@ -8,7 +8,6 @@ using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using System.Threading;
 using Windows.Media.Playback;
-using OneTeam.SDK.Core.Services.Interfaces;
 using static VKSaver.Core.Services.PlayerConstants;
 using Windows.Foundation.Collections;
 

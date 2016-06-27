@@ -1,5 +1,4 @@
-﻿using OneTeam.SDK.Core.Services.Interfaces;
-using VKSaver.Core.Services.Interfaces;
+﻿using VKSaver.Core.Services.Interfaces;
 using Windows.Networking.Connectivity;
 
 namespace VKSaver.Core.Services

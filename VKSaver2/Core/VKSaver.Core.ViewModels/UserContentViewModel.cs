@@ -6,7 +6,6 @@ using OneTeam.SDK.VK.Models.Audio;
 using OneTeam.SDK.VK.Models.Common;
 using OneTeam.SDK.VK.Models.Groups;
 using OneTeam.SDK.VK.Models.Users;
-using OneTeam.SDK.VK.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -29,7 +28,7 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class UserContentViewModel : ViewModelBase
     {
-        public UserContentViewModel(IVKService vkService, INavigationService navigationService,
+        public UserContentViewModel(OneTeam.SDK.VK.Services.Interfaces.IVKService vkService, INavigationService navigationService,
             IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
             IAppLoaderService appLoaderService, IVKLoginService vkLoginService,
             IDialogsService dialogsService, ILocService locService)
@@ -1050,7 +1049,7 @@ namespace VKSaver.Core.ViewModels
 
         private int _lastPivotIndex;
 
-        private readonly IVKService _vkService;
+        private readonly OneTeam.SDK.VK.Services.Interfaces.IVKService _vkService;
         private readonly INavigationService _navigationService;
         private readonly IPlayerService _playerService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
