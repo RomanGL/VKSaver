@@ -112,6 +112,8 @@
                 Value="SemiLight" />
         <Setter Property="TextWrapping"
                 Value="NoWrap" />
+        <Setter Property="LineStackingStrategy"
+                Value="MaxHeight" />
     </Style>
 
     <Style x:Key="ListLine2TextStyle"
@@ -134,6 +136,8 @@
                 Value="NoWrap" />
         <Setter Property="CharacterSpacing"
                 Value="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+        <Setter Property="OpticalMarginAlignment"
+                Value="None" />
     </Style>
 
     <Style x:Key="PivotHeaderTextBlockStyle"

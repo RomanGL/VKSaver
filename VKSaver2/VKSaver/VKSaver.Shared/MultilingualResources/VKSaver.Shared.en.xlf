@@ -542,10 +542,6 @@ Go back to continue</target>
           <source>Отправки пока не поддерживаются</source>
           <target state="translated">Uploads are not supported yet</target>
         </trans-unit>
-        <trans-unit id="Loader_ReloadButton.Content" translate="yes" xml:space="preserve">
-          <source>повторить</source>
-          <target state="translated">try again</target>
-        </trans-unit>
         <trans-unit id="AppBarButton_AddToMyAudios_Text" translate="yes" xml:space="preserve">
           <source>в мои аудиозаписи</source>
           <target state="translated">to my audios</target>
@@ -855,6 +851,50 @@ Operation will resume once the connection becomes available.</target>
         <trans-unit id="PurchaseView_Screen5_Line2_Text" translate="yes" xml:space="preserve">
           <source>Смотрите и загружайте любимые видео!</source>
           <target state="translated">Watch and download your favorite videos!</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_StoresOn_Unsupported_Text" translate="yes" xml:space="preserve">
+          <source>Это видео хранится на неподдерживаемом сервисе</source>
+          <target state="translated">This video is stored on an unsupported service</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_StoresOn_Vimeo_Text" translate="yes" xml:space="preserve">
+          <source>Это видео хранится на серверах Vimeo</source>
+          <target state="translated">This video is stored on the Vimeo servers</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_StoresOn_VK_Text" translate="yes" xml:space="preserve">
+          <source>Это видео хранится на серверах ВКонтакте</source>
+          <target state="translated">This video is stored on the VK servers</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_StoresOn_YouTube_Text" translate="yes" xml:space="preserve">
+          <source>Это видео хранится на серверах YouTube</source>
+          <target state="translated">This video is stored on the YouTube servers</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_StoresOn_Coub_Text" translate="yes" xml:space="preserve">
+          <source>Это видео хранится на серверах Coub</source>
+          <target state="translated">This video is stored on the Coub servers</target>
+        </trans-unit>
+        <trans-unit id="Loader_ReloadButton_Text" translate="yes" xml:space="preserve">
+          <source>повторить</source>
+          <target state="translated">try again</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_LinksLoader.ButtonText" translate="yes" xml:space="preserve">
+          <source>получить ссылки</source>
+          <target state="translated">get links</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_LinksLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Нажмите эту кнопку, чтобы получить ссылки на видео</source>
+          <target state="translated">Click this button to get the links to the video</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_LinksLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Ищем ссылки на видео...</source>
+          <target state="translated">Looking for links to video...</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_LinksLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Невозможно получить ссылки на это видео</source>
+          <target state="translated">Unable to retrieve links to this video</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_SelectQuality.Text" translate="yes" xml:space="preserve">
+          <source>Выберите качество видео</source>
+          <target state="translated">Select video quality</target>
         </trans-unit>
       </group>
     </body>

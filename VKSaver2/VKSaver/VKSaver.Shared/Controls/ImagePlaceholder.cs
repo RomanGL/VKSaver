@@ -3,6 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Shapes;
 
 namespace VKSaver.Controls
 {
@@ -92,40 +93,47 @@ namespace VKSaver.Controls
                 else
                     return;
 
-                _image = new Image()
+                _brush = new ImageBrush
                 {
+                    ImageSource = imgSource,
                     Stretch = Stretch.UniformToFill,
-                    Source = imgSource
+                    AlignmentX = AlignmentX.Center,
+                    AlignmentY = AlignmentY.Center
                 };
 
-                _image.ImageOpened += Image_ImageOpened;
-                _image.ImageFailed += Image_ImageFailed;
+                _rect = new Rectangle();
+                _rect.Fill = _brush;
 
-                this.Children.Add(_image);
+                _brush.ImageOpened += Image_ImageOpened;
+                _brush.ImageFailed += Image_ImageFailed;
+
+                this.Children.Add(_rect);
             }
             catch (Exception) { }
         }
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            _image.ImageOpened -= Image_ImageOpened;
-            _image.ImageFailed -= Image_ImageFailed;
+            _brush.ImageOpened -= Image_ImageOpened;
+            _brush.ImageFailed -= Image_ImageFailed;
 
-            this.Children.Remove(_image);
-            _image = null;
+            this.Children.Remove(_rect);
+            _rect = null;
+            _brush = null;            
         }
 
         private void Image_ImageOpened(object sender, RoutedEventArgs e)
         {
-            _image.ImageOpened -= Image_ImageOpened;
-            _image.ImageFailed -= Image_ImageFailed;
+            _brush.ImageOpened -= Image_ImageOpened;
+            _brush.ImageFailed -= Image_ImageFailed;
 
             this.Children.Remove(_textImage);
             _textImage = null;
         }
 
         private TextImage _textImage;
-        private Image _image;
+        private ImageBrush _brush;
+        private Rectangle _rect;
         private bool _loaded;
     }
 }

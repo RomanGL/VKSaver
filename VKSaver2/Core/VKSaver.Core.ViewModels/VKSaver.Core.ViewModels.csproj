@@ -19,7 +19,8 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,6 +96,7 @@
     <Compile Include="TopArtistsViewModel.cs" />
     <Compile Include="TopTracksViewModel.cs" />
     <Compile Include="TrackInfoViewModel.cs" />
+    <Compile Include="VideoInfoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism.PubSubEvents">
@@ -125,6 +127,10 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\VKSaver.Core.LinksExtractor\VKSaver.Core.LinksExtractor.csproj">
+      <Project>{8a78fe74-730a-4d36-8c44-32df960ad957}</Project>
+      <Name>VKSaver.Core.LinksExtractor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
       <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
       <Name>VKSaver.Core.Models</Name>

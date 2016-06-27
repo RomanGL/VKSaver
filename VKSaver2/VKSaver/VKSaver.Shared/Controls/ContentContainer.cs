@@ -83,6 +83,16 @@ namespace VKSaver.Controls
             typeof(ContentContainer), new PropertyMetadata(null));
         #endregion
 
+        public string ButtonText
+        {
+            get { return (string)GetValue(ButtonTextProperty); }
+            set { SetValue(ButtonTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonTextProperty =
+            DependencyProperty.Register("ButtonText", typeof(string),
+                typeof(ContentContainer), new PropertyMetadata("Empty resource"));
+
         public string LoadingText
         {
             get { return (string)GetValue(LoadingTextProperty); }

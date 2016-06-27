@@ -317,7 +317,8 @@
                         </ListView.FooterTemplate>
                         <i:Interaction.Behaviors>
                             <c:EventTriggerBehavior EventName="ItemClick">
-                                <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
+                                <c:InvokeCommandAction Command="{Binding ExecuteTracksListItemCommand}"
+                                                       InputConverter="{StaticResource ItemClickEventArgsConverter}"/>
                             </c:EventTriggerBehavior>
                             <b:IncrementalUpDownLoadingBehavior ScrollHeightTriggerOffset="1400"
                                                                 ItemsSource="{Binding VideoGroup}" />

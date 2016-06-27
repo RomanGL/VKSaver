@@ -649,6 +649,14 @@ namespace VKSaver.Core.ViewModels
                 _navigationService.Navigate("PlayerView", null);
                 _appLoaderService.Hide();
             }
+            else if (item is VKVideo)
+            {
+                _navigationService.Navigate("VideoInfoView", JsonConvert.SerializeObject(item));
+            }
+            else
+            {
+                _navigationService.Navigate("AccessDeniedView", null);
+            }
         }
 
         private async void OnPlaySelectedCommand()

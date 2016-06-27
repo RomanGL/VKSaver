@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\SelectedItemsBindingBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ShowAttachedFlyoutAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\WithCommandDependencyObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\LocalizationXamlWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VisualTreeHelperExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\StoryboardServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentContainer.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VideoInfoView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NoTracksView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AccessDeniedView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AudioAlbumView.xaml.cs" />

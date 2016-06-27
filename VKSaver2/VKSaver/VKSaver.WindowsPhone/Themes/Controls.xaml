@@ -5,8 +5,11 @@
                     xmlns:controls="using:VKSaver.Controls"
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                    xmlns:common="using:VKSaver.Common"
                     mc:Ignorable="d">
 
+    <common:LocalizationXamlWrapper x:Key="LocWrapper" />
+    
     <Style TargetType="controls:WithLoaderFrame">
         <Setter Property="Template">
             <Setter.Value>
@@ -197,6 +200,8 @@
 
     <!--Стиль контейнера контента, поддерживающего уведомления о состоянии-->
     <Style TargetType="controls:ContentContainer">
+        <Setter Property="ButtonText"
+                Value="{Binding [Loader_ReloadButton_Text], Source={StaticResource LocWrapper}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ContentContainer">
@@ -530,8 +535,7 @@
                                 </TextBlock.RenderTransform>
                             </TextBlock>
                             <Button x:Name="ReloadButton"
-                                    Content="повторить"
-                                    x:Uid="Loader_ReloadButton"
+                                    Content="{TemplateBinding ButtonText}"
                                     Style="{StaticResource ButtonStyle}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -608,7 +612,9 @@
         </Setter>
     </Style>
 
-    <Style TargetType="controls:StateBlock">        
+    <Style TargetType="controls:StateBlock">
+        <Setter Property="ButtonText"
+                Value="{Binding [Loader_ReloadButton_Text], Source={StaticResource LocWrapper}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:StateBlock">
@@ -924,8 +930,7 @@
                                 </TextBlock.RenderTransform>
                             </TextBlock>
                             <Button x:Name="ReloadButton"
-                                    Content="повторить"
-                                    x:Uid="Loader_ReloadButton"
+                                    Content="{TemplateBinding ButtonText}"
                                     Style="{StaticResource ButtonStyle}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"

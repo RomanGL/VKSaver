@@ -13,7 +13,7 @@
 
     <ImageBrush x:Key="ImagePlaceholderBrush"
                 Stretch="UniformToFill"
-                ImageSource="ms-appx:///Assets/ImagePlaceholder.png" />
+                ImageSource="ms-appx:///Assets/ImagePlaceholder.png"/>
 
     <LinearGradientBrush x:Key="TitleBrush"
                          EndPoint="1,1"
@@ -81,6 +81,7 @@
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="ContentRoot"
                             BorderThickness="2.5"
+                            Opacity="1"
                             BorderBrush="{StaticResource TitleBrush}"
                             Background="{ThemeResource ButtonBackgroundBrush}">
                         <VisualStateManager.VisualStateGroups>
@@ -102,15 +103,10 @@
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ContentPresenter.Foreground)"
-                                                                       Storyboard.TargetName="Content">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentRoot"
+                                                                       Storyboard.TargetProperty="Opacity">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ButtonDisabledForegroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)"
-                                                                       Storyboard.TargetName="ContentRoot">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource BackButtonDisabledForegroundThemeBrush}" />
+                                                                    Value="0.4" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -132,6 +128,8 @@
            TargetType="Button">
         <Setter Property="Foreground"
                 Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
+        <Setter Property="BorderBrush"
+                Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
         <Setter Property="VerticalAlignment"
                 Value="Top" />
         <Setter Property="HorizontalAlignment"
@@ -145,6 +143,7 @@
                 <ControlTemplate TargetType="Button">
                     <Grid Background="Transparent"
                           x:Name="RootGrid"
+                          Opacity="1"
                           MinWidth="50"
                           MinHeight="50">
                         <VisualStateManager.VisualStateGroups>
@@ -186,9 +185,9 @@
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
-                                                                       Storyboard.TargetProperty="Visibility">
+                                                                       Storyboard.TargetProperty="Opacity">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Collapsed" />
+                                                                    Value="0.4" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -214,7 +213,7 @@
                               Width="{TemplateBinding Width}">
                             <Ellipse x:Name="Ellipse"
                                      Fill="{TemplateBinding Background}"
-                                     Stroke="{ThemeResource AppBarItemForegroundThemeBrush}"
+                                     Stroke="{TemplateBinding BorderBrush}"
                                      StrokeThickness="2"
                                      UseLayoutRounding="False" />
                             <ContentPresenter x:Name="Content"
@@ -315,6 +314,8 @@
     <Style x:Key="PlayerGlyphToogleButonStyle"
            TargetType="ToggleButton">
         <Setter Property="Foreground"
+                Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
+        <Setter Property="BorderBrush"
                 Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
         <Setter Property="VerticalAlignment"
                 Value="Top" />
@@ -484,7 +485,7 @@
                               Width="{TemplateBinding Width}">
                             <Ellipse x:Name="Ellipse"
                                      Fill="{TemplateBinding Background}"
-                                     Stroke="{ThemeResource AppBarItemForegroundThemeBrush}"
+                                     Stroke="{TemplateBinding BorderBrush}"
                                      StrokeThickness="2"
                                      UseLayoutRounding="False" />
                             <ContentPresenter x:Name="Content"

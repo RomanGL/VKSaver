@@ -3,7 +3,7 @@
     /// <summary>
     /// Перечисление состояний контента.
     /// </summary>
-    public enum ContentState : byte
+    public enum ContentState
     {
         /// <summary>
         /// Состояние отсутствует.

@@ -412,9 +412,6 @@ Go back to continue</value>
   <data name="TransferView_UploadsLoader.NoDataText" xml:space="preserve">
     <value>Uploads are not supported yet</value>
   </data>
-  <data name="Loader_ReloadButton.Content" xml:space="preserve">
-    <value>try again</value>
-  </data>
   <data name="AppBarButton_AddToMyAudios_Text" xml:space="preserve">
     <value>to my audios</value>
   </data>
@@ -645,5 +642,38 @@ Operation will resume once the connection becomes available.</value>
   </data>
   <data name="PurchaseView_Screen5_Line2_Text" xml:space="preserve">
     <value>Watch and download your favorite videos!</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_Unsupported_Text" xml:space="preserve">
+    <value>This video is stored on an unsupported service</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_Vimeo_Text" xml:space="preserve">
+    <value>This video is stored on the Vimeo servers</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_VK_Text" xml:space="preserve">
+    <value>This video is stored on the VK servers</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_YouTube_Text" xml:space="preserve">
+    <value>This video is stored on the YouTube servers</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_Coub_Text" xml:space="preserve">
+    <value>This video is stored on the Coub servers</value>
+  </data>
+  <data name="Loader_ReloadButton_Text" xml:space="preserve">
+    <value>try again</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.ButtonText" xml:space="preserve">
+    <value>get links</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.ErrorText" xml:space="preserve">
+    <value>Click this button to get the links to the video</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.LoadingText" xml:space="preserve">
+    <value>Looking for links to video...</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.NoDataText" xml:space="preserve">
+    <value>Unable to retrieve links to this video</value>
+  </data>
+  <data name="VideoInfoView_SelectQuality.Text" xml:space="preserve">
+    <value>Select video quality</value>
   </data>
 </root>

@@ -20,6 +20,7 @@ using Windows.UI.Popups;
 using VKSaver.Core.Models.Player;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Microsoft.Practices.ServiceLocation;
+using VKSaver.Core.LinksExtractor;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -124,6 +125,7 @@ namespace VKSaver
             _container.RegisterType<INetworkInfoService, NetworkInfoService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IDownloadsService, DownloadsService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IVideoLinksExtractor, VideoLinksExtractor>(new ContainerControlledLifetimeManager());
 
             vkLoginService.UserLogin += (s, e) => NavigationService.Navigate("MainView", null);
             vkLoginService.UserLogout += (s, e) =>

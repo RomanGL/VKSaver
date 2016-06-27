@@ -264,9 +264,6 @@
 
 Вернитесь назад, чтобы продолжить</value>
   </data>
-  <data name="Loader_ReloadButton.Content" xml:space="preserve">
-    <value>повторить</value>
-  </data>
   <data name="LoginView_Auth.Text" xml:space="preserve">
     <value>Авторизация</value>
   </data>
@@ -749,5 +746,38 @@
   </data>
   <data name="UserContentView_VideosLoader.NoDataText" xml:space="preserve">
     <value>Видеозаписи отсутствуют либо доступ к ним закрыт</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_Coub_Text" xml:space="preserve">
+    <value>Это видео хранится на серверах Coub</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_Unsupported_Text" xml:space="preserve">
+    <value>Это видео хранится на неподдерживаемом сервисе</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_Vimeo_Text" xml:space="preserve">
+    <value>Это видео хранится на серверах Vimeo</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_VK_Text" xml:space="preserve">
+    <value>Это видео хранится на серверах ВКонтакте</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_YouTube_Text" xml:space="preserve">
+    <value>Это видео хранится на серверах YouTube</value>
+  </data>
+  <data name="Loader_ReloadButton_Text" xml:space="preserve">
+    <value>повторить</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.ButtonText" xml:space="preserve">
+    <value>получить ссылки</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.ErrorText" xml:space="preserve">
+    <value>Нажмите эту кнопку, чтобы получить ссылки на видео</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.LoadingText" xml:space="preserve">
+    <value>Ищем ссылки на видео...</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.NoDataText" xml:space="preserve">
+    <value>Невозможно получить ссылки на это видео</value>
+  </data>
+  <data name="VideoInfoView_SelectQuality.Text" xml:space="preserve">
+    <value>Выберите качество видео</value>
   </data>
 </root>

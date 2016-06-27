@@ -1888,6 +1888,11 @@
             Ссылка на картинку шириной 640 пикс.
             </summary>
         </member>
+        <member name="P:OneTeam.SDK.VK.Models.Video.VKVideo.Photo800">
+            <summary>
+            Ссылка на картинку шириной 800 пикс.
+            </summary>
+        </member>
         <member name="P:OneTeam.SDK.VK.Models.Video.VKVideo.Date">
             <summary>
             Дата добавления видеозаписи.
