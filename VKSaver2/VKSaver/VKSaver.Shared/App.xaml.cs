@@ -101,6 +101,8 @@ namespace VKSaver
             var settingsService = new SettingsService();
             var inTouch = new InTouch();
             var vkLoginService = new VKLoginService(settingsService, inTouch);
+            if (vkLoginService.IsAuthorized)
+                vkLoginService.InitializeInTouch();
 
             _container.RegisterInstance<IServiceResolver>(this);
             _container.RegisterInstance<ISettingsService>(settingsService);
@@ -148,16 +150,13 @@ namespace VKSaver
         protected override Task OnLaunchApplication(LaunchActivatedEventArgs args)
         {
             var playerService = _container.Resolve<IPlayerService>();
+            var vkLoginService = _container.Resolve<IVKLoginService>();            
 
             if (args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning)
             {
-                var vkLoginService = _container.Resolve<IVKLoginService>();
                 if (vkLoginService.IsAuthorized)
-                {
-                    vkLoginService.InitializeInTouch();
                     NavigationService.Navigate("MainView", null);
-                }
                 else
                     NavigationService.Navigate("LoginView", null);
             }

@@ -1,4 +1,4 @@
-﻿using OneTeam.SDK.VK.Models.Audio;
+﻿using ModernDev.InTouch;
 using PropertyChanged;
 
 namespace VKSaver.Core.ViewModels.Common
@@ -14,6 +14,6 @@ namespace VKSaver.Core.ViewModels.Common
         
         public string ImageURL { get; set; }
         
-        public VKAudio VKTrack { get; set; }
+        public Audio VKTrack { get; set; }
     }
 }

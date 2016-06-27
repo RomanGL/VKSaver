@@ -1,4 +1,4 @@
-﻿using OneTeam.SDK.VK.Models.Video;
+﻿using ModernDev.InTouch;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -12,9 +12,9 @@ namespace VKSaver.Common
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
-            if (item is VKVideo)
+            if (item is Video)
                 return VideoTemplate;
-            else if (item is VKVideoAlbum)
+            else if (item is VideoAlbum)
                 return AlbumTemplate;
             else
                 return null;

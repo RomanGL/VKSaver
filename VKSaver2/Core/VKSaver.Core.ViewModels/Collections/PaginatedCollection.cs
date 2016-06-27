@@ -97,7 +97,7 @@ namespace VKSaver.Core.ViewModels.Collections
                 data = (await LoadMoreItems(Page)).ToList();
                 Page++;
 
-                await Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     foreach (var item in data)
                         this.Add(item);

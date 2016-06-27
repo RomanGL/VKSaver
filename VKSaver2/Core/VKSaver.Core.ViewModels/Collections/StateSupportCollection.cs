@@ -100,7 +100,7 @@ namespace VKSaver.Core.ViewModels.Collections
         /// </summary>
         private async void OnStateChanged()
         {
-            await Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
+            await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
             {
                 this.OnPropertyChanged(new PropertyChangedEventArgs("ContentState"));
                 if (this.StateChanged != null)

@@ -1,11 +1,6 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Newtonsoft.Json;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.VK.Models.Audio;
-using OneTeam.SDK.VK.Models.Common;
-using OneTeam.SDK.VK.Models.Groups;
-using OneTeam.SDK.VK.Models.Users;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -14,26 +9,25 @@ using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.ViewModels.Collections;
 using Windows.UI.Xaml.Navigation;
-using OneTeam.SDK.VK.Models.Video;
-using OneTeam.SDK.VK.Models.Docs;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Common;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
 using System.Collections.Specialized;
 using VKSaver.Core.Models.Transfer;
+using ModernDev.InTouch;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public sealed class UserContentViewModel : ViewModelBase
     {
-        public UserContentViewModel(OneTeam.SDK.VK.Services.Interfaces.IVKService vkService, INavigationService navigationService,
+        public UserContentViewModel(InTouch inTouch, INavigationService navigationService,
             IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
             IAppLoaderService appLoaderService, IVKLoginService vkLoginService,
             IDialogsService dialogsService, ILocService locService)
         {
-            _vkService = vkService;
+            _inTouch = inTouch;
             _navigationService = navigationService;
             _playerService = playerService;
             _downloadsServiceHelper = downloadsServiceHelper;
@@ -69,7 +63,7 @@ namespace VKSaver.Core.ViewModels
 
         public IncrementalLoadingJumpListCollection VideoGroup { get; private set; }
 
-        public PaginatedCollection<VKDocument> Documents { get; private set; }        
+        public PaginatedCollection<Doc> Documents { get; private set; }        
 
         public bool IsSelectionMode { get; private set; }
 
@@ -176,15 +170,15 @@ namespace VKSaver.Core.ViewModels
 
                 PageTitle = (string)viewModelState[nameof(PageTitle)];
 
-                _audioAlbumsOffset = (uint)viewModelState[nameof(_audioAlbumsOffset)];
-                _audiosOffset = (uint)viewModelState[nameof(_audiosOffset)];
-                _videoAlbumsOffset = (uint)viewModelState[nameof(_videoAlbumsOffset)];
-                _videosOffset = (uint)viewModelState[nameof(_videosOffset)];
-                _docsOffset = (uint)viewModelState[nameof(_docsOffset)];
+                _audioAlbumsOffset = (int)viewModelState[nameof(_audioAlbumsOffset)];
+                _audiosOffset = (int)viewModelState[nameof(_audiosOffset)];
+                _videoAlbumsOffset = (int)viewModelState[nameof(_videoAlbumsOffset)];
+                _videosOffset = (int)viewModelState[nameof(_videosOffset)];
+                _docsOffset = (int)viewModelState[nameof(_docsOffset)];
 
-                var audioAlbums = JsonConvert.DeserializeObject<List<VKAudioAlbum>>(
+                var audioAlbums = JsonConvert.DeserializeObject<List<AudioAlbum>>(
                     viewModelState["AudioAlbums"].ToString());
-                var audios = JsonConvert.DeserializeObject<List<VKAudio>>(
+                var audios = JsonConvert.DeserializeObject<List<Audio>>(
                     viewModelState["Audios"].ToString());
 
                 
@@ -195,16 +189,16 @@ namespace VKSaver.Core.ViewModels
                 AudioGroup.Add(new PaginatedJumpListGroup<object>(audioAlbums, LoadMoreAudioAlbums) { Key = "albums" });
                 AudioGroup.Add(audiosSection);
 
-                var videoAlbums = JsonConvert.DeserializeObject<List<VKVideoAlbum>>(
+                var videoAlbums = JsonConvert.DeserializeObject<List<VideoAlbum>>(
                     viewModelState["VideoAlbums"].ToString());
-                var videos = JsonConvert.DeserializeObject<List<VKVideo>>(
+                var videos = JsonConvert.DeserializeObject<List<Video>>(
                     viewModelState["Videos"].ToString());
 
                 VideoGroup = new IncrementalLoadingJumpListCollection();
                 VideoGroup.Add(new PaginatedJumpListGroup<object>(videoAlbums, LoadMoreVideoAlbums) { Key = "albums" });
                 VideoGroup.Add(new PaginatedJumpListGroup<object>(videos, LoadMoreVideos) { Key = "videos" });
 
-                Documents = JsonConvert.DeserializeObject<PaginatedCollection<VKDocument>>(
+                Documents = JsonConvert.DeserializeObject<PaginatedCollection<Doc>>(
                     viewModelState[nameof(Documents)].ToString());
                 Documents.LoadMoreItems = LoadMoreDocuments;
                 Documents.CollectionChanged += Downloadable_CollectionChanged;
@@ -222,7 +216,7 @@ namespace VKSaver.Core.ViewModels
                 VideoGroup.Add(new PaginatedJumpListGroup<object>(LoadMoreVideoAlbums) { Key = "albums" });
                 VideoGroup.Add(new PaginatedJumpListGroup<object>(LoadMoreVideos) { Key = "videos" });
 
-                Documents = new PaginatedCollection<VKDocument>(LoadMoreDocuments);
+                Documents = new PaginatedCollection<Doc>(LoadMoreDocuments);
                 Documents.CollectionChanged += Downloadable_CollectionChanged;
 
                 _audiosOffset = 0;
@@ -290,154 +284,120 @@ namespace VKSaver.Core.ViewModels
         }
 
         private async Task<IEnumerable<object>> LoadMoreAudios(uint page)
-        {            
-            var parameters = new Dictionary<string, string>
+        {
+            var response = await _inTouch.Audio.Get(_userID == 0 ? null : (int?)_userID,
+                count: 50, offset: _audiosOffset);
+
+            if (response.IsError)
             {
-                { "count", "50" },
-                { "offset", _audiosOffset.ToString() }
-            };
-
-            if (_userID != 0)
-                parameters["owner_id"] = _userID.ToString();
-
-            var request = new Request<VKCountedItemsObject<VKAudio>>("audio.get", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
+                if (response.Error.Message.StartsWith("Access"))
+                    return new List<Audio>(0);
+                throw new Exception(response.Error.ToString());
+            }
+            else
             {
                 _audiosOffset += 50;
-                return response.Response.Items;
+                return response.Data.Items;
             }
-            else if (response.Error.ToString().StartsWith("Access"))
-                return new List<VKAudio>(0);
-            else
-                throw new Exception();
         }
 
         private async Task<IEnumerable<object>> LoadMoreAudioAlbums(uint page)
         {
-            var parameters = new Dictionary<string, string>
+            var response = await _inTouch.Audio.GetAlbums(
+                _userID == 0 ? null : (int?)_userID,
+                count: 50, offset: _audioAlbumsOffset);
+
+            if (response.IsError)
             {
-                { "count", "50" },
-                { "offset", _audioAlbumsOffset.ToString() }
-            };
-
-            if (_userID != 0)
-                parameters["owner_id"] = _userID.ToString();
-
-            var request = new Request<VKCountedItemsObject<VKAudioAlbum>>("audio.getAlbums", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
+                if (response.Error.Message.StartsWith("Access"))
+                    return new List<AudioAlbum>(0);
+                throw new Exception(response.Error.ToString());
+            }
+            else
             {
                 _audioAlbumsOffset += 50;
-                return response.Response.Items;
+                return response.Data.Items;
             }
-            else if (response.Error.ToString().StartsWith("Access"))
-                return new List<VKAudioAlbum>(0);
-            else
-                throw new Exception();
         }
 
         private async Task<IEnumerable<object>> LoadMoreVideos(uint page)
         {
-            var parameters = new Dictionary<string, string>
+            var response = await _inTouch.Videos.Get(_userID == 0 ? null : (int?)_userID,
+                count: 50, offset: _videosOffset);
+
+            if (response.IsError)
             {
-                { "count", "50" },
-                { "offset", _videosOffset.ToString() }
-            };
-
-            if (_userID != 0)
-                parameters["owner_id"] = _userID.ToString();
-
-            var request = new Request<VKCountedItemsObject<VKVideo>>("video.get", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
+                if (response.Error.Message.StartsWith("Access"))
+                    return new List<Video>(0);
+                throw new Exception(response.Error.ToString());
+            }
+            else
             {
                 _videosOffset += 50;
-                return response.Response.Items;
+                return response.Data.Items;
             }
-            else if (response.Error.ToString().StartsWith("Access"))
-                return new List<VKVideo>(0);
-            else
-                throw new Exception();
         }
 
         private async Task<IEnumerable<object>> LoadMoreVideoAlbums(uint page)
         {
-            var parameters = new Dictionary<string, string>
+            var response = await _inTouch.Videos.GetAlbums(_userID == 0 ? null : (int?)_userID,
+                count: 50, offset: _videoAlbumsOffset, needSystem: true);
+
+            if (response.IsError)
             {
-                { "need_system", "1" },
-                { "count", "50" },
-                { "offset", _videoAlbumsOffset.ToString() }
-            };
-
-            if (_userID != 0)
-                parameters["owner_id"] = _userID.ToString();
-
-            var request = new Request<VKCountedItemsObject<VKVideoAlbum>>("video.getAlbums", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
+                if (response.Error.Message.StartsWith("Access"))
+                    return new List<VideoAlbum>(0);
+                throw new Exception(response.Error.ToString());
+            }
+            else
             {
                 _videoAlbumsOffset += 50;
-                return response.Response.Items;
+                return response.Data.Items;
             }
-            else if (response.Error.ToString().StartsWith("Access"))
-                return new List<VKVideoAlbum>(0);
-            else
-                throw new Exception();
         }
 
-        private async Task<IEnumerable<VKDocument>> LoadMoreDocuments(uint page)
+        private async Task<IEnumerable<Doc>> LoadMoreDocuments(uint page)
         {
-            var parameters = new Dictionary<string, string>
+            var response = await _inTouch.Docs.Get(count: 50, 
+                offset: _docsOffset,
+                ownerId: _userID == 0 ? null : (int?)_userID);
+
+            if (response.IsError)
             {
-                { "count", "50" },
-                { "offset", _docsOffset.ToString() }
-            };
-
-            if (_userID != 0)
-                parameters["owner_id"] = _userID.ToString();
-
-            var request = new Request<VKCountedItemsObject<VKDocument>>("docs.get", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
+                if (response.Error.Message.StartsWith("Access"))
+                    return new List<Doc>(0);
+                throw new Exception(response.Error.ToString());
+            }
+            else
             {
                 _docsOffset += 50;
-                return response.Response.Items;
+                return response.Data.Items;
             }
-            else if (response.Error.ToString().StartsWith("Access"))
-                return new List<VKDocument>(0);
-            else
-                throw new Exception(response.Error.ToString());
         }
 
         private async void LoadUserInfo(long userID)
         {
-            var parameters = new Dictionary<string, string>();
-            if (userID > 0)
-                parameters["user_id"] = userID.ToString();
-            else if (userID < 0)
-                parameters["group_ids"] = (-userID).ToString();
-
-            if (userID >= 0)
+            if (_userID >= 0)
             {
-                var request = new Request<List<VKUser>>("users.get", parameters);
-                var response = await _vkService.ExecuteRequestAsync(request);
+                var response = await _inTouch.Users.Get(
+                    _userID == 0 ? null : new List<object> { _userID });
 
-                if (response.IsSuccess && userID == _userID && response.Response.Any())
-                    PageTitle = response.Response[0].Name;
+                if (response.IsError)
+                    throw new Exception(response.Error.ToString());
+                else if (response.Data.Any() && _userID == userID)
+                {
+                    var user = response.Data[0];
+                    PageTitle = $"{user.FirstName} {user.LastName}";
+                }
             }
             else
             {
-                var request = new Request<List<VKGroup>>("groups.getById", parameters);
-                var response = await _vkService.ExecuteRequestAsync(request);
+                var response = await _inTouch.Groups.GetById(new List<object> { -_userID });
 
-                if (response.IsSuccess && userID == _userID && response.Response.Any())
-                    PageTitle = response.Response[0].Name;
+                if (response.IsError)
+                    throw new Exception(response.Error.ToString());
+                else if (response.Data.Any() && _userID == userID)
+                    PageTitle = response.Data[0].Name;
             }
         }
 
@@ -603,8 +563,8 @@ namespace VKSaver.Core.ViewModels
             var toDownload = new List<IDownloadable>(items.Count);
             for (int i = 0; i < items.Count; i++)
             {
-                var audio = items[i] as VKAudio;
-                var doc = items[i] as VKDocument;
+                var audio = items[i] as Audio;
+                var doc = items[i] as Doc;
 
                 if (audio != null)
                     toDownload.Add(audio.ToDownloadable());
@@ -618,7 +578,7 @@ namespace VKSaver.Core.ViewModels
 
         private bool CanExecuteDownloadSelectedCommand()
         {
-            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio || o is VKDocument);
+            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is Audio || o is Doc);
         }
 
         private void OnSelectionChangedCommand()
@@ -631,24 +591,24 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnExecuteTracksListItemCommand(object item)
         {     
-            if (item is VKAudioAlbum)
+            if (item is AudioAlbum)
             {
                 _navigationService.Navigate("AudioAlbumView", JsonConvert.SerializeObject(item));
             }
-            else if (item is VKAudio)
+            else if (item is Audio)
             {
                 _appLoaderService.Show();
                 var audios = AudioGroup.FirstOrDefault(g => (string)g.Key == "audios");
                 if (audios == null)
                     throw new Exception("Не найдена группа аудиозаписей.");
 
-                await _playerService.PlayNewTracks(audios.Cast<VKAudio>().ToPlayerTracks(),
+                await _playerService.PlayNewTracks(audios.Cast<Audio>().ToPlayerTracks(),
                     audios.IndexOf(item));
 
                 _navigationService.Navigate("PlayerView", null);
                 _appLoaderService.Hide();
             }
-            else if (item is VKVideo)
+            else if (item is Video)
             {
                 _navigationService.Navigate("VideoInfoView", JsonConvert.SerializeObject(item));
             }
@@ -662,7 +622,7 @@ namespace VKSaver.Core.ViewModels
         {
             _appLoaderService.Show();
 
-            var toPlay = SelectedItems.Where(o => o is VKAudio).Cast<VKAudio>().ToPlayerTracks();
+            var toPlay = SelectedItems.Where(o => o is Audio).Cast<Audio>().ToPlayerTracks();
             await _playerService.PlayNewTracks(toPlay, 0);
             _navigationService.Navigate("PlayerView", null);
 
@@ -673,14 +633,14 @@ namespace VKSaver.Core.ViewModels
         private async void OnDownloadItemCommand(object item)
         {
             _appLoaderService.Show();
-            if (item is VKAudio)
+            if (item is Audio)
             {
-                var audio = (VKAudio)item;
+                var audio = (Audio)item;
                 await _downloadsServiceHelper.StartDownloadingAsync(audio.ToDownloadable());
             }
-            else if (item is VKDocument)
+            else if (item is Doc)
             {
-                var doc = (VKDocument)item;
+                var doc = (Doc)item;
                 await _downloadsServiceHelper.StartDownloadingAsync(doc.ToDownloadable());
             }
             _appLoaderService.Hide();
@@ -688,40 +648,40 @@ namespace VKSaver.Core.ViewModels
 
         private bool CanExecuteDownloadItemCommand(object item)
         {
-            return item is VKAudio || item is VKDocument;
+            return item is Audio || item is Doc;
         }
 
         private bool HasSelectedAudios()
         {
-            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio);
+            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is Audio);
         }
 
         private bool CanAddSelected()
         {
-            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio || o is VKVideo || o is VKDocument);
+            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is Audio || o is Video || o is Doc);
         }
 
         private bool CanDeleteSelected()
         {
-            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is VKAudio || o is VKVideo || o is VKDocument);
+            return SelectedItems.Count > 0 && SelectedItems.Any(o => o is Audio || o is Video || o is Doc);
         }
 
         private bool CanAddToMyCollection(object obj)
         {
-            if (obj is VKAudio)
+            if (obj is Audio)
             {
-                var audio = (VKAudio)obj;
-                return audio.OwnerID != _vkLoginService.UserID;
+                var audio = (Audio)obj;
+                return audio.OwnerId != _inTouch.Session.UserId;
             }
-            else if (obj is VKVideo)
+            else if (obj is Video)
             {
-                var video = (VKVideo)obj;
-                return video.OwnerID != _vkLoginService.UserID && _userID != 0;
+                var video = (Video)obj;
+                return video.OwnerId != _inTouch.Session.UserId && _userID != 0;
             }
-            else if (obj is VKDocument)
+            else if (obj is Doc)
             {
-                var doc = (VKDocument)obj;
-                return doc.OwnerID != _vkLoginService.UserID;
+                var doc = (Doc)obj;
+                return doc.OwnerId != _inTouch.Session.UserId;
             }
 
             return false;
@@ -729,30 +689,30 @@ namespace VKSaver.Core.ViewModels
 
         private bool CanDelete(object obj)
         {
-            if (obj is VKAudio)
+            if (obj is Audio)
             {
-                var audio = (VKAudio)obj;
-                return audio.OwnerID == _vkLoginService.UserID;
+                var audio = (Audio)obj;
+                return audio.OwnerId == _inTouch.Session.UserId;
             }
-            else if (obj is VKVideo)
+            else if (obj is Video)
             {
-                var video = (VKVideo)obj;
-                return video.OwnerID == _vkLoginService.UserID || _userID == 0;
+                var video = (Video)obj;
+                return video.OwnerId == _inTouch.Session.UserId || _userID == 0;
             }
-            else if (obj is VKDocument)
+            else if (obj is Doc)
             {
-                var doc = (VKDocument)obj;
-                return doc.OwnerID == _vkLoginService.UserID;
+                var doc = (Doc)obj;
+                return doc.OwnerId == _inTouch.Session.UserId;
             }
-            else if (obj is VKAudioAlbum)
+            else if (obj is AudioAlbum)
             {
-                var audioAlbum = (VKAudioAlbum)obj;
-                return audioAlbum.OwnerID == _vkLoginService.UserID;
+                var audioAlbum = (AudioAlbum)obj;
+                return audioAlbum.OwnerId == _inTouch.Session.UserId;
             }
-            else if (obj is VKVideoAlbum)
+            else if (obj is VideoAlbum)
             {
-                var videoAlbum = (VKVideoAlbum)obj;
-                return videoAlbum.OwnerID == _vkLoginService.UserID;
+                var videoAlbum = (VideoAlbum)obj;
+                return videoAlbum.OwnerId == _inTouch.Session.UserId;
             }
 
             return false;
@@ -763,7 +723,7 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], obj.ToString()));
             bool success = await DeleteObject(obj);
 
-            if (obj is VKAudio)
+            if (obj is Audio)
             {
                 if (!success)
                 {
@@ -776,7 +736,7 @@ namespace VKSaver.Core.ViewModels
                     audios?.Remove(obj);
                 }
             }
-            else if (obj is VKVideo)
+            else if (obj is Video)
             {
                 if (!success)
                 {
@@ -789,7 +749,7 @@ namespace VKSaver.Core.ViewModels
                     videos?.Remove(obj);
                 }
             }
-            else if (obj is VKDocument)
+            else if (obj is Doc)
             {
                 if (!success)
                 {
@@ -798,10 +758,10 @@ namespace VKSaver.Core.ViewModels
                 }
                 else
                 {
-                    Documents.Remove((VKDocument)obj);
+                    Documents.Remove((Doc)obj);
                 }
             }
-            else if (obj is VKAudioAlbum)
+            else if (obj is AudioAlbum)
             {
                 if (!success)
                 {
@@ -814,7 +774,7 @@ namespace VKSaver.Core.ViewModels
                     audioAlbums?.Remove(obj);
                 }
             }
-            else if (obj is VKVideoAlbum)
+            else if (obj is VideoAlbum)
             {
                 if (!success)
                 {
@@ -834,7 +794,7 @@ namespace VKSaver.Core.ViewModels
         private async void OnDeleteSelectedCommand()
         {
             _appLoaderService.Show(_locService["AppLoader_Preparing"]);
-            var items = SelectedItems.Where(o => o is VKAudio || o is VKVideo || o is VKDocument).ToList();
+            var items = SelectedItems.Where(o => o is Audio || o is Video || o is Doc).ToList();
             var errors = new List<object>();
             var success = new List<object>();
 
@@ -862,17 +822,17 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], obj.ToString()));
             if (!await AddToMyCollection(obj))
             {
-                if (obj is VKAudio)
+                if (obj is Audio)
                 {
                     _dialogsService.Show(_locService["Message_AudioAddError_Text"],
                         _locService["Message_AudioAddError_Title"]);
                 }
-                else if (obj is VKVideo)
+                else if (obj is Video)
                 {
                     _dialogsService.Show(_locService["Message_VideoAddError_Text"],
                         _locService["Message_VideoAddError_Title"]);
                 }
-                else if (obj is VKDocument)
+                else if (obj is Doc)
                 {
                     _dialogsService.Show(_locService["Message_DocAddError_Text"],
                         _locService["Message_DocAddError_Title"]);
@@ -884,7 +844,7 @@ namespace VKSaver.Core.ViewModels
         private async void OnAddSelectedToMyCollection()
         {
             _appLoaderService.Show(_locService["AppLoader_Preparing"]);
-            var items = SelectedItems.Where(o => o is VKAudio || o is VKVideo || o is VKDocument).ToList();
+            var items = SelectedItems.Where(o => o is Audio || o is Video || o is Doc).ToList();
             var errors = new List<object>();
             var success = new List<object>();
 
@@ -908,92 +868,63 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<bool> AddToMyCollection(object obj)
         {
-            var request = GetRequestForAdd(obj);
-            var response = await _vkService.ExecuteRequestAsync(request);
+            Response<int> response = null;
+            if (obj is Audio)
+            {
+                var audio = (Audio)obj;
+                response = await _inTouch.Audio.Add(audio.Id, audio.OwnerId);
+            }
+            else if (obj is Video)
+            {
+                var video = (Video)obj;
+                var vResponse = await _inTouch.Videos.Add((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
 
-            if (response.IsSuccess)
+                if (!vResponse.IsError)
+                    return true;
+            }
+            else if (obj is Doc)
+            {
+                var doc = (Doc)obj;
+                response = await _inTouch.Docs.Add(doc.Id, doc.OwnerId);
+            }
+
+            if (!response.IsError)
                 return true;
-
             return false;
         }
 
         private async Task<bool> DeleteObject(object obj)
         {
-            var request = GetRequestForDelete(obj);
-            var response = await _vkService.ExecuteRequestAsync(request);
+            Response<bool> response = null;
+            if (obj is Audio)
+            {
+                var audio = (Audio)obj;
+                response = await _inTouch.Audio.Delete(audio.Id, audio.OwnerId);
+            }
+            else if (obj is Video)
+            {
+                var video = (Video)obj;
+                response = await _inTouch.Videos.Delete((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
+            }
+            else if (obj is Doc)
+            {
+                var doc = (Doc)obj;
+                response = await _inTouch.Docs.Delete(doc.OwnerId, doc.Id);
+            }
+            else if (obj is AudioAlbum)
+            {
+                var audioAlbum = (AudioAlbum)obj;
+                response = await _inTouch.Audio.DeleteAlbum((int)audioAlbum.Id);
+            }
+            else if (obj is VideoAlbum)
+            {
+                var videoAlbum = (VideoAlbum)obj;
+                response = await _inTouch.Videos.DeleteAlbum((int)videoAlbum.Id);
+            }
 
-            if (response.IsSuccess)
-                return true;
+            if (!response.IsError)
+                return response.Data;
             return false;
-        }
-
-        private Request<long> GetRequestForAdd(object obj)
-        {
-            Request<long> request = null;
-
-            if (obj is VKAudio)
-                request = new Request<long>("audio.add", GetParametersForObject(obj));
-            else if (obj is VKVideo)
-                request = new Request<long>("video.add", GetParametersForObject(obj));
-            else if (obj is VKDocument)
-                request = new Request<long>("docs.add", GetParametersForObject(obj));
-
-            return request;
-        }
-
-        private Request<VKOperationIsSuccess> GetRequestForDelete(object obj)
-        {
-            Request<VKOperationIsSuccess> request = null;
-
-            if (obj is VKAudio)
-                request = new Request<VKOperationIsSuccess>("audio.delete", GetParametersForObject(obj));
-            else if (obj is VKVideo)
-                request = new Request<VKOperationIsSuccess>("video.delete", GetParametersForObject(obj));
-            else if (obj is VKDocument)
-                request = new Request<VKOperationIsSuccess>("docs.delete", GetParametersForObject(obj));
-            else if (obj is VKAudioAlbum)
-                request = new Request<VKOperationIsSuccess>("audio.deleteAlbum", GetParametersForObject(obj));
-            else if (obj is VKVideoAlbum)
-                request = new Request<VKOperationIsSuccess>("video.deleteAlbum", GetParametersForObject(obj));
-
-            return request;
-        }
-
-        private Dictionary<string, string> GetParametersForObject(object obj)
-        {
-            var parameters = new Dictionary<string, string>();
-
-            if (obj is VKAudio)
-            {
-                var audio = (VKAudio)obj;
-                parameters["audio_id"] = audio.ID.ToString();
-                parameters["owner_id"] = audio.OwnerID.ToString();
-            }
-            else if (obj is VKVideo)
-            {
-                var video = (VKVideo)obj;
-                parameters["video_id"] = video.ID.ToString();
-                parameters["owner_id"] = video.OwnerID.ToString();
-                parameters["target_id"] = _vkLoginService.UserID.ToString();
-            }
-            else if (obj is VKDocument)
-            {
-                var doc = (VKDocument)obj;
-                parameters["doc_id"] = doc.ID.ToString();
-                parameters["owner_id"] = doc.OwnerID.ToString();
-            }
-            else if (obj is VKAudioAlbum)
-            {
-                var audioAlbum = (VKAudioAlbum)obj;
-                parameters["album_id"] = audioAlbum.ID.ToString();
-            }
-            else if (obj is VKVideoAlbum)
-            {
-                var videoAlbum = (VKVideoAlbum)obj;
-                parameters["album_id"] = videoAlbum.ID.ToString();
-            }
-
-            return parameters;
         }
 
         private void RemoveDeletedItems(List<object> items)
@@ -1003,12 +934,12 @@ namespace VKSaver.Core.ViewModels
 
             foreach (var item in items)
             {
-                if (item is VKAudio)
+                if (item is Audio)
                     audios.Remove(item);
-                else if (item is VKVideo)
+                else if (item is Video)
                     videos.Remove(item);
-                else if (item is VKDocument)
-                    Documents.Remove((VKDocument)item);
+                else if (item is Doc)
+                    Documents.Remove((Doc)item);
             }
         }
 
@@ -1041,15 +972,14 @@ namespace VKSaver.Core.ViewModels
         }
 
         private long _userID;
-        private uint _audiosOffset;
-        private uint _videosOffset;
-        private uint _audioAlbumsOffset;
-        private uint _videoAlbumsOffset;
-        private uint _docsOffset;
+        private int _audiosOffset;
+        private int _videosOffset;
+        private int _audioAlbumsOffset;
+        private int _videoAlbumsOffset;
+        private int _docsOffset;
 
         private int _lastPivotIndex;
-
-        private readonly OneTeam.SDK.VK.Services.Interfaces.IVKService _vkService;
+        
         private readonly INavigationService _navigationService;
         private readonly IPlayerService _playerService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
@@ -1057,5 +987,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IVKLoginService _vkLoginService;
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
+        private readonly InTouch _inTouch;
     }
 }
