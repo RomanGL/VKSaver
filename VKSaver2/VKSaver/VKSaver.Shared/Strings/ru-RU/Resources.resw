@@ -780,4 +780,10 @@
   <data name="VideoInfoView_SelectQuality.Text" xml:space="preserve">
     <value>Выберите качество видео</value>
   </data>
+  <data name="Message_VideoPlayer_Failed_Text" xml:space="preserve">
+    <value>Невозможно воспроизвести эту видеозапись. Отсутствует соединение либо данный формат видеозаписи не поддерживается.</value>
+  </data>
+  <data name="Message_VideoPlayer_Failed_Title" xml:space="preserve">
+    <value>Невозможно воспроизвести</value>
+  </data>
 </root>

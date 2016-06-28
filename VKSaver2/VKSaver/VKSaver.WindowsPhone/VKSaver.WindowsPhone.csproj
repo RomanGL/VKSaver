@@ -105,9 +105,9 @@
     <Content Include="Assets\Images\PlayerLogo2.png" />
     <Content Include="Assets\Images\PlayerLogo3.png" />
     <Content Include="Assets\Images\PlayerLogo4.png" />
+    <Content Include="Assets\Images\VideoPlayerPoster.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\LogoPlay.scale-240.png" />
-    <Content Include="Assets\PurchaseBackground.jpg" />
     <Content Include="Assets\Purchase\1.png" />
     <Content Include="Assets\Purchase\2.png" />
     <Content Include="Assets\Purchase\3.png" />
@@ -186,6 +186,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\VideoPlayerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

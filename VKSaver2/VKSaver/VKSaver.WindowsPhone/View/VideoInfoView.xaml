@@ -91,7 +91,8 @@
                                             Style="{StaticResource PlayerGlyphButtonStyle}"
                                             BorderBrush="{StaticResource TitleBrush}"
                                             Foreground="{StaticResource TitleBrush}"
-                                            Margin="0,0,10,0" />
+                                            Margin="0,0,10,0"
+                                            Command="{Binding PlayVideoCommand}"/>
                                     <Button Content=""
                                             Style="{StaticResource PlayerGlyphButtonStyle}"
                                             BorderBrush="{StaticResource TitleBrush}"

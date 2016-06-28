@@ -896,6 +896,14 @@ Operation will resume once the connection becomes available.</target>
           <source>Выберите качество видео</source>
           <target state="translated">Select video quality</target>
         </trans-unit>
+        <trans-unit id="Message_VideoPlayer_Failed_Text" translate="yes" xml:space="preserve">
+          <source>Невозможно воспроизвести эту видеозапись. Отсутствует соединение либо данный формат видеозаписи не поддерживается.</source>
+          <target state="new">Невозможно воспроизвести эту видеозапись. Отсутствует соединение либо данный формат видеозаписи не поддерживается.</target>
+        </trans-unit>
+        <trans-unit id="Message_VideoPlayer_Failed_Title" translate="yes" xml:space="preserve">
+          <source>Невозможно воспроизвести</source>
+          <target state="new">Невозможно воспроизвести</target>
+        </trans-unit>
       </group>
     </body>
   </file>

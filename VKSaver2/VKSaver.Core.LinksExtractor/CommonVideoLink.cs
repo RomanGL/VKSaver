@@ -1,6 +1,6 @@
 ﻿namespace VKSaver.Core.LinksExtractor
 {
-    public class VKVideoLink : IVideoLink
+    public class CommonVideoLink : IVideoLink
     {
         public string Source { get; set; }
         public string Name { get; set; }

@@ -1,0 +1,92 @@
+﻿using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Newtonsoft.Json;
+using PropertyChanged;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using VKSaver.Core.LinksExtractor;
+using VKSaver.Core.Services.Interfaces;
+using Windows.UI.Xaml.Navigation;
+
+namespace VKSaver.Core.ViewModels
+{
+    [ImplementPropertyChanged]
+    public sealed class VideoPlayerViewModel : ViewModelBase
+    {
+        public VideoPlayerViewModel(INavigationService navigationService, ILocService locService,
+            IDialogsService dialogsService, IAppLoaderService appLoaderService)
+        {
+            _navigationService = navigationService;
+            _locService = locService;
+            _dialogsService = dialogsService;
+            _appLoaderService = appLoaderService;
+
+            MediaOpenedCommand = new DelegateCommand(OnMediaOpenedCommand);
+            MediaEndedCommand = new DelegateCommand(OnMediaEndedCommand);
+            MediaFailedCommand = new DelegateCommand(OnMediaFailedCommand);
+        }
+
+        public IVideoLink CurrentLink { get; private set; }
+
+        public List<IVideoLink> AvailableLinks { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand MediaOpenedCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand MediaFailedCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand MediaEndedCommand { get; private set; }
+
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        {
+            if (e.Parameter == null)
+            {
+                _navigationService.GoBack();
+                return;
+            }
+
+            _appLoaderService.Show();
+            var data = JsonConvert.DeserializeObject<KeyValuePair<int, List<CommonVideoLink>>>(e.Parameter.ToString());
+            AvailableLinks = data.Value.Cast<IVideoLink>().ToList();
+            CurrentLink = AvailableLinks[data.Key];
+
+            base.OnNavigatedTo(e, viewModelState);
+        }
+
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        {
+            base.OnNavigatingFrom(e, viewModelState, suspending);
+
+            if (e.NavigationMode != NavigationMode.Back)
+                e.Cancel = true;
+        }
+
+        private void OnMediaOpenedCommand()
+        {
+            _appLoaderService.Hide();
+        }
+
+        private void OnMediaEndedCommand()
+        {
+            //_navigationService.GoBack();
+        }
+
+        private void OnMediaFailedCommand()
+        {
+            _appLoaderService.Hide();
+
+            _dialogsService.Show(_locService["Message_VideoPlayer_Failed_Text"],
+                _locService["Message_VideoPlayer_Failed_Title"]);
+        }
+
+        private readonly INavigationService _navigationService;
+        private readonly IDialogsService _dialogsService;
+        private readonly ILocService _locService;
+        private readonly IAppLoaderService _appLoaderService;
+    }
+}

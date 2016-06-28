@@ -97,6 +97,7 @@
     <Compile Include="TopTracksViewModel.cs" />
     <Compile Include="TrackInfoViewModel.cs" />
     <Compile Include="VideoInfoViewModel.cs" />
+    <Compile Include="VideoPlayerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism.PubSubEvents">

@@ -58,7 +58,7 @@ namespace VKSaver.Core.LinksExtractor
                     else if (url.Contains(".360.mp4")) name = "MP4 360p";
                     else if (url.Contains(".240.mp4")) name = "MP4 240p";
 
-                    result.Add(new VKVideoLink { Source = url, Name = name });
+                    result.Add(new CommonVideoLink { Source = url, Name = name });
                 }
 
                 return result;

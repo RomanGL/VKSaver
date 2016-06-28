@@ -29,6 +29,7 @@ namespace VKSaver.Core.ViewModels
             _videoLinksExtractor = videoLinksExtractor;
 
             LoadLinksCommand = new DelegateCommand(OnLoadLinksCommand);
+            PlayVideoCommand = new DelegateCommand(OnPlayVideoCommand);
         }
 
         public ContentState LinksState { get; private set; }
@@ -61,7 +62,10 @@ namespace VKSaver.Core.ViewModels
         public string VideoStoresOn { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand LoadLinksCommand { get; private set; }        
+        public DelegateCommand LoadLinksCommand { get; private set; }  
+        
+        [DoNotNotify]
+        public DelegateCommand PlayVideoCommand { get; private set; }      
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -128,6 +132,12 @@ namespace VKSaver.Core.ViewModels
 
             SelectedLinkIndex = 0;
             LinksState = ContentState.Normal;
+        }
+
+        private void OnPlayVideoCommand()
+        {
+            var data = new KeyValuePair<int, List<IVideoLink>>(SelectedLinkIndex, VideoLinks);
+            _navigationService.Navigate("VideoPlayerView", JsonConvert.SerializeObject(data));
         }
 
         private readonly INavigationService _navigationService;
