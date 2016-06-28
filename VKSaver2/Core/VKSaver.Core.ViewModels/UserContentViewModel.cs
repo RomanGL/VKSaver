@@ -55,6 +55,8 @@ namespace VKSaver.Core.ViewModels
 
             DeleteCommand = new DelegateCommand<object>(OnDeleteCommand, CanDelete);
             DeleteSelectedCommand = new DelegateCommand(OnDeleteSelectedCommand, CanDeleteSelected);
+
+            OpenTransferManagerCommand = new DelegateCommand(OnOpenTransferManagerCommand);
         }
 
         public string PageTitle { get; private set; }
@@ -126,6 +128,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand<object> DeleteCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand OpenTransferManagerCommand { get; private set; }
 
         #endregion
 
@@ -423,6 +428,12 @@ namespace VKSaver.Core.ViewModels
                 Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionMode
             });
+
+            SecondaryItems.Add(new AppBarButton
+            {
+                Label = _locService["AppBarButton_TransferManager_Text"],
+                Command = OpenTransferManagerCommand
+            });
         }
 
         private void CreateSelectionAppBarButtons()
@@ -502,6 +513,11 @@ namespace VKSaver.Core.ViewModels
             IsLockedPivot = false;
 
             CreateDefaultAppBarButtons();
+        }
+
+        private void OnOpenTransferManagerCommand()
+        {
+            _navigationService.Navigate("TransferView", "downloads");
         }
 
         private void OnReloadContentCommand()
@@ -611,6 +627,10 @@ namespace VKSaver.Core.ViewModels
             else if (item is Video)
             {
                 _navigationService.Navigate("VideoInfoView", JsonConvert.SerializeObject(item));
+            }
+            else if (item is VideoAlbum)
+            {
+                _navigationService.Navigate("VideoAlbumView", JsonConvert.SerializeObject(item));
             }
             else
             {

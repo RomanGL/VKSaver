@@ -93,10 +93,10 @@
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="проигрыватель"
-                              x:Uid="MainView_PlayerButton"
+                              x:Uid="AppBarButton_Player"
                               Command="{Binding GoToPlayerViewCommand}"/>
                 <AppBarButton Label="менеджер загрузок"
-                              x:Uid="MainView_TransferManagerButton"
+                              x:Uid="AppBarButton_TransferManager"
                               Command="{Binding GoToTransferViewCommand}"
                               CommandParameter="downloads" />
             </CommandBar.SecondaryCommands>

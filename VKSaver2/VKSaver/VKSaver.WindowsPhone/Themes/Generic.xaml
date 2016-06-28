@@ -158,6 +158,47 @@
                    Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}" />
     </DataTemplate>
 
+    <DataTemplate x:Key="VideoTemplate">
+        <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <controls:ImagePlaceholder Height="62"
+                                       Width="110"
+                                       Text="{Binding Title}"
+                                       Source="{Binding Photo320}"
+                                       Grid.RowSpan="2"
+                                       VerticalAlignment="Top"
+                                       Pivot.SlideInAnimationGroup="GroupOne" />
+
+            <TextBlock Text="{Binding Title}"
+                       Style="{StaticResource BaseItemStyle}"
+                       FontSize="28"
+                       FontWeight="SemiLight"
+                       Margin="10,0,0,0"
+                       TextWrapping="WrapWholeWords"
+                       MaxLines="2"
+                       Grid.Column="1"
+                       Pivot.SlideInAnimationGroup="GroupTwo"
+                       ContinuumNavigationTransitionInfo.IsExitElement="True" />
+            <TextBlock Text="{Binding Duration, Converter={StaticResource TimeConverter}}"
+                       Style="{StaticResource BaseItemStyle}"
+                       FontSize="18"
+                       Margin="10,0,0,0"
+                       TextWrapping="WrapWholeWords"
+                       MaxLines="2"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Pivot.SlideInAnimationGroup="GroupThree" />
+        </Grid>
+    </DataTemplate>
+
     <DataTemplate x:Key="TopArtistItem">
         <StackPanel Margin="0,0,15,20"
                     Width="150">
@@ -180,112 +221,6 @@
             </TextBlock>
         </StackPanel>
     </DataTemplate>
-
-    <Style x:Key="HubDimmingStyle"
-           TargetType="Hub">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Hub">
-                    <Grid x:Name="HubRoot">
-                        <Grid.Projection>
-                            <PlaneProjection x:Name="EntranceAnimationProjection" />
-                        </Grid.Projection>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="BackgroundImageLoadStates">
-                                <VisualState x:Name="BackgroundHidden">
-                                    <Storyboard>
-                                        <DoubleAnimation To="0"
-                                                         Duration="0:0:5"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="Background" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="BackgroundImageFadingIn">
-                                    <Storyboard>
-                                        <DoubleAnimation To="1"
-                                                         Duration="0:0:5"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="Background" />
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="BackgroundShowing">
-                                    <Storyboard>
-                                        <DoubleAnimation To="1"
-                                                         Duration="0:0:5"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="Background" />
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Canvas Grid.RowSpan="2">
-                            <Canvas.Clip>
-                                <RectangleGeometry x:Name="BackgroundClipRect" />
-                            </Canvas.Clip>
-                            <Grid x:Name="Background"
-                                  Opacity="1">
-                                <Grid.RenderTransform>
-                                    <CompositeTransform x:Name="BackgroundParallaxTransform" />
-                                </Grid.RenderTransform>
-                                <Border x:Name="WrapBackground"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        Background="{TemplateBinding Background}">
-                                    <Border.RenderTransform>
-                                        <CompositeTransform x:Name="WrapBackgroundParallaxTransform" />
-                                    </Border.RenderTransform>
-                                    <Rectangle Fill="{ThemeResource HubBackgroundDimmingBrush}" />
-                                </Border>
-                                <Border x:Name="MainBackground"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        Background="{TemplateBinding Background}" />
-                            </Grid>
-                        </Canvas>
-                        <!--<Rectangle Fill="{ThemeResource HubBackgroundDimmingBrush}" />-->
-                        <ScrollViewer x:Name="ScrollViewer"
-                                      HorizontalScrollMode="Auto"
-                                      HorizontalSnapPointsType="None"
-                                      HorizontalAlignment="Left"
-                                      HorizontalScrollBarVisibility="Hidden"
-                                      Grid.RowSpan="2"
-                                      Template="{StaticResource ScrollViewerScrollBarlessTemplate}"
-                                      VerticalScrollBarVisibility="Disabled"
-                                      VerticalScrollMode="Disabled"
-                                      ZoomMode="Disabled">
-                            <ItemsStackPanel x:Name="Panel"
-                                             CacheLength="6"
-                                             Orientation="{TemplateBinding Orientation}" />
-                        </ScrollViewer>
-                        <Canvas Grid.Row="0">
-                            <Canvas.Clip>
-                                <RectangleGeometry x:Name="HeaderClipRect" />
-                            </Canvas.Clip>
-                            <ContentControl x:Name="HeaderHost"
-                                            CharacterSpacing="{StaticResource HubHeaderCharacterSpacing}"
-                                            ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                            Content="{TemplateBinding Header}"
-                                            FontWeight="Light"
-                                            FontSize="{StaticResource HubHeaderFontSize}"
-                                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                                            Margin="{StaticResource HubHeaderMarginThickness}">
-                                <ContentControl.RenderTransform>
-                                    <TransformGroup>
-                                        <CompositeTransform x:Name="HeaderParallaxTransform" />
-                                        <TranslateTransform x:Name="HeaderFlyinFlyoutTransform" />
-                                    </TransformGroup>
-                                </ContentControl.RenderTransform>
-                            </ContentControl>
-                        </Canvas>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <ControlTemplate x:Key="NoSelectionListViewItem"
                      TargetType="ListViewItem">

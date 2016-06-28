@@ -309,7 +309,7 @@
   <data name="MainView_NewsItem.Content" xml:space="preserve">
     <value>новости</value>
   </data>
-  <data name="MainView_PlayerButton.Label" xml:space="preserve">
+  <data name="AppBarButton_Player.Label" xml:space="preserve">
     <value>проигрыватель</value>
   </data>
   <data name="MainView_RecommendationsItem.Content" xml:space="preserve">
@@ -333,7 +333,7 @@
   <data name="MainView_TopTracksItem.Content" xml:space="preserve">
     <value>топ треков</value>
   </data>
-  <data name="MainView_TransferManagerButton.Label" xml:space="preserve">
+  <data name="AppBarButton_TransferManager.Label" xml:space="preserve">
     <value>менеджер загрузок</value>
   </data>
   <data name="MainView_TransferManagerItem.Content" xml:space="preserve">
@@ -809,5 +809,20 @@
   </data>
   <data name="Message_VideoInfo_GetLinksFailed_Title" xml:space="preserve">
     <value>Не удалось получить ссылки</value>
+  </data>
+  <data name="AppBarButton_Player_Text" xml:space="preserve">
+    <value>проигрыватель</value>
+  </data>
+  <data name="AppBarButton_TransferManager_Text" xml:space="preserve">
+    <value>менеджер загрузок</value>
+  </data>
+  <data name="VideoAlbumVideosLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить содержимое альбома</value>
+  </data>
+  <data name="VideoAlbumVideosLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список видеозаписей альбома...</value>
+  </data>
+  <data name="VideoAlbumVideosLoader.NoDataText" xml:space="preserve">
+    <value>В этом альбоме нет видеозаписей</value>
   </data>
 </root>

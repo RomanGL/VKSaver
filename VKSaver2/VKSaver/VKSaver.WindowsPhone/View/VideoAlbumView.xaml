@@ -1,4 +1,4 @@
-﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.AudioAlbumView"
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.VideoAlbumView"
                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                            xmlns:local="using:VKSaver.Views"
@@ -18,23 +18,19 @@
     <mvvm:VisualStateAwarePage.Resources>
         <common:DataContextProxy x:Key="DataContextProxy" />
 
-        <Style x:Key="DownloadableItemStyle"
+        <Style x:Key="VideoItemContainerStyle"
                TargetType="ListViewItem"
                BasedOn="{StaticResource MarginListViewItemStyle}">
             <Setter Property="FlyoutBase.AttachedFlyout">
                 <Setter.Value>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="загрузить"
-                                        x:Uid="DownloadFlyoutItem"
-                                        Command="{Binding DataSource.DownloadTrackCommand, Source={StaticResource DataContextProxy}}"
-                                        CommandParameter="{Binding}" />
-                        <MenuFlyoutItem Text="в мои аудиозаписи"
-                                        x:Uid="AddToMyAudiosFlyoutItem"
-                                        Command="{Binding DataSource.AddToMyAudiosCommand, Source={StaticResource DataContextProxy}}"
+                        <MenuFlyoutItem Text="в мои видеозаписи"
+                                        x:Uid="AddToMyVideosFlyoutItem"
+                                        Command="{Binding DataSource.AddToMyVideosCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="удалить"
                                         x:Uid="DeleteFlyoutItem"
-                                        Command="{Binding DataSource.DeleteAudioCommand, Source={StaticResource DataContextProxy}}"
+                                        Command="{Binding DataSource.DeleteVideoCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                     </MenuFlyout>
                 </Setter.Value>
@@ -78,32 +74,27 @@
             </StackPanel>
 
             <ListView Style="{StaticResource NoSelectionListViewStyle}"
-                      ItemsSource="{Binding Tracks}"
-                      ItemTemplate="{StaticResource WithDurationAudioTemplate}"
-                      ItemContainerStyle="{StaticResource DownloadableItemStyle}"
-                      IsItemClickEnabled="{Binding IsItemClickEnabled}"
-                      SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
+                      ItemsSource="{Binding Videos}"
+                      ItemTemplate="{StaticResource VideoTemplate}"
+                      ItemContainerStyle="{StaticResource VideoItemContainerStyle}"
                       Grid.Row="1"
                       Margin="19,0,0,0">
                 <ListView.FooterTemplate>
                     <DataTemplate>
-                        <controls:StateBlock State="{Binding Tracks.ContentState}"
-                                             ReloadCommand="{Binding Tracks.LoadCommand}"
-                                             x:Uid="AlbumTracksLoader"
+                        <controls:StateBlock State="{Binding Videos.ContentState}"
+                                             ReloadCommand="{Binding Videos.LoadCommand}"
+                                             x:Uid="VideoAlbumVideosLoader"
                                              Margin="0,0,0,60" 
-                                             LoadingText="Загружаем список треков альбома..."
+                                             LoadingText="Загружаем список видеозаписей альбома..."
                                              ErrorText="Не удалось загрузить содержимое альбома"
                                              NoDataText="Это очень пустой альбом"/>
                     </DataTemplate>
                 </ListView.FooterTemplate>
                 <i:Interaction.Behaviors>
                     <c:EventTriggerBehavior EventName="ItemClick">
-                        <c:InvokeCommandAction Command="{Binding PlayTracksCommand}"
+                        <c:InvokeCommandAction Command="{Binding OpenVideoCommand}"
                                                InputConverter="{StaticResource ItemClickEventArgsConverter}" />
                     </c:EventTriggerBehavior>
-                    <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
-                                                    SelectAll="{Binding SelectAll}"
-                                                    Command="{Binding SelectionChangedCommand}" />
                 </i:Interaction.Behaviors>
             </ListView>
         </Grid>

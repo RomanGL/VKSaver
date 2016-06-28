@@ -19,47 +19,6 @@
         <converters:UserContentGroupKeyToStringConverter x:Key="GroupKeyToStringConverter" />        
         <common:DataContextProxy x:Key="DataContextProxy" />
 
-        <DataTemplate x:Key="VideoTemplate">
-            <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <controls:ImagePlaceholder Height="62"
-                                           Width="110"
-                                           Text="{Binding Title}"
-                                           Source="{Binding Photo320}"
-                                           Grid.RowSpan="2"
-                                           VerticalAlignment="Top"
-                                           Pivot.SlideInAnimationGroup="GroupOne" />
-
-                <TextBlock Text="{Binding Title}"
-                           Style="{StaticResource BaseItemStyle}"
-                           FontSize="28"
-                           FontWeight="SemiLight"
-                           Margin="10,0,0,0"
-                           TextWrapping="WrapWholeWords"
-                           MaxLines="2"
-                           Grid.Column="1"
-                           Pivot.SlideInAnimationGroup="GroupTwo"
-                           ContinuumNavigationTransitionInfo.IsExitElement="True" />
-                <TextBlock Text="{Binding Duration, Converter={StaticResource TimeConverter}}"
-                           Style="{StaticResource BaseItemStyle}"
-                           FontSize="18"
-                           Margin="10,0,0,0"
-                           TextWrapping="WrapWholeWords"
-                           MaxLines="2"
-                           Grid.Column="1"
-                           Grid.Row="1"
-                           Pivot.SlideInAnimationGroup="GroupThree" />
-            </Grid>
-        </DataTemplate>
-
         <DataTemplate x:Key="JumpListHeaderTemplate">
             <Border>
                 <TextBlock Text="{Binding Key, Converter={StaticResource GroupKeyToStringConverter}}"

@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtistInfoViewModel.cs" />
+    <Compile Include="VideoAlbumViewModel.cs" />
     <Compile Include="AudioAlbumViewModel.cs" />
     <Compile Include="Collections\IMultiSelectCollectionView.cs" />
     <Compile Include="Collections\StateSupportMultiSelectCollection.cs" />

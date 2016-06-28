@@ -46,10 +46,6 @@
           <source>показать больше</source>
           <target state="translated">show more</target>
         </trans-unit>
-        <trans-unit id="MainView_PlayerButton.Label" translate="yes" xml:space="preserve">
-          <source>проигрыватель</source>
-          <target state="translated">player</target>
-        </trans-unit>
         <trans-unit id="MainView_AboutItem.Content" translate="yes" xml:space="preserve">
           <source>о программе</source>
           <target state="translated">about</target>
@@ -94,10 +90,6 @@
         <trans-unit id="MainView_TopTracksItem.Content" translate="yes" xml:space="preserve">
           <source>топ треков</source>
           <target state="translated">top tracks</target>
-        </trans-unit>
-        <trans-unit id="MainView_TransferManagerButton.Label" translate="yes" xml:space="preserve">
-          <source>менеджер загрузок</source>
-          <target state="translated">transfer manager</target>
         </trans-unit>
         <trans-unit id="MainView_TransferManagerItem.Content" translate="yes" xml:space="preserve">
           <source>менеджер загрузок</source>
@@ -335,7 +327,7 @@ Go back to continue</target>
         </trans-unit>
         <trans-unit id="AlbumTracksLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список треков альбома...</source>
-          <target state="translated">Loading the list of tracks on the album...</target>
+          <target state="translated">Loading the list of tracks in the album...</target>
         </trans-unit>
         <trans-unit id="AlbumTracksLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В этом альбоме нет треков</source>
@@ -894,11 +886,11 @@ Operation will resume once the connection becomes available.</target>
         </trans-unit>
         <trans-unit id="Message_VideoPlayer_Failed_Text" translate="yes" xml:space="preserve">
           <source>Невозможно воспроизвести эту видеозапись. Отсутствует соединение либо данный формат видеозаписи не поддерживается.</source>
-          <target state="new">Невозможно воспроизвести эту видеозапись. Отсутствует соединение либо данный формат видеозаписи не поддерживается.</target>
+          <target state="translated">This video cannot be played. There is no connection or the video format is not supported.</target>
         </trans-unit>
         <trans-unit id="Message_VideoPlayer_Failed_Title" translate="yes" xml:space="preserve">
           <source>Невозможно воспроизвести</source>
-          <target state="new">Невозможно воспроизвести</target>
+          <target state="translated">Can't play</target>
         </trans-unit>
         <trans-unit id="AboutView_Groove_Text.Text" translate="yes" xml:space="preserve">
           <source>Love your music - set it free</source>
@@ -934,6 +926,34 @@ There is no connection or access to the videos is closed.</target>
         <trans-unit id="Message_VideoInfo_GetLinksFailed_Title" translate="yes" xml:space="preserve">
           <source>Не удалось получить ссылки</source>
           <target state="translated">Failed to get the links</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Player.Label" translate="yes" xml:space="preserve">
+          <source>проигрыватель</source>
+          <target state="translated">player</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_TransferManager.Label" translate="yes" xml:space="preserve">
+          <source>менеджер загрузок</source>
+          <target state="translated">transfer manager</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Player_Text" translate="yes" xml:space="preserve">
+          <source>проигрыватель</source>
+          <target state="translated">player</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_TransferManager_Text" translate="yes" xml:space="preserve">
+          <source>менеджер загрузок</source>
+          <target state="translated">transfer manager</target>
+        </trans-unit>
+        <trans-unit id="VideoAlbumVideosLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить содержимое альбома</source>
+          <target state="translated">Failed to load the contents of the album</target>
+        </trans-unit>
+        <trans-unit id="VideoAlbumVideosLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список видеозаписей альбома...</source>
+          <target state="translated">Loading the list of videos in the album...</target>
+        </trans-unit>
+        <trans-unit id="VideoAlbumVideosLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В этом альбоме нет видеозаписей</source>
+          <target state="translated">There are no videos in this album</target>
         </trans-unit>
       </group>
     </body>

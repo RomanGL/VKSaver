@@ -42,9 +42,6 @@
   <data name="MainView_ShowMore.Text" xml:space="preserve">
     <value>show more</value>
   </data>
-  <data name="MainView_PlayerButton.Label" xml:space="preserve">
-    <value>player</value>
-  </data>
   <data name="MainView_AboutItem.Content" xml:space="preserve">
     <value>about</value>
   </data>
@@ -78,9 +75,6 @@
   </data>
   <data name="MainView_TopTracksItem.Content" xml:space="preserve">
     <value>top tracks</value>
-  </data>
-  <data name="MainView_TransferManagerButton.Label" xml:space="preserve">
-    <value>transfer manager</value>
   </data>
   <data name="MainView_TransferManagerItem.Content" xml:space="preserve">
     <value>transfer manager</value>
@@ -256,7 +250,7 @@ Go back to continue</value>
     <value>Failed to load the contents of the album</value>
   </data>
   <data name="AlbumTracksLoader.LoadingText" xml:space="preserve">
-    <value>Loading the list of tracks on the album...</value>
+    <value>Loading the list of tracks in the album...</value>
   </data>
   <data name="AlbumTracksLoader.NoDataText" xml:space="preserve">
     <value>In this album there is no tracks</value>
@@ -673,6 +667,12 @@ Operation will resume once the connection becomes available.</value>
   <data name="VideoInfoView_SelectQuality.Text" xml:space="preserve">
     <value>Select video quality</value>
   </data>
+  <data name="Message_VideoPlayer_Failed_Text" xml:space="preserve">
+    <value>This video cannot be played. There is no connection or the video format is not supported.</value>
+  </data>
+  <data name="Message_VideoPlayer_Failed_Title" xml:space="preserve">
+    <value>Can't play</value>
+  </data>
   <data name="AboutView_Groove_Text.Text" xml:space="preserve">
     <value>Love your music - set it free</value>
     <comment>Не переводить</comment>
@@ -699,5 +699,26 @@ There is no connection or access to the videos is closed.</value>
   </data>
   <data name="Message_VideoInfo_GetLinksFailed_Title" xml:space="preserve">
     <value>Failed to get the links</value>
+  </data>
+  <data name="AppBarButton_Player.Label" xml:space="preserve">
+    <value>player</value>
+  </data>
+  <data name="AppBarButton_TransferManager.Label" xml:space="preserve">
+    <value>transfer manager</value>
+  </data>
+  <data name="AppBarButton_Player_Text" xml:space="preserve">
+    <value>player</value>
+  </data>
+  <data name="AppBarButton_TransferManager_Text" xml:space="preserve">
+    <value>transfer manager</value>
+  </data>
+  <data name="VideoAlbumVideosLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the contents of the album</value>
+  </data>
+  <data name="VideoAlbumVideosLoader.LoadingText" xml:space="preserve">
+    <value>Loading the list of videos in the album...</value>
+  </data>
+  <data name="VideoAlbumVideosLoader.NoDataText" xml:space="preserve">
+    <value>There are no videos in this album</value>
   </data>
 </root>

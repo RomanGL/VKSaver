@@ -49,6 +49,8 @@ namespace VKSaver.Core.ViewModels
             AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand);
             AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, HasSelectedItems);
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
+
+            OpenTransferManagerCommand = new DelegateCommand(OnOpenTransferManagerCommand);
         }
 
         public PaginatedCollection<Audio> Audios { get; private set; }
@@ -95,6 +97,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand<Audio> AddToMyAudiosCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand OpenTransferManagerCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -178,6 +183,12 @@ namespace VKSaver.Core.ViewModels
                 Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionMode
             });
+
+            SecondaryItems.Add(new AppBarButton
+            {
+                Label = _locService["AppBarButton_TransferManager_Text"],
+                Command = OpenTransferManagerCommand
+            });
         }
 
         private void CreateSelectionAppBarButtons()
@@ -225,6 +236,11 @@ namespace VKSaver.Core.ViewModels
             IsItemClickEnabled = true;
 
             CreateDefaultAppBarButtons();
+        }
+
+        private void OnOpenTransferManagerCommand()
+        {
+            _navigationService.Navigate("TransferView", "downloads");
         }
 
         private async void OnPlayTracksCommand(Audio track)
