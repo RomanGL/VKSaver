@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace VKSaver.ViewModels.Common
+namespace VKSaver.Core.ViewModels.Common
 {
     public class JumpListGroup<T> : ObservableCollection<T>
     {

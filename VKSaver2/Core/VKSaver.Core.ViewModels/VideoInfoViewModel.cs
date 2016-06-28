@@ -5,9 +5,12 @@ using Newtonsoft.Json;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using VKSaver.Core.LinksExtractor;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.ViewModels.Common;
+using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -16,7 +19,8 @@ namespace VKSaver.Core.ViewModels
     {
         public VideoInfoViewModel(INavigationService navigationService, InTouch inTouch,
             IAppLoaderService appLoaderService, ILocService locService,
-            IVideoLinksExtractor videoLinksExtractor, IDialogsService dialogsService)
+            IVideoLinksExtractor videoLinksExtractor, IDialogsService dialogsService,
+            IDownloadsServiceHelper downloadsServiceHelper)
         {
             _navigationService = navigationService;
             _inTouch = inTouch;
@@ -24,16 +28,27 @@ namespace VKSaver.Core.ViewModels
             _locService = locService;
             _videoLinksExtractor = videoLinksExtractor;
             _dialogsService = dialogsService;
+            _downloadsServiceHelper = downloadsServiceHelper;
 
             LoadLinksCommand = new DelegateCommand(OnLoadLinksCommand);
-            PlayVideoCommand = new DelegateCommand(OnPlayVideoCommand);
+            PlayVideoCommand = new DelegateCommand(OnPlayVideoCommand, CanPlayAndDownload);
+            DownloadVideoCommand = new DelegateCommand(OnDownloadVideoCommand, CanPlayAndDownload);
         }
 
         public ContentState LinksState { get; private set; }
 
         public List<IVideoLink> VideoLinks { get; private set; }
 
-        public int SelectedLinkIndex { get; set; }
+        public int SelectedLinkIndex
+        {
+            get { return _selectedLinkIndex; }
+            set
+            {
+                _selectedLinkIndex = value;
+                PlayVideoCommand.RaiseCanExecuteChanged();
+                DownloadVideoCommand.RaiseCanExecuteChanged();
+            }
+        }
 
         public Video Video { get; private set; }
 
@@ -62,18 +77,25 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand LoadLinksCommand { get; private set; }  
         
         [DoNotNotify]
-        public DelegateCommand PlayVideoCommand { get; private set; }      
+        public DelegateCommand PlayVideoCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand DownloadVideoCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             Video = JsonConvert.DeserializeObject<Video>(e.Parameter.ToString());
 
             if (viewModelState.Count > 0)
-            {
-
+            {                
+                VideoLinks = JsonConvert.DeserializeObject<List<CommonVideoLink>>(
+                    viewModelState[nameof(VideoLinks)].ToString()).Cast<IVideoLink>().ToList();
+                SelectedLinkIndex = (int)viewModelState[nameof(SelectedLinkIndex)];
             }
             else
             {
+                SelectedLinkIndex = 0;
+                VideoLinks = null;
             }
 
             UpdateState();
@@ -82,6 +104,12 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                viewModelState[nameof(VideoLinks)] = JsonConvert.SerializeObject(VideoLinks);
+                viewModelState[nameof(SelectedLinkIndex)] = SelectedLinkIndex;
+            }
+
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
@@ -102,13 +130,15 @@ namespace VKSaver.Core.ViewModels
             //else if (Video.Player.Contains("vimeo.com"))
             //    VideoStoresOn = _locService["VideoInfoView_StoresOn_Vimeo_Text"];
             else
-            {
-                LinksState = ContentState.NoData;
+            {                
                 VideoStoresOn = _locService["VideoInfoView_StoresOn_Unsupported_Text"];
                 return;
             }
 
-            LinksState = ContentState.Error;
+            if (VideoLinks != null)
+                LinksState = ContentState.Normal;
+            else
+                LinksState = ContentState.Error;
         }
 
         private async void OnLoadLinksCommand()
@@ -135,11 +165,23 @@ namespace VKSaver.Core.ViewModels
             LinksState = ContentState.Normal;
         }
 
+        private bool CanPlayAndDownload()
+        {
+            return SelectedLinkIndex != -1;
+        }
+
         private void OnPlayVideoCommand()
         {
             var data = new KeyValuePair<int, List<IVideoLink>>(SelectedLinkIndex, VideoLinks);
             _navigationService.Navigate("VideoPlayerView", JsonConvert.SerializeObject(data));
         }
+
+        private void OnDownloadVideoCommand()
+        {
+            _downloadsServiceHelper.StartDownloadingAsync(VideoLinks[SelectedLinkIndex].ToDownloadable(Video.Title));
+        }
+
+        private int _selectedLinkIndex;
 
         private readonly INavigationService _navigationService;
         private readonly IAppLoaderService _appLoaderService;
@@ -147,5 +189,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IVideoLinksExtractor _videoLinksExtractor;
         private readonly InTouch _inTouch;
         private readonly IDialogsService _dialogsService;
+        private readonly IDownloadsServiceHelper _downloadsServiceHelper;
     }
 }

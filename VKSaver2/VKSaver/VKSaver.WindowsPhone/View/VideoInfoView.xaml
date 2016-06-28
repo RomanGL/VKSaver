@@ -97,7 +97,8 @@
                                             Style="{StaticResource PlayerGlyphButtonStyle}"
                                             BorderBrush="{StaticResource TitleBrush}"
                                             Foreground="{StaticResource TitleBrush}" 
-                                            Grid.Column="1"/>
+                                            Grid.Column="1"
+                                            Command="{Binding DownloadVideoCommand}"/>
                                 </Grid>
                             </StackPanel>
                         </controls:ContentContainer>

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.Globalization.Collation;
 
-namespace VKSaver.ViewModels.Common
+namespace VKSaver.Core.ViewModels.Common
 {
     public static class JumpListHelper
     {

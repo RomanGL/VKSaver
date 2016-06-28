@@ -2,12 +2,10 @@
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Newtonsoft.Json;
 using PropertyChanged;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VKSaver.Core.LinksExtractor;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 using Windows.UI.Xaml.Navigation;
 

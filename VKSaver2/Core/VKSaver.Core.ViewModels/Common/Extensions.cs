@@ -1,6 +1,7 @@
 ﻿using ModernDev.InTouch;
 using System.Collections.Generic;
 using System.Linq;
+using VKSaver.Core.LinksExtractor;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Models.Transfer;
@@ -47,6 +48,17 @@ namespace VKSaver.Core.ViewModels.Common
             };
             downloadable.ContentType = GetContentTypeFromExtension(downloadable.Extension);
             return downloadable;
+        }
+
+        public static IDownloadable ToDownloadable(this IVideoLink link, string title)
+        {
+            return new SimpleDownloadable
+            {
+                Extension = ".mp4",
+                FileName = title,
+                Source = link.Source,
+                ContentType = FileContentType.Video
+            };
         }
     }
 }
