@@ -123,9 +123,6 @@
   <data name="AboutView_AppName.Text" xml:space="preserve">
     <value>ВКачай 2 Beta</value>
   </data>
-  <data name="AboutView_PoweredBy.Text" xml:space="preserve">
-    <value>Powered by OneVK</value>
-  </data>
   <data name="AboutView_Version.Text" xml:space="preserve">
     <value>Версия:</value>
   </data>
@@ -785,5 +782,32 @@
   </data>
   <data name="Message_VideoPlayer_Failed_Title" xml:space="preserve">
     <value>Невозможно воспроизвести</value>
+  </data>
+  <data name="AboutView_Groove_Text.Text" xml:space="preserve">
+    <value>Love your music - set it free</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_Groove_Title.Text" xml:space="preserve">
+    <value>Groove Music</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_InTouch_Text.Text" xml:space="preserve">
+    <value>C# wrapper for VK API</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_InTouch_Title.Text" xml:space="preserve">
+    <value>InTouch</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_LastFm_Title.Text" xml:space="preserve">
+    <value>Last.fm</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="Message_VideoInfo_GetLinksFailed_Text" xml:space="preserve">
+    <value>Не удалось получить ссылки для этой видеозаписи.
+Отсутствует соединение либо доступ к видеозаписи закрыт.</value>
+  </data>
+  <data name="Message_VideoInfo_GetLinksFailed_Title" xml:space="preserve">
+    <value>Не удалось получить ссылки</value>
   </data>
 </root>

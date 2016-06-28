@@ -4,15 +4,12 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.ViewManagement;
 using Windows.ApplicationModel.Store;
-using OneTeam.SDK.VK.Services.Interfaces;
-using OneTeam.SDK.VK.Services;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Unity;
 using System.Globalization;
 using OneTeam.SDK.LastFm.Services.Interfaces;
 using OneTeam.SDK.LastFm.Services;
 using VKSaver.Core.Services;
-using OneTeam.SDK.Core.Services.Interfaces;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using Windows.UI.Xaml;
@@ -21,6 +18,7 @@ using VKSaver.Core.Models.Player;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Microsoft.Practices.ServiceLocation;
 using VKSaver.Core.LinksExtractor;
+using ModernDev.InTouch;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -101,19 +99,21 @@ namespace VKSaver
             ViewModelLocator.SetDefaultViewTypeToViewModelTypeResolver(GetViewModelType);
 
             var settingsService = new SettingsService();
-            var vkLoginService = new VKLoginService(VKSAVER_APP_ID, settingsService);
+            var inTouch = new InTouch();
+            var vkLoginService = new VKLoginService(settingsService, inTouch);
+            if (vkLoginService.IsAuthorized)
+                vkLoginService.InitializeInTouch();
 
             _container.RegisterInstance<IServiceResolver>(this);
             _container.RegisterInstance<ISettingsService>(settingsService);
-            _container.RegisterInstance(this.NavigationService);
-            _container.RegisterInstance<IVKLoginService>(vkLoginService);            
+            _container.RegisterInstance(this.NavigationService);           
             _container.RegisterInstance<ILFService>(new LFService("***REMOVED***"));
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
             _container.RegisterInstance<ILocService>(_locService);
-            _container.RegisterInstance<ILanguageProvider>(_locService);
-
+            _container.RegisterInstance<IVKLoginService>(vkLoginService);
+            _container.RegisterInstance<InTouch>(inTouch);
+            
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IVKService, VKService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IDialogsService, DialogsService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IPurchaseService, PurchaseService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ITracksShuffleService, TracksShuffleService>(new ContainerControlledLifetimeManager());
@@ -147,11 +147,12 @@ namespace VKSaver
         protected override Task OnLaunchApplication(LaunchActivatedEventArgs args)
         {
             var playerService = _container.Resolve<IPlayerService>();
+            var vkLoginService = _container.Resolve<IVKLoginService>();            
 
             if (args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning)
             {
-                if (_container.Resolve<IVKLoginService>().IsAuthorized)
+                if (vkLoginService.IsAuthorized)
                     NavigationService.Navigate("MainView", null);
                 else
                     NavigationService.Navigate("LoginView", null);
@@ -206,7 +207,15 @@ namespace VKSaver
 
         protected override object Resolve(Type type)
         {
-            return _container.Resolve(type);
+            try
+            {
+                return _container.Resolve(type);
+            }
+            catch (Exception)
+            {
+                NavigationService.Navigate("ErrorView", null);
+                return null;
+            }
         }
 
         public T Resolve<T>() where T: class

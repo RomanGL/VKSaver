@@ -257,8 +257,7 @@
                                             SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
                         <ListView.GroupStyle>
                             <GroupStyle HeaderTemplate="{StaticResource JumpListHeaderTemplate}"
-                                        HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
-                                        HidesIfEmpty="True" />
+                                        HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"/>
                         </ListView.GroupStyle>
                         <ListView.FooterTemplate>
                             <DataTemplate>
@@ -301,8 +300,7 @@
                                             ItemContainerStyleSelector="{StaticResource VideoItemContainerSelector}">
                         <ListView.GroupStyle>
                             <GroupStyle HeaderTemplate="{StaticResource JumpListHeaderTemplate}"
-                                        HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
-                                        HidesIfEmpty="True" />
+                                        HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"/>
                         </ListView.GroupStyle>
                         <ListView.FooterTemplate>
                             <DataTemplate>

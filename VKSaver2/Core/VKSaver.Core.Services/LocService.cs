@@ -1,5 +1,4 @@
-﻿using OneTeam.SDK.VK.Models.Common;
-using System;
+﻿using System;
 using System.Globalization;
 using VKSaver.Core.Services.Interfaces;
 using Windows.ApplicationModel.Resources;
@@ -20,14 +19,14 @@ namespace VKSaver.Core.Services
             return _loader.GetString(resName);
         }
 
-        public Language GetLanguage()
-        {
-            string currentLanguage = CultureInfo.CurrentCulture.Name;
-            Language lang = Language.en;
-            Enum.TryParse(currentLanguage, out lang);
+        //public Language GetLanguage()
+        //{
+        //    string currentLanguage = CultureInfo.CurrentCulture.Name;
+        //    Language lang = Language.en;
+        //    Enum.TryParse(currentLanguage, out lang);
 
-            return lang;
-        }
+        //    return lang;
+        //}
         
         private readonly ResourceLoader _loader;
     }

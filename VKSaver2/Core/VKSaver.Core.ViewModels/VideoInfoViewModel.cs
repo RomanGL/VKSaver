@@ -1,14 +1,10 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using ModernDev.InTouch;
 using Newtonsoft.Json;
-using OneTeam.SDK.VK.Models.Video;
-using OneTeam.SDK.VK.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VKSaver.Core.LinksExtractor;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
@@ -18,15 +14,16 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class VideoInfoViewModel : ViewModelBase
     {
-        public VideoInfoViewModel(INavigationService navigationService, IVKService vkService,
+        public VideoInfoViewModel(INavigationService navigationService, InTouch inTouch,
             IAppLoaderService appLoaderService, ILocService locService,
-            IVideoLinksExtractor videoLinksExtractor)
+            IVideoLinksExtractor videoLinksExtractor, IDialogsService dialogsService)
         {
             _navigationService = navigationService;
-            _vkService = vkService;
+            _inTouch = inTouch;
             _appLoaderService = appLoaderService;
             _locService = locService;
             _videoLinksExtractor = videoLinksExtractor;
+            _dialogsService = dialogsService;
 
             LoadLinksCommand = new DelegateCommand(OnLoadLinksCommand);
             PlayVideoCommand = new DelegateCommand(OnPlayVideoCommand);
@@ -38,7 +35,7 @@ namespace VKSaver.Core.ViewModels
 
         public int SelectedLinkIndex { get; set; }
 
-        public VKVideo Video { get; private set; }
+        public Video Video { get; private set; }
 
         [DependsOn(nameof(Video))]
         public string VideoImage
@@ -69,7 +66,7 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            Video = JsonConvert.DeserializeObject<VKVideo>(e.Parameter.ToString());
+            Video = JsonConvert.DeserializeObject<Video>(e.Parameter.ToString());
 
             if (viewModelState.Count > 0)
             {
@@ -127,6 +124,10 @@ namespace VKSaver.Core.ViewModels
             catch (Exception)
             {
                 LinksState = ContentState.Error;
+
+                _dialogsService.Show(_locService["Message_VideoInfo_GetLinksFailed_Text"],
+                    _locService["Message_VideoInfo_GetLinksFailed_Title"]);
+
                 return;
             }
 
@@ -141,9 +142,10 @@ namespace VKSaver.Core.ViewModels
         }
 
         private readonly INavigationService _navigationService;
-        private readonly IVKService _vkService;
         private readonly IAppLoaderService _appLoaderService;
         private readonly ILocService _locService;
         private readonly IVideoLinksExtractor _videoLinksExtractor;
+        private readonly InTouch _inTouch;
+        private readonly IDialogsService _dialogsService;
     }
 }

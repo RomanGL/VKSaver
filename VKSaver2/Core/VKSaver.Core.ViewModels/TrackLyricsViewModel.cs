@@ -1,15 +1,10 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using ModernDev.InTouch;
 using Newtonsoft.Json;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.VK.Models.Audio;
-using OneTeam.SDK.VK.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
@@ -22,10 +17,10 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class TrackLyricsViewModel : ViewModelBase
     {
-        public TrackLyricsViewModel(IVKService vkService, INavigationService navigationService,
+        public TrackLyricsViewModel(InTouch inTouch, INavigationService navigationService,
             IDialogsService dialogService, ILocService locService)
         {
-            _vkService = vkService;
+            _inTouch = inTouch;
             _navigationService = navigationService;
             _dialogService = dialogService;
             _locService = locService;
@@ -102,27 +97,26 @@ namespace VKSaver.Core.ViewModels
             }
 
             LyricsState = ContentState.Loading;
-            var parameters = new Dictionary<string, string>
-            {
-                { "lyrics_id", Track.LyricsID.ToString() }
-            };
 
-            var request = new Request<VKAudioLyrics>("audio.getLyrics", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
+            try
             {
-                if (String.IsNullOrWhiteSpace(response.Response.Text))
+                var response = await _inTouch.Audio.GetLyrics((int)Track.LyricsID);
+                if (!response.IsError)
                 {
-                    ShowError();
+                    if (String.IsNullOrWhiteSpace(response.Data.Text))
+                    {
+                        ShowError();
+                        return;
+                    }
+
+                    Lyrics = response.Data.Text;
+                    LyricsState = ContentState.Normal;
                     return;
                 }
-
-                Lyrics = response.Response.Text;
-                LyricsState = ContentState.Normal;
             }
-            else
-                LyricsState = ContentState.Error;
+            catch (Exception) { }
+
+            LyricsState = ContentState.Error;
         }
 
         private void ShowError()
@@ -133,10 +127,10 @@ namespace VKSaver.Core.ViewModels
         }
 
         private string _artistImage;
-
-        private readonly IVKService _vkService;
+        
         private readonly INavigationService _navigationService;
         private readonly IDialogsService _dialogService;
         private readonly ILocService _locService;
+        private readonly InTouch _inTouch;
     }
 }

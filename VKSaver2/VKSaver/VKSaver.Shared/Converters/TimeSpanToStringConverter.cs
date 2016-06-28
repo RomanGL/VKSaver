@@ -17,15 +17,20 @@ namespace VKSaver.Converters
         /// Поддерживает инверсию.
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, string language)
-        {            
+        {
+            TimeSpan time;
+
             if (value == null)
                 throw new ArgumentNullException("value");
-            if (value.GetType() != typeof(TimeSpan))
+            if (value is int)
+                time = TimeSpan.FromSeconds((int)value);
+            else if (value.GetType() == typeof(TimeSpan))
+                time = (TimeSpan)value;
+            else
                 throw new ArgumentException("targetType", "Ожидался тип System.TimeSpan.");
 
             bool isNegative = parameter == null ? 
-                false : bool.Parse(parameter.ToString());
-            var time = (TimeSpan)value;
+                false : bool.Parse(parameter.ToString());            
 
             try
             {

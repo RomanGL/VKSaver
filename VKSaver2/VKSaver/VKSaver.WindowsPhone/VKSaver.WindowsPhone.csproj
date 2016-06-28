@@ -95,6 +95,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\Album.jpg" />
     <Content Include="Assets\Background\PlayerBackground.png" />
+    <Content Include="Assets\groove-logo.png" />
     <Content Include="Assets\HubBackground.jpg" />
     <Content Include="Assets\Background\Background.dark.jpg" />
     <Content Include="Assets\Background\Background.light.jpg" />
@@ -106,6 +107,8 @@
     <Content Include="Assets\Images\PlayerLogo3.png" />
     <Content Include="Assets\Images\PlayerLogo4.png" />
     <Content Include="Assets\Images\VideoPlayerPoster.png" />
+    <Content Include="Assets\it-logo.png" />
+    <Content Include="Assets\lf-logo.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\LogoPlay.scale-240.png" />
     <Content Include="Assets\Purchase\1.png" />
@@ -331,6 +334,9 @@
       <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ModernDev.InTouch">
+      <HintPath>..\..\Libs\ModernDev.InTouch.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -341,9 +347,6 @@
     </Reference>
     <Reference Include="OneTeam.SDK.LastFm">
       <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
-    </Reference>
-    <Reference Include="OneTeam.SDK.VK">
-      <HintPath>..\..\Libs\OneTeam.SDK.VK.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged, Version=1.51.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PropertyChanged.Fody.1.51.0\lib\dotnet\PropertyChanged.dll</HintPath>

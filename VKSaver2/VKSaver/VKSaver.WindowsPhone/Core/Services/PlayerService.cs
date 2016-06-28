@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using OneTeam.SDK.Core;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
-using System.Threading;
-using Windows.Media.Playback;
-using OneTeam.SDK.Core.Services.Interfaces;
-using static VKSaver.Core.Services.PlayerConstants;
 using Windows.Foundation.Collections;
+using Windows.Media.Playback;
+using static VKSaver.Core.Services.PlayerConstants;
 
 namespace VKSaver.Core.Services
 {

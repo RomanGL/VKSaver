@@ -1,40 +1,33 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
-using OneTeam.SDK.Core.Services.Interfaces;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using ModernDev.InTouch;
+using Newtonsoft.Json;
+using OneTeam.SDK.Core;
 using OneTeam.SDK.LastFm.Models.Audio;
+using OneTeam.SDK.LastFm.Models.Response;
 using OneTeam.SDK.LastFm.Services.Interfaces;
-using OneTeam.SDK.VK.Services.Interfaces;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using PropertyChanged;
-using VKSaver.Core.ViewModels.Collections;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.LastFm.Models.Response;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using Newtonsoft.Json;
-using VKSaver.Core.Services.Interfaces;
-using Windows.UI.Xaml.Navigation;
-using OneTeam.SDK.VK.Models.Audio;
-using OneTeam.SDK.VK.Models.Common;
-using VKSaver.Core.ViewModels.Common;
 using VKSaver.Core.Models.Player;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
-using Windows.UI.Xaml.Media.Imaging;
+using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.ViewModels.Collections;
+using VKSaver.Core.ViewModels.Common;
+using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public sealed class MainViewModel : ViewModelBase
     {
-        public MainViewModel(IVKService vkService, ILFService lfService, 
+        public MainViewModel(InTouch inTouch, ILFService lfService, 
             ISettingsService settingsService, INavigationService navigationService,
             IPurchaseService purchaseService, IPlayerService playerService,
             IDownloadsServiceHelper downloadsServiceHelper, IImagesCacheService imagesCacheService)
         {
-            _vkService = vkService;
+            _inTouch = inTouch;
             _lfService = lfService;
             _settingsService = settingsService;
             _navigationService = navigationService;
@@ -53,18 +46,18 @@ namespace VKSaver.Core.ViewModels
             GoToAboutViewCommand = new DelegateCommand(OnGoToAboutViewCommand);
             GoToRecommendedViewCommand = new DelegateCommand(OnGoToRecommendedViewCommand);
             GoToPlayerViewCommand = new DelegateCommand(OnGoToPlayerViewCommand);
-            PlayRecommendedTracksCommand = new DelegateCommand<VKAudio>(OnPlayRecommendedTracksCommand);
-            PlayUserTracksCommand = new DelegateCommand<VKAudio>(OnPlayUserTracksCommand);
-            DownloadTrackCommand = new DelegateCommand<VKAudio>(OnDownloadTrackCommand);
+            PlayRecommendedTracksCommand = new DelegateCommand<Audio>(OnPlayRecommendedTracksCommand);
+            PlayUserTracksCommand = new DelegateCommand<Audio>(OnPlayUserTracksCommand);
+            DownloadTrackCommand = new DelegateCommand<Audio>(OnDownloadTrackCommand);
 
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
         
-        public SimpleStateSupportCollection<VKAudio> UserTracks { get; private set; }
+        public SimpleStateSupportCollection<Audio> UserTracks { get; private set; }
                 
         public SimpleStateSupportCollection<LFArtistExtended> TopArtistsLF { get; private set; }
         
-        public SimpleStateSupportCollection<VKAudio> RecommendedTracksVK { get; private set; }
+        public SimpleStateSupportCollection<Audio> RecommendedTracksVK { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand<LFAudioBase> GoToTrackInfoCommand { get; private set; }
@@ -100,16 +93,16 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand GoToPlayerViewCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<VKAudio> PlayRecommendedTracksCommand { get; private set; }
+        public DelegateCommand<Audio> PlayRecommendedTracksCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<VKAudio> PlayUserTracksCommand { get; private set; }
+        public DelegateCommand<Audio> PlayUserTracksCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand NotImplementedCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<VKAudio> DownloadTrackCommand { get; private set; }
+        public DelegateCommand<Audio> DownloadTrackCommand { get; private set; }
 
         public VKAudioWithImage FirstTrack { get; private set; }
 
@@ -120,13 +113,13 @@ namespace VKSaver.Core.ViewModels
             _backgroundLoaded = false;
             if (viewModelState.Count > 0)
             {
-                UserTracks = JsonConvert.DeserializeObject<SimpleStateSupportCollection<VKAudio>>(
+                UserTracks = JsonConvert.DeserializeObject<SimpleStateSupportCollection<Audio>>(
                     viewModelState[nameof(UserTracks)].ToString());
                 FirstTrack = JsonConvert.DeserializeObject<VKAudioWithImage>(
                     viewModelState[nameof(FirstTrack)].ToString());
                 TopArtistsLF = JsonConvert.DeserializeObject<SimpleStateSupportCollection<LFArtistExtended>>(
                     viewModelState[nameof(TopArtistsLF)].ToString());
-                RecommendedTracksVK = JsonConvert.DeserializeObject<SimpleStateSupportCollection<VKAudio>>(
+                RecommendedTracksVK = JsonConvert.DeserializeObject<SimpleStateSupportCollection<Audio>>(
                     viewModelState[nameof(RecommendedTracksVK)].ToString());
 
                 UserTracks.LoadItems = LoadUserTracks;
@@ -135,9 +128,9 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-                UserTracks = new SimpleStateSupportCollection<VKAudio>(LoadUserTracks);
+                UserTracks = new SimpleStateSupportCollection<Audio>(LoadUserTracks);
                 TopArtistsLF = new SimpleStateSupportCollection<LFArtistExtended>(LoadTopArtists);
-                RecommendedTracksVK = new SimpleStateSupportCollection<VKAudio>(LoadRecommendedTracks);
+                RecommendedTracksVK = new SimpleStateSupportCollection<Audio>(LoadRecommendedTracks);
             }
 
             UserTracks.Load();
@@ -163,31 +156,28 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
-        private async Task<IEnumerable<VKAudio>> LoadUserTracks()
+        private async Task<IEnumerable<Audio>> LoadUserTracks()
         {
             if (UserTracks.Any())
-                return new List<VKAudio>();
+                return new List<Audio>();
 
-            var request = new Request<VKCountedItemsObject<VKAudio>>("audio.get", 
-                new Dictionary<string, string> { { "count", "10" } });
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
+            var response = await _inTouch.Audio.Get(count: 10);
+            if (response.IsError)
+                throw new Exception(response.Error.ToString());
+            else
             {
-                if (response.Response.Count == 0)
-                    return new List<VKAudio>();
+                if (response.Data.Items.Count == 0)
+                    return new List<Audio>();
 
                 FirstTrack = new VKAudioWithImage
                 {
-                    VKTrack = response.Response.Items[0]
+                    VKTrack = response.Data.Items[0]
                 };
 
                 //TryLoadFirstTrackInfo(FirstTrack);
                 TryLoadBackground(FirstTrack);
-                return response.Response.Items.Skip(1);
+                return response.Data.Items.Skip(1);
             }
-            else
-                throw new Exception(response.Error.ToString());
         } 
 
         private async Task<IEnumerable<LFArtistExtended>> LoadTopArtists()
@@ -208,19 +198,16 @@ namespace VKSaver.Core.ViewModels
                 throw new Exception("LFChartArtistsResponse isn't valid.");
         }
 
-        private async Task<IEnumerable<VKAudio>> LoadRecommendedTracks()
+        private async Task<IEnumerable<Audio>> LoadRecommendedTracks()
         {
             if (RecommendedTracksVK.Any())
-                return new List<VKAudio>();
+                return new List<Audio>();
 
-            var request = new Request<VKCountedItemsObject<VKAudio>>("audio.getRecommendations",
-                new Dictionary<string, string> { { "count", "10" } });
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
-                return response.Response.Items;
-            else
+            var response = await _inTouch.Audio.GetRecommendations(count: 10);
+            if (response.IsError)
                 throw new Exception(response.Error.ToString());
+            else
+                return response.Data.Items;
         }
 
         private async void TryLoadBackground(VKAudioWithImage track)
@@ -347,14 +334,14 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("PlayerView", null);
         }
 
-        private async void OnPlayRecommendedTracksCommand(VKAudio track)
+        private async void OnPlayRecommendedTracksCommand(Audio track)
         {
             await _playerService.PlayNewTracks(RecommendedTracksVK.Select(a => a.ToPlayerTrack()),
                 RecommendedTracksVK.IndexOf(track));
             _navigationService.Navigate("PlayerView", null);
         }
 
-        private async void OnPlayUserTracksCommand(VKAudio track)
+        private async void OnPlayUserTracksCommand(Audio track)
         {
             List<IPlayerTrack> tracksToPlay = null;
             await Task.Run(() =>
@@ -373,14 +360,14 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("PlayerView", null);
         }
 
-        private async void OnDownloadTrackCommand(VKAudio track)
+        private async void OnDownloadTrackCommand(Audio track)
         {
             await _downloadsServiceHelper.StartDownloadingAsync(track.ToDownloadable());
         }
 
         private bool _backgroundLoaded;
 
-        private readonly IVKService _vkService;
+        private readonly InTouch _inTouch;
         private readonly ILFService _lfService;
         private readonly ISettingsService _settingsService;
         private readonly INavigationService _navigationService;
@@ -389,6 +376,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
         private readonly IImagesCacheService _imagesCacheService;
 
-        private const string HUB_BACKGROUND_DEFAULT = "ms-appx:///Assets/HubBackground.jpg";
+        private const string HUB_BACKGROUND_DEFAULT = "ms-appx:///Assets/HubBackground.jpg";        
     }
 }

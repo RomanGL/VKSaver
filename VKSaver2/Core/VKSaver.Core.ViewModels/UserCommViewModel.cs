@@ -1,16 +1,11 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using ModernDev.InTouch;
 using Newtonsoft.Json;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.VK.Models.Common;
-using OneTeam.SDK.VK.Models.Groups;
-using OneTeam.SDK.VK.Models.Users;
-using OneTeam.SDK.VK.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.ViewModels.Collections;
 using Windows.UI.Xaml.Navigation;
@@ -20,9 +15,9 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class UserCommViewModel : ViewModelBase
     {
-        public UserCommViewModel(IVKService vkService, INavigationService navigationService)
+        public UserCommViewModel(InTouch inTouch, INavigationService navigationService)
         {
-            _vkService = vkService;
+            _inTouch = inTouch;
             _navigationService = navigationService;
 
             ExecuteItemCommand = new DelegateCommand<object>(OnExecuteItemCommand);
@@ -31,11 +26,11 @@ namespace VKSaver.Core.ViewModels
 
         public string PageTitle { get; private set; }
 
-        public PaginatedCollection<VKUser> Friends { get; private set; }
+        public PaginatedCollection<User> Friends { get; private set; }
 
-        public SimpleStateSupportCollection<VKUserList> FriendsLists { get; private set; }
+        public SimpleStateSupportCollection<FriendsList> FriendsLists { get; private set; }
 
-        public PaginatedCollection<VKGroup> Groups { get; private set; }
+        public PaginatedCollection<Group> Groups { get; private set; }
 
         public int LastPivotIndex { get; set; }
 
@@ -47,7 +42,7 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            var parameter = JsonConvert.DeserializeObject<KeyValuePair<string, long>>(e.Parameter.ToString());
+            var parameter = JsonConvert.DeserializeObject<KeyValuePair<string, int>>(e.Parameter.ToString());
             _userID = parameter.Value;
 
             if (e.NavigationMode == NavigationMode.New)
@@ -71,16 +66,16 @@ namespace VKSaver.Core.ViewModels
 
             if (viewModelState.Count > 0)
             {
-                Friends = JsonConvert.DeserializeObject<PaginatedCollection<VKUser>>(
+                Friends = JsonConvert.DeserializeObject<PaginatedCollection<User>>(
                     viewModelState[nameof(Friends)].ToString());
-                FriendsLists = JsonConvert.DeserializeObject<SimpleStateSupportCollection<VKUserList>>(
+                FriendsLists = JsonConvert.DeserializeObject<SimpleStateSupportCollection<FriendsList>>(
                     viewModelState[nameof(FriendsLists)].ToString());
-                Groups = JsonConvert.DeserializeObject<PaginatedCollection<VKGroup>>(
+                Groups = JsonConvert.DeserializeObject<PaginatedCollection<Group>>(
                     viewModelState[nameof(Groups)].ToString());
 
                 LastPivotIndex = (int)viewModelState[nameof(LastPivotIndex)];
-                _friendsOffset = (uint)viewModelState[nameof(_friendsOffset)];
-                _groupsOffset = (uint)viewModelState[nameof(_groupsOffset)];
+                _friendsOffset = (int)viewModelState[nameof(_friendsOffset)];
+                _groupsOffset = (int)viewModelState[nameof(_groupsOffset)];
 
                 Friends.LoadMoreItems = LoadMoreFriends;
                 FriendsLists.LoadItems = LoadLists;
@@ -88,9 +83,9 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-                Friends = new PaginatedCollection<VKUser>(LoadMoreFriends);
-                FriendsLists = new SimpleStateSupportCollection<VKUserList>(LoadLists);
-                Groups = new PaginatedCollection<VKGroup>(LoadMoreGroups);
+                Friends = new PaginatedCollection<User>(LoadMoreFriends);
+                FriendsLists = new SimpleStateSupportCollection<FriendsList>(LoadLists);
+                Groups = new PaginatedCollection<Group>(LoadMoreGroups);
 
                 _friendsOffset = 0;
                 _groupsOffset = 0;
@@ -118,126 +113,89 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
-        private async Task<IEnumerable<VKUser>> LoadMoreFriends(uint page)
+        private async Task<IEnumerable<User>> LoadMoreFriends(uint page)
         {
-            var parameters = new Dictionary<string, string>
-            {
-                { "user_id", _userID.ToString() },
-                { "order", "hints" },
-                { "fields", "photo_100" },
-                { "count", "50" },
-                { "offset", _friendsOffset.ToString() }
-            };
+            var response = await _inTouch.Friends.Get(
+                _userID,
+                count: 50, offset: _friendsOffset,
+                fields: new List<UserProfileFields> { UserProfileFields.Photo100 });
 
-            var request = new Request<VKCountedItemsObject<VKUser>>("friends.get", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
+            if (response.IsError)
+                throw new Exception(response.Error.ToString());
 
-            if (response.IsSuccess)
-            {
-                _friendsOffset += 50;
-                return response.Response.Items;
-            }
-            else
-                throw new Exception();
+            _friendsOffset += 50;
+            return response.Data.Items;
         }
 
-        private async Task<IEnumerable<VKUserList>> LoadLists()
+        private async Task<IEnumerable<FriendsList>> LoadLists()
         {
             if (FriendsLists.Any())
-                return new List<VKUserList>(0);
+                return new List<FriendsList>(0);
 
-            var parameters = new Dictionary<string, string>();
-            parameters["return_system"] = "1";
-
-            if (_userID > 0)
-                parameters["user_id"] = _userID.ToString();
-
-            var request = new Request<VKCountedItemsObject<VKUserList>>("friends.getLists", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-            
-            if (response.IsSuccess)
-                return response.Response.Items;
-            else
+            var response = await _inTouch.Friends.GetLists(_userID, true);
+            if (response.IsError)
                 throw new Exception(response.Error.ToString());
+
+            return response.Data.Items;
         }
 
-        private async Task<IEnumerable<VKGroup>> LoadMoreGroups(uint page)
+        private async Task<IEnumerable<Group>> LoadMoreGroups(uint page)
         {
-            var parameters = new Dictionary<string, string>
+            var response = await _inTouch.Groups.Get(new GroupsGetParams
             {
-                { "count", "50" },
-                { "offset", _groupsOffset.ToString() },
-                { "extended", "1" }
-            };
+                UserId = _userID > 0 ? (int?)_userID : null,
+                Count = 50,
+                Offset = _groupsOffset
+            });
 
-            if (_userID > 0)
-                parameters["user_id"] = _userID.ToString();
-
-            var request = new Request<VKCountedItemsObject<VKGroup>>("groups.get", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
-            {
-                _groupsOffset += 50;
-                return response.Response.Items;
-            }
-            else
+            if (response.IsError)
                 throw new Exception(response.Error.ToString());
+
+            _groupsOffset += 50;
+            return response.Data.Items;
         }
 
         private async void LoadUserInfo(long userID)
         {
-            var parameters = new Dictionary<string, string>();
-            if (userID > 0)
-                parameters["user_id"] = userID.ToString();
-            else if (userID < 0)
-                parameters["group_ids"] = (-userID).ToString();
+            var response = await _inTouch.Users.Get(
+                    _userID == 0 ? null : new List<object> { _userID });
 
-            if (userID >= 0)
+            if (response.IsError)
+                throw new Exception(response.Error.ToString());
+            else if (response.Data.Any() && _userID == userID)
             {
-                var request = new Request<List<VKUser>>("users.get", parameters);
-                var response = await _vkService.ExecuteRequestAsync(request);
-
-                if (response.IsSuccess && userID == _userID && response.Response.Any())
-                    PageTitle = response.Response[0].Name;
-            }
-            else
-            {
-                var request = new Request<List<VKGroup>>("groups.getById", parameters);
-                var response = await _vkService.ExecuteRequestAsync(request);
-
-                if (response.IsSuccess && userID == _userID && response.Response.Any())
-                    PageTitle = response.Response[0].Name;
+                var user = response.Data[0];
+                PageTitle = $"{user.FirstName} {user.LastName}";
             }
         }
 
         private void OnExecuteItemCommand(object item)
         {
-            if (item is VKUser)
+            if (item is User)
             {
-                var user = (VKUser)item;
-                string parameter = JsonConvert.SerializeObject(new KeyValuePair<string, long>(
-                    "audios", user.ID));
+                var user = (User)item;
+                string parameter = JsonConvert.SerializeObject(new KeyValuePair<string, int>(
+                    "audios", user.Id));
                 _navigationService.Navigate("UserContentView", parameter);
             }
-            else if (item is VKGroup)
+            else if (item is Group)
             {
-                var group = (VKGroup)item;
-                string parameter = JsonConvert.SerializeObject(new KeyValuePair<string, long>(
-                    "audios", -group.ID));
+                var group = (Group)item;
+                string parameter = JsonConvert.SerializeObject(new KeyValuePair<string, int>(
+                    "audios", -group.Id));
                 _navigationService.Navigate("UserContentView", parameter);
             }
-            else if (item is VKUserList)
+            else if (item is FriendsList)
             {
 
             }
         }
 
-        private long _userID;
-        private uint _friendsOffset;
-        private uint _groupsOffset;
-
-        private readonly IVKService _vkService;
+        private int _userID;
+        private int _friendsOffset;
+        private int _groupsOffset;
+        
         private readonly INavigationService _navigationService;
+        private readonly InTouch _inTouch;
     }
 }

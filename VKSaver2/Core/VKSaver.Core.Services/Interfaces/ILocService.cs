@@ -1,8 +1,6 @@
-﻿using OneTeam.SDK.VK.Services.Interfaces;
-
-namespace VKSaver.Core.Services.Interfaces
+﻿namespace VKSaver.Core.Services.Interfaces
 {
-    public interface ILocService : ILanguageProvider
+    public interface ILocService
     {
         string this[string resName] { get; }
 

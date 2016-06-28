@@ -1,4 +1,4 @@
-﻿using OneTeam.SDK.VK.Models.Audio;
+﻿using ModernDev.InTouch;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -11,9 +11,9 @@ namespace VKSaver.Common
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
-            if (item is VKAudio)
+            if (item is Audio)
                 return AudioTemplate;
-            else if (item is VKAudioAlbum)
+            else if (item is AudioAlbum)
                 return AlbumTemplate;
             else
                 return null;

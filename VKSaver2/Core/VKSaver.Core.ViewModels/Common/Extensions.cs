@@ -1,5 +1,4 @@
-﻿using OneTeam.SDK.VK.Models.Audio;
-using OneTeam.SDK.VK.Models.Docs;
+﻿using ModernDev.InTouch;
 using System.Collections.Generic;
 using System.Linq;
 using VKSaver.Core.Models.Common;
@@ -11,38 +10,38 @@ namespace VKSaver.Core.ViewModels.Common
 {
     public static class Extensions
     {
-        public static IPlayerTrack ToPlayerTrack(this VKAudio audio)
+        public static IPlayerTrack ToPlayerTrack(this Audio audio)
         {
             return new PlayerTrack
             {
                 Title = audio.Title,
                 Artist = audio.Artist,
-                Source = audio.Source,
-                LyricsID = audio.LyricsID
+                Source = audio.Url,
+                LyricsID = audio.LyricsId ?? 0
             };
         }
 
-        public static IEnumerable<IPlayerTrack> ToPlayerTracks(this IEnumerable<VKAudio> tracks)
+        public static IEnumerable<IPlayerTrack> ToPlayerTracks(this IEnumerable<Audio> tracks)
         {
             return tracks.Select(t => t.ToPlayerTrack());
         }
 
-        public static IDownloadable ToDownloadable(this VKAudio audio)
+        public static IDownloadable ToDownloadable(this Audio audio)
         {
             return new SimpleDownloadable
             {
                 ContentType = FileContentType.Music,
                 Extension = ".mp3",
                 FileName = audio.Title,
-                Source = audio.Source
+                Source = audio.Url
             };
         }
 
-        public static IDownloadable ToDownloadable(this VKDocument document)
+        public static IDownloadable ToDownloadable(this Doc document)
         {
             var downloadable = new SimpleDownloadable
             {
-                Extension = $".{document.Extension}",
+                Extension = $".{document.Ext}",
                 FileName = document.Title,
                 Source = document.Url
             };
