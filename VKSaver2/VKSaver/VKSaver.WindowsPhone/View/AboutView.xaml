@@ -62,7 +62,6 @@
                 <StackPanel.ChildrenTransitions>
                     <TransitionCollection>
                         <EntranceThemeTransition />
-                        <ContentThemeTransition />
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
                 
@@ -82,7 +81,6 @@
                         <StackPanel.ChildrenTransitions>
                             <TransitionCollection>
                                 <EntranceThemeTransition />
-                                <ContentThemeTransition />
                             </TransitionCollection>
                         </StackPanel.ChildrenTransitions>
                         <TextBlock Text="ВКачай 2 Beta"

@@ -54,13 +54,13 @@ namespace VKSaver.Common
 
         private static void Subscribe(Control control)
         {
-            control.Unloaded += Control_Unloaded;
+            //control.Unloaded += Control_Unloaded;
             control.Holding += Control_Holding;
         }
 
         private static void Unsubscribe(Control control)
         {
-            control.Unloaded -= Control_Unloaded;
+            //control.Unloaded -= Control_Unloaded;
             control.Holding -= Control_Holding;
         }
     }

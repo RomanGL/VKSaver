@@ -1,28 +1,22 @@
-﻿using OneTeam.SDK.VK.Models.Groups;
-using OneTeam.SDK.VK.Models.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ModernDev.InTouch;
 
 namespace VKSaver.Design
 {
     public sealed class UserCommViewModelDesign
     {
-        public VKUser[] Friends
+        public User[] Friends
         {
             get
             {
-                return new VKUser[]
+                return new User[]
                 {
-                    new VKUser
+                    new User
                     {
                         FirstName = "Павел",
                         LastName = "Дуров",
                         Online = true
                     },
-                    new VKUser
+                    new User
                     {
                         FirstName = "Роман",
                         LastName = "Гладких",
@@ -32,29 +26,29 @@ namespace VKSaver.Design
             }
         }
 
-        public VKUserList[] FriendsLists
+        public FriendsList[] FriendsLists
         {
             get
             {
-                return new VKUserList[]
+                return new FriendsList[]
                 {
-                    new VKUserList { Name = "Друзья" },
-                    new VKUserList { Name = "Коллеги" },
-                    new VKUserList { Name = "Родственники" }
+                    new FriendsList { Name = "Друзья" },
+                    new FriendsList { Name = "Коллеги" },
+                    new FriendsList { Name = "Родственники" }
                 };
             }
         }
 
-        public VKGroup[] Groups
+        public Group[] Groups
         {
             get
             {
-                return new VKGroup[]
+                return new Group[]
                 {
-                    new VKGroup { Name = "ВКачай" },
-                    new VKGroup { Name = "OneVK" },
-                    new VKGroup { Name = "Overwatch" },
-                    new VKGroup { Name = "Overwatch watch watch over watch overwatch" }
+                    new Group { Name = "ВКачай" },
+                    new Group { Name = "OneVK" },
+                    new Group { Name = "Overwatch" },
+                    new Group { Name = "Overwatch watch watch over watch overwatch" }
                 };
             }
         }

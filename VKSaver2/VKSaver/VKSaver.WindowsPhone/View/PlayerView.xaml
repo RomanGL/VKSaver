@@ -10,6 +10,7 @@
                            xmlns:converters="using:VKSaver.Converters"
                            xmlns:design="using:VKSaver.Design"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           xmlns:common="using:VKSaver.Common"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            mc:Ignorable="d"
                            IsTextScaleFactorEnabled="False"
@@ -28,6 +29,8 @@
     </Page.Transitions>
     
     <Page.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+        
         <converters:TimeSpanToSecondsConverter x:Key="TimespanToSecondsConverter" />
         <converters:PlayerRepeatModeToIntConverter x:Key="PlayerRepeatModeToIntConverter" />
         <converters:CurrentTrackToStyleConverter x:Key="CurrentTrackToStyleConverter"
@@ -301,6 +304,26 @@
                                                        InputConverter="{StaticResource ItemClickEventArgsConverter}" />
                             </c:EventTriggerBehavior>
                         </i:Interaction.Behaviors>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem"
+                                   BasedOn="{StaticResource MarginListViewItemStyle}">
+                                <Setter Property="FlyoutBase.AttachedFlyout">
+                                    <Setter.Value>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem Text="загрузить"
+                                                            x:Uid="DownloadFlyoutItem"
+                                                            Command="{Binding DataSource.DownloadTrackCommand, Source={StaticResource DataContextProxy}}"
+                                                            CommandParameter="{Binding}" />
+                                        </MenuFlyout>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                                        Value="True" />
+                                <Setter Property="Margin"
+                                        Value="0,0,0,15" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
                     </ListView>
                 </Grid>
             </PivotItem>

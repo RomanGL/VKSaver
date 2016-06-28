@@ -26,7 +26,7 @@ namespace VKSaver.Core.ViewModels
 
         public PlayerViewModel(INavigationService navigationService, IPlayerService playerService,
             IPlayerPlaylistService playerPlaylistService, IImagesCacheService imagesCacheService,
-            ITracksShuffleService tracksShuffleService, IDownloadsService downloadsService,
+            ITracksShuffleService tracksShuffleService, IDownloadsServiceHelper downloadsServiceHelper,
             IAppLoaderService appLoaderService)
         {
             _navigationService = navigationService;
@@ -34,7 +34,7 @@ namespace VKSaver.Core.ViewModels
             _playerPlaylistService = playerPlaylistService;
             _imagesCacheService = imagesCacheService;
             _tracksShuffleSevice = tracksShuffleService;
-            _downloadsService = downloadsService;
+            _downloadsServiceHelper = downloadsServiceHelper;
             _appLoaderService = appLoaderService;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
@@ -363,8 +363,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnDownloadTrackCommand(PlayerItem item)
         {
-            var res = await _downloadsService.StartDownloadingAsync(
-                new List<IDownloadable> { item.Track as IDownloadable });
+            var res = await _downloadsServiceHelper.StartDownloadingAsync(item.Track as IDownloadable);
         }
 
         private bool _isSubscribed;
@@ -382,7 +381,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IPlayerPlaylistService _playerPlaylistService;
         private readonly IImagesCacheService _imagesCacheService;
         private readonly ITracksShuffleService _tracksShuffleSevice;
-        private readonly IDownloadsService _downloadsService;
+        private readonly IDownloadsServiceHelper _downloadsServiceHelper;
         private readonly IAppLoaderService _appLoaderService;
 
         private const string DEFAULT_BACKGROUND_IMAGE = "ms-appx:///Assets/Background/PlayerBackground.png";

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using VKSaver.Core.Models.Transfer;
 
 namespace VKSaver.Core.Models.Player
 {

@@ -68,8 +68,8 @@
     <Compile Include="VideoInfoViewModelDesign.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="OneTeam.SDK.VK">
-      <HintPath>..\Libs\OneTeam.SDK.VK.dll</HintPath>
+    <Reference Include="ModernDev.InTouch">
+      <HintPath>..\Libs\ModernDev.InTouch.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
