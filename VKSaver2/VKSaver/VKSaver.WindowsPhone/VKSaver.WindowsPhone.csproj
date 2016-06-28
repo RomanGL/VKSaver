@@ -95,6 +95,7 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\Album.jpg" />
     <Content Include="Assets\Background\PlayerBackground.png" />
+    <Content Include="Assets\groove-logo.png" />
     <Content Include="Assets\HubBackground.jpg" />
     <Content Include="Assets\Background\Background.dark.jpg" />
     <Content Include="Assets\Background\Background.light.jpg" />
@@ -105,6 +106,8 @@
     <Content Include="Assets\Images\PlayerLogo2.png" />
     <Content Include="Assets\Images\PlayerLogo3.png" />
     <Content Include="Assets\Images\PlayerLogo4.png" />
+    <Content Include="Assets\it-logo.png" />
+    <Content Include="Assets\lf-logo.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\LogoPlay.scale-240.png" />
     <Content Include="Assets\PurchaseBackground.jpg" />

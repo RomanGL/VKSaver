@@ -1,7 +1,5 @@
 ﻿using ModernDev.InTouch;
-using OneTeam.SDK.Core;
 using System;
-using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.Services.Interfaces
 {

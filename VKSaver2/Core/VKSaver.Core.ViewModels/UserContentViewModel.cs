@@ -879,8 +879,7 @@ namespace VKSaver.Core.ViewModels
                 var video = (Video)obj;
                 var vResponse = await _inTouch.Videos.Add((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
 
-                if (!vResponse.IsError)
-                    return true;
+                return !vResponse.IsError;
             }
             else if (obj is Doc)
             {
@@ -888,9 +887,7 @@ namespace VKSaver.Core.ViewModels
                 response = await _inTouch.Docs.Add(doc.Id, doc.OwnerId);
             }
 
-            if (!response.IsError)
-                return true;
-            return false;
+            return !response.IsError;
         }
 
         private async Task<bool> DeleteObject(object obj)
@@ -922,9 +919,7 @@ namespace VKSaver.Core.ViewModels
                 response = await _inTouch.Videos.DeleteAlbum((int)videoAlbum.Id);
             }
 
-            if (!response.IsError)
-                return response.Data;
-            return false;
+            return !response.IsError;
         }
 
         private void RemoveDeletedItems(List<object> items)

@@ -100,9 +100,6 @@
   <data name="AboutView_AppName.Text" xml:space="preserve">
     <value>VK Saver 2 Beta</value>
   </data>
-  <data name="AboutView_PoweredBy.Text" xml:space="preserve">
-    <value>Powered by OneVK</value>
-  </data>
   <data name="AboutView_Version.Text" xml:space="preserve">
     <value>Version:</value>
   </data>

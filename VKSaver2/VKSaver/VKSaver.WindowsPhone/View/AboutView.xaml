@@ -7,6 +7,29 @@
       mc:Ignorable="d"
       Style="{StaticResource DefaultPageStyle}">
 
+    <Page.Resources>
+        <Style x:Key="PoweredByImageStyle"
+               TargetType="Image">
+            <Setter Property="Width"
+                    Value="60" />
+            <Setter Property="Height"
+                    Value="60" />
+            <Setter Property="Margin"
+                    Value="0,0,10,0" />
+        </Style>
+        <Style x:Key="PoweredByHyperlinkButtonStyle"
+               TargetType="HyperlinkButton">
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="Padding"
+                    Value="0" />
+            <Setter Property="Margin"
+                    Value="0,10,0,0" />
+        </Style>
+    </Page.Resources>
+    
     <Grid x:Name="LayoutRoot">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -34,15 +57,16 @@
 
         <ScrollViewer Grid.Row="1"
                       x:Name="ContentRoot"
-                      Margin="19,9.5,19,0">
+                      Margin="19,0">
             <StackPanel>
-                <Grid>
-                    <Grid.ChildrenTransitions>
-                        <TransitionCollection>
-                            <EntranceThemeTransition />
-                            <ContentThemeTransition />
-                        </TransitionCollection>
-                    </Grid.ChildrenTransitions>
+                <StackPanel.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition />
+                        <ContentThemeTransition />
+                    </TransitionCollection>
+                </StackPanel.ChildrenTransitions>
+                
+                <Grid>                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
@@ -50,8 +74,8 @@
 
                     <Rectangle HorizontalAlignment="Left"
                                VerticalAlignment="Top"
-                               Height="120"
-                               Width="120"
+                               Height="135"
+                               Width="135"
                                Fill="{StaticResource ImagePlaceholderBrush}"
                                Margin="0,0,10,0" />
                     <StackPanel Grid.Column="1">
@@ -63,8 +87,7 @@
                         </StackPanel.ChildrenTransitions>
                         <TextBlock Text="ВКачай 2 Beta"
                                    x:Uid="AboutView_AppName"
-                                   FontSize="28"
-                                   Style="{StaticResource BaseItemStyle}" />
+                                   Style="{StaticResource ListLine2TextStyle}" />
                         <TextBlock Style="{StaticResource BaseItemStyle}"
                                    TextWrapping="WrapWholeWords"
                                    Margin="0,2,0,0">
@@ -72,14 +95,78 @@
                                  x:Uid="AboutView_Version"/>
                             <Run Text="{Binding Version}" />
                         </TextBlock>
-                        <TextBlock Text="Powered by OneVK"
-                                   x:Uid="AboutView_PoweredBy"
-                                   Style="{StaticResource BaseItemStyle}"
-                                   TextWrapping="WrapWholeWords"
-                                   Foreground="{ThemeResource PhoneMidBrush}" />
                     </StackPanel>
                 </Grid>
 
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="https://github.com/virtyaluk/InTouch">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Image Source="ms-appx:///Assets/it-logo.png"
+                               Style="{StaticResource PoweredByImageStyle}" 
+                               Grid.RowSpan="2"/>
+                        <TextBlock Text="InTouch"
+                                   x:Uid="AboutView_InTouch_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="C# wrapper for VK API"
+                                   x:Uid="AboutView_InTouch_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="https://music.microsoft.com">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <Image Source="ms-appx:///Assets/groove-logo.png"
+                               Style="{StaticResource PoweredByImageStyle}" 
+                               Grid.RowSpan="2"/>
+                        <TextBlock Text="Groove Music"
+                                   x:Uid="AboutView_Groove_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="Love your music – set it free"
+                                   x:Uid="AboutView_Groove_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="http://last.fm">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="ms-appx:///Assets/lf-logo.png"
+                               Style="{StaticResource PoweredByImageStyle}" />
+                        <TextBlock Text="Last.fm"
+                                   x:Uid="AboutView_LastFm_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                    </Grid>
+                </HyperlinkButton>
             </StackPanel>
         </ScrollViewer>
     </Grid>

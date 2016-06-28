@@ -103,6 +103,7 @@
     <Compile Include="Transfer\DownloadOperationErrorEventArgs.cs" />
     <Compile Include="Transfer\TransferStatusComparer.cs" />
     <Compile Include="Transfer\TransferStatusExtensions.cs" />
+    <Compile Include="TypedEventHandler.cs" />
     <Compile Include="VKLoginService.cs" />
   </ItemGroup>
   <ItemGroup>

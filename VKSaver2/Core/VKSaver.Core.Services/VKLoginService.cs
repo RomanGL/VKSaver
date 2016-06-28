@@ -1,6 +1,4 @@
 ﻿using ModernDev.InTouch;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.VK.Models.Common;
 using System;
 using VKSaver.Core.Services.Interfaces;
 
@@ -124,6 +122,13 @@ namespace VKSaver.Core.Services
         }
 
         private readonly ISettingsService _settingsService;
-        private readonly InTouch _inTouch;        
+        private readonly InTouch _inTouch;
+        
+        private sealed class VKAccessToken
+        {
+            public string AccessToken { get; set; }
+            public int ExpiresIn { get; set; }
+            public long UserID { get; set; }
+        }
     }
 }

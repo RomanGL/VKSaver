@@ -1,10 +1,7 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using ModernDev.InTouch;
 using Newtonsoft.Json;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.VK.Models.Audio;
-using OneTeam.SDK.VK.Models.Common;
-using OneTeam.SDK.VK.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -24,15 +21,15 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class RecommendedViewModel : ViewModelBase
     {
-        public RecommendedViewModel(IVKService vkService, INavigationService navigationService,
+        public RecommendedViewModel(InTouch inTouch, INavigationService navigationService,
             IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
             IAppLoaderService appLoaderService, IDialogsService dialogsService,
             ILocService locService)
         {
+            _inTouch = inTouch;
             _navigationService = navigationService;
             _playerService = playerService;
             _downloadsServiceHelper = downloadsServiceHelper;
-            _vkService = vkService;
             _appLoaderService = appLoaderService;
             _dialogsService = dialogsService;
             _locService = locService;
@@ -42,19 +39,19 @@ namespace VKSaver.Core.ViewModels
             SecondaryItems = new ObservableCollection<ICommandBarElement>();
             SelectedItems = new List<object>();
 
-            PlayTracksCommand = new DelegateCommand<VKAudio>(OnPlayTracksCommand);
-            DownloadTrackCommand = new DelegateCommand<VKAudio>(OnDownloadTrackCommand);
+            PlayTracksCommand = new DelegateCommand<Audio>(OnPlayTracksCommand);
+            DownloadTrackCommand = new DelegateCommand<Audio>(OnDownloadTrackCommand);
             DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, HasSelectedItems);
             SelectionChangedCommand = new DelegateCommand(OnSelectionChangedCommand);
             ReloadContentCommand = new DelegateCommand(OnReloadContentCommand);
             ActivateSelectionMode = new DelegateCommand(SetSelectionMode);
 
-            AddToMyAudiosCommand = new DelegateCommand<VKAudio>(OnAddToMyAudiosCommand);
+            AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand);
             AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, HasSelectedItems);
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
         }
 
-        public PaginatedCollection<VKAudio> Audios { get; private set; }
+        public PaginatedCollection<Audio> Audios { get; private set; }
 
         public bool IsSelectionMode { get; private set; }
 
@@ -73,13 +70,13 @@ namespace VKSaver.Core.ViewModels
         public List<object> SelectedItems { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<VKAudio> PlayTracksCommand { get; private set; }
+        public DelegateCommand<Audio> PlayTracksCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand PlaySelectedCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<VKAudio> DownloadTrackCommand { get; private set; }
+        public DelegateCommand<Audio> DownloadTrackCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand SelectionChangedCommand { get; private set; }
@@ -97,7 +94,7 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand AddSelectedToMyAudiosCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<VKAudio> AddToMyAudiosCommand { get; private set; }
+        public DelegateCommand<Audio> AddToMyAudiosCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -106,15 +103,15 @@ namespace VKSaver.Core.ViewModels
 
             if (viewModelState.Count > 0)
             {
-                Audios = JsonConvert.DeserializeObject<PaginatedCollection<VKAudio>>
+                Audios = JsonConvert.DeserializeObject<PaginatedCollection<Audio>>
                     (viewModelState[nameof(Audios)].ToString());
+                _audiosOffset = (int)viewModelState[nameof(_audiosOffset)];
 
                 Audios.LoadMoreItems = LoadMoreAudios;
             }
             else
             {
-                Audios = new PaginatedCollection<VKAudio>(LoadMoreAudios);
-
+                Audios = new PaginatedCollection<Audio>(LoadMoreAudios);
                 _audiosOffset = 0;
             }
 
@@ -145,30 +142,23 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
-        private async Task<IEnumerable<VKAudio>> LoadMoreAudios(uint page)
+        private async Task<IEnumerable<Audio>> LoadMoreAudios(uint page)
         {
-            var parameters = new Dictionary<string, string>
+            var response = await _inTouch.Audio.GetRecommendations(
+                userId: _userID > 0 ? (int?)_userID : null,
+                count: 50,
+                offset: _audiosOffset);
+
+            if (response.IsError)
+                throw new Exception(response.Error.ToString());
+            else
             {
-                { "count", "50" },
-                { "offset", _audiosOffset.ToString() }
-            };
-
-            if (_userID > 0)
-                parameters["user_id"] = _userID.ToString();
-
-            var request = new Request<VKCountedItemsObject<VKAudio>>("audio.getRecommendations", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
-            {
-                if (Audios.Count == 0 && response.Response.Items.Any())
+                if (!Audios.Any() && response.Data.Items.Any())
                     SetDefaultMode();
 
                 _audiosOffset += 50;
-                return response.Response.Items;
+                return response.Data.Items;
             }
-            else
-                throw new Exception(response.Error.ToString());
         }
 
         private void CreateDefaultAppBarButtons()
@@ -237,7 +227,7 @@ namespace VKSaver.Core.ViewModels
             CreateDefaultAppBarButtons();
         }
 
-        private async void OnPlayTracksCommand(VKAudio track)
+        private async void OnPlayTracksCommand(Audio track)
         {
             _appLoaderService.Show();
 
@@ -251,14 +241,14 @@ namespace VKSaver.Core.ViewModels
         {
             _appLoaderService.Show();
 
-            var toPlay = SelectedItems.Cast<VKAudio>().ToPlayerTracks();
+            var toPlay = SelectedItems.Cast<Audio>().ToPlayerTracks();
             await _playerService.PlayNewTracks(toPlay, 0);
             _navigationService.Navigate("PlayerView", null);
 
             _appLoaderService.Hide();
         }
 
-        private async void OnDownloadTrackCommand(VKAudio track)
+        private async void OnDownloadTrackCommand(Audio track)
         {
             await _downloadsServiceHelper.StartDownloadingAsync(track.ToDownloadable());
         }
@@ -272,7 +262,7 @@ namespace VKSaver.Core.ViewModels
             var toDownload = new List<IDownloadable>(items.Count);
             for (int i = 0; i < items.Count; i++)
             {
-                toDownload.Add(((VKAudio)items[i]).ToDownloadable());
+                toDownload.Add(((Audio)items[i]).ToDownloadable());
             }
 
             await _downloadsServiceHelper.StartDownloadingAsync(toDownload);
@@ -297,7 +287,7 @@ namespace VKSaver.Core.ViewModels
             Audios.Refresh();
         }
 
-        private async void OnAddToMyAudiosCommand(VKAudio track)
+        private async void OnAddToMyAudiosCommand(Audio track)
         {
             _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
             if (!await AddToMyAudios(track))
@@ -311,8 +301,8 @@ namespace VKSaver.Core.ViewModels
         private async void OnAddSelectedToMyAudiosCommand()
         {
             _appLoaderService.Show(_locService["AppLoader_Preparing"]);
-            var items = SelectedItems.Cast<VKAudio>().ToList();
-            var errors = new List<VKAudio>();
+            var items = SelectedItems.Cast<Audio>().ToList();
+            var errors = new List<Audio>();
 
             foreach (var track in items)
             {
@@ -328,24 +318,13 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService.Hide();
         }
 
-        private async Task<bool> AddToMyAudios(VKAudio audio)
+        private async Task<bool> AddToMyAudios(Audio audio)
         {
-            var parameters = new Dictionary<string, string>
-            {
-                { "audio_id", audio.ID.ToString() },
-                { "owner_id", audio.OwnerID.ToString() }
-            };
-
-            var request = new Request<long>("audio.add", parameters);
-            var response = await _vkService.ExecuteRequestAsync(request);
-
-            if (response.IsSuccess)
-                return true;
-
-            return false;
+            var response = await _inTouch.Audio.Add(audio.Id, audio.OwnerId);
+            return !response.IsError;
         }
 
-        private void ShowAddingError(List<VKAudio> errorTracks)
+        private void ShowAddingError(List<Audio> errorTracks)
         {
             var sb = new StringBuilder();
             sb.AppendLine(_locService["Message_AddSelectedError_Text"]);
@@ -359,15 +338,15 @@ namespace VKSaver.Core.ViewModels
             _dialogsService.Show(sb.ToString(), _locService["Message_AddSelectedError_Title"]);
         }
 
-        private uint _audiosOffset;
+        private int _audiosOffset;
         private long _userID;
 
         private readonly INavigationService _navigationService;
         private readonly IPlayerService _playerService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
-        private readonly IVKService _vkService;
         private readonly IAppLoaderService _appLoaderService;
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
+        private readonly InTouch _inTouch;
     }
 }
