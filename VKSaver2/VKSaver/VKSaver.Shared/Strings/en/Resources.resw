@@ -673,4 +673,31 @@ Operation will resume once the connection becomes available.</value>
   <data name="VideoInfoView_SelectQuality.Text" xml:space="preserve">
     <value>Select video quality</value>
   </data>
+  <data name="AboutView_Groove_Text.Text" xml:space="preserve">
+    <value>Love your music - set it free</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_Groove_Title.Text" xml:space="preserve">
+    <value>Groove Music</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_InTouch_Text.Text" xml:space="preserve">
+    <value>C# wrapper for VK API</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_InTouch_Title.Text" xml:space="preserve">
+    <value>InTouch</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_LastFm_Title.Text" xml:space="preserve">
+    <value>Last.fm</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="Message_VideoInfo_GetLinksFailed_Text" xml:space="preserve">
+    <value>Failed to get the links for this video. 
+There is no connection or access to the videos is closed.</value>
+  </data>
+  <data name="Message_VideoInfo_GetLinksFailed_Title" xml:space="preserve">
+    <value>Failed to get the links</value>
+  </data>
 </root>

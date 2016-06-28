@@ -141,7 +141,7 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            var parameter = JsonConvert.DeserializeObject<KeyValuePair<string, long>>(e.Parameter.ToString());
+            var parameter = JsonConvert.DeserializeObject<KeyValuePair<string, int>>(e.Parameter.ToString());
             _userID = parameter.Value;
 
             if (e.NavigationMode == NavigationMode.New)
@@ -966,7 +966,7 @@ namespace VKSaver.Core.ViewModels
             _dialogsService.Show(sb.ToString(), _locService["Message_AddSelectedError_Title"]);
         }
 
-        private long _userID;
+        private int _userID;
         private int _audiosOffset;
         private int _videosOffset;
         private int _audioAlbumsOffset;

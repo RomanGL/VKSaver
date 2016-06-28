@@ -894,28 +894,38 @@ Operation will resume once the connection becomes available.</target>
         </trans-unit>
         <trans-unit id="AboutView_Groove_Text.Text" translate="yes" xml:space="preserve">
           <source>Love your music - set it free</source>
-          <target state="new">Love your music - set it free</target>
+          <target state="final">Love your music - set it free</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="AboutView_Groove_Title.Text" translate="yes" xml:space="preserve">
           <source>Groove Music</source>
-          <target state="new">Groove Music</target>
+          <target state="final">Groove Music</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="AboutView_InTouch_Text.Text" translate="yes" xml:space="preserve">
           <source>C# wrapper for VK API</source>
-          <target state="new">C# wrapper for VK API</target>
+          <target state="final">C# wrapper for VK API</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="AboutView_InTouch_Title.Text" translate="yes" xml:space="preserve">
           <source>InTouch</source>
-          <target state="new">InTouch</target>
+          <target state="final">InTouch</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="AboutView_LastFm_Title.Text" translate="yes" xml:space="preserve">
           <source>Last.fm</source>
-          <target state="new">Last.fm</target>
+          <target state="final">Last.fm</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="Message_VideoInfo_GetLinksFailed_Text" translate="yes" xml:space="preserve">
+          <source>Не удалось получить ссылки для этой видеозаписи.
+Отсутствует соединение либо доступ к видеозаписи закрыт.</source>
+          <target state="translated">Failed to get the links for this video. 
+There is no connection or access to the videos is closed.</target>
+        </trans-unit>
+        <trans-unit id="Message_VideoInfo_GetLinksFailed_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось получить ссылки</source>
+          <target state="translated">Failed to get the links</target>
         </trans-unit>
       </group>
     </body>

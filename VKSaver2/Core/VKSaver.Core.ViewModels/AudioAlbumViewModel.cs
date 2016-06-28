@@ -157,14 +157,12 @@ namespace VKSaver.Core.ViewModels
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
-            else
-            {
-                if (!Tracks.Any() && response.Data.Items.Any())
-                    SetDefaultMode();
 
-                _offset += 50;
-                return response.Data.Items;
-            }
+            if (!Tracks.Any() && response.Data.Items.Any())
+                SetDefaultMode();
+
+            _offset += 50;
+            return response.Data.Items;
         }
 
         private void CreateDefaultAppBarButtons()
