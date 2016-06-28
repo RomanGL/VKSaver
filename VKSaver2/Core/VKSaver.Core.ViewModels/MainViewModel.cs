@@ -1,27 +1,21 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using ModernDev.InTouch;
+using Newtonsoft.Json;
+using OneTeam.SDK.Core;
 using OneTeam.SDK.LastFm.Models.Audio;
+using OneTeam.SDK.LastFm.Models.Response;
 using OneTeam.SDK.LastFm.Services.Interfaces;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using PropertyChanged;
-using VKSaver.Core.ViewModels.Collections;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.LastFm.Models.Response;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using Newtonsoft.Json;
-using VKSaver.Core.Services.Interfaces;
-using Windows.UI.Xaml.Navigation;
-using OneTeam.SDK.VK.Models.Audio;
-using OneTeam.SDK.VK.Models.Common;
-using VKSaver.Core.ViewModels.Common;
 using VKSaver.Core.Models.Player;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
-using Windows.UI.Xaml.Media.Imaging;
-using ModernDev.InTouch;
+using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.ViewModels.Collections;
+using VKSaver.Core.ViewModels.Common;
+using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {

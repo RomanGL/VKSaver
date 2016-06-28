@@ -123,9 +123,6 @@
     <Reference Include="OneTeam.SDK.LastFm">
       <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
     </Reference>
-    <Reference Include="OneTeam.SDK.VK">
-      <HintPath>..\..\Libs\OneTeam.SDK.VK.dll</HintPath>
-    </Reference>
     <Reference Include="XboxMusicService, Version=1.0.5542.27830, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\XboxMusicSDK.1.7\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\XboxMusicService.dll</HintPath>
       <Private>True</Private>

@@ -110,13 +110,10 @@ namespace VKSaver
             _container.RegisterInstance<ILFService>(new LFService("***REMOVED***"));
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
             _container.RegisterInstance<ILocService>(_locService);
-            _container.RegisterInstance<OneTeam.SDK.VK.Services.Interfaces.ILanguageProvider>(_locService);
             _container.RegisterInstance<IVKLoginService>(vkLoginService);
             _container.RegisterInstance<InTouch>(inTouch);
             
-            _container.RegisterType<OneTeam.SDK.VK.Services.Interfaces.IVKLoginService, OneTeam.SDK.VK.Services.VKLoginService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<OneTeam.SDK.VK.Services.Interfaces.IVKService, OneTeam.SDK.VK.Services.VKService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IDialogsService, DialogsService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IPurchaseService, PurchaseService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ITracksShuffleService, TracksShuffleService>(new ContainerControlledLifetimeManager());
