@@ -37,7 +37,7 @@
                            Style="{ThemeResource TitleTextBlockStyle}"
                            Margin="0,12,0,0" />
                 <TextBlock Text="{Binding Track.Title, Converter={StaticResource ToLowerConverter}}"
-                           Margin="0,-6.5,0,26.5"
+                           Margin="-3,-6.5,0,26.5"
                            Style="{ThemeResource HeaderTextBlockStyle}"
                            CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
             </StackPanel>

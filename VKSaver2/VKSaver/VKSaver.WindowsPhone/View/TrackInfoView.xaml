@@ -40,7 +40,7 @@
                        ContinuumNavigationTransitionInfo.IsEntranceElement="True" />
             <TextBlock Text="подробнее"
                        x:Uid="TrackInfoView_Title"
-                       Margin="0,-6.5,0,0"
+                       Margin="-3,-6.5,0,0"
                        Style="{ThemeResource HeaderTextBlockStyle}"
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
         </StackPanel>
