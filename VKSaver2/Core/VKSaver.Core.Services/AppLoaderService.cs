@@ -11,6 +11,8 @@ namespace VKSaver.Core.Services
             _locService = locService;
         }
 
+        public bool IsShowed { get; private set; }
+
         public void Show()
         {
             Show(_locService["AppLoader_Loading"]);
@@ -20,6 +22,7 @@ namespace VKSaver.Core.Services
         {
             lock (_lockObject)
             {
+                IsShowed = true;
                 foreach (var loader in _loaders)
                     loader.ShowLoader(text);
             }
@@ -29,6 +32,7 @@ namespace VKSaver.Core.Services
         {
             lock (_lockObject)
             {
+                IsShowed = false;
                 foreach (var loader in _loaders)
                     loader.HideLoader();
             }

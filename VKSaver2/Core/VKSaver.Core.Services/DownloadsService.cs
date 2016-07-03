@@ -285,6 +285,6 @@ namespace VKSaver.Core.Services
         private const string DOWNLOAD_TRASNFER_GROUP_NAME = "VKSaverDownloader";
         private const string DOWNLOADS_FOLDER_NAME = "VKSaver";
         private const string DOWNLOADS_OTHER_FOLDER_NAME = "VKSaver Other";
-        private const int INIT_DOWNLOADS_LIST_CAPACITY = 50;
+        private const int INIT_DOWNLOADS_LIST_CAPACITY = 60;
     }
 }

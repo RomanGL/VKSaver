@@ -20,6 +20,8 @@ namespace VKSaver.Converters
                 return -(int)value;
             if (value is long)
                 return -(long)value;
+            if (value is bool)
+                return !(bool)value;
 
             return null;
         }

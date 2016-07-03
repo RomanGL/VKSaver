@@ -86,7 +86,7 @@
     <value>show more</value>
   </data>
   <data name="AppName.Text" xml:space="preserve">
-    <value>VK SAVER</value>
+    <value>VK SAVER BETA</value>
   </data>
   <data name="AboutView_About.Text" xml:space="preserve">
     <value>about</value>
@@ -179,7 +179,7 @@ Go back to continue</value>
     <value>playlist</value>
   </data>
   <data name="AppNamePivot.Title" xml:space="preserve">
-    <value>VK SAVER</value>
+    <value>VK SAVER BETA</value>
   </data>
   <data name="RecommendedView_Title.Text" xml:space="preserve">
     <value>we recommend</value>
@@ -448,7 +448,7 @@ Go back to continue</value>
     <value>Preparing files for download...</value>
   </data>
   <data name="AppNameText" xml:space="preserve">
-    <value>VK Saver</value>
+    <value>VK Saver Beta</value>
   </data>
   <data name="Message_AddSelectedError_Text" xml:space="preserve">
     <value>Failed to add the items to your collection. Try again later.</value>
@@ -720,5 +720,35 @@ There is no connection or access to the videos is closed.</value>
   </data>
   <data name="VideoAlbumVideosLoader.NoDataText" xml:space="preserve">
     <value>There are no videos in this album</value>
+  </data>
+  <data name="SelectSearchTypeView_Title.Text" xml:space="preserve">
+    <value>That you want to find?</value>
+  </data>
+  <data name="SearchView_InCollection_Title.Header" xml:space="preserve">
+    <value>in collection</value>
+  </data>
+  <data name="SearchView_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Type your query and press Enter</value>
+  </data>
+  <data name="SearchView_Everywhere_Title.Header" xml:space="preserve">
+    <value>everywhere</value>
+  </data>
+  <data name="SearchView_Loader.ErrorText" xml:space="preserve">
+    <value>Search failed</value>
+  </data>
+  <data name="SearchView_Loader.LoadingText" xml:space="preserve">
+    <value>Searching...</value>
+  </data>
+  <data name="SearchView_Loader.NoDataText" xml:space="preserve">
+    <value>Nothing matches your search</value>
+  </data>
+  <data name="AppBarButton_Filter_Text" xml:space="preserve">
+    <value>filter</value>
+  </data>
+  <data name="AudioSearchView_PerformerOnlySwitch.Header" xml:space="preserve">
+    <value>Only search by performer</value>
+  </data>
+  <data name="AudioSearchView_LyricsOnlySwitch.Header" xml:space="preserve">
+    <value>Search only with lyrics</value>
   </data>
 </root>

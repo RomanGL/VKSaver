@@ -137,6 +137,14 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
+            if (e.NavigationMode == NavigationMode.Back && _appLoaderService.IsShowed)
+            {
+                e.Cancel = true;
+                _cancelOperations = true;
+                _appLoaderService.Hide();
+                return;
+            }
+
             if (e.NavigationMode == NavigationMode.Back && IsSelectionMode)
             {
                 SetDefaultMode();
@@ -357,11 +365,19 @@ namespace VKSaver.Core.ViewModels
         private async void OnAddSelectedToMyAudiosCommand()
         {
             _appLoaderService.Show(_locService["AppLoader_Preparing"]);
+            _cancelOperations = false;
+
             var items = SelectedItems.Cast<Audio>().ToList();
             var errors = new List<Audio>();
 
             foreach (var track in items)
             {
+                if (_cancelOperations)
+                {
+                    errors.Add(track);
+                    continue;
+                }
+
                 _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
                 if (!await AddToMyAudios(track))
                     errors.Add(track);
@@ -377,11 +393,19 @@ namespace VKSaver.Core.ViewModels
         private async void OnDeleteSelectedCommand()
         {
             _appLoaderService.Show(_locService["AppLoader_Preparing"]);
+            _cancelOperations = false;
+
             var items = SelectedItems.Cast<Audio>().ToList();
             var errors = new List<Audio>();
 
             foreach (var track in items)
             {
+                if (_cancelOperations)
+                {
+                    errors.Add(track);
+                    continue;
+                }
+
                 _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.ToString()));
                 if (await DeleteAudio(track))
                     Tracks.Remove(track);
@@ -438,6 +462,7 @@ namespace VKSaver.Core.ViewModels
         }
 
         private int _offset;
+        private bool _cancelOperations = false;
 
         private readonly INavigationService _navigationService;
         private readonly IPlayerService _playerService;

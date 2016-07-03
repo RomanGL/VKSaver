@@ -178,9 +178,11 @@
         <Pivot x:Name="MainPivot"
                Title="ВКАЧАЙ"
                x:Uid="AppNamePivot"
+               Style="{StaticResource PivotStyle}"
                SelectionChanged="MainPivot_SelectionChanged">
             <PivotItem Header="сейчас играет"
-                       x:Uid="PlayerView_PivotSection_NowPlaying">
+                       x:Uid="PlayerView_PivotSection_NowPlaying"
+                       Style="{StaticResource PivotItemStyle}">
                 <Grid Margin="0,0,-19,0">
                     <Grid.ChildrenTransitions>
                         <TransitionCollection>
@@ -292,7 +294,8 @@
             </PivotItem>
             <PivotItem Header="плейлист"
                        x:Uid="PlayerView_PivotSection_Playlist"
-                       Margin="19,23,0,0">
+                       Margin="19,23,0,0"
+                       Style="{StaticResource PivotItemStyle}">
                 <Grid>
                     <ListView x:Name="TracksList"
                               Style="{StaticResource NoSelectionListViewStyle}"

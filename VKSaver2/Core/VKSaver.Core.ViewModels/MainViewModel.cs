@@ -49,6 +49,7 @@ namespace VKSaver.Core.ViewModels
             PlayRecommendedTracksCommand = new DelegateCommand<Audio>(OnPlayRecommendedTracksCommand);
             PlayUserTracksCommand = new DelegateCommand<Audio>(OnPlayUserTracksCommand);
             DownloadTrackCommand = new DelegateCommand<Audio>(OnDownloadTrackCommand);
+            GoToSearchCommand = new DelegateCommand(OnGoToSearchCommand);
 
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
@@ -103,6 +104,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand<Audio> DownloadTrackCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand GoToSearchCommand { get; private set; }
 
         public VKAudioWithImage FirstTrack { get; private set; }
 
@@ -318,6 +322,11 @@ namespace VKSaver.Core.ViewModels
         private void OnGoToAboutViewCommand()
         {
             _navigationService.Navigate("AboutView", null);
+        }
+
+        private void OnGoToSearchCommand()
+        {
+            _navigationService.Navigate("SelectSearchTypeView", null);
         }
 
         private void OnGoToRecommendedViewCommand()

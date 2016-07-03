@@ -25,6 +25,7 @@ namespace VKSaver.Core.ViewModels
             _inTouch = inTouch;
             _dialogsService = dialogsService;
             _locService = locService;
+            _appLoaderService = appLoaderService;
             
             PrimaryItems = new ObservableCollection<ICommandBarElement>();
             SecondaryItems = new ObservableCollection<ICommandBarElement>();
@@ -95,6 +96,12 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
+            if (e.NavigationMode == NavigationMode.Back && _appLoaderService.IsShowed)
+            {
+                e.Cancel = true;
+                return;
+            }
+
             if (e.NavigationMode == NavigationMode.Back && IsSelectionMode)
             {
                 SetDefaultMode();

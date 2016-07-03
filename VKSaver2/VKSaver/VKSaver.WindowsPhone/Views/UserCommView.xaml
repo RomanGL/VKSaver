@@ -86,9 +86,11 @@
     </mvvm:VisualStateAwarePage.Resources>
     
     <Pivot Title="{Binding PageTitle, Converter={StaticResource ToUpperConverter}}"
-           SelectedIndex="{Binding LastPivotIndex}">
+           SelectedIndex="{Binding LastPivotIndex}"
+           Style="{StaticResource PivotStyle}">
         <PivotItem Header="друзья"
-                   x:Uid="UserCommView_PivotSection_Friends">
+                   x:Uid="UserCommView_PivotSection_Friends"
+                   Style="{StaticResource PivotItemStyle}">
             <ListView ItemsSource="{Binding Friends}"
                       ItemTemplate="{StaticResource UserTemplate}"
                       Style="{StaticResource NoSelectionListViewStyle}"
@@ -114,7 +116,8 @@
             </ListView>
         </PivotItem>
         <PivotItem Header="списки"
-                   x:Uid="UserCommView_PivotSection_FriendLists">
+                   x:Uid="UserCommView_PivotSection_FriendLists"
+                   Style="{StaticResource PivotItemStyle}">
             <ListView ItemsSource="{Binding FriendsLists}"
                       ItemTemplate="{StaticResource OnlyNameListItemTemplate}"
                       Style="{StaticResource NoSelectionListViewStyle}"
@@ -146,7 +149,8 @@
             </ListView>
         </PivotItem>
         <PivotItem Header="сообщества"
-                   x:Uid="UserCommView_PivotSection_Groups">
+                   x:Uid="UserCommView_PivotSection_Groups"
+                   Style="{StaticResource PivotItemStyle}">
             <ListView ItemsSource="{Binding Groups}"
                       ItemTemplate="{StaticResource GroupTemplate}"
                       Style="{StaticResource NoSelectionListViewStyle}"

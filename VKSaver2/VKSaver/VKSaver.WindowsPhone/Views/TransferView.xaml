@@ -115,9 +115,11 @@
     </mvvm:VisualStateAwarePage.BottomAppBar>
     
     <Pivot Title="ВКАЧАЙ"
-           x:Uid="AppNamePivot">
+           x:Uid="AppNamePivot"
+           Style="{StaticResource PivotStyle}">
         <PivotItem Header="загрузки"
-                   x:Uid="TransferView_PivotSection_Downloads">
+                   x:Uid="TransferView_PivotSection_Downloads"
+                   Style="{StaticResource PivotItemStyle}">
             <controls:ContentContainer State="{Binding DownloadsState}"
                                        x:Uid="TransferView_DownloadsLoader"
                                        LoadingText="Получение списока текущих загрузок..."
@@ -147,14 +149,16 @@
             </controls:ContentContainer>
         </PivotItem>
         <PivotItem Header="отправки"
-                   x:Uid="TransferView_PivotSection_Uploads">
+                   x:Uid="TransferView_PivotSection_Uploads"
+                   Style="{StaticResource PivotItemStyle}">
             <controls:ContentContainer State="{Binding UploadsState}"
                                        x:Uid="TransferView_UploadsLoader"
                                        NoDataText="Отправки пока не поддерживаются">
             </controls:ContentContainer>
         </PivotItem>
         <PivotItem Header="журнал"
-                   x:Uid="TransferView_PivotSection_History">
+                   x:Uid="TransferView_PivotSection_History"
+                   Style="{StaticResource PivotItemStyle}">
             <controls:ContentContainer State="{Binding HistoryState}"
                                        x:Uid="TransferView_HistoryLoader"
                                        NoDataText="Журнал загрузок пока не поддерживается">

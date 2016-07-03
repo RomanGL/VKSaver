@@ -95,7 +95,8 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Pivot SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}">
+    <Pivot SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
+           Style="{StaticResource PivotStyle}">
         <Pivot.Title>
             <TextBlock Text="{Binding Artist.Name, Converter={StaticResource ToUpperConverter}}"
                        Style="{ThemeResource TitleTextBlockStyle}"
@@ -183,7 +184,8 @@
         </PivotItem>
         <PivotItem Header="альбомы"
                    x:Uid="ArtistInfoView_PivotSection_Albums"
-                   Margin="19,23,0,0">
+                   Margin="19,23,0,0"
+                   Style="{StaticResource PivotItemStyle}">
             <ListView Style="{StaticResource NoSelectionListViewStyle}"
                       ItemsSource="{Binding Albums}"
                       ItemTemplate="{StaticResource AlbumTemplate}"
@@ -218,7 +220,8 @@
             </ListView>
         </PivotItem>
         <PivotItem Header="похожие"
-                   x:Uid="ArtistInfoView_PivotSection_Similar">
+                   x:Uid="ArtistInfoView_PivotSection_Similar"
+                   Style="{StaticResource PivotItemStyle}">
             <controls:ContentContainer State="{Binding Similar.ContentState}"
                                        ReloadCommand="{Binding Similar.LoadCommand}"
                                        x:Uid="ArtistInfoView_SimilarLoader"

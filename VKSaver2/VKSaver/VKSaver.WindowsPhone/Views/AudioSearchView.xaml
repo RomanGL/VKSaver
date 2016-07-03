@@ -1,0 +1,174 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.AudioSearchView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:i="using:Microsoft.Xaml.Interactivity"
+                           xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:b="using:VKSaver.Behaviors"
+                           xmlns:controls="using:VKSaver.Controls"
+                           xmlns:common="using:VKSaver.Common"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           Style="{StaticResource DefaultPageStyle}">
+
+    <mvvm:VisualStateAwarePage.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+        
+        <Style x:Key="EverywhereAudioItem"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="загрузить"
+                                        x:Uid="DownloadFlyoutItem"
+                                        Command="{Binding DataSource.DownloadCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="в мои аудиозаписи"
+                                        x:Uid="AddToMyAudiosFlyoutItem"
+                                        Command="{Binding DataSource.AddToMyAudiosCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+        
+        <Style x:Key="MyAudioItem"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="загрузить"
+                                        x:Uid="DownloadFlyoutItem"
+                                        Command="{Binding DataSource.DownloadCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
+                                        Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+    </mvvm:VisualStateAwarePage.Resources>
+    
+    <mvvm:VisualStateAwarePage.BottomAppBar>
+        <CommandBar>
+            <i:Interaction.Behaviors>
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding PrimaryItems, Mode=OneTime}"
+                                                    SecondaryCommands="{Binding SecondaryItems, Mode=OneTime}" />
+            </i:Interaction.Behaviors>
+        </CommandBar>
+    </mvvm:VisualStateAwarePage.BottomAppBar>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Pivot Style="{StaticResource PivotStyle}"
+               SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
+               IsLocked="{Binding IsLockedPivot}"
+               Grid.Row="1"
+               Margin="0,-10,0,0">
+            <PivotItem Header="везде"
+                       x:Uid="SearchView_Everywhere_Title"
+                       Style="{StaticResource PivotItemStyle}">
+                <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                          ItemsSource="{Binding EverywhereResults}"
+                          ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                          ItemContainerStyle="{StaticResource EverywhereAudioItem}"
+                          IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                          SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <controls:StateBlock State="{Binding EverywhereResults.ContentState}"
+                                                 ReloadCommand="{Binding EverywhereResults.RefreshCommand}"
+                                                 x:Uid="SearchView_Loader" />
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="ItemClick">
+                            <c:InvokeCommandAction Command="{Binding ExecuteItemCommand}"
+                                                   InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                        </c:EventTriggerBehavior>
+                        <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                        SelectAll="{Binding SelectAll}"
+                                                        Command="{Binding SelectionChangedCommand}" />
+                    </i:Interaction.Behaviors>
+                </ListView>
+            </PivotItem>
+            <PivotItem Header="в коллекции"
+                       x:Uid="SearchView_InCollection_Title"
+                       Style="{StaticResource PivotItemStyle}">
+                <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                          ItemsSource="{Binding InCollectionResults}"
+                          ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                          ItemContainerStyle="{StaticResource MyAudioItem}"
+                          IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                          SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <controls:StateBlock State="{Binding InCollectionResults.ContentState}"
+                                                 ReloadCommand="{Binding InCollectionResults.RefreshCommand}"
+                                                 x:Uid="SearchView_Loader"/>
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="ItemClick">
+                            <c:InvokeCommandAction Command="{Binding ExecuteItemCommand}"
+                                                   InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                        </c:EventTriggerBehavior>
+                        <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                        SelectAll="{Binding SelectAll}"
+                                                        Command="{Binding SelectionChangedCommand}" />
+                    </i:Interaction.Behaviors>
+                </ListView>
+            </PivotItem>
+        </Pivot>
+
+        <TextBox Margin="19,12,19,0"
+                 x:Uid="SearchView_SearchBox"
+                 x:Name="SearchBox"
+                 Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 PlaceholderText="введите запрос и нажмите Enter"
+                 InputScope="Search">
+            <i:Interaction.Behaviors>
+                <c:EventTriggerBehavior EventName="KeyDown">
+                    <c:InvokeCommandAction Command="{Binding QueryBoxKeyDownCommand}" />
+                </c:EventTriggerBehavior>
+                <c:DataTriggerBehavior Binding="{Binding IsFilterFlyoutShowed}"
+                                       ComparisonCondition="NotEqual"
+                                       Value="{Binding IsFilterFlyoutShowed, Converter={StaticResource NegateConverter}}">
+                    <b:ShowAttachedFlyoutAction />
+                </c:DataTriggerBehavior>
+            </i:Interaction.Behaviors>
+
+            <FlyoutBase.AttachedFlyout>
+                <Flyout>
+                    <StackPanel>
+                        <ToggleSwitch Margin="19,0,19,10"
+                                      x:Uid="AudioSearchView_PerformerOnlySwitch"
+                                      Header="Искать только по исполнителю"
+                                      IsOn="{Binding PerformerOnly, Mode=TwoWay}" />
+                        <ToggleSwitch Margin="19,0,19,10"
+                                      x:Uid="AudioSearchView_LyricsOnlySwitch"
+                                      Header="Искать только с текстом"
+                                      IsOn="{Binding LyricsOnly, Mode=TwoWay}" />
+                    </StackPanel>
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
+        </TextBox>
+    </Grid>
+</mvvm:VisualStateAwarePage>

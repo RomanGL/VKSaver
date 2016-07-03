@@ -124,6 +124,16 @@ namespace VKSaver.Controls
             DependencyProperty.Register("NoDataText", typeof(string), 
                 typeof(StateBlock), new PropertyMetadata("Empty resource"));
 
+        public string NoneText
+        {
+            get { return (string)GetValue(NoneTextTextProperty); }
+            set { SetValue(NoneTextTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty NoneTextTextProperty =
+            DependencyProperty.Register("NoneText", typeof(string),
+                typeof(StateBlock), new PropertyMetadata(null));
+
         #endregion
 
         #region События

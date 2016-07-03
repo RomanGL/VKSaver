@@ -203,9 +203,11 @@
 
     <Pivot Title="{Binding PageTitle, Converter={StaticResource ToUpperConverter}}"
            SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
-           IsLocked="{Binding IsLockedPivot}">
+           IsLocked="{Binding IsLockedPivot}"
+           Style="{StaticResource PivotStyle}">
         <PivotItem Header="музыка"
-                   x:Uid="UserContentView_PivotSection_Music">
+                   x:Uid="UserContentView_PivotSection_Music"
+                   Style="{StaticResource PivotItemStyle}">
             <SemanticZoom Style="{StaticResource GenericJumpListStyle}">
                 <SemanticZoom.ZoomedInView>
                     <controls:FixedListView Style="{StaticResource NoSelectionListViewStyle}"
@@ -250,7 +252,8 @@
             </SemanticZoom>
         </PivotItem>
         <PivotItem Header="видео"
-                   x:Uid="UserContentView_PivotSection_Videos">
+                   x:Uid="UserContentView_PivotSection_Videos"
+                   Style="{StaticResource PivotItemStyle}">
             <SemanticZoom Style="{StaticResource GenericJumpListStyle}">
                 <SemanticZoom.ZoomedInView>
                     <controls:FixedListView Style="{StaticResource NoSelectionListViewStyle}"
@@ -291,7 +294,8 @@
         </PivotItem>
         <PivotItem Header="документы"
                    x:Uid="UserContentView_PivotSection_Docs"
-                   Margin="19,20,0,0">
+                   Margin="19,20,0,0"
+                   Style="{StaticResource PivotItemStyle}">
             <ListView Style="{StaticResource NoSelectionListViewStyle}"
                       ItemsSource="{Binding Documents}"
                       ItemTemplate="{StaticResource DocumentTemplate}"

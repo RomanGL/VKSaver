@@ -104,8 +104,8 @@
           <target state="translated" state-qualifier="tm-suggestion">show more</target>
         </trans-unit>
         <trans-unit id="AppName.Text" translate="yes" xml:space="preserve">
-          <source>ВКАЧАЙ</source>
-          <target state="translated">VK SAVER</target>
+          <source>ВКАЧАЙ BETA</source>
+          <target state="translated">VK SAVER BETA</target>
         </trans-unit>
         <trans-unit id="AboutView_About.Text" translate="yes" xml:space="preserve">
           <source>о приложении</source>
@@ -232,8 +232,8 @@ Go back to continue</target>
           <target state="translated">playlist</target>
         </trans-unit>
         <trans-unit id="AppNamePivot.Title" translate="yes" xml:space="preserve">
-          <source>ВКАЧАЙ</source>
-          <target state="translated">VK SAVER</target>
+          <source>ВКАЧАЙ BETA</source>
+          <target state="translated">VK SAVER BETA</target>
         </trans-unit>
         <trans-unit id="RecommendedView_Title.Text" translate="yes" xml:space="preserve">
           <source>рекомендуем</source>
@@ -589,8 +589,8 @@ Go back to continue</target>
           <target state="translated">Preparing files for download...</target>
         </trans-unit>
         <trans-unit id="AppNameText" translate="yes" xml:space="preserve">
-          <source>ВКачай</source>
-          <target state="translated">VK Saver</target>
+          <source>ВКачай Beta</source>
+          <target state="translated">VK Saver Beta</target>
         </trans-unit>
         <trans-unit id="Message_AddSelectedError_Text" translate="yes" xml:space="preserve">
           <source>Не удалось добавить указанные элементы в вашу коллекцию. Повторите попытку позднее.</source>
@@ -954,6 +954,46 @@ There is no connection or access to the videos is closed.</target>
         <trans-unit id="VideoAlbumVideosLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В этом альбоме нет видеозаписей</source>
           <target state="translated">There are no videos in this album</target>
+        </trans-unit>
+        <trans-unit id="SelectSearchTypeView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Что вы хотите найти?</source>
+          <target state="translated">That you want to find?</target>
+        </trans-unit>
+        <trans-unit id="SearchView_InCollection_Title.Header" translate="yes" xml:space="preserve">
+          <source>в коллекции</source>
+          <target state="translated">in collection</target>
+        </trans-unit>
+        <trans-unit id="SearchView_SearchBox.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>введите запрос и нажмите Enter</source>
+          <target state="translated">Type your query and press Enter</target>
+        </trans-unit>
+        <trans-unit id="SearchView_Everywhere_Title.Header" translate="yes" xml:space="preserve">
+          <source>везде</source>
+          <target state="translated">everywhere</target>
+        </trans-unit>
+        <trans-unit id="SearchView_Loader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось выполнить поиск</source>
+          <target state="translated">Search failed</target>
+        </trans-unit>
+        <trans-unit id="SearchView_Loader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Выполняется поиск...</source>
+          <target state="translated">Searching...</target>
+        </trans-unit>
+        <trans-unit id="SearchView_Loader.NoDataText" translate="yes" xml:space="preserve">
+          <source>По вашему запросу ничего не найдено</source>
+          <target state="translated">Nothing matches your search</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Filter_Text" translate="yes" xml:space="preserve">
+          <source>фильтр</source>
+          <target state="translated">filter</target>
+        </trans-unit>
+        <trans-unit id="AudioSearchView_PerformerOnlySwitch.Header" translate="yes" xml:space="preserve">
+          <source>Искать только по исполнителю</source>
+          <target state="translated">Only search by performer</target>
+        </trans-unit>
+        <trans-unit id="AudioSearchView_LyricsOnlySwitch.Header" translate="yes" xml:space="preserve">
+          <source>Искать только с текстом</source>
+          <target state="translated">Search only with lyrics</target>
         </trans-unit>
       </group>
     </body>

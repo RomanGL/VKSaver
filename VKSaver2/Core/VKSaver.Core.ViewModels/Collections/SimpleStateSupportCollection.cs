@@ -51,7 +51,7 @@ namespace VKSaver.Core.ViewModels.Collections
 
                 ContentState = this.Any() ? ContentState.Normal : ContentState.NoData;
             }
-            catch
+            catch (Exception ex)
             {
                 ContentState = ContentState.Error;
             }

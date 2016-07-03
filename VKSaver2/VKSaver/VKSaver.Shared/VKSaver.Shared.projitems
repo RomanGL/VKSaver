@@ -23,6 +23,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\CommandBarButtonsBindingBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\FocusBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\KeyBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\SelectedItemsBindingBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ShowAttachedFlyoutAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\WithCommandDependencyObject.cs" />
@@ -55,6 +57,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AudioSearchView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SelectSearchTypeView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoAlbumView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPlayerView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoInfoView.xaml.cs" />

@@ -163,12 +163,12 @@
                    Style="{StaticResource PivotHeaderTextBlockStyle}"/>
     </DataTemplate>
 
-    <Style TargetType="PivotItem">
+    <Style TargetType="PivotItem" x:Key="PivotItemStyle">
         <Setter Property="Margin"
                 Value="19,10,0,0" />
     </Style>
 
-    <Style TargetType="Pivot">
+    <Style TargetType="Pivot" x:Key="PivotStyle">
         <Setter Property="HeaderTemplate"
                 Value="{StaticResource PivotHeaderTemplate}" />
     </Style>

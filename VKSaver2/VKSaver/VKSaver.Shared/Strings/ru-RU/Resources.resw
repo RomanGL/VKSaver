@@ -200,13 +200,13 @@
     <value>Подготовка файлов для загрузки...</value>
   </data>
   <data name="AppName.Text" xml:space="preserve">
-    <value>ВКАЧАЙ</value>
+    <value>ВКАЧАЙ BETA</value>
   </data>
   <data name="AppNamePivot.Title" xml:space="preserve">
-    <value>ВКАЧАЙ</value>
+    <value>ВКАЧАЙ BETA</value>
   </data>
   <data name="AppNameText" xml:space="preserve">
-    <value>ВКачай</value>
+    <value>ВКачай Beta</value>
   </data>
   <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
     <value>Не удалось загрузить список альбомов исполнителя</value>
@@ -824,5 +824,35 @@
   </data>
   <data name="VideoAlbumVideosLoader.NoDataText" xml:space="preserve">
     <value>В этом альбоме нет видеозаписей</value>
+  </data>
+  <data name="SelectSearchTypeView_Title.Text" xml:space="preserve">
+    <value>Что вы хотите найти?</value>
+  </data>
+  <data name="SearchView_InCollection_Title.Header" xml:space="preserve">
+    <value>в коллекции</value>
+  </data>
+  <data name="SearchView_Everywhere_Title.Header" xml:space="preserve">
+    <value>везде</value>
+  </data>
+  <data name="SearchView_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>введите запрос и нажмите Enter</value>
+  </data>
+  <data name="SearchView_Loader.ErrorText" xml:space="preserve">
+    <value>Не удалось выполнить поиск</value>
+  </data>
+  <data name="SearchView_Loader.LoadingText" xml:space="preserve">
+    <value>Выполняется поиск...</value>
+  </data>
+  <data name="SearchView_Loader.NoDataText" xml:space="preserve">
+    <value>По вашему запросу ничего не найдено</value>
+  </data>
+  <data name="AppBarButton_Filter_Text" xml:space="preserve">
+    <value>фильтр</value>
+  </data>
+  <data name="AudioSearchView_PerformerOnlySwitch.Header" xml:space="preserve">
+    <value>Искать только по исполнителю</value>
+  </data>
+  <data name="AudioSearchView_LyricsOnlySwitch.Header" xml:space="preserve">
+    <value>Искать только с текстом</value>
   </data>
 </root>

@@ -11,11 +11,15 @@ namespace VKSaver.Behaviors
     {
         public object Execute(object sender, object parameter)
         {
-            var element = sender as FrameworkElement;
-            if (element == null) return null;
+            try
+            {
+                var element = sender as FrameworkElement;
+                if (element == null) return null;
 
-            FlyoutBase.ShowAttachedFlyout(element);
-            return element;
+                FlyoutBase.ShowAttachedFlyout(element);
+            }
+            catch { }
+            return sender;
         }
     }
 }

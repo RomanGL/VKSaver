@@ -241,6 +241,14 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
+            if (e.NavigationMode == NavigationMode.Back && _appLoaderService.IsShowed)
+            {
+                e.Cancel = true;
+                _cancelOperations = true;
+                _appLoaderService.Hide();
+                return;
+            }
+
             if (e.NavigationMode == NavigationMode.Back && IsSelectionMode)
             {
                 SetDefaultMode();
@@ -814,12 +822,20 @@ namespace VKSaver.Core.ViewModels
         private async void OnDeleteSelectedCommand()
         {
             _appLoaderService.Show(_locService["AppLoader_Preparing"]);
+            _cancelOperations = false;
+
             var items = SelectedItems.Where(o => o is Audio || o is Video || o is Doc).ToList();
             var errors = new List<object>();
             var success = new List<object>();
 
             foreach (var obj in items)
             {
+                if (_cancelOperations)
+                {
+                    errors.Add(obj);
+                    continue;
+                }
+
                 _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], obj.ToString()));
                 if (await DeleteObject(obj))
                     success.Add(obj);
@@ -864,12 +880,20 @@ namespace VKSaver.Core.ViewModels
         private async void OnAddSelectedToMyCollection()
         {
             _appLoaderService.Show(_locService["AppLoader_Preparing"]);
+            _cancelOperations = false;
+
             var items = SelectedItems.Where(o => o is Audio || o is Video || o is Doc).ToList();
             var errors = new List<object>();
             var success = new List<object>();
 
             foreach (var obj in items)
             {
+                if (_cancelOperations)
+                {
+                    errors.Add(obj);
+                    continue;
+                }
+
                 _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], obj.ToString()));
                 if (await AddToMyCollection(obj))
                     success.Add(obj);
@@ -965,9 +989,7 @@ namespace VKSaver.Core.ViewModels
             sb.AppendLine();
 
             foreach (var obj in errorObjects)
-            {
                 sb.AppendLine(obj.ToString());
-            }
 
             _dialogsService.Show(sb.ToString(), _locService["Message_DeleteSelectedError_Title"]);
         }
@@ -979,9 +1001,7 @@ namespace VKSaver.Core.ViewModels
             sb.AppendLine();
 
             foreach (var obj in errorObjects)
-            {
                 sb.AppendLine(obj.ToString());
-            }
 
             _dialogsService.Show(sb.ToString(), _locService["Message_AddSelectedError_Title"]);
         }
@@ -994,6 +1014,7 @@ namespace VKSaver.Core.ViewModels
         private int _docsOffset;
 
         private int _lastPivotIndex;
+        private bool _cancelOperations = false;
         
         private readonly INavigationService _navigationService;
         private readonly IPlayerService _playerService;

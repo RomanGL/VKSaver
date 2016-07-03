@@ -89,8 +89,15 @@
     </Page.Resources>
 
     <Page.BottomAppBar>
-        <CommandBar Background="{ThemeResource ContentDialogDimmingThemeBrush}"
-                    ClosedDisplayMode="Minimal">
+        <CommandBar Background="{ThemeResource ContentDialogDimmingThemeBrush}">
+            <AppBarButton Label="поиск"
+                          Command="{Binding GoToSearchCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE1A3;"
+                              FontSize="16" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="проигрыватель"
                               x:Uid="AppBarButton_Player"
@@ -103,7 +110,7 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-    <Grid Margin="0,0,0,-25">
+    <Grid Margin="0,0,0,-60">
         <Hub Header="вкачай beta"
              x:Uid="MainView_Hub">
             <Hub.Background>
@@ -338,7 +345,7 @@
                                       Style="{StaticResource ListViewMenuItemStyle}">
                             <i:Interaction.Behaviors>
                                 <c:EventTriggerBehavior EventName="Tapped">
-                                    <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
+                                    <c:InvokeCommandAction Command="{Binding GoToSearchCommand}" />
                                 </c:EventTriggerBehavior>
                             </i:Interaction.Behaviors>
                         </ListViewItem>
