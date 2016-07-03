@@ -855,4 +855,14 @@
   <data name="AudioSearchView_LyricsOnlySwitch.Header" xml:space="preserve">
     <value>Искать только с текстом</value>
   </data>
+  <data name="BetaBlockerView_Content.Text" xml:space="preserve">
+    <value>Спасибо за участие!
+Загрузите ВКачай 2 сейчас!</value>
+  </data>
+  <data name="BetaBlockerView_DownloadButton.Content" xml:space="preserve">
+    <value>перейти к загрузке</value>
+  </data>
+  <data name="BetaBlockerView_Title.Text" xml:space="preserve">
+    <value>Бета-тест завершен</value>
+  </data>
 </root>

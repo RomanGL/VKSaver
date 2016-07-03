@@ -995,6 +995,20 @@ There is no connection or access to the videos is closed.</target>
           <source>Искать только с текстом</source>
           <target state="translated">Search only with lyrics</target>
         </trans-unit>
+        <trans-unit id="BetaBlockerView_Content.Text" translate="yes" xml:space="preserve">
+          <source>Спасибо за участие!
+Загрузите ВКачай 2 сейчас!</source>
+          <target state="translated">Thank you for your participation! 
+Download VK Saver 2 now!</target>
+        </trans-unit>
+        <trans-unit id="BetaBlockerView_DownloadButton.Content" translate="yes" xml:space="preserve">
+          <source>перейти к загрузке</source>
+          <target state="translated">go to download</target>
+        </trans-unit>
+        <trans-unit id="BetaBlockerView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Бета-тест завершен</source>
+          <target state="translated">Beta test is finished</target>
+        </trans-unit>
       </group>
     </body>
   </file>

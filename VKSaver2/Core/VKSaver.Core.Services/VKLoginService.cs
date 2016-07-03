@@ -112,6 +112,7 @@ namespace VKSaver.Core.Services
             _inTouch.SetSessionData(null);
             UserLogout?.Invoke(this, EventArgs.Empty);
         }
+
         public void InitializeInTouch()
         {
             if (!IsAuthorized)

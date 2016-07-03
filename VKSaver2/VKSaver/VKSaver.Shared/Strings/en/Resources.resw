@@ -751,4 +751,14 @@ There is no connection or access to the videos is closed.</value>
   <data name="AudioSearchView_LyricsOnlySwitch.Header" xml:space="preserve">
     <value>Search only with lyrics</value>
   </data>
+  <data name="BetaBlockerView_Content.Text" xml:space="preserve">
+    <value>Thank you for your participation! 
+Download VK Saver 2 now!</value>
+  </data>
+  <data name="BetaBlockerView_DownloadButton.Content" xml:space="preserve">
+    <value>go to download</value>
+  </data>
+  <data name="BetaBlockerView_Title.Text" xml:space="preserve">
+    <value>Beta test is finished</value>
+  </data>
 </root>

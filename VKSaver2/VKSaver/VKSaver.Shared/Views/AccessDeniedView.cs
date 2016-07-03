@@ -3,9 +3,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Views
 {
-    public partial class NoTracksView : VisualStateAwarePage
+    public partial class AccessDeniedView : VisualStateAwarePage
     {
-        public NoTracksView()
+        public AccessDeniedView()
         {
             this.InitializeComponent();
         }

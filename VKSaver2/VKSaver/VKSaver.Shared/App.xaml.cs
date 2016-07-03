@@ -76,10 +76,14 @@ namespace VKSaver
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var logService = _container.Resolve<ILogService>();
+            try
+            {
+                var logService = _container.Resolve<ILogService>();
+                logService.LogException(e.Exception);
 
-            logService.LogException(e.Exception);
-            NavigationService.Navigate("ErrorView", null);
+                NavigationService.Navigate("ErrorView", null);
+            }
+            catch { }
 
             e.Handled = true;
         }
@@ -127,7 +131,17 @@ namespace VKSaver
             _container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IVideoLinksExtractor, VideoLinksExtractor>(new ContainerControlledLifetimeManager());
 
-            vkLoginService.UserLogin += (s, e) => NavigationService.Navigate("MainView", null);
+#if FULL
+            _container.RegisterType<IBetaService, BetaService>(new ContainerControlledLifetimeManager());
+#endif
+
+            vkLoginService.UserLogin += (s, e) =>
+            {
+                NavigationService.Navigate("MainView", null);
+#if FULL
+                _container.Resolve<IBetaService>().ExecuteAppLaunch();
+#endif
+            };
             vkLoginService.UserLogout += (s, e) =>
             {
                 NavigationService.Navigate("LoginView", null);
@@ -158,13 +172,20 @@ namespace VKSaver
                     NavigationService.Navigate("LoginView", null);
             }
 
-            try
+            if (vkLoginService.IsAuthorized)
             {
-                var state = playerService.CurrentState;
-                if (state == PlayerState.Playing)
-                    NavigationService.Navigate("PlayerView", null);
+                try
+                {
+                    var state = playerService.CurrentState;
+                    if (state == PlayerState.Playing)
+                        NavigationService.Navigate("PlayerView", null);
+                }
+                catch (Exception) { }
+
+#if FULL
+                _container.Resolve<IBetaService>().ExecuteAppLaunch();
+#endif
             }
-            catch (Exception) { }
 
             _container.Resolve<IDownloadsService>().DiscoverActiveDownloadsAsync();
             return Task.FromResult<object>(null);

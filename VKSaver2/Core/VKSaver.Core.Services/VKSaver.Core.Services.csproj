@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppLoaderService.cs" />
+    <Compile Include="BetaService.cs" />
     <Compile Include="Common\DownloadsExtensions.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="DialogsService.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="DownloadsServiceHelper.cs" />
     <Compile Include="GrooveMusicService.cs" />
     <Compile Include="Interfaces\IAppLoaderService.cs" />
+    <Compile Include="Interfaces\IBetaService.cs" />
     <Compile Include="Interfaces\IDownloadsService.cs" />
     <Compile Include="ImagesCacheService.cs" />
     <Compile Include="Interfaces\ICultureProvider.cs" />

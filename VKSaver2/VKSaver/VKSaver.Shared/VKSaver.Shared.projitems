@@ -57,6 +57,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\BetaBlockerView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AudioSearchView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SelectSearchTypeView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoAlbumView.xaml.cs" />
