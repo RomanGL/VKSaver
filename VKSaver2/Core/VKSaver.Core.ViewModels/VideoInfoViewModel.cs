@@ -123,12 +123,12 @@ namespace VKSaver.Core.ViewModels
 
             if (Video.Player.Contains("vk.com"))
                 VideoStoresOn = _locService["VideoInfoView_StoresOn_VK_Text"];
-            //else if (Video.Player.Contains("youtube"))
-            //    VideoStoresOn = _locService["VideoInfoView_StoresOn_YouTube_Text"];
+            else if (Video.Player.Contains("youtube"))
+                VideoStoresOn = _locService["VideoInfoView_StoresOn_YouTube_Text"];            
+            else if (Video.Player.Contains("vimeo.com"))
+                VideoStoresOn = _locService["VideoInfoView_StoresOn_Vimeo_Text"];
             //else if (Video.Player.Contains("coub.com"))
             //    VideoStoresOn = _locService["VideoInfoView_StoresOn_Coub_Text"];
-            //else if (Video.Player.Contains("vimeo.com"))
-            //    VideoStoresOn = _locService["VideoInfoView_StoresOn_Vimeo_Text"];
             else
             {                
                 VideoStoresOn = _locService["VideoInfoView_StoresOn_Unsupported_Text"];

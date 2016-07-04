@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VideoLibrary;
 
 namespace VKSaver.Core.LinksExtractor
 {
@@ -15,8 +14,6 @@ namespace VKSaver.Core.LinksExtractor
                 return GetVKLinks(videoUrl);
             else if (videoUrl.Contains("youtube"))
                 return GetYouTubeLinks(videoUrl);
-            //else if (videoUrl.Contains("coub.com"))
-            //    return _locService["VideoInfoView_StoresOn_Coub_Text"];
             //else if (videoUrl.Contains("vimeo.com"))
             //    return _locService["VideoInfoView_StoresOn_Vimeo_Text"];
             else
@@ -27,8 +24,8 @@ namespace VKSaver.Core.LinksExtractor
         {
             try
             {
-                var youTube = YouTube.Default;
-                var videos = await youTube.GetVideoAsync(videoUrl);
+                //var youTube = YouTube.Default;
+                //var videos = await youTube.GetVideoAsync(videoUrl);
 
                 return null;
             }
