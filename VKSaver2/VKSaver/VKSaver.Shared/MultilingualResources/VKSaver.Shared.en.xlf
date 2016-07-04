@@ -1009,6 +1009,72 @@ Download VK Saver 2 now!</target>
           <source>Бета-тест завершен</source>
           <target state="translated">Beta test is finished</target>
         </trans-unit>
+        <trans-unit id="VideoSearchView_OwnVideos_Title.Header" translate="yes" xml:space="preserve">
+          <source>загруженные</source>
+          <target state="translated">uploaded</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_FilterFlyout_Title.Text" translate="yes" xml:space="preserve">
+          <source>Фильтр видео</source>
+          <target state="translated">Video filter</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_OnlyHD_Switch.Header" translate="yes" xml:space="preserve">
+          <source>Только HD</source>
+          <target state="translated">HD Only</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_SafeSearch_Switch.Header" translate="yes" xml:space="preserve">
+          <source>Безопасный поиск</source>
+          <target state="translated">Safe search</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoDurations_ComboBox.Header" translate="yes" xml:space="preserve">
+          <source>Длительность видео</source>
+          <target state="translated">Video duration</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoSortMethods_ComboBox.Header" translate="yes" xml:space="preserve">
+          <source>Метод сортировки</source>
+          <target state="translated">Sorting method</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoTypes_ComboBox.Header" translate="yes" xml:space="preserve">
+          <source>Тип видео</source>
+          <target state="translated">Video type</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_Filters_All_Text" translate="yes" xml:space="preserve">
+          <source>все</source>
+          <target state="translated">all</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoDurations_Long_Text" translate="yes" xml:space="preserve">
+          <source>длинные</source>
+          <target state="translated">long</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoDurations_Short_Text" translate="yes" xml:space="preserve">
+          <source>короткие</source>
+          <target state="translated">short</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoSortMethods_ByDate_Text" translate="yes" xml:space="preserve">
+          <source>по дате добавления</source>
+          <target state="translated">by date</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Eng: by date</note>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoSortMethods_ByDuration_Text" translate="yes" xml:space="preserve">
+          <source>по длительности</source>
+          <target state="translated">by duration</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoSortMethods_ByRelevance_Text" translate="yes" xml:space="preserve">
+          <source>по популярности</source>
+          <target state="translated">by popularity</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Eng: by popularity</note>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoTypes_MP4_Text" translate="yes" xml:space="preserve">
+          <source>MP4</source>
+          <target state="translated">MP4</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoTypes_Vimeo_Text" translate="yes" xml:space="preserve">
+          <source>Vimeo</source>
+          <target state="translated">Vimeo</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoTypes_YouTube_Text" translate="yes" xml:space="preserve">
+          <source>YouTube</source>
+          <target state="translated">YouTube</target>
+        </trans-unit>
       </group>
     </body>
   </file>

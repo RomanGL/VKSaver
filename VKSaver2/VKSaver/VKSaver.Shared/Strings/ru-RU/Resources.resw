@@ -865,4 +865,54 @@
   <data name="BetaBlockerView_Title.Text" xml:space="preserve">
     <value>Бета-тест завершен</value>
   </data>
+  <data name="VideoSearchView_FilterFlyout_Title.Text" xml:space="preserve">
+    <value>Фильтр видео</value>
+  </data>
+  <data name="VideoSearchView_Filters_All_Text" xml:space="preserve">
+    <value>все</value>
+  </data>
+  <data name="VideoSearchView_OnlyHD_Switch.Header" xml:space="preserve">
+    <value>Только HD</value>
+  </data>
+  <data name="VideoSearchView_OwnVideos_Title.Header" xml:space="preserve">
+    <value>загруженные</value>
+  </data>
+  <data name="VideoSearchView_SafeSearch_Switch.Header" xml:space="preserve">
+    <value>Безопасный поиск</value>
+  </data>
+  <data name="VideoSearchView_VideoDurations_ComboBox.Header" xml:space="preserve">
+    <value>Длительность видео</value>
+  </data>
+  <data name="VideoSearchView_VideoDurations_Long_Text" xml:space="preserve">
+    <value>длинные</value>
+  </data>
+  <data name="VideoSearchView_VideoDurations_Short_Text" xml:space="preserve">
+    <value>короткие</value>
+  </data>
+  <data name="VideoSearchView_VideoSortMethods_ByDate_Text" xml:space="preserve">
+    <value>по дате добавления</value>
+    <comment>Eng: by date</comment>
+  </data>
+  <data name="VideoSearchView_VideoSortMethods_ByDuration_Text" xml:space="preserve">
+    <value>по длительности</value>
+  </data>
+  <data name="VideoSearchView_VideoSortMethods_ByRelevance_Text" xml:space="preserve">
+    <value>по популярности</value>
+    <comment>Eng: by popularity</comment>
+  </data>
+  <data name="VideoSearchView_VideoSortMethods_ComboBox.Header" xml:space="preserve">
+    <value>Метод сортировки</value>
+  </data>
+  <data name="VideoSearchView_VideoTypes_ComboBox.Header" xml:space="preserve">
+    <value>Тип видео</value>
+  </data>
+  <data name="VideoSearchView_VideoTypes_MP4_Text" xml:space="preserve">
+    <value>MP4</value>
+  </data>
+  <data name="VideoSearchView_VideoTypes_Vimeo_Text" xml:space="preserve">
+    <value>Vimeo</value>
+  </data>
+  <data name="VideoSearchView_VideoTypes_YouTube_Text" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
 </root>
