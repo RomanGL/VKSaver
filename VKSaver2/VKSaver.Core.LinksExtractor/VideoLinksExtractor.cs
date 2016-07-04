@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VideoExtractor.Models;
+using VideoExtractor.Vimeo;
 
 namespace VKSaver.Core.LinksExtractor
 {
@@ -12,21 +14,46 @@ namespace VKSaver.Core.LinksExtractor
         {
             if (videoUrl.Contains("vk.com"))
                 return GetVKLinks(videoUrl);
-            else if (videoUrl.Contains("youtube"))
-                return GetYouTubeLinks(videoUrl);
-            //else if (videoUrl.Contains("vimeo.com"))
-            //    return _locService["VideoInfoView_StoresOn_Vimeo_Text"];
+            //else if (videoUrl.Contains("youtube"))
+            //    return GetYouTubeLinks(videoUrl);
+            else if (videoUrl.Contains("vimeo.com"))
+                return GetVimeoLinks(videoUrl);
             else
                 throw new UnsupportedServiceException("Unsupported service", videoUrl);
+        }
+
+        private async Task<List<IVideoLink>> GetVimeoLinks(string videoUrl)
+        {
+            try
+            {
+                int index = videoUrl.IndexOf("/video/");
+                string id = videoUrl.Substring(index + 7).Split('?')[0];
+
+                var vimeo = new VimeoVideo(id);
+                var videos = (await vimeo.ExtractAsync()).Where(v => v.VideoType == VideoType.Mp4 || v.VideoType == VideoType.Mobile);
+                var links = new List<IVideoLink>();
+
+                foreach (var video in videos)
+                {
+                    links.Add(new CommonVideoLink
+                    {
+                        Name = $"{video.VideoType.ToString().ToUpper()} {video.Resolution}p",
+                        Source = video.VideoUri.ToString()
+                    });
+                }
+
+                return links;
+            }
+            catch (Exception)
+            {
+                throw new LinksExtractionFailedException("Vimeo", videoUrl);
+            }
         }
 
         private async Task<List<IVideoLink>> GetYouTubeLinks(string videoUrl)
         {
             try
             {
-                //var youTube = YouTube.Default;
-                //var videos = await youTube.GetVideoAsync(videoUrl);
-
                 return null;
             }
             catch (Exception)
