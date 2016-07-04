@@ -132,6 +132,7 @@ namespace VKSaver.Core.ViewModels
             else
             {                
                 VideoStoresOn = _locService["VideoInfoView_StoresOn_Unsupported_Text"];
+                LinksState = ContentState.NoData;
                 return;
             }
 
