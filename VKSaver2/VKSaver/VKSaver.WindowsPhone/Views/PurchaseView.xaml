@@ -31,7 +31,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="{Binding Line1}"
-                                   Margin="0,40,0,0"
+                                   Margin="0,20,0,0"
                                    Style="{StaticResource PLine1TextStyle}"
                                    Pivot.SlideInAnimationGroup="GroupOne" />
                         <Image Grid.Row="1"
@@ -83,7 +83,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="{Binding Line1}"
-                                   Margin="0,40,0,0"
+                                   Margin="0,20,0,0"
                                    Style="{StaticResource PLine1TextStyle}"
                                    Pivot.SlideInAnimationGroup="GroupOne" />
                         <Image Grid.Row="1"

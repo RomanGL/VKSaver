@@ -35,11 +35,11 @@ namespace VKSaver.Core.ViewModels
             DownloadCommand = new DelegateCommand<Audio>(OnDownloadCommand);
             DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, HasSelectedItems);
 
-            AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand);
+            AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand, CanAddToMyAudios);
             AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, HasSelectedItems);
 
-            DeleteCommand = new DelegateCommand<Audio>(OnDeleteCommand);
-            DeleteSelectedCommand = new DelegateCommand(OnDeleteSelectedCommand);
+            DeleteCommand = new DelegateCommand<Audio>(OnDeleteCommand, CanDeleteAudio);
+            DeleteSelectedCommand = new DelegateCommand(OnDeleteSelectedCommand, HasSelectedItems);
 
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
             ShowPerformerFlyoutCommand = new DelegateCommand(OnShowPerformerFlyoutCommand);
@@ -197,11 +197,22 @@ namespace VKSaver.Core.ViewModels
                 Command = SelectAllCommand
             });
 
-            SecondaryItems.Add(new AppBarButton
+            if (LastPivotIndex == 1 && UserId == _inTouch.Session.UserId)
             {
-                Label = _locService["AppBarButton_AddToMyAudios_Text"],
-                Command = AddSelectedToMyAudiosCommand
-            });
+                SecondaryItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_Delete_Text"],
+                    Command = DeleteSelectedCommand
+                });
+            }
+            else
+            {
+                SecondaryItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_AddToMyAudios_Text"],
+                    Command = AddSelectedToMyAudiosCommand
+                });
+            }
         }
 
         protected override async void OnExecuteItemCommand(Audio item)
@@ -221,6 +232,16 @@ namespace VKSaver.Core.ViewModels
 
             _navigationService.Navigate("PlayerView", null);
             _appLoaderService.Hide();
+        }
+
+        private bool CanDeleteAudio(Audio audio)
+        {
+            return audio != null && audio.OwnerId == _inTouch.Session.UserId;
+        }
+
+        private bool CanAddToMyAudios(Audio audio)
+        {
+            return audio != null && audio.OwnerId != _inTouch.Session.UserId;
         }
 
         private void OnShowPerformerFlyoutCommand()

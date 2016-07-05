@@ -40,6 +40,10 @@
             <Setter Property="FlyoutBase.AttachedFlyout">
                 <Setter.Value>
                     <MenuFlyout>
+                        <MenuFlyoutItem Text="в мои видеозаписи"
+                                        x:Uid="AddToMyVideosFlyoutItem"
+                                        Command="{Binding DataSource.AddToMyVideosCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="удалить"
                                         x:Uid="DeleteFlyoutItem"
                                         Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"

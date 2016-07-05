@@ -48,6 +48,10 @@
                                         x:Uid="DownloadFlyoutItem"
                                         Command="{Binding DataSource.DownloadCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="в мои аудиозаписи"
+                                        x:Uid="AddToMyAudiosFlyoutItem"
+                                        Command="{Binding DataSource.AddToMyAudiosCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="удалить"
                                         x:Uid="DeleteFlyoutItem"
                                         Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"

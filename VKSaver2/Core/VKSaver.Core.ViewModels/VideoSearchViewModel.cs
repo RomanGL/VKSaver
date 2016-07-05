@@ -29,11 +29,11 @@ namespace VKSaver.Core.ViewModels
         {
             _appLoaderService = appLoaderService;
 
-            AddToMyVideosCommand = new DelegateCommand<Video>(OnAddToMyVideosCommand);
+            AddToMyVideosCommand = new DelegateCommand<Video>(OnAddToMyVideosCommand, CanAddToMyVideos);
             AddSelectedToMyVideosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, HasSelectedItems);
 
-            DeleteCommand = new DelegateCommand<Video>(OnDeleteCommand);
-            DeleteSelectedCommand = new DelegateCommand(OnDeleteSelectedCommand);
+            DeleteCommand = new DelegateCommand<Video>(OnDeleteCommand, CanDeleteVideo);
+            DeleteSelectedCommand = new DelegateCommand(OnDeleteSelectedCommand, HasSelectedItems);
             ShowFilterFlyoutCommand = new DelegateCommand(OnShowPerformerFlyoutCommand);
             FilterFlyoutClosedCommand = new DelegateCommand(OnFilterFlyoutClosedCommand);
             CreateFilters();
@@ -183,7 +183,7 @@ namespace VKSaver.Core.ViewModels
                 throw new Exception(response.Error.ToString());
 
             _inCollectionOffset += 50;
-            return response.Data.Items.Where(v => v.OwnerId == _inTouch.Session.UserId);
+            return response.Data.Items.Where(v => v.OwnerId == UserId);
         }
 
         protected override void OnLastPivotIndexChanged()
@@ -226,11 +226,22 @@ namespace VKSaver.Core.ViewModels
                 Command = SelectAllCommand
             });
 
-            SecondaryItems.Add(new AppBarButton
+            if (LastPivotIndex == 1 && UserId == _inTouch.Session.UserId)
             {
-                Label = _locService["AppBarButton_AddToMyVideos_Text"],
-                Command = AddSelectedToMyVideosCommand
-            });
+                SecondaryItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_Delete_Text"],
+                    Command = DeleteSelectedCommand
+                });
+            }
+            else
+            {
+                SecondaryItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_AddToMyVideos_Text"],
+                    Command = AddSelectedToMyVideosCommand
+                });
+            }
         }
 
         protected override void OnExecuteItemCommand(Video item)
@@ -269,6 +280,16 @@ namespace VKSaver.Core.ViewModels
         private bool HasSelectedItems()
         {
             return SelectedItems.Count > 0;
+        }
+
+        private bool CanDeleteVideo(Video video)
+        {
+            return video != null && LastPivotIndex == 1 && UserId == _inTouch.Session.UserId;
+        }
+
+        private bool CanAddToMyVideos(Video video)
+        {
+            return video != null && !(LastPivotIndex == 1 && UserId == _inTouch.Session.UserId);
         }
 
         private void OnFilterFlyoutClosedCommand()
@@ -376,13 +397,13 @@ namespace VKSaver.Core.ViewModels
         private async Task<bool> AddToMyVideos(Video video)
         {
             var response = await _inTouch.Videos.Add((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
-            return !response.IsError;
+            return !response.IsError && response.Data;
         }
 
         private async Task<bool> DeleteVideo(Video video)
         {
             var response = await _inTouch.Videos.Delete((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
-            return !response.IsError;
+            return !response.IsError && response.Data;
         }
 
         private void RemoveDeletedItems(List<Video> items)
