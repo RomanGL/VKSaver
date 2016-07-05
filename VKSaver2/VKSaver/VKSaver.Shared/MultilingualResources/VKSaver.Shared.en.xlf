@@ -1075,6 +1075,22 @@ Download VK Saver 2 now!</target>
           <source>YouTube</source>
           <target state="translated">YouTube</target>
         </trans-unit>
+        <trans-unit id="CaptchaBox.PrimaryButtonText" translate="yes" xml:space="preserve">
+          <source>ок</source>
+          <target state="translated">ok</target>
+        </trans-unit>
+        <trans-unit id="CaptchaBox.SecondaryButtonText" translate="yes" xml:space="preserve">
+          <source>отмена</source>
+          <target state="translated">cancel</target>
+        </trans-unit>
+        <trans-unit id="CaptchaBox.Title" translate="yes" xml:space="preserve">
+          <source>Требуется проверка</source>
+          <target state="translated">Verification required</target>
+        </trans-unit>
+        <trans-unit id="CaptchaBox_Content.Text" translate="yes" xml:space="preserve">
+          <source>Введите символы, которые вы видите на картинке</source>
+          <target state="translated">Please enter the symbols you see in the picture</target>
+        </trans-unit>
       </group>
     </body>
   </file>

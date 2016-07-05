@@ -71,6 +71,7 @@
     <Compile Include="GrooveMusicService.cs" />
     <Compile Include="Interfaces\IAppLoaderService.cs" />
     <Compile Include="Interfaces\IBetaService.cs" />
+    <Compile Include="Interfaces\IInTouchWrapper.cs" />
     <Compile Include="Interfaces\IDownloadsService.cs" />
     <Compile Include="ImagesCacheService.cs" />
     <Compile Include="Interfaces\ICultureProvider.cs" />

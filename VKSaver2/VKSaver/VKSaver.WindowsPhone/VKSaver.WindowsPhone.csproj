@@ -158,6 +158,7 @@
     <Compile Include="Converters\OneItemsListSizeConverter.cs" />
     <Compile Include="Converters\TwoItemsListSizeConverter.cs" />
     <Compile Include="Converters\UserContentGroupKeyToStringConverter.cs" />
+    <Compile Include="Core\Services\InTouchWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Services\PlayerService.cs" />
   </ItemGroup>

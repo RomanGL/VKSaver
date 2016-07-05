@@ -811,4 +811,16 @@ Download VK Saver 2 now!</value>
   <data name="VideoSearchView_VideoTypes_YouTube_Text" xml:space="preserve">
     <value>YouTube</value>
   </data>
+  <data name="CaptchaBox.PrimaryButtonText" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="CaptchaBox.SecondaryButtonText" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="CaptchaBox.Title" xml:space="preserve">
+    <value>Verification required</value>
+  </data>
+  <data name="CaptchaBox_Content.Text" xml:space="preserve">
+    <value>Please enter the symbols you see in the picture</value>
+  </data>
 </root>

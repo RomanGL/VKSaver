@@ -162,56 +162,80 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<Audio>> LoadUserTracks()
         {
-            if (UserTracks.Any())
-                return new List<Audio>();
-
-            var response = await _inTouch.Audio.Get(count: 10);
-            if (response.IsError)
-                throw new Exception(response.Error.ToString());
-            else
+            try
             {
-                if (response.Data.Items.Count == 0)
+                if (UserTracks.Any())
                     return new List<Audio>();
 
-                FirstTrack = new VKAudioWithImage
+                var response = await _inTouch.Audio.Get(count: 10);
+                if (response.IsError)
+                    throw new Exception(response.Error.ToString());
+                else
                 {
-                    VKTrack = response.Data.Items[0]
-                };
+                    if (response.Data.Items.Count == 0)
+                        return new List<Audio>();
 
-                //TryLoadFirstTrackInfo(FirstTrack);
-                TryLoadBackground(FirstTrack);
-                return response.Data.Items.Skip(1);
+                    FirstTrack = new VKAudioWithImage
+                    {
+                        VKTrack = response.Data.Items[0]
+                    };
+
+                    //TryLoadFirstTrackInfo(FirstTrack);
+                    TryLoadBackground(FirstTrack);
+                    return response.Data.Items.Skip(1);
+                }
+            }
+            catch (Exception ex)
+            {
+                string json = ex.Data["json"].ToString();
+                throw;
             }
         } 
 
         private async Task<IEnumerable<LFArtistExtended>> LoadTopArtists()
         {
-            if (TopArtistsLF.Any())
-                return new List<LFArtistExtended>();
-
-            var request = new Request<LFChartArtistsResponse>("chart.getTopArtists",
-                new Dictionary<string, string> { { "limit", "8" } });
-            var response = await _lfService.ExecuteRequestAsync(request);
-
-            if (response.IsValid())
+            try
             {
-                TryLoadTopArtistBackground(response.Data.Artists[0]);
-                return response.Data.Artists;
+                if (TopArtistsLF.Any())
+                    return new List<LFArtistExtended>();
+
+                var request = new Request<LFChartArtistsResponse>("chart.getTopArtists",
+                    new Dictionary<string, string> { { "limit", "8" } });
+                var response = await _lfService.ExecuteRequestAsync(request);
+
+                if (response.IsValid())
+                {
+                    TryLoadTopArtistBackground(response.Data.Artists[0]);
+                    return response.Data.Artists;
+                }
+                else
+                    throw new Exception("LFChartArtistsResponse isn't valid.");
             }
-            else
-                throw new Exception("LFChartArtistsResponse isn't valid.");
+            catch (Exception ex)
+            {
+                string json = ex.Data["json"].ToString();
+                throw;
+            }
         }
 
         private async Task<IEnumerable<Audio>> LoadRecommendedTracks()
         {
-            if (RecommendedTracksVK.Any())
-                return new List<Audio>();
+            try
+            {
+                if (RecommendedTracksVK.Any())
+                    return new List<Audio>();
 
-            var response = await _inTouch.Audio.GetRecommendations(count: 10);
-            if (response.IsError)
-                throw new Exception(response.Error.ToString());
-            else
-                return response.Data.Items;
+                var response = await _inTouch.Audio.GetRecommendations(count: 10);
+                if (response.IsError)
+                    throw new Exception(response.Error.ToString());
+                else
+                    return response.Data.Items;
+            }
+            catch (Exception ex)
+            {
+                string json = ex.Data["json"].ToString();
+                throw;
+            }
         }
 
         private async void TryLoadBackground(VKAudioWithImage track)

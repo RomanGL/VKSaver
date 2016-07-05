@@ -915,4 +915,16 @@
   <data name="VideoSearchView_VideoTypes_YouTube_Text" xml:space="preserve">
     <value>YouTube</value>
   </data>
+  <data name="CaptchaBox.PrimaryButtonText" xml:space="preserve">
+    <value>ок</value>
+  </data>
+  <data name="CaptchaBox.SecondaryButtonText" xml:space="preserve">
+    <value>отмена</value>
+  </data>
+  <data name="CaptchaBox.Title" xml:space="preserve">
+    <value>Требуется проверка</value>
+  </data>
+  <data name="CaptchaBox_Content.Text" xml:space="preserve">
+    <value>Введите символы, которые вы видите на картинке</value>
+  </data>
 </root>

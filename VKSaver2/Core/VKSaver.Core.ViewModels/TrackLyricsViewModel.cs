@@ -18,12 +18,13 @@ namespace VKSaver.Core.ViewModels
     public sealed class TrackLyricsViewModel : ViewModelBase
     {
         public TrackLyricsViewModel(InTouch inTouch, INavigationService navigationService,
-            IDialogsService dialogService, ILocService locService)
+            IDialogsService dialogService, ILocService locService, IInTouchWrapper inTouchWrapper)
         {
             _inTouch = inTouch;
             _navigationService = navigationService;
             _dialogService = dialogService;
             _locService = locService;
+            _inTouchWrapper = inTouchWrapper;
 
             ReloadLyricsCommand = new DelegateCommand(OnReloadLyricsCommand);
         }
@@ -100,7 +101,7 @@ namespace VKSaver.Core.ViewModels
 
             try
             {
-                var response = await _inTouch.Audio.GetLyrics((int)Track.LyricsID);
+                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetLyrics((int)Track.LyricsID));
                 if (!response.IsError)
                 {
                     if (String.IsNullOrWhiteSpace(response.Data.Text))
@@ -132,5 +133,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IDialogsService _dialogService;
         private readonly ILocService _locService;
         private readonly InTouch _inTouch;
+        private readonly IInTouchWrapper _inTouchWrapper;
     }
 }

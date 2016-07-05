@@ -116,7 +116,8 @@ namespace VKSaver
             _container.RegisterInstance<ILocService>(_locService);
             _container.RegisterInstance<IVKLoginService>(vkLoginService);
             _container.RegisterInstance<InTouch>(inTouch);
-            
+
+            _container.RegisterType<IInTouchWrapper, InTouchWrapper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IDialogsService, DialogsService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IPurchaseService, PurchaseService>(new ContainerControlledLifetimeManager());
@@ -143,6 +144,11 @@ namespace VKSaver
 #endif
             };
             vkLoginService.UserLogout += (s, e) =>
+            {
+                NavigationService.Navigate("LoginView", null);
+                NavigationService.ClearHistory();
+            };
+            inTouch.AuthorizationFailed += (s, e) =>
             {
                 NavigationService.Navigate("LoginView", null);
                 NavigationService.ClearHistory();
