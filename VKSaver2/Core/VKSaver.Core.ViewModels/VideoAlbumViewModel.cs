@@ -19,13 +19,15 @@ namespace VKSaver.Core.ViewModels
     public sealed class VideoAlbumViewModel : ViewModelBase
     {
         public VideoAlbumViewModel(INavigationService navigationService, InTouch inTouch,
-            IAppLoaderService appLoaderService, IDialogsService dialogsService, ILocService locService)
+            IAppLoaderService appLoaderService, IDialogsService dialogsService, ILocService locService,
+            IInTouchWrapper inTouchWrapper)
         {
             _navigationService = navigationService;
             _inTouch = inTouch;
             _dialogsService = dialogsService;
             _locService = locService;
             _appLoaderService = appLoaderService;
+            _inTouchWrapper = inTouchWrapper;
             
             PrimaryItems = new ObservableCollection<ICommandBarElement>();
             SecondaryItems = new ObservableCollection<ICommandBarElement>();
@@ -122,11 +124,11 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<Video>> LoadMoreVideos(uint page)
         {
-            var response = await _inTouch.Videos.Get(
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Get(
                 Album.OwnerId, 
                 albumId: (int)Album.Id, 
                 count: 50, 
-                offset: _offset);
+                offset: _offset));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -217,13 +219,15 @@ namespace VKSaver.Core.ViewModels
         
         private async Task<bool> AddToMyVideos(Video video)
         {
-            var response = await _inTouch.Videos.Add((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Add(
+                (int)video.Id, video.OwnerId, _inTouch.Session.UserId));
             return !response.IsError;
         }
 
         private async Task<bool> DeleteVideo(Video video)
         {
-            var response = await _inTouch.Videos.Delete((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Delete(
+                (int)video.Id, video.OwnerId, _inTouch.Session.UserId));
             return !response.IsError;
         }
 
@@ -234,5 +238,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
         private readonly InTouch _inTouch;
+        private readonly IInTouchWrapper _inTouchWrapper;
     }
 }

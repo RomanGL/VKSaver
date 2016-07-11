@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using Windows.UI.Xaml.Navigation;
 
@@ -15,10 +16,12 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class UserCommViewModel : ViewModelBase
     {
-        public UserCommViewModel(InTouch inTouch, INavigationService navigationService)
+        public UserCommViewModel(InTouch inTouch, INavigationService navigationService,
+            IInTouchWrapper inTouchWrapper)
         {
             _inTouch = inTouch;
             _navigationService = navigationService;
+            _inTouchWrapper = inTouchWrapper;
 
             ExecuteItemCommand = new DelegateCommand<object>(OnExecuteItemCommand);
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
@@ -115,10 +118,10 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<User>> LoadMoreFriends(uint page)
         {
-            var response = await _inTouch.Friends.Get(
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Friends.Get(
                 _userID,
                 count: 50, offset: _friendsOffset,
-                fields: new List<UserProfileFields> { UserProfileFields.Photo100 });
+                fields: new List<UserProfileFields> { UserProfileFields.Photo100 }));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -132,7 +135,7 @@ namespace VKSaver.Core.ViewModels
             if (FriendsLists.Any())
                 return new List<FriendsList>(0);
 
-            var response = await _inTouch.Friends.GetLists(_userID, true);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Friends.GetLists(_userID, true));
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
 
@@ -141,12 +144,13 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<Group>> LoadMoreGroups(uint page)
         {
-            var response = await _inTouch.Groups.Get(new GroupsGetParams
-            {
-                UserId = _userID > 0 ? (int?)_userID : null,
-                Count = 50,
-                Offset = _groupsOffset
-            });
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Groups.Get(
+                new GroupsGetParams
+                {
+                    UserId = _userID > 0 ? (int?)_userID : null,
+                    Count = 50,
+                    Offset = _groupsOffset
+                }));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -157,8 +161,8 @@ namespace VKSaver.Core.ViewModels
 
         private async void LoadUserInfo(long userID)
         {
-            var response = await _inTouch.Users.Get(
-                    _userID == 0 ? null : new List<object> { _userID });
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Users.Get(
+                    _userID == 0 ? null : new List<object> { _userID }));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -194,8 +198,9 @@ namespace VKSaver.Core.ViewModels
         private int _userID;
         private int _friendsOffset;
         private int _groupsOffset;
-        
+
         private readonly INavigationService _navigationService;
         private readonly InTouch _inTouch;
+        private readonly IInTouchWrapper _inTouchWrapper;
     }
 }

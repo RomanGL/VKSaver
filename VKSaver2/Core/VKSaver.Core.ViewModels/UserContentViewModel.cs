@@ -25,7 +25,8 @@ namespace VKSaver.Core.ViewModels
         public UserContentViewModel(InTouch inTouch, INavigationService navigationService,
             IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
             IAppLoaderService appLoaderService, IVKLoginService vkLoginService,
-            IDialogsService dialogsService, ILocService locService)
+            IDialogsService dialogsService, ILocService locService, 
+            IInTouchWrapper inTouchWrapper)
         {
             _inTouch = inTouch;
             _navigationService = navigationService;
@@ -35,6 +36,7 @@ namespace VKSaver.Core.ViewModels
             _vkLoginService = vkLoginService;
             _dialogsService = dialogsService;
             _locService = locService;
+            _inTouchWrapper = inTouchWrapper;
 
             SelectedItems = new List<object>();
             PrimaryItems = new ObservableCollection<ICommandBarElement>();
@@ -298,8 +300,9 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<object>> LoadMoreAudios(uint page)
         {
-            var response = await _inTouch.Audio.Get(_userID == 0 ? null : (int?)_userID,
-                count: 50, offset: _audiosOffset);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Get(
+                _userID == 0 ? null : (int?)_userID, 
+                count: 50, offset: _audiosOffset));
 
             if (response.IsError)
             {
@@ -316,9 +319,9 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<object>> LoadMoreAudioAlbums(uint page)
         {
-            var response = await _inTouch.Audio.GetAlbums(
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetAlbums(
                 _userID == 0 ? null : (int?)_userID,
-                count: 50, offset: _audioAlbumsOffset);
+                count: 50, offset: _audioAlbumsOffset));
 
             if (response.IsError)
             {
@@ -335,8 +338,9 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<object>> LoadMoreVideos(uint page)
         {
-            var response = await _inTouch.Videos.Get(_userID == 0 ? null : (int?)_userID,
-                count: 50, offset: _videosOffset);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Get(
+                _userID == 0 ? null : (int?)_userID,
+                count: 50, offset: _videosOffset));
 
             if (response.IsError)
             {
@@ -353,8 +357,9 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<object>> LoadMoreVideoAlbums(uint page)
         {
-            var response = await _inTouch.Videos.GetAlbums(_userID == 0 ? null : (int?)_userID,
-                count: 50, offset: _videoAlbumsOffset, needSystem: true);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.GetAlbums(
+                _userID == 0 ? null : (int?)_userID,
+                count: 50, offset: _videoAlbumsOffset, needSystem: true));
 
             if (response.IsError)
             {
@@ -371,9 +376,9 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<Doc>> LoadMoreDocuments(uint page)
         {
-            var response = await _inTouch.Docs.Get(count: 50, 
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Docs.Get(count: 50, 
                 offset: _docsOffset,
-                ownerId: _userID == 0 ? null : (int?)_userID);
+                ownerId: _userID == 0 ? null : (int?)_userID));
 
             if (response.IsError)
             {
@@ -392,8 +397,8 @@ namespace VKSaver.Core.ViewModels
         {
             if (_userID >= 0)
             {
-                var response = await _inTouch.Users.Get(
-                    _userID == 0 ? null : new List<object> { _userID });
+                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Users.Get(
+                    _userID == 0 ? null : new List<object> { _userID }));
 
                 if (response.IsError)
                     throw new Exception(response.Error.ToString());
@@ -405,7 +410,8 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-                var response = await _inTouch.Groups.GetById(new List<object> { -_userID });
+                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Groups.GetById(
+                    new List<object> { -_userID }));
 
                 if (response.IsError)
                     throw new Exception(response.Error.ToString());
@@ -916,19 +922,22 @@ namespace VKSaver.Core.ViewModels
             if (obj is Audio)
             {
                 var audio = (Audio)obj;
-                response = await _inTouch.Audio.Add(audio.Id, audio.OwnerId);
+                response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Add(
+                    audio.Id, audio.OwnerId));
             }
             else if (obj is Video)
             {
                 var video = (Video)obj;
-                var vResponse = await _inTouch.Videos.Add((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
+                var vResponse = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Add(
+                    (int)video.Id, video.OwnerId, _inTouch.Session.UserId));
 
                 return !vResponse.IsError;
             }
             else if (obj is Doc)
             {
                 var doc = (Doc)obj;
-                response = await _inTouch.Docs.Add(doc.Id, doc.OwnerId);
+                response = await _inTouchWrapper.ExecuteRequest(_inTouch.Docs.Add(
+                    doc.Id, doc.OwnerId));
             }
 
             return !response.IsError;
@@ -940,27 +949,32 @@ namespace VKSaver.Core.ViewModels
             if (obj is Audio)
             {
                 var audio = (Audio)obj;
-                response = await _inTouch.Audio.Delete(audio.Id, audio.OwnerId);
+                response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Delete(
+                    audio.Id, audio.OwnerId));
             }
             else if (obj is Video)
             {
                 var video = (Video)obj;
-                response = await _inTouch.Videos.Delete((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
+                response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Delete(
+                    (int)video.Id, video.OwnerId, _inTouch.Session.UserId));
             }
             else if (obj is Doc)
             {
                 var doc = (Doc)obj;
-                response = await _inTouch.Docs.Delete(doc.OwnerId, doc.Id);
+                response = await _inTouchWrapper.ExecuteRequest(_inTouch.Docs.Delete(
+                    doc.OwnerId, doc.Id));
             }
             else if (obj is AudioAlbum)
             {
                 var audioAlbum = (AudioAlbum)obj;
-                response = await _inTouch.Audio.DeleteAlbum((int)audioAlbum.Id);
+                response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.DeleteAlbum(
+                    (int)audioAlbum.Id));
             }
             else if (obj is VideoAlbum)
             {
                 var videoAlbum = (VideoAlbum)obj;
-                response = await _inTouch.Videos.DeleteAlbum((int)videoAlbum.Id);
+                response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.DeleteAlbum(
+                    (int)videoAlbum.Id));
             }
 
             return !response.IsError;
@@ -1024,5 +1038,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
         private readonly InTouch _inTouch;
+        private readonly IInTouchWrapper _inTouchWrapper;
     }
 }

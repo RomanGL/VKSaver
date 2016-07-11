@@ -24,8 +24,8 @@ namespace VKSaver.Core.ViewModels
     {
         public VideoSearchViewModel(InTouch inTouch, INavigationService navigationService,
             ILocService locService, ISettingsService settingsService, IDialogsService dialogsService,
-            IAppLoaderService appLoaderService)
-            : base(inTouch, navigationService, locService, settingsService, dialogsService)
+            IAppLoaderService appLoaderService, IInTouchWrapper inTouchWrapper)
+            : base(inTouch, navigationService, locService, settingsService, dialogsService, inTouchWrapper)
         {
             _appLoaderService = appLoaderService;
 
@@ -138,7 +138,7 @@ namespace VKSaver.Core.ViewModels
             if (SelectedVideoDuration != 0)
                 filters.Add(VideoDurations[SelectedVideoDuration].Filter.Value);
 
-            var response = await _inTouch.Videos.Search(new VideoSearchParams
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Search(new VideoSearchParams
             {
                 Query = _currentQuery,
                 Count = 50,
@@ -147,7 +147,7 @@ namespace VKSaver.Core.ViewModels
                 UnsafeSearch = !SafeSearch,
                 NeedHD = OnlyHD,
                 Sort = (int)VideoSortMethods[SelectedSortMethod].Method
-            });
+            }));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -167,7 +167,7 @@ namespace VKSaver.Core.ViewModels
             if (SelectedVideoDuration != 0)
                 filters.Add(VideoDurations[SelectedVideoDuration].Filter.Value);
 
-            var response = await _inTouch.Videos.Search(new VideoSearchParams
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Search(new VideoSearchParams
             {
                 Query = _currentQuery,
                 Count = 50,
@@ -177,7 +177,7 @@ namespace VKSaver.Core.ViewModels
                 UnsafeSearch = !SafeSearch,
                 NeedHD = OnlyHD,
                 Sort = (int)VideoSortMethods[SelectedSortMethod].Method
-            });
+            }));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -396,13 +396,15 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<bool> AddToMyVideos(Video video)
         {
-            var response = await _inTouch.Videos.Add((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Add(
+                (int)video.Id, video.OwnerId, _inTouch.Session.UserId));
             return !response.IsError && response.Data;
         }
 
         private async Task<bool> DeleteVideo(Video video)
         {
-            var response = await _inTouch.Videos.Delete((int)video.Id, video.OwnerId, _inTouch.Session.UserId);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Delete(
+                (int)video.Id, video.OwnerId, _inTouch.Session.UserId));
             return !response.IsError && response.Data;
         }
 

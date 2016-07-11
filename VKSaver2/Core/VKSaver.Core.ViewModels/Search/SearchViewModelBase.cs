@@ -24,13 +24,15 @@ namespace VKSaver.Core.ViewModels
     public abstract class SearchViewModelBase<T> : ViewModelBase
     {
         public SearchViewModelBase(InTouch inTouch, INavigationService navigationService,
-            ILocService locService, ISettingsService settingsService, IDialogsService dialogsService)
+            ILocService locService, ISettingsService settingsService, IDialogsService dialogsService,
+            IInTouchWrapper inTouchWrapper)
         {
             _inTouch = inTouch;
             _navigationService = navigationService;
             _locService = locService;
             _settingsService = settingsService;
             _dialogsService = dialogsService;
+            _inTouchWrapper = inTouchWrapper;
 
             PrimaryItems = new ObservableCollection<ICommandBarElement>();
             SecondaryItems = new ObservableCollection<ICommandBarElement>();
@@ -298,5 +300,6 @@ namespace VKSaver.Core.ViewModels
         protected readonly ILocService _locService;
         protected readonly ISettingsService _settingsService;
         protected readonly IDialogsService _dialogsService;
+        protected readonly IInTouchWrapper _inTouchWrapper;
     }
 }

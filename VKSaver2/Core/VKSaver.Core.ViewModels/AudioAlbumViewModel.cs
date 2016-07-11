@@ -23,7 +23,8 @@ namespace VKSaver.Core.ViewModels
     {
         public AudioAlbumViewModel(INavigationService navigationService, IPlayerService playerService,
             IDownloadsServiceHelper downloadsServiceHelper, InTouch inTouch,
-            IAppLoaderService appLoaderService, IDialogsService dialogsService, ILocService locService)
+            IAppLoaderService appLoaderService, IDialogsService dialogsService, ILocService locService,
+            IInTouchWrapper inTouchWrapper)
         {
             _navigationService = navigationService;
             _playerService = playerService;
@@ -32,6 +33,7 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService = appLoaderService;
             _dialogsService = dialogsService;
             _locService = locService;
+            _inTouchWrapper = inTouchWrapper;
 
             IsItemClickEnabled = true;
             PrimaryItems = new ObservableCollection<ICommandBarElement>();
@@ -166,7 +168,8 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<Audio>> LoadMoreAudios(uint page)
         {
-            var response = await _inTouch.Audio.Get(Album.OwnerId, (int)Album.Id, count: 50, offset: _offset);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Get(
+                Album.OwnerId, (int)Album.Id, count: 50, offset: _offset));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -423,13 +426,15 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<bool> AddToMyAudios(Audio audio)
         {
-            var response = await _inTouch.Audio.Add(audio.Id, audio.OwnerId);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Add(
+                audio.Id, audio.OwnerId));
             return !response.IsError;
         }
 
         private async Task<bool> DeleteAudio(Audio audio)
         {
-            var response = await _inTouch.Audio.Delete(audio.Id, audio.OwnerId);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Delete(
+                audio.Id, audio.OwnerId));
             return !response.IsError;
         }
 
@@ -471,5 +476,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
         private readonly InTouch _inTouch;
+        private readonly IInTouchWrapper _inTouchWrapper;
     }
 }

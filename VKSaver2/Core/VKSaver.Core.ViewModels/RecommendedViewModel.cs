@@ -24,7 +24,7 @@ namespace VKSaver.Core.ViewModels
         public RecommendedViewModel(InTouch inTouch, INavigationService navigationService,
             IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
             IAppLoaderService appLoaderService, IDialogsService dialogsService,
-            ILocService locService)
+            ILocService locService, IInTouchWrapper inTouchWraper)
         {
             _inTouch = inTouch;
             _navigationService = navigationService;
@@ -33,6 +33,7 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService = appLoaderService;
             _dialogsService = dialogsService;
             _locService = locService;
+            _inTouchWrapper = inTouchWraper;
 
             IsItemClickEnabled = true;
             AppBarItems = new ObservableCollection<ICommandBarElement>();
@@ -157,10 +158,10 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<Audio>> LoadMoreAudios(uint page)
         {
-            var response = await _inTouch.Audio.GetRecommendations(
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetRecommendations(
                 userId: _userID > 0 ? (int?)_userID : null,
                 count: 50,
-                offset: _audiosOffset);
+                offset: _audiosOffset));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -353,7 +354,8 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<bool> AddToMyAudios(Audio audio)
         {
-            var response = await _inTouch.Audio.Add(audio.Id, audio.OwnerId);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Add(
+                audio.Id, audio.OwnerId));
             return !response.IsError;
         }
 
@@ -382,5 +384,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
         private readonly InTouch _inTouch;
+        private readonly IInTouchWrapper _inTouchWrapper;
     }
 }

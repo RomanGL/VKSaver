@@ -22,12 +22,13 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class MainViewModel : ViewModelBase
     {
-        public MainViewModel(InTouch inTouch, ILFService lfService, 
+        public MainViewModel(InTouch inTouch, IInTouchWrapper inTouchWrapper, ILFService lfService,
             ISettingsService settingsService, INavigationService navigationService,
             IPurchaseService purchaseService, IPlayerService playerService,
             IDownloadsServiceHelper downloadsServiceHelper, IImagesCacheService imagesCacheService)
         {
             _inTouch = inTouch;
+            _inTouchWrapper = inTouchWrapper;
             _lfService = lfService;
             _settingsService = settingsService;
             _navigationService = navigationService;
@@ -53,11 +54,11 @@ namespace VKSaver.Core.ViewModels
 
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
-        
+
         public SimpleStateSupportCollection<Audio> UserTracks { get; private set; }
-                
+
         public SimpleStateSupportCollection<LFArtistExtended> TopArtistsLF { get; private set; }
-        
+
         public SimpleStateSupportCollection<Audio> RecommendedTracksVK { get; private set; }
 
         [DoNotNotify]
@@ -162,80 +163,56 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<Audio>> LoadUserTracks()
         {
-            try
+            if (UserTracks.Any())
+                return new List<Audio>();
+
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Get(count: 10));
+            if (response.IsError)
+                throw new Exception(response.Error.ToString());
+            else
             {
-                if (UserTracks.Any())
+                if (response.Data.Items.Count == 0)
                     return new List<Audio>();
 
-                var response = await _inTouch.Audio.Get(count: 10);
-                if (response.IsError)
-                    throw new Exception(response.Error.ToString());
-                else
+                FirstTrack = new VKAudioWithImage
                 {
-                    if (response.Data.Items.Count == 0)
-                        return new List<Audio>();
+                    VKTrack = response.Data.Items[0]
+                };
 
-                    FirstTrack = new VKAudioWithImage
-                    {
-                        VKTrack = response.Data.Items[0]
-                    };
-
-                    //TryLoadFirstTrackInfo(FirstTrack);
-                    TryLoadBackground(FirstTrack);
-                    return response.Data.Items.Skip(1);
-                }
+                //TryLoadFirstTrackInfo(FirstTrack);
+                TryLoadBackground(FirstTrack);
+                return response.Data.Items.Skip(1);
             }
-            catch (Exception ex)
-            {
-                string json = ex.Data["json"].ToString();
-                throw;
-            }
-        } 
+        }
 
         private async Task<IEnumerable<LFArtistExtended>> LoadTopArtists()
         {
-            try
-            {
-                if (TopArtistsLF.Any())
-                    return new List<LFArtistExtended>();
+            if (TopArtistsLF.Any())
+                return new List<LFArtistExtended>();
 
-                var request = new Request<LFChartArtistsResponse>("chart.getTopArtists",
-                    new Dictionary<string, string> { { "limit", "8" } });
-                var response = await _lfService.ExecuteRequestAsync(request);
+            var request = new Request<LFChartArtistsResponse>("chart.getTopArtists",
+                new Dictionary<string, string> { { "limit", "8" } });
+            var response = await _lfService.ExecuteRequestAsync(request);
 
-                if (response.IsValid())
-                {
-                    TryLoadTopArtistBackground(response.Data.Artists[0]);
-                    return response.Data.Artists;
-                }
-                else
-                    throw new Exception("LFChartArtistsResponse isn't valid.");
-            }
-            catch (Exception ex)
+            if (response.IsValid())
             {
-                string json = ex.Data["json"].ToString();
-                throw;
+                TryLoadTopArtistBackground(response.Data.Artists[0]);
+                return response.Data.Artists;
             }
+            else
+                throw new Exception("LFChartArtistsResponse isn't valid.");
         }
 
         private async Task<IEnumerable<Audio>> LoadRecommendedTracks()
         {
-            try
-            {
-                if (RecommendedTracksVK.Any())
-                    return new List<Audio>();
+            if (RecommendedTracksVK.Any())
+                return new List<Audio>();
 
-                var response = await _inTouch.Audio.GetRecommendations(count: 10);
-                if (response.IsError)
-                    throw new Exception(response.Error.ToString());
-                else
-                    return response.Data.Items;
-            }
-            catch (Exception ex)
-            {
-                string json = ex.Data["json"].ToString();
-                throw;
-            }
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetRecommendations(count: 10));
+            if (response.IsError)
+                throw new Exception(response.Error.ToString());
+            else
+                return response.Data.Items;
         }
 
         private async void TryLoadBackground(VKAudioWithImage track)
@@ -293,7 +270,7 @@ namespace VKSaver.Core.ViewModels
             string imagePath = await _imagesCacheService.GetCachedAlbumImage(track.Title);
             if (imagePath == null)
                 imagePath = await _imagesCacheService.CacheAndGetAlbumImage(track.Title, track.Artist);
-            
+
             if (imagePath != null)
                 track.ImageURL = imagePath;
         }
@@ -401,6 +378,7 @@ namespace VKSaver.Core.ViewModels
         private bool _backgroundLoaded;
 
         private readonly InTouch _inTouch;
+        private readonly IInTouchWrapper _inTouchWrapper;
         private readonly ILFService _lfService;
         private readonly ISettingsService _settingsService;
         private readonly INavigationService _navigationService;

@@ -25,8 +25,8 @@ namespace VKSaver.Core.ViewModels
         public AudioSearchViewModel(InTouch inTouch, INavigationService navigationService,
             ILocService locService, ISettingsService settingsService, IDialogsService dialogsService,
             IPlayerService playerService, IAppLoaderService appLoaderService, 
-            IDownloadsServiceHelper downloadsServiceHelper)
-            : base(inTouch, navigationService, locService, settingsService, dialogsService)
+            IDownloadsServiceHelper downloadsServiceHelper, IInTouchWrapper inTouchWrapper)
+            : base(inTouch, navigationService, locService, settingsService, dialogsService, inTouchWrapper)
         {
             _playerService = playerService;
             _appLoaderService = appLoaderService;
@@ -103,7 +103,7 @@ namespace VKSaver.Core.ViewModels
             if (String.IsNullOrWhiteSpace(_currentQuery))
                 return new List<Audio>(0);
 
-            var response = await _inTouch.Audio.Search(new AudioSearchParams
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Search(new AudioSearchParams
             {
                 AutoComplete = true,
                 Count = 50,
@@ -111,7 +111,7 @@ namespace VKSaver.Core.ViewModels
                 Query = _currentQuery,
                 PerformerOnly = PerformerOnly,
                 Lyrics = LyricsOnly
-            });
+            }));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -125,7 +125,7 @@ namespace VKSaver.Core.ViewModels
             if (String.IsNullOrWhiteSpace(_currentQuery))
                 return new List<Audio>(0);
 
-            var response = await _inTouch.Audio.Search(new AudioSearchParams
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Search(new AudioSearchParams
             {
                 AutoComplete = true,
                 SearchOwn = true,
@@ -134,7 +134,7 @@ namespace VKSaver.Core.ViewModels
                 Query = _currentQuery,
                 PerformerOnly = PerformerOnly,
                 Lyrics = LyricsOnly
-            });
+            }));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -381,13 +381,13 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<bool> AddToMyAudios(Audio audio)
         {
-            var response = await _inTouch.Audio.Add(audio.Id, audio.OwnerId);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Add(audio.Id, audio.OwnerId));
             return !response.IsError;
         }
 
         private async Task<bool> DeleteAudio(Audio audio)
         {
-            var response = await _inTouch.Audio.Delete(audio.Id, audio.OwnerId);
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Delete(audio.Id, audio.OwnerId));
             return !response.IsError;
         }
 
