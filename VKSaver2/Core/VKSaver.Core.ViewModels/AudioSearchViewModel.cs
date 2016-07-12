@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Services.Common;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Controls;
@@ -289,9 +290,15 @@ namespace VKSaver.Core.ViewModels
         private async void OnDeleteCommand(Audio track)
         {
             _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.ToString()));
-            bool success = await DeleteAudio(track);
 
-            if (!success)
+            bool isSuccess = false;
+            try
+            {
+                isSuccess = await DeleteAudio(track);
+            }
+            catch (Exception) { }
+
+            if (!isSuccess)
             {
                 _dialogsService.Show(_locService["Message_AudioDeleteError_Text"],
                     _locService["Message_AudioDeleteError_Title"]);
@@ -307,7 +314,15 @@ namespace VKSaver.Core.ViewModels
         private async void OnAddToMyAudiosCommand(Audio track)
         {
             _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
-            if (!await AddToMyAudios(track))
+
+            bool isSuccess = false;
+            try
+            {
+                isSuccess = await AddToMyAudios(track);
+            }
+            catch (Exception) { }
+
+            if (!isSuccess)
             {
                 _dialogsService.Show(_locService["Message_AudioAddError_Text"],
                     _locService["Message_AudioAddError_Title"]);
@@ -333,7 +348,21 @@ namespace VKSaver.Core.ViewModels
                 }
 
                 _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.ToString()));
-                if (await DeleteAudio(track))
+
+                bool isSuccess = false;
+                try
+                {
+                    isSuccess = await DeleteAudio(track);
+                }
+                catch (Exception)
+                {
+                    errors.Add(track);
+                    _cancelOperations = true;
+                    _appLoaderService.Show(_locService["AppLoader_PleaseWait"]);
+                    continue;
+                }
+
+                if (isSuccess)
                     success.Add(track);
                 else
                     errors.Add(track);
@@ -366,7 +395,20 @@ namespace VKSaver.Core.ViewModels
                 }
 
                 _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
-                if (!await AddToMyAudios(track))
+
+                bool isSuccess = false;
+                try
+                {
+                    isSuccess = await AddToMyAudios(track);
+                }
+                catch (Exception)
+                {
+                    errors.Add(track);
+                    _cancelOperations = true;
+                    _appLoaderService.Show(_locService["AppLoader_PleaseWait"]);
+                    continue;
+                }
+                if (!isSuccess)
                     errors.Add(track);
                 
                 await Task.Delay(200);
@@ -382,12 +424,18 @@ namespace VKSaver.Core.ViewModels
         private async Task<bool> AddToMyAudios(Audio audio)
         {
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Add(audio.Id, audio.OwnerId));
+
+            if (response.IsCaptchaError())
+                throw new Exception("Captcha error: cancel");
             return !response.IsError;
         }
 
         private async Task<bool> DeleteAudio(Audio audio)
         {
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Delete(audio.Id, audio.OwnerId));
+
+            if (response.IsCaptchaError())
+                throw new Exception("Captcha error: cancel");
             return !response.IsError;
         }
 

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Transfer;
+using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Common;
@@ -315,7 +316,15 @@ namespace VKSaver.Core.ViewModels
         private async void OnAddToMyAudiosCommand(Audio track)
         {
             _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
-            if (!await AddToMyAudios(track))
+
+            bool isSuccess = false;
+            try
+            {
+                isSuccess = await AddToMyAudios(track);
+            }
+            catch (Exception) { }
+
+            if (!isSuccess)
             {
                 _dialogsService.Show(_locService["Message_AudioAddError_Text"],
                     _locService["Message_AudioAddError_Title"]);
@@ -340,7 +349,21 @@ namespace VKSaver.Core.ViewModels
                 }
 
                 _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
-                if (!await AddToMyAudios(track))
+
+                bool isSuccess = false;
+                try
+                {
+                    isSuccess = await AddToMyAudios(track);
+                }
+                catch (Exception)
+                {
+                    errors.Add(track);
+                    _cancelOperations = true;
+                    _appLoaderService.Show(_locService["AppLoader_PleaseWait"]);
+                    continue;
+                }
+
+                if (!isSuccess)
                     errors.Add(track);
 
                 await Task.Delay(200);
@@ -356,6 +379,9 @@ namespace VKSaver.Core.ViewModels
         {
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Add(
                 audio.Id, audio.OwnerId));
+
+            if (response.IsCaptchaError())
+                throw new Exception("Captcha error: cancel");
             return !response.IsError;
         }
 

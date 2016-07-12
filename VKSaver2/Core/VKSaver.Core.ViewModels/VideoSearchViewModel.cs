@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Transfer;
+using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Common;
@@ -304,9 +305,15 @@ namespace VKSaver.Core.ViewModels
         private async void OnDeleteCommand(Video video)
         {
             _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], video.ToString()));
-            bool success = await DeleteVideo(video);
 
-            if (!success)
+            bool isSuccess = false;
+            try
+            {
+                isSuccess = await DeleteVideo(video);
+            }
+            catch (Exception) { }
+
+            if (!isSuccess)
             {
                 _dialogsService.Show(_locService["Message_VideoDeleteError_Text"],
                     _locService["Message_VideoDeleteError_Title"]);
@@ -322,7 +329,15 @@ namespace VKSaver.Core.ViewModels
         private async void OnAddToMyVideosCommand(Video video)
         {
             _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], video.ToString()));
-            if (!await AddToMyVideos(video))
+
+            bool isSuccess = false;
+            try
+            {
+                isSuccess = await AddToMyVideos(video);
+            }
+            catch (Exception) { }
+
+            if (!isSuccess)
             {
                 _dialogsService.Show(_locService["Message_VideoAddError_Text"],
                     _locService["Message_VideoAddError_Title"]);
@@ -339,19 +354,33 @@ namespace VKSaver.Core.ViewModels
             var errors = new List<Video>();
             var success = new List<Video>();
 
-            foreach (var track in items)
+            foreach (var video in items)
             {
                 if (_cancelOperations)
                 {
-                    errors.Add(track);
+                    errors.Add(video);
                     continue;
                 }
 
-                _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.ToString()));
-                if (await DeleteVideo(track))
-                    success.Add(track);
+                _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], video.ToString()));
+
+                bool isSuccess = false;
+                try
+                {
+                    isSuccess = await DeleteVideo(video);
+                }
+                catch (Exception)
+                {
+                    errors.Add(video);
+                    _cancelOperations = true;
+                    _appLoaderService.Show(_locService["AppLoader_PleaseWait"]);
+                    continue;
+                }
+
+                if (isSuccess)
+                    success.Add(video);
                 else
-                    errors.Add(track);
+                    errors.Add(video);
 
                 await Task.Delay(300);
             }
@@ -372,17 +401,31 @@ namespace VKSaver.Core.ViewModels
             var items = SelectedItems.Cast<Video>().ToList();
             var errors = new List<Video>();
 
-            foreach (var track in items)
+            foreach (var video in items)
             {
                 if (_cancelOperations)
                 {
-                    errors.Add(track);
+                    errors.Add(video);
                     continue;
                 }
 
-                _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
-                if (!await AddToMyVideos(track))
-                    errors.Add(track);
+                _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], video.ToString()));
+
+                bool isSuccess = false;
+                try
+                {
+                    isSuccess = await AddToMyVideos(video);
+                }
+                catch (Exception)
+                {
+                    errors.Add(video);
+                    _cancelOperations = true;
+                    _appLoaderService.Show(_locService["AppLoader_PleaseWait"]);
+                    continue;
+                }
+
+                if (!isSuccess)
+                    errors.Add(video);
 
                 await Task.Delay(200);
             }
@@ -398,6 +441,9 @@ namespace VKSaver.Core.ViewModels
         {
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Add(
                 (int)video.Id, video.OwnerId, _inTouch.Session.UserId));
+
+            if (response.IsCaptchaError())
+                throw new Exception("Captcha error: cancel");
             return !response.IsError && response.Data;
         }
 
@@ -405,6 +451,9 @@ namespace VKSaver.Core.ViewModels
         {
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.Delete(
                 (int)video.Id, video.OwnerId, _inTouch.Session.UserId));
+
+            if (response.IsCaptchaError())
+                throw new Exception("Captcha error: cancel");
             return !response.IsError && response.Data;
         }
 

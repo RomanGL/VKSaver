@@ -927,4 +927,7 @@
   <data name="CaptchaBox_Content.Text" xml:space="preserve">
     <value>Введите символы, которые вы видите на картинке</value>
   </data>
+  <data name="AppLoader_PleaseWait" xml:space="preserve">
+    <value>Пожалуйста, подождите...</value>
+  </data>
 </root>

@@ -63,6 +63,7 @@
     <Compile Include="AppLoaderService.cs" />
     <Compile Include="BetaService.cs" />
     <Compile Include="Common\DownloadsExtensions.cs" />
+    <Compile Include="Common\InTouchExtensions.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="DialogsService.cs" />
     <Compile Include="DownloadsService.cs" />

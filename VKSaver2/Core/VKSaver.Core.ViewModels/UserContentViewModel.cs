@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Controls;
 using System.Collections.Specialized;
 using VKSaver.Core.Models.Transfer;
 using ModernDev.InTouch;
+using VKSaver.Core.Services.Common;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -755,11 +756,17 @@ namespace VKSaver.Core.ViewModels
         private async void OnDeleteCommand(object obj)
         {
             _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], obj.ToString()));
-            bool success = await DeleteObject(obj);
+
+            bool isSuccess = false;
+            try
+            {
+                isSuccess = await DeleteObject(obj);
+            }
+            catch (Exception) { }
 
             if (obj is Audio)
             {
-                if (!success)
+                if (!isSuccess)
                 {
                     _dialogsService.Show(_locService["Message_AudioDeleteError_Text"],
                         _locService["Message_AudioDeleteError_Title"]);
@@ -772,7 +779,7 @@ namespace VKSaver.Core.ViewModels
             }
             else if (obj is Video)
             {
-                if (!success)
+                if (!isSuccess)
                 {
                     _dialogsService.Show(_locService["Message_VideoDeleteError_Text"],
                         _locService["Message_VideoDeleteError_Title"]);
@@ -785,7 +792,7 @@ namespace VKSaver.Core.ViewModels
             }
             else if (obj is Doc)
             {
-                if (!success)
+                if (!isSuccess)
                 {
                     _dialogsService.Show(_locService["Message_DocDeleteError_Text"],
                         _locService["Message_DocDeleteError_Title"]);
@@ -797,7 +804,7 @@ namespace VKSaver.Core.ViewModels
             }
             else if (obj is AudioAlbum)
             {
-                if (!success)
+                if (!isSuccess)
                 {
                     _dialogsService.Show(_locService["Message_AudioAlbumDeleteError_Text"],
                         _locService["Message_AudioAlbumDeleteError_Title"]);
@@ -810,7 +817,7 @@ namespace VKSaver.Core.ViewModels
             }
             else if (obj is VideoAlbum)
             {
-                if (!success)
+                if (!isSuccess)
                 {
                     _dialogsService.Show(_locService["Message_VideoAlbumDeleteError_Text"],
                         _locService["Message_VideoAlbumDeleteError_Title"]);
@@ -843,7 +850,21 @@ namespace VKSaver.Core.ViewModels
                 }
 
                 _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], obj.ToString()));
-                if (await DeleteObject(obj))
+
+                bool isSuccess = false;
+                try
+                {
+                    isSuccess = await DeleteObject(obj);
+                }
+                catch (Exception)
+                {
+                    errors.Add(obj);
+                    _cancelOperations = true;
+                    _appLoaderService.Show(_locService["AppLoader_PleaseWait"]);
+                    continue;
+                }
+
+                if (isSuccess)
                     success.Add(obj);
                 else
                     errors.Add(obj);
@@ -862,7 +883,15 @@ namespace VKSaver.Core.ViewModels
         private async void OnAddToMyCollection(object obj)
         {
             _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], obj.ToString()));
-            if (!await AddToMyCollection(obj))
+
+            bool isSuccess = false;
+            try
+            {
+                isSuccess = await AddToMyCollection(obj);
+            }
+            catch (Exception) { }
+
+            if (!isSuccess)
             {
                 if (obj is Audio)
                 {
@@ -901,7 +930,20 @@ namespace VKSaver.Core.ViewModels
                 }
 
                 _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], obj.ToString()));
-                if (await AddToMyCollection(obj))
+                bool isSuccess = false;
+                try
+                {
+                    isSuccess = await AddToMyCollection(obj);
+                }
+                catch (Exception)
+                {
+                    errors.Add(obj);
+                    _cancelOperations = true;
+                    _appLoaderService.Show(_locService["AppLoader_PleaseWait"]);
+                    continue;
+                }
+
+                if (isSuccess)
                     success.Add(obj);
                 else
                     errors.Add(obj);
@@ -940,6 +982,8 @@ namespace VKSaver.Core.ViewModels
                     doc.Id, doc.OwnerId));
             }
 
+            if (response.IsCaptchaError())
+                throw new Exception("Captcha error: cancel");
             return !response.IsError;
         }
 
@@ -977,6 +1021,8 @@ namespace VKSaver.Core.ViewModels
                     (int)videoAlbum.Id));
             }
 
+            if (response.IsCaptchaError())
+                throw new Exception("Captcha error: cancel");
             return !response.IsError;
         }
 
