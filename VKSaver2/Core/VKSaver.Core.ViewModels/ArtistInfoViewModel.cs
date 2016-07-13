@@ -14,20 +14,25 @@ using OneTeam.SDK.Core;
 using OneTeam.SDK.LastFm.Models.Response;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.ViewModels.Search;
+using VKSaver.Core.Services.Interfaces;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public sealed class ArtistInfoViewModel : ViewModelBase
     {
-        public ArtistInfoViewModel(ILFService lfService, INavigationService navigationService)
+        public ArtistInfoViewModel(ILFService lfService, INavigationService navigationService,
+            ISettingsService settingsService)
         {
             _lfService = lfService;
             _navigationService = navigationService;
+            _settingsService = settingsService;
 
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
             GoToSimilarArtistInfoCommand = new DelegateCommand<LFSimilarArtist>(OnGoToSimilarArtistInfoCommand);
             GoToAlbumInfoCommand = new DelegateCommand<LFAlbumBase>(OnGoToAlbumInfoCommand);
+            FindArtistInVKCommand = new DelegateCommand(OnFindArtistInVKCommand);
         }
         
         public SimpleStateSupportCollection<LFAudioBase> Tracks { get; private set; }
@@ -48,6 +53,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand<LFAlbumBase> GoToAlbumInfoCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand FindArtistInVKCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -195,7 +203,21 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("AccessDeniedView", JsonConvert.SerializeObject(album));
         }
 
+        private void OnFindArtistInVKCommand()
+        {
+            if (Artist == null)
+                return;
+
+            _settingsService.Set(AudioSearchViewModel.PERFORMER_ONLY_PARAMETER_NAME, true);
+            _navigationService.Navigate("AudioSearchView", JsonConvert.SerializeObject(
+                new SearchNavigationParameter
+                {
+                    Query = Artist.Name
+                }));
+        }
+
         private readonly ILFService _lfService;
         private readonly INavigationService _navigationService;
+        private readonly ISettingsService _settingsService;
     }
 }

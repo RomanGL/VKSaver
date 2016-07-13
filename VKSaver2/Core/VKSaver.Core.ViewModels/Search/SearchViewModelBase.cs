@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
+using VKSaver.Core.ViewModels.Search;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -96,9 +97,10 @@ namespace VKSaver.Core.ViewModels
             {
                 if (e.Parameter != null)
                 {
-                    var parameter = JsonConvert.DeserializeObject<KeyValuePair<int, string>>(e.Parameter.ToString());
-                    UserId = parameter.Key;
-                    LastPivotIndex = parameter.Value == "all" ? 0 : 1;
+                    var parameter = JsonConvert.DeserializeObject<SearchNavigationParameter>(e.Parameter.ToString());
+                    UserId = parameter.UserId;
+                    LastPivotIndex = parameter.Section == SearchNavigationParameter.SearchSection.Ewerywhere ? 0 : 1;
+                    Query = parameter.Query;
                 }
                 else
                 {
@@ -116,6 +118,9 @@ namespace VKSaver.Core.ViewModels
                 InCollectionResults.HasMoreItems = false;
                 EverywhereResults.ContentState = ContentState.NoData;
                 InCollectionResults.ContentState = ContentState.NoData;
+
+                if (!String.IsNullOrWhiteSpace(Query))
+                    Search();
             }
             else
             {

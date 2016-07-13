@@ -6,6 +6,9 @@
                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
                            xmlns:controls="using:VKSaver.Controls"
+                           xmlns:common="using:VKSaver.Common"
+                           xmlns:i="using:Microsoft.Xaml.Interactivity"
+                           xmlns:c="using:Microsoft.Xaml.Interactions.Core"
                            mc:Ignorable="d"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            Style="{StaticResource DefaultPageStyle}">
@@ -19,6 +22,31 @@
             </NavigationThemeTransition>
         </TransitionCollection>
     </mvvm:VisualStateAwarePage.Transitions>
+
+    <mvvm:VisualStateAwarePage.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+
+        <Style x:Key="VKAudioItem"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="загрузить"
+                                        x:Uid="DownloadFlyoutItem"
+                                        Command="{Binding DataSource.DownloadCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="в мои аудиозаписи"
+                                        x:Uid="AddToMyAudiosFlyoutItem"
+                                        Command="{Binding DataSource.AddToMyAudiosCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+    </mvvm:VisualStateAwarePage.Resources>
 
     <Grid x:Name="LayoutRoot">
         <Grid.ChildrenTransitions>
@@ -78,12 +106,27 @@
                                                Width="120"
                                                Margin="0,20,0,0" />
                 </StackPanel>
-                <Button Grid.Row="1"
-                        Content="воспроизвести"
-                        x:Uid="TrackInfoView_PlayButton"
-                        Command="{Binding PlayTrackCommand}"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource ButtonStyle}" />
+
+                <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                          ItemsSource="{Binding VKTracks}"
+                          ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                          ItemContainerStyle="{StaticResource VKAudioItem}"
+                          Grid.Row="1">
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <controls:StateBlock State="{Binding VKTracks.ContentState}"
+                                                 ReloadCommand="{Binding VKTracks.RefreshCommand}"
+                                                 x:Uid="SearchView_Loader" />
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="ItemClick">
+                            <c:InvokeCommandAction Command="{Binding PlayTracksCommand}"
+                                                   InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                        </c:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ListView>
             </Grid>
         </ScrollViewer>
     </Grid>

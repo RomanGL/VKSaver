@@ -159,7 +159,8 @@
                                                                Pivot.SlideInAnimationGroup="GroupTwo" />
                                     <ListView Grid.Column="1">
                                         <controls:ListViewCommandItem Content="найти ВКонтакте"
-                                                                      x:Uid="ArtistInfoView_SearchVKItem"/>
+                                                                      x:Uid="ArtistInfoView_SearchVKItem"
+                                                                      Command="{Binding FindArtistInVKCommand}"/>
                                     </ListView>
                                 </Grid>
                             </StackPanel>

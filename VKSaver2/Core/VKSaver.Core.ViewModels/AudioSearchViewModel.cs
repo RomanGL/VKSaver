@@ -478,7 +478,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IAppLoaderService _appLoaderService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
 
-        private const string PERFORMER_ONLY_PARAMETER_NAME = "AudioSearchPerformerOnly";
-        private const string LYRICS_ONLY_PARAMETER_NAME = "AudioSearchLyricsOnly";
+        internal const string PERFORMER_ONLY_PARAMETER_NAME = "AudioSearchPerformerOnly";
+        internal const string LYRICS_ONLY_PARAMETER_NAME = "AudioSearchLyricsOnly";
     }
 }
