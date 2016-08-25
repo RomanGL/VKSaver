@@ -65,6 +65,7 @@
     <Compile Include="Common\DownloadsExtensions.cs" />
     <Compile Include="Common\InTouchExtensions.cs" />
     <Compile Include="Common\TaskQueue.cs" />
+    <Compile Include="Common\VKAuthorization.cs" />
     <Compile Include="DialogsService.cs" />
     <Compile Include="DownloadsService.cs" />
     <Compile Include="DownloadsService2.cs" />

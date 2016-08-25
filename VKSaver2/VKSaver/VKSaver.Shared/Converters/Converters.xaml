@@ -12,4 +12,5 @@
     <local:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
     <local:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     <local:BoolToListViewSelectionModeConverter x:Key="BoolToSelectionModeConverter" />
+    <local:AuthServiceNameLocConverter x:Key="AuthServiceNameLocConverter" />
 </ResourceDictionary>

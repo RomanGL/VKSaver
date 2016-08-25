@@ -930,4 +930,23 @@
   <data name="AppLoader_PleaseWait" xml:space="preserve">
     <value>Пожалуйста, подождите...</value>
   </data>
+  <data name="ServiceName_LastFm_Text" xml:space="preserve">
+    <value>Last.fm</value>
+  </data>
+  <data name="ServiceName_VK_Text" xml:space="preserve">
+    <value>ВКонтакте</value>
+  </data>
+  <data name="ServiceAuthBlock_SignedInAs.Text" xml:space="preserve">
+    <value>Вы вошли как</value>
+    <comment>Например: "Вы вошли как Иван Иванов"</comment>
+  </data>
+  <data name="ServiceAuthBlock_SignInButton.Content" xml:space="preserve">
+    <value>войти</value>
+  </data>
+  <data name="ServiceAuthBlock_SignOutButton.Content" xml:space="preserve">
+    <value>выйти</value>
+  </data>
+  <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
+    <value>Авторизация в сервисах</value>
+  </data>
 </root>

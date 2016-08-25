@@ -395,7 +395,7 @@
                                       Style="{StaticResource ListViewMenuItemStyle}">
                             <i:Interaction.Behaviors>
                                 <c:EventTriggerBehavior EventName="Tapped">
-                                    <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
+                                    <c:InvokeCommandAction Command="{Binding GoToSettingsViewCommand}" />
                                 </c:EventTriggerBehavior>
                             </i:Interaction.Behaviors>
                         </ListViewItem>

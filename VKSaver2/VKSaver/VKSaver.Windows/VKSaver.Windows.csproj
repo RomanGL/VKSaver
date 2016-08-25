@@ -279,6 +279,10 @@
     <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
+      <Project>{0C76FE69-8E32-4222-9FE4-C975A48EDBD9}</Project>
+      <Name>VKSaver.Core.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\VKSaver.Core.Services\VKSaver.Core.Services.csproj">
       <Project>{E772FD74-56DC-4398-B85D-F33D34C2F11B}</Project>
       <Name>VKSaver.Core.Services</Name>

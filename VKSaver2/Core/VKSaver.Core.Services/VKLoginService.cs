@@ -1,5 +1,7 @@
 ﻿using ModernDev.InTouch;
 using System;
+using VKSaver.Core.Models.Common;
+using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 
 namespace VKSaver.Core.Services
@@ -14,7 +16,10 @@ namespace VKSaver.Core.Services
         private const string REDIRECT_URL = "https://oauth.vk.com/blank.html";
         private const string PARAMETERS_MASK = "{0}?client_id={1}&scope={2}&redirect_uri={3}&display=popup&v={4}&response_type=token";
         private const string SCOPE = "audio,friends,docs,groups,offline,status,video,wall";
-        private const int CLIENT_ID = ***REMOVED***;
+        private const string AUTH_VERSION_PARAMETER = "AuthVersion";
+        private const uint CURRENT_AUTH_VERSION = 1;
+        private const int CLIENT_ID = ***REMOVED***;  // VK WP AppID
+        //private const int CLIENT_ID = ***REMOVED***;  // ВКачай AppID
 
         private VKAccessToken AccessToken { get { return _settingsService?.Get<VKAccessToken>(ACCESS_TOKEN_PARAMETER); } }
 
@@ -66,7 +71,14 @@ namespace VKSaver.Core.Services
         /// <summary>
         /// Возвращает значение, выполнена ли авторизация.
         /// </summary>
-        public bool IsAuthorized { get { return AccessToken != null; } }
+        public bool IsAuthorized
+        {
+            get
+            {
+                return AccessToken != null &&
+                    _settingsService.Get<uint>(AUTH_VERSION_PARAMETER, 0) >= CURRENT_AUTH_VERSION;  
+            }
+        }
 
         /// <summary>
         /// Возвращает адрес для oAuth-авторизации ВКонтакте.
@@ -90,6 +102,21 @@ namespace VKSaver.Core.Services
         }
 
         /// <summary>
+        /// Возвращает данные авторизации ВКонтакте в общем виде.
+        /// </summary>
+        public IServiceAuthorization GetServiceAuthorization()
+        {
+            var auth = new VKAuthorization
+            {
+                IsAuthorized = IsAuthorized,
+                SignInMethod = () => UserLogout?.Invoke(this, EventArgs.Empty),
+                SignOutMethod = Logout,
+                UserName = AccessToken.UserID.ToString()
+            };
+            return auth;
+        }
+
+        /// <summary>
         /// Выполняет авторизацию по указанному токену.
         /// </summary>
         public void Login(APISession session)
@@ -99,6 +126,7 @@ namespace VKSaver.Core.Services
                 AccessToken = session.AccessToken,
                 UserID = session.UserId
             });
+            _settingsService?.Set(AUTH_VERSION_PARAMETER, CURRENT_AUTH_VERSION);
             _inTouch.SetSessionData(session);
             UserLogin?.Invoke(this, EventArgs.Empty);
         }

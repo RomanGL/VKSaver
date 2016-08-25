@@ -66,6 +66,7 @@
     <Compile Include="Common\FileContentTypeExtensions.cs" />
     <Compile Include="Common\FileSize.cs" />
     <Compile Include="Common\ILoader.cs" />
+    <Compile Include="Common\IServiceAuthorization.cs" />
     <Compile Include="Player\IPlayerTrack.cs" />
     <Compile Include="Player\PlayerRepeatMode.cs" />
     <Compile Include="Player\PlayerState.cs" />

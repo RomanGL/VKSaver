@@ -38,8 +38,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerShapesType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ServiceAuthBlock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TextImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MoreStatesOptionButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\AuthServiceNameLocConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToListViewSelectionModeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrentTrackToBrushConverter.cs" />

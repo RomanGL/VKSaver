@@ -1,5 +1,6 @@
 ﻿using ModernDev.InTouch;
 using System;
+using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.Services.Interfaces
 {
@@ -47,6 +48,11 @@ namespace VKSaver.Core.Services.Interfaces
         /// </summary>
         /// <param name="oAuthUrl">Путь.</param>
         APISession GetAccessTokenFromUrl(string oAuthUrl);
+
+        /// <summary>
+        /// Возвращает данные авторизации ВКонтакте в общем виде.
+        /// </summary>
+        IServiceAuthorization GetServiceAuthorization();
 
         /// <summary>
         /// Завершает авторизацию.

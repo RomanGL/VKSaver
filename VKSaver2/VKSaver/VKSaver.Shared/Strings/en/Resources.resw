@@ -823,4 +823,27 @@ Download VK Saver 2 now!</value>
   <data name="CaptchaBox_Content.Text" xml:space="preserve">
     <value>Please enter the symbols you see in the picture</value>
   </data>
+  <data name="AppLoader_PleaseWait" xml:space="preserve">
+    <value>Please wait...
+</value>
+  </data>
+  <data name="ServiceName_LastFm_Text" xml:space="preserve">
+    <value>Last.fm</value>
+  </data>
+  <data name="ServiceName_VK_Text" xml:space="preserve">
+    <value>VK</value>
+  </data>
+  <data name="ServiceAuthBlock_SignedInAs.Text" xml:space="preserve">
+    <value>Signed in as</value>
+    <comment>Например: "Вы вошли как Иван Иванов"</comment>
+  </data>
+  <data name="ServiceAuthBlock_SignInButton.Content" xml:space="preserve">
+    <value>sign in</value>
+  </data>
+  <data name="ServiceAuthBlock_SignOutButton.Content" xml:space="preserve">
+    <value>sign out</value>
+  </data>
+  <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
+    <value>Authorization in the services</value>
+  </data>
 </root>

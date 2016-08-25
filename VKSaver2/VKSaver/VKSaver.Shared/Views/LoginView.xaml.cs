@@ -16,6 +16,8 @@ using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Prism.StoreApps;
 using VKSaver.Core.ViewModels;
 using ModernDev.InTouch;
+using Windows.Web.Http;
+using Windows.Web.Http.Filters;
 
 namespace VKSaver.Views
 {
@@ -41,6 +43,7 @@ namespace VKSaver.Views
                         
             if (e.NavigationMode == NavigationMode.New)
             {
+                ClearCookies();
                 VisualStateManager.GoToState(this, "Normal", true);
             }
 
@@ -95,6 +98,17 @@ namespace VKSaver.Views
             _isLoading = false;
             LoginCommand.RaiseCanExecuteChanged();
             VisualStateManager.GoToState(this, "Normal", true);
+        }
+
+        private void ClearCookies()
+        {
+            var myFilter = new HttpBaseProtocolFilter();
+            var cookieManager = myFilter.CookieManager;
+            var myCookieJar = cookieManager.GetCookies(new Uri("https://oauth.vk.com/"));
+            foreach (HttpCookie cookie in myCookieJar)
+            {
+                cookieManager.DeleteCookie(cookie);
+            }
         }
 
         private bool _isCompleted;

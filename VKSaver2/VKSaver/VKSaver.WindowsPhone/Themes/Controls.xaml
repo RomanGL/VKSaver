@@ -9,6 +9,96 @@
                     mc:Ignorable="d">
 
     <common:LocalizationXamlWrapper x:Key="LocWrapper" />
+
+    <Style TargetType="controls:ServiceAuthBlock">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ServiceAuthBlock">
+                    <Grid Margin="0,10,0,0">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="AuthStates">
+                                <VisualState x:Name="SignedInState">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="LoginButton">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="SignedInAsTB">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="SignedOutState">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="LogoutButton">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="SignedInAsTB">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Authorization.ServiceName, Converter={StaticResource AuthServiceNameLocConverter}, RelativeSource={RelativeSource TemplatedParent}}"
+                                   Style="{StaticResource TitleTextBlockStyle}" />
+                        <TextBlock x:Name="SignedInAsTB"
+                                   Style="{StaticResource ControlHeaderTextBlockStyle}"
+                                   Margin="0,-6,0,0"
+                                   Grid.Row="1">
+                        <Run Text="Вы вошли как"
+                             x:Uid="ServiceAuthBlock_SignedInAs" />
+                        <Run Text="{Binding UserName}"
+                             Foreground="{ThemeResource PhoneForegroundBrush}" />
+                        </TextBlock>
+
+                        <Button x:Name="LogoutButton"
+                                Content="выйти"
+                                x:Uid="ServiceAuthBlock_SignOutButton"
+                                Style="{StaticResource ButtonStyle}"
+                                Margin="10,0,0,0"
+                                Grid.Column="1"
+                                Grid.RowSpan="2" />
+                        <Button x:Name="LoginButton"
+                                Content="войти"
+                                x:Uid="ServiceAuthBlock_SignInButton"
+                                Style="{StaticResource ButtonStyle}"
+                                Margin="10,0,0,0"
+                                Grid.Column="1"
+                                Grid.RowSpan="2" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
     <Style TargetType="controls:WithLoaderFrame">
         <Setter Property="Template">

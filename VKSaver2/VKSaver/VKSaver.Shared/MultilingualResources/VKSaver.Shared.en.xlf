@@ -1091,6 +1091,36 @@ Download VK Saver 2 now!</target>
           <source>Введите символы, которые вы видите на картинке</source>
           <target state="translated">Please enter the symbols you see in the picture</target>
         </trans-unit>
+        <trans-unit id="AppLoader_PleaseWait" translate="yes" xml:space="preserve">
+          <source>Пожалуйста, подождите...</source>
+          <target state="translated">Please wait...
+</target>
+        </trans-unit>
+        <trans-unit id="ServiceName_LastFm_Text" translate="yes" xml:space="preserve">
+          <source>Last.fm</source>
+          <target state="translated">Last.fm</target>
+        </trans-unit>
+        <trans-unit id="ServiceName_VK_Text" translate="yes" xml:space="preserve">
+          <source>ВКонтакте</source>
+          <target state="translated">VK</target>
+        </trans-unit>
+        <trans-unit id="ServiceAuthBlock_SignedInAs.Text" translate="yes" xml:space="preserve">
+          <source>Вы вошли как</source>
+          <target state="translated">Signed in as</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например: "Вы вошли как Иван Иванов"</note>
+        </trans-unit>
+        <trans-unit id="ServiceAuthBlock_SignInButton.Content" translate="yes" xml:space="preserve">
+          <source>войти</source>
+          <target state="translated">sign in</target>
+        </trans-unit>
+        <trans-unit id="ServiceAuthBlock_SignOutButton.Content" translate="yes" xml:space="preserve">
+          <source>выйти</source>
+          <target state="translated">sign out</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_ServicesAuthorizations_Title.Text" translate="yes" xml:space="preserve">
+          <source>Авторизация в сервисах</source>
+          <target state="translated">Authorization in the services</target>
+        </trans-unit>
       </group>
     </body>
   </file>
