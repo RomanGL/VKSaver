@@ -19,6 +19,9 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Microsoft.Practices.ServiceLocation;
 using VKSaver.Core.LinksExtractor;
 using ModernDev.InTouch;
+using ICSharpCode.SharpZipLib.Zip;
+using Windows.Storage;
+using System.IO;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -65,13 +68,12 @@ namespace VKSaver
 
         private void App_Resuming(object sender, object e)
         {
-            _container.Resolve<IPlayerService>().StartService();
-            _container.Resolve<IDownloadsService>().DiscoverActiveDownloadsAsync();
+            StartSuspendingServices();
         }
 
         private void App_Suspending(object sender, SuspendingEventArgs e)
         {
-            _container.Resolve<IPlayerService>().StopService();
+            StopSuspendingServices();
         }
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -110,7 +112,8 @@ namespace VKSaver
 
             _container.RegisterInstance<IServiceResolver>(this);
             _container.RegisterInstance<ISettingsService>(settingsService);
-            _container.RegisterInstance(this.NavigationService);           
+            _container.RegisterInstance(this.NavigationService);
+            _container.RegisterInstance(this.SessionStateService);           
             _container.RegisterInstance<ILFService>(new LFService("***REMOVED***"));
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
             _container.RegisterInstance<ILocService>(_locService);
@@ -123,14 +126,23 @@ namespace VKSaver
             _container.RegisterType<IPurchaseService, PurchaseService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ITracksShuffleService, TracksShuffleService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IPlayerPlaylistService, PlayerPlaylistService>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IPlayerService, PlayerService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ICultureProvider, CultureProvider>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IGrooveMusicService, GrooveMusicService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IImagesCacheService, ImagesCacheService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<INetworkInfoService, NetworkInfoService>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IDownloadsService, DownloadsService>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IMusicCacheService, MusicCacheService>(new ContainerControlledLifetimeManager());            
             _container.RegisterType<IVideoLinksExtractor, VideoLinksExtractor>(new ContainerControlledLifetimeManager());
+
+            var playerService = _container.Resolve<PlayerService>();
+            var downloadsService = _container.Resolve<DownloadsService>();
+            
+            _container.RegisterInstance<ISuspendingService>("s1", playerService);
+            _container.RegisterInstance<ISuspendingService>("s2", downloadsService);
+
+            _container.RegisterInstance<IPlayerService>(playerService);
+            _container.RegisterInstance<IDownloadsService>(downloadsService);
+
+            _container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
 
 #if FULL
             _container.RegisterType<IBetaService, BetaService>(new ContainerControlledLifetimeManager());
@@ -153,13 +165,12 @@ namespace VKSaver
                 NavigationService.Navigate("LoginView", null);
                 NavigationService.ClearHistory();
             };
-
-            var playerService = _container.Resolve<IPlayerService>();
-            playerService.StartService();
-
+            
 #if DEBUG
             LoadPurchaseFile();
 #endif
+
+            StartSuspendingServices();
 
             base.OnInitialize(args);            
         }
@@ -193,8 +204,27 @@ namespace VKSaver
 #endif
             }
 
-            _container.Resolve<IDownloadsService>().DiscoverActiveDownloadsAsync();
+            StartSuspendingServices();
+
             return Task.FromResult<object>(null);
+        }
+
+        private void StartSuspendingServices()
+        {
+            var suspendingServices = _container.ResolveAll<ISuspendingService>();
+            foreach (var service in suspendingServices)
+            {
+                service.StartService();
+            }
+        }
+
+        private void StopSuspendingServices()
+        {
+            var suspendingServices = _container.ResolveAll<ISuspendingService>();
+            foreach (var service in suspendingServices)
+            {
+                service.StopService();
+            }
         }
 
 #if DEBUG

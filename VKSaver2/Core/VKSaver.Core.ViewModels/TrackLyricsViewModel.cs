@@ -91,7 +91,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void LoadLyrics()
         {
-            if (Track.LyricsID == 0)
+            if (Track.VKInfo != null && Track.VKInfo.LyricsID == 0)
             {
                 ShowError();
                 return;
@@ -101,7 +101,7 @@ namespace VKSaver.Core.ViewModels
 
             try
             {
-                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetLyrics((int)Track.LyricsID));
+                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetLyrics(Track.VKInfo.LyricsID));
                 if (!response.IsError)
                 {
                     if (String.IsNullOrWhiteSpace(response.Data.Text))

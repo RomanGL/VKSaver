@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services;
+using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Media.Playback;
+using Windows.Storage.Streams;
 using static VKSaver.Core.Services.PlayerConstants;
 
 namespace VKSaver.PlayerTask
@@ -14,16 +17,19 @@ namespace VKSaver.PlayerTask
         public event EventHandler<ManagerTrackChangedEventArgs> TrackChanged;
         
         public PlaybackManager(MediaPlayer player, SettingsService settingsService,
-            IPlayerPlaylistService playerPlaylistService, ILogService logService)
+            IPlayerPlaylistService playerPlaylistService, ILogService logService,
+            IMusicCacheService musicCacheService)
         {
             _settingsService = settingsService;
             _player = player;
             _playerPlaylistService = playerPlaylistService;
             _logService = logService;
+            _musicCasheService = musicCacheService;
 
             _player.AutoPlay = false;
             _player.MediaOpened += Player_MediaOpened;
             _player.MediaEnded += Player_MediaEnded;
+            _player.MediaFailed += Player_MediaFailed;
 
             _currentTrackID = settingsService.GetNoCache(PLAYER_TRACK_ID, -1);
             _isShuffleMode = settingsService.GetNoCache(PLAYER_SHUFFLE_MODE, false);
@@ -31,7 +37,7 @@ namespace VKSaver.PlayerTask
         }
 
         #region Свойства
-        
+
         public IPlayerTrack CurrentTrack { get; private set; }
         
         public int CurrentTrackID
@@ -142,7 +148,32 @@ namespace VKSaver.PlayerTask
             CurrentTrack = track;
             CurrentTrackID = trackID;
 
+            Debug.WriteLine($"Next track is: {track.Title}");
+
             TrackChanged?.Invoke(this, new ManagerTrackChangedEventArgs(CurrentTrack, CurrentTrackID));
+
+            _currentCachedFile?.Dispose();
+            _currentCachedFile = null;
+
+            if (track.VKInfo != null)
+            {
+                var cachedFile = await _musicCasheService.GetCachedFileData(
+                    $"{track.VKInfo.OwnerID} {track.VKInfo.ID}.vksm");
+
+                if (cachedFile != null)
+                {
+                    _currentCachedFile = cachedFile;
+                    Debug.WriteLine($"Cached track found: {track.Title}");
+                    _player.SetStreamSource(await cachedFile.GetStream());
+                    return;
+                }
+            }
+
+            if (String.IsNullOrEmpty(track.Source))
+            {
+                NextTrack();
+                return;
+            }
 
             _player.SetUriSource(new Uri(track.Source));  
         }
@@ -164,10 +195,13 @@ namespace VKSaver.PlayerTask
         private void Player_MediaOpened(MediaPlayer sender, object args)
         {
             _player.Play();
+            Debug.WriteLine($"Track opened: {CurrentTrack.Title}");
         }
         
         private void Player_MediaEnded(MediaPlayer sender, object args)
         {
+            Debug.WriteLine($"Track ended: {CurrentTrack.Title}");
+
             switch (_repeatMode)
             {
                 case PlayerRepeatMode.One:
@@ -186,16 +220,23 @@ namespace VKSaver.PlayerTask
             }
         }
 
+        private void Player_MediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
+        {
+            Debug.WriteLine($"Track failed: {CurrentTrack.Title}\nInfo: {args.ExtendedErrorCode.Message}");
+        }
+
         #endregion
 
         private List<IPlayerTrack> _playlist;
         private bool _isShuffleMode;
         private int _currentTrackID;
         private PlayerRepeatMode _repeatMode;
+        private CachedFileData _currentCachedFile;
 
         private readonly SettingsService _settingsService;
         private readonly MediaPlayer _player;
         private readonly IPlayerPlaylistService _playerPlaylistService;
-        private readonly ILogService _logService;      
+        private readonly ILogService _logService;
+        private readonly IMusicCacheService _musicCasheService;
     }
 }

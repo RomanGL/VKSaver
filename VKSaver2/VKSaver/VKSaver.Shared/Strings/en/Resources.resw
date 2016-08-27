@@ -80,7 +80,7 @@
     <value>transfer manager</value>
   </data>
   <data name="MainView_DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>download</value>
+    <value>cache</value>
   </data>
   <data name="MainView_ShowMoreItem.Content" xml:space="preserve">
     <value>show more</value>
@@ -185,7 +185,7 @@ Go back to continue</value>
     <value>we recommend</value>
   </data>
   <data name="DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>download</value>
+    <value>cache</value>
   </data>
   <data name="RecommendationsLoader.ErrorText" xml:space="preserve">
     <value>Failed to load recommendations</value>
@@ -416,7 +416,7 @@ Go back to continue</value>
     <value>remove</value>
   </data>
   <data name="AppBarButton_Download_Text" xml:space="preserve">
-    <value>download</value>
+    <value>cache</value>
   </data>
   <data name="AppBarButton_Play_Text" xml:space="preserve">
     <value>play</value>
@@ -521,9 +521,6 @@ Go back to continue</value>
   </data>
   <data name="AppLoader_CancelAllDownloads" xml:space="preserve">
     <value>Cancelling all downloads...</value>
-  </data>
-  <data name="Message_CanrFindLyrics_Title" xml:space="preserve">
-    <value>Couldn't find lyrics</value>
   </data>
   <data name="Message_CantFindLyrics_Text" xml:space="preserve">
     <value>Couldn't find lyrics of the track. We're very sorry.</value>

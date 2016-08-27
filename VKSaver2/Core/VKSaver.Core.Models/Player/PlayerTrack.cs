@@ -15,10 +15,10 @@ namespace VKSaver.Core.Models.Player
 
         [JsonProperty("source")]
         public string Source { get; set; }
-
-        [JsonProperty("lyrics_id")]
-        public long LyricsID { get; set; }
         
+        [JsonProperty("vk_info")]
+        public VKSaverAudioVKInfo VKInfo { get; set; }
+
         [JsonIgnore]
         public FileContentType ContentType { get { return FileContentType.Music; } }
         
@@ -26,7 +26,18 @@ namespace VKSaver.Core.Models.Player
         public string Extension { get { return ".mp3"; } }
         
         [JsonIgnore]
-        public string FileName { get { return Title; } }
+        public string FileName
+        {
+            get
+            {
+                if (VKInfo != null)
+                    return $"{VKInfo.OwnerID} {VKInfo.ID}";
+                return Title;
+            }
+        }
+
+        [JsonIgnore]
+        public object Metadata { get { return this.ToVKSaverAudio(); } }
 
         public bool Equals(IPlayerTrack other)
         {

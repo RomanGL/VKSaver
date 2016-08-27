@@ -12,6 +12,7 @@
                 case ".aac":
                 case ".m4a":
                 case ".flac":
+                case ".vksmtemp":
                     return FileContentType.Music;
 
                 case ".mp4":

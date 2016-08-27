@@ -1,4 +1,5 @@
 ﻿using ModernDev.InTouch;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using VKSaver.Core.LinksExtractor;
@@ -18,7 +19,13 @@ namespace VKSaver.Core.ViewModels.Common
                 Title = audio.Title,
                 Artist = audio.Artist,
                 Source = audio.Url,
-                LyricsID = audio.LyricsId ?? 0
+                VKInfo = new VKSaverAudioVKInfo
+                {
+                    ID = audio.Id,
+                    OwnerID = audio.OwnerId,
+                    AlbumID = audio.AlbumId,
+                    LyricsID = audio.LyricsId ?? 0
+                }
             };
         }
 
@@ -33,8 +40,9 @@ namespace VKSaver.Core.ViewModels.Common
             {
                 ContentType = FileContentType.Music,
                 Extension = ".mp3",
-                FileName = audio.Title,
-                Source = audio.Url
+                FileName = $"{audio.OwnerId} {audio.Id}",
+                Source = audio.Url,
+                Metadata = audio.ToVKSaverAudio()
             };
         }
 
@@ -58,6 +66,25 @@ namespace VKSaver.Core.ViewModels.Common
                 FileName = title,
                 Source = link.Source,
                 ContentType = FileContentType.Video
+            };
+        }
+
+        public static VKSaverAudio ToVKSaverAudio(this Audio audio)
+        {
+            return new VKSaverAudio
+            {
+                Track = new VKSaverAudioTrackInfo
+                {
+                    Title = audio.Title,
+                    Artist = audio.Artist
+                },
+                VK = new VKSaverAudioVKInfo
+                {
+                    ID = audio.Id,
+                    OwnerID = audio.OwnerId,
+                    AlbumID = audio.AlbumId,
+                    LyricsID = audio.LyricsId ?? 0
+                }
             };
         }
     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using System;
+using System.IO;
 using System.Threading;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services;
@@ -7,6 +9,7 @@ using Windows.ApplicationModel.Background;
 using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
+using Windows.Storage;
 using static VKSaver.Core.Services.PlayerConstants;
 
 namespace VKSaver.PlayerTask
@@ -17,15 +20,16 @@ namespace VKSaver.PlayerTask
         /// Запускает фоновую задачу.
         /// </summary>
         /// <param name="taskInstance">Экземпляр фоновой задачи.</param>
-        public void Run(IBackgroundTaskInstance taskInstance)
+        public async void Run(IBackgroundTaskInstance taskInstance)
         {
             _deferral = taskInstance.GetDeferral();
             _settingsService = new SettingsService();
             _logService = new LogService();
             _playerPlaylistService = new PlayerPlaylistService(_logService);
+            _musicCacheService = new MusicCacheService();
 
             _player = BackgroundMediaPlayer.Current;
-            _manager = new PlaybackManager(_player, _settingsService, _playerPlaylistService, _logService);
+            _manager = new PlaybackManager(_player, _settingsService, _playerPlaylistService, _logService, _musicCacheService);
             
             _controls = SystemMediaTransportControls.GetForCurrentView();
             _controls.ButtonPressed += Controls_ButtonPressed;
@@ -41,6 +45,11 @@ namespace VKSaver.PlayerTask
             taskInstance.Canceled += TaskInstance_Canceled;
             taskInstance.Task.Completed += Task_Completed;
             BackgroundMediaPlayer.MessageReceivedFromForeground += MessageReceivedFromForeground;
+
+            //var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/TestTrack.vksm"));
+            //var zip = new ZipFile((await file.OpenReadAsync()).AsStream());
+            //var content = zip.GetEntry("content.vks");
+            //var fileStream = zip.GetInputStream(content);
 
             _isAppRunning = _settingsService.GetNoCache<bool>(APP_RUNNING);
             _settingsService.Set(TASK_RUNNING, true);
@@ -83,6 +92,7 @@ namespace VKSaver.PlayerTask
                 _settingsService = null;
                 _playerPlaylistService = null;
                 _logService = null;
+                _musicCacheService = null;
                 _player = null;
 
                 BackgroundMediaPlayer.Shutdown();
@@ -227,6 +237,7 @@ namespace VKSaver.PlayerTask
         private BackgroundTaskDeferral _deferral;
         private SystemMediaTransportControls _controls;
         private SettingsService _settingsService;
+        private MusicCacheService _musicCacheService;
         private MediaPlayer _player;
         private PlaybackManager _manager;
         private ILogService _logService;

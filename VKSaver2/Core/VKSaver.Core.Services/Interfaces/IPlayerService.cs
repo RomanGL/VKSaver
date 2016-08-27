@@ -5,7 +5,7 @@ using VKSaver.Core.Models.Player;
 
 namespace VKSaver.Core.Services.Interfaces
 {
-    public interface IPlayerService
+    public interface IPlayerService : ISuspendingService
     {
         event TypedEventHandler<IPlayerService, TrackChangedEventArgs> TrackChanged;
         event TypedEventHandler<IPlayerService, PlayerStateChangedEventArgs> PlayerStateChanged;
@@ -21,9 +21,6 @@ namespace VKSaver.Core.Services.Interfaces
         void PlayPause();
         void SkipNext();
         void SkipPrevious();
-
-        void StartService();
-        void StopService();
         
         Task PlayNewTracks(IEnumerable<IPlayerTrack> tracks, int id);
     }

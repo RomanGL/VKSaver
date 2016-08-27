@@ -44,7 +44,7 @@ namespace VKSaver.Core.ViewModels
             PlayPauseCommand = new DelegateCommand(OnPlayPauseCommand);
             PlayTrackCommand = new DelegateCommand<PlayerItem>(OnPlayTrackCommand);
             ShowLyricsCommand = new DelegateCommand(OnShowLyricsCommand,
-                () => CurrentTrack != null && CurrentTrack.Track.LyricsID != 0);
+                () => CurrentTrack != null && CurrentTrack.Track.VKInfo != null && CurrentTrack.Track.VKInfo.LyricsID != 0);
             DownloadTrackCommand = new DelegateCommand<PlayerItem>(OnDownloadTrackCommand);
         }
 

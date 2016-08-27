@@ -14,13 +14,14 @@ using Windows.Storage;
 using Windows.Web;
 using static VKSaver.Core.Services.Common.DownloadsExtensions;
 using static VKSaver.Core.Models.Common.FileContentTypeExtensions;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
 
 namespace VKSaver.Core.Services
 {
     /// <summary>
     /// Представляет сервис для рабоы с загрузками.
     /// </summary>
-    public sealed class DownloadsService : IDownloadsService
+    public sealed class DownloadsService : IDownloadsService, ISuspendingService
     {        
         /// <summary>
         /// Происходит при изменении прогресса загрузки.
@@ -35,12 +36,16 @@ namespace VKSaver.Core.Services
         /// </summary>
         public event EventHandler DownloadsCompleted;
 
-        public DownloadsService()
+        public DownloadsService(IMusicCacheService musicCacheService, ISettingsService settingsService)
         {
+            _musicCacheService = musicCacheService;
+            _settingsService = settingsService;
+
             _transferGroup = BackgroundTransferGroup.CreateGroup(DOWNLOAD_TRASNFER_GROUP_NAME);
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
             _downloads = new List<DownloadOperation>(INIT_DOWNLOADS_LIST_CAPACITY);
             _cts = new Dictionary<Guid, CancellationTokenSource>(INIT_DOWNLOADS_LIST_CAPACITY);
+            _musicDownloads = new Dictionary<string, VKSaverAudio>();
         }
 
         /// <summary>
@@ -57,7 +62,7 @@ namespace VKSaver.Core.Services
             return _downloads.Select(e => new DownloadItem
             {
                 OperationGuid = e.Guid,
-                Name = GetOperationNameFromFileName(e.ResultFile.Name),
+                Name = GetOperationNameFromFile(e.ResultFile),
                 ContentType = GetContentTypeFromExtension(e.ResultFile.FileType),
                 Status = e.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
@@ -70,6 +75,13 @@ namespace VKSaver.Core.Services
         /// </summary>
         public async void DiscoverActiveDownloadsAsync()
         {
+            lock (_lockObject)
+            {
+                if (_downloadsAttached)
+                    return;
+                _downloadsAttached = true;
+            }
+
             IsLoading = true;
             IReadOnlyList<DownloadOperation> downloads = null;
 
@@ -79,6 +91,7 @@ namespace VKSaver.Core.Services
             if (downloads != null && downloads.Count > 0)
                 for (int i = 0; i < downloads.Count; i++)
                     HandleDownloadAsync(downloads[i], false);
+
             IsLoading = false;
         }
 
@@ -122,6 +135,42 @@ namespace VKSaver.Core.Services
                 }
                 catch (Exception) { }
             });
+        }
+
+        public void StartService()
+        {
+            lock (_lockObject)
+            {
+                if (_isRunning)
+                    return;
+                _isRunning = true;
+            }
+
+            if (!_downloadsAttached)
+            {
+                var mDownloads = _settingsService.Get<Dictionary<string, VKSaverAudio>>(MUSIC_DOWNLOADS_PARAMETER);
+                if (mDownloads != null)
+                {
+                    foreach (var item in mDownloads)
+                    {
+                        _musicDownloads[item.Key] = item.Value;
+                    }
+                }
+            }
+
+            DiscoverActiveDownloadsAsync();
+        }
+
+        public void StopService()
+        {
+            lock (_lockObject)
+            {
+                if (!_isRunning)
+                    return;
+                _isRunning = false;
+            }
+
+            _settingsService.Set(MUSIC_DOWNLOADS_PARAMETER, _musicDownloads);
         }
 
         /// <summary>
@@ -188,6 +237,10 @@ namespace VKSaver.Core.Services
                 {
                     var downloader = new BackgroundDownloader() { TransferGroup = _transferGroup };
                     var download = downloader.CreateDownload(new Uri(item.Source), resultFile);
+
+                    if (item.ContentType == FileContentType.Music)
+                        _musicDownloads[item.FileName] = (VKSaverAudio)item.Metadata;
+
                     HandleDownloadAsync(download);
                 }
                 catch (Exception)
@@ -220,19 +273,37 @@ namespace VKSaver.Core.Services
             catch (Exception ex)
             {
                 DownloadError?.Invoke(this, new DownloadOperationErrorEventArgs(
-                    operation.Guid, 
-                    GetOperationNameFromFileName(operation.ResultFile.Name),
+                    operation.Guid,
+                    GetOperationNameFromFile(operation.ResultFile),
                     GetContentTypeFromExtension(operation.ResultFile.FileType), 
                     ex));
             }
 
             OnDownloadProgressChanged(operation);
+
+            string fileName = operation.ResultFile.Name.Split(new char[] { '.' })[0];
+
             if (operation.Progress.Status == BackgroundTransferStatus.Canceled ||
                 operation.Progress.Status == BackgroundTransferStatus.Error)
                 await operation.ResultFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
-            
+            else
+            {
+                var type = GetContentTypeFromExtension(operation.ResultFile.FileType);
+                if (type == FileContentType.Music)
+                {
+                    VKSaverAudio metadata = null;
+                    _musicDownloads.TryGetValue(fileName, out metadata);
+
+                    bool converted = await _musicCacheService.ConvertAudioToVKSaverFormat(
+                        (StorageFile)operation.ResultFile, metadata);
+                    if (!converted)
+                        await operation.ResultFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                }
+            }
+
             _cts.Remove(operation.Guid);
             _downloads.Remove(operation);
+            _musicDownloads.Remove(fileName);
 
             if (_downloads.Count == 0)
                 DownloadsCompleted?.Invoke(this, EventArgs.Empty);
@@ -246,7 +317,7 @@ namespace VKSaver.Core.Services
             ProgressChanged?.Invoke(this, new DownloadItem
             {
                 OperationGuid = e.Guid,
-                Name = GetOperationNameFromFileName(e.ResultFile.Name),
+                Name = GetOperationNameFromFile(e.ResultFile),
                 ContentType = GetContentTypeFromExtension(e.ResultFile.FileType),
                 Status = e.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
@@ -255,12 +326,25 @@ namespace VKSaver.Core.Services
         }
         
         /// <summary>
-        /// Возвращает название операции загрузки из имени файла.
+        /// Возвращает название операции загрузки из файла.
         /// </summary>
-        /// <param name="fileName">Имя результирующего файла.</param>
-        private static string GetOperationNameFromFileName(string fileName)
+        /// <param name="file">Результирующий файл.</param>
+        private string GetOperationNameFromFile(IStorageFile file)
         {
-            return fileName.Split(new char[] { '.' })[0];
+            string fileName = file.Name.Split(new char[] { '.' })[0];
+            var type = GetContentTypeFromExtension(file.FileType);
+            switch (type)
+            {
+                case FileContentType.Music:
+                    VKSaverAudio metadata = null;
+                    _musicDownloads.TryGetValue(fileName, out metadata);
+
+                    if (metadata != null)
+                        return metadata.Track.Title;
+                    break;
+            }
+
+            return fileName;
         }
 
         /// <summary>
@@ -276,15 +360,25 @@ namespace VKSaver.Core.Services
                     CreationCollisionOption.GenerateUniqueName);
             }
             catch (Exception) { return null; }
-        }   
+        }
+
+        private bool _isRunning;
+        private bool _downloadsAttached;
 
         private readonly BackgroundTransferGroup _transferGroup;
         private readonly List<DownloadOperation> _downloads;
         private readonly Dictionary<Guid, CancellationTokenSource> _cts;
+        private readonly Dictionary<string, VKSaverAudio> _musicDownloads;
+
+        private readonly IMusicCacheService _musicCacheService;
+        private readonly ISettingsService _settingsService;
+
+        private readonly object _lockObject = new object();
 
         private const string DOWNLOAD_TRASNFER_GROUP_NAME = "VKSaverDownloader";
         private const string DOWNLOADS_FOLDER_NAME = "VKSaver";
         private const string DOWNLOADS_OTHER_FOLDER_NAME = "VKSaver Other";
-        private const int INIT_DOWNLOADS_LIST_CAPACITY = 60;
+        private const string MUSIC_DOWNLOADS_PARAMETER = "MusicDownloads";
+        private const int INIT_DOWNLOADS_LIST_CAPACITY = 60;        
     }
 }

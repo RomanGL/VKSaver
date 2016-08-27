@@ -165,7 +165,7 @@
     <value>удалить</value>
   </data>
   <data name="AppBarButton_Download_Text" xml:space="preserve">
-    <value>загрузить</value>
+    <value>кэшировать</value>
   </data>
   <data name="AppBarButton_Play_Text" xml:space="preserve">
     <value>воспроизвести</value>
@@ -251,7 +251,7 @@
     <value>удалить</value>
   </data>
   <data name="DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>загрузить</value>
+    <value>кэшировать</value>
   </data>
   <data name="ErrorView_Error.Text" xml:space="preserve">
     <value>Произошла ошибка</value>
@@ -280,7 +280,7 @@
     <value>документы</value>
   </data>
   <data name="MainView_DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>загрузить</value>
+    <value>кэшировать</value>
   </data>
   <data name="MainView_FriendsItem.Content" xml:space="preserve">
     <value>друзья</value>
@@ -375,7 +375,7 @@
   <data name="Message_AudioDeleteError_Title" xml:space="preserve">
     <value>Не удалось удалить аудиозапись</value>
   </data>
-  <data name="Message_CanrFindLyrics_Title" xml:space="preserve">
+  <data name="Message_CantFindLyrics_Title" xml:space="preserve">
     <value>Не удалось найти текст</value>
   </data>
   <data name="Message_CantFindLyrics_Text" xml:space="preserve">

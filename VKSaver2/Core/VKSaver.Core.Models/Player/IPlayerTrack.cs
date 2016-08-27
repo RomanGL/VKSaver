@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 
 namespace VKSaver.Core.Models.Player
@@ -14,8 +15,8 @@ namespace VKSaver.Core.Models.Player
 
         [JsonProperty("source")]
         string Source { get; }
-
-        [JsonProperty("lyrics_id")]
-        long LyricsID { get; set; }
+        
+        [JsonProperty("vk_info")]
+        VKSaverAudioVKInfo VKInfo { get; set; }
     }
 }

@@ -23,8 +23,10 @@ namespace VKSaver.Core.Services
         public event EventHandler<DownloadOperationErrorEventArgs> DownloadError;
         public event EventHandler DownloadsCompleted;
 
-        public DownloadsService2()
+        public DownloadsService2(IMusicCacheService musicCacheService)
         {
+            _musicCacheService = musicCacheService;
+
             _transferGroup = BackgroundTransferGroup.CreateGroup(DOWNLOAD_TRASNFER_GROUP_NAME);
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
             _downloader = new BackgroundDownloader();
@@ -247,6 +249,8 @@ namespace VKSaver.Core.Services
         private readonly List<DownloadOperation> _downloads;
         private readonly Dictionary<Guid, CancellationTokenSource> _cts;
         private readonly BackgroundDownloader _downloader;
+
+        private readonly IMusicCacheService _musicCacheService;
 
         private const string DOWNLOAD_TRASNFER_GROUP_NAME = "VKSaverDownloader";
         private const string DOWNLOADS_FOLDER_NAME = "VKSaver";

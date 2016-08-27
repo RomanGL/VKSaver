@@ -96,8 +96,8 @@
           <target state="translated">transfer manager</target>
         </trans-unit>
         <trans-unit id="MainView_DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>загрузить</source>
-          <target state="translated">download</target>
+          <source>кэшировать</source>
+          <target state="translated">cache</target>
         </trans-unit>
         <trans-unit id="MainView_ShowMoreItem.Content" translate="yes" xml:space="preserve">
           <source>показать больше</source>
@@ -240,8 +240,8 @@ Go back to continue</target>
           <target state="translated">we recommend</target>
         </trans-unit>
         <trans-unit id="DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>загрузить</source>
-          <target state="translated">download</target>
+          <source>кэшировать</source>
+          <target state="translated">cache</target>
         </trans-unit>
         <trans-unit id="RecommendationsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить рекомендации</source>
@@ -547,8 +547,8 @@ Go back to continue</target>
           <target state="translated">remove</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Download_Text" translate="yes" xml:space="preserve">
-          <source>загрузить</source>
-          <target state="translated">download</target>
+          <source>кэшировать</source>
+          <target state="translated">cache</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Play_Text" translate="yes" xml:space="preserve">
           <source>воспроизвести</source>
@@ -687,10 +687,6 @@ Go back to continue</target>
         <trans-unit id="AppLoader_CancelAllDownloads" translate="yes" xml:space="preserve">
           <source>Отмена всех загрузок...</source>
           <target state="translated">Cancelling all downloads...</target>
-        </trans-unit>
-        <trans-unit id="Message_CanrFindLyrics_Title" translate="yes" xml:space="preserve">
-          <source>Не удалось найти текст</source>
-          <target state="translated">Couldn't find lyrics</target>
         </trans-unit>
         <trans-unit id="Message_CantFindLyrics_Text" translate="yes" xml:space="preserve">
           <source>Не удалось найти текст для данной аудиозаписи. Мы очень сожалеем.</source>
@@ -1120,6 +1116,10 @@ Download VK Saver 2 now!</target>
         <trans-unit id="SettingsView_ServicesAuthorizations_Title.Text" translate="yes" xml:space="preserve">
           <source>Авторизация в сервисах</source>
           <target state="translated">Authorization in the services</target>
+        </trans-unit>
+        <trans-unit id="Message_CantFindLyrics_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось найти текст</source>
+          <target state="new">Не удалось найти текст</target>
         </trans-unit>
       </group>
     </body>

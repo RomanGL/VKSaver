@@ -25,5 +25,11 @@ namespace VKSaver.Core.Models.Transfer
         /// </summary>
         [JsonIgnore]
         string FileName { get; }
+
+        /// <summary>
+        /// Метаданные к файлу.
+        /// </summary>
+        [JsonIgnore]
+        object Metadata { get; }
     }
 }

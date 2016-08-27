@@ -11,5 +11,7 @@ namespace VKSaver.Core.Models.Transfer
         public string FileName { get; set; }
 
         public string Source { get; set; }
+
+        public object Metadata { get; set; }
     }
 }

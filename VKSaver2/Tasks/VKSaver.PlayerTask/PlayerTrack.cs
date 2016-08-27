@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Player;
 
 namespace VKSaver.PlayerTask
@@ -14,8 +15,8 @@ namespace VKSaver.PlayerTask
         [JsonProperty("source")]
         public string Source { get; }
 
-        [JsonProperty("lyrics_id")]
-        public long LyricsID { get; set; }
+        [JsonProperty("vk_infoff")]
+        public VKSaverAudioVKInfo VKInfo { get; set; }
 
         public bool Equals(IPlayerTrack other)
         {
