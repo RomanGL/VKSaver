@@ -172,7 +172,8 @@ namespace VKSaver.PlayerTask
                 return;
             }
 
-            _player.SetUriSource(new Uri(track.Source));  
+            _player.SetUriSource(new Uri(track.Source));
+            GC.Collect(1, GCCollectionMode.Forced);
         }
 
         #endregion
