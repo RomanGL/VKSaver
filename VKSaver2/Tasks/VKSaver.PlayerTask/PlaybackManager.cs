@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services;
@@ -138,6 +139,8 @@ namespace VKSaver.PlayerTask
                 
         public async void PlayTrackFromID(int trackID)
         {
+            GC.Collect(2, GCCollectionMode.Forced);
+
             if (!await HasTracks())
             {
                 _logService.LogText($"PlaybackManager has empty tracks list. Cant play from id \"{trackID}\".");
@@ -164,7 +167,7 @@ namespace VKSaver.PlayerTask
                 {
                     _currentCachedFile = cachedFile;
                     Debug.WriteLine($"Cached track found: {track.Title}");
-                    _player.SetStreamSource(await cachedFile.GetStream());
+                    _player.SetStreamSource((await cachedFile.GetStream()).AsRandomAccessStream());
                     return;
                 }
             }

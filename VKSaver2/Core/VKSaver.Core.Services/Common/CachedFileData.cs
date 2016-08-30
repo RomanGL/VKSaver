@@ -20,7 +20,7 @@ namespace VKSaver.Core.Services.Common
             _managedFile = file;
         }
 
-        public async Task<IRandomAccessStream> GetStream()
+        public async Task<Stream> GetStream()
         {
             if (_isOpen)
                 return _contentStream;
@@ -31,7 +31,8 @@ namespace VKSaver.Core.Services.Common
             _zip = new ZipFile(_fileStream);
 
             var content = _zip.GetEntry("content.vks");
-            _contentStream = _zip.GetInputStream(content).AsRandomAccessStream();
+            var stream = _zip.GetInputStream(content);
+            _contentStream = new MusicEncryptedStream(stream);
 
             return _contentStream;
         }
@@ -51,7 +52,7 @@ namespace VKSaver.Core.Services.Common
         private bool _isOpen;
         private ZipFile _zip;
         private Stream _fileStream;
-        private IRandomAccessStream _contentStream;
+        private MusicEncryptedStream _contentStream;
 
         private readonly StorageFile _managedFile;
     }

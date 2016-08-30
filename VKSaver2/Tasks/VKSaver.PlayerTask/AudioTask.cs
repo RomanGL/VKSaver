@@ -60,6 +60,8 @@ namespace VKSaver.PlayerTask
 
             _isTaskRunning = true;
             _taskRunning.Set();
+
+            GC.Collect(2, GCCollectionMode.Forced);
         }
 
         /// <summary>

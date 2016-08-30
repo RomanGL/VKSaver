@@ -66,6 +66,7 @@
     <Compile Include="Common\DownloadsExtensions.cs" />
     <Compile Include="Common\EncryptionHelper.cs" />
     <Compile Include="Common\InTouchExtensions.cs" />
+    <Compile Include="Common\MusicEncryptedStream.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="Common\VKAuthorization.cs" />
     <Compile Include="Interfaces\ISuspendingService.cs" />
