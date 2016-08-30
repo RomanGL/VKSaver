@@ -291,13 +291,7 @@ namespace VKSaver.Core.Services
                 var type = GetContentTypeFromExtension(operation.ResultFile.FileType);
                 if (type == FileContentType.Music)
                 {
-                    VKSaverAudio metadata = null;
-                    _musicDownloads.TryGetValue(fileName, out metadata);
-
-                    bool converted = await _musicCacheService.ConvertAudioToVKSaverFormat(
-                        (StorageFile)operation.ResultFile, metadata);
-                    if (!converted)
-                        await operation.ResultFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                    await _musicCacheService.ConvertAudioToVKSaverFormat((StorageFile)operation.ResultFile);
                 }
             }
 

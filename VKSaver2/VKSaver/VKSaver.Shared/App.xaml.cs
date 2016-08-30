@@ -19,7 +19,6 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Microsoft.Practices.ServiceLocation;
 using VKSaver.Core.LinksExtractor;
 using ModernDev.InTouch;
-using ICSharpCode.SharpZipLib.Zip;
 using Windows.Storage;
 using System.IO;
 #if WINDOWS_PHONE_APP

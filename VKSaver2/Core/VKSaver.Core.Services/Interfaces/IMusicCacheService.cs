@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
 using Windows.Storage;
@@ -8,8 +9,8 @@ namespace VKSaver.Core.Services.Interfaces
 {
     public interface IMusicCacheService
     {
-        Task<CachedFileData> GetCachedFileData(string fileName);
+        Task<Stream> GetCachedFileStream(string fileName);
 
-        Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata);
+        Task<bool> ConvertAudioToVKSaverFormat(StorageFile file);
     }
 }

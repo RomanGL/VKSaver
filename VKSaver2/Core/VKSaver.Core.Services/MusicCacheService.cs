@@ -1,6 +1,4 @@
-﻿using ICSharpCode.SharpZipLib.Core;
-using ICSharpCode.SharpZipLib.Zip;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,59 +15,18 @@ namespace VKSaver.Core.Services
 {
     public sealed class MusicCacheService : IMusicCacheService
     {
-        public async Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata)
+        public Task<bool> ConvertAudioToVKSaverFormat(StorageFile file)
         {
-            if (metadata == null)
-                return false;
-
-            StorageFile zipFile = null;
-            Stream zipFileStream = null;
-            Stream fileStream = null;
-
-            try
-            {
-                var cacheFolder = await GetCacheFolder();
-                zipFile = await cacheFolder.CreateFileAsync(file.Name.Split(new char[] { '.' })[0] + FILES_EXTENSION, 
-                    CreationCollisionOption.ReplaceExisting);
-                zipFileStream = (await zipFile.OpenAsync(FileAccessMode.ReadWrite)).AsStream();
-                fileStream = (await file.OpenAsync(FileAccessMode.Read)).AsStreamForRead();
-
-                using (var zipStream = new ZipOutputStream(zipFileStream))
-                {
-                    zipStream.SetLevel(0);
-
-                    var contentEntry = new ZipEntry(FILES_CONTENT_NAME);
-                    contentEntry.CompressionMethod = CompressionMethod.Stored;
-                    WriteEntry(zipStream, contentEntry, fileStream);
-
-                    var metadataEntry = new ZipEntry(FILES_METADATA_NAME);
-                    metadataEntry.CompressionMethod = CompressionMethod.Stored;
-                    WriteEntry(zipStream, metadataEntry, new MemoryStream(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(metadata))));
-                    
-                    zipStream.Finish();
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                await zipFile?.DeleteAsync(StorageDeleteOption.PermanentDelete);
-                return false;
-            }
-            finally
-            {
-                fileStream?.Dispose();
-                zipFileStream?.Dispose();                
-                await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
-            }
+            return _toVKSaverFormat.Enqueue(() => ConvertAudioToVKSaverFormatInternal(file));
         }
                 
-        public async Task<CachedFileData> GetCachedFileData(string fileName)
+        public async Task<Stream> GetCachedFileStream(string fileName)
         {
             try
             {
                 var file = await GetCachedFile(fileName);
-                return new CachedFileData(file);
+                var fileStream = await file.OpenStreamForReadAsync();
+                return new MusicEncryptedStream(fileStream);
             }
             catch (Exception)
             {
@@ -77,19 +34,50 @@ namespace VKSaver.Core.Services
             }
         }
 
-        private static void WriteEntry(ZipOutputStream zipStream, ZipEntry entry, Stream contentStream)
+        private static async Task<bool> ConvertAudioToVKSaverFormatInternal(StorageFile file)
         {
-            zipStream.PutNextEntry(entry);
+            bool result = false;
+            string fileName = file.Name.Split(new char[] { '.' })[0] + FILES_EXTENSION;
 
-            var buffer = new byte[4096];
-            int sourceBytes = 0;
-            do
+            Stream readStream = null;
+            MusicEncryptedStream writeStream = null;
+            StorageFile convertedFile = null;
+
+            try
             {
-                sourceBytes = contentStream.Read(buffer, 0, buffer.Length);
-                zipStream.Write(buffer, 0, sourceBytes);
-            } while (sourceBytes > 0);
+                convertedFile = await (await GetCacheFolder()).CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
 
-            zipStream.CloseEntry();
+                readStream = await file.OpenStreamForReadAsync();
+                writeStream = new MusicEncryptedStream(await convertedFile.OpenStreamForWriteAsync());
+
+                int readed = 0;
+                var buffer = new byte[4096];
+
+                do
+                {
+                    readed = readStream.Read(buffer, 0, 4096);
+                    if (readed == 0)
+                        continue;
+
+                    writeStream.Write(buffer, 0, readed);
+
+                } while (readed > 0);
+
+                result = readStream.Position == writeStream.Position;
+                writeStream.Flush();
+            }
+            catch (Exception) { }
+            finally
+            {
+                readStream?.Dispose();
+                writeStream?.Dispose();
+
+                await file?.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                if (!result)
+                    await convertedFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+            }
+
+            return result;
         }
 
         private static async Task<StorageFile> GetCachedFile(string fileName)
@@ -103,6 +91,8 @@ namespace VKSaver.Core.Services
             return await KnownFolders.MusicLibrary.CreateFolderAsync(
                 MUSIC_CACHE_FOLDER_NAME, CreationCollisionOption.OpenIfExists);
         }
+
+        private readonly TaskQueue _toVKSaverFormat = new TaskQueue();
 
         internal const string FILES_PROTECTION_PASSWORD = "VktTYXZlciAy";
         internal const string FILES_METADATA_NAME = "metadata.vks";

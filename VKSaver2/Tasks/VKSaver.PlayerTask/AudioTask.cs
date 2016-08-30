@@ -1,5 +1,4 @@
-﻿using ICSharpCode.SharpZipLib.Zip;
-using System;
+﻿using System;
 using System.IO;
 using System.Threading;
 using VKSaver.Core.Models.Player;
@@ -20,7 +19,7 @@ namespace VKSaver.PlayerTask
         /// Запускает фоновую задачу.
         /// </summary>
         /// <param name="taskInstance">Экземпляр фоновой задачи.</param>
-        public async void Run(IBackgroundTaskInstance taskInstance)
+        public void Run(IBackgroundTaskInstance taskInstance)
         {
             _deferral = taskInstance.GetDeferral();
             _settingsService = new SettingsService();
@@ -45,11 +44,6 @@ namespace VKSaver.PlayerTask
             taskInstance.Canceled += TaskInstance_Canceled;
             taskInstance.Task.Completed += Task_Completed;
             BackgroundMediaPlayer.MessageReceivedFromForeground += MessageReceivedFromForeground;
-
-            //var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/TestTrack.vksm"));
-            //var zip = new ZipFile((await file.OpenReadAsync()).AsStream());
-            //var content = zip.GetEntry("content.vks");
-            //var fileStream = zip.GetInputStream(content);
 
             _isAppRunning = _settingsService.GetNoCache<bool>(APP_RUNNING);
             _settingsService.Set(TASK_RUNNING, true);

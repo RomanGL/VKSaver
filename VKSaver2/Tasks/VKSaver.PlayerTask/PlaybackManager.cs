@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services;
@@ -151,20 +152,16 @@ namespace VKSaver.PlayerTask
             Debug.WriteLine($"Next track is: {track.Title}");
 
             TrackChanged?.Invoke(this, new ManagerTrackChangedEventArgs(CurrentTrack, CurrentTrackID));
-
-            _currentCachedFile?.Dispose();
-            _currentCachedFile = null;
-
+            
             if (track.VKInfo != null)
             {
-                var cachedFile = await _musicCasheService.GetCachedFileData(
+                var cachedStream = await _musicCasheService.GetCachedFileStream(
                     $"{track.VKInfo.OwnerID} {track.VKInfo.ID}.vksm");
 
-                if (cachedFile != null)
+                if (cachedStream != null)
                 {
-                    _currentCachedFile = cachedFile;
                     Debug.WriteLine($"Cached track found: {track.Title}");
-                    _player.SetStreamSource(await cachedFile.GetStream());
+                    _player.SetStreamSource(cachedStream.AsRandomAccessStream());
                     return;
                 }
             }
@@ -231,7 +228,6 @@ namespace VKSaver.PlayerTask
         private bool _isShuffleMode;
         private int _currentTrackID;
         private PlayerRepeatMode _repeatMode;
-        private CachedFileData _currentCachedFile;
 
         private readonly SettingsService _settingsService;
         private readonly MediaPlayer _player;
