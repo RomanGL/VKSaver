@@ -67,15 +67,16 @@ namespace VKSaver.Core.Services.Common
                     _currentSampleSize = SAMPLE_SIZE;
                 else
                     _currentSampleSize = ((AudioHeader)codec).AudioFrameLength;
-
-                _buffer = new byte[BUFFER_SIZE];
-
+                
                 //_byteOffset = tagFile.InvariantStartPosition;
                 _currentBitrate = (uint)tagFile.Properties.AudioBitrate;
                 _currentChannels = (uint)tagFile.Properties.AudioChannels;
 
+                _bufferSize = (int)(_currentBitrate * 1000 / 8) * (BUFFERED_TIME_SECONDS + 1);
+                _buffer = new byte[_bufferSize];
+
                 if (_currentBitrate == 0 || _currentBitrate > 320) _currentBitrate = 320;
-                _sampleDuration = TimeSpan.FromMilliseconds(BUFFER_SIZE / (_currentBitrate / 8) / _currentChannels);
+                _sampleDuration = TimeSpan.FromMilliseconds(_bufferSize / (_currentBitrate / 8) / _currentChannels);
 
                 var audioProperties = AudioEncodingProperties.CreateMp3(
                     (uint)tagFile.Properties.AudioSampleRate, 
@@ -90,7 +91,7 @@ namespace VKSaver.Core.Services.Common
                 _mediaSource.MusicProperties.Artist = Track.Artist;
                 _mediaSource.MusicProperties.Album = "ВКачай";
                 _mediaSource.Duration = tagFile.Properties.Duration;
-                _mediaSource.BufferTime = TimeSpan.FromSeconds(2);
+                _mediaSource.BufferTime = TimeSpan.FromSeconds(BUFFERED_TIME_SECONDS);
 
                 _mediaSource.Starting += MediaSource_Starting;
                 _mediaSource.SampleRequested += MediaSource_SampleRequested;
@@ -111,7 +112,7 @@ namespace VKSaver.Core.Services.Common
             {
                 long sampleOffset = request.StartPosition.Value.Ticks / _sampleDuration.Ticks;
                 _timeOffset = TimeSpan.FromTicks(sampleOffset * _sampleDuration.Ticks);
-                _byteOffset = sampleOffset * BUFFER_SIZE;
+                _byteOffset = sampleOffset * _bufferSize;
             }
 
             request.SetActualStartPosition(_timeOffset);
@@ -127,10 +128,10 @@ namespace VKSaver.Core.Services.Common
             GC.Collect(1, GCCollectionMode.Forced);
 
             var privateRequest = args.Request;
-            long newOffset = _byteOffset + BUFFER_SIZE;
+            long newOffset = _byteOffset + _bufferSize;
 
             if (newOffset <= _fileStream.Length ||
-                (_isCompleted && newOffset - _fileStream.Length < BUFFER_SIZE && newOffset - _fileStream.Length > 0))
+                (_isCompleted && newOffset - _fileStream.Length < _bufferSize && newOffset - _fileStream.Length > 0))
             {
                 int count = SetSample(privateRequest);
 
@@ -148,7 +149,7 @@ namespace VKSaver.Core.Services.Common
             else if (!_isCanceled && !_isCompleted)
             {
                 request = privateRequest;
-                uint percent = (uint)((_fileStream.Length - _byteOffset) / BUFFER_SIZE);
+                uint percent = (uint)((_fileStream.Length - _byteOffset) / _bufferSize);
                 request.ReportSampleProgress(percent);
                 var deferral = request.GetDeferral();
                 SetSample(request);
@@ -249,10 +250,15 @@ namespace VKSaver.Core.Services.Common
             try
             {
                 _fileStream.Seek(_byteOffset, SeekOrigin.Begin);
-                int count = _fileStream.Read(_buffer, 0, BUFFER_SIZE);
+                int count = _fileStream.Read(_buffer, _bufferOffset, BUFFER_SIZE);
+                
+                IBuffer buffer = _buffer.AsBuffer(_bufferOffset, BUFFER_SIZE);
+                _bufferOffset += BUFFER_SIZE;
+                if (_bufferOffset + BUFFER_SIZE >= _bufferSize)
+                    _bufferOffset = 0;
 
                 var duration = TimeSpan.FromMilliseconds(count / (_currentBitrate / 8) / _currentChannels);
-                var sample = MediaStreamSample.CreateFromBuffer(_buffer.AsBuffer(), _timeOffset);
+                var sample = MediaStreamSample.CreateFromBuffer(buffer, _timeOffset);
                 sample.Duration = duration;
                 sample.KeyFrame = true;
 
@@ -264,11 +270,13 @@ namespace VKSaver.Core.Services.Common
             }
             catch (Exception) { return 0; }
         }
-
-        private const string AUDIOS_FOLDER_NAME = "AudiosCache";
-        private const int BUFFER_SIZE = 1024;
+        
+        private const int BUFFER_SIZE = 2048;
         private const int SAMPLE_SIZE = 1152;
+        private const int BUFFERED_TIME_SECONDS = 2;
 
+        private int _bufferOffset;
+        private int _bufferSize;
         private byte[] _buffer;
         private TimeSpan _sampleDuration;
         private MediaStreamSource _mediaSource;
