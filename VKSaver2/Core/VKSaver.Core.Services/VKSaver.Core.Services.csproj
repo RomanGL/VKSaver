@@ -66,6 +66,8 @@
     <Compile Include="Common\DownloadsExtensions.cs" />
     <Compile Include="Common\EncryptionHelper.cs" />
     <Compile Include="Common\InTouchExtensions.cs" />
+    <Compile Include="Common\MediaStreamSourceWorker.cs" />
+    <Compile Include="Common\MusicCacheFile.cs" />
     <Compile Include="Common\MusicEncryptedStream.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="Common\VKAuthorization.cs" />
@@ -139,6 +141,10 @@
     </Reference>
     <Reference Include="OneTeam.SDK.LastFm">
       <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
+    </Reference>
+    <Reference Include="TagLib.Portable, Version=2.2.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TagLib.Portable.1.0.4\lib\portable-net45+win+wpa81+wp8+MonoAndroid10+xamarinios10+MonoTouch10\TagLib.Portable.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="XboxMusicService, Version=1.0.5542.27830, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\XboxMusicSDK.1.7\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\XboxMusicService.dll</HintPath>

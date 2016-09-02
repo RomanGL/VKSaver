@@ -59,7 +59,7 @@ namespace VKSaver.Core.Services
             finally
             {
                 fileStream?.Dispose();
-                zipFileStream?.Dispose();                
+                zipFileStream?.Dispose();
                 await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
             }
         }

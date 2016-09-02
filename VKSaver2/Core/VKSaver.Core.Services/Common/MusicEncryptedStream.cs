@@ -42,8 +42,7 @@ namespace VKSaver.Core.Services.Common
         }
 
         public override int Read(byte[] buffer, int offset, int count)
-        {
-            GC.Collect(2, GCCollectionMode.Forced);
+        {            
             return _contentStream.Read(buffer, offset, count);
         }
 

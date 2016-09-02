@@ -139,7 +139,7 @@ namespace VKSaver.PlayerTask
                 
         public async void PlayTrackFromID(int trackID)
         {
-            GC.Collect(2, GCCollectionMode.Forced);
+            GC.Collect(1, GCCollectionMode.Forced);
 
             if (!await HasTracks())
             {
@@ -154,20 +154,16 @@ namespace VKSaver.PlayerTask
             Debug.WriteLine($"Next track is: {track.Title}");
 
             TrackChanged?.Invoke(this, new ManagerTrackChangedEventArgs(CurrentTrack, CurrentTrackID));
-
-            _currentCachedFile?.Dispose();
-            _currentCachedFile = null;
-
+            
             if (track.VKInfo != null)
             {
-                var cachedFile = await _musicCasheService.GetCachedFileData(
-                    $"{track.VKInfo.OwnerID} {track.VKInfo.ID}.vksm");
+                var worker = new MediaStreamSourceWorker(CurrentTrack, _musicCasheService);
+                var cachedSource = await worker.GetSource();
 
-                if (cachedFile != null)
+                if (cachedSource != null)
                 {
-                    _currentCachedFile = cachedFile;
                     Debug.WriteLine($"Cached track found: {track.Title}");
-                    _player.SetStreamSource((await cachedFile.GetStream()).AsRandomAccessStream());
+                    _player.SetMediaSource(cachedSource);
                     return;
                 }
             }
@@ -234,7 +230,6 @@ namespace VKSaver.PlayerTask
         private bool _isShuffleMode;
         private int _currentTrackID;
         private PlayerRepeatMode _repeatMode;
-        private CachedFileData _currentCachedFile;
 
         private readonly SettingsService _settingsService;
         private readonly MediaPlayer _player;

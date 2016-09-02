@@ -20,7 +20,7 @@ namespace VKSaver.PlayerTask
         /// Запускает фоновую задачу.
         /// </summary>
         /// <param name="taskInstance">Экземпляр фоновой задачи.</param>
-        public async void Run(IBackgroundTaskInstance taskInstance)
+        public void Run(IBackgroundTaskInstance taskInstance)
         {
             _deferral = taskInstance.GetDeferral();
             _settingsService = new SettingsService();
