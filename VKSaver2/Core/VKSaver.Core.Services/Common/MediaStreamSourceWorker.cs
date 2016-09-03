@@ -44,10 +44,8 @@ namespace VKSaver.Core.Services.Common
         /// </summary>
         public async Task<MediaStreamSource> GetSource()
         {
-            if (_mediaSource != null) return _mediaSource;
-
-            _isCanceled = false;
-            _isCompleted = false;
+            if (_mediaSource != null)
+                return _mediaSource;
 
             try
             {
@@ -62,12 +60,12 @@ namespace VKSaver.Core.Services.Common
 
                 TagLib.File tagFile = TagLib.File.Create(file, "audio/mpeg", TagLib.ReadStyle.Average);
                 if (tagFile == null) return null;
-                                                
-                //_byteOffset = tagFile.InvariantStartPosition;
+
+                _startPosition = tagFile.InvariantStartPosition;                         
                 _currentBitrate = (uint)tagFile.Properties.AudioBitrate * 1000;
                 _currentChannels = (uint)tagFile.Properties.AudioChannels;
 
-                _bufferSize = (int)(_currentBitrate / 8) * (BUFFERED_TIME_SECONDS + 1);
+                _bufferSize = (int)(_currentBitrate / 8) * (BUFFERED_TIME_SECONDS + 3);
                 _buffer = new byte[_bufferSize];
                 
                 _sampleDuration = TimeSpan.FromMilliseconds(SAMPLE_SIZE / (_currentBitrate / 1000 / 8));
@@ -99,8 +97,6 @@ namespace VKSaver.Core.Services.Common
 
         public void Dispose()
         {
-            _isCanceled = true;
-
             if (_fileData != null)
             {
                 _fileData.Dispose();
@@ -123,51 +119,23 @@ namespace VKSaver.Core.Services.Common
 
             request.SetActualStartPosition(_timeOffset);
         }
-
-        MediaStreamSourceSampleRequest request;
-
+        
         /// <summary>
         /// Вызывается при запросе нового сэмпла.
         /// </summary>
         private void MediaSource_SampleRequested(MediaStreamSource sender, MediaStreamSourceSampleRequestedEventArgs args)
         {
-            GC.Collect(1, GCCollectionMode.Forced);
-
             var privateRequest = args.Request;
             long newOffset = _byteOffset + BUFFER_SIZE;
 
-            if (newOffset <= _fileStream.Length ||
-                (_isCompleted && newOffset - _fileStream.Length < BUFFER_SIZE && newOffset - _fileStream.Length > 0))
+            if (newOffset <= _fileStream.Length)
             {
                 int count = SetSample(privateRequest);
-
-                if (count == 0)
-                {
-                    request = privateRequest;
-                    request.ReportSampleProgress(0);
-                    var deferral = request.GetDeferral();
-                    SetSample(request);
-                    deferral.Complete();
-                    request = null;
-                }
-                else privateRequest.GetDeferral().Complete();
-            }
-            else if (!_isCanceled && !_isCompleted)
-            {
-                request = privateRequest;
-                uint percent = (uint)((_fileStream.Length - _byteOffset) / BUFFER_SIZE);
-                request.ReportSampleProgress(percent);
-                var deferral = request.GetDeferral();
-                SetSample(request);
-                deferral.Complete();
-                request = null;
-            }
+            }            
             else
             {
                 privateRequest.GetDeferral().Complete();
             }
-
-            GC.Collect(1, GCCollectionMode.Forced);
         }
 
         /// <summary>
@@ -184,63 +152,6 @@ namespace VKSaver.Core.Services.Common
 
             Dispose();
         }
-
-        /// <summary>
-        /// Запускает процесс кэширования.
-        /// </summary>
-        //private async void StartCaching()
-        //{
-        //    if (httpStream == null || _fileStream == null) return;
-
-        //    await Task.Run(async () =>
-        //    {
-        //        try
-        //        {
-        //            var readHttpStream = httpStream.AsStreamForRead();
-        //            var writeFileStream = _fileStream.AsStreamForWrite();
-
-        //            int count = 0;
-        //            long currentPosition = writeFileStream.Length;
-
-        //            do
-        //            {
-        //                if (_isCanceled)
-        //                {
-        //                    await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
-        //                    return;
-        //                }
-
-        //                var buffer = new byte[BUFFER_SIZE];
-        //                count = readHttpStream.Read(buffer, 0, BUFFER_SIZE);
-
-        //                writeFileStream.Position = currentPosition;
-        //                writeFileStream.Write(buffer, 0, count);
-
-        //                currentPosition = writeFileStream.Position;
-        //                //fileStream.Size = (ulong)currentPosition;
-
-        //                if (request != null)
-        //                {
-        //                    if (_byteOffset + BUFFER_SIZE <= _fileStream.Size) request.ReportSampleProgress(100);
-        //                    else
-        //                    {
-        //                        uint percent = (uint)((_fileStream.Size - _byteOffset) / BUFFER_SIZE);
-        //                        request.ReportSampleProgress(percent);
-        //                    }
-        //                }
-        //            } while (readHttpStream.CanRead && count > 0);
-                    
-        //            string fileName;
-        //            if (Track.OwnerID != 0 && Track.ID != 0) fileName = Track.OwnerID + "_" + Track.ID + "_1.mp3";
-        //            else fileName = Track.Artist + "_" + Track.Title + "_1.mp3";
-
-        //            await file.RenameAsync(fileName);
-        //        }
-        //        catch (Exception) { _isCanceled = true; }
-
-        //        _isCompleted = true;
-        //    });
-        //}
 
         /// <summary>
         /// Устанвливает следующий сэмпл для запроса.
@@ -264,8 +175,10 @@ namespace VKSaver.Core.Services.Common
                 sample.Duration = duration;
                 sample.KeyFrame = true;
 
-                _byteOffset += count;
-                _timeOffset = _timeOffset.Add(_sampleDuration);
+                if (_byteOffset > _startPosition)
+                    _timeOffset = _timeOffset.Add(_sampleDuration);
+
+                _byteOffset += count;                
 
                 request.Sample = sample;
                 return count;
@@ -275,7 +188,7 @@ namespace VKSaver.Core.Services.Common
 
         private const int BUFFER_SIZE = SAMPLE_SIZE;
         private const int SAMPLE_SIZE = 1152;
-        private const int BUFFERED_TIME_SECONDS = 2;
+        private const int BUFFERED_TIME_SECONDS = 1;
 
         private int _bufferOffset;
         private int _bufferSize;
@@ -288,8 +201,7 @@ namespace VKSaver.Core.Services.Common
         private long _byteOffset;
         private uint _currentChannels;
         private uint _currentBitrate;
-        private bool _isCanceled;
-        private bool _isCompleted;
+        private long _startPosition;
         private IMusicCacheService _musicCacheService;
     }
 }
