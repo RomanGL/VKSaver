@@ -7,6 +7,7 @@ using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
+using Windows.Foundation.Collections;
 using Windows.Media.Playback;
 using Windows.Storage.Streams;
 using static VKSaver.Core.Services.PlayerConstants;
@@ -224,6 +225,10 @@ namespace VKSaver.PlayerTask
         private void Player_MediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
         {
             Debug.WriteLine($"Track failed: {CurrentTrack.Title}\nInfo: {args.ExtendedErrorCode.Message}");
+
+            var valueSet = new ValueSet();
+            valueSet.Add(PLAYER_ERROR, args.ExtendedErrorCode.ToString());
+            BackgroundMediaPlayer.SendMessageToForeground(valueSet);
         }
 
         #endregion

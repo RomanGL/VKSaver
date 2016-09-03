@@ -6,6 +6,8 @@ using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Foundation.Collections;
 using Windows.Media.Playback;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 using static VKSaver.Core.Services.PlayerConstants;
 
 namespace VKSaver.Core.Services
@@ -16,12 +18,15 @@ namespace VKSaver.Core.Services
         public event TypedEventHandler<IPlayerService, TrackChangedEventArgs> TrackChanged;
 
         public PlayerService(ILogService logService, IPlayerPlaylistService playerPlaylistService,
-            ITracksShuffleService tracksShuffleService, ISettingsService settingsService)
+            ITracksShuffleService tracksShuffleService, ISettingsService settingsService,
+            IDialogsService dialogsService, IDispatcherWrapper dispatcherWrapper)
         {
             _logService = logService;
             _playerPlaylistService = playerPlaylistService;
             _tracksShuffleService = tracksShuffleService;
             _settingsService = settingsService;
+            _dialogsService = dialogsService;
+            _dispatcherWrapper = dispatcherWrapper;
 
             _taskStarted = new AutoResetEvent(false);
         }
@@ -267,7 +272,7 @@ namespace VKSaver.Core.Services
             }
         }
 
-        private void MessageReceivedFromBackground(object sender, MediaPlayerDataReceivedEventArgs e)
+        private async void MessageReceivedFromBackground(object sender, MediaPlayerDataReceivedEventArgs e)
         {
             foreach (var key in e.Data.Keys)
             {
@@ -279,6 +284,12 @@ namespace VKSaver.Core.Services
                         break;
                     case PLAYER_TRACK_ID:
                         TrackChanged?.Invoke(this, new TrackChangedEventArgs((int)e.Data[key]));
+                        break;
+                    case PLAYER_ERROR:
+                        await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            _dialogsService.Show(e.Data[key].ToString(), "Player error");
+                        });
                         break;
                 }
             }
@@ -309,8 +320,10 @@ namespace VKSaver.Core.Services
         private readonly IPlayerPlaylistService _playerPlaylistService;
         private readonly ITracksShuffleService _tracksShuffleService;
         private readonly ISettingsService _settingsService;
+        private readonly IDialogsService _dialogsService;
+        private readonly IDispatcherWrapper _dispatcherWrapper;
         private readonly AutoResetEvent _taskStarted;
 
-        private const int RPC_S_SERVER_UNAVAILABLE = -2147023174; // 0x800706BA
+        private const int RPC_S_SERVER_UNAVAILABLE = -2147023174; // 0x800706BA        
     }
 }

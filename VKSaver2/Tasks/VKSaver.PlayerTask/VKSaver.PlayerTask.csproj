@@ -84,6 +84,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\..\..\thirdparty\FFmpegInterop\FFmpegInterop\Win8.1\FFmpegInterop.WindowsPhone\FFmpegInterop.WindowsPhone.vcxproj">
+      <Project>{ebc5ca98-87f1-4a01-a48d-69659c103e72}</Project>
+      <Name>FFmpegInterop.WindowsPhone</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
       <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
       <Name>VKSaver.Core.Models</Name>

@@ -22,6 +22,7 @@ using ModernDev.InTouch;
 using ICSharpCode.SharpZipLib.Zip;
 using Windows.Storage;
 using System.IO;
+using Windows.UI.Core;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -32,7 +33,7 @@ using VKSaver.Controls;
 
 namespace VKSaver
 {
-    public sealed partial class App : MvvmAppBase, IServiceResolver
+    public sealed partial class App : MvvmAppBase, IServiceResolver, IDispatcherWrapper
     {
         public App()
         {
@@ -92,11 +93,15 @@ namespace VKSaver
 
         public IUnityContainer Container { get { return _container; } }
 
+        public CoreDispatcher Dispatcher { get; private set; }
+
         protected override void OnInitialize(IActivatedEventArgs args)
         {
 #if DEBUG
             //DebugSettings.EnableFrameRateCounter = true;
 #endif
+
+            Dispatcher = Window.Current.Dispatcher;
 
             _container = new UnityContainer();
             _unityServiceLocator = new UnityServiceLocator(_container);
@@ -111,6 +116,7 @@ namespace VKSaver
                 vkLoginService.InitializeInTouch();
 
             _container.RegisterInstance<IServiceResolver>(this);
+            _container.RegisterInstance<IDispatcherWrapper>(this);
             _container.RegisterInstance<ISettingsService>(settingsService);
             _container.RegisterInstance(this.NavigationService);
             _container.RegisterInstance(this.SessionStateService);           

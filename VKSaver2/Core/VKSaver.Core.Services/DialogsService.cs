@@ -13,8 +13,12 @@ namespace VKSaver.Core.Services
         /// <param name="title">Заголовок собщения.</param>
         public async void Show(string message, string title = "")
         {
-            var msg = new MessageDialog(message, title);
-            await msg.ShowAsync();
+            try
+            {
+                var msg = new MessageDialog(message, title);
+                await msg.ShowAsync();
+            }
+            catch { }
         }
     }
 }

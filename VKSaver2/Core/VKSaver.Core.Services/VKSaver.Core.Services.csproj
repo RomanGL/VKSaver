@@ -88,6 +88,7 @@
     <Compile Include="Common\MusicEncryptedStream.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="Common\VKAuthorization.cs" />
+    <Compile Include="Interfaces\IDispatcherWrapper.cs" />
     <Compile Include="Interfaces\ISuspendingService.cs" />
     <Compile Include="MusicCacheService.cs" />
     <Compile Include="DialogsService.cs" />
@@ -139,6 +140,9 @@
     <Compile Include="VKLoginService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FFmpegInterop">
+      <HintPath>..\..\Release\FFmpegInterop.WindowsPhone\FFmpegInterop.winmd</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib.Portable, Version=0.86.0.51803, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SharpZipLib.Portable.0.86.0.0003\lib\portable-net45+netcore45+wp8+win8+wpa81+MonoTouch+MonoAndroid+Xamarin.iOS10\ICSharpCode.SharpZipLib.Portable.dll</HintPath>
       <Private>True</Private>

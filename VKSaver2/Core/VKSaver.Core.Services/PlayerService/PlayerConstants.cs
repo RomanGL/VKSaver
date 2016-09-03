@@ -18,5 +18,6 @@
         public const string UPDATE_PLAYLIST = "UpdatePlaylist";
         public const string PLAYER_TRACK_ID = "PlayerTrackId";
         public const string PLAYER_PLAY_PAUSE = "PlayPause";
+        public const string PLAYER_ERROR = "PlayerError";
     }
 }
