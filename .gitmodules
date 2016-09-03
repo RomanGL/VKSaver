@@ -1,0 +1,3 @@
+[submodule "thirdparty/FFmpegInterop"]
+	path = thirdparty/FFmpegInterop
+	url = https://github.com/Microsoft/FFmpegInterop.git
