@@ -166,6 +166,8 @@ namespace VKSaver.PlayerTask
                     _player.SetMediaSource(cachedSource);
                     return;
                 }
+                else
+                    worker.Dispose();
             }
 
             if (String.IsNullOrEmpty(track.Source))

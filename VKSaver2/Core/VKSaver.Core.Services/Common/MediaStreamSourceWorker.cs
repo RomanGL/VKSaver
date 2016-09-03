@@ -21,7 +21,7 @@ namespace VKSaver.Core.Services.Common
     /// <summary>
     /// Представляет обработчик источника мультимедиа <see cref="MediaStreamSource"/>.
     /// </summary>
-    public sealed class MediaStreamSourceWorker
+    public sealed class MediaStreamSourceWorker : IDisposable
     {        
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="MediaStreamSourceWorker"/>
@@ -60,23 +60,21 @@ namespace VKSaver.Core.Services.Common
                 _fileStream = await _fileData.GetStream();
                 var file = new MusicCacheFile(cacheFileName, _fileStream);
 
-                TagLib.File tagFile = TagLib.File.Create(file, "taglib/mp3", TagLib.ReadStyle.Average);
+                TagLib.File tagFile = TagLib.File.Create(file, "audio/mpeg", TagLib.ReadStyle.Average);
                 if (tagFile == null) return null;
                                                 
                 //_byteOffset = tagFile.InvariantStartPosition;
-                _currentBitrate = (uint)tagFile.Properties.AudioBitrate;
+                _currentBitrate = (uint)tagFile.Properties.AudioBitrate * 1000;
                 _currentChannels = (uint)tagFile.Properties.AudioChannels;
 
-                _bufferSize = (int)(_currentBitrate * 1000 / 8) * (BUFFERED_TIME_SECONDS + 1);
+                _bufferSize = (int)(_currentBitrate / 8) * (BUFFERED_TIME_SECONDS + 1);
                 _buffer = new byte[_bufferSize];
-
-                if (_currentBitrate == 0 || _currentBitrate > 320) _currentBitrate = 320;
-                _sampleDuration = TimeSpan.FromMilliseconds(BUFFER_SIZE / (_currentBitrate / 8));
+                
+                _sampleDuration = TimeSpan.FromMilliseconds(SAMPLE_SIZE / (_currentBitrate / 1000 / 8));
 
                 var audioProperties = AudioEncodingProperties.CreateMp3(
                     (uint)tagFile.Properties.AudioSampleRate, 
                     _currentChannels, _currentBitrate);
-                audioProperties.BitsPerSample = (uint)tagFile.Properties.BitsPerSample;
 
                 var audioDescriptor = new AudioStreamDescriptor(audioProperties);
                 _mediaSource = new MediaStreamSource(audioDescriptor);
@@ -93,10 +91,21 @@ namespace VKSaver.Core.Services.Common
                 _mediaSource.Closed += MediaSource_Closed;
 
                 Debug.WriteLine($"\nTrack: {Track.Title}\nBitrate: {_currentBitrate} kbps\nChannels: {_currentChannels}\nSample rate: {tagFile.Properties.AudioSampleRate}\nBits per sample: {tagFile.Properties.BitsPerSample}\n");
-                                
+                                    
                 return _mediaSource;
             }
             catch (Exception) { return null; }
+        }
+
+        public void Dispose()
+        {
+            _isCanceled = true;
+
+            if (_fileData != null)
+            {
+                _fileData.Dispose();
+                _fileData = null;
+            }
         }
 
         /// <summary>
@@ -166,20 +175,14 @@ namespace VKSaver.Core.Services.Common
         /// </summary>
         private void MediaSource_Closed(MediaStreamSource sender, MediaStreamSourceClosedEventArgs args)
         {
-            _isCanceled = true;
-
-            if (_fileData != null)
-            {
-                _fileData.Dispose();
-                _fileData = null;
-            }
-
             sender.Starting -= MediaSource_Starting;
             sender.SampleRequested -= MediaSource_SampleRequested;
             sender.Closed -= MediaSource_Closed;
 
             if (sender == _mediaSource)
                 _mediaSource = null;
+
+            Dispose();
         }
 
         /// <summary>
@@ -255,21 +258,21 @@ namespace VKSaver.Core.Services.Common
                 _bufferOffset += count;
                 if (_bufferOffset + BUFFER_SIZE > _bufferSize)
                     _bufferOffset = 0;
-
-                var duration = TimeSpan.FromMilliseconds(count / (_currentBitrate / 8));
+                
+                var duration = TimeSpan.FromMilliseconds(count / (_currentBitrate / 1000 / 8));
                 var sample = MediaStreamSample.CreateFromBuffer(buffer, _timeOffset);
                 sample.Duration = duration;
                 sample.KeyFrame = true;
 
                 _byteOffset += count;
-                _timeOffset = _timeOffset.Add(duration);
+                _timeOffset = _timeOffset.Add(_sampleDuration);
 
                 request.Sample = sample;
                 return count;
             }
             catch (Exception) { return 0; }
         }
-        
+
         private const int BUFFER_SIZE = SAMPLE_SIZE;
         private const int SAMPLE_SIZE = 1152;
         private const int BUFFERED_TIME_SECONDS = 2;
@@ -287,7 +290,6 @@ namespace VKSaver.Core.Services.Common
         private uint _currentBitrate;
         private bool _isCanceled;
         private bool _isCompleted;
-        private int _currentSampleSize;
         private IMusicCacheService _musicCacheService;
     }
 }
