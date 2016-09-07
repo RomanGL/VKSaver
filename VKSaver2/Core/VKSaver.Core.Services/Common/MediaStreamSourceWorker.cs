@@ -51,9 +51,17 @@ namespace VKSaver.Core.Services.Common
             {
                 string cacheFileName = $"{Track.VKInfo.OwnerID} {Track.VKInfo.ID}.vksm";
 
-                _fileData = await _musicCacheService.GetCachedFileData(cacheFileName);
-                if (_fileData == null)
-                    return null;
+                if (Track.Source.EndsWith(".vksm"))
+                {
+                    var openedFile = await StorageFile.GetFileFromPathAsync(Track.Source);
+                    _fileData = new CachedFileData(openedFile);
+                }
+                else
+                {
+                    _fileData = await _musicCacheService.GetCachedFileData(cacheFileName);
+                    if (_fileData == null)
+                        return null;
+                }
                                 
                 _fileStream = await _fileData.GetStream();
                 var file = new MusicCacheFile(cacheFileName, _fileStream);
@@ -97,11 +105,8 @@ namespace VKSaver.Core.Services.Common
 
         public void Dispose()
         {
-            if (_fileData != null)
-            {
-                _fileData.Dispose();
-                _fileData = null;
-            }
+            _fileStream?.Dispose();
+            _fileData?.Dispose();
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VKSaver", "VKSaver", "{5E94328A-054A-4920-A2E8-39FB09AC4B97}"
 EndProject
@@ -29,9 +29,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.Core.LinksExtractor
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		VKSaver\VKSaver.Shared\VKSaver.Shared.projitems*{c1fd3070-7fc8-4e20-ba49-13e576b6f852}*SharedItemsImports = 4
-		VKSaver\VKSaver.Shared\VKSaver.Shared.projitems*{90048f53-18a0-4145-b671-7fd28f1c6b83}*SharedItemsImports = 4
 		VKSaver\VKSaver.Shared\VKSaver.Shared.projitems*{463fb7c8-7399-4d98-ba23-cfdef2bb66ae}*SharedItemsImports = 13
+		VKSaver\VKSaver.Shared\VKSaver.Shared.projitems*{90048f53-18a0-4145-b671-7fd28f1c6b83}*SharedItemsImports = 4
+		VKSaver\VKSaver.Shared\VKSaver.Shared.projitems*{c1fd3070-7fc8-4e20-ba49-13e576b6f852}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +74,7 @@ Global
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.DebugFull|x64.ActiveCfg = DebugFull|x64
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.DebugFull|x64.Deploy.0 = DebugFull|x64
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.DebugFull|x86.ActiveCfg = DebugFull|x86
+		{90048F53-18A0-4145-B671-7FD28F1C6B83}.DebugFull|x86.Deploy.0 = DebugFull|x86
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.Release|ARM.ActiveCfg = Release|ARM
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.Release|Mixed Platforms.ActiveCfg = Release|x86
@@ -113,9 +114,9 @@ Global
 		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|ARM.ActiveCfg = DebugFull|ARM
 		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|ARM.Build.0 = DebugFull|ARM
 		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|ARM.Deploy.0 = DebugFull|ARM
-		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|Mixed Platforms.ActiveCfg = DebugFull|x86
-		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|Mixed Platforms.Build.0 = DebugFull|x86
-		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|Mixed Platforms.Deploy.0 = DebugFull|x86
+		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|Mixed Platforms.ActiveCfg = DebugFull|Any CPU
+		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|Mixed Platforms.Build.0 = DebugFull|Any CPU
+		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|Mixed Platforms.Deploy.0 = DebugFull|Any CPU
 		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|x64.ActiveCfg = DebugFull|Any CPU
 		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|x64.Build.0 = DebugFull|Any CPU
 		{C1FD3070-7FC8-4E20-BA49-13E576B6F852}.DebugFull|x64.Deploy.0 = DebugFull|Any CPU
@@ -323,8 +324,8 @@ Global
 		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|Any CPU.Build.0 = DebugFull|Any CPU
 		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|ARM.ActiveCfg = DebugFull|ARM
 		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|ARM.Build.0 = DebugFull|ARM
-		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|Mixed Platforms.ActiveCfg = DebugFull|x86
-		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|Mixed Platforms.Build.0 = DebugFull|x86
+		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|Mixed Platforms.ActiveCfg = DebugFull|Any CPU
+		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|Mixed Platforms.Build.0 = DebugFull|Any CPU
 		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|x64.ActiveCfg = DebugFull|Any CPU
 		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|x64.Build.0 = DebugFull|Any CPU
 		{72DB73BE-2845-4991-94C9-7342241FEC3E}.DebugFull|x86.ActiveCfg = DebugFull|x86

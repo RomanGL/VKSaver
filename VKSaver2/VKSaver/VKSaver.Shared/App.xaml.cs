@@ -209,6 +209,11 @@ namespace VKSaver
             return Task.FromResult<object>(null);
         }
 
+        protected override void OnFileActivated(FileActivatedEventArgs args)
+        {
+            base.OnFileActivated(args);
+        }
+
         private void StartSuspendingServices()
         {
             var suspendingServices = _container.ResolveAll<ISuspendingService>();
