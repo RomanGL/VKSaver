@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\ImagePlaceholder.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\vksm-icon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Data\InAppPurchase.xml" />
   </ItemGroup>
   <ItemGroup>

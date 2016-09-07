@@ -7,6 +7,7 @@ using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Storage;
+using Windows.Storage.AccessCache;
 
 namespace VKSaver.Core.Services
 {
@@ -17,27 +18,33 @@ namespace VKSaver.Core.Services
             _playerService = playerService;
         }
 
-        public Task ProcessFiles(IList<IStorageItem> filesToOpen)
+        public Task ProcessFiles(IEnumerable<IStorageItem> filesToOpen)
         {
             return Task.Run(async () => await ProcessFilesInternal(filesToOpen));
         }
 
-        private async Task ProcessFilesInternal(IList<IStorageItem> filesToOpen)
+        private async Task ProcessFilesInternal(IEnumerable<IStorageItem> filesToOpen)
         {
-            var tracks = new List<PlayerTrack>(filesToOpen.Count);
+            StorageApplicationPermissions.FutureAccessList.Clear();
 
-            foreach (var item in filesToOpen)
+            var tracks = new List<PlayerTrack>(filesToOpen.Count());
+
+            foreach (StorageFile item in filesToOpen)
             {
-                var openedFile = await StorageFile.GetFileFromPathAsync(item.Path);
-                var cachedData = new CachedFileData(openedFile);
+                var cachedData = new CachedFileData(item);
                 var info = await cachedData.GetAudioInfo();
 
-                tracks.Add(new PlayerTrack
+                var track = new PlayerTrack
                 {
                     Title = info.Track.Title,
                     Artist = info.Track.Artist,
                     VKInfo = info.VK
-                });
+                };
+
+                string token = StorageApplicationPermissions.FutureAccessList.Add(item);
+                track.Source = $"vks-token:{token}";
+
+                tracks.Add(track);
             }
 
             await _playerService.PlayNewTracks(tracks, 0);

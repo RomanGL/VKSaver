@@ -57,13 +57,13 @@ namespace VKSaver.Core.Services.Common
 
         private Task OpenZip()
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
                 if (_isZipOpen)
                     return;
 
                 _isZipOpen = true;
-                _fileStream = _managedFile.OpenReadAsync().GetResults().AsStream();
+                _fileStream = (await _managedFile.OpenReadAsync()).AsStream();
                 _zip = new ZipFile(_fileStream);
             });
         }

@@ -15,6 +15,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using System.Diagnostics;
+using Windows.Storage.AccessCache;
 
 namespace VKSaver.Core.Services.Common
 {
@@ -51,9 +52,9 @@ namespace VKSaver.Core.Services.Common
             {
                 string cacheFileName = $"{Track.VKInfo.OwnerID} {Track.VKInfo.ID}.vksm";
 
-                if (Track.Source.EndsWith(".vksm"))
+                if (Track.Source.StartsWith("vks-token:"))
                 {
-                    var openedFile = await StorageFile.GetFileFromPathAsync(Track.Source);
+                    var openedFile = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(Track.Source.Substring(10));
                     _fileData = new CachedFileData(openedFile);
                 }
                 else

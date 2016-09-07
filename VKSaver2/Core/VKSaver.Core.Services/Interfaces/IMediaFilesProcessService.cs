@@ -6,6 +6,6 @@ namespace VKSaver.Core.Services.Interfaces
 {
     public interface IMediaFilesProcessService
     {
-        Task ProcessFiles(IList<IStorageItem> filesToOpen);
+        Task ProcessFiles(IEnumerable<IStorageItem> filesToOpen);
     }
 }
