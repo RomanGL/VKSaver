@@ -843,4 +843,14 @@ Download VK Saver 2 now!</value>
   <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
     <value>Authorization in the services</value>
   </data>
+  <data name="Message_CantFindLyrics_Title" xml:space="preserve">
+    <value>Could not find the track lyrics</value>
+  </data>
+  <data name="PackagingFilesView_Title.Text" xml:space="preserve">
+    <value>processing</value>
+  </data>
+  <data name="PackagingFilesView_Processing.Text" xml:space="preserve">
+    <value>Processing downloaded files...
+Please wait...</value>
+  </data>
 </root>

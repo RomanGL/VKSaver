@@ -1119,7 +1119,17 @@ Download VK Saver 2 now!</target>
         </trans-unit>
         <trans-unit id="Message_CantFindLyrics_Title" translate="yes" xml:space="preserve">
           <source>Не удалось найти текст</source>
-          <target state="new">Не удалось найти текст</target>
+          <target state="translated">Could not find the track lyrics</target>
+        </trans-unit>
+        <trans-unit id="PackagingFilesView_Title.Text" translate="yes" xml:space="preserve">
+          <source>обработка</source>
+          <target state="translated">processing</target>
+        </trans-unit>
+        <trans-unit id="PackagingFilesView_Processing.Text" translate="yes" xml:space="preserve">
+          <source>Выполняется обработка загруженных файлов...
+Пожалуйста, подождите...</source>
+          <target state="translated">Processing downloaded files...
+Please wait...</target>
         </trans-unit>
       </group>
     </body>

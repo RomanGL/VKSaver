@@ -70,6 +70,11 @@ namespace VKSaver.Core.Services
             }).ToArray();
         }
 
+        public int GetDownloadsCount()
+        {
+            return _downloads.Count;
+        }
+
         /// <summary>
         /// Найти все фоновые загрузки и обработать их.
         /// </summary>
@@ -83,14 +88,18 @@ namespace VKSaver.Core.Services
             }
 
             IsLoading = true;
-            IReadOnlyList<DownloadOperation> downloads = null;
 
-            try { downloads = await BackgroundDownloader.GetCurrentDownloadsForTransferGroupAsync(_transferGroup); }
-            catch (Exception ex) { WebErrorStatus error = BackgroundTransferError.GetStatus(ex.HResult); }
+            await Task.Run(async () =>
+            {
+                IReadOnlyList<DownloadOperation> downloads = null;
 
-            if (downloads != null && downloads.Count > 0)
-                for (int i = 0; i < downloads.Count; i++)
-                    HandleDownloadAsync(downloads[i], false);
+                try { downloads = await BackgroundDownloader.GetCurrentDownloadsForTransferGroupAsync(_transferGroup); }
+                catch (Exception ex) { WebErrorStatus error = BackgroundTransferError.GetStatus(ex.HResult); }
+
+                if (downloads != null && downloads.Count > 0)
+                    for (int i = 0; i < downloads.Count; i++)
+                        HandleDownloadAsync(downloads[i], false);
+            });
 
             IsLoading = false;
         }
@@ -296,8 +305,6 @@ namespace VKSaver.Core.Services
 
                     bool converted = await _musicCacheService.ConvertAudioToVKSaverFormat(
                         (StorageFile)operation.ResultFile, metadata);
-                    if (!converted)
-                        await operation.ResultFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
                 }
             }
 

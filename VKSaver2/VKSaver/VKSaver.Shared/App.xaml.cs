@@ -22,6 +22,7 @@ using ModernDev.InTouch;
 using ICSharpCode.SharpZipLib.Zip;
 using Windows.Storage;
 using System.IO;
+using Windows.UI.Core;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -32,7 +33,7 @@ using VKSaver.Controls;
 
 namespace VKSaver
 {
-    public sealed partial class App : MvvmAppBase, IServiceResolver
+    public sealed partial class App : MvvmAppBase, IServiceResolver, IDispatcherWrapper
     {
         public App()
         {
@@ -92,11 +93,14 @@ namespace VKSaver
 
         public IUnityContainer Container { get { return _container; } }
 
+        public CoreDispatcher Dispatcher { get; private set; }
+
         protected override void OnInitialize(IActivatedEventArgs args)
         {
 #if DEBUG
             //DebugSettings.EnableFrameRateCounter = true;
 #endif
+            Dispatcher = Window.Current.Dispatcher;
 
             _container = new UnityContainer();
             _unityServiceLocator = new UnityServiceLocator(_container);
@@ -113,7 +117,8 @@ namespace VKSaver
             _container.RegisterInstance<IServiceResolver>(this);
             _container.RegisterInstance<ISettingsService>(settingsService);
             _container.RegisterInstance(this.NavigationService);
-            _container.RegisterInstance(this.SessionStateService);           
+            _container.RegisterInstance(this.SessionStateService);
+            _container.RegisterInstance<IDispatcherWrapper>(this);       
             _container.RegisterInstance<ILFService>(new LFService("***REMOVED***"));
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
             _container.RegisterInstance<ILocService>(_locService);
@@ -178,7 +183,10 @@ namespace VKSaver
         protected override Task OnLaunchApplication(LaunchActivatedEventArgs args)
         {
             var playerService = _container.Resolve<IPlayerService>();
-            var vkLoginService = _container.Resolve<IVKLoginService>();            
+            var vkLoginService = _container.Resolve<IVKLoginService>();
+            var downloadsService = _container.Resolve<IDownloadsService>();
+
+            StartSuspendingServices();
 
             if (args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning)
@@ -204,7 +212,10 @@ namespace VKSaver
 #endif
             }
 
-            StartSuspendingServices();
+            if ((args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
+                args.PreviousExecutionState == ApplicationExecutionState.NotRunning) &&
+                downloadsService.GetDownloadsCount() > 0)
+                NavigationService.Navigate("PackagingFilesView", null);
 
             return Task.FromResult<object>(null);
         }

@@ -51,7 +51,12 @@ namespace VKSaver.Core.Services
                 DownloadedSize = FileSize.FromBytes(e.Progress.BytesReceived)
             }).ToArray();
         }
-        
+
+        public int GetDownloadsCount()
+        {
+            return _downloads.Count;
+        }
+
         public async void DiscoverActiveDownloadsAsync()
         {
             IsLoading = true;

@@ -71,6 +71,7 @@
     <Compile Include="Common\MusicEncryptedStream.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="Common\VKAuthorization.cs" />
+    <Compile Include="Interfaces\IDispatcherWrapper.cs" />
     <Compile Include="Interfaces\ISuspendingService.cs" />
     <Compile Include="MusicCacheService.cs" />
     <Compile Include="DialogsService.cs" />

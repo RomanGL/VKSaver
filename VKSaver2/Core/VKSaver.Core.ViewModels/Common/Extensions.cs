@@ -76,7 +76,8 @@ namespace VKSaver.Core.ViewModels.Common
                 Track = new VKSaverAudioTrackInfo
                 {
                     Title = audio.Title,
-                    Artist = audio.Artist
+                    Artist = audio.Artist,
+                    Encryption = AudioEncryptionType.None
                 },
                 VK = new VKSaverAudioVKInfo
                 {

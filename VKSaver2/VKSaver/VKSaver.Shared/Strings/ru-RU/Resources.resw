@@ -949,4 +949,11 @@
   <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
     <value>Авторизация в сервисах</value>
   </data>
+  <data name="PackagingFilesView_Title.Text" xml:space="preserve">
+    <value>обработка</value>
+  </data>
+  <data name="PackagingFilesView_Processing.Text" xml:space="preserve">
+    <value>Выполняется обработка загруженных файлов...
+Пожалуйста, подождите...</value>
+  </data>
 </root>

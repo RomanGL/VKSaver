@@ -1,0 +1,52 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.PackagingFilesView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:controls="using:VKSaver.Controls"
+                           xmlns:converters="using:VKSaver.Converters"
+                           xmlns:b="using:VKSaver.Behaviors"
+                           xmlns:i="using:Microsoft.Xaml.Interactivity"
+                           xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:common="using:VKSaver.Common"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           Style="{StaticResource DefaultPageStyle}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Margin="19,0,0,0">
+            <TextBlock Text="ВКАЧАЙ"
+                       x:Uid="AppName"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       Margin="0,12,0,0" />
+            <TextBlock Text="обработка"
+                       x:Uid="PackagingFilesView_Title"
+                       Margin="-3,-6.5,0,26.5"
+                       Style="{ThemeResource HeaderTextBlockStyle}"
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="19 ,0  ">
+            <TextBlock x:Uid="PackagingFilesView_Processing" Style="{StaticResource BodyTextBlockStyle}"
+                       Text="Выполняется обработка загруженных файлов..."
+                       Foreground="{ThemeResource PhoneLowBrush}" />
+            <ProgressBar Margin="0,10,0,0"
+                         Foreground="{StaticResource AccentBrush}"
+                         IsIndeterminate="True" />
+        </StackPanel>
+    </Grid>
+</mvvm:VisualStateAwarePage>

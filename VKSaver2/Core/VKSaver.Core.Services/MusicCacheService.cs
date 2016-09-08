@@ -34,6 +34,21 @@ namespace VKSaver.Core.Services
                 zipFileStream = (await zipFile.OpenAsync(FileAccessMode.ReadWrite)).AsStream();
                 fileStream = (await file.OpenAsync(FileAccessMode.Read)).AsStreamForRead();
 
+                var propertiesToRetrieve = new List<string>();
+
+                propertiesToRetrieve.Add(PROPERTY_SAMPLE_RATE);
+                propertiesToRetrieve.Add(PROPERTY_CHANNEL_COUNT);
+                propertiesToRetrieve.Add(PROPERTY_ENCODING_BITRATE);
+
+                var encodingProperties = await file.Properties.RetrievePropertiesAsync(propertiesToRetrieve);
+
+                metadata.Track.SampleRate = (int)(uint)encodingProperties[PROPERTY_SAMPLE_RATE];
+                metadata.Track.ChannelCount = (int)(uint)encodingProperties[PROPERTY_CHANNEL_COUNT];
+                metadata.Track.EncodingBitrate = (int)(uint)encodingProperties[PROPERTY_ENCODING_BITRATE];
+
+                var fileProperties = await file.Properties.GetMusicPropertiesAsync();
+                metadata.Track.Duration = fileProperties.Duration.Ticks;
+
                 using (var zipStream = new ZipOutputStream(zipFileStream))
                 {
                     zipStream.SetLevel(0);
@@ -44,23 +59,24 @@ namespace VKSaver.Core.Services
 
                     var metadataEntry = new ZipEntry(FILES_METADATA_NAME);
                     metadataEntry.CompressionMethod = CompressionMethod.Stored;
-                    WriteEntry(zipStream, metadataEntry, new MemoryStream(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(metadata))));
+                    WriteEntry(zipStream, metadataEntry, new MemoryStream(
+                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(metadata))));
                     
                     zipStream.Finish();
                 }
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+                zipFileStream?.Dispose();
+                zipFileStream = null;
                 await zipFile?.DeleteAsync(StorageDeleteOption.PermanentDelete);
                 return false;
             }
             finally
             {
                 fileStream?.Dispose();
-                zipFileStream?.Dispose();
-                await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
             }
         }
                 
@@ -109,5 +125,9 @@ namespace VKSaver.Core.Services
         internal const string FILES_CONTENT_NAME = "content.vks";
         internal const string FILES_EXTENSION = ".vksm";
         internal const string MUSIC_CACHE_FOLDER_NAME = "VKSaver";
+
+        private const string PROPERTY_SAMPLE_RATE = "System.Audio.SampleRate";
+        private const string PROPERTY_CHANNEL_COUNT = "System.Audio.ChannelCount";
+        private const string PROPERTY_ENCODING_BITRATE = "System.Audio.EncodingBitrate";
     }
 }
