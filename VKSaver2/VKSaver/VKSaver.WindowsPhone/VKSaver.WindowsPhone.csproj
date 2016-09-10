@@ -113,6 +113,10 @@
     <Content Include="Assets\lf-logo.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\LogoPlay.scale-240.png" />
+    <Content Include="Assets\Promo\1.png" />
+    <Content Include="Assets\Promo\2.png" />
+    <Content Include="Assets\Promo\3.png" />
+    <Content Include="Assets\Promo\0.png" />
     <Content Include="Assets\Purchase\1.png" />
     <Content Include="Assets\Purchase\2.png" />
     <Content Include="Assets\Purchase\3.png" />
@@ -136,6 +140,7 @@
     <Compile Include="Common\ContentViewItemContainerStyleSelector.cs" />
     <Compile Include="Common\ControlExtensions.cs" />
     <Compile Include="Common\DataContextProxy.cs" />
+    <Compile Include="Common\PromoViewTemplateSelector.cs" />
     <Compile Include="Common\PurchaseViewTemplateSelector.cs" />
     <Compile Include="Common\MultiSelector.cs" />
     <Compile Include="Common\VideoGroupTemplateSelector.cs" />
@@ -197,6 +202,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PackagingFilesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PromoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

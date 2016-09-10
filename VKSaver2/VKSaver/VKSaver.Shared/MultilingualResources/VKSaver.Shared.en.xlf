@@ -1131,6 +1131,42 @@ Download VK Saver 2 now!</target>
           <target state="translated">Processing downloaded files...
 Please wait...</target>
         </trans-unit>
+        <trans-unit id="PromoView_Screen1_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Рады видеть вас снова!</source>
+          <target state="translated">Welcome back</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen1_Line2_Text" translate="yes" xml:space="preserve">
+          <source>ВКачай обновился, о всех новинках читайте далее</source>
+          <target state="translated">VK Saver is up-to-date, read more about all features</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen2_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Кэширование треков</source>
+          <target state="translated">Caching tracks</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen2_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Кэшируйте треки для оффлайн проигрывания!</source>
+          <target state="translated">Cache tracks for offline playback!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen3_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Мировые чарты</source>
+          <target state="translated">World music charts</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen3_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Проигрывание треков избранных исполнителей и чартов</source>
+          <target state="translated">Playing tracks of top artists and other charts</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen0_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Новые функции ждут вас!</source>
+          <target state="translated">New features are waiting for you!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen0_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Готовы? Тогда начнем!</source>
+          <target state="translated">Are you ready? Then let's start!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_LetsGoButton.Content" translate="yes" xml:space="preserve">
+          <source>Начать</source>
+          <target state="translated">Let's go!</target>
+        </trans-unit>
       </group>
     </body>
   </file>

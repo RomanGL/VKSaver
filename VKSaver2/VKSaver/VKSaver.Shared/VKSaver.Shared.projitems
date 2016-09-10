@@ -60,6 +60,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\PackagingFilesView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PromoView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\VideoSearchView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\BetaBlockerView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AudioSearchView.xaml.cs" />

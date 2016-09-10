@@ -853,4 +853,31 @@ Download VK Saver 2 now!</value>
     <value>Processing downloaded files...
 Please wait...</value>
   </data>
+  <data name="PromoView_Screen1_Line1_Text" xml:space="preserve">
+    <value>Welcome back</value>
+  </data>
+  <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
+    <value>VK Saver is up-to-date, read more about all features</value>
+  </data>
+  <data name="PromoView_Screen2_Line1_Text" xml:space="preserve">
+    <value>Caching tracks</value>
+  </data>
+  <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
+    <value>Cache tracks for offline playback!</value>
+  </data>
+  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
+    <value>World music charts</value>
+  </data>
+  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
+    <value>Playing tracks of top artists and other charts</value>
+  </data>
+  <data name="PromoView_Screen0_Line1_Text" xml:space="preserve">
+    <value>New features are waiting for you!</value>
+  </data>
+  <data name="PromoView_Screen0_Line2_Text" xml:space="preserve">
+    <value>Are you ready? Then let's start!</value>
+  </data>
+  <data name="PromoView_LetsGoButton.Content" xml:space="preserve">
+    <value>Let's go!</value>
+  </data>
 </root>

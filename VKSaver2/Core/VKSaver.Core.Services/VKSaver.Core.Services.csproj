@@ -60,6 +60,7 @@
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConstants.cs" />
     <Compile Include="AppLoaderService.cs" />
     <Compile Include="BetaService.cs" />
     <Compile Include="Common\DownloadsExtensions.cs" />

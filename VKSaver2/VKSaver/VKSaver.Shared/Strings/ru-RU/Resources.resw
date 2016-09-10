@@ -956,4 +956,31 @@
     <value>Выполняется обработка загруженных файлов...
 Пожалуйста, подождите...</value>
   </data>
+  <data name="PromoView_LetsGoButton.Content" xml:space="preserve">
+    <value>Начать</value>
+  </data>
+  <data name="PromoView_Screen0_Line1_Text" xml:space="preserve">
+    <value>Новые функции ждут вас!</value>
+  </data>
+  <data name="PromoView_Screen0_Line2_Text" xml:space="preserve">
+    <value>Готовы? Тогда начнем!</value>
+  </data>
+  <data name="PromoView_Screen1_Line1_Text" xml:space="preserve">
+    <value>Рады видеть вас снова!</value>
+  </data>
+  <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
+    <value>ВКачай обновился, о всех новинках читайте далее</value>
+  </data>
+  <data name="PromoView_Screen2_Line1_Text" xml:space="preserve">
+    <value>Кэширование треков</value>
+  </data>
+  <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
+    <value>Кэшируйте треки для оффлайн проигрывания!</value>
+  </data>
+  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
+    <value>Мировые чарты</value>
+  </data>
+  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
+    <value>Проигрывание треков избранных исполнителей и чартов</value>
+  </data>
 </root>

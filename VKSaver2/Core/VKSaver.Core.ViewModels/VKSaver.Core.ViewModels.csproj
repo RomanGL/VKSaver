@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="ArtistInfoViewModel.cs" />
     <Compile Include="PackagingFilesViewModel.cs" />
+    <Compile Include="PromoViewModel.cs" />
     <Compile Include="Search\SearchNavigationParameter.cs" />
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="VideoSearchViewModel.cs" />

@@ -188,13 +188,16 @@ namespace VKSaver
             var playerService = _container.Resolve<IPlayerService>();
             var vkLoginService = _container.Resolve<IVKLoginService>();
             var downloadsService = _container.Resolve<IDownloadsService>();
+            var settingsService = _container.Resolve<ISettingsService>();
 
             StartSuspendingServices();
 
             if (args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning)
             {
-                if (vkLoginService.IsAuthorized)
+                if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, 0) < AppConstants.CURRENT_PROMO_INDEX)
+                    NavigationService.Navigate("PromoView", null);
+                else if (vkLoginService.IsAuthorized)
                     NavigationService.Navigate("MainView", null);
                 else
                     NavigationService.Navigate("LoginView", null);
@@ -207,10 +210,10 @@ namespace VKSaver
 #endif
             }
 
-            if ((args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
-                args.PreviousExecutionState == ApplicationExecutionState.NotRunning) &&
-                downloadsService.GetDownloadsCount() > 0)
-                NavigationService.Navigate("PackagingFilesView", null);
+            //if ((args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
+            //    args.PreviousExecutionState == ApplicationExecutionState.NotRunning) &&
+            //    downloadsService.GetDownloadsCount() > 0)
+            //    NavigationService.Navigate("PackagingFilesView", null);
 
             try
             {
@@ -230,6 +233,7 @@ namespace VKSaver
         {
             var mediaFilesProcessService = _container.Resolve<IMediaFilesProcessService>();
             var downloadsService = _container.Resolve<IDownloadsService>();
+            var settingsService = _container.Resolve<ISettingsService>();
 
             StartSuspendingServices();
 
@@ -237,9 +241,11 @@ namespace VKSaver
                 args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser)
             {
                 var playerService = _container.Resolve<IPlayerService>();
-                var vkLoginService = _container.Resolve<IVKLoginService>();                
+                var vkLoginService = _container.Resolve<IVKLoginService>();
 
-                if (vkLoginService.IsAuthorized)
+                if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, 0) < AppConstants.CURRENT_PROMO_INDEX)
+                    NavigationService.Navigate("PromoView", null);
+                else if (vkLoginService.IsAuthorized)
                     NavigationService.Navigate("MainView", null);
                 else
                     NavigationService.Navigate("LoginView", null);
@@ -251,8 +257,8 @@ namespace VKSaver
 #endif
                 }
 
-                if (downloadsService.GetDownloadsCount() > 0)
-                    NavigationService.Navigate("PackagingFilesView", null);
+                //if (downloadsService.GetDownloadsCount() > 0)
+                //    NavigationService.Navigate("PackagingFilesView", null);
             }
 
             await mediaFilesProcessService.ProcessFiles(args.Files);            
@@ -347,7 +353,7 @@ namespace VKSaver
         private ILocService _locService;
         private UnityServiceLocator _unityServiceLocator;
         private Frame _frame;
-
+        
         private const string VIEW_MODEL_FORMAT = "VKSaver.Core.ViewModels.{0}Model, VKSaver.Core.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string VIEW_MODEL_CONTROLS_FORMAT = "VKSaver.Core.ViewModels.{0}ViewModel, VKSaver.Core.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string VIEW_FORMAT = "VKSaver.Views.{0}";
