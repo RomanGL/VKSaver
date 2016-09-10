@@ -150,6 +150,7 @@ namespace VKSaver
             _container.RegisterInstance<IDownloadsService>(downloadsService);
 
             _container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IMediaFilesProcessService, MediaFilesProcessService>(new ContainerControlledLifetimeManager());
 
 #if FULL
             _container.RegisterType<IBetaService, BetaService>(new ContainerControlledLifetimeManager());
@@ -186,7 +187,6 @@ namespace VKSaver
         {
             var playerService = _container.Resolve<IPlayerService>();
             var vkLoginService = _container.Resolve<IVKLoginService>();
-            var downloadsService = _container.Resolve<IDownloadsService>();
 
             StartSuspendingServices();
 
@@ -201,14 +201,6 @@ namespace VKSaver
 
             if (vkLoginService.IsAuthorized)
             {
-                try
-                {
-                    var state = playerService.CurrentState;
-                    if (state == PlayerState.Playing)
-                        NavigationService.Navigate("PlayerView", null);
-                }
-                catch (Exception) { }
-
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
@@ -218,11 +210,46 @@ namespace VKSaver
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning) &&
                 downloadsService.GetDownloadsCount() > 0)
                 NavigationService.Navigate("PackagingFilesView", null);
+            try
+            {
+                var state = playerService.CurrentState;
+                if (state == PlayerState.Playing)
+                    NavigationService.Navigate("PlayerView", null);
+            }
+            catch (Exception) { }
 
             var logService = _container.Resolve<ILogService>();
             logService.LogText("App started");
 
             return Task.FromResult<object>(null);
+        }
+
+        protected override async Task OnFileActivatedAsync(FileActivatedEventArgs args)
+        {
+            var mediaFilesProcessService = _container.Resolve<IMediaFilesProcessService>();
+
+            StartSuspendingServices();
+
+            if (args.PreviousExecutionState == ApplicationExecutionState.NotRunning ||
+                args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser)
+            {
+                var playerService = _container.Resolve<IPlayerService>();
+                var vkLoginService = _container.Resolve<IVKLoginService>();                
+
+                if (vkLoginService.IsAuthorized)
+                    NavigationService.Navigate("MainView", null);
+                else
+                    NavigationService.Navigate("LoginView", null);
+
+                if (vkLoginService.IsAuthorized)
+                {
+#if FULL
+                    _container.Resolve<IBetaService>().ExecuteAppLaunch();
+#endif
+                }
+            }
+
+            await mediaFilesProcessService.ProcessFiles(args.Files);            
         }
 
         private void StartSuspendingServices()

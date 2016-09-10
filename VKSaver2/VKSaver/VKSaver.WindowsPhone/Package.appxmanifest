@@ -35,6 +35,24 @@
             <Task Type="audio" />
           </BackgroundTasks>
         </Extension>
+        <Extension Category="windows.fileTypeAssociation" EntryPoint="VKSaver.WindowsPhone.App">
+          <FileTypeAssociation Name="vksaver_music_file">
+            <DisplayName>VKSaver Music File</DisplayName>
+            <Logo>Assets\vksm-icon.png</Logo>
+            <SupportedFileTypes>
+              <FileType ContentType="audio/vksaver">.vksm</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+        <Extension Category="windows.fileTypeAssociation" EntryPoint="VKSaver.WindowsPhone.App">
+          <FileTypeAssociation Name="vksaver_video_file">
+            <DisplayName>VKSaver Video File</DisplayName>
+            <Logo>Assets/vksm-icon.png</Logo>
+            <SupportedFileTypes>
+              <FileType ContentType="video/vksaver">.vksv</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>

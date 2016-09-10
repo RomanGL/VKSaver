@@ -9,6 +9,7 @@ using VKSaver.Core.Services.Interfaces;
 using Windows.Media.Core;
 using Windows.Media.MediaProperties;
 using Windows.Storage.Streams;
+using Windows.Storage.AccessCache;
 
 namespace VKSaver.Core.Services.Common
 {
@@ -48,10 +49,21 @@ namespace VKSaver.Core.Services.Common
                 _fileData = await _musicCacheService.GetVKSaverFile(cacheFileName);
                 if (_fileData == null)
                     return null;
+
+                if (Track.Source.StartsWith("vks-token:"))
+                {
+                    var openedFile = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(Track.Source.Substring(10));
+                    _fileData = new CachedFileData(openedFile);
+                }
+                else
+                {
+                    _fileData = await _musicCacheService.GetCachedFileData(cacheFileName);
+                    if (_fileData == null)
+                        return null;
+                }
                                 
                 _fileStream = await _fileData.GetContentStreamAsync();
                 var metadata = await _fileData.GetMetadataAsync();
-
                 _currentBitrate = metadata.Track.EncodingBitrate;
                 _currentChannels = metadata.Track.ChannelCount;
 
@@ -84,11 +96,8 @@ namespace VKSaver.Core.Services.Common
 
         public void Dispose()
         {
-            if (_fileData != null)
-            {
-                _fileData.Dispose();
-                _fileData = null;
-            }
+            _fileStream?.Dispose();
+            _fileData?.Dispose();
         }
 
         /// <summary>
