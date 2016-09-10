@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VKSaver.Core.Models;
-using Windows.Storage;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using VKSaver.Core.Models.Common;
+using VKSaver.Core.Models.Player;
+using VKSaver.Core.Services.Interfaces;
 using Windows.Media.Core;
 using Windows.Media.MediaProperties;
 using Windows.Storage.Streams;
-using Windows.Web.Http;
-using TagLib.Mpeg;
-using System.Runtime.InteropServices.WindowsRuntime;
-using VKSaver.Core.Models.Player;
-using VKSaver.Core.Services.Interfaces;
-using System.Diagnostics;
 
 namespace VKSaver.Core.Services.Common
 {
@@ -51,19 +45,15 @@ namespace VKSaver.Core.Services.Common
             {
                 string cacheFileName = $"{Track.VKInfo.OwnerID} {Track.VKInfo.ID}.vksm";
 
-                _fileData = await _musicCacheService.GetCachedFileData(cacheFileName);
+                _fileData = await _musicCacheService.GetVKSaverFile(cacheFileName);
                 if (_fileData == null)
                     return null;
                                 
-                _fileStream = await _fileData.GetStream();
-                var file = new MusicCacheFile(cacheFileName, _fileStream);
+                _fileStream = await _fileData.GetContentStreamAsync();
+                var metadata = await _fileData.GetMetadataAsync();
 
-                TagLib.File tagFile = TagLib.File.Create(file, "audio/mpeg", TagLib.ReadStyle.Average);
-                if (tagFile == null) return null;
-
-                _startPosition = tagFile.InvariantStartPosition;                         
-                _currentBitrate = (uint)tagFile.Properties.AudioBitrate * 1000;
-                _currentChannels = (uint)tagFile.Properties.AudioChannels;
+                _currentBitrate = metadata.Track.EncodingBitrate;
+                _currentChannels = metadata.Track.ChannelCount;
 
                 _bufferSize = (int)(_currentBitrate / 8) * (BUFFERED_TIME_SECONDS + 3);
                 _buffer = new byte[_bufferSize];
@@ -71,8 +61,7 @@ namespace VKSaver.Core.Services.Common
                 _sampleDuration = TimeSpan.FromMilliseconds(SAMPLE_SIZE / (_currentBitrate / 1000 / 8));
 
                 var audioProperties = AudioEncodingProperties.CreateMp3(
-                    (uint)tagFile.Properties.AudioSampleRate, 
-                    _currentChannels, _currentBitrate);
+                    metadata.Track.SampleRate, _currentChannels, _currentBitrate);
 
                 var audioDescriptor = new AudioStreamDescriptor(audioProperties);
                 _mediaSource = new MediaStreamSource(audioDescriptor);
@@ -81,14 +70,12 @@ namespace VKSaver.Core.Services.Common
                 _mediaSource.MusicProperties.Title = Track.Title;
                 _mediaSource.MusicProperties.Artist = Track.Artist;
                 _mediaSource.MusicProperties.Album = "ВКачай";
-                _mediaSource.Duration = tagFile.Properties.Duration;
+                _mediaSource.Duration = TimeSpan.FromTicks(metadata.Track.Duration);
                 _mediaSource.BufferTime = TimeSpan.FromSeconds(BUFFERED_TIME_SECONDS);
 
                 _mediaSource.Starting += MediaSource_Starting;
                 _mediaSource.SampleRequested += MediaSource_SampleRequested;
                 _mediaSource.Closed += MediaSource_Closed;
-
-                Debug.WriteLine($"\nTrack: {Track.Title}\nBitrate: {_currentBitrate} kbps\nChannels: {_currentChannels}\nSample rate: {tagFile.Properties.AudioSampleRate}\nBits per sample: {tagFile.Properties.BitsPerSample}\n");
                                     
                 return _mediaSource;
             }
@@ -170,15 +157,12 @@ namespace VKSaver.Core.Services.Common
                 if (_bufferOffset + BUFFER_SIZE > _bufferSize)
                     _bufferOffset = 0;
                 
-                var duration = TimeSpan.FromMilliseconds(count / (_currentBitrate / 1000 / 8));
                 var sample = MediaStreamSample.CreateFromBuffer(buffer, _timeOffset);
-                sample.Duration = duration;
+                sample.Duration = _sampleDuration;
                 sample.KeyFrame = true;
 
-                if (_byteOffset > _startPosition)
-                    _timeOffset = _timeOffset.Add(_sampleDuration);
-
-                _byteOffset += count;                
+                _byteOffset += count;
+                _timeOffset = _timeOffset.Add(_sampleDuration);                
 
                 request.Sample = sample;
                 return count;
@@ -193,15 +177,14 @@ namespace VKSaver.Core.Services.Common
         private int _bufferOffset;
         private int _bufferSize;
         private byte[] _buffer;
-        private TimeSpan _sampleDuration;
+        private TimeSpan _sampleDuration = new TimeSpan(0, 0, 0, 0, 70);
         private MediaStreamSource _mediaSource;
         private Stream _fileStream;
         private TimeSpan _timeOffset;
-        private CachedFileData _fileData;
+        private VKSaverAudioFile _fileData;
         private long _byteOffset;
         private uint _currentChannels;
         private uint _currentBitrate;
-        private long _startPosition;
         private IMusicCacheService _musicCacheService;
     }
 }

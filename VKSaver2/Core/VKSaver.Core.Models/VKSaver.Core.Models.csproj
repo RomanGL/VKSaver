@@ -60,13 +60,16 @@
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\AudioEncryptionType.cs" />
+    <Compile Include="Common\AudioEncryptedStream.cs" />
+    <Compile Include="Common\AudioEncryptionMethod.cs" />
+    <Compile Include="Common\VKSaverAudioFile.cs" />
     <Compile Include="Common\ContentState.cs" />
     <Compile Include="Common\ContentStateExtensions.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\FileContentType.cs" />
     <Compile Include="Common\FileContentTypeExtensions.cs" />
     <Compile Include="Common\FileSize.cs" />
+    <Compile Include="Common\IVKSaverFile.cs" />
     <Compile Include="Common\ILoader.cs" />
     <Compile Include="Common\IServiceAuthorization.cs" />
     <Compile Include="Common\VKSaverAudio.cs" />
@@ -85,6 +88,10 @@
     <Compile Include="Transfer\IDownloadable.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib.Portable, Version=0.86.0.51803, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SharpZipLib.Portable.0.86.0.0003\lib\portable-net45+netcore45+wp8+win8+wpa81+MonoTouch+MonoAndroid+Xamarin.iOS10\ICSharpCode.SharpZipLib.Portable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>

@@ -74,7 +74,9 @@ namespace VKSaver
 
         private void App_Suspending(object sender, SuspendingEventArgs e)
         {
+            var deferral = e.SuspendingOperation.GetDeferral();
             StopSuspendingServices();
+            deferral.Complete();
         }
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -216,6 +218,9 @@ namespace VKSaver
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning) &&
                 downloadsService.GetDownloadsCount() > 0)
                 NavigationService.Navigate("PackagingFilesView", null);
+
+            var logService = _container.Resolve<ILogService>();
+            logService.LogText("App started");
 
             return Task.FromResult<object>(null);
         }

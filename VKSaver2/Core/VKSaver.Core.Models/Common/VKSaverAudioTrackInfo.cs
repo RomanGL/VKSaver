@@ -11,16 +11,16 @@ namespace VKSaver.Core.Models.Common
         public string Artist { get; set; }
 
         [JsonProperty("encryption")]
-        public AudioEncryptionType Encryption { get; set; }
+        public AudioEncryptionMethod Encryption { get; set; }
 
         [JsonProperty("sample_rate")]
-        public int SampleRate { get; set; }
+        public uint SampleRate { get; set; }
 
         [JsonProperty("channel_count")]
-        public int ChannelCount { get; set; }
+        public uint ChannelCount { get; set; }
 
         [JsonProperty("bitrate")]
-        public int EncodingBitrate { get; set; }
+        public uint EncodingBitrate { get; set; }
 
         [JsonProperty("duration")]
         public long Duration { get; set; }

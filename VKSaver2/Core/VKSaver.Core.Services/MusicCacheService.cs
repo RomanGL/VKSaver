@@ -1,26 +1,29 @@
-﻿using ICSharpCode.SharpZipLib.Core;
-using ICSharpCode.SharpZipLib.Zip;
+﻿using ICSharpCode.SharpZipLib.Zip;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
-using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Storage;
-using Windows.Storage.Streams;
 
 namespace VKSaver.Core.Services
 {
     public sealed class MusicCacheService : IMusicCacheService
     {
+        public MusicCacheService(ILogService logService)
+        {
+            _logService = logService;
+        }
+
         public async Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata)
         {
             if (metadata == null)
                 return false;
+
+            _logService.LogText($"{metadata.Track.Title} - processing started.");
 
             StorageFile zipFile = null;
             Stream zipFileStream = null;
@@ -42,9 +45,9 @@ namespace VKSaver.Core.Services
 
                 var encodingProperties = await file.Properties.RetrievePropertiesAsync(propertiesToRetrieve);
 
-                metadata.Track.SampleRate = (int)(uint)encodingProperties[PROPERTY_SAMPLE_RATE];
-                metadata.Track.ChannelCount = (int)(uint)encodingProperties[PROPERTY_CHANNEL_COUNT];
-                metadata.Track.EncodingBitrate = (int)(uint)encodingProperties[PROPERTY_ENCODING_BITRATE];
+                metadata.Track.SampleRate = (uint)encodingProperties[PROPERTY_SAMPLE_RATE];
+                metadata.Track.ChannelCount = (uint)encodingProperties[PROPERTY_CHANNEL_COUNT];
+                metadata.Track.EncodingBitrate = (uint)encodingProperties[PROPERTY_ENCODING_BITRATE];
 
                 var fileProperties = await file.Properties.GetMusicPropertiesAsync();
                 metadata.Track.Duration = fileProperties.Duration.Ticks;
@@ -67,8 +70,10 @@ namespace VKSaver.Core.Services
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logService.LogException(ex);
+
                 zipFileStream?.Dispose();
                 zipFileStream = null;
                 await zipFile?.DeleteAsync(StorageDeleteOption.PermanentDelete);
@@ -76,19 +81,21 @@ namespace VKSaver.Core.Services
             }
             finally
             {
+                _logService.LogText($"{metadata.Track.Title} - processing finished.");
                 fileStream?.Dispose();
             }
         }
                 
-        public async Task<CachedFileData> GetCachedFileData(string fileName)
+        public async Task<VKSaverAudioFile> GetVKSaverFile(string fileName)
         {
             try
             {
                 var file = await GetCachedFile(fileName);
-                return new CachedFileData(file);
+                return new VKSaverAudioFile(file);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logService.LogException(ex);
                 return null;
             }
         }
@@ -119,6 +126,8 @@ namespace VKSaver.Core.Services
             return await KnownFolders.MusicLibrary.CreateFolderAsync(
                 MUSIC_CACHE_FOLDER_NAME, CreationCollisionOption.OpenIfExists);
         }
+
+        private readonly ILogService _logService;
 
         internal const string FILES_PROTECTION_PASSWORD = "VktTYXZlciAy";
         internal const string FILES_METADATA_NAME = "metadata.vks";

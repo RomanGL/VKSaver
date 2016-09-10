@@ -12,6 +12,7 @@ using VKSaver.Core.Services.Transfer;
 using VKSaver.Core.Transfer;
 using VKSaver.Core.ViewModels.Transfer;
 using Windows.Networking.BackgroundTransfer;
+using Windows.UI.Core;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -22,12 +23,14 @@ namespace VKSaver.Core.ViewModels
     public class TransferViewModel : ViewModelBase
     {
         public TransferViewModel(IDownloadsService downloadsService, IDialogsService dialogsService,
-            IAppLoaderService appLoaderService, ILocService locService)
+            IAppLoaderService appLoaderService, ILocService locService, 
+            IDispatcherWrapper dispatcherWrapper)
         {
             _downloadsService = downloadsService;
             _dialogsService = dialogsService;
             _appLoaderService = appLoaderService;
             _locService = locService;
+            _dispatcherWrapper = dispatcherWrapper;
 
             Downloads = new ObservableCollection<DownloadItemViewModel>();
 
@@ -80,37 +83,40 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
         
-        private void OnDownloadProgressChanged(object sender, DownloadItem e)
+        private async void OnDownloadProgressChanged(object sender, DownloadItem e)
         {
-            if (DownloadsState == ContentState.Loading)
-                return;
-
-            DownloadsState = ContentState.Normal;
-            var item = Downloads.FirstOrDefault(d => d.OpeartionGuid == e.OperationGuid);
-            if (item == null)
+            await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (e.Status != BackgroundTransferStatus.Completed &&
-                    e.Status != BackgroundTransferStatus.Canceled)
+                if (DownloadsState == ContentState.Loading)
                     return;
 
-                Downloads.Add(new DownloadItemViewModel(e));
-                item = Downloads.FirstOrDefault(d => d.OpeartionGuid == e.OperationGuid);
+                DownloadsState = ContentState.Normal;
+                var item = Downloads.FirstOrDefault(d => d.OpeartionGuid == e.OperationGuid);
                 if (item == null)
-                    return;
-            }
-            else
-                item.Download = e;
+                {
+                    if (e.Status != BackgroundTransferStatus.Completed &&
+                        e.Status != BackgroundTransferStatus.Canceled)
+                        return;
 
-            if (item.Status == BackgroundTransferStatus.Completed ||
-                item.Status == BackgroundTransferStatus.Canceled)
-                Downloads.Remove(item);
+                    Downloads.Add(new DownloadItemViewModel(e));
+                    item = Downloads.FirstOrDefault(d => d.OpeartionGuid == e.OperationGuid);
+                    if (item == null)
+                        return;
+                }
+                else
+                    item.Download = e;
 
-            if (Downloads.Count == 0)
-                DownloadsState = ContentState.NoData;
-            else
-                Downloads.OrderBy(d => d.Status, new TransferStatusComparer());
+                if (item.Status == BackgroundTransferStatus.Completed ||
+                    item.Status == BackgroundTransferStatus.Canceled)
+                    Downloads.Remove(item);
 
-            CancelAllDownloadsCommand.RaiseCanExecuteChanged();
+                if (Downloads.Count == 0)
+                    DownloadsState = ContentState.NoData;
+                else
+                    Downloads.OrderBy(d => d.Status, new TransferStatusComparer());
+
+                CancelAllDownloadsCommand.RaiseCanExecuteChanged();
+            });
         }
 
         private void OnDownloadsCompleted(object sender, EventArgs e)
@@ -212,5 +218,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IDialogsService _dialogsService;
         private readonly IAppLoaderService _appLoaderService;
         private readonly ILocService _locService;
+        private readonly IDispatcherWrapper _dispatcherWrapper;
     }
 }

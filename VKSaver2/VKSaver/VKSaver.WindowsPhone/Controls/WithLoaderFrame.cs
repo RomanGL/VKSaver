@@ -1,6 +1,7 @@
 ﻿using System;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -31,20 +32,23 @@ namespace VKSaver.Controls
         public static readonly DependencyProperty LoaderTextProperty =
             DependencyProperty.Register("LoaderText", typeof(string), typeof(WithLoaderFrame), new PropertyMetadata(null));
 
-        public void HideLoader()
+        public async void HideLoader()
         {
-            VisualStateManager.GoToState(this, "Normal", true);
-
-            var page = Content as Page;
-            if (page != null && page.BottomAppBar != null && _appBarHided)
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                _appBarHided = false;
-                page.BottomAppBar.Visibility = Visibility.Visible;
-                page.BottomAppBar.Tag = null;
-            }
+                VisualStateManager.GoToState(this, "Normal", true);
+
+                var page = Content as Page;
+                if (page != null && page.BottomAppBar != null && _appBarHided)
+                {
+                    _appBarHided = false;
+                    page.BottomAppBar.Visibility = Visibility.Visible;
+                    page.BottomAppBar.Tag = null;
+                }
+            });
         }
 
-        protected override void OnContentChanged(object oldContent, object newContent)
+        protected override async void OnContentChanged(object oldContent, object newContent)
         {
             var page = Content as Page;
             if (page != null && page.BottomAppBar != null && _appBarHided)
@@ -57,18 +61,21 @@ namespace VKSaver.Controls
             base.OnContentChanged(oldContent, newContent);
         }
 
-        public void ShowLoader(string text)
+        public async void ShowLoader(string text)
         {
-            LoaderText = text;
-            VisualStateManager.GoToState(this, "Showed", true);
-
-            var page = Content as Page;
-            if (page != null && page.BottomAppBar != null && page.BottomAppBar.Visibility == Visibility.Visible)
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                page.BottomAppBar.Visibility = Visibility.Collapsed;
-                page.BottomAppBar.Tag = true;
-                _appBarHided = true;
-            }
+                LoaderText = text;
+                VisualStateManager.GoToState(this, "Showed", true);
+
+                var page = Content as Page;
+                if (page != null && page.BottomAppBar != null && page.BottomAppBar.Visibility == Visibility.Visible)
+                {
+                    page.BottomAppBar.Visibility = Visibility.Collapsed;
+                    page.BottomAppBar.Tag = true;
+                    _appBarHided = true;
+                }
+            });
         }
 
         protected override void OnApplyTemplate()

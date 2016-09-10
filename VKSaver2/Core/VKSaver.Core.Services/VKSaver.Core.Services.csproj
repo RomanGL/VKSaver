@@ -62,33 +62,23 @@
   <ItemGroup>
     <Compile Include="AppLoaderService.cs" />
     <Compile Include="BetaService.cs" />
-    <Compile Include="Common\CachedFileData.cs" />
     <Compile Include="Common\DownloadsExtensions.cs" />
     <Compile Include="Common\EncryptionHelper.cs" />
     <Compile Include="Common\InTouchExtensions.cs" />
     <Compile Include="Common\MediaStreamSourceWorker.cs" />
-    <Compile Include="Common\MusicCacheFile.cs" />
-    <Compile Include="Common\MusicEncryptedStream.cs" />
+    <Compile Include="Common\AudioEncryptedStream.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="Common\VKAuthorization.cs" />
-    <Compile Include="Interfaces\IDispatcherWrapper.cs" />
-    <Compile Include="Interfaces\ISuspendingService.cs" />
-    <Compile Include="MusicCacheService.cs" />
-    <Compile Include="DialogsService.cs" />
-    <Compile Include="DownloadsService.cs" />
-    <Compile Include="DownloadsService2.cs" />
-    <Compile Include="DownloadsServiceHelper.cs" />
-    <Compile Include="GrooveMusicService.cs" />
     <Compile Include="Interfaces\IAppLoaderService.cs" />
     <Compile Include="Interfaces\IBetaService.cs" />
-    <Compile Include="Interfaces\IInTouchWrapper.cs" />
-    <Compile Include="Interfaces\IDownloadsService.cs" />
-    <Compile Include="ImagesCacheService.cs" />
     <Compile Include="Interfaces\ICultureProvider.cs" />
     <Compile Include="Interfaces\IDialogsService.cs" />
+    <Compile Include="Interfaces\IDispatcherWrapper.cs" />
+    <Compile Include="Interfaces\IDownloadsService.cs" />
     <Compile Include="Interfaces\IDownloadsServiceHelper.cs" />
     <Compile Include="Interfaces\IGrooveMusicService.cs" />
     <Compile Include="Interfaces\IImagesCacheService.cs" />
+    <Compile Include="Interfaces\IInTouchWrapper.cs" />
     <Compile Include="Interfaces\ILocService.cs" />
     <Compile Include="Interfaces\ILogService.cs" />
     <Compile Include="Interfaces\IMediaDecryptor.cs" />
@@ -100,8 +90,16 @@
     <Compile Include="Interfaces\IPurchaseService.cs" />
     <Compile Include="Interfaces\IServiceResolver.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
+    <Compile Include="Interfaces\ISuspendingService.cs" />
     <Compile Include="Interfaces\ITracksShuffleService.cs" />
     <Compile Include="Interfaces\IVKLoginService.cs" />
+    <Compile Include="MusicCacheService.cs" />
+    <Compile Include="DialogsService.cs" />
+    <Compile Include="DownloadsService.cs" />
+    <Compile Include="DownloadsService2.cs" />
+    <Compile Include="DownloadsServiceHelper.cs" />
+    <Compile Include="GrooveMusicService.cs" />
+    <Compile Include="ImagesCacheService.cs" />
     <Compile Include="LocService.cs" />
     <Compile Include="LogService.cs" />
     <Compile Include="NetworkInfoService.cs" />
@@ -142,10 +140,6 @@
     </Reference>
     <Reference Include="OneTeam.SDK.LastFm">
       <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
-    </Reference>
-    <Reference Include="TagLib.Portable, Version=2.2.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\TagLib.Portable.1.0.4\lib\portable-net45+win+wpa81+wp8+MonoAndroid10+xamarinios10+MonoTouch10\TagLib.Portable.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="XboxMusicService, Version=1.0.5542.27830, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\XboxMusicSDK.1.7\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\XboxMusicService.dll</HintPath>

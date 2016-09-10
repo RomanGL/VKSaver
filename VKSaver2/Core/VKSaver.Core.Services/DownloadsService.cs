@@ -15,6 +15,8 @@ using Windows.Web;
 using static VKSaver.Core.Services.Common.DownloadsExtensions;
 using static VKSaver.Core.Models.Common.FileContentTypeExtensions;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace VKSaver.Core.Services
 {
@@ -36,10 +38,12 @@ namespace VKSaver.Core.Services
         /// </summary>
         public event EventHandler DownloadsCompleted;
 
-        public DownloadsService(IMusicCacheService musicCacheService, ISettingsService settingsService)
+        public DownloadsService(IMusicCacheService musicCacheService, ISettingsService settingsService,
+            ILogService logService)
         {
             _musicCacheService = musicCacheService;
             _settingsService = settingsService;
+            _logService = logService;
 
             _transferGroup = BackgroundTransferGroup.CreateGroup(DOWNLOAD_TRASNFER_GROUP_NAME);
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
@@ -94,7 +98,11 @@ namespace VKSaver.Core.Services
                 IReadOnlyList<DownloadOperation> downloads = null;
 
                 try { downloads = await BackgroundDownloader.GetCurrentDownloadsForTransferGroupAsync(_transferGroup); }
-                catch (Exception ex) { WebErrorStatus error = BackgroundTransferError.GetStatus(ex.HResult); }
+                catch (Exception ex)
+                {
+                    WebErrorStatus error = BackgroundTransferError.GetStatus(ex.HResult);
+                    _logService.LogText($"Gettings downloads error - {error}\n{ex.ToString()}");
+                }
 
                 if (downloads != null && downloads.Count > 0)
                     for (int i = 0; i < downloads.Count; i++)
@@ -146,7 +154,7 @@ namespace VKSaver.Core.Services
             });
         }
 
-        public void StartService()
+        public async void StartService()
         {
             lock (_lockObject)
             {
@@ -157,12 +165,20 @@ namespace VKSaver.Core.Services
 
             if (!_downloadsAttached)
             {
-                var mDownloads = _settingsService.Get<Dictionary<string, VKSaverAudio>>(MUSIC_DOWNLOADS_PARAMETER);
-                if (mDownloads != null)
+                var stream = await GetMetadataFileAsync(false);
+                var reader = new StreamReader(stream);
+                using (var jsonReader = new JsonTextReader(reader))
                 {
-                    foreach (var item in mDownloads)
+
+                    var serializer = new JsonSerializer();
+                    var mDownloads = serializer.Deserialize<Dictionary<string, VKSaverAudio>>(jsonReader);
+
+                    if (mDownloads != null)
                     {
-                        _musicDownloads[item.Key] = item.Value;
+                        foreach (var item in mDownloads)
+                        {
+                            _musicDownloads[item.Key] = item.Value;
+                        }
                     }
                 }
             }
@@ -178,8 +194,6 @@ namespace VKSaver.Core.Services
                     return;
                 _isRunning = false;
             }
-
-            _settingsService.Set(MUSIC_DOWNLOADS_PARAMETER, _musicDownloads);
         }
 
         /// <summary>
@@ -252,13 +266,17 @@ namespace VKSaver.Core.Services
 
                     HandleDownloadAsync(download);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    _logService.LogException(ex);
+                    await resultFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+
                     errors.Add(new DownloadInitError(DownloadInitErrorType.Unknown, item));
                     continue;
                 }
             }
 
+            await SaveDownloadsMetadataAsync();
             return errors;
         }
 
@@ -281,6 +299,7 @@ namespace VKSaver.Core.Services
             catch (OperationCanceledException) { }
             catch (Exception ex)
             {
+                _logService.LogException(ex);
                 DownloadError?.Invoke(this, new DownloadOperationErrorEventArgs(
                     operation.Guid,
                     GetOperationNameFromFile(operation.ResultFile),
@@ -288,32 +307,54 @@ namespace VKSaver.Core.Services
                     ex));
             }
 
-            OnDownloadProgressChanged(operation);
-
             string fileName = operation.ResultFile.Name.Split(new char[] { '.' })[0];
 
-            if (operation.Progress.Status == BackgroundTransferStatus.Canceled ||
-                operation.Progress.Status == BackgroundTransferStatus.Error)
-                await operation.ResultFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
-            else
+            try
             {
-                var type = GetContentTypeFromExtension(operation.ResultFile.FileType);
-                if (type == FileContentType.Music)
+                if (operation.Progress.Status != BackgroundTransferStatus.Canceled ||
+                    operation.Progress.Status != BackgroundTransferStatus.Error)
                 {
-                    VKSaverAudio metadata = null;
-                    _musicDownloads.TryGetValue(fileName, out metadata);
+                    var type = GetContentTypeFromExtension(operation.ResultFile.FileType);
+                    if (type == FileContentType.Music)
+                    {
+                        VKSaverAudio metadata = null;
+                        _musicDownloads.TryGetValue(fileName, out metadata);
 
-                    bool converted = await _musicCacheService.ConvertAudioToVKSaverFormat(
-                        (StorageFile)operation.ResultFile, metadata);
+                        bool converted = await _musicCacheService.ConvertAudioToVKSaverFormat(
+                            (StorageFile)operation.ResultFile, metadata);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                _logService.LogException(ex);
+            }
+            finally
+            {
+                await operation.ResultFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+            }
+
+            OnDownloadProgressChanged(operation);
 
             _cts.Remove(operation.Guid);
             _downloads.Remove(operation);
             _musicDownloads.Remove(fileName);
 
             if (_downloads.Count == 0)
+            {
                 DownloadsCompleted?.Invoke(this, EventArgs.Empty);
+                await GetMetadataFileAsync(true);
+            }
+        }
+
+        private async Task SaveDownloadsMetadataAsync()
+        {
+            string json = JsonConvert.SerializeObject(_musicDownloads);
+            var stream = await GetMetadataFileAsync(true);
+            var writter = new StreamWriter(stream);
+
+            writter.Write(json);
+            writter.Dispose();
         }
 
         /// <summary>
@@ -369,6 +410,23 @@ namespace VKSaver.Core.Services
             catch (Exception) { return null; }
         }
 
+        private async Task<Stream> GetMetadataFileAsync(bool clear)
+        {
+            try
+            {
+                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(
+                    DOWNLOADS_METADATA_FILE_NAME, 
+                    clear ? CreationCollisionOption.ReplaceExisting : CreationCollisionOption.OpenIfExists);
+                var stream = await file.OpenAsync(FileAccessMode.ReadWrite);
+                return stream.AsStream();
+            }
+            catch (Exception ex)
+            {
+                _logService.LogException(ex);
+                return null;
+            }
+        }
+
         private bool _isRunning;
         private bool _downloadsAttached;
 
@@ -379,6 +437,7 @@ namespace VKSaver.Core.Services
 
         private readonly IMusicCacheService _musicCacheService;
         private readonly ISettingsService _settingsService;
+        private readonly ILogService _logService;
 
         private readonly object _lockObject = new object();
 
@@ -386,6 +445,7 @@ namespace VKSaver.Core.Services
         private const string DOWNLOADS_FOLDER_NAME = "VKSaver";
         private const string DOWNLOADS_OTHER_FOLDER_NAME = "VKSaver Other";
         private const string MUSIC_DOWNLOADS_PARAMETER = "MusicDownloads";
+        private const string DOWNLOADS_METADATA_FILE_NAME = "DownloadsMetadata.txt";
         private const int INIT_DOWNLOADS_LIST_CAPACITY = 60;        
     }
 }

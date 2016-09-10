@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
+using Windows.Storage;
 
 namespace VKSaver.Core.Services
 {
@@ -11,10 +11,50 @@ namespace VKSaver.Core.Services
     {
         public void LogException(Exception ex)
         {
+            LogText(ex.ToString());
         }
 
-        public void LogText(string text)
+        public async void LogText(string text)
         {
+            var writter = await GetWritterAsync();
+            if (writter == null)
+                return;
+
+            await writter.WriteLineAsync($"{DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")}: {text}\n");
+            writter.Flush();
         }
+
+        private Task<StreamWriter> GetWritterAsync()
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    lock (_lockObject)
+                    {
+                        if (_writter != null)
+                            return _writter;
+
+                        var logFile = ApplicationData.Current.LocalFolder.CreateFileAsync(
+                            LOG_FILE_NAME, CreationCollisionOption.OpenIfExists).GetAwaiter().GetResult();
+                        var stream = logFile.OpenStreamForWriteAsync().GetAwaiter().GetResult();
+                        stream.Seek(0, SeekOrigin.End);
+
+                        _writter = new StreamWriter(stream, Encoding.UTF8);
+                        return _writter;
+                    }
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            });
+        }
+        
+        private StreamWriter _writter;
+
+        private readonly object _lockObject = new object();
+
+        private const string LOG_FILE_NAME = "vkslog.txt";
     }
 }

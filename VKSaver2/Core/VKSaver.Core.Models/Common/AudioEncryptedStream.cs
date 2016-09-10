@@ -1,15 +1,21 @@
 ﻿using System;
 using System.IO;
 
-namespace VKSaver.Core.Services.Common
+namespace VKSaver.Core.Models.Common
 {
-    internal sealed class MusicEncryptedStream : Stream
+    internal sealed class AudioEncryptedStream : Stream
     {
-        public MusicEncryptedStream(Stream contentStream)
+        public AudioEncryptedStream(Stream contentStream)
         {
             if (contentStream == null)
                 throw new ArgumentNullException("contentStream");
             _contentStream = contentStream;
+        }
+
+        public AudioEncryptedStream(Stream contentStream, AudioEncryptionMethod encryption)
+            : this(contentStream)
+        {
+            _encryption = encryption;
         }
 
         public override bool CanRead { get { return _contentStream.CanRead; } }
@@ -58,5 +64,6 @@ namespace VKSaver.Core.Services.Common
         }
 
         private readonly Stream _contentStream;
+        private readonly AudioEncryptionMethod _encryption;
     }
 }
