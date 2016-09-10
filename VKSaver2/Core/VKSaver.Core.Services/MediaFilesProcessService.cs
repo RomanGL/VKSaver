@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
@@ -31,8 +32,8 @@ namespace VKSaver.Core.Services
 
             foreach (StorageFile item in filesToOpen)
             {
-                var cachedData = new CachedFileData(item);
-                var info = await cachedData.GetAudioInfo();
+                var cachedData = new VKSaverAudioFile(item);
+                var info = await cachedData.GetMetadataAsync();
 
                 var track = new PlayerTrack
                 {

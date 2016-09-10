@@ -46,24 +46,21 @@ namespace VKSaver.Core.Services.Common
             {
                 string cacheFileName = $"{Track.VKInfo.OwnerID} {Track.VKInfo.ID}.vksm";
 
-                _fileData = await _musicCacheService.GetVKSaverFile(cacheFileName);
-                if (_fileData == null)
-                    return null;
-
                 if (Track.Source.StartsWith("vks-token:"))
                 {
                     var openedFile = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(Track.Source.Substring(10));
-                    _fileData = new CachedFileData(openedFile);
+                    _fileData = new VKSaverAudioFile(openedFile);
                 }
                 else
                 {
-                    _fileData = await _musicCacheService.GetCachedFileData(cacheFileName);
+                    _fileData = await _musicCacheService.GetVKSaverFile(cacheFileName);
                     if (_fileData == null)
                         return null;
                 }
                                 
                 _fileStream = await _fileData.GetContentStreamAsync();
                 var metadata = await _fileData.GetMetadataAsync();
+
                 _currentBitrate = metadata.Track.EncodingBitrate;
                 _currentChannels = metadata.Track.ChannelCount;
 

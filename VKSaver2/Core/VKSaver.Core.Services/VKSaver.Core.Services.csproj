@@ -70,7 +70,6 @@
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="Common\VKAuthorization.cs" />
     <Compile Include="Interfaces\IMediaFilesProcessService.cs" />
-    <Compile Include="Interfaces\ISuspendingService.cs" />
     <Compile Include="MediaFilesProcessService.cs" />
     <Compile Include="MusicCacheService.cs" />
     <Compile Include="DialogsService.cs" />
@@ -102,12 +101,6 @@
     <Compile Include="Interfaces\ISuspendingService.cs" />
     <Compile Include="Interfaces\ITracksShuffleService.cs" />
     <Compile Include="Interfaces\IVKLoginService.cs" />
-    <Compile Include="MusicCacheService.cs" />
-    <Compile Include="DialogsService.cs" />
-    <Compile Include="DownloadsService.cs" />
-    <Compile Include="DownloadsService2.cs" />
-    <Compile Include="DownloadsServiceHelper.cs" />
-    <Compile Include="GrooveMusicService.cs" />
     <Compile Include="ImagesCacheService.cs" />
     <Compile Include="LocService.cs" />
     <Compile Include="LogService.cs" />

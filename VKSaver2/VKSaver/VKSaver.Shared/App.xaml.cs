@@ -187,6 +187,7 @@ namespace VKSaver
         {
             var playerService = _container.Resolve<IPlayerService>();
             var vkLoginService = _container.Resolve<IVKLoginService>();
+            var downloadsService = _container.Resolve<IDownloadsService>();
 
             StartSuspendingServices();
 
@@ -210,6 +211,7 @@ namespace VKSaver
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning) &&
                 downloadsService.GetDownloadsCount() > 0)
                 NavigationService.Navigate("PackagingFilesView", null);
+
             try
             {
                 var state = playerService.CurrentState;
@@ -227,6 +229,7 @@ namespace VKSaver
         protected override async Task OnFileActivatedAsync(FileActivatedEventArgs args)
         {
             var mediaFilesProcessService = _container.Resolve<IMediaFilesProcessService>();
+            var downloadsService = _container.Resolve<IDownloadsService>();
 
             StartSuspendingServices();
 
@@ -247,6 +250,9 @@ namespace VKSaver
                     _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
                 }
+
+                if (downloadsService.GetDownloadsCount() > 0)
+                    NavigationService.Navigate("PackagingFilesView", null);
             }
 
             await mediaFilesProcessService.ProcessFiles(args.Files);            
