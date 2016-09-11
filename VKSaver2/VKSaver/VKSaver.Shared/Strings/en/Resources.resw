@@ -883,4 +883,28 @@ Please wait...</value>
   <data name="PromoView_NextButton.Content" xml:space="preserve">
     <value>next</value>
   </data>
+  <data name="ArtistAlbumView_PivotSection_Details.Header" xml:space="preserve">
+    <value>details</value>
+  </data>
+  <data name="ArtistAlbumView_PivotSection_Tracks.Header" xml:space="preserve">
+    <value>tracks</value>
+  </data>
+  <data name="ArtistAlbumView_DetailsLoader.ErrorText" xml:space="preserve">
+    <value>Unable to load the details about this album</value>
+  </data>
+  <data name="ArtistAlbumView_DetailsLoader.LoadingText" xml:space="preserve">
+    <value>Collecting details about the album...</value>
+  </data>
+  <data name="ArtistAlbumView_DetailsLoader.NoDataText" xml:space="preserve">
+    <value>Unfortunately, we don't know any details about this album</value>
+  </data>
+  <data name="ArtistAlbumView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the tracks list of this album</value>
+  </data>
+  <data name="ArtistAlbumView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Exploring the tracks list of this album...</value>
+  </data>
+  <data name="ArtistAlbumView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>In this album there is no tracks</value>
+  </data>
 </root>

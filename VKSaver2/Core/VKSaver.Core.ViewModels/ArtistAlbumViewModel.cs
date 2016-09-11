@@ -9,8 +9,6 @@ using OneTeam.SDK.LastFm.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
@@ -31,6 +29,7 @@ namespace VKSaver.Core.ViewModels
 
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
             FindArtistInVKCommand = new DelegateCommand(OnFindArtistInVKCommand);
+            ReloadAlbumCommand = new DelegateCommand(OnReloadAlbumCommand);
         }
 
         public string ArtistImage { get; private set; }
@@ -52,6 +51,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand FindArtistInVKCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand ReloadAlbumCommand { get; private set; }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -164,6 +166,11 @@ namespace VKSaver.Core.ViewModels
                 TracksState = ContentState.Error;
                 WikiState = ContentState.Error;
             }
+        }
+
+        private async void OnReloadAlbumCommand()
+        {
+            await LoadAlbumInfo();
         }
 
         private void OnGoToTrackInfoCommand(LFAudioBase audio)

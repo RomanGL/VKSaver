@@ -75,6 +75,7 @@
                        ContinuumNavigationTransitionInfo.IsEntranceElement="True" />
         </Pivot.Title>
         <PivotItem Header="подробнее"
+                   x:Uid="ArtistAlbumView_PivotSection_Details"
                    Style="{StaticResource PivotItemStyle}">
             <ScrollViewer>
                 <Grid>
@@ -118,7 +119,9 @@
                     </StackPanel>
 
                     <controls:ContentContainer Grid.Row="1"
+                                               x:Uid="ArtistAlbumView_DetailsLoader"
                                                State="{Binding WikiState}"
+                                               ReloadCommand="{Binding ReloadAlbumCommand}"
                                                LoadingText="Собираем информацию об альбоме..."
                                                ErrorText="Не удалось загрузить информацию об альбоме"
                                                NoDataText="Мы не знаем подробностей об этом альбоме">
@@ -132,6 +135,7 @@
             </ScrollViewer>
         </PivotItem>
         <PivotItem Header="треки"
+                   x:Uid="ArtistAlbumView_PivotSection_Tracks"
                    Margin="19,23,0,0"
                    Style="{StaticResource PivotItemStyle}">
             <ListView ItemsSource="{Binding Album.Tracks.Tracks}"
@@ -148,7 +152,8 @@
                     <DataTemplate>
                         <Border MinHeight="70">
                             <controls:StateBlock State="{Binding TracksState}"
-                                                 ReloadCommand="{Binding TracksState}"
+                                                 ReloadCommand="{Binding ReloadAlbumCommand}"
+                                                 x:Uid="ArtistAlbumView_TracksLoader"
                                                  Margin="0,0,0,10" 
                                                  LoadingText="Прослушиваем альбом исполнителя..."
                                                  ErrorText="Не удалось загрузить список треков альбома"

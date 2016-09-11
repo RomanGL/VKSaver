@@ -986,4 +986,28 @@
   <data name="PromoView_NextButton.Content" xml:space="preserve">
     <value>далее</value>
   </data>
+  <data name="ArtistAlbumView_DetailsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить информацию об этом альбоме</value>
+  </data>
+  <data name="ArtistAlbumView_DetailsLoader.LoadingText" xml:space="preserve">
+    <value>Собираем информацию об альбоме...</value>
+  </data>
+  <data name="ArtistAlbumView_DetailsLoader.NoDataText" xml:space="preserve">
+    <value>К сожалению, мы не знаем никаких подробностей об этом альбоме</value>
+  </data>
+  <data name="ArtistAlbumView_PivotSection_Details.Header" xml:space="preserve">
+    <value>подробнее</value>
+  </data>
+  <data name="ArtistAlbumView_PivotSection_Tracks.Header" xml:space="preserve">
+    <value>композиции</value>
+  </data>
+  <data name="ArtistAlbumView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список треков этого альбома</value>
+  </data>
+  <data name="ArtistAlbumView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Изучаем список композиций этого альбома...</value>
+  </data>
+  <data name="ArtistAlbumView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>В этом альбоме нет ни одной композиции</value>
+  </data>
 </root>
