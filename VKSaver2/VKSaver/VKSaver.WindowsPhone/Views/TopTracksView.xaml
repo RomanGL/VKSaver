@@ -14,43 +14,6 @@
                            Style="{StaticResource DefaultPageStyle}"
                            d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=design:TopTracksViewModelDesign}">
 
-    <Page.Resources>
-        <DataTemplate x:Key="TopTrackTemplate">
-            <Grid Margin="0,0,0,20"
-                  Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <controls:ImagePlaceholder Source="{Binding Images[2].URL}"
-                                           Text="{Binding Name}"
-                                           Width="80"
-                                           Height="80"
-                                           Margin="0,0,15,0" />
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding Name}"
-                               Style="{StaticResource BaseItemStyle}"
-                               FontSize="28"
-                               ContinuumNavigationTransitionInfo.IsExitElement="True" />
-                    <TextBlock Text="{Binding Artist.Name}"
-                               Style="{StaticResource BaseItemStyle}"
-                               FontSize="18"
-                               Margin="0,10,0,0" />
-                    <TextBlock Style="{StaticResource BaseItemStyle}"
-                               FontSize="18"
-                               Margin="0,5,0,0">
-                        <TextBlock.Foreground>
-                            <SolidColorBrush Color="{ThemeResource PhoneTextLowColor}" />
-                        </TextBlock.Foreground>
-                        <Run Text="{Binding PlayCount}" />
-                        <Run Text="воспроизведений"
-                             x:Uid="TopTracksView_TrackPlaybacksCount"/>
-                    </TextBlock>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-    </Page.Resources>
-
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -73,7 +36,7 @@
               x:Name="ContentRoot"
               Margin="19,9.5,0,0">
             <ListView ItemsSource="{Binding Tracks}"
-                      ItemTemplate="{StaticResource TopTrackTemplate}"
+                      ItemTemplate="{StaticResource TopTrackImageTemplate}"
                       SelectionMode="None"
                       IsItemClickEnabled="True"
                       IsTextScaleFactorEnabled="False"

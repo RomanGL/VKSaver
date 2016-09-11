@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Common;
@@ -20,7 +21,8 @@ namespace VKSaver.Core.ViewModels
     {
         public TrackInfoViewModel(INavigationService navigationService, InTouch inTouch,
             IInTouchWrapper inTouchWrapper, IPlayerService playerService,
-            IDownloadsServiceHelper downloadsServiceHelper, IAppLoaderService appLoaderService)
+            IDownloadsServiceHelper downloadsServiceHelper, IAppLoaderService appLoaderService,
+            IDialogsService dialogsService, ILocService locService)
         {
             _navigationService = navigationService;
             _inTouch = inTouch;
@@ -28,9 +30,13 @@ namespace VKSaver.Core.ViewModels
             _playerService = playerService;
             _downloadsServiceHelper = downloadsServiceHelper;
             _appLoaderService = appLoaderService;
+            _dialogsService = dialogsService;
+            _locService = locService;
 
             ShowOtherTracksCommand = new DelegateCommand(OnShowOtherTracksCommand);
             PlayTracksCommand = new DelegateCommand<Audio>(OnPlayTracksCommand);
+            DownloadTrackCommand = new DelegateCommand<Audio>(OnDownloadTrackCommand);
+            AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand);
         }
 
         public LFAudioBase Track { get; private set; }
@@ -43,6 +49,12 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand<Audio> PlayTracksCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<Audio> DownloadTrackCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<Audio> AddToMyAudiosCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -94,11 +106,45 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("AccessDeniedView", null);
         }
 
+        private async void OnDownloadTrackCommand(Audio track)
+        {
+            await _downloadsServiceHelper.StartDownloadingAsync(track.ToDownloadable());
+        }
+
+        private async void OnAddToMyAudiosCommand(Audio track)
+        {
+            _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
+
+            bool isSuccess = false;
+            try
+            {
+                isSuccess = await AddToMyAudios(track);
+            }
+            catch (Exception) { }
+
+            if (!isSuccess)
+            {
+                _dialogsService.Show(_locService["Message_AudioAddError_Text"],
+                    _locService["Message_AudioAddError_Title"]);
+            }
+            _appLoaderService.Hide();
+        }
+
+        private async Task<bool> AddToMyAudios(Audio audio)
+        {
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Add(
+                audio.Id, audio.OwnerId));
+
+            return !response.IsError;
+        }
+
         private readonly INavigationService _navigationService;
         private readonly InTouch _inTouch;
         private readonly IInTouchWrapper _inTouchWrapper;
         private readonly IPlayerService _playerService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
         private readonly IAppLoaderService _appLoaderService;
+        private readonly IDialogsService _dialogsService;
+        private readonly ILocService _locService;
     }
 }

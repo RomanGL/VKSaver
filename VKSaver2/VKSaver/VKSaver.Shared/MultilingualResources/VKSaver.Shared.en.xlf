@@ -1171,6 +1171,38 @@ Please wait...</target>
           <source>далее</source>
           <target state="translated">next</target>
         </trans-unit>
+        <trans-unit id="ArtistAlbumView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
+          <source>подробнее</source>
+          <target state="translated">details</target>
+        </trans-unit>
+        <trans-unit id="ArtistAlbumView_PivotSection_Tracks.Header" translate="yes" xml:space="preserve">
+          <source>композиции</source>
+          <target state="translated">tracks</target>
+        </trans-unit>
+        <trans-unit id="ArtistAlbumView_DetailsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить информацию об этом альбоме</source>
+          <target state="translated">Unable to load the details about this album</target>
+        </trans-unit>
+        <trans-unit id="ArtistAlbumView_DetailsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Собираем информацию об альбоме...</source>
+          <target state="translated">Collecting details about the album...</target>
+        </trans-unit>
+        <trans-unit id="ArtistAlbumView_DetailsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>К сожалению, мы не знаем никаких подробностей об этом альбоме</source>
+          <target state="translated">Unfortunately, we don't know any details about this album</target>
+        </trans-unit>
+        <trans-unit id="ArtistAlbumView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список треков этого альбома</source>
+          <target state="translated">Failed to load the tracks list of this album</target>
+        </trans-unit>
+        <trans-unit id="ArtistAlbumView_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Изучаем список композиций этого альбома...</source>
+          <target state="translated">Exploring the tracks list of this album...</target>
+        </trans-unit>
+        <trans-unit id="ArtistAlbumView_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В этом альбоме нет ни одной композиции</source>
+          <target state="translated">In this album there is no tracks</target>
+        </trans-unit>
       </group>
     </body>
   </file>

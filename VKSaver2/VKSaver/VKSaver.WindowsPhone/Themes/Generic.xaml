@@ -107,6 +107,41 @@
         </StackPanel>
     </DataTemplate>
 
+    <DataTemplate x:Key="TopTrackImageTemplate">
+        <Grid Margin="0,0,0,20"
+              Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <controls:ImagePlaceholder Source="{Binding LargeImage.URL}"
+                                       Text="{Binding Name}"
+                                       Width="80"
+                                       Height="80"
+                                       Margin="0,0,15,0" />
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding Name}"
+                           Style="{StaticResource BaseItemStyle}"
+                           FontSize="28"
+                           ContinuumNavigationTransitionInfo.IsExitElement="True" />
+                <TextBlock Text="{Binding Artist.Name}"
+                           Style="{StaticResource BaseItemStyle}"
+                           FontSize="18"
+                           Margin="0,10,0,0" />
+                <TextBlock Style="{StaticResource BaseItemStyle}"
+                           FontSize="18"
+                           Margin="0,5,0,0">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{ThemeResource PhoneTextLowColor}" />
+                    </TextBlock.Foreground>
+                        <Run Text="{Binding PlayCount}" />
+                        <Run Text="воспроизведений"
+                             x:Uid="TopTracksView_TrackPlaybacksCount" />
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
     <DataTemplate x:Key="CommonAudioTemplate">
         <StackPanel Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
             <TextBlock Text="{Binding Title}"
