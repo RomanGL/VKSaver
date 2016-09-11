@@ -200,7 +200,8 @@ namespace VKSaver.Core.ViewModels
 
         private void OnGoToAlbumInfoCommand(LFAlbumBase album)
         {
-            _navigationService.Navigate("AccessDeniedView", JsonConvert.SerializeObject(album));
+            var parameter = new Tuple<LFAlbumBase, string>(album, Artist.MegaImage.URL);
+            _navigationService.Navigate("ArtistAlbumView", JsonConvert.SerializeObject(parameter));
         }
 
         private void OnFindArtistInVKCommand()

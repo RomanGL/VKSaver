@@ -183,7 +183,7 @@ namespace VKSaver.Core.ViewModels
                     VKTrack = response.Data.Items[0]
                 };
 
-                //TryLoadFirstTrackInfo(FirstTrack);
+                TryLoadFirstTrackInfo(FirstTrack);
                 TryLoadBackground(FirstTrack);
                 return response.Data.Items.Skip(1);
             }

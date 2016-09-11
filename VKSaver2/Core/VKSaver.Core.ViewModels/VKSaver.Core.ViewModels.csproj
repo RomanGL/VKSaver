@@ -66,6 +66,7 @@
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArtistAlbumViewModel.cs" />
     <Compile Include="ArtistInfoViewModel.cs" />
     <Compile Include="PackagingFilesViewModel.cs" />
     <Compile Include="PromoViewModel.cs" />
