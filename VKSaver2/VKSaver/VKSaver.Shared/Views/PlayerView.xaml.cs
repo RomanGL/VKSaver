@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
+using System;
 using VKSaver.Core.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -34,8 +35,12 @@ namespace VKSaver.Views
 
         private void TracksList_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            TracksList.Loaded -= TracksList_Loaded;
-            TracksList.ScrollIntoView(vm.CurrentTrack);
+            try
+            {
+                TracksList.Loaded -= TracksList_Loaded;
+                TracksList.ScrollIntoView(vm.CurrentTrack);
+            }
+            catch (Exception) { }
         }
 
         private void MainPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)

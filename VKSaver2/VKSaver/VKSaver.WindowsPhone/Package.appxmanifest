@@ -17,9 +17,10 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VKSaver.WindowsPhone.App">
       <m3:VisualElements DisplayName="ms-resource:AppNameText" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="VKSaver.WindowsPhone" ForegroundText="light" BackgroundColor="transparent">
-        <m3:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png">
+        <m3:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png" Wide310x150Logo="Assets\Wide310x150.png">
           <m3:ShowNameOnTiles>
             <m3:ShowOn Tile="square150x150Logo" />
+            <m3:ShowOn Tile="wide310x150Logo" />
           </m3:ShowNameOnTiles>
         </m3:DefaultTile>
         <m3:InitialRotationPreference>

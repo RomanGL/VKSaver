@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.SharpZipLib.Zip;
+using NotificationsExtensions.TileContent;
 using System;
 using System.IO;
 using System.Threading;
@@ -10,6 +11,7 @@ using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
 using Windows.Storage;
+using Windows.UI.Notifications;
 using static VKSaver.Core.Services.PlayerConstants;
 
 namespace VKSaver.PlayerTask
@@ -27,6 +29,7 @@ namespace VKSaver.PlayerTask
             _logService = new LogService();
             _playerPlaylistService = new PlayerPlaylistService(_logService);
             _musicCacheService = new MusicCacheService(_logService);
+            _imagesCacheService = new ImagesCacheService(null, null);
 
             _player = BackgroundMediaPlayer.Current;
             _manager = new PlaybackManager(_player, _settingsService, _playerPlaylistService, _logService, _musicCacheService);
@@ -97,6 +100,8 @@ namespace VKSaver.PlayerTask
                 _musicCacheService = null;
                 _player = null;
 
+                TileUpdateManager.CreateTileUpdaterForApplication("App").Clear();
+
                 BackgroundMediaPlayer.Shutdown();
             }
             catch (Exception ex)
@@ -117,6 +122,8 @@ namespace VKSaver.PlayerTask
             var valueSet = new ValueSet();
             valueSet.Add(PLAYER_TRACK_ID, e.TrackID);
             BackgroundMediaPlayer.SendMessageToForeground(valueSet);
+
+            UpdateTileOnNewTrack(e.Track);
         }
 
         /// <summary>
@@ -236,6 +243,49 @@ namespace VKSaver.PlayerTask
             _controls.DisplayUpdater.Update();
         }
 
+        private async void UpdateTileOnNewTrack(IPlayerTrack track)
+        {
+            try
+            {
+                string artistImage = await _imagesCacheService.GetCachedArtistImage(track.Artist);
+
+                var images = await _imagesCacheService.GetCachedAlbumsImages(3);
+                if (images.Count == 1)
+                    images.Add("ms-appx:///Assets/Images/PlayerLogo2.png");
+
+                int count = 5 - images.Count;
+                for (int i = 1; i <= count; i++)
+                    images.Add($"ms-appx:///Assets/Images/PlayerLogo{i}.png");
+
+                var wideTile = TileContentFactory.CreateTileWide310x150PeekImageCollection01();
+                wideTile.TextBodyWrap.Text = track.Title;
+                wideTile.TextHeading.Text = track.Artist;
+
+                wideTile.ImageMain.Src = images[0];
+                wideTile.ImageSmallColumn1Row1.Src = images[1];
+                wideTile.ImageSmallColumn1Row2.Src = images[2];
+                wideTile.ImageSmallColumn2Row1.Src = images[3];
+                wideTile.ImageSmallColumn2Row2.Src = images[4];
+
+                var squareTile = TileContentFactory.CreateTileSquare150x150PeekImageAndText02();
+                squareTile.TextBodyWrap.Text = track.Title;
+                squareTile.TextHeading.Text = track.Artist;
+                squareTile.Image.Src = String.IsNullOrEmpty(artistImage) ? images[0] : artistImage;
+
+                wideTile.RequireSquare150x150Content = true;
+                wideTile.Square150x150Content = squareTile;
+
+                var tileNotification = wideTile.CreateNotification();
+
+                if (_manager.CurrentTrack.Equals(track))
+                    TileUpdateManager.CreateTileUpdaterForApplication("App").Update(tileNotification);
+            }
+            catch (Exception ex)
+            {
+                _logService.LogText($"Tile update exception: {ex.ToString()}");
+            }
+        }
+        
         private BackgroundTaskDeferral _deferral;
         private SystemMediaTransportControls _controls;
         private SettingsService _settingsService;
@@ -244,6 +294,7 @@ namespace VKSaver.PlayerTask
         private PlaybackManager _manager;
         private ILogService _logService;
         private IPlayerPlaylistService _playerPlaylistService;
+        private IImagesCacheService _imagesCacheService;
         private bool _isAppRunning;
         private bool _isTaskRunning;
 
