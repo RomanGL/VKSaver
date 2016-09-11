@@ -878,6 +878,9 @@ Please wait...</value>
     <value>Are you ready? Then let's start!</value>
   </data>
   <data name="PromoView_LetsGoButton.Content" xml:space="preserve">
-    <value>Let's go!</value>
+    <value>let's go!</value>
+  </data>
+  <data name="PromoView_NextButton.Content" xml:space="preserve">
+    <value>next</value>
   </data>
 </root>

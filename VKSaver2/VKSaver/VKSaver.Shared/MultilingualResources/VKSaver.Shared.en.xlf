@@ -1164,8 +1164,12 @@ Please wait...</target>
           <target state="translated">Are you ready? Then let's start!</target>
         </trans-unit>
         <trans-unit id="PromoView_LetsGoButton.Content" translate="yes" xml:space="preserve">
-          <source>Начать</source>
-          <target state="translated">Let's go!</target>
+          <source>начать</source>
+          <target state="translated">let's go!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_NextButton.Content" translate="yes" xml:space="preserve">
+          <source>далее</source>
+          <target state="translated">next</target>
         </trans-unit>
       </group>
     </body>

@@ -957,7 +957,7 @@
 Пожалуйста, подождите...</value>
   </data>
   <data name="PromoView_LetsGoButton.Content" xml:space="preserve">
-    <value>Начать</value>
+    <value>начать</value>
   </data>
   <data name="PromoView_Screen0_Line1_Text" xml:space="preserve">
     <value>Новые функции ждут вас!</value>
@@ -982,5 +982,8 @@
   </data>
   <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
     <value>Проигрывание треков избранных исполнителей и чартов</value>
+  </data>
+  <data name="PromoView_NextButton.Content" xml:space="preserve">
+    <value>далее</value>
   </data>
 </root>
