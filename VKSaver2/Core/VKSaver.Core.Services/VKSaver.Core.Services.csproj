@@ -138,6 +138,10 @@
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NotificationsExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NotificationsExtensions.1.0.0\lib\portable-wpa81+win81\NotificationsExtensions.winmd</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="OneTeam.SDK.Core">
       <HintPath>..\..\Libs\OneTeam.SDK.Core.dll</HintPath>
     </Reference>
