@@ -52,6 +52,7 @@ namespace VKSaver.Core.ViewModels
             DownloadTrackCommand = new DelegateCommand<Audio>(OnDownloadTrackCommand);
             GoToSearchCommand = new DelegateCommand(OnGoToSearchCommand);
             GoToSettingsViewCommand = new DelegateCommand(OnGoToSettingsViewCommand);
+            GoToNewsViewCommand = new DelegateCommand(OnGoToNewsViewCommand);
 
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
@@ -112,6 +113,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand GoToSearchCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand GoToNewsViewCommand { get; private set; }
 
         public VKAudioWithImage FirstTrack { get; private set; }
 
@@ -287,6 +291,15 @@ namespace VKSaver.Core.ViewModels
         private void OnGoToArtistInfoCommand(LFArtistExtended artist)
         {
             _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist));
+        }
+
+        private void OnGoToNewsViewCommand()
+        {
+            if (_purchaseService.IsFullVersionPurchased)
+                _navigationService.Navigate("NewsMediaView", null);
+            else
+                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
+                    new KeyValuePair<string, string>("NewsMediaView", null)));
         }
 
         private void OnGoToTopTracksCommand()

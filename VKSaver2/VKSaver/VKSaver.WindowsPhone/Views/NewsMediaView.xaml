@@ -1,0 +1,49 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.NewsMediaView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:controls="using:VKSaver.Controls"
+                           xmlns:converters="using:VKSaver.Converters"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           xmlns:i="using:Microsoft.Xaml.Interactivity"
+                           xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:design="using:VKSaver.Design"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           Style="{StaticResource DefaultPageStyle}">
+
+    <Page.Resources>        
+        <Style x:Key="PivotItemStyle"
+               TargetType="PivotItem">
+            <Setter Property="Margin"
+                    Value="19,0,0,0" />
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Margin="19,0,0,0">
+            <TextBlock Text="ВКАЧАЙ"
+                       x:Uid="AppName"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       Margin="0,12,0,0" />
+            <TextBlock Text="новости"
+                       Margin="-3,-6.5,0,26.5"
+                       Style="{ThemeResource HeaderTextBlockStyle}"
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+        </StackPanel>
+    </Grid>
+</mvvm:VisualStateAwarePage>
