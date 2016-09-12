@@ -2925,7 +2925,7 @@
             <param name="intro">A bitmask representing status of passing intro in the app.</param>
             <returns>An <see cref="T:ModernDev.InTouch.AuthStatus"/> object containing registration information.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:ModernDev.InTouch.AuthMethods.Restore(System.String)" -->
+        <!-- Проигнорирован некорректный комментарий XML для члена "M:ModernDev.InTouch.AuthMethods.Restore(System.String)" -->
         <member name="T:ModernDev.InTouch.BoardMethods">
             <summary>
             A base class for working with group's boards.

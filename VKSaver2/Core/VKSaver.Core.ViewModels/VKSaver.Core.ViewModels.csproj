@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="ArtistAlbumViewModel.cs" />
     <Compile Include="ArtistInfoViewModel.cs" />
+    <Compile Include="AudioViewModelBase.cs" />
     <Compile Include="NewsMediaViewModel.cs" />
     <Compile Include="PackagingFilesViewModel.cs" />
     <Compile Include="PromoViewModel.cs" />

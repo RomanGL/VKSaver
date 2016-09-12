@@ -1,6 +1,8 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using ModernDev.InTouch;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -15,37 +17,50 @@ using Windows.UI.Xaml.Navigation;
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class NewsMediaViewModel : ViewModelBase
+    public sealed class NewsMediaViewModel : AudioViewModelBase
     {
-        public NewsMediaViewModel(InTouch inTouch, IInTouchWrapper inTouchWrapper)
-        {
-            _inTouch = inTouch;
-            _inTouchWrapper = inTouchWrapper;
-        }
+        public NewsMediaViewModel(InTouch inTouch, INavigationService navigationService,
+            IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
+            IAppLoaderService appLoaderService, IDialogsService dialogsService,
+            ILocService locService, IInTouchWrapper inTouchWraper)
+            : base(inTouch, navigationService, playerService, downloadsServiceHelper,
+                 appLoaderService, dialogsService, locService, inTouchWraper)
+        { }
 
         [DoNotNotify]
-        public PaginatedCollection<NewsMediaItem> MediaItems { get; private set; }
+        public PaginatedCollection<Audio> MediaItems { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (viewModelState.Count > 0)
             {
                 _startFrom = (string)viewModelState[nameof(_startFrom)];
-                MediaItems = JsonConvert.DeserializeObject<PaginatedCollection<NewsMediaItem>>(
+                MediaItems = JsonConvert.DeserializeObject<PaginatedCollection<Audio>>(
                     viewModelState[nameof(MediaItems)].ToString());
                 MediaItems.LoadMoreItems = LoadMoreMediaItems;
             }
             else
             {
-                MediaItems = new PaginatedCollection<NewsMediaItem>(LoadMoreMediaItems);
+                MediaItems = new PaginatedCollection<Audio>(LoadMoreMediaItems);
             }
 
             base.OnNavigatedTo(e, viewModelState);
         }
 
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        protected override IList<Audio> GetAudiosList()
         {
-            if (e.NavigationMode == NavigationMode.New)
+            return MediaItems;
+        }
+
+        protected override void OnReloadContentCommand()
+        {
+            MediaItems?.Clear();
+            _startFrom = null;
+        }
+
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        {            
+            if (!IsSelectionMode && e.NavigationMode == NavigationMode.New)
             {
                 viewModelState[nameof(MediaItems)] = JsonConvert.SerializeObject(MediaItems);
                 viewModelState[nameof(_startFrom)] = _startFrom;
@@ -54,21 +69,37 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
-        private async Task<IEnumerable<NewsMediaItem>> LoadMoreMediaItems(uint page)
+        private async Task<IEnumerable<Audio>> LoadMoreMediaItems(uint page)
         {
             var parameters = new NewsfeedGetParams();
-            parameters.Count = 50;
-            parameters.Filters = new List<NewsfeedFilters>
+            parameters.StartFrom = _startFrom;
+            parameters.Filters = new List<NewsfeedFilters>(1)
             {
                 NewsfeedFilters.Audio
             };
+            
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Newsfeed.Get(parameters));
 
-            return null;
+            if (response.IsError)
+                throw new Exception(response.Error.ToString());
+            else
+            {
+                if (!MediaItems.Any() && response.Data.Items.Any())
+                    SetDefaultMode();
+
+                _startFrom = response.Data.NextFrom;
+                var mediaItems = new List<Audio>();
+
+                foreach (var post in response.Data.Items)
+                {
+                    if (post.Audio != null)
+                        mediaItems.AddRange(post.Audio.Items);
+                }
+
+                return mediaItems;
+            }
         }
 
         private string _startFrom;
-          
-        private readonly InTouch _inTouch;
-        private readonly IInTouchWrapper _inTouchWrapper;
     }
 }
