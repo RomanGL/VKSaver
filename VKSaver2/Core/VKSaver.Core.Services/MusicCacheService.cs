@@ -3,11 +3,13 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Storage;
+using Windows.Storage.Search;
 
 namespace VKSaver.Core.Services
 {
@@ -92,6 +94,22 @@ namespace VKSaver.Core.Services
             {
                 var file = await GetCachedFile(fileName);
                 return new VKSaverAudioFile(file);
+            }
+            catch (Exception ex)
+            {
+                _logService.LogException(ex);
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<VKSaverAudioFile>> GetCachedFiles(uint count, uint offset)
+        {
+            try
+            {
+                var folder = await GetCacheFolder();
+                var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, offset, count);
+
+                return files.Select(f => new VKSaverAudioFile(f));
             }
             catch (Exception ex)
             {

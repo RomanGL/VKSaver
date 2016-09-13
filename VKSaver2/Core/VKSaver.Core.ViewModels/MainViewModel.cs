@@ -53,6 +53,7 @@ namespace VKSaver.Core.ViewModels
             GoToSearchCommand = new DelegateCommand(OnGoToSearchCommand);
             GoToSettingsViewCommand = new DelegateCommand(OnGoToSettingsViewCommand);
             GoToNewsViewCommand = new DelegateCommand(OnGoToNewsViewCommand);
+            GoToCachedViewCommand = new DelegateCommand(OnGoToCachedViewCommand);
 
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
@@ -116,6 +117,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand GoToNewsViewCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand GoToCachedViewCommand { get; private set; }
 
         public VKAudioWithImage FirstTrack { get; private set; }
 
@@ -318,6 +322,11 @@ namespace VKSaver.Core.ViewModels
             else
                 _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
                     new KeyValuePair<string, string>("TopArtistsView", null)));
+        }
+
+        private void OnGoToCachedViewCommand()
+        {
+            _navigationService.Navigate("CachedView", null);
         }
 
         private void OnGoToUserContentCommand(string view)

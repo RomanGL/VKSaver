@@ -1022,4 +1022,8 @@
   <data name="NewsMediaView_Loader.NoDataText" xml:space="preserve">
     <value>В последних новостях не найдено ни одной аудиозаписи</value>
   </data>
+  <data name="MainView_CachedItem.Content" xml:space="preserve">
+    <value>кэшированные</value>
+    <comment>Кэшированные треки</comment>
+  </data>
 </root>

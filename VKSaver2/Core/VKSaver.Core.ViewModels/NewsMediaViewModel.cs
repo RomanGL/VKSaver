@@ -2,14 +2,11 @@
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using ModernDev.InTouch;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using Windows.UI.Xaml.Navigation;

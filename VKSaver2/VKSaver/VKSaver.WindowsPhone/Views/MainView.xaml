@@ -350,6 +350,17 @@
                             </i:Interaction.Behaviors>
                         </ListViewItem>
 
+                        <ListViewItem Content="кэшированные"
+                                      x:Uid="MainView_CachedItem"
+                                      Style="{StaticResource ListViewMenuItemStyle}"
+                                      Margin="0,30,0,5">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToCachedViewCommand}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        
                         <ListViewItem Content="топ треков"
                                       x:Uid="MainView_TopTracksItem"
                                       Style="{StaticResource ListViewMenuItemStyle}"
@@ -359,7 +370,8 @@
                                     <c:InvokeCommandAction Command="{Binding GoToTopTracksCommand}" />
                                 </c:EventTriggerBehavior>
                             </i:Interaction.Behaviors>
-                        </ListViewItem>
+                        </ListViewItem>                       
+                        
                         <ListViewItem Content="топ исполнителей"
                                       x:Uid="MainView_TopArtistsItem"
                                       Style="{StaticResource ListViewMenuItemStyle}">

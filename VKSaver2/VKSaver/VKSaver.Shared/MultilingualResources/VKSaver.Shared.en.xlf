@@ -1219,6 +1219,11 @@ Please wait...</target>
           <source>В последних новостях не найдено ни одной аудиозаписи</source>
           <target state="translated">In the latest news audio not found</target>
         </trans-unit>
+        <trans-unit id="MainView_CachedItem.Content" translate="yes" xml:space="preserve">
+          <source>кэшированные</source>
+          <target state="new">кэшированные</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Кэшированные треки</note>
+        </trans-unit>
       </group>
     </body>
   </file>
