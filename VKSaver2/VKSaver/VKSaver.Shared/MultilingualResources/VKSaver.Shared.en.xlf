@@ -1203,6 +1203,22 @@ Please wait...</target>
           <source>В этом альбоме нет ни одной композиции</source>
           <target state="translated">In this album there is no tracks</target>
         </trans-unit>
+        <trans-unit id="NewsMediaView_Title.Text" translate="yes" xml:space="preserve">
+          <source>новости</source>
+          <target state="translated">news</target>
+        </trans-unit>
+        <trans-unit id="NewsMediaView_Loader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список новостей</source>
+          <target state="translated">Failed to load the list of news</target>
+        </trans-unit>
+        <trans-unit id="NewsMediaView_Loader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список последних новостей...</source>
+          <target state="translated">Loading the latest news list...</target>
+        </trans-unit>
+        <trans-unit id="NewsMediaView_Loader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В последних новостях не найдено ни одной аудиозаписи</source>
+          <target state="translated">In the latest news audio not found</target>
+        </trans-unit>
       </group>
     </body>
   </file>

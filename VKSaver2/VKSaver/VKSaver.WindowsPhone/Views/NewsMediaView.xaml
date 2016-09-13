@@ -74,6 +74,7 @@
                        Style="{ThemeResource TitleTextBlockStyle}"
                        Margin="0,12,0,0" />
             <TextBlock Text="новости"
+                       x:Uid="NewsMediaView_Title"
                        Margin="-3,-6.5,0,26.5"
                        Style="{ThemeResource HeaderTextBlockStyle}"
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
@@ -91,11 +92,11 @@
                 <DataTemplate>
                     <controls:StateBlock State="{Binding MediaItems.ContentState}"
                                          ReloadCommand="{Binding MediaItems.LoadCommand}"
-                                         x:Uid="RecommendationsLoader"
+                                         x:Uid="NewsMediaView_Loader"
                                          Margin="0,0,0,60"
-                                         LoadingText="Изучаем ваши музыкальные предпочтения..."
-                                         ErrorText="Не удалось загрузить рекомендации"
-                                         NoDataText="Мы не можем ничего вам порекомендоать" />
+                                         LoadingText="Загрузка списка новостей..."
+                                         ErrorText="Не удалось загрузить последние новостей..."
+                                         NoDataText="Не найдено аудиозаписей" />
                 </DataTemplate>
             </ListView.FooterTemplate>
             <i:Interaction.Behaviors>

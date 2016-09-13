@@ -907,4 +907,16 @@ Please wait...</value>
   <data name="ArtistAlbumView_TracksLoader.NoDataText" xml:space="preserve">
     <value>In this album there is no tracks</value>
   </data>
+  <data name="NewsMediaView_Title.Text" xml:space="preserve">
+    <value>news</value>
+  </data>
+  <data name="NewsMediaView_Loader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of news</value>
+  </data>
+  <data name="NewsMediaView_Loader.LoadingText" xml:space="preserve">
+    <value>Loading the latest news list...</value>
+  </data>
+  <data name="NewsMediaView_Loader.NoDataText" xml:space="preserve">
+    <value>In the latest news audio not found</value>
+  </data>
 </root>

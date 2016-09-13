@@ -71,6 +71,9 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<Audio>> LoadMoreMediaItems(uint page)
         {
+            if (page > 0)
+                return new List<Audio>(0);
+
             var parameters = new NewsfeedGetParams();
             parameters.StartFrom = _startFrom;
             parameters.Filters = new List<NewsfeedFilters>(1)
@@ -92,8 +95,15 @@ namespace VKSaver.Core.ViewModels
 
                 foreach (var post in response.Data.Items)
                 {
-                    if (post.Audio != null)
-                        mediaItems.AddRange(post.Audio.Items);
+                    if (post.Attachments == null)
+                        continue;
+
+                    foreach (var attachment in post.Attachments)
+                    {
+                        var audio = attachment as Audio;
+                        if (audio != null)
+                            mediaItems.Add(audio);
+                    }
                 }
 
                 return mediaItems;

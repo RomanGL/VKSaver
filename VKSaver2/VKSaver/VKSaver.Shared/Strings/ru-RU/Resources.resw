@@ -1010,4 +1010,16 @@
   <data name="ArtistAlbumView_TracksLoader.NoDataText" xml:space="preserve">
     <value>В этом альбоме нет ни одной композиции</value>
   </data>
+  <data name="NewsMediaView_Title.Text" xml:space="preserve">
+    <value>новости</value>
+  </data>
+  <data name="NewsMediaView_Loader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список новостей</value>
+  </data>
+  <data name="NewsMediaView_Loader.LoadingText" xml:space="preserve">
+    <value>Загружаем список последних новостей...</value>
+  </data>
+  <data name="NewsMediaView_Loader.NoDataText" xml:space="preserve">
+    <value>В последних новостях не найдено ни одной аудиозаписи</value>
+  </data>
 </root>
