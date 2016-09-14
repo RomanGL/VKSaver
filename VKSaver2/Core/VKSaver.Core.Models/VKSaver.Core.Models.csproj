@@ -76,6 +76,7 @@
     <Compile Include="Common\VKSaverAudio.cs" />
     <Compile Include="Common\VKSaverAudioTrackInfo.cs" />
     <Compile Include="Common\VKSaverAudioVKInfo.cs" />
+    <Compile Include="Player\CachedTrack.cs" />
     <Compile Include="Player\IPlayerTrack.cs" />
     <Compile Include="Player\PlayerRepeatMode.cs" />
     <Compile Include="Player\PlayerState.cs" />

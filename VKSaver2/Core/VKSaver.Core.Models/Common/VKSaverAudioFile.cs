@@ -25,6 +25,8 @@ namespace VKSaver.Core.Models.Common
             _file = file;
         }
          
+        public StorageFile File { get { return _file; } }
+
         public async Task<Stream> GetContentStreamAsync()
         {
             await ReadZipFileAsync();
