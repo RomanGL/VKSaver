@@ -25,17 +25,8 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            if (viewModelState.Count > 0)
+            if (e.NavigationMode == NavigationMode.New)
             {
-                _offset = (uint)viewModelState[nameof(_offset)];
-                CachedTracks = JsonConvert.DeserializeObject<PaginatedCollection<CachedTrack>>(
-                    viewModelState[nameof(CachedTracks)].ToString());
-
-                CachedTracks.LoadMoreItems = LoadMoreTracks;
-            }
-            else
-            {
-                _offset = 0;
                 CachedTracks = new PaginatedCollection<CachedTrack>(LoadMoreTracks);
             }
 
@@ -44,20 +35,13 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
-            if (e.NavigationMode == NavigationMode.New)
-            {
-                viewModelState[nameof(CachedTracks)] = JsonConvert.SerializeObject(CachedTracks);
-                viewModelState[nameof(_offset)] = _offset;
-            }
-
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         private async Task<IEnumerable<CachedTrack>> LoadMoreTracks(uint page)
         {
-            var files = await _musicCacheService.GetCachedFiles(20, _offset);
-            var tracks = new List<CachedTrack>(20);
-            _offset += 20;
+            var files = await _musicCacheService.GetCachedFiles();
+            var tracks = new List<CachedTrack>();
 
             foreach (var file in files)
             {
@@ -76,8 +60,6 @@ namespace VKSaver.Core.ViewModels
 
             return tracks;
         }
-
-        private uint _offset;
 
         private readonly IMusicCacheService _musicCacheService;
     }

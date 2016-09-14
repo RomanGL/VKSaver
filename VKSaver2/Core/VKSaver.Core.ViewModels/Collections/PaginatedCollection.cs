@@ -127,10 +127,13 @@ namespace VKSaver.Core.ViewModels.Collections
 
         protected override void Reset()
         {
+            Page = 0;
+
             if (LoadMoreItems != null)
             {
                 HasMoreItems = true;
                 ContentState = ContentState.None;
+                return;
             }
 
             ContentState = ContentState.NoData;

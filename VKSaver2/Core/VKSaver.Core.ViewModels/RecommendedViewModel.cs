@@ -4,6 +4,7 @@ using ModernDev.InTouch;
 using Newtonsoft.Json;
 using PropertyChanged;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,15 +15,22 @@ using Windows.UI.Xaml.Navigation;
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class RecommendedViewModel : AudioViewModelBase
+    public sealed class RecommendedViewModel : VKAudioViewModel
     {
-        public RecommendedViewModel(InTouch inTouch, INavigationService navigationService,
-            IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
-            IAppLoaderService appLoaderService, IDialogsService dialogsService,
-            ILocService locService, IInTouchWrapper inTouchWraper)
-            : base(inTouch, navigationService, playerService, downloadsServiceHelper,
-                 appLoaderService, dialogsService, locService, inTouchWraper)
-        { }
+        public RecommendedViewModel(
+            InTouch inTouch,
+            INavigationService navigationService,
+            IPlayerService playerService,
+            IDownloadsServiceHelper downloadsServiceHelper,
+            IAppLoaderService appLoaderService,
+            IDialogsService dialogsService,
+            ILocService locService,
+            IInTouchWrapper inTouchWraper)
+            : base(inTouch, appLoaderService, dialogsService, inTouchWraper, downloadsServiceHelper,
+                  playerService, locService, navigationService)
+        {
+            IsReloadButtonSupported = true;
+        }
 
         public PaginatedCollection<Audio> Audios { get; private set; }
 
@@ -64,9 +72,14 @@ namespace VKSaver.Core.ViewModels
             return Audios;
         }
 
+        protected override IList GetSelectionList()
+        {
+            return Audios;
+        }
+
         protected override void OnReloadContentCommand()
         {
-            Audios?.Clear();
+            Audios?.Refresh();
             _audiosOffset = 0;
         }
 

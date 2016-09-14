@@ -68,12 +68,14 @@
   <ItemGroup>
     <Compile Include="ArtistAlbumViewModel.cs" />
     <Compile Include="ArtistInfoViewModel.cs" />
-    <Compile Include="AudioViewModelBase.cs" />
+    <Compile Include="AudioViewModel.cs" />
     <Compile Include="CachedViewModel.cs" />
+    <Compile Include="DownloadableAudioViewModel.cs" />
     <Compile Include="NewsMediaViewModel.cs" />
     <Compile Include="PackagingFilesViewModel.cs" />
     <Compile Include="PromoViewModel.cs" />
     <Compile Include="Search\SearchNavigationParameter.cs" />
+    <Compile Include="SelectionViewModel.cs" />
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="VideoSearchViewModel.cs" />
     <Compile Include="AudioSearchViewModel.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="TrackInfoViewModel.cs" />
     <Compile Include="VideoInfoViewModel.cs" />
     <Compile Include="VideoPlayerViewModel.cs" />
+    <Compile Include="VKAudioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism.PubSubEvents">

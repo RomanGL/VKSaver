@@ -4,6 +4,7 @@ using ModernDev.InTouch;
 using Newtonsoft.Json;
 using PropertyChanged;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,15 +15,22 @@ using Windows.UI.Xaml.Navigation;
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class NewsMediaViewModel : AudioViewModelBase
+    public sealed class NewsMediaViewModel : VKAudioViewModel
     {
-        public NewsMediaViewModel(InTouch inTouch, INavigationService navigationService,
-            IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
-            IAppLoaderService appLoaderService, IDialogsService dialogsService,
-            ILocService locService, IInTouchWrapper inTouchWraper)
-            : base(inTouch, navigationService, playerService, downloadsServiceHelper,
-                 appLoaderService, dialogsService, locService, inTouchWraper)
-        { }
+        public NewsMediaViewModel(
+            InTouch inTouch, 
+            INavigationService navigationService,
+            IPlayerService playerService, 
+            IDownloadsServiceHelper downloadsServiceHelper,
+            IAppLoaderService appLoaderService, 
+            IDialogsService dialogsService,
+            ILocService locService, 
+            IInTouchWrapper inTouchWraper)
+            : base(inTouch, appLoaderService, dialogsService, inTouchWraper, downloadsServiceHelper,
+                  playerService, locService, navigationService)
+        {
+            IsReloadButtonSupported = true;
+        }
 
         [DoNotNotify]
         public PaginatedCollection<Audio> MediaItems { get; private set; }
@@ -49,9 +57,14 @@ namespace VKSaver.Core.ViewModels
             return MediaItems;
         }
 
+        protected override IList GetSelectionList()
+        {
+            return MediaItems;
+        }
+
         protected override void OnReloadContentCommand()
         {
-            MediaItems?.Clear();
+            MediaItems?.Refresh();
             _startFrom = null;
         }
 

@@ -34,7 +34,7 @@ namespace VKSaver.Core.Services
             try
             {
                 var cacheFolder = await GetCacheFolder();
-                zipFile = await cacheFolder.CreateFileAsync(file.Name.Split(new char[] { '.' })[0] + FILES_EXTENSION, 
+                zipFile = await cacheFolder.CreateFileAsync(file.Name.Split(new char[] { '.' })[0] + FILES_EXTENSION,
                     CreationCollisionOption.ReplaceExisting);
                 zipFileStream = (await zipFile.OpenAsync(FileAccessMode.ReadWrite)).AsStream();
                 fileStream = (await file.OpenAsync(FileAccessMode.Read)).AsStreamForRead();
@@ -66,7 +66,7 @@ namespace VKSaver.Core.Services
                     metadataEntry.CompressionMethod = CompressionMethod.Stored;
                     WriteEntry(zipStream, metadataEntry, new MemoryStream(
                         Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(metadata))));
-                    
+
                     zipStream.Finish();
                 }
 
@@ -87,7 +87,7 @@ namespace VKSaver.Core.Services
                 fileStream?.Dispose();
             }
         }
-                
+
         public async Task<VKSaverAudioFile> GetVKSaverFile(string fileName)
         {
             try
@@ -108,8 +108,25 @@ namespace VKSaver.Core.Services
             {
                 var folder = await GetCacheFolder();
                 var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, offset, count);
-
+                
                 return files.Select(f => new VKSaverAudioFile(f));
+            }
+            catch (Exception ex)
+            {
+                _logService.LogException(ex);
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<VKSaverAudioFile>> GetCachedFiles()
+        {
+            try
+            {
+                var folder = await GetCacheFolder();
+                var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery);
+
+                return files.Where(f => f.FileType == FILES_EXTENSION)
+                    .Select(f => new VKSaverAudioFile(f));
             }
             catch (Exception ex)
             {
