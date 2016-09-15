@@ -15,6 +15,15 @@
                            mc:Ignorable="d"
                            Style="{StaticResource DefaultPageStyle}">
 
+    <mvvm:VisualStateAwarePage.BottomAppBar>
+        <CommandBar Visibility="Collapsed">
+            <i:Interaction.Behaviors>
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}"
+                                                    SecondaryCommands="{Binding SecondaryItems}" />
+            </i:Interaction.Behaviors>
+        </CommandBar>
+    </mvvm:VisualStateAwarePage.BottomAppBar>
+
     <Grid x:Name="LayoutRoot">
         <Grid.ChildrenTransitions>
             <TransitionCollection>

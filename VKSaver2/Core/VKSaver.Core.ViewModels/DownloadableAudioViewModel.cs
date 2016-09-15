@@ -1,18 +1,15 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using ModernDev.InTouch;
 using PropertyChanged;
-using System.Collections.Generic;
 using System.Linq;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Interfaces;
-using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Controls;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class DownloadableAudioViewModel : AudioViewModel
+    public abstract class DownloadableAudioViewModel<T> : AudioViewModel<T>
     {
         protected DownloadableAudioViewModel(
             IDownloadsServiceHelper downloadsServiceHelper,
@@ -24,7 +21,7 @@ namespace VKSaver.Core.ViewModels
         {
             _downloadsServiceHelper = downloadsServiceHelper;            
 
-            DownloadTrackCommand = new DelegateCommand<Audio>(OnDownloadTrackCommand);
+            DownloadTrackCommand = new DelegateCommand<T>(OnDownloadTrackCommand);
             DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, HasSelectedItems);
             OpenTransferManagerCommand = new DelegateCommand(OnOpenTransferManagerCommand);
         }
@@ -33,10 +30,12 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand OpenTransferManagerCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<Audio> DownloadTrackCommand { get; private set; }
+        public DelegateCommand<T> DownloadTrackCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand DownloadSelectedCommand { get; private set; }
+
+        protected abstract IDownloadable ConvertToDownloadable(T track);
 
         protected override void OnSelectionChangedCommand()
         {
@@ -72,9 +71,9 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("TransferView", "downloads");
         }
 
-        private async void OnDownloadTrackCommand(Audio track)
+        private async void OnDownloadTrackCommand(T track)
         {
-            await _downloadsServiceHelper.StartDownloadingAsync(track.ToDownloadable());
+            await _downloadsServiceHelper.StartDownloadingAsync(ConvertToDownloadable(track));
         }
 
         private async void OnDownloadSelectedCommand()
@@ -83,12 +82,7 @@ namespace VKSaver.Core.ViewModels
             var items = SelectedItems.ToList();
             SetDefaultMode();
 
-            var toDownload = new List<IDownloadable>(items.Count);
-            for (int i = 0; i < items.Count; i++)
-            {
-                toDownload.Add(((Audio)items[i]).ToDownloadable());
-            }
-
+            var toDownload = items.Cast<T>().Select(t => ConvertToDownloadable(t)).ToList();
             await _downloadsServiceHelper.StartDownloadingAsync(toDownload);
             _appLoaderService.Hide();
         }

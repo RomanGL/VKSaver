@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Newtonsoft.Json;
 using PropertyChanged;
 using System;
@@ -10,13 +11,21 @@ using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using Windows.UI.Xaml.Navigation;
+using System.Collections;
+using Windows.Storage.AccessCache;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class CachedViewModel : ViewModelBase
+    public sealed class CachedViewModel : AudioViewModel<CachedTrack>
     {
-        public CachedViewModel(IMusicCacheService musicCacheService)
+        public CachedViewModel(
+            IPlayerService playerService,
+            ILocService locService,
+            INavigationService navigationService,
+            IAppLoaderService appLoaderService,
+            IMusicCacheService musicCacheService)
+            : base(playerService, locService, navigationService, appLoaderService)
         {
             _musicCacheService = musicCacheService;
         }
@@ -38,6 +47,34 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
+        protected override IList<CachedTrack> GetAudiosList()
+        {
+            return CachedTracks;
+        }
+
+        protected override IList GetSelectionList()
+        {
+            return CachedTracks;
+        }
+
+        protected override IPlayerTrack ConvertToPlayerTrack(CachedTrack track)
+        {
+            return track;
+        }
+
+        protected override void PrepareTracksBeforePlay(IEnumerable<CachedTrack> tracks)
+        {
+            StorageApplicationPermissions.FutureAccessList.Clear();
+
+            foreach (var track in tracks)
+            {
+                string token = StorageApplicationPermissions.FutureAccessList.Add(track.File.File);
+                track.Source = $"vks-token:{token}";
+            }
+
+            base.PrepareTracksBeforePlay(tracks);
+        }
+
         private async Task<IEnumerable<CachedTrack>> LoadMoreTracks(uint page)
         {
             var files = await _musicCacheService.GetCachedFiles();
@@ -51,12 +88,14 @@ namespace VKSaver.Core.ViewModels
                     File = file,
                     Title = metadata.Track.Title,
                     Artist = metadata.Track.Artist,
-                    Source = $"vks-token:{file.File.Path}",
                     Duration = TimeSpan.FromTicks(metadata.Track.Duration),
                     VKInfo = metadata.VK
                 };
                 tracks.Add(track);
             }
+
+            if (tracks.Count > 0)
+                SetDefaultMode();
 
             return tracks;
         }

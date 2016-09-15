@@ -11,11 +11,14 @@ using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.Models.Player;
+using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.Models.Transfer;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class VKAudioViewModel : DownloadableAudioViewModel
+    public abstract class VKAudioViewModel : DownloadableAudioViewModel<Audio>
     {
         protected VKAudioViewModel(
             InTouch inTouch, 
@@ -53,6 +56,16 @@ namespace VKSaver.Core.ViewModels
             }
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
+        }
+
+        protected override IPlayerTrack ConvertToPlayerTrack(Audio track)
+        {
+            return track.ToPlayerTrack();
+        }
+
+        protected override IDownloadable ConvertToDownloadable(Audio track)
+        {
+            return track.ToDownloadable();
         }
 
         protected override void CreateSelectionAppBarButtons()

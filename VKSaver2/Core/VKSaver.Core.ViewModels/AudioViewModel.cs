@@ -5,6 +5,7 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Controls;
@@ -12,7 +13,7 @@ using Windows.UI.Xaml.Controls;
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class AudioViewModel : SelectionViewModel
+    public abstract class AudioViewModel<T> : SelectionViewModel
     {
         protected AudioViewModel(
             IPlayerService playerService, 
@@ -25,17 +26,21 @@ namespace VKSaver.Core.ViewModels
             _playerService = playerService;
             _appLoaderService = appLoaderService;
 
-            PlayTracksCommand = new DelegateCommand<Audio>(OnPlayTracksCommand); 
+            PlayTracksCommand = new DelegateCommand<T>(OnPlayTracksCommand); 
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
         }
 
         [DoNotNotify]
-        public DelegateCommand<Audio> PlayTracksCommand { get; private set; }
+        public DelegateCommand<T> PlayTracksCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand PlaySelectedCommand { get; private set; }  
+        
+        protected abstract IList<T> GetAudiosList();
 
-        protected abstract IList<Audio> GetAudiosList();
+        protected abstract IPlayerTrack ConvertToPlayerTrack(T track);
+
+        protected virtual void PrepareTracksBeforePlay(IEnumerable<T> tracks) { }
 
         protected override void CreateSelectionAppBarButtons()
         {      
@@ -49,13 +54,14 @@ namespace VKSaver.Core.ViewModels
             base.CreateSelectionAppBarButtons();
         }
 
-        private async void OnPlayTracksCommand(Audio track)
+        private async void OnPlayTracksCommand(T track)
         {
             _appLoaderService.Show();
 
             var audiosList = GetAudiosList();
+            PrepareTracksBeforePlay(audiosList);
 
-            await _playerService.PlayNewTracks(audiosList.ToPlayerTracks(), audiosList.IndexOf(track));
+            await _playerService.PlayNewTracks(audiosList.Select(t => ConvertToPlayerTrack(t)), audiosList.IndexOf(track));
             _navigationService.Navigate("PlayerView", null);
 
             _appLoaderService.Hide();
@@ -65,7 +71,10 @@ namespace VKSaver.Core.ViewModels
         {
             _appLoaderService.Show();
 
-            var toPlay = SelectedItems.Cast<Audio>().ToPlayerTracks();
+            var tracks = SelectedItems.Cast<T>();
+            PrepareTracksBeforePlay(tracks);
+
+            var toPlay = tracks.Select(t => ConvertToPlayerTrack(t));
             await _playerService.PlayNewTracks(toPlay, 0);
             _navigationService.Navigate("PlayerView", null);
 
