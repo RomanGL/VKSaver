@@ -1026,4 +1026,25 @@
     <value>кэшированные</value>
     <comment>Кэшированные треки</comment>
   </data>
+  <data name="AppBarButton_DeleteAll_Text" xml:space="preserve">
+    <value>удалить все</value>
+  </data>
+  <data name="CachedView_Loader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список кэшированных аудиозаписей</value>
+  </data>
+  <data name="CachedView_Loader.LoadingText" xml:space="preserve">
+    <value>Загружаем кэшированные аудиозаписи...</value>
+  </data>
+  <data name="CachedView_Loader.NoDataText" xml:space="preserve">
+    <value>Кэшированые аудиозаписи отсутствуют</value>
+  </data>
+  <data name="CachedView_Title.Text" xml:space="preserve">
+    <value>кэшированные</value>
+  </data>
+  <data name="Message_ClearCacheError_Text" xml:space="preserve">
+    <value>При очистке кэша аудиозаписей произошла ошибка. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_ClearCacheError_Title" xml:space="preserve">
+    <value>Не удалось очистить кэш</value>
+  </data>
 </root>

@@ -919,4 +919,29 @@ Please wait...</value>
   <data name="NewsMediaView_Loader.NoDataText" xml:space="preserve">
     <value>In the latest news audio not found</value>
   </data>
+  <data name="MainView_CachedItem.Content" xml:space="preserve">
+    <value>cached tracks</value>
+    <comment>Кэшированные треки</comment>
+  </data>
+  <data name="AppBarButton_DeleteAll_Text" xml:space="preserve">
+    <value>remove all</value>
+  </data>
+  <data name="Message_ClearCacheError_Text" xml:space="preserve">
+    <value>An error occurred while clearing the cache. Please try again later.</value>
+  </data>
+  <data name="Message_ClearCacheError_Title" xml:space="preserve">
+    <value>Failed to clear the cache</value>
+  </data>
+  <data name="CachedView_Loader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of cached tracks...</value>
+  </data>
+  <data name="CachedView_Loader.LoadingText" xml:space="preserve">
+    <value>Loading cached tracks...</value>
+  </data>
+  <data name="CachedView_Loader.NoDataText" xml:space="preserve">
+    <value>There is no cached tracks</value>
+  </data>
+  <data name="CachedView_Title.Text" xml:space="preserve">
+    <value>cached tracks</value>
+  </data>
 </root>

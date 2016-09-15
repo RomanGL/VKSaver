@@ -33,5 +33,10 @@ namespace VKSaver.Core.Models.Player
                 this.Artist == other.Artist &&
                 this.Source == other.Source;
         }
+
+        public override string ToString()
+        {
+            return $"{Artist} - {Title}";
+        }
     }
 }

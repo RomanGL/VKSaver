@@ -135,6 +135,21 @@ namespace VKSaver.Core.Services
             }
         }
 
+        public async Task<bool> ClearMusicCache()
+        {
+            try
+            {
+                var folder = await GetCacheFolder();
+                await folder.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logService.LogException(ex);
+                return false;
+            }
+        }
+
         private static void WriteEntry(ZipOutputStream zipStream, ZipEntry entry, Stream contentStream)
         {
             zipStream.PutNextEntry(entry);

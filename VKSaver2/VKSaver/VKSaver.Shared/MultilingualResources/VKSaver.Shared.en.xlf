@@ -1221,8 +1221,36 @@ Please wait...</target>
         </trans-unit>
         <trans-unit id="MainView_CachedItem.Content" translate="yes" xml:space="preserve">
           <source>кэшированные</source>
-          <target state="new">кэшированные</target>
+          <target state="translated">cached tracks</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Кэшированные треки</note>
+        </trans-unit>
+        <trans-unit id="AppBarButton_DeleteAll_Text" translate="yes" xml:space="preserve">
+          <source>удалить все</source>
+          <target state="translated">remove all</target>
+        </trans-unit>
+        <trans-unit id="Message_ClearCacheError_Text" translate="yes" xml:space="preserve">
+          <source>При очистке кэша аудиозаписей произошла ошибка. Повторите попытку позднее.</source>
+          <target state="translated">An error occurred while clearing the cache. Please try again later.</target>
+        </trans-unit>
+        <trans-unit id="Message_ClearCacheError_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось очистить кэш</source>
+          <target state="translated">Failed to clear the cache</target>
+        </trans-unit>
+        <trans-unit id="CachedView_Loader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список кэшированных аудиозаписей</source>
+          <target state="translated">Failed to load the list of cached tracks...</target>
+        </trans-unit>
+        <trans-unit id="CachedView_Loader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем кэшированные аудиозаписи...</source>
+          <target state="translated">Loading cached tracks...</target>
+        </trans-unit>
+        <trans-unit id="CachedView_Loader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Кэшированые аудиозаписи отсутствуют</source>
+          <target state="translated">There is no cached tracks</target>
+        </trans-unit>
+        <trans-unit id="CachedView_Title.Text" translate="yes" xml:space="preserve">
+          <source>кэшированные</source>
+          <target state="translated">cached tracks</target>
         </trans-unit>
       </group>
     </body>

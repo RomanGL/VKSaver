@@ -15,6 +15,27 @@
                            mc:Ignorable="d"
                            Style="{StaticResource DefaultPageStyle}">
 
+    <mvvm:VisualStateAwarePage.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+
+        <Style x:Key="RemovableItemStyle"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
+                                        Command="{Binding DataSource.DeleteTrackCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+    </mvvm:VisualStateAwarePage.Resources>
+    
     <mvvm:VisualStateAwarePage.BottomAppBar>
         <CommandBar Visibility="Collapsed">
             <i:Interaction.Behaviors>
@@ -43,6 +64,7 @@
                        Style="{ThemeResource TitleTextBlockStyle}"
                        Margin="0,12,0,0" />
             <TextBlock Text="кэшированные"
+                       x:Uid="CachedView_Title"
                        Margin="-3,-6.5,0,26.5"
                        Style="{ThemeResource HeaderTextBlockStyle}"
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
@@ -51,6 +73,7 @@
         <ListView Style="{StaticResource NoSelectionListViewStyle}"
                   ItemsSource="{Binding CachedTracks}"
                   ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                  ItemContainerStyle="{StaticResource RemovableItemStyle}"
                   IsItemClickEnabled="{Binding IsItemClickEnabled}"
                   SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
                   Grid.Row="1"
@@ -58,7 +81,8 @@
             <ListView.FooterTemplate>
                 <DataTemplate>
                     <controls:StateBlock State="{Binding CachedTracks.ContentState}"
-                                         ReloadCommand="{Binding CachedTracks.LoadCommand}"                                         
+                                         ReloadCommand="{Binding CachedTracks.LoadCommand}"
+                                         x:Uid="CachedView_Loader"
                                          Margin="0,0,0,60"
                                          LoadingText="Загружаем кэшированные аудиозаписи..."
                                          ErrorText="Не удалось загрузить список кэшированных аудиозаписей"
