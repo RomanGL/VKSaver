@@ -36,7 +36,7 @@
 
     <Grid>
         <controls:PlayerBackground x:Name="background"
-                                   DefaultTheme="Gray"
+                                   DefaultTheme="Orange"
                                    DefaultShapesType="VerticalTriangles"
                                    NoAlbums="True"
                                    ChangeColorDuration="0.5" />
@@ -80,7 +80,7 @@
                         Content="&#xE29B;"
                         Command="{Binding GoToSearchCommand}"
                         CommandParameter="Video"/>
-                <Button Style="{StaticResource TypeButtonStyle}"
+                <!--<Button Style="{StaticResource TypeButtonStyle}"
                         Content="&#xE132;"
                         Command="{Binding GoToSearchCommand}"
                         CommandParameter="Docs"/>
@@ -91,7 +91,7 @@
                 <Button Style="{StaticResource TypeButtonStyle}"
                         Content="&#xE125;"
                         Command="{Binding GoToSearchCommand}"
-                        CommandParameter="Groups"/>
+                        CommandParameter="Groups"/>-->
             </VariableSizedWrapGrid>
         </Grid>
     </Grid>
