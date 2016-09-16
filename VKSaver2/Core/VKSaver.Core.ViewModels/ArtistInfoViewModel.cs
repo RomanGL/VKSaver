@@ -23,11 +23,12 @@ namespace VKSaver.Core.ViewModels
     public sealed class ArtistInfoViewModel : ViewModelBase
     {
         public ArtistInfoViewModel(ILFService lfService, INavigationService navigationService,
-            ISettingsService settingsService)
+            ISettingsService settingsService, IPurchaseService purchaseService)
         {
             _lfService = lfService;
             _navigationService = navigationService;
             _settingsService = settingsService;
+            _purchaseService = purchaseService;
 
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
             GoToSimilarArtistInfoCommand = new DelegateCommand<LFSimilarArtist>(OnGoToSimilarArtistInfoCommand);
@@ -195,13 +196,22 @@ namespace VKSaver.Core.ViewModels
 
         private void OnGoToSimilarArtistInfoCommand(LFSimilarArtist artist)
         {
-            _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist));
+            if (_purchaseService.IsFullVersionPurchased)
+                _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist));
+            else
+                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
+                    new KeyValuePair<string, string>("ArtistInfoView", JsonConvert.SerializeObject(artist))));
         }
 
         private void OnGoToAlbumInfoCommand(LFAlbumBase album)
         {
             var parameter = new Tuple<LFAlbumBase, string>(album, Artist.MegaImage.URL);
-            _navigationService.Navigate("ArtistAlbumView", JsonConvert.SerializeObject(parameter));
+
+            if (_purchaseService.IsFullVersionPurchased)
+                _navigationService.Navigate("ArtistAlbumView", JsonConvert.SerializeObject(parameter));
+            else
+                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
+                    new KeyValuePair<string, string>("ArtistAlbumView", JsonConvert.SerializeObject(parameter))));
         }
 
         private void OnFindArtistInVKCommand()
@@ -220,5 +230,6 @@ namespace VKSaver.Core.ViewModels
         private readonly ILFService _lfService;
         private readonly INavigationService _navigationService;
         private readonly ISettingsService _settingsService;
+        private readonly IPurchaseService _purchaseService;
     }
 }
