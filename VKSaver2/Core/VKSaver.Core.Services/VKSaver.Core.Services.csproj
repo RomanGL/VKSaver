@@ -66,11 +66,14 @@
     <Compile Include="Common\DownloadsExtensions.cs" />
     <Compile Include="Common\EncryptionHelper.cs" />
     <Compile Include="Common\InTouchExtensions.cs" />
+    <Compile Include="Common\LFAuthorization.cs" />
     <Compile Include="Common\MediaStreamSourceWorker.cs" />
     <Compile Include="Common\AudioEncryptedStream.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="Common\VKAuthorization.cs" />
+    <Compile Include="Interfaces\ILastFmLoginService.cs" />
     <Compile Include="Interfaces\IMediaFilesProcessService.cs" />
+    <Compile Include="LastFmLoginService.cs" />
     <Compile Include="MediaFilesProcessService.cs" />
     <Compile Include="MusicCacheService.cs" />
     <Compile Include="DialogsService.cs" />

@@ -71,6 +71,7 @@
     <Compile Include="AudioViewModel.cs" />
     <Compile Include="CachedViewModel.cs" />
     <Compile Include="DownloadableAudioViewModel.cs" />
+    <Compile Include="LastFmLoginViewModel.cs" />
     <Compile Include="NewsMediaViewModel.cs" />
     <Compile Include="PackagingFilesViewModel.cs" />
     <Compile Include="PromoViewModel.cs" />

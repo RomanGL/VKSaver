@@ -14,10 +14,12 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class SettingsViewModel : ViewModelBase
     {
-        public SettingsViewModel(IVKLoginService vkLoginService, ISettingsService settingsService)
+        public SettingsViewModel(IVKLoginService vkLoginService, ISettingsService settingsService,
+            ILastFmLoginService lastFmLoginSevice)
         {
             _vkLoginService = vkLoginService;
             _settingsService = settingsService;
+            _lastFmLoginService = lastFmLoginSevice;
 
             Authorizations = new ObservableCollection<IServiceAuthorization>();
         }
@@ -27,6 +29,9 @@ namespace VKSaver.Core.ViewModels
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             Authorizations.Add(_vkLoginService.GetServiceAuthorization());
+            Authorizations.Add(_lastFmLoginService.GetServiceAuthorization());
+
+            _lastFmLoginService.UserLogout += LastFmLoginService_UserLogout;
 
             base.OnNavigatedTo(e, viewModelState);
         }
@@ -34,11 +39,23 @@ namespace VKSaver.Core.ViewModels
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             Authorizations.Clear();
+            _lastFmLoginService.UserLogout -= LastFmLoginService_UserLogout;
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
+        private void LastFmLoginService_UserLogout(ILastFmLoginService sender, EventArgs e)
+        {
+            var item = Authorizations.FirstOrDefault(s => s.ServiceName == "last.fm");
+            if (item == null)
+                return;
+
+            Authorizations.Remove(item);
+            Authorizations.Add(_lastFmLoginService.GetServiceAuthorization());
+        }
+
         private readonly IVKLoginService _vkLoginService;
         private readonly ISettingsService _settingsService;
+        private readonly ILastFmLoginService _lastFmLoginService;
     }
 }

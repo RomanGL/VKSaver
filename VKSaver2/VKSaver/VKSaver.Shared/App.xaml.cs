@@ -23,6 +23,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using Windows.Storage;
 using System.IO;
 using Windows.UI.Core;
+using IF.Lastfm.Core.Api;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -99,9 +100,6 @@ namespace VKSaver
 
         protected override void OnInitialize(IActivatedEventArgs args)
         {
-#if DEBUG
-            //DebugSettings.EnableFrameRateCounter = true;
-#endif
             Dispatcher = Window.Current.Dispatcher;
 
             _container = new UnityContainer();
@@ -112,20 +110,29 @@ namespace VKSaver
 
             var settingsService = new SettingsService();
             var inTouch = new InTouch();
+
             var vkLoginService = new VKLoginService(settingsService, inTouch);
             if (vkLoginService.IsAuthorized)
                 vkLoginService.InitializeInTouch();
+
+            var lastAuth = new LastAuth(LAST_FM_API_KEY, LAST_FM_API_SECRET);
+            var lastFmLoginService = new LastFmLoginService(settingsService, lastAuth, this.NavigationService);
+
+            if (lastFmLoginService.IsAuthorized)
+                lastFmLoginService.InitializeLastAuth();
 
             _container.RegisterInstance<IServiceResolver>(this);
             _container.RegisterInstance<ISettingsService>(settingsService);
             _container.RegisterInstance(this.NavigationService);
             _container.RegisterInstance(this.SessionStateService);
             _container.RegisterInstance<IDispatcherWrapper>(this);       
-            _container.RegisterInstance<ILFService>(new LFService("***REMOVED***"));
+            _container.RegisterInstance<ILFService>(new LFService(LAST_FM_API_KEY));
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
             _container.RegisterInstance<ILocService>(_locService);
             _container.RegisterInstance<IVKLoginService>(vkLoginService);
             _container.RegisterInstance<InTouch>(inTouch);
+            _container.RegisterInstance<ILastAuth>(lastAuth);
+            _container.RegisterInstance<ILastFmLoginService>(lastFmLoginService);
 
             _container.RegisterType<IInTouchWrapper, InTouchWrapper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
@@ -353,7 +360,10 @@ namespace VKSaver
         private ILocService _locService;
         private UnityServiceLocator _unityServiceLocator;
         private Frame _frame;
-        
+
+        private const string LAST_FM_API_KEY = "***REMOVED***";
+        private const string LAST_FM_API_SECRET = "***REMOVED***";
+
         private const string VIEW_MODEL_FORMAT = "VKSaver.Core.ViewModels.{0}Model, VKSaver.Core.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string VIEW_MODEL_CONTROLS_FORMAT = "VKSaver.Core.ViewModels.{0}ViewModel, VKSaver.Core.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string VIEW_FORMAT = "VKSaver.Views.{0}";
