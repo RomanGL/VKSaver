@@ -18,9 +18,8 @@ namespace VKSaver.Core.Services
         {            
             try
             {
-                await Task.Delay(1000);
-                var response = await _inTouch.Request<bool>("execute.isBetaAvailable");
-                if (!response.IsError && !response.Data)
+                await Task.Delay(1500);
+                if (CheckBetaDate())
                 {
                     _navigationService.Navigate("BetaBlockerView", null);
                     _navigationService.ClearHistory();
@@ -29,6 +28,12 @@ namespace VKSaver.Core.Services
             catch { }
         }
 
+        private bool CheckBetaDate()
+        {
+            return DateTime.Now >= _maxDate;
+        }
+
+        private readonly DateTime _maxDate = new DateTime(2016, 10, 20);
         private readonly InTouch _inTouch;
         private readonly INavigationService _navigationService;
     }
