@@ -18,5 +18,8 @@
         public const string UPDATE_PLAYLIST = "UpdatePlaylist";
         public const string PLAYER_TRACK_ID = "PlayerTrackId";
         public const string PLAYER_PLAY_PAUSE = "PlayPause";
+
+        public const string UPDATE_LAST_FM = "LastFmUpdate";
+        public const string PLAYER_SCROBBLE_MODE = "PlayerScrobbleMode";
     }
 }

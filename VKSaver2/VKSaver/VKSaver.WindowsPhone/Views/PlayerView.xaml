@@ -183,7 +183,7 @@
             <PivotItem Header="сейчас играет"
                        x:Uid="PlayerView_PivotSection_NowPlaying"
                        Style="{StaticResource PivotItemStyle}">
-                <Grid Margin="0,0,-19,0">
+                <Grid Margin="0">
                     <Grid.ChildrenTransitions>
                         <TransitionCollection>
                             <RepositionThemeTransition />
@@ -195,7 +195,7 @@
                                HorizontalAlignment="Left"
                                Opacity="0.4"/>
                     <Grid VerticalAlignment="Center"
-                          Margin="0,0,0,60">
+                          Margin="0,0,0,70">
                         <Grid.ChildrenTransitions>
                             <TransitionCollection>
                                 <EntranceThemeTransition />                                
@@ -217,8 +217,8 @@
                                                    Background="Red"
                                                    VerticalAlignment="Bottom"
                                                    HorizontalAlignment="Left"
-                                                   Width="200"
-                                                   Height="200" />
+                                                   Width="220"
+                                                   Height="220" />
                         <StackPanel x:Name="OptionsButtonsPanel"
                                     Grid.Column="1"
                                     Orientation="Vertical"
@@ -228,7 +228,7 @@
                                 <TransitionCollection>
                                     <EntranceThemeTransition />
                                 </TransitionCollection>
-                            </StackPanel.ChildrenTransitions>
+                            </StackPanel.ChildrenTransitions>                            
                             <Button Content=""
                                     Style="{StaticResource OptionButtonStyle}"
                                     Command="{Binding ShowLyricsCommand}" />
@@ -236,6 +236,10 @@
                                     Style="{StaticResource OptionButtonStyle}"
                                     Command="{Binding DownloadTrackCommand}"
                                     CommandParameter="{Binding CurrentTrack}"/>
+                            <ToggleButton Style="{StaticResource OptionToggleButtonStyle}"
+                                          IsChecked="{Binding IsScrobbleMode, Mode=TwoWay}"
+                                          IsEnabled="{Binding CanShuffle}"
+                                          Content="as" />
                             <ToggleButton Content=""
                                           Style="{StaticResource OptionToggleButtonStyle}"
                                           IsChecked="{Binding IsShuffleMode, Mode=TwoWay}"
@@ -269,26 +273,30 @@
                                                  Opacity="0.4" />
                             </Slider.Background>
                         </Slider>
-                        <StackPanel Grid.Row="4"
-                                    Orientation="Horizontal"
-                                    Margin="0,5,0,0"
-                                    Grid.ColumnSpan="2">
-                            <StackPanel.ChildrenTransitions>
+                        <Grid Grid.Row="4"
+                              Margin="0,5,0,0">
+                            <Grid.ChildrenTransitions>
                                 <TransitionCollection>
                                     <EntranceThemeTransition />
                                 </TransitionCollection>
-                            </StackPanel.ChildrenTransitions>
+                            </Grid.ChildrenTransitions>
+                            
                             <Button Style="{StaticResource PlayerGlyphButtonStyle}"
                                     Content=""
-                                    Command="{Binding PreviousTrackCommand}" />
+                                    Command="{Binding PreviousTrackCommand}"
+                                    Margin="0" />
                             <ToggleButton Style="{StaticResource PlayerGlyphToogleButonStyle}"
                                           Content=""
                                           Command="{Binding PlayPauseCommand}"
-                                          IsChecked="{Binding IsPlaying, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />
+                                          IsChecked="{Binding IsPlaying, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                          HorizontalAlignment="Center"
+                                          Margin="0" />
                             <Button Style="{StaticResource PlayerGlyphButtonStyle}"
                                     Content=""
-                                    Command="{Binding NextTrackCommand}" />
-                        </StackPanel>
+                                    Command="{Binding NextTrackCommand}"
+                                    Margin="0"
+                                    HorizontalAlignment="Right" />
+                        </Grid>
                     </Grid>
                 </Grid>
             </PivotItem>

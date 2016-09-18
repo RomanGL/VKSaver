@@ -96,6 +96,16 @@ namespace VKSaver.Core.Services
             }
         }
 
+        public bool IsScrobbleMode
+        {
+            get { return _settingsService.GetNoCache(PLAYER_SCROBBLE_MODE, false); }
+            set
+            {
+                _settingsService.Set(PLAYER_SCROBBLE_MODE, value);
+                SendMessageToBackground(PLAYER_SCROBBLE_MODE, null);
+            }
+        }
+
         private bool IsTaskRunning
         {
             get
@@ -211,6 +221,14 @@ namespace VKSaver.Core.Services
                 StartBackgroundAudioTask();
 
             SendMessageToBackground(PLAYER_PREVIOUS_TRACK, null);
+        }
+
+        public void UpdateLastFm()
+        {
+            if (!IsTaskRunning)
+                StartBackgroundAudioTask();
+
+            SendMessageToBackground(UPDATE_LAST_FM, null);
         }
         
         private void SubscribeEvents()

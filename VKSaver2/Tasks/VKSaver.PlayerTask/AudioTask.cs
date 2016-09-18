@@ -1,4 +1,7 @@
 ﻿using ICSharpCode.SharpZipLib.Zip;
+using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Scrobblers;
+using IF.Lastfm.SQLite;
 using NotificationsExtensions.TileContent;
 using System;
 using System.IO;
@@ -22,9 +25,12 @@ namespace VKSaver.PlayerTask
         /// Запускает фоновую задачу.
         /// </summary>
         /// <param name="taskInstance">Экземпляр фоновой задачи.</param>
-        public void Run(IBackgroundTaskInstance taskInstance)
+        public async void Run(IBackgroundTaskInstance taskInstance)
         {
             _deferral = taskInstance.GetDeferral();
+            taskInstance.Canceled += TaskInstance_Canceled;
+            taskInstance.Task.Completed += Task_Completed;
+
             _settingsService = new SettingsService();
             _logService = new LogService();
             _playerPlaylistService = new PlayerPlaylistService(_logService);
@@ -33,7 +39,9 @@ namespace VKSaver.PlayerTask
 
             _player = BackgroundMediaPlayer.Current;
             _manager = new PlaybackManager(_player, _settingsService, _playerPlaylistService, _logService, _musicCacheService);
-            
+
+            await _manager.UpdateLastFm();
+
             _controls = SystemMediaTransportControls.GetForCurrentView();
             _controls.ButtonPressed += Controls_ButtonPressed;
             _player.CurrentStateChanged += Player_CurrentStateChanged;
@@ -44,15 +52,8 @@ namespace VKSaver.PlayerTask
             _controls.IsPauseEnabled = true;
             _controls.IsNextEnabled = true;
             _controls.IsPreviousEnabled = true;
-
-            taskInstance.Canceled += TaskInstance_Canceled;
-            taskInstance.Task.Completed += Task_Completed;
+            
             BackgroundMediaPlayer.MessageReceivedFromForeground += MessageReceivedFromForeground;
-
-            //var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/TestTrack.vksm"));
-            //var zip = new ZipFile((await file.OpenReadAsync()).AsStream());
-            //var content = zip.GetEntry("content.vks");
-            //var fileStream = zip.GetInputStream(content);
 
             _isAppRunning = _settingsService.GetNoCache<bool>(APP_RUNNING);
             _settingsService.Set(TASK_RUNNING, true);
@@ -225,6 +226,12 @@ namespace VKSaver.PlayerTask
                     case APP_RUNNING:
                         _isAppRunning = (bool)e.Data[key];
                         break;
+                    case UPDATE_LAST_FM:
+                        await _manager.UpdateLastFm();
+                        break;
+                    case PLAYER_SCROBBLE_MODE:
+                        _manager.UpdateScrobbleMode();
+                        break;
                 }
 
                 _operationCompleted.Set();
@@ -299,6 +306,6 @@ namespace VKSaver.PlayerTask
         private bool _isTaskRunning;
 
         private readonly ManualResetEvent _taskRunning = new ManualResetEvent(false);
-        private readonly ManualResetEvent _operationCompleted = new ManualResetEvent(true);        
+        private readonly ManualResetEvent _operationCompleted = new ManualResetEvent(true);
     }
 }

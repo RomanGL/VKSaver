@@ -145,8 +145,8 @@
                     <Grid Background="Transparent"
                           x:Name="RootGrid"
                           Opacity="1"
-                          MinWidth="50"
-                          MinHeight="50">
+                          MinWidth="55"
+                          MinHeight="55">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -262,7 +262,7 @@
            TargetType="Button"
            BasedOn="{StaticResource PlayerGlyphButtonStyle}">
         <Setter Property="Margin"
-                Value="0,15,0,0" />
+                Value="0,10,0,0" />
         <Setter Property="MinWidth"
                 Value="35" />
         <Setter Property="MinHeight"
@@ -331,9 +331,9 @@
         <Setter Property="FontFamily"
                 Value="Segoe UI Symbol" />
         <Setter Property="MinWidth"
-                Value="50" />
+                Value="55" />
         <Setter Property="MinHeight"
-                Value="50" />
+                Value="55" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
@@ -539,7 +539,7 @@
         <Setter Property="FontSize"
                 Value="20" />
         <Setter Property="Margin"
-                Value="0,15,0,0" />
+                Value="0,10,0,0" />
         <Setter Property="FontFamily"
                 Value="Segoe UI Symbol" />
         <Setter Property="MinWidth"
@@ -630,7 +630,7 @@
         <Setter Property="FontSize"
                 Value="20" />
         <Setter Property="Margin"
-                Value="0,15,0,0" />
+                Value="0,10,0,0" />
         <Setter Property="FontFamily"
                 Value="Segoe UI Symbol" />
         <Setter Property="MinWidth"

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Objects;
+using IF.Lastfm.Core.Scrobblers;
+using IF.Lastfm.SQLite;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -8,6 +12,7 @@ using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Media.Playback;
+using Windows.Storage;
 using Windows.Storage.Streams;
 using static VKSaver.Core.Services.PlayerConstants;
 
@@ -17,8 +22,11 @@ namespace VKSaver.PlayerTask
     {       
         public event EventHandler<ManagerTrackChangedEventArgs> TrackChanged;
         
-        public PlaybackManager(MediaPlayer player, SettingsService settingsService,
-            IPlayerPlaylistService playerPlaylistService, ILogService logService,
+        public PlaybackManager(
+            MediaPlayer player, 
+            SettingsService settingsService,
+            IPlayerPlaylistService playerPlaylistService, 
+            ILogService logService,
             IMusicCacheService musicCacheService)
         {
             _settingsService = settingsService;
@@ -34,7 +42,8 @@ namespace VKSaver.PlayerTask
 
             _currentTrackID = settingsService.GetNoCache(PLAYER_TRACK_ID, -1);
             _isShuffleMode = settingsService.GetNoCache(PLAYER_SHUFFLE_MODE, false);
-            _repeatMode = settingsService.GetNoCache(PLAYER_REPEAT_MODE, PlayerRepeatMode.Disabled);
+            UpdateRepeatMode();
+            UpdateScrobbleMode();
         }
 
         #region Свойства
@@ -77,6 +86,41 @@ namespace VKSaver.PlayerTask
         public void UpdateRepeatMode()
         {
             _repeatMode = _settingsService.GetNoCache(PLAYER_REPEAT_MODE, PlayerRepeatMode.Disabled);
+        }
+
+        public void UpdateScrobbleMode()
+        {
+            _isScrobbleMode = _settingsService.GetNoCache(PLAYER_SCROBBLE_MODE, false);
+        }
+
+        public async Task UpdateLastFm()
+        {
+            try
+            {
+                _lastAuth = new LastAuth(LAST_FM_API_KEY, LAST_FM_API_SECRET);
+                var session = _settingsService.GetNoCache<LastUserSession>(LAST_FM_USER_SESSION_PARAMETER);
+
+                if (session == null)
+                {
+                    _lastAuth = null;
+                    _scrobbler = null;
+                    return;
+                }
+
+                _lastAuth.LoadSession(session);
+
+                var dbFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(
+                    "scrobbler.db", CreationCollisionOption.OpenIfExists);
+
+                _scrobbler = new SQLiteScrobbler(_lastAuth, dbFile.Path);
+            }
+            catch (Exception ex)
+            {
+                _lastAuth = null;
+                _scrobbler = null;
+
+                _logService.LogException(ex);
+            }
         }
         
         public async void PlayResume()
@@ -122,7 +166,7 @@ namespace VKSaver.PlayerTask
                 return;
             }
 
-            if (_player.Position.TotalSeconds >= PlayerConstants.PLAYER_REPLAY_AGAIN_DELAY_SECONDS)
+            if (_player.Position.TotalSeconds >= PLAYER_REPLAY_AGAIN_DELAY_SECONDS)
             {
                 _player.Position = TimeSpan.Zero;
                 return;
@@ -146,6 +190,8 @@ namespace VKSaver.PlayerTask
                 _logService.LogText($"PlaybackManager has empty tracks list. Cant play from id \"{trackID}\".");
                 return;
             }
+
+            ScrobbleTrack(CurrentTrack);
 
             var track = _playlist[trackID];
             CurrentTrack = track;
@@ -183,6 +229,24 @@ namespace VKSaver.PlayerTask
 
         #region Приватные методы  
                
+        private async void ScrobbleTrack(IPlayerTrack track)
+        {
+            try
+            {
+                if (!_isScrobbleMode || track == null || _scrobbler == null)
+                    return;
+                else if (_player.Position.TotalSeconds < _player.NaturalDuration.TotalSeconds / 1.5)
+                    return;
+
+                var response = await _scrobbler.ScrobbleAsync(
+                    new Scrobble(track.Artist, null, track.Title, DateTimeOffset.Now));
+            }
+            catch (Exception ex)
+            {
+                _logService.LogException(ex);
+            }
+        }
+
         private async Task<bool> HasTracks()
         {
             if (_playlist == null || _playlist.Count == 0)
@@ -232,11 +296,19 @@ namespace VKSaver.PlayerTask
         private bool _isShuffleMode;
         private int _currentTrackID;
         private PlayerRepeatMode _repeatMode;
+        private bool _isScrobbleMode;
+
+        private IScrobbler _scrobbler;
+        private ILastAuth _lastAuth;
 
         private readonly SettingsService _settingsService;
         private readonly MediaPlayer _player;
         private readonly IPlayerPlaylistService _playerPlaylistService;
         private readonly ILogService _logService;
-        private readonly IMusicCacheService _musicCasheService;
+        private readonly IMusicCacheService _musicCasheService;        
+
+        private const string LAST_FM_API_KEY = "***REMOVED***";
+        private const string LAST_FM_API_SECRET = "***REMOVED***";
+        private const string LAST_FM_USER_SESSION_PARAMETER = "LfUserSession";
     }
 }

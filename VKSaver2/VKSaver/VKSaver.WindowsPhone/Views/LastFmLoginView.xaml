@@ -1,0 +1,165 @@
+﻿<prism:VisualStateAwarePage x:Name="page"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:local="using:VKSaver.Views"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:controls="using:VKSaver.Controls"
+                            xmlns:prism="using:Microsoft.Practices.Prism.StoreApps"
+                            x:Class="VKSaver.Views.LastFmLoginView"
+                            mc:Ignorable="d"
+                            prism:ViewModelLocator.AutoWireViewModel="true"
+                            Style="{StaticResource DefaultPageStyle}">
+
+    <prism:VisualStateAwarePage.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal"
+                    Background="{ThemeResource ContentDialogDimmingThemeBrush}">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="зарегистрироваться"
+                              Command="{Binding JoinCommand, Mode=OneWay}"
+                              x:Uid="LoginView_JoinButton" />
+                <AppBarButton Label="восстановить пароль"
+                              Command="{Binding RestoreCommand, Mode=OneWay}"
+                              x:Uid="LoginView_RestorePasswordButton" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </prism:VisualStateAwarePage.BottomAppBar>
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="States">
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.3"
+                                         To="0"
+                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                         Storyboard.TargetName="userNameBox"
+                                         d:IsOptimized="True" />
+                        <DoubleAnimation Duration="0:0:0.3"
+                                         To="0"
+                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                         Storyboard.TargetName="passwordBox"
+                                         d:IsOptimized="True" />
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                       Storyboard.TargetName="userNameBox">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.417">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                       Storyboard.TargetName="passwordBox">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0.417">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="EnterData">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                       Storyboard.TargetName="userNameBox">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                       Storyboard.TargetName="passwordBox">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                       Storyboard.TargetName="userNameBox">
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.1"
+                                                  Value="0" />
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                  Value="1" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                       Storyboard.TargetName="passwordBox">
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.1"
+                                                  Value="0" />
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                  Value="1" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel.ChildrenTransitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </StackPanel.ChildrenTransitions>
+            <Path HorizontalAlignment="Center"
+                  VerticalAlignment="Bottom"
+                  Margin="0,0,0,15"
+                  Stretch="Uniform"
+                  Opacity="1"
+                  StrokeThickness="0"
+                  x:Name="logoPath"
+                  Fill="{StaticResource TitleBrush}"
+                  Data="M 2.00 2.00 C 6.33 2.00 10.67 2.01 15.00 2.00 C 15.00 50.33 15.00 98.67 15.00 147.00 C 10.67 146.99 6.33 146.99 2.00 147.00 C 2.00 98.67 2.00 50.33 2.00 2.00 Z
+                        M 306.52 20.55 C 314.11 10.87 325.24 4.76 336.90 1.43 C 336.87 6.15 336.90 10.86 336.90 15.58 C 327.26 19.49 318.10 26.16 313.92 35.96 C 311.36 40.91 310.68 46.52 309.45 51.88 C 318.63 51.98 327.81 52.00 337.00 52.04 C 336.98 56.35 336.99 60.66 337.00 64.97 C 328.00 65.00 319.00 65.01 310.00 65.02 C 310.00 92.35 309.99 119.67 310.00 147.00 C 305.32 146.99 300.67 146.99 296.00 147.00 C 296.01 119.69 295.99 92.37 295.99 65.06 C 292.25 65.02 284.75 64.94 281.00 64.91 C 281.00 60.65 281.02 56.41 281.00 52.15 C 285.76 52.03 290.54 51.91 295.30 51.71 C 296.92 40.74 299.26 29.35 306.52 20.55 Z
+                        M 205.04 30.00 C 209.68 30.00 214.33 30.01 218.97 30.00 C 218.98 37.66 219.01 45.32 219.03 52.97 C 228.02 53.00 237.01 53.00 246.00 53.03 C 245.98 57.34 245.99 61.66 246.00 65.97 C 237.00 66.00 228.01 66.01 219.01 66.02 C 220.10 82.54 216.29 99.76 221.15 115.85 C 224.09 127.16 235.45 132.73 245.80 135.57 C 245.87 140.19 245.95 144.82 245.99 149.44 C 234.18 146.85 221.65 143.07 213.89 133.12 C 200.44 114.65 206.57 90.14 204.95 69.02 C 206.00 63.43 196.96 67.39 194.62 65.20 C 194.90 61.33 194.78 57.41 195.40 53.57 C 197.77 53.23 202.49 52.55 204.86 52.21 C 204.93 44.80 205.00 37.40 205.04 30.00 Z
+                        M 63.01 50.07 C 83.76 43.66 108.27 53.04 118.96 72.03 C 128.46 88.96 133.94 107.82 143.11 124.92 C 148.55 137.05 166.12 138.36 175.78 130.75 C 181.77 126.56 183.52 117.45 179.65 111.32 C 171.85 104.58 161.22 103.23 152.17 98.80 C 144.73 95.51 137.24 90.26 134.93 82.02 C 132.81 72.63 134.78 61.87 142.24 55.27 C 151.77 48.13 165.66 46.70 175.96 53.06 C 180.05 56.12 183.48 59.96 186.65 63.95 C 183.13 65.44 179.82 67.64 176.04 68.40 C 169.60 65.14 163.15 58.71 155.38 62.38 C 147.00 65.15 144.15 78.18 151.61 83.39 C 163.29 90.55 178.14 91.04 188.77 100.24 C 197.85 110.37 197.26 127.37 188.60 137.61 C 175.28 151.86 150.03 153.01 136.23 138.78 C 127.53 127.16 122.88 113.23 116.85 100.16 C 111.72 89.28 108.51 76.18 97.96 69.06 C 83.20 57.68 59.64 60.38 48.01 75.01 C 38.59 85.76 36.26 102.27 43.13 114.95 C 50.34 130.68 69.53 138.77 86.03 134.03 C 96.11 132.02 103.01 123.92 108.88 116.12 C 111.03 121.20 113.22 126.27 115.44 131.32 C 102.87 145.17 83.53 152.58 64.97 148.05 C 41.15 143.45 23.54 119.67 25.36 95.54 C 26.75 74.61 42.23 54.68 63.01 50.07 Z
+                        M 341.07 78.00 C 344.16 60.73 361.20 46.79 379.00 49.01 C 390.10 49.53 398.29 57.38 405.59 64.80 C 413.28 56.04 423.49 47.87 435.99 49.04 C 453.78 48.32 468.85 63.95 470.82 81.09 C 473.47 102.94 471.39 125.05 471.99 147.00 C 467.30 146.99 462.66 146.99 457.99 147.00 C 457.86 126.99 458.34 106.97 457.93 86.96 C 457.32 75.34 448.97 62.08 436.00 62.86 C 424.84 61.77 414.85 71.75 413.53 82.42 C 412.26 103.92 413.27 125.48 413.01 147.00 C 408.32 146.99 403.66 146.99 398.99 147.00 C 398.77 126.77 399.65 106.51 398.57 86.31 C 397.47 75.28 389.36 62.24 376.97 63.04 C 364.03 61.10 353.62 74.03 353.36 86.10 C 352.38 106.38 353.22 126.70 353.01 147.00 C 348.33 146.99 343.68 146.99 339.01 147.00 C 340.22 124.06 336.29 100.64 341.07 78.00 Z
+                        M 259.41 84.39 C 264.95 82.72 273.56 85.27 273.99 91.98 C 276.97 100.36 267.10 108.86 259.10 104.93 C 250.11 101.84 250.45 87.18 259.41 84.39 Z"
+                  Width="200" />
+            <TextBlock Text="Авторизация"
+                       x:Uid="LoginView_Auth"
+                       x:Name="authText"
+                       HorizontalAlignment="Center"
+                       FontSize="44"
+                       Opacity="1"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       TextWrapping="NoWrap"
+                       TextLineBounds="Tight"
+                       FontWeight="Light"
+                       Foreground="{StaticResource TitleBrush}" />
+            <TextBox x:Name="userNameBox"
+                     Margin="20,30,20,0"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Stretch"
+                     PlaceholderText="имя пользователя или email"
+                     Visibility="Collapsed"
+                     Opacity="0"
+                     Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <PasswordBox x:Name="passwordBox"
+                         Margin="20,10,20,-25"
+                         VerticalAlignment="Stretch"
+                         PlaceholderText="пароль"
+                         Visibility="Collapsed"
+                         Opacity="0"
+                         Password="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="войти"
+                    x:Uid="LoginView_LoginButton"
+                    Style="{StaticResource ButtonStyle}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding LoginCommand, ElementName=page}"
+                    Margin="0,50,0,0"
+                    MinWidth="150" />
+        </StackPanel>
+    </Grid>
+</prism:VisualStateAwarePage>

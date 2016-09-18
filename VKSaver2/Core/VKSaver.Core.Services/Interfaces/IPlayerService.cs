@@ -16,11 +16,13 @@ namespace VKSaver.Core.Services.Interfaces
         PlayerState CurrentState { get; }
         PlayerRepeatMode RepeatMode { get; set; }
         bool IsShuffleMode { get; set; }
+        bool IsScrobbleMode { get; set; }
 
         void PlayFromID(int id);        
         void PlayPause();
         void SkipNext();
         void SkipPrevious();
+        void UpdateLastFm();
         
         Task PlayNewTracks(IEnumerable<IPlayerTrack> tracks, int id);
     }

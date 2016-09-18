@@ -24,10 +24,16 @@ namespace VKSaver.Core.ViewModels
     {
         public event TypedEventHandler<PlayerViewModel, PlayerItem> TrackChanged;
 
-        public PlayerViewModel(INavigationService navigationService, IPlayerService playerService,
-            IPlayerPlaylistService playerPlaylistService, IImagesCacheService imagesCacheService,
-            ITracksShuffleService tracksShuffleService, IDownloadsServiceHelper downloadsServiceHelper,
-            IAppLoaderService appLoaderService)
+        public PlayerViewModel(
+            INavigationService navigationService, 
+            IPlayerService playerService,
+            IPlayerPlaylistService playerPlaylistService, 
+            IImagesCacheService imagesCacheService,
+            ITracksShuffleService tracksShuffleService, 
+            IDownloadsServiceHelper downloadsServiceHelper,
+            IAppLoaderService appLoaderService, 
+            ILastFmLoginService lastFmLoginService,
+            IPurchaseService purchaseService)
         {
             _navigationService = navigationService;
             _playerService = playerService;
@@ -36,6 +42,8 @@ namespace VKSaver.Core.ViewModels
             _tracksShuffleSevice = tracksShuffleService;
             _downloadsServiceHelper = downloadsServiceHelper;
             _appLoaderService = appLoaderService;
+            _lastFmLoginService = lastFmLoginService;
+            _purchaseService = purchaseService;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
 
@@ -55,6 +63,22 @@ namespace VKSaver.Core.ViewModels
         public ImageSource TrackImage { get; private set; }
 
         public ObservableCollection<PlayerItem> Tracks { get; private set; }
+
+        public bool IsScrobbleMode
+        {
+            get { return _isScrobbleMode; }
+            set
+            {
+                if (!value)
+                {
+                    _isScrobbleMode = false;
+                    _playerService.IsScrobbleMode = false;
+                    return;
+                }
+
+                TryEnableScrobbleMode();
+            }
+        }
 
         public bool IsShuffleMode
         {
@@ -155,6 +179,9 @@ namespace VKSaver.Core.ViewModels
             RepeatMode = _playerService.RepeatMode;
             _isShuffleMode = _playerService.IsShuffleMode;
             OnPropertyChanged(nameof(IsShuffleMode));
+
+            _isScrobbleMode = _playerService.IsScrobbleMode;
+            OnPropertyChanged(nameof(IsScrobbleMode));
                 
             IsPlaying = _playerService.CurrentState == PlayerState.Playing;
             _currentTrackID = _playerService.CurrentTrackID;
@@ -203,6 +230,9 @@ namespace VKSaver.Core.ViewModels
             OnPropertyChanged(nameof(Position));
 
             Duration = _playerService.Duration;
+
+            if (_noPositionUpdates)
+                _noPositionUpdates = true;
         }
 
         private async void PlayerService_PlayerStateChanged(IPlayerService sender, PlayerStateChangedEventArgs e)
@@ -215,7 +245,10 @@ namespace VKSaver.Core.ViewModels
                     _timer.Start();
                 }
                 else
+                {
+                    IsPlaying = false;
                     _timer.Stop();
+                }
             });
         }
 
@@ -366,6 +399,36 @@ namespace VKSaver.Core.ViewModels
             var res = await _downloadsServiceHelper.StartDownloadingAsync(item.Track as IDownloadable);
         }
 
+        private void TryEnableScrobbleMode()
+        {
+            if (_purchaseService.IsFullVersionPurchased)
+            {
+                if (_lastFmLoginService.IsAuthorized)
+                {
+                    _isScrobbleMode = true;
+                    _playerService.IsScrobbleMode = true;
+                    OnPropertyChanged(nameof(IsScrobbleMode));
+                }
+                else
+                {
+                    _navigationService.Navigate("LastFmLoginView", null);
+                }
+            }
+            else
+            {
+                if (_lastFmLoginService.IsAuthorized)
+                {
+                    _navigationService.Navigate("PurchaseView", null);
+                }
+                else
+                {
+                    _navigationService.Navigate("PurchaseView",
+                        JsonConvert.SerializeObject(new KeyValuePair<string, string>("LastFmLoginView", null)));
+                }
+            }
+        }
+
+        private bool _isScrobbleMode;
         private bool _isSubscribed;
         private bool _isShuffleMode;        
         private PlayerRepeatMode _repeatMode;
@@ -383,8 +446,10 @@ namespace VKSaver.Core.ViewModels
         private readonly ITracksShuffleService _tracksShuffleSevice;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
         private readonly IAppLoaderService _appLoaderService;
+        private readonly ILastFmLoginService _lastFmLoginService;
+        private readonly IPurchaseService _purchaseService;
 
-        private const string DEFAULT_BACKGROUND_IMAGE = "ms-appx:///Assets/Background/PlayerBackground.png";
+        private const string DEFAULT_BACKGROUND_IMAGE = "ms-appx:///Assets/Background/PlayerBackground.png";        
 
         [ImplementPropertyChanged]
         public sealed class PlayerItem : IEquatable<PlayerItem>
