@@ -5,6 +5,7 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Common;
@@ -19,7 +20,8 @@ namespace VKSaver.Core.ViewModels
             IPlayerService playerService, 
             ILocService locService,
             INavigationService navigationService, 
-            IAppLoaderService appLoaderService)
+            IAppLoaderService appLoaderService,
+            int maxPlayingTracks = -1)
             : base(locService)
         {            
             _navigationService = navigationService;
@@ -28,14 +30,16 @@ namespace VKSaver.Core.ViewModels
 
             PlayTracksCommand = new DelegateCommand<T>(OnPlayTracksCommand); 
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
+
+            _maxPlayingTracks = maxPlayingTracks;
         }
 
         [DoNotNotify]
         public DelegateCommand<T> PlayTracksCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand PlaySelectedCommand { get; private set; }  
-        
+        public DelegateCommand PlaySelectedCommand { get; private set; } 
+
         protected abstract IList<T> GetAudiosList();
 
         protected abstract IPlayerTrack ConvertToPlayerTrack(T track);
@@ -58,12 +62,27 @@ namespace VKSaver.Core.ViewModels
         {
             _appLoaderService.Show();
 
-            var audiosList = GetAudiosList();
-            PrepareTracksBeforePlay(audiosList);
+            await Task.Run(async () =>
+            {
+                var audiosList = GetAudiosList();                
 
-            await _playerService.PlayNewTracks(audiosList.Select(t => ConvertToPlayerTrack(t)), audiosList.IndexOf(track));
+                int trackIndex = audiosList.IndexOf(track);
+                if (_maxPlayingTracks != -1 && audiosList.Count > _maxPlayingTracks)
+                {
+                    int newIndex = 0;
+                    var newTracks = audiosList.GetFromCentre(trackIndex, _maxPlayingTracks, out newIndex);
+
+                    PrepareTracksBeforePlay(newTracks);
+                    await _playerService.PlayNewTracks(newTracks.Select(t => ConvertToPlayerTrack(t)), newIndex);
+                }
+                else
+                {
+                    PrepareTracksBeforePlay(audiosList);
+                    await _playerService.PlayNewTracks(audiosList.Select(t => ConvertToPlayerTrack(t)), trackIndex);
+                }
+            });
+
             _navigationService.Navigate("PlayerView", null);
-
             _appLoaderService.Hide();
         }
 
@@ -71,13 +90,27 @@ namespace VKSaver.Core.ViewModels
         {
             _appLoaderService.Show();
 
-            var tracks = SelectedItems.Cast<T>();
-            PrepareTracksBeforePlay(tracks);
+            await Task.Run(async () =>
+            {
+                var tracks = SelectedItems.Cast<T>().ToList();
+                PrepareTracksBeforePlay(tracks);
 
-            var toPlay = tracks.Select(t => ConvertToPlayerTrack(t));
-            await _playerService.PlayNewTracks(toPlay, 0);
+                if (_maxPlayingTracks != -1 && tracks.Count > _maxPlayingTracks)
+                {
+                    int newIndex = 0;
+                    var newTracks = tracks.GetFromCentre(0, _maxPlayingTracks, out newIndex);
+
+                    PrepareTracksBeforePlay(newTracks);
+                    await _playerService.PlayNewTracks(newTracks.Select(t => ConvertToPlayerTrack(t)), newIndex);
+                }
+                else
+                {
+                    PrepareTracksBeforePlay(tracks);
+                    await _playerService.PlayNewTracks(tracks.Select(t => ConvertToPlayerTrack(t)), 0);
+                }                 
+            });
+
             _navigationService.Navigate("PlayerView", null);
-
             _appLoaderService.Hide();
         }
 
@@ -87,8 +120,10 @@ namespace VKSaver.Core.ViewModels
             base.OnSelectionChangedCommand();            
         }
 
+        private readonly int _maxPlayingTracks;
+
         protected readonly INavigationService _navigationService;
         protected readonly IPlayerService _playerService;
-        protected readonly IAppLoaderService _appLoaderService;
+        protected readonly IAppLoaderService _appLoaderService;        
     }
 }

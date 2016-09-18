@@ -12,6 +12,44 @@ namespace VKSaver.Core.ViewModels.Common
 {
     public static class Extensions
     {
+        public static IEnumerable<T> GetFromCentre<T>(this IList<T> source, int sourceIndex, int count, out int newIndex)
+        {
+            var newItems = new T[count];
+
+            int needLeft = count / 2;
+            int needRight = count - needLeft;
+
+            int availableRight = source.Count - sourceIndex;
+            if (availableRight < needRight)
+            {
+                needLeft += needRight - availableRight;
+                needRight -= needRight - availableRight;
+            }
+            else if (sourceIndex < needLeft)
+            {
+                needRight += needLeft - sourceIndex;
+                needLeft -= needLeft - sourceIndex;
+            }
+
+            int newPos = needLeft;
+            for (int i = sourceIndex; i < sourceIndex + needRight; i++)
+            {
+                newItems[newPos] = source[i];
+                newPos++;
+            }
+
+            newPos = 0;
+            int offset = sourceIndex - needLeft;
+            for (int i = sourceIndex - needLeft; i < needLeft + offset; i++)
+            {
+                newItems[newPos] = source[i];
+                newPos++;
+            }
+
+            newIndex = needLeft;
+            return newItems;
+        }
+
         public static IPlayerTrack ToPlayerTrack(this Audio audio)
         {
             return new PlayerTrack

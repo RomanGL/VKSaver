@@ -29,7 +29,7 @@ namespace VKSaver.Core.ViewModels
             IAppLoaderService appLoaderService,
             IMusicCacheService musicCacheService,
             IDialogsService dialogsService)
-            : base(playerService, locService, navigationService, appLoaderService)
+            : base(playerService, locService, navigationService, appLoaderService, 999)
         {
             _musicCacheService = musicCacheService;
             _dialogsService = dialogsService;

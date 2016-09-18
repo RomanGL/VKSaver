@@ -16,8 +16,9 @@ namespace VKSaver.Core.ViewModels
             IAppLoaderService appLoaderService, 
             IPlayerService playerService, 
             ILocService locService,
-            INavigationService navigationService)
-            : base(playerService, locService, navigationService, appLoaderService)
+            INavigationService navigationService,
+            int maxPlayingTracks = -1)
+            : base(playerService, locService, navigationService, appLoaderService, maxPlayingTracks)
         {
             _downloadsServiceHelper = downloadsServiceHelper;            
 
