@@ -117,6 +117,7 @@
     <Content Include="Assets\Promo\2.png" />
     <Content Include="Assets\Promo\3.png" />
     <Content Include="Assets\Promo\0.png" />
+    <Content Include="Assets\Promo\4.png" />
     <Content Include="Assets\Purchase\1.png" />
     <Content Include="Assets\Purchase\2.png" />
     <Content Include="Assets\Purchase\3.png" />
@@ -469,7 +470,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseFull|ARM'">
     <OutputPath>bin\ARM\ReleaseFull\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP;FULL;</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <NoStdLib>true</NoStdLib>
@@ -482,7 +483,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseFull|x86'">
     <OutputPath>bin\x86\ReleaseFull\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP;RELEASE_FULL</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP;FULL;</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <NoStdLib>true</NoStdLib>

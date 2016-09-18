@@ -1144,8 +1144,8 @@ Please wait...</target>
           <target state="translated">Caching tracks</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen2_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Кэшируйте треки для оффлайн проигрывания!</source>
-          <target state="translated">Cache tracks for offline playback!</target>
+          <source>Доступен просмотр кэшированных треков!</source>
+          <target state="translated">Browsing cached tracks!</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen3_Line1_Text" translate="yes" xml:space="preserve">
           <source>Мировые чарты</source>
@@ -1267,6 +1267,14 @@ Please wait...</target>
         <trans-unit id="Message_Login_LfConnectionError_Text" translate="yes" xml:space="preserve">
           <source>Не удалось подключиться к Last.fm. Проверьте доступ к интернету и повторите попытку.</source>
           <target state="translated">Unable to connect to Last.fm. Check the access to the Internet and try again.</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen4_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Скробблинг Last.fm</source>
+          <target state="translated">Last.fm scrobbler</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen4_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Всегда актуальный профиль Last.fm!</source>
+          <target state="translated">Always up-to-date Last.fm profile!</target>
         </trans-unit>
       </group>
     </body>

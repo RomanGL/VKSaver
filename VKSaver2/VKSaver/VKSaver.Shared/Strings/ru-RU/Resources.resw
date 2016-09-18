@@ -975,7 +975,7 @@
     <value>Кэширование треков</value>
   </data>
   <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
-    <value>Кэшируйте треки для оффлайн проигрывания!</value>
+    <value>Доступен просмотр кэшированных треков!</value>
   </data>
   <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
     <value>Мировые чарты</value>
@@ -1058,5 +1058,11 @@
   </data>
   <data name="Message_Login_LfConnectionError_Text" xml:space="preserve">
     <value>Не удалось подключиться к Last.fm. Проверьте доступ к интернету и повторите попытку.</value>
+  </data>
+  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
+    <value>Скробблинг Last.fm</value>
+  </data>
+  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
+    <value>Всегда актуальный профиль Last.fm!</value>
   </data>
 </root>

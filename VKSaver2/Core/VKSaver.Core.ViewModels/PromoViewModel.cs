@@ -26,6 +26,8 @@ namespace VKSaver.Core.ViewModels
                     _locService["PromoView_Screen2_Line2_Text"], 2),
                 new ScreenItem(_locService["PromoView_Screen3_Line1_Text"],
                     _locService["PromoView_Screen3_Line2_Text"], 3),
+                new ScreenItem(_locService["PromoView_Screen4_Line1_Text"],
+                    _locService["PromoView_Screen4_Line2_Text"], 4),
                 new ScreenItem(_locService["PromoView_Screen0_Line1_Text"],
                     _locService["PromoView_Screen0_Line2_Text"], 0, true)
                 {

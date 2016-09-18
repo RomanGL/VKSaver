@@ -863,7 +863,7 @@ Please wait...</value>
     <value>Caching tracks</value>
   </data>
   <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
-    <value>Cache tracks for offline playback!</value>
+    <value>Browsing cached tracks!</value>
   </data>
   <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
     <value>World music charts</value>
@@ -955,5 +955,11 @@ Please wait...</value>
   </data>
   <data name="Message_Login_LfConnectionError_Text" xml:space="preserve">
     <value>Unable to connect to Last.fm. Check the access to the Internet and try again.</value>
+  </data>
+  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
+    <value>Last.fm scrobbler</value>
+  </data>
+  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
+    <value>Always up-to-date Last.fm profile!</value>
   </data>
 </root>
