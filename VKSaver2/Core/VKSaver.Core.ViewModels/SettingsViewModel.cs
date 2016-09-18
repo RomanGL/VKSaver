@@ -15,11 +15,12 @@ namespace VKSaver.Core.ViewModels
     public sealed class SettingsViewModel : ViewModelBase
     {
         public SettingsViewModel(IVKLoginService vkLoginService, ISettingsService settingsService,
-            ILastFmLoginService lastFmLoginSevice)
+            ILastFmLoginService lastFmLoginSevice, IPurchaseService purchaseService)
         {
             _vkLoginService = vkLoginService;
             _settingsService = settingsService;
             _lastFmLoginService = lastFmLoginSevice;
+            _purchaseService = purchaseService;
 
             Authorizations = new ObservableCollection<IServiceAuthorization>();
         }
@@ -57,5 +58,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IVKLoginService _vkLoginService;
         private readonly ISettingsService _settingsService;
         private readonly ILastFmLoginService _lastFmLoginService;
+        private readonly IPurchaseService _purchaseService;
     }
 }

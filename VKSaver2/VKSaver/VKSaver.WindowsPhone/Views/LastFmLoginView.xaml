@@ -142,17 +142,22 @@
                      TextWrapping="Wrap"
                      VerticalAlignment="Stretch"
                      PlaceholderText="имя пользователя или email"
+                     x:Uid="LoginView_LoginField"
                      Visibility="Collapsed"
                      Opacity="0"
-                     Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     KeyDown="userNameBox_KeyDown"/>
             <PasswordBox x:Name="passwordBox"
                          Margin="20,10,20,-25"
                          VerticalAlignment="Stretch"
                          PlaceholderText="пароль"
                          Visibility="Collapsed"
+                         x:Uid="LoginView_PasswordField"
                          Opacity="0"
-                         Password="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                         Password="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         KeyDown="passwordBox_KeyDown"/>
             <Button Content="войти"
+                    x:Name="loginButton"
                     x:Uid="LoginView_LoginButton"
                     Style="{StaticResource ButtonStyle}"
                     HorizontalAlignment="Center"

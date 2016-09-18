@@ -110,6 +110,7 @@ namespace VKSaver
 
             var settingsService = new SettingsService();
             var inTouch = new InTouch();
+            var lastAuth = new LastAuth(LAST_FM_API_KEY, LAST_FM_API_SECRET);
 
             var vkLoginService = new VKLoginService(settingsService, inTouch);
             if (vkLoginService.IsAuthorized)
@@ -124,7 +125,8 @@ namespace VKSaver
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
             _container.RegisterInstance<ILocService>(_locService);
             _container.RegisterInstance<IVKLoginService>(vkLoginService);
-            _container.RegisterInstance<InTouch>(inTouch);            
+            _container.RegisterInstance<InTouch>(inTouch);
+            _container.RegisterInstance<ILastAuth>(lastAuth);          
 
             _container.RegisterType<IInTouchWrapper, InTouchWrapper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
@@ -138,6 +140,7 @@ namespace VKSaver
             _container.RegisterType<INetworkInfoService, NetworkInfoService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IMusicCacheService, MusicCacheService>(new ContainerControlledLifetimeManager());            
             _container.RegisterType<IVideoLinksExtractor, VideoLinksExtractor>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<ILastFmLoginService, LastFmLoginService>(new ContainerControlledLifetimeManager());
 
             var playerService = _container.Resolve<PlayerService>();
             var downloadsService = _container.Resolve<DownloadsService>();
@@ -147,15 +150,6 @@ namespace VKSaver
 
             _container.RegisterInstance<IPlayerService>(playerService);
             _container.RegisterInstance<IDownloadsService>(downloadsService);
-
-            var lastAuth = new LastAuth(LAST_FM_API_KEY, LAST_FM_API_SECRET);
-            var lastFmLoginService = new LastFmLoginService(settingsService, lastAuth, this.NavigationService, playerService);
-
-            if (lastFmLoginService.IsAuthorized)
-                lastFmLoginService.InitializeLastAuth();
-
-            _container.RegisterInstance<ILastAuth>(lastAuth);
-            _container.RegisterInstance<ILastFmLoginService>(lastFmLoginService);
 
             _container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IMediaFilesProcessService, MediaFilesProcessService>(new ContainerControlledLifetimeManager());
@@ -191,6 +185,10 @@ namespace VKSaver
             {
                 settingsService.Remove(PlayerConstants.PLAYER_SCROBBLE_MODE);
             }
+            
+            var lastFmLoginService = _container.Resolve<ILastFmLoginService>();
+            if (lastFmLoginService.IsAuthorized)
+                lastFmLoginService.InitializeLastAuth();
 
             StartSuspendingServices();
 

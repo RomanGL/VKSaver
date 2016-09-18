@@ -1,11 +1,10 @@
 ﻿using IF.Lastfm.Core.Api;
-using IF.Lastfm.Core.Api.Helpers;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
@@ -17,13 +16,18 @@ namespace VKSaver.Core.Services
     {
         public event TypedEventHandler<ILastFmLoginService, EventArgs> UserLogout;
 
-        public LastFmLoginService(ISettingsService settingsService, ILastAuth lastAuth,
-            INavigationService navigationService, IPlayerService playerService)
+        public LastFmLoginService(
+            ISettingsService settingsService, 
+            ILastAuth lastAuth,
+            INavigationService navigationService, 
+            IPlayerService playerService,
+            IPurchaseService purchaseService)
         {
             _settingsService = settingsService;
             _lastAuth = lastAuth;
             _navigationService = navigationService;
             _playerService = playerService;
+            _purchaseService = purchaseService;
         }
 
         private LastUserSession UserSession
@@ -42,7 +46,7 @@ namespace VKSaver.Core.Services
             _lastAuth.LoadSession(UserSession);
         }
 
-        public async Task LoginAsync(string login, string password)
+        public async Task<LastResponseStatus> LoginAsync(string login, string password)
         {
             var response = await _lastAuth.GetSessionTokenAsync(login, password);
             if (response.Success)
@@ -50,6 +54,8 @@ namespace VKSaver.Core.Services
                 UserSession = _lastAuth.UserSession;
                 _playerService.UpdateLastFm();
             }
+
+            return response.Status;
         }
 
         public void Logout()
@@ -68,7 +74,14 @@ namespace VKSaver.Core.Services
             {
                 IsAuthorized = session != null,
                 UserName = session?.Username,
-                SignInMethod = () => _navigationService.Navigate("LastFmLoginView", null),
+                SignInMethod = () =>
+                {
+                    if (_purchaseService.IsFullVersionPurchased)
+                        _navigationService.Navigate("LastFmLoginView", null);
+                    else
+                        _navigationService.Navigate("PurchaseView",
+                            JsonConvert.SerializeObject(new KeyValuePair<string, string>("LastFmLoginView", null)));
+                },
                 SignOutMethod = () => Logout()
             };
         }
@@ -77,6 +90,7 @@ namespace VKSaver.Core.Services
         private readonly ILastAuth _lastAuth;
         private readonly INavigationService _navigationService;
         private readonly IPlayerService _playerService;
+        private readonly IPurchaseService _purchaseService;
 
         private const string LAST_FM_USER_SESSION_PARAMETER = "LfUserSession";        
     }

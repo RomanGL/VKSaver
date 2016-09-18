@@ -944,4 +944,16 @@ Please wait...</value>
   <data name="CachedView_Title.Text" xml:space="preserve">
     <value>cached tracks</value>
   </data>
+  <data name="LoginView_LoginField.PlaceholderText" xml:space="preserve">
+    <value>username or email</value>
+  </data>
+  <data name="LoginView_PasswordField.PlaceholderText" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="Message_Login_InvalidAccount_Text" xml:space="preserve">
+    <value>Invalid username or password.</value>
+  </data>
+  <data name="Message_Login_LfConnectionError_Text" xml:space="preserve">
+    <value>Unable to connect to Last.fm. Check the access to the Internet and try again.</value>
+  </data>
 </root>

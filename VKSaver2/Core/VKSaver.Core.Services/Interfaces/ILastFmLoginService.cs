@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IF.Lastfm.Core.Api.Enums;
+using System;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 
@@ -11,7 +12,7 @@ namespace VKSaver.Core.Services.Interfaces
         bool IsAuthorized { get; }
 
         void InitializeLastAuth();
-        Task LoginAsync(string login, string password);
+        Task<LastResponseStatus> LoginAsync(string login, string password);
         void Logout();
 
         IServiceAuthorization GetServiceAuthorization();

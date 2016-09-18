@@ -1252,6 +1252,22 @@ Please wait...</target>
           <source>кэшированные</source>
           <target state="translated">cached tracks</target>
         </trans-unit>
+        <trans-unit id="LoginView_LoginField.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>имя пользователя или email</source>
+          <target state="translated">username or email</target>
+        </trans-unit>
+        <trans-unit id="LoginView_PasswordField.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>пароль</source>
+          <target state="translated">password</target>
+        </trans-unit>
+        <trans-unit id="Message_Login_InvalidAccount_Text" translate="yes" xml:space="preserve">
+          <source>Неверное имя пользователя или пароль.</source>
+          <target state="translated">Invalid username or password.</target>
+        </trans-unit>
+        <trans-unit id="Message_Login_LfConnectionError_Text" translate="yes" xml:space="preserve">
+          <source>Не удалось подключиться к Last.fm. Проверьте доступ к интернету и повторите попытку.</source>
+          <target state="translated">Unable to connect to Last.fm. Check the access to the Internet and try again.</target>
+        </trans-unit>
       </group>
     </body>
   </file>
