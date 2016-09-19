@@ -53,7 +53,7 @@ namespace VKSaver.Core.ViewModels
             PlayTrackCommand = new DelegateCommand<PlayerItem>(OnPlayTrackCommand);
             ShowLyricsCommand = new DelegateCommand(OnShowLyricsCommand,
                 () => CurrentTrack != null && CurrentTrack.Track.VKInfo != null && CurrentTrack.Track.VKInfo.LyricsID != 0);
-            DownloadTrackCommand = new DelegateCommand<PlayerItem>(OnDownloadTrackCommand);
+            DownloadTrackCommand = new DelegateCommand<PlayerItem>(OnDownloadTrackCommand, CanExecuteDownloadTrackCommand);
         }
 
         public PlayerItem CurrentTrack { get; private set; }
@@ -232,7 +232,7 @@ namespace VKSaver.Core.ViewModels
             Duration = _playerService.Duration;
 
             if (_noPositionUpdates)
-                _noPositionUpdates = true;
+                _noPositionUpdates = false;
         }
 
         private async void PlayerService_PlayerStateChanged(IPlayerService sender, PlayerStateChangedEventArgs e)
@@ -397,6 +397,11 @@ namespace VKSaver.Core.ViewModels
         private async void OnDownloadTrackCommand(PlayerItem item)
         {
             var res = await _downloadsServiceHelper.StartDownloadingAsync(item.Track as IDownloadable);
+        }
+
+        private bool CanExecuteDownloadTrackCommand(PlayerItem item)
+        {
+            return item != null && item.Track != null && !item.Track.Source.StartsWith("vks-token:");
         }
 
         private void TryEnableScrobbleMode()
