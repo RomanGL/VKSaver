@@ -11,10 +11,15 @@ namespace VKSaver.Core.Services
         /// </summary>
         /// <param name="message">Текст сообщения.</param>
         /// <param name="title">Заголовок собщения.</param>
-        public async void Show(string message, string title = "")
+        public void Show(string message, string title = "")
         {
-            var msg = new MessageDialog(message, title);
-            await msg.ShowAsync();
+            lock (_lockObject)
+            {
+                var msg = new MessageDialog(message, title);
+                msg.ShowAsync().GetAwaiter().GetResult();
+            }
         }
+
+        private readonly object _lockObject = new object();
     }
 }

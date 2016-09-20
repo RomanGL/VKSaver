@@ -6,10 +6,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
+using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Transfer;
-using VKSaver.Core.Transfer;
 using VKSaver.Core.ViewModels.Transfer;
 using Windows.Networking.BackgroundTransfer;
 using Windows.UI.Core;
@@ -22,43 +22,48 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public class TransferViewModel : ViewModelBase
     {
-        public TransferViewModel(IDownloadsService downloadsService, IDialogsService dialogsService,
-            IAppLoaderService appLoaderService, ILocService locService, 
+        public TransferViewModel(
+            IDownloadsService downloadsService, 
+            IUploadsService uploadsService,
+            IDialogsService dialogsService,
+            IAppLoaderService appLoaderService, 
+            ILocService locService, 
             IDispatcherWrapper dispatcherWrapper)
         {
             _downloadsService = downloadsService;
+            _uploadsService = uploadsService;
             _dialogsService = dialogsService;
             _appLoaderService = appLoaderService;
             _locService = locService;
             _dispatcherWrapper = dispatcherWrapper;
 
-            Downloads = new ObservableCollection<DownloadItemViewModel>();
+            Downloads = new ObservableCollection<TransferItemViewModel>();
 
-            ShowInfoCommand = new DelegateCommand<DownloadItemViewModel>(OnShowInfoCommand);
-            CancelDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnCancelDownloadCommand);
-            PauseDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnPauseResumeDownloadCommand);
-            ResumeDownloadCommand = new DelegateCommand<DownloadItemViewModel>(OnPauseResumeDownloadCommand);
+            ShowInfoCommand = new DelegateCommand<TransferItemViewModel>(OnShowInfoCommand);
+            CancelDownloadCommand = new DelegateCommand<TransferItemViewModel>(OnCancelDownloadCommand);
+            PauseDownloadCommand = new DelegateCommand<TransferItemViewModel>(OnPauseResumeDownloadCommand);
+            ResumeDownloadCommand = new DelegateCommand<TransferItemViewModel>(OnPauseResumeDownloadCommand);
             CancelAllDownloadsCommand = new DelegateCommand(OnCancelAllDownloadsCommand, CanExecuteCancelAllDownloadsCommand);
         }
         
         [DoNotNotify]
-        public ObservableCollection<DownloadItemViewModel> Downloads { get; private set; }
+        public ObservableCollection<TransferItemViewModel> Downloads { get; private set; }
 
         public ContentState DownloadsState { get; private set; }
         public ContentState UploadsState { get; private set; }
         public ContentState HistoryState { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<DownloadItemViewModel> ShowInfoCommand { get; private set; }
+        public DelegateCommand<TransferItemViewModel> ShowInfoCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<DownloadItemViewModel> PauseDownloadCommand { get; private set; }
+        public DelegateCommand<TransferItemViewModel> PauseDownloadCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<DownloadItemViewModel> ResumeDownloadCommand { get; private set; }
+        public DelegateCommand<TransferItemViewModel> ResumeDownloadCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<DownloadItemViewModel> CancelDownloadCommand { get; private set; }
+        public DelegateCommand<TransferItemViewModel> CancelDownloadCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand CancelAllDownloadsCommand { get; private set; }
@@ -83,7 +88,7 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
         
-        private async void OnDownloadProgressChanged(object sender, DownloadItem e)
+        private async void OnDownloadProgressChanged(object sender, TransferItem e)
         {
             await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -98,13 +103,13 @@ namespace VKSaver.Core.ViewModels
                         e.Status != BackgroundTransferStatus.Canceled)
                         return;
 
-                    Downloads.Add(new DownloadItemViewModel(e));
+                    Downloads.Add(new TransferItemViewModel(e));
                     item = Downloads.FirstOrDefault(d => d.OpeartionGuid == e.OperationGuid);
                     if (item == null)
                         return;
                 }
                 else
-                    item.Download = e;
+                    item.Operation = e;
 
                 if (item.Status == BackgroundTransferStatus.Completed ||
                     item.Status == BackgroundTransferStatus.Canceled)
@@ -140,12 +145,12 @@ namespace VKSaver.Core.ViewModels
             }
 
             for (int i = 0; i < downloads.Length; i++)
-                Downloads.Add(new DownloadItemViewModel(downloads[i]));
+                Downloads.Add(new TransferItemViewModel(downloads[i]));
 
             DownloadsState = ContentState.Normal;
         }
 
-        private void OnShowInfoCommand(DownloadItemViewModel item)
+        private void OnShowInfoCommand(TransferItemViewModel item)
         {
             if (item.Status == BackgroundTransferStatus.Error ||
                 item.Status == BackgroundTransferStatus.Idle ||
@@ -157,14 +162,14 @@ namespace VKSaver.Core.ViewModels
             }
         }
 
-        private void OnCancelDownloadCommand(DownloadItemViewModel item)
+        private void OnCancelDownloadCommand(TransferItemViewModel item)
         {
             if (item == null)
                 return;
             _downloadsService.Cancel(item.OpeartionGuid);
         }
 
-        private void OnPauseResumeDownloadCommand(DownloadItemViewModel item)
+        private void OnPauseResumeDownloadCommand(TransferItemViewModel item)
         {
             if (item == null)
                 return;
@@ -174,7 +179,7 @@ namespace VKSaver.Core.ViewModels
         private async void OnCancelAllDownloadsCommand()
         {
             _appLoaderService.Show(_locService["AppLoader_CancelAllDownloads"]);
-            await _downloadsService.CancelAll();
+            await _downloadsService.CancelAllAsync();
         }
 
         private bool CanExecuteCancelAllDownloadsCommand()
@@ -215,9 +220,10 @@ namespace VKSaver.Core.ViewModels
         }
         
         private readonly IDownloadsService _downloadsService;
+        private readonly IUploadsService _uploadsService;
         private readonly IDialogsService _dialogsService;
         private readonly IAppLoaderService _appLoaderService;
         private readonly ILocService _locService;
-        private readonly IDispatcherWrapper _dispatcherWrapper;
+        private readonly IDispatcherWrapper _dispatcherWrapper;        
     }
 }

@@ -20,7 +20,7 @@
         <converters:FileSizeConverter x:Key="FileSizeConverter" />
         <converters:TransferStatusConverter x:Key="TransferStatusConverter" />
 
-        <DataTemplate x:Key="DownloadTemplate">
+        <DataTemplate x:Key="TransferItemTemplate">
             <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}"
                   Background="Transparent">
                 <Grid.ChildrenTransitions>
@@ -68,7 +68,7 @@
                                FontSize="18"
                                Pivot.SlideInAnimationGroup="GroupThree"
                                Foreground="{ThemeResource PhoneDisabledBrush}">
-                        <Run Text="{Binding DownloadedSize, Converter={StaticResource FileSizeConverter}}" />
+                        <Run Text="{Binding ProcessedSize, Converter={StaticResource FileSizeConverter}}" />
                         <Run Text="из" />
                         <Run Text="{Binding TotalSize, Converter={StaticResource FileSizeConverter}}" />
                     </TextBlock>
@@ -127,7 +127,7 @@
                                        NoDataText="Сейчас не выполняется никаких загрузок">
                 <ListView Style="{StaticResource NoSelectionListViewStyle}"
                           ItemsSource="{Binding Downloads}"
-                          ItemTemplate="{StaticResource DownloadTemplate}"
+                          ItemTemplate="{StaticResource TransferItemTemplate}"
                           ItemContainerStyle="{StaticResource DownloadItemContainerStyle}"
                           HorizontalContentAlignment="Stretch">
                     <ListView.ItemContainerTransitions>

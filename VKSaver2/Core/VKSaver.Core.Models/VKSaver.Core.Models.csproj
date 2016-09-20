@@ -62,7 +62,9 @@
   <ItemGroup>
     <Compile Include="Common\AudioEncryptedStream.cs" />
     <Compile Include="Common\AudioEncryptionMethod.cs" />
+    <Compile Include="Common\IDataSource.cs" />
     <Compile Include="Common\NewsMediaItem.cs" />
+    <Compile Include="Common\StorageFileSource.cs" />
     <Compile Include="Common\VKSaverAudioFile.cs" />
     <Compile Include="Common\ContentState.cs" />
     <Compile Include="Common\ContentStateExtensions.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Common\ILoader.cs" />
     <Compile Include="Common\IServiceAuthorization.cs" />
     <Compile Include="Common\VKSaverAudio.cs" />
+    <Compile Include="Common\VKSaverAudioFileSource.cs" />
     <Compile Include="Common\VKSaverAudioTrackInfo.cs" />
     <Compile Include="Common\VKSaverAudioVKInfo.cs" />
     <Compile Include="Player\CachedTrack.cs" />
@@ -82,12 +85,18 @@
     <Compile Include="Player\PlayerState.cs" />
     <Compile Include="Player\PlayerTrack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transfer\IUpload.cs" />
+    <Compile Include="Transfer\IUploadable.cs" />
     <Compile Include="Transfer\SimpleDownloadable.cs" />
     <Compile Include="Transfer\DownloadedAudioInfo.cs" />
     <Compile Include="Transfer\DownloadInitError.cs" />
     <Compile Include="Transfer\DownloadInitErrorType.cs" />
-    <Compile Include="Transfer\DownloadItem.cs" />
+    <Compile Include="Transfer\TransferItem.cs" />
     <Compile Include="Transfer\IDownloadable.cs" />
+    <Compile Include="Transfer\SimpleUploadable.cs" />
+    <Compile Include="Transfer\Upload.cs" />
+    <Compile Include="Transfer\UploadInitError.cs" />
+    <Compile Include="Transfer\UploadInitErrorType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib.Portable, Version=0.86.0.51803, Culture=neutral, processorArchitecture=MSIL">

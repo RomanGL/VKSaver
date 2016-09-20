@@ -18,13 +18,7 @@ namespace VKSaver.Core.Services.Transfer
 
         public static bool IsRunning(this BackgroundTransferStatus status)
         {
-            switch (status)
-            {
-                case BackgroundTransferStatus.Running:
-                    return true;
-                default:
-                    return false;
-            }
+            return status == BackgroundTransferStatus.Running;
         }
     }
 }

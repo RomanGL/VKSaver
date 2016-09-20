@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Transfer;
-using VKSaver.Core.Transfer;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.Web;
@@ -19,8 +17,8 @@ namespace VKSaver.Core.Services
 {
     public class DownloadsService2 : IDownloadsService
     {
-        public event EventHandler<DownloadItem> ProgressChanged;
-        public event EventHandler<DownloadOperationErrorEventArgs> DownloadError;
+        public event EventHandler<TransferItem> ProgressChanged;
+        public event EventHandler<TransferOperationErrorEventArgs> DownloadError;
         public event EventHandler DownloadsCompleted;
 
         public DownloadsService2(IMusicCacheService musicCacheService)
@@ -38,17 +36,17 @@ namespace VKSaver.Core.Services
         
         public bool IsLoading { get; private set; }
         
-        public DownloadItem[] GetAllDownloads()
+        public TransferItem[] GetAllDownloads()
         {
             if (_downloads.Count == 0) return null;
-            return _downloads.Select(e => new DownloadItem
+            return _downloads.Select(e => new TransferItem
             {
                 OperationGuid = e.Guid,
                 Name = GetOperationNameFromFileName(e.ResultFile.Name),
                 ContentType = GetContentTypeFromExtension(e.ResultFile.FileType),
                 Status = e.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
-                DownloadedSize = FileSize.FromBytes(e.Progress.BytesReceived)
+                ProcessedSize = FileSize.FromBytes(e.Progress.BytesReceived)
             }).ToArray();
         }
 
@@ -57,7 +55,7 @@ namespace VKSaver.Core.Services
             return _downloads.Count;
         }
 
-        public async void DiscoverActiveDownloadsAsync()
+        public async void DiscoverActiveDownloads()
         {
             IsLoading = true;
             IReadOnlyList<DownloadOperation> downloads = null;
@@ -107,7 +105,7 @@ namespace VKSaver.Core.Services
             catch (Exception) { }
         }
 
-        public Task CancelAll()
+        public Task CancelAllAsync()
         {
             return Task.Run(() =>
             {
@@ -203,7 +201,7 @@ namespace VKSaver.Core.Services
             catch (OperationCanceledException) { }
             catch (Exception ex)
             {
-                DownloadError?.Invoke(this, new DownloadOperationErrorEventArgs(
+                DownloadError?.Invoke(this, new TransferOperationErrorEventArgs(
                     operation.Guid,
                     GetOperationNameFromFileName(operation.ResultFile.Name),
                     GetContentTypeFromExtension(operation.ResultFile.FileType),
@@ -224,14 +222,14 @@ namespace VKSaver.Core.Services
         
         private void OnDownloadProgressChanged(DownloadOperation e)
         {
-            ProgressChanged?.Invoke(this, new DownloadItem
+            ProgressChanged?.Invoke(this, new TransferItem
             {
                 OperationGuid = e.Guid,
                 Name = GetOperationNameFromFileName(e.ResultFile.Name),
                 ContentType = GetContentTypeFromExtension(e.ResultFile.FileType),
                 Status = e.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
-                DownloadedSize = FileSize.FromBytes(e.Progress.BytesReceived)
+                ProcessedSize = FileSize.FromBytes(e.Progress.BytesReceived)
             });
         }
         

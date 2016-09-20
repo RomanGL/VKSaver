@@ -92,7 +92,7 @@
     <Compile Include="RecommendedViewModel.cs" />
     <Compile Include="TrackLyricsViewModel.cs" />
     <Compile Include="TransferViewModel.cs" />
-    <Compile Include="Transfer\DownloadItemViewModel.cs" />
+    <Compile Include="Transfer\TransferItemViewModel.cs" />
     <Compile Include="UserCommViewModel.cs" />
     <Compile Include="UserContentViewModel.cs" />
     <Compile Include="Collections\IncrementalLoadingJumpListCollection.cs" />

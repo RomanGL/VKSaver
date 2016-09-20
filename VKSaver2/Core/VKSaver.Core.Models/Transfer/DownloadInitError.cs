@@ -3,7 +3,7 @@
     /// <summary>
     /// Представляет информацию об ошибке при загрузке.
     /// </summary>
-    public class DownloadInitError
+    public sealed class DownloadInitError
     {
         /// <summary>
         /// Тип произошедшей ошибки.

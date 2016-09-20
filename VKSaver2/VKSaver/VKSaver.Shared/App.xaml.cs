@@ -141,18 +141,24 @@ namespace VKSaver
             _container.RegisterType<IMusicCacheService, MusicCacheService>(new ContainerControlledLifetimeManager());            
             _container.RegisterType<IVideoLinksExtractor, VideoLinksExtractor>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILastFmLoginService, LastFmLoginService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IUploadsPreprocessor, UploadsPreprocessor>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IUploadsPostprocessor, UploadsPostprocessor>(new ContainerControlledLifetimeManager());
 
             var playerService = _container.Resolve<PlayerService>();
             var downloadsService = _container.Resolve<DownloadsService>();
+            var uploadsService = _container.Resolve<UploadsService>();
             
             _container.RegisterInstance<ISuspendingService>("s1", playerService);
             _container.RegisterInstance<ISuspendingService>("s2", downloadsService);
+            _container.RegisterInstance<ISuspendingService>("s3", uploadsService);
 
             _container.RegisterInstance<IPlayerService>(playerService);
             _container.RegisterInstance<IDownloadsService>(downloadsService);
+            _container.RegisterInstance<IUploadsService>(uploadsService);
 
             _container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IMediaFilesProcessService, MediaFilesProcessService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IUploadsServiceHelper, UploadsServiceHelper>(new ContainerControlledLifetimeManager());
 
 #if FULL
             _container.RegisterType<IBetaService, BetaService>(new ContainerControlledLifetimeManager());

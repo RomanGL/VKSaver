@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Transfer;
-using VKSaver.Core.Transfer;
 
 namespace VKSaver.Core.Services.Interfaces
 {
     public interface IDownloadsService
     {
-        event EventHandler<DownloadOperationErrorEventArgs> DownloadError;
-        event EventHandler<DownloadItem> ProgressChanged;
+        event EventHandler<TransferOperationErrorEventArgs> DownloadError;
+        event EventHandler<TransferItem> ProgressChanged;
         event EventHandler DownloadsCompleted;
 
         bool IsLoading { get; }
 
-        void DiscoverActiveDownloadsAsync();
+        void DiscoverActiveDownloads();
         void Cancel(Guid operationGuid);
         void PauseResume(Guid operationGuid);
 
-        DownloadItem[] GetAllDownloads();
+        TransferItem[] GetAllDownloads();
         int GetDownloadsCount();
         Task<List<DownloadInitError>> StartDownloadingAsync(IList<IDownloadable> items);
-        Task CancelAll();    
+        Task CancelAllAsync();    
     }
 }

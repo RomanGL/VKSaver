@@ -73,6 +73,10 @@
     <Compile Include="Common\VKAuthorization.cs" />
     <Compile Include="Interfaces\ILastFmLoginService.cs" />
     <Compile Include="Interfaces\IMediaFilesProcessService.cs" />
+    <Compile Include="Interfaces\IUploadsPostprocessor.cs" />
+    <Compile Include="Interfaces\IUploadsPreprocessor.cs" />
+    <Compile Include="Interfaces\IUploadsService.cs" />
+    <Compile Include="Interfaces\IUploadsServiceHelper.cs" />
     <Compile Include="LastFmLoginService.cs" />
     <Compile Include="MediaFilesProcessService.cs" />
     <Compile Include="MusicCacheService.cs" />
@@ -120,10 +124,14 @@
     <Compile Include="PurchaseService\PurchaseServiceRelease.cs" />
     <Compile Include="SettingsService.cs" />
     <Compile Include="PurchaseService\StoreConstants.cs" />
-    <Compile Include="Transfer\DownloadOperationErrorEventArgs.cs" />
+    <Compile Include="Transfer\TransferOperationErrorEventArgs.cs" />
     <Compile Include="Transfer\TransferStatusComparer.cs" />
     <Compile Include="Transfer\TransferStatusExtensions.cs" />
     <Compile Include="TypedEventHandler.cs" />
+    <Compile Include="UploadsPostprocessor.cs" />
+    <Compile Include="UploadsPreprocessor.cs" />
+    <Compile Include="UploadsService.cs" />
+    <Compile Include="UploadsServiceHelper.cs" />
     <Compile Include="VKLoginService.cs" />
   </ItemGroup>
   <ItemGroup>
