@@ -1,4 +1,4 @@
-﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.PackagingFilesView"
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.UploadFileView"
                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                            xmlns:local="using:VKSaver.Views"
@@ -33,20 +33,25 @@
                        x:Uid="AppName"
                        Style="{ThemeResource TitleTextBlockStyle}"
                        Margin="0,12,0,0" />
-            <TextBlock Text="обработка"
-                       x:Uid="PackagingFilesView_Title"
+            <TextBlock Text="отправить файл"
                        Margin="-3,-6.5,0,26.5"
                        Style="{ThemeResource HeaderTextBlockStyle}"
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="19,0">
-            <TextBlock x:Uid="PackagingFilesView_Processing" Style="{StaticResource BodyTextBlockStyle}"
-                       Text="Выполняется обработка загруженных файлов..."
-                       Foreground="{ThemeResource PhoneLowBrush}" />
-            <ProgressBar Margin="0,10,0,0"
-                         Foreground="{StaticResource AccentBrush}"
-                         IsIndeterminate="True" />
+            <StackPanel.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition />
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </StackPanel.ChildrenTransitions>
+
+            <ComboBox Header="Что отправим?">
+                <ComboBoxItem Content="аудиозапись" />
+                <ComboBoxItem Content="видеозапись" />
+                <ComboBoxItem Content="документ" />
+            </ComboBox>
         </StackPanel>
     </Grid>
 </mvvm:VisualStateAwarePage>
