@@ -4,6 +4,8 @@ namespace VKSaver.Core.Models.Transfer
 {
     public class SimpleUploadable : IUploadable
     {
+        public string Name { get; set; }
+
         public FileContentType ContentType { get; set; }
 
         public IDataSource Source { get; set; }

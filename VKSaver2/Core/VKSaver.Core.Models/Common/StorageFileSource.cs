@@ -27,6 +27,11 @@ namespace VKSaver.Core.Models.Common
             return await _file.OpenStreamForReadAsync();
         }
 
+        public string GetContentType()
+        {
+            return _file.ContentType;
+        }
+
         private readonly StorageFile _file;
     }
 }

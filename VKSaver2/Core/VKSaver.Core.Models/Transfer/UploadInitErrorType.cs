@@ -3,6 +3,7 @@
     public enum UploadInitErrorType : byte
     {
         Unknown = 0,
-        CantPrepareData
+        CantPrepareData,
+        MaxUploadsExceeded
     }
 }

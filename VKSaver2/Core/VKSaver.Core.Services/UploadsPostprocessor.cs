@@ -15,7 +15,7 @@ namespace VKSaver.Core.Services
 
         }
 
-        public Task ProcessUploadAsync(IUpload upload)
+        public Task<UploadsPostprocessorResultType> ProcessUploadAsync(ICompletedUpload upload)
         {
             throw new NotImplementedException();
         }        

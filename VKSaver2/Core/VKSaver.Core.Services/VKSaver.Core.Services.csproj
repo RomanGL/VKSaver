@@ -71,6 +71,8 @@
     <Compile Include="Common\AudioEncryptedStream.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="Common\VKAuthorization.cs" />
+    <Compile Include="Database\UploadsDatabase.cs" />
+    <Compile Include="Database\VKSaverDatabase.cs" />
     <Compile Include="Interfaces\ILastFmLoginService.cs" />
     <Compile Include="Interfaces\IMediaFilesProcessService.cs" />
     <Compile Include="Interfaces\IUploadsPostprocessor.cs" />

@@ -308,8 +308,7 @@ namespace VKSaver.Core.Services
 
             try
             {
-                if (operation.Progress.Status != BackgroundTransferStatus.Canceled ||
-                    operation.Progress.Status != BackgroundTransferStatus.Error)
+                if (operation.Progress.Status == BackgroundTransferStatus.Completed)
                 {
                     var type = GetContentTypeFromExtension(operation.ResultFile.FileType);
                     if (type == FileContentType.Music)

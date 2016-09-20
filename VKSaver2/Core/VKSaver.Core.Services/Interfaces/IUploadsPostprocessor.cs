@@ -5,6 +5,6 @@ namespace VKSaver.Core.Services.Interfaces
 {
     public interface IUploadsPostprocessor
     {
-        Task ProcessUploadAsync(IUpload upload);
+        Task<UploadsPostprocessorResultType> ProcessUploadAsync(ICompletedUpload upload);
     }
 }

@@ -85,6 +85,8 @@
     <Compile Include="Player\PlayerState.cs" />
     <Compile Include="Player\PlayerTrack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transfer\CompletedUpload.cs" />
+    <Compile Include="Transfer\ICompletedUpload.cs" />
     <Compile Include="Transfer\IUpload.cs" />
     <Compile Include="Transfer\IUploadable.cs" />
     <Compile Include="Transfer\SimpleDownloadable.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Transfer\Upload.cs" />
     <Compile Include="Transfer\UploadInitError.cs" />
     <Compile Include="Transfer\UploadInitErrorType.cs" />
+    <Compile Include="Transfer\UploadsPostprocessorResultType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib.Portable, Version=0.86.0.51803, Culture=neutral, processorArchitecture=MSIL">

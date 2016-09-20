@@ -29,6 +29,11 @@ namespace VKSaver.Core.Models.Common
             return _file.GetContentStreamAsync();
         }
 
+        public string GetContentType()
+        {
+            return "audio/mpeg";
+        }
+
         private readonly VKSaverAudioFile _file;
     }
 }
