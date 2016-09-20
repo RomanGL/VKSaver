@@ -10,7 +10,7 @@ namespace VKSaver.Core.Services.Database
     {
         protected VKSaverDatabase(string databasePath)
         {
-            if (!String.IsNullOrEmpty(databasePath))
+            if (String.IsNullOrEmpty(databasePath))
                 throw new ArgumentException(nameof(databasePath));
 
             _databasePath = databasePath;

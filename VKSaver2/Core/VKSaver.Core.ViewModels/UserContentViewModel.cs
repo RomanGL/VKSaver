@@ -396,29 +396,29 @@ namespace VKSaver.Core.ViewModels
 
         private async void LoadUserInfo(long userID)
         {
-            if (_userID >= 0)
+            try
             {
-                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Users.Get(
-                    _userID == 0 ? null : new List<object> { _userID }));
-
-                if (response.IsError)
-                    throw new Exception(response.Error.ToString());
-                else if (response.Data.Any() && _userID == userID)
+                if (_userID >= 0)
                 {
-                    var user = response.Data[0];
-                    PageTitle = $"{user.FirstName} {user.LastName}";
+                    var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Users.Get(
+                        _userID == 0 ? null : new List<object> { _userID }));
+
+                    if (!response.IsError && response.Data.Any() && _userID == userID)
+                    {
+                        var user = response.Data[0];
+                        PageTitle = $"{user.FirstName} {user.LastName}";
+                    }
+                }
+                else
+                {
+                    var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Groups.GetById(
+                        new List<object> { -_userID }));
+
+                    if (!response.IsError && response.Data.Any() && _userID == userID)
+                        PageTitle = response.Data[0].Name;
                 }
             }
-            else
-            {
-                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Groups.GetById(
-                    new List<object> { -_userID }));
-
-                if (response.IsError)
-                    throw new Exception(response.Error.ToString());
-                else if (response.Data.Any() && _userID == userID)
-                    PageTitle = response.Data[0].Name;
-            }
+            catch (Exception) { }
         }
 
         private void Downloadable_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

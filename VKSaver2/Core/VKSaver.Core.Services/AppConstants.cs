@@ -4,5 +4,6 @@
     {
         public const string CURRENT_PROMO_INDEX_PARAMETER = "CurrentPromoIndex";
         public const int CURRENT_PROMO_INDEX = 2;
+        public const int CONNECTION_ERROR_CODE = -1;
     }
 }

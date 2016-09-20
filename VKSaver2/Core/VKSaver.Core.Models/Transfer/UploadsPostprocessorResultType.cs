@@ -2,8 +2,9 @@
 {
     public enum UploadsPostprocessorResultType : byte
     {
-        Success = 0,
-        CantConnect,
+        Unknown = 0,
+        Success,
+        ConnectionError,
         ServerError
     }
 }

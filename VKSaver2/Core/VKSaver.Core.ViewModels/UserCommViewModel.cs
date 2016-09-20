@@ -161,16 +161,18 @@ namespace VKSaver.Core.ViewModels
 
         private async void LoadUserInfo(long userID)
         {
-            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Users.Get(
+            try
+            {
+                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Users.Get(
                     _userID == 0 ? null : new List<object> { _userID }));
 
-            if (response.IsError)
-                throw new Exception(response.Error.ToString());
-            else if (response.Data.Any() && _userID == userID)
-            {
-                var user = response.Data[0];
-                PageTitle = $"{user.FirstName} {user.LastName}";
+                if (!response.IsError && response.Data.Any() && _userID == userID)
+                {
+                    var user = response.Data[0];
+                    PageTitle = $"{user.FirstName} {user.LastName}";
+                }
             }
+            catch (Exception) { }
         }
 
         private void OnExecuteItemCommand(object item)

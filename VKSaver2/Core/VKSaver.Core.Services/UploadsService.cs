@@ -303,7 +303,7 @@ namespace VKSaver.Core.Services
                     await _database.InsertOrReplaceAsync(newUpload);
                     var result = await _uploadsPostprocessor.ProcessUploadAsync(newUpload);
 
-                    if (result != UploadsPostprocessorResultType.CantConnect)
+                    if (result != UploadsPostprocessorResultType.ConnectionError)
                         await _database.RemoveAsync(operation.Guid);
                 }
                 catch (Exception ex)
@@ -337,7 +337,7 @@ namespace VKSaver.Core.Services
                 foreach (var upload in uploads)
                 {
                     var result = await _uploadsPostprocessor.ProcessUploadAsync(upload);
-                    if (result != UploadsPostprocessorResultType.CantConnect)
+                    if (result != UploadsPostprocessorResultType.ConnectionError)
                         await _database.RemoveAsync(upload.Id);
                 }
             }
