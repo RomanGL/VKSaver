@@ -1,20 +1,26 @@
 ﻿using System;
-using VKSaver.Common;
+using VKSaver.Core.Services.Interfaces;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
 namespace VKSaver.Converters
 {
     public sealed class AuthServiceNameLocConverter : IValueConverter
     {
+        public AuthServiceNameLocConverter()
+        {
+            _locService = new Lazy<ILocService>(() => ((App)Application.Current).Resolve<ILocService>());
+        }
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             string serviceName = value.ToString();
             switch (serviceName)
             {
                 case "vk.com":
-                    return _locWrapper["ServiceName_VK_Text"];
+                    return _locService.Value["ServiceName_VK_Text"];
                 case "last.fm":
-                    return _locWrapper["ServiceName_LastFm_Text"];
+                    return _locService.Value["ServiceName_LastFm_Text"];
                 default:
                     return serviceName;
             }
@@ -25,6 +31,6 @@ namespace VKSaver.Converters
             throw new NotImplementedException();
         }
 
-        private readonly LocalizationXamlWrapper _locWrapper = new LocalizationXamlWrapper();
+        private readonly Lazy<ILocService> _locService;
     }
 }

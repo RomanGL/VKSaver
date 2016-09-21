@@ -29,7 +29,7 @@ namespace VKSaver.Core.ViewModels.Transfer
             }
         }
         
-        public Guid OpeartionGuid { get { return _operation.OperationGuid; } }
+        public Guid OperationGuid { get { return _operation.OperationGuid; } }
         public string Name { get { return _operation.Name; } }
         public FileContentType ContentType { get { return _operation.ContentType; } }
         public BackgroundTransferStatus Status { get { return _operation.Status; } }

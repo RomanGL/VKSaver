@@ -54,6 +54,7 @@ namespace VKSaver.Core.ViewModels
             GoToSettingsViewCommand = new DelegateCommand(OnGoToSettingsViewCommand);
             GoToNewsViewCommand = new DelegateCommand(OnGoToNewsViewCommand);
             GoToCachedViewCommand = new DelegateCommand(OnGoToCachedViewCommand);
+            GoToUploadFileViewCommand = new DelegateCommand(OnGoToUploadFileViewCommand);
 
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
@@ -120,6 +121,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand GoToCachedViewCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand GoToUploadFileViewCommand { get; private set; }
 
         public VKAudioWithImage FirstTrack { get; private set; }
 
@@ -327,6 +331,11 @@ namespace VKSaver.Core.ViewModels
         private void OnGoToCachedViewCommand()
         {
             _navigationService.Navigate("CachedView", null);
+        }
+
+        private void OnGoToUploadFileViewCommand()
+        {
+            _navigationService.Navigate("UploadFileView", null);
         }
 
         private void OnGoToUserContentCommand(string view)

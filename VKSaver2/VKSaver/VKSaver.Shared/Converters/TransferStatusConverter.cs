@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using VKSaver.Core.Services.Interfaces;
 using Windows.Networking.BackgroundTransfer;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
 namespace VKSaver.Converters
@@ -11,6 +11,11 @@ namespace VKSaver.Converters
     /// </summary>
     public class TransferStatusConverter : IValueConverter
     {
+        public TransferStatusConverter()
+        {
+            _locService = new Lazy<ILocService>(() => ((App)Application.Current).Resolve<ILocService>());
+        }
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var status = (BackgroundTransferStatus)value;
@@ -18,21 +23,21 @@ namespace VKSaver.Converters
             switch (status)
             {
                 case BackgroundTransferStatus.Running:
-                    return "Выполняется...";
+                    return _locService.Value["TransferStatus_Running_Text"];
                 case BackgroundTransferStatus.PausedByApplication:
-                    return "Приостановлено";
+                    return _locService.Value["TransferStatus_PausedByApplication_Text"];
                 case BackgroundTransferStatus.PausedCostedNetwork:
-                    return "Платная сеть";
+                    return _locService.Value["TransferStatus_PausedCostedNetwork_Text"];
                 case BackgroundTransferStatus.PausedNoNetwork:
-                    return "Соединение отсутствует";
+                    return _locService.Value["TransferStatus_PausedNoNetwork_Text"];
                 case BackgroundTransferStatus.Completed:
-                    return "Завершено";
+                    return _locService.Value["TransferStatus_Completed_Text"];
                 case BackgroundTransferStatus.Canceled:
-                    return "Отменено";
+                    return _locService.Value["TransferStatus_Canceled_Text"];
                 case BackgroundTransferStatus.Error:
-                    return "Ошибка";
+                    return _locService.Value["TransferStatus_Error_Text"];
                 default:
-                    return "Ожидание...";
+                    return _locService.Value["TransferStatus_Idle_Text"];
             }
         }
 
@@ -40,5 +45,7 @@ namespace VKSaver.Converters
         {
             throw new NotImplementedException();
         }
+
+        private readonly Lazy<ILocService> _locService;
     }
 }

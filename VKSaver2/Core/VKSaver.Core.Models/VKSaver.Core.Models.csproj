@@ -100,6 +100,7 @@
     <Compile Include="Transfer\UploadInitError.cs" />
     <Compile Include="Transfer\UploadInitErrorType.cs" />
     <Compile Include="Transfer\UploadsPostprocessorResultType.cs" />
+    <Compile Include="Transfer\UploadsPreprocessorResultType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib.Portable, Version=0.86.0.51803, Culture=neutral, processorArchitecture=MSIL">

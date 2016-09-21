@@ -74,7 +74,6 @@ Global
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.DebugFull|x64.ActiveCfg = DebugFull|x64
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.DebugFull|x64.Deploy.0 = DebugFull|x64
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.DebugFull|x86.ActiveCfg = DebugFull|x86
-		{90048F53-18A0-4145-B671-7FD28F1C6B83}.DebugFull|x86.Deploy.0 = DebugFull|x86
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.Release|ARM.ActiveCfg = Release|ARM
 		{90048F53-18A0-4145-B671-7FD28F1C6B83}.Release|Mixed Platforms.ActiveCfg = Release|x86

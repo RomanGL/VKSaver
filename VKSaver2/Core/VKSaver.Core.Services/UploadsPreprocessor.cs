@@ -1,8 +1,6 @@
 ﻿using ModernDev.InTouch;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
@@ -20,28 +18,57 @@ namespace VKSaver.Core.Services
             _inTouchWrapper = inTouchWrapper;
         }
 
-        public async Task<IUpload> ProcessUploadableAsync(IUploadable uploadable)
+        public async Task<Tuple<IUpload, UploadsPreprocessorResultType>> ProcessUploadableAsync(IUploadable uploadable)
         {
-            var serverInfo = await GetServerInfoForTypeAsync(uploadable.ContentType);
-            throw new NotImplementedException();
+            var result = await GetServerInfoForTypeAsync(uploadable.ContentType);
+            if (result.Item1 == null)
+                return new Tuple<IUpload, UploadsPreprocessorResultType>(null, result.Item2);
+
+            return new Tuple<IUpload, UploadsPreprocessorResultType>(
+                new Upload
+                {
+                    Uploadable = uploadable,
+                    UploadUrl = result.Item1.UploadUrl
+                }, 
+                UploadsPreprocessorResultType.Success);
         }
 
-        private async Task<ServerInfo> GetServerInfoForTypeAsync(FileContentType type)
+        private async Task<Tuple<ServerInfo, UploadsPreprocessorResultType>> GetServerInfoForTypeAsync(FileContentType type)
         {
-            Response<ServerInfo> response = null;
-            switch (type)
+            try
             {
-                case FileContentType.Music:
-                    response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetUploadServer());
-                    break;
-                default:
-                    response = await _inTouchWrapper.ExecuteRequest(_inTouch.Docs.GetUploadServer());
-                    break;
-            }
+                Response<ServerInfo> response = null;
+                switch (type)
+                {
+                    case FileContentType.Music:
+                        response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetUploadServer());
+                        break;
+                    default:
+                        response = await _inTouchWrapper.ExecuteRequest(_inTouch.Docs.GetUploadServer());
+                        break;
+                }
 
-            if (response.IsError)
-                return null;
-            return response.Data;
+                if (response.IsError)
+                {
+                    return new Tuple<ServerInfo, UploadsPreprocessorResultType>(null,
+                        UploadsPreprocessorResultType.ServerError);
+                }
+                return new Tuple<ServerInfo, UploadsPreprocessorResultType>(response.Data,
+                    UploadsPreprocessorResultType.Success);
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && ex.InnerException is HttpRequestException)
+                {
+                    return new Tuple<ServerInfo, UploadsPreprocessorResultType>(null,
+                        UploadsPreprocessorResultType.ConnectionError);
+                }
+                else
+                {
+                    return new Tuple<ServerInfo, UploadsPreprocessorResultType>(null,
+                        UploadsPreprocessorResultType.UnknownError);
+                }
+            }
         }
 
         private readonly InTouch _inTouch;

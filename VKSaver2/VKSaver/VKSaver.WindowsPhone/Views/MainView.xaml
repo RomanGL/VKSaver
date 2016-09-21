@@ -106,6 +106,9 @@
                               x:Uid="AppBarButton_TransferManager"
                               Command="{Binding GoToTransferViewCommand}"
                               CommandParameter="downloads" />
+                <AppBarButton Label="отправить файл"
+                              x:Uid="AppBarButton_UploadFile"
+                              Command="{Binding GoToUploadFileViewCommand}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

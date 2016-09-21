@@ -30,7 +30,7 @@ namespace VKSaver.Core.Services
 
             _transferGroup = BackgroundTransferGroup.CreateGroup(UPLOAD_TRASNFER_GROUP_NAME);
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
-            _uploads = new List<UploadOperation>(INIT_DOWNLOADS_LIST_CAPACITY);
+            _uploads = new Dictionary<UploadOperation, ICompletedUpload>(INIT_DOWNLOADS_LIST_CAPACITY);
             _cts = new Dictionary<Guid, CancellationTokenSource>(INIT_DOWNLOADS_LIST_CAPACITY);
         }
 
@@ -113,8 +113,9 @@ namespace VKSaver.Core.Services
                 if (uploads != null && uploads.Count > 0)
                 {
                     foreach (var upload in uploads)
-                    {                        
-                        HandleUploadAsync(upload, false);
+                    {
+                        var cachedUpload = await _database.GetAsync(upload.Guid);           
+                        HandleUploadAsync(upload, cachedUpload, false);
                     }
                 }
             });
@@ -129,12 +130,12 @@ namespace VKSaver.Core.Services
 
             return _uploads.Select(e => new TransferItem
             {
-                OperationGuid = e.Guid,
-                Name = GetOperationNameFromFile(e.SourceFile),
-                ContentType = GetContentTypeFromExtension(e.SourceFile.FileType),
-                Status = e.Progress.Status,
-                TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
-                ProcessedSize = FileSize.FromBytes(e.Progress.BytesReceived)
+                OperationGuid = e.Key.Guid,
+                Name = e.Value.Name,
+                ContentType = e.Value.ContentType,
+                Status = e.Key.Progress.Status,
+                TotalSize = FileSize.FromBytes(e.Key.Progress.TotalBytesToReceive),
+                ProcessedSize = FileSize.FromBytes(e.Key.Progress.BytesReceived)
             });
         }
 
@@ -143,100 +144,57 @@ namespace VKSaver.Core.Services
             return _uploads.Count;
         }
 
-        public async Task<List<UploadInitError>> StartUploadingAsync(IList<IUpload> uploads)
+        public async Task<UploadInitError> StartUploadingAsync(IUpload upload)
         {
-            var errors = new List<UploadInitError>();
-            foreach (var upload in uploads)
-            {
-                if (_uploads.Count == INIT_DOWNLOADS_LIST_CAPACITY)
-                {
-                    errors.Add(new UploadInitError(UploadInitErrorType.MaxUploadsExceeded, upload));
-                    continue;
-                }
+            if (_uploads.Count == INIT_DOWNLOADS_LIST_CAPACITY)
+                return new UploadInitError(UploadInitErrorType.MaxUploadsExceeded, upload);
 
-                string field = null;
-                if (upload.Uploadable.ContentType == FileContentType.Video)
-                    field = "video_file";
-                else
-                    field = "file";
+            string field = null;
+            if (upload.Uploadable.ContentType == FileContentType.Video)
+                field = "video_file";
+            else
+                field = "file";
 
-                string boundary = String.Format(BOUNDARY_MASK, DateTime.Now.Ticks.ToString("x"));
-                string header = String.Format(HEADER_MASK, boundary, field,
-                    upload.Uploadable.Name, upload.Uploadable.Source.GetContentType());
-                string footer = String.Format(FOOTER_MASK, boundary);
+            string boundary = String.Format(BOUNDARY_MASK, DateTime.Now.Ticks.ToString("x"));
 
-                var tempFile = await CreateTemporaryFile(upload, header, footer);
-                if (tempFile == null)
-                {
-                    errors.Add(new UploadInitError(UploadInitErrorType.CantPrepareData, upload));
-                    continue;
-                }
-
-                try
-                {
-                    var operation = await CreateUploadOperationAsync(tempFile, upload, boundary);
-                    HandleUploadAsync(operation, true);
-                }
-                catch (Exception ex)
-                {
-                    _logService.LogException(ex);
-                    await tempFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
-
-                    errors.Add(new UploadInitError(UploadInitErrorType.Unknown, upload));
-                    continue;
-                }
-            }
-
-            return errors;
-        }
-
-        private async Task<StorageFile> CreateTemporaryFile(IUpload upload, string header, string footer)
-        {
-            StorageFile file = null;
+            var part = CreateContentPart(upload, field);
+            if (part == null)
+                return new UploadInitError(UploadInitErrorType.CantPrepareData, upload);
 
             try
             {
-                var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync(
-                    UPLOADER_TEMP_FOLDER, CreationCollisionOption.OpenIfExists);
-
-                file = await folder.CreateFileAsync(
-                    upload.Uploadable.Name, CreationCollisionOption.GenerateUniqueName);
-
-                using (var fileStream = await file.OpenStreamForWriteAsync())
-                using (var strWritter = new StreamWriter(fileStream, Encoding.UTF8))
-                {
-                    strWritter.Write(header);
-                    strWritter.Flush();
-
-                    var sourceStream = await upload.Uploadable.Source.GetDataStreamAsync();
-                    await sourceStream.CopyToAsync(fileStream);
-
-                    strWritter.Write(footer);
-                    strWritter.Flush();
-                }
-
-                return file;
+                var tuple = await CreateUploadOperationAsync(new List<BackgroundTransferContentPart>(1) { part }, upload, boundary);
+                HandleUploadAsync(tuple.Item1, tuple.Item2, true);
             }
             catch (Exception ex)
             {
                 _logService.LogException(ex);
-                await file?.DeleteAsync(StorageDeleteOption.PermanentDelete);
-                return null;
+                return new UploadInitError(UploadInitErrorType.Unknown, upload);
             }
-            finally
-            {
-                upload.Uploadable.Source?.Dispose();                
-            }
+
+            return null;
         }
 
-        private async Task<UploadOperation> CreateUploadOperationAsync(StorageFile file, IUpload upload, string boundary)
+        public Task<List<UploadInitError>> StartUploadingAsync(IList<IUpload> uploads)
+        {
+            throw new NotImplementedException();
+        }
+
+        private BackgroundTransferContentPart CreateContentPart(IUpload upload, string fieldName)
+        {
+            var part = new BackgroundTransferContentPart(fieldName, upload.Uploadable.Source.GetFile().Path);
+            part.SetHeader("Content-Type", PART_CONTENT_TYPE);
+            part.SetFile(upload.Uploadable.Source.GetFile());
+            return part;
+        }
+        
+        private async Task<Tuple<UploadOperation, ICompletedUpload>> CreateUploadOperationAsync(
+            IEnumerable<BackgroundTransferContentPart> parts, IUpload upload, string boundary)
         {
             var uploader = new BackgroundUploader();
             uploader.TransferGroup = _transferGroup;
-            uploader.SetRequestHeader("Content-Type",
-                String.Format(REQUEST_HEADER_CONTENT_TYPE_MASK, boundary));
 
-            var operation = uploader.CreateUpload(new Uri(upload.UploadUrl), file);
+            var operation = await uploader.CreateUploadAsync(new Uri(upload.UploadUrl), parts, "form-data", boundary);
 
             AttachNotifications(uploader, upload);
 
@@ -248,7 +206,7 @@ namespace VKSaver.Core.Services
             };
             await _database.InsertAsync(completedUpload);
 
-            return operation;
+            return new Tuple<UploadOperation, ICompletedUpload>(operation, completedUpload);
         }
 
         private void AttachNotifications(BackgroundUploader uploader, IUpload upload)
@@ -256,14 +214,14 @@ namespace VKSaver.Core.Services
 
         }
 
-        private async void HandleUploadAsync(UploadOperation operation, bool start)
+        private async void HandleUploadAsync(UploadOperation operation, ICompletedUpload upload, bool start)
         {
             var tokenSource = new CancellationTokenSource();
-            var callback = new Progress<UploadOperation>(OnUploadProgressChanged);
-            _uploads.Add(operation);
+            var callback = new Progress<UploadOperation>(o => OnUploadProgressChanged(o, upload));
+            _uploads.Add(operation, upload);
             _cts.Add(operation.Guid, tokenSource);
 
-            OnUploadProgressChanged(operation);
+            OnUploadProgressChanged(operation, upload);
 
             try
             {
@@ -276,13 +234,13 @@ namespace VKSaver.Core.Services
             catch (Exception ex)
             {
                 _logService.LogException(ex);
-                OnUploadError(operation, ex);
+                OnUploadError(operation, upload, ex);
             }
 
-            FinishUpload(operation);
+            FinishUpload(operation, upload);
         }
 
-        private async void FinishUpload(UploadOperation operation)
+        private async void FinishUpload(UploadOperation operation, ICompletedUpload upload)
         {
             if (operation.Progress.Status == BackgroundTransferStatus.Completed)
             {
@@ -290,13 +248,12 @@ namespace VKSaver.Core.Services
                 {
                     string serverResponse = await (new StreamReader(
                     operation.GetResultStreamAt(0).AsStreamForRead())).ReadToEndAsync();
-
-                    var cachedUpload = await _database.GetAsync(operation.Guid);
+                    
                     var newUpload = new CompletedUpload
                     {
-                        Id = cachedUpload.Id,
-                        Name = cachedUpload.Name,
-                        ContentType = cachedUpload.ContentType,
+                        Id = upload.Id,
+                        Name = upload.Name,
+                        ContentType = upload.ContentType,
                         ServerResponse = serverResponse
                     };
 
@@ -314,16 +271,10 @@ namespace VKSaver.Core.Services
             else
                 await _database.RemoveAsync(operation.Guid);
 
-            OnUploadProgressChanged(operation);
+            OnUploadProgressChanged(operation, upload);
 
             _cts.Remove(operation.Guid);
             _uploads.Remove(operation);
-
-            try
-            {
-                await operation.SourceFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
-            }
-            catch (Exception) { }
 
             if (_uploads.Count == 0)
                 UploadsCompleted?.Invoke(this, EventArgs.Empty);
@@ -331,41 +282,44 @@ namespace VKSaver.Core.Services
 
         private async void TryFinishUncompletedUploads()
         {
-            try
+            await Task.Run(async () =>
             {
-                var uploads = await _database.GetNotCompletedAsync();
-                foreach (var upload in uploads)
+                try
                 {
-                    var result = await _uploadsPostprocessor.ProcessUploadAsync(upload);
-                    if (result != UploadsPostprocessorResultType.ConnectionError)
-                        await _database.RemoveAsync(upload.Id);
+                    var uploads = await _database.GetNotCompletedAsync();
+                    foreach (var upload in uploads)
+                    {
+                        var result = await _uploadsPostprocessor.ProcessUploadAsync(upload);
+                        if (result != UploadsPostprocessorResultType.ConnectionError)
+                            await _database.RemoveAsync(upload.Id);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                _logService.LogException(ex);
-            }
+                catch (Exception ex)
+                {
+                    _logService.LogException(ex);
+                }
+            });
         }
 
-        private void OnUploadProgressChanged(UploadOperation e)
+        private void OnUploadProgressChanged(UploadOperation e, ICompletedUpload upload)
         {
             ProgressChanged?.Invoke(this, new TransferItem
             {
                 OperationGuid = e.Guid,
-                Name = GetOperationNameFromFile(e.SourceFile),
-                ContentType = GetContentTypeFromExtension(e.SourceFile.FileType),
+                Name = upload.Name,
+                ContentType = upload.ContentType,
                 Status = e.Progress.Status,
-                TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
-                ProcessedSize = FileSize.FromBytes(e.Progress.BytesReceived)
+                TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToSend),
+                ProcessedSize = FileSize.FromBytes(e.Progress.BytesSent)
             });
         }
 
-        private void OnUploadError(UploadOperation e, Exception ex)
+        private void OnUploadError(UploadOperation e, ICompletedUpload upload, Exception ex)
         {
             UploadError?.Invoke(this, new TransferOperationErrorEventArgs(
                     e.Guid,
-                    GetOperationNameFromFile(e.SourceFile),
-                    GetContentTypeFromExtension(e.SourceFile.FileType),
+                    upload.Name,
+                    upload.ContentType,
                     ex));
         }
 
@@ -379,7 +333,7 @@ namespace VKSaver.Core.Services
         private UploadsDatabase _database;
 
         private readonly BackgroundTransferGroup _transferGroup;
-        private readonly List<UploadOperation> _uploads;
+        private readonly Dictionary<UploadOperation, ICompletedUpload> _uploads;
         private readonly Dictionary<Guid, CancellationTokenSource> _cts;        
 
         private readonly ILogService _logService;
@@ -390,9 +344,7 @@ namespace VKSaver.Core.Services
         private const string UPLOAD_TRASNFER_GROUP_NAME = "VKSaverUploader";
         private const string UPLOADER_TEMP_FOLDER = "UploaderTemp";
         private const string BOUNDARY_MASK = "VKSaver 2 {0}";
-        private const string HEADER_MASK = "--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\nContent-Type: {3}\r\n\r\n";
-        private const string FOOTER_MASK = "\r\n--{0}--\r\n";
-        private const string REQUEST_HEADER_CONTENT_TYPE_MASK = "multipart/form-data; boundary={0}";
+        private const string PART_CONTENT_TYPE = "application/octet-stream";
         private const int INIT_DOWNLOADS_LIST_CAPACITY = 30;
     }
 }

@@ -100,7 +100,7 @@ namespace VKSaver.Core.Services.Database
                                      ContentType = upload.ContentType,
                                      ServerResponse = upload.ServerResponse
                                  };
-                    return result;
+                    return result.ToList();
                 }
             });
         }

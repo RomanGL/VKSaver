@@ -17,6 +17,11 @@ namespace VKSaver.Core.Models.Common
 
         public void Dispose() { }
 
+        public StorageFile GetFile()
+        {
+            return _file;
+        }
+
         public Stream GetDataStream()
         {
             return GetDataStreamAsync().GetAwaiter().GetResult();
@@ -29,6 +34,8 @@ namespace VKSaver.Core.Models.Common
 
         public string GetContentType()
         {
+            if (String.IsNullOrEmpty(_file.ContentType))
+                return "application/vksaver";
             return _file.ContentType;
         }
 

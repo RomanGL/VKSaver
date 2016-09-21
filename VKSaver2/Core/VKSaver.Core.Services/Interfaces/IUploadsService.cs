@@ -20,6 +20,7 @@ namespace VKSaver.Core.Services.Interfaces
         int GetUploadsCount();
 
         Task<List<UploadInitError>> StartUploadingAsync(IList<IUpload> uploads);
+        Task<UploadInitError> StartUploadingAsync(IUpload upload);
         Task CancelAllAsync();
     }
 }

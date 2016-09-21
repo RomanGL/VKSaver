@@ -282,6 +282,23 @@ namespace VKSaver
             await mediaFilesProcessService.ProcessFiles(args.Files);            
         }
 
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+
+            var rootFrame = _frame;
+            var continuationManager = new ContinuationManager();
+
+            var continuationEventArgs = args as IContinuationActivatedEventArgs;
+            if (continuationEventArgs != null)
+            {
+                if (rootFrame != null)
+                {
+                    continuationManager.Continue(continuationEventArgs, rootFrame);
+                }
+            }
+        }
+
         private void StartSuspendingServices()
         {
             var suspendingServices = _container.ResolveAll<ISuspendingService>();

@@ -38,16 +38,24 @@ namespace VKSaver.Core.ViewModels
             _dispatcherWrapper = dispatcherWrapper;
 
             Downloads = new ObservableCollection<TransferItemViewModel>();
+            Uploads = new ObservableCollection<TransferItemViewModel>();
 
             ShowInfoCommand = new DelegateCommand<TransferItemViewModel>(OnShowInfoCommand);
             CancelDownloadCommand = new DelegateCommand<TransferItemViewModel>(OnCancelDownloadCommand);
+            CancelUploadCommand = new DelegateCommand<TransferItemViewModel>(OnCancelUploadCommand);
             PauseDownloadCommand = new DelegateCommand<TransferItemViewModel>(OnPauseResumeDownloadCommand);
             ResumeDownloadCommand = new DelegateCommand<TransferItemViewModel>(OnPauseResumeDownloadCommand);
             CancelAllDownloadsCommand = new DelegateCommand(OnCancelAllDownloadsCommand, CanExecuteCancelAllDownloadsCommand);
+            CancelAllUploadsCommand = new DelegateCommand(OnCancelAllUploadsCommand, CanExecuteCancelAllUploadsCommand);
         }
         
         [DoNotNotify]
         public ObservableCollection<TransferItemViewModel> Downloads { get; private set; }
+
+        [DoNotNotify]
+        public ObservableCollection<TransferItemViewModel> Uploads { get; private set; }
+
+        public int SelectedPivotIndex { get; set; }
 
         public ContentState DownloadsState { get; private set; }
         public ContentState UploadsState { get; private set; }
@@ -66,15 +74,39 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand<TransferItemViewModel> CancelDownloadCommand { get; private set; }
 
         [DoNotNotify]
+        public DelegateCommand<TransferItemViewModel> CancelUploadCommand { get; private set; }
+
+        [DoNotNotify]
         public DelegateCommand CancelAllDownloadsCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand CancelAllUploadsCommand { get; private set; }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            _downloadsService.ProgressChanged += OnDownloadProgressChanged;
-            _downloadsService.DownloadsCompleted += OnDownloadsCompleted;
-            await LoadDownloads();
+            if (e.Parameter != null)
+            {
+                string view = e.Parameter.ToString();
+                switch (view)
+                {
+                    case "downloads":
+                        SelectedPivotIndex = 0;
+                        break;
+                    case "uploads":
+                        SelectedPivotIndex = 1;
+                        break;
+                }
+            }
 
-            UploadsState = ContentState.NoData;
+            _downloadsService.ProgressChanged += OnDownloadProgressChanged;
+            _downloadsService.DownloadsCompleted += OnDownloadsUploadsCompleted;
+
+            _uploadsService.ProgressChanged += OnUploadProgressChanged;
+            _uploadsService.UploadsCompleted += OnDownloadsUploadsCompleted;
+
+            await LoadDownloads();
+            await LoadUploads();
+            
             HistoryState = ContentState.NoData;        
 
             base.OnNavigatedTo(e, viewModelState);
@@ -82,8 +114,14 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
-            _downloadsService.ProgressChanged -= OnDownloadProgressChanged;
-            _downloadsService.DownloadsCompleted -= OnDownloadsCompleted;
+            if (!suspending)
+            {
+                _downloadsService.ProgressChanged -= OnDownloadProgressChanged;
+                _downloadsService.DownloadsCompleted -= OnDownloadsUploadsCompleted;
+
+                _uploadsService.ProgressChanged -= OnUploadProgressChanged;
+                _uploadsService.UploadsCompleted -= OnDownloadsUploadsCompleted;
+            }
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
@@ -96,7 +134,7 @@ namespace VKSaver.Core.ViewModels
                     return;
 
                 DownloadsState = ContentState.Normal;
-                var item = Downloads.FirstOrDefault(d => d.OpeartionGuid == e.OperationGuid);
+                var item = Downloads.FirstOrDefault(d => d.OperationGuid == e.OperationGuid);
                 if (item == null)
                 {
                     if (e.Status != BackgroundTransferStatus.Completed &&
@@ -104,7 +142,7 @@ namespace VKSaver.Core.ViewModels
                         return;
 
                     Downloads.Add(new TransferItemViewModel(e));
-                    item = Downloads.FirstOrDefault(d => d.OpeartionGuid == e.OperationGuid);
+                    item = Downloads.FirstOrDefault(d => d.OperationGuid == e.OperationGuid);
                     if (item == null)
                         return;
                 }
@@ -124,7 +162,41 @@ namespace VKSaver.Core.ViewModels
             });
         }
 
-        private void OnDownloadsCompleted(object sender, EventArgs e)
+        private async void OnUploadProgressChanged(object sender, TransferItem e)
+        {
+            await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (UploadsState == ContentState.Loading)
+                    return;
+
+                UploadsState = ContentState.Normal;
+                var item = Uploads.FirstOrDefault(d => d.OperationGuid == e.OperationGuid);
+                if (item == null)
+                {
+                    if (e.Status != BackgroundTransferStatus.Completed &&
+                        e.Status != BackgroundTransferStatus.Canceled)
+                        return;
+
+                    Uploads.Add(new TransferItemViewModel(e));
+                    item = Uploads.FirstOrDefault(d => d.OperationGuid == e.OperationGuid);
+                    if (item == null)
+                        return;
+                }
+                else
+                    item.Operation = e;
+
+                if (item.Status == BackgroundTransferStatus.Completed ||
+                    item.Status == BackgroundTransferStatus.Canceled)
+                    Uploads.Remove(item);
+
+                if (Uploads.Count == 0)
+                    UploadsState = ContentState.NoData;
+                else
+                    Uploads.OrderBy(d => d.Status, new TransferStatusComparer());
+            });
+        }
+
+        private void OnDownloadsUploadsCompleted(object sender, EventArgs e)
         {
             _appLoaderService.Hide();
         }
@@ -150,6 +222,29 @@ namespace VKSaver.Core.ViewModels
             DownloadsState = ContentState.Normal;
         }
 
+        private async Task LoadUploads()
+        {
+            Uploads.Clear();
+            UploadsState = ContentState.Loading;
+
+            while (_uploadsService.IsLoading)
+                await Task.Delay(1000);
+
+            var uploads = _uploadsService.GetAllUploads();
+            if (uploads == null)
+            {
+                UploadsState = ContentState.NoData;
+                return;
+            }
+
+            foreach (var upload in uploads)
+            {
+                Uploads.Add(new TransferItemViewModel(upload));
+            }
+
+            UploadsState = ContentState.Normal;
+        }
+
         private void OnShowInfoCommand(TransferItemViewModel item)
         {
             if (item.Status == BackgroundTransferStatus.Error ||
@@ -166,14 +261,21 @@ namespace VKSaver.Core.ViewModels
         {
             if (item == null)
                 return;
-            _downloadsService.Cancel(item.OpeartionGuid);
+            _downloadsService.Cancel(item.OperationGuid);
+        }
+
+        private void OnCancelUploadCommand(TransferItemViewModel item)
+        {
+            if (item == null)
+                return;
+            _uploadsService.Cancel(item.OperationGuid);
         }
 
         private void OnPauseResumeDownloadCommand(TransferItemViewModel item)
         {
             if (item == null)
                 return;
-            _downloadsService.PauseResume(item.OpeartionGuid);
+            _downloadsService.PauseResume(item.OperationGuid);
         }
 
         private async void OnCancelAllDownloadsCommand()
@@ -182,9 +284,20 @@ namespace VKSaver.Core.ViewModels
             await _downloadsService.CancelAllAsync();
         }
 
+        private async void OnCancelAllUploadsCommand()
+        {
+            _appLoaderService.Show(_locService["AppLoader_CancelAllUploads"]);
+            await _uploadsService.CancelAllAsync();
+        }
+
         private bool CanExecuteCancelAllDownloadsCommand()
         {
             return Downloads.Count > 0;
+        }
+
+        private bool CanExecuteCancelAllUploadsCommand()
+        {
+            return Uploads.Count > 0;
         }
         
         private string GetMessageTitleFromStatus(BackgroundTransferStatus status)

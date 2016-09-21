@@ -102,6 +102,23 @@
             <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
                     Value="True" />
         </Style>
+
+        <Style x:Key="UploadItemContainerStyle"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>                        
+                        <MenuFlyoutItem Text="отменить"
+                                        x:Uid="TransferView_CancelFlyoutItem"
+                                        Command="{Binding DataSource.CancelUploadCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
     </Page.Resources>
 
     <mvvm:VisualStateAwarePage.BottomAppBar>
@@ -110,13 +127,17 @@
                 <AppBarButton Label="отменить все загрузки"
                               x:Uid="TransferView_CancelAllDownloadsButton"
                               Command="{Binding CancelAllDownloadsCommand}"/>
+                <AppBarButton Label="отменить все отправки"
+                              x:Uid="TransferView_CancelAllUploadsButton"
+                              Command="{Binding CancelAllUploadsCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </mvvm:VisualStateAwarePage.BottomAppBar>
     
     <Pivot Title="ВКАЧАЙ"
            x:Uid="AppNamePivot"
-           Style="{StaticResource PivotStyle}">
+           Style="{StaticResource PivotStyle}"
+           SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}">
         <PivotItem Header="загрузки"
                    x:Uid="TransferView_PivotSection_Downloads"
                    Style="{StaticResource PivotItemStyle}">
@@ -152,8 +173,28 @@
                    x:Uid="TransferView_PivotSection_Uploads"
                    Style="{StaticResource PivotItemStyle}">
             <controls:ContentContainer State="{Binding UploadsState}"
-                                       x:Uid="TransferView_UploadsLoader"
-                                       NoDataText="Отправки пока не поддерживаются">
+                                       x:Uid="TransferView_UploadsLoader">
+                <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                          ItemsSource="{Binding Uploads}"
+                          ItemTemplate="{StaticResource TransferItemTemplate}"
+                          ItemContainerStyle="{StaticResource UploadItemContainerStyle}"
+                          HorizontalContentAlignment="Stretch">
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition />
+                            <ContentThemeTransition />
+                            <AddDeleteThemeTransition />
+                            <ReorderThemeTransition />
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="ItemClick">
+                            <c:InvokeCommandAction Command="{Binding ShowInfoCommand}"
+                                                   InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                        </c:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ListView>
             </controls:ContentContainer>
         </PivotItem>
         <PivotItem Header="журнал"

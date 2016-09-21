@@ -449,7 +449,7 @@
     <value>Произошла ошибка</value>
   </data>
   <data name="Message_Transfer_Idle_Text" xml:space="preserve">
-    <value>Загрузка ожидает своей очереди.</value>
+    <value>Операция ожидает своей очереди.</value>
   </data>
   <data name="Message_Transfer_Idle_Title" xml:space="preserve">
     <value>Ожидание очереди</value>
@@ -657,7 +657,7 @@
     <value>Получение списка текущих отправок...</value>
   </data>
   <data name="TransferView_UploadsLoader.NoDataText" xml:space="preserve">
-    <value>Отправки пока не поддерживаются</value>
+    <value>Сейчас не выполняется никаких отправок</value>
   </data>
   <data name="UserCommView_FriendListsLoader.ErrorText" xml:space="preserve">
     <value>Не удалось загрузить списки друзей</value>
@@ -1064,5 +1064,166 @@
   </data>
   <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
     <value>Всегда актуальный профиль Last.fm!</value>
+  </data>
+  <data name="FileSize_Bytes_Mask_Text" xml:space="preserve">
+    <value>{0} байт</value>
+    <comment>Байты. Например, "256 байт"
+Eng: bytes</comment>
+  </data>
+  <data name="FileSize_EB_Mask_Text" xml:space="preserve">
+    <value>{0} ЭБ</value>
+    <comment>Эксабайты. Например, "145 ЭБ"
+Eng: EB</comment>
+  </data>
+  <data name="FileSize_GB_Mask_Text" xml:space="preserve">
+    <value>{0} ГБ</value>
+    <comment>Гигабайты. Например, "12 ГБ"
+Eng: GB</comment>
+  </data>
+  <data name="FileSize_KB_Mask_Text" xml:space="preserve">
+    <value>{0} КБ</value>
+    <comment>Килобайты. Например, "1023 КБ"
+Eng: KB</comment>
+  </data>
+  <data name="FileSize_MB_Mask_Text" xml:space="preserve">
+    <value>{0} МБ</value>
+    <comment>Мегабайты. Например, "541 МБ"
+Eng: MB</comment>
+  </data>
+  <data name="FileSize_PB_Mask_Text" xml:space="preserve">
+    <value>{0} ПБ</value>
+    <comment>Петабайты. Например, "4 ПБ"
+Eng: PB</comment>
+  </data>
+  <data name="FileSize_TB_Mask_Text" xml:space="preserve">
+    <value>{0} ТБ</value>
+    <comment>Терабайты. Например, "968 ТБ"
+Eng: TB</comment>
+  </data>
+  <data name="TransferStatus_Canceled_Text" xml:space="preserve">
+    <value>Отменено</value>
+  </data>
+  <data name="TransferStatus_Completed_Text" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="TransferStatus_Error_Text" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="TransferStatus_Idle_Text" xml:space="preserve">
+    <value>Ожидание...</value>
+  </data>
+  <data name="TransferStatus_PausedByApplication_Text" xml:space="preserve">
+    <value>Приостановлено</value>
+  </data>
+  <data name="TransferStatus_PausedCostedNetwork_Text" xml:space="preserve">
+    <value>Платная сеть</value>
+  </data>
+  <data name="TransferStatus_PausedNoNetwork_Text" xml:space="preserve">
+    <value>Соединение отсутствует</value>
+  </data>
+  <data name="TransferStatus_Running_Text" xml:space="preserve">
+    <value>Выполняется...</value>
+  </data>
+  <data name="AppBarButton_UploadFile" xml:space="preserve">
+    <value>отправить файл</value>
+  </data>
+  <data name="AppLoader_CancelAllUploads" xml:space="preserve">
+    <value>Отмена всех отправок...</value>
+  </data>
+  <data name="FileSize_SizeText.Text" xml:space="preserve">
+    <value>Размер:</value>
+    <comment>Размер файла.</comment>
+  </data>
+  <data name="Message_PostUploads_ConnectionError_Text" xml:space="preserve">
+    <value>Ошибка соединения. Проверьте подключение к сети. При следующем запуске мы повторим попытку завершить отправку {0}.</value>
+  </data>
+  <data name="Message_PostUploads_Error_Title" xml:space="preserve">
+    <value>Не удалось завершить отправку</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_105_Text" xml:space="preserve">
+    <value>Невозможно сохранить файл.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_123_Text" xml:space="preserve">
+    <value>Недопустимый формат аудиозаписи.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_204_Text" xml:space="preserve">
+    <value>Нет доступа.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_214_Text" xml:space="preserve">
+    <value>Нет прав на добавление поста.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_270_Text" xml:space="preserve">
+    <value>Аудиозапись была изъята по запросу правообладателя и не может быть загружена.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_301_Text" xml:space="preserve">
+    <value>Недопустимое имя файла.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_302_Text" xml:space="preserve">
+    <value>Недопустимый размер файла.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_Text" xml:space="preserve">
+    <value>Сервер вернул ошибку, и мы не можем завершить отправку {0}.
+Код: {1} - {2}</value>
+    <comment>Например, "Код: 404 - не найдено".</comment>
+  </data>
+  <data name="Message_PostUploads_ServerError_Unknown_Text" xml:space="preserve">
+    <value>Неизвестная ошибка.</value>
+  </data>
+  <data name="Message_PostUploads_UnknownAppError_Text" xml:space="preserve">
+    <value>Произошла неизвестная ошибка, и мы не можем завершить отправку {0}.</value>
+  </data>
+  <data name="Message_Uploads_CantPrepareData_Text" xml:space="preserve">
+    <value>Не удалось подготовить данные:</value>
+  </data>
+  <data name="Message_Uploads_MaxUploadsExceeded_Text" xml:space="preserve">
+    <value>Достигнуто максимальное количество отправок:</value>
+  </data>
+  <data name="Message_Uploads_PreprocessionConnectionError_Text" xml:space="preserve">
+    <value>Ошибка соединения. Проверьте подключение к сети и повторите попытку.</value>
+  </data>
+  <data name="Message_Uploads_PreprocessionError_Title" xml:space="preserve">
+    <value>Не удалось подготовить файл к отправке</value>
+  </data>
+  <data name="Message_Uploads_PreprocessionServerError_Text" xml:space="preserve">
+    <value>Ошибка сервера. Повторите попытку позднее.</value>
+  </data>
+  <data name="Message_Uploads_StartUploading_Title" xml:space="preserve">
+    <value>Не удалось начать отправку</value>
+  </data>
+  <data name="Message_Uploads_UnknownError_Text" xml:space="preserve">
+    <value>Неизвестная ошибка:</value>
+  </data>
+  <data name="Toast_PostUploads_Success_Text" xml:space="preserve">
+    <value>Отправка успешно завершена!</value>
+  </data>
+  <data name="TransferView_CancelAllUploadsButton.Label" xml:space="preserve">
+    <value>отменить все отправки</value>
+  </data>
+  <data name="UploadFileView_SelectAnotherFileButton.Content" xml:space="preserve">
+    <value>выбрать другой</value>
+    <comment>Выбрать другой файл.</comment>
+  </data>
+  <data name="UploadFileView_SelectFileButton.Content" xml:space="preserve">
+    <value>выбрать файл</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox.Header" xml:space="preserve">
+    <value>Что отправим?</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox_Audio.Content" xml:space="preserve">
+    <value>аудиозапись</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox_Doc.Content" xml:space="preserve">
+    <value>документ</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox_Video.Content" xml:space="preserve">
+    <value>видеозапись</value>
+  </data>
+  <data name="UploadFileView_Title.Text" xml:space="preserve">
+    <value>отправить файл</value>
+  </data>
+  <data name="UploadFileView_UploadFileButton.Content" xml:space="preserve">
+    <value>отправить</value>
+    <comment>Отправить файл.
+Eng: upload</comment>
   </data>
 </root>

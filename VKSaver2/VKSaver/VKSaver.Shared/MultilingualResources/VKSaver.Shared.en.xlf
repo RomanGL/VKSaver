@@ -527,8 +527,9 @@ Go back to continue</target>
           <target state="translated">resume</target>
         </trans-unit>
         <trans-unit id="TransferView_UploadsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Отправки пока не поддерживаются</source>
-          <target state="translated">Uploads are not supported yet</target>
+          <source>Сейчас не выполняется никаких отправок</source>
+          <target state="needs-review-translation">Uploads are not supported yet</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="AppBarButton_AddToMyAudios_Text" translate="yes" xml:space="preserve">
           <source>в мои аудиозаписи</source>
@@ -743,8 +744,9 @@ Error code: {0}</target>
           <target state="translated">An error occurred</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_Idle_Text" translate="yes" xml:space="preserve">
-          <source>Загрузка ожидает своей очереди.</source>
-          <target state="translated">Download waits for his turn.</target>
+          <source>Операция ожидает своей очереди.</source>
+          <target state="needs-review-translation">Download waits for his turn.</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Message_Transfer_Idle_Title" translate="yes" xml:space="preserve">
           <source>Ожидание очереди</source>
@@ -1275,6 +1277,112 @@ Please wait...</target>
         <trans-unit id="PromoView_Screen4_Line2_Text" translate="yes" xml:space="preserve">
           <source>Всегда актуальный профиль Last.fm!</source>
           <target state="translated">Always up-to-date Last.fm profile!</target>
+        </trans-unit>
+        <trans-unit id="FileSize_Bytes_Mask_Text" translate="yes" xml:space="preserve">
+          <source>{0} байт</source>
+          <target state="new">{0} байт</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Байты. Например, "256 байт"
+Eng: bytes</note>
+        </trans-unit>
+        <trans-unit id="FileSize_EB_Mask_Text" translate="yes" xml:space="preserve">
+          <source>{0} ЭБ</source>
+          <target state="new">{0} ЭБ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Эксабайты. Например, "145 ЭБ"
+Eng: EB</note>
+        </trans-unit>
+        <trans-unit id="FileSize_GB_Mask_Text" translate="yes" xml:space="preserve">
+          <source>{0} ГБ</source>
+          <target state="new">{0} ГБ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Гигабайты. Например, "12 ГБ"
+Eng: GB</note>
+        </trans-unit>
+        <trans-unit id="FileSize_KB_Mask_Text" translate="yes" xml:space="preserve">
+          <source>{0} КБ</source>
+          <target state="new">{0} КБ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Килобайты. Например, "1023 КБ"
+Eng: KB</note>
+        </trans-unit>
+        <trans-unit id="FileSize_MB_Mask_Text" translate="yes" xml:space="preserve">
+          <source>{0} МБ</source>
+          <target state="new">{0} МБ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Мегабайты. Например, "541 МБ"
+Eng: MB</note>
+        </trans-unit>
+        <trans-unit id="FileSize_PB_Mask_Text" translate="yes" xml:space="preserve">
+          <source>{0} ПБ</source>
+          <target state="new">{0} ПБ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Петабайты. Например, "4 ПБ"
+Eng: PB</note>
+        </trans-unit>
+        <trans-unit id="FileSize_TB_Mask_Text" translate="yes" xml:space="preserve">
+          <source>{0} ТБ</source>
+          <target state="new">{0} ТБ</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Терабайты. Например, "968 ТБ"
+Eng: TB</note>
+        </trans-unit>
+        <trans-unit id="TransferStatus_Canceled_Text" translate="yes" xml:space="preserve">
+          <source>Отменено</source>
+          <target state="new">Отменено</target>
+        </trans-unit>
+        <trans-unit id="TransferStatus_Completed_Text" translate="yes" xml:space="preserve">
+          <source>Завершено</source>
+          <target state="new">Завершено</target>
+        </trans-unit>
+        <trans-unit id="TransferStatus_Error_Text" translate="yes" xml:space="preserve">
+          <source>Ошибка</source>
+          <target state="new">Ошибка</target>
+        </trans-unit>
+        <trans-unit id="TransferStatus_Idle_Text" translate="yes" xml:space="preserve">
+          <source>Ожидание...</source>
+          <target state="new">Ожидание...</target>
+        </trans-unit>
+        <trans-unit id="TransferStatus_PausedByApplication_Text" translate="yes" xml:space="preserve">
+          <source>Приостановлено</source>
+          <target state="new">Приостановлено</target>
+        </trans-unit>
+        <trans-unit id="TransferStatus_PausedCostedNetwork_Text" translate="yes" xml:space="preserve">
+          <source>Платная сеть</source>
+          <target state="new">Платная сеть</target>
+        </trans-unit>
+        <trans-unit id="TransferStatus_PausedNoNetwork_Text" translate="yes" xml:space="preserve">
+          <source>Соединение отсутствует</source>
+          <target state="new">Соединение отсутствует</target>
+        </trans-unit>
+        <trans-unit id="TransferStatus_Running_Text" translate="yes" xml:space="preserve">
+          <source>Выполняется...</source>
+          <target state="new">Выполняется...</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_UploadFile" translate="yes" xml:space="preserve">
+          <source>отправить файл</source>
+          <target state="new">отправить файл</target>
+        </trans-unit>
+        <trans-unit id="AppLoader_CancelAllUploads" translate="yes" xml:space="preserve">
+          <source>Отмена всех отправок...</source>
+          <target state="new">Отмена всех отправок...</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_CantPrepareData_Text" translate="yes" xml:space="preserve">
+          <source>Не удалось подготовить данные:</source>
+          <target state="new">Не удалось подготовить данные:</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_MaxUploadsExceeded_Text" translate="yes" xml:space="preserve">
+          <source>Достигнуто максимальное количество отправок:</source>
+          <target state="new">Достигнуто максимальное количество отправок:</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_PreprocessionError_Text" translate="yes" xml:space="preserve">
+          <source>Не удалось подготовить файл к отправке:</source>
+          <target state="new">Не удалось подготовить файл к отправке:</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_StartUploading_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось начать отправку</source>
+          <target state="new">Не удалось начать отправку</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_UnknownError_Text" translate="yes" xml:space="preserve">
+          <source>Неизвестная ошибка:</source>
+          <target state="new">Неизвестная ошибка:</target>
+        </trans-unit>
+        <trans-unit id="TransferView_CancelAllUploadsButton.Label" translate="yes" xml:space="preserve">
+          <source>отменить все отправки</source>
+          <target state="new">отменить все отправки</target>
         </trans-unit>
       </group>
     </body>
