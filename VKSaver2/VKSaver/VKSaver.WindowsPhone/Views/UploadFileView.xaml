@@ -45,92 +45,116 @@
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
         </StackPanel>
 
-        <StackPanel Grid.Row="1"
-                    Margin="19,0">
-            <StackPanel.ChildrenTransitions>
-                <TransitionCollection>
-                    <EntranceThemeTransition />
-                    <RepositionThemeTransition />
-                </TransitionCollection>
-            </StackPanel.ChildrenTransitions>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="19,0,19,60">
+                <StackPanel.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition />
+                        <RepositionThemeTransition />
+                    </TransitionCollection>
+                </StackPanel.ChildrenTransitions>
 
-            <Grid Visibility="{Binding IsFileSelected, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=True}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+                <Grid Visibility="{Binding IsFileSelected, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=True}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <Button Content="выбрать файл"
-                        x:Uid="UploadFileView_SelectFileButton"
-                        Grid.Row="1"
-                        Style="{StaticResource ButtonStyle}"
-                        Command="{Binding SelectFileCommand, Mode=OneTime}" />
+                    <Button Content="выбрать файл"
+                            x:Uid="UploadFileView_SelectFileButton"
+                            Grid.Row="1"
+                            Style="{StaticResource ButtonStyle}"
+                            Command="{Binding SelectFileCommand, Mode=OneTime}" />
 
-                <ComboBox Header="Что отправим?"
-                          x:Uid="UploadFileView_SelectTypeBox"
-                          SelectedIndex="{Binding SelectedUploadType, Mode=TwoWay, Converter={StaticResource UploadTypeConverter}}"
-                          BorderBrush="{StaticResource TitleBrush}">
-                    <ComboBoxItem Content="аудиозапись"
-                                  x:Uid="UploadFileView_SelectTypeBox_Audio"/>
-                    <ComboBoxItem Content="видеозапись"
-                                  x:Uid="UploadFileView_SelectTypeBox_Video"/>
-                    <ComboBoxItem Content="документ"
-                                  x:Uid="UploadFileView_SelectTypeBox_Doc"/>
-                </ComboBox>
-            </Grid>
+                    <ComboBox Header="Что отправим?"
+                              x:Uid="UploadFileView_SelectTypeBox"
+                              SelectedIndex="{Binding SelectedUploadType, Mode=TwoWay, Converter={StaticResource UploadTypeConverter}}"
+                              BorderBrush="{StaticResource TitleBrush}">
+                        <ComboBoxItem Content="аудиозапись"
+                                      x:Uid="UploadFileView_SelectTypeBox_Audio" />
+                        <ComboBoxItem Content="видеозапись"
+                                      x:Uid="UploadFileView_SelectTypeBox_Video" />
+                        <ComboBoxItem Content="документ"
+                                      x:Uid="UploadFileView_SelectTypeBox_Doc" />
+                    </ComboBox>
+                </Grid>
 
-            <Grid Visibility="{Binding IsFileSelected, Converter={StaticResource BoolToVisibilityConverter}}"
-                  VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+                <Grid Visibility="{Binding IsFileSelected, Converter={StaticResource BoolToVisibilityConverter}}"
+                      VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                <controls:ImagePlaceholder Height="130"
-                                           Width="130"
-                                           Text="{Binding SelectedFileName}"
-                                           Source="{Binding SelectedFileImage}"
-                                           Margin="0,0,10,0"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Top" />
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding SelectedFileName}"
-                               Style="{StaticResource ListLine2TextStyle}" />
-                    <TextBlock Text="{Binding SelectedFileType}"
-                               Style="{StaticResource ListLine1TextStyle}"
-                               FontSize="18"
-                               Margin="0,3,0,0"
-                               Foreground="{ThemeResource PhoneMidBrush}" />
-                    <TextBlock Style="{StaticResource ListLine1TextStyle}"
-                               FontSize="18"
-                               Foreground="{ThemeResource PhoneLowBrush}">
+                    <controls:ImagePlaceholder Height="130"
+                                               Width="130"
+                                               Text="{Binding SelectedFileName}"
+                                               Source="{Binding SelectedFileImage}"
+                                               Margin="0,0,10,0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Top" />
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="{Binding SelectedFileName}"
+                                   Style="{StaticResource ListLine2TextStyle}" />
+                        <TextBlock Text="{Binding SelectedFileType}"
+                                   Style="{StaticResource ListLine1TextStyle}"
+                                   FontSize="18"
+                                   Margin="0,3,0,0"
+                                   Foreground="{ThemeResource PhoneMidBrush}" />
+                        <TextBlock Style="{StaticResource ListLine1TextStyle}"
+                                   FontSize="18"
+                                   Foreground="{ThemeResource PhoneLowBrush}">
                         <Run Text="Размер:"
-                             x:Uid="FileSize_SizeText"/>
+                             x:Uid="FileSize_SizeText" />
                         <Run Text="{Binding SelectedFileSize, Converter={StaticResource FileSizeConverter}}" />
-                    </TextBlock>
-                </StackPanel>
+                        </TextBlock>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            Orientation="Horizontal"
-                            Margin="0,25,0,0">
-                    <Button Content="выбрать другой"
-                            x:Uid="UploadFileView_SelectAnotherFileButton"
-                            Style="{StaticResource ButtonStyle}"
-                            Command="{Binding SelectAnotherFileCommand, Mode=OneTime}"
-                            Margin="0,0,10,0" />
-                    <Button Content="отправить"
-                            x:Uid="UploadFileView_UploadFileButton"
-                            Style="{StaticResource ButtonStyle}"
-                            VerticalAlignment="Bottom"
-                            HorizontalAlignment="Stretch"
-                            Command="{Binding UploadFileCommand, Mode=OneTime}" />
+                    <StackPanel Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Orientation="Horizontal"
+                                Margin="0,25,0,0">
+                        <Button Content="выбрать другой"
+                                x:Uid="UploadFileView_SelectAnotherFileButton"
+                                Style="{StaticResource ButtonStyle}"
+                                Command="{Binding SelectAnotherFileCommand, Mode=OneTime}"
+                                Margin="0,0,10,0" />
+                        <Button Content="отправить"
+                                x:Uid="UploadFileView_UploadFileButton"
+                                Style="{StaticResource ButtonStyle}"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Stretch"
+                                Command="{Binding UploadFileCommand, Mode=OneTime}" />
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Visibility="{Binding IsVideoTypeSelected, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock Text="Параметры видео"
+                               x:Uid="UploadFileView_VideoSettings_Title"
+                               Style="{StaticResource ListLine2TextStyle}"
+                               Margin="0,20,0,0" />
+                    <TextBox Header="Название видео"
+                             x:Uid="UploadFileView_VideoSettings_NameBox"
+                             Text="{Binding VideoName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Header="Описание видео"
+                             x:Uid="UploadFileView_VideoSettings_DescriptionBox"
+                             MaxHeight="95"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True" 
+                             Text="{Binding VideoDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ToggleSwitch Header="Опубликовать на стене"
+                                  x:Uid="UploadFileView_VideoSettings_WallPostSwitch"
+                                  IsOn="{Binding VideoWallPost, Mode=TwoWay}"/>
+                    <ToggleSwitch Header="Зациклить воспроизведение"
+                                  x:Uid="UploadFileView_VideoSettings_RepeatSwitch"
+                                  IsOn="{Binding VideoRepeat, Mode=TwoWay}"/>
                 </StackPanel>
-            </Grid>
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </mvvm:VisualStateAwarePage>

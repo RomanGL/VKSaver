@@ -1243,4 +1243,19 @@ Eng: upload</comment>
   <data name="Message_Uploads_PreprocessionUnknownError_Text" xml:space="preserve">
     <value>Произошла неизвестная ошибка, и мы не можем начать отправку {0}.</value>
   </data>
+  <data name="UploadFileView_VideoSettings_DescriptionBox.Header" xml:space="preserve">
+    <value>Описание видео</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_NameBox.Header" xml:space="preserve">
+    <value>Название видео</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_RepeatSwitch.Header" xml:space="preserve">
+    <value>Зациклить воспроизведение</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_Title.Text" xml:space="preserve">
+    <value>Параметры видео</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_WallPostSwitch.Header" xml:space="preserve">
+    <value>Опубликовать на стене</value>
+  </data>
 </root>

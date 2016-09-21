@@ -1437,16 +1437,18 @@ Eng: TB</note>
           <target state="new">Произошла неизвестная ошибка, и мы не можем завершить отправку {0}.</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_PreprocessionConnectionError_Text" translate="yes" xml:space="preserve">
-          <source>Ошибка соединения. Проверьте подключение к сети и повторите попытку.</source>
-          <target state="new">Ошибка соединения. Проверьте подключение к сети и повторите попытку.</target>
+          <source>Произошла ошибка соединения, и мы не можем начать отправку {0}. Проверьте подключение к сети и повторите попытку.</source>
+          <target state="new">Произошла ошибка соединения, и мы не можем начать отправку {0}. Проверьте подключение к сети и повторите попытку.</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_PreprocessionError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось подготовить файл к отправке</source>
           <target state="new">Не удалось подготовить файл к отправке</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_PreprocessionServerError_Text" translate="yes" xml:space="preserve">
-          <source>Ошибка сервера. Повторите попытку позднее.</source>
-          <target state="new">Ошибка сервера. Повторите попытку позднее.</target>
+          <source>Сервер вернул ошибку, и мы не можем начать отправку {0}. Повторите попытку позднее.
+Код: {1} - {2}</source>
+          <target state="new">Сервер вернул ошибку, и мы не можем начать отправку {0}. Повторите попытку позднее.
+Код: {1} - {2}</target>
         </trans-unit>
         <trans-unit id="Toast_PostUploads_Success_Text" translate="yes" xml:space="preserve">
           <source>Отправка завершена!</source>
@@ -1503,6 +1505,30 @@ Eng: upload</note>
           <source>Вернитесь для завершения</source>
           <target state="new">Вернитесь для завершения</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Имеется ввиду, что отправка завершена и нужно вернуться в приложение для завершения операции сохранения.</note>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_PreprocessionUnknownError_Text" translate="yes" xml:space="preserve">
+          <source>Произошла неизвестная ошибка, и мы не можем начать отправку {0}.</source>
+          <target state="new">Произошла неизвестная ошибка, и мы не можем начать отправку {0}.</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_VideoSettings_DescriptionBox.Header" translate="yes" xml:space="preserve">
+          <source>Описание видео</source>
+          <target state="new">Описание видео</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_VideoSettings_NameBox.Header" translate="yes" xml:space="preserve">
+          <source>Название видео</source>
+          <target state="new">Название видео</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_VideoSettings_RepeatSwitch.Header" translate="yes" xml:space="preserve">
+          <source>Зациклить воспроизведение</source>
+          <target state="new">Зациклить воспроизведение</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_VideoSettings_Title.Text" translate="yes" xml:space="preserve">
+          <source>Параметры видео</source>
+          <target state="new">Параметры видео</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_VideoSettings_WallPostSwitch.Header" translate="yes" xml:space="preserve">
+          <source>Опубликовать на стене</source>
+          <target state="new">Опубликовать на стене</target>
         </trans-unit>
       </group>
     </body>

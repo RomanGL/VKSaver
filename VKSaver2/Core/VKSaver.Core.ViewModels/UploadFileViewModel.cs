@@ -52,23 +52,34 @@ namespace VKSaver.Core.ViewModels
         [AlsoNotifyFor(nameof(SelectedFile))]
         public bool IsFileSelected { get { return SelectedFile != null; } }
 
+        [AlsoNotifyFor(nameof(SelectedFile))]
+        public bool IsVideoTypeSelected { get { return SelectedUploadType == UploadType.Video && SelectedFile != null; } }
+
         public FileSize SelectedFileSize { get; private set; }
 
         public string SelectedFileType { get; private set; }
 
         public string SelectedFileName { get; private set; }
 
+        public string VideoName { get; set; }
+
+        public string VideoDescription { get; set; }
+
+        public bool VideoWallPost { get; set; }
+
+        public bool VideoRepeat { get; set; }
+
         public BitmapImage SelectedFileImage { get; private set; }
-        
+
         [DoNotNotify]
         public DelegateCommand SelectFileCommand { get; private set; }
-        
+
         [DoNotNotify]
         public DelegateCommand UploadFileCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand SelectAnotherFileCommand { get; private set; }
-        
+
         private StorageFile SelectedFile { get; set; }
 
         public void StartFileOpenPicker()
@@ -159,7 +170,15 @@ namespace VKSaver.Core.ViewModels
                 ContentType = GetContentTypeFromUploadType(SelectedUploadType),
                 Name = SelectedFileName,
                 Extension = SelectedFile.FileType,
-                Source = new StorageFileSource(SelectedFile)
+                Source = new StorageFileSource(SelectedFile),
+                AdditionalData = SelectedUploadType == UploadType.Video ?
+                    new Dictionary<string, string>
+                    {
+                        { "name", VideoName },
+                        { "description", VideoDescription },
+                        { "wallpost", VideoWallPost.ToString().ToLower() },
+                        { "repeat", VideoRepeat.ToString().ToLower() }
+                    } : null
             });
             _appLoaderService.Hide();
 
@@ -175,6 +194,10 @@ namespace VKSaver.Core.ViewModels
         private void OnSelectAnotherFileCommand()
         {
             SelectedFile = null;
+            VideoName = null;
+            VideoDescription = null;
+            VideoWallPost = false;
+            VideoRepeat = false;
         }
 
         private static FileContentType GetContentTypeFromUploadType(UploadType type)
@@ -189,7 +212,7 @@ namespace VKSaver.Core.ViewModels
                     return FileContentType.Other;
             }
         }
-        
+
         private UploadType _selectedUploadType;
 
         private readonly IUploadsServiceHelper _uploadsServiceHelper;
