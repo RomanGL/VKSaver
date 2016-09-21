@@ -12,7 +12,10 @@ using VKSaver.Core.Services.Interfaces;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.Web;
-using static VKSaver.Core.Models.Common.FileContentTypeExtensions;
+using NotificationsExtensions.ToastContent;
+using Windows.UI.Notifications;
+using VKSaver.Core.Services.Common;
+using Windows.Data.Xml.Dom;
 
 namespace VKSaver.Core.Services
 {
@@ -22,11 +25,14 @@ namespace VKSaver.Core.Services
         public event EventHandler<TransferOperationErrorEventArgs> UploadError;
         public event EventHandler UploadsCompleted;
 
-        public UploadsService(ILogService logService, 
-            IUploadsPostprocessor uploadsPostprocessor)
+        public UploadsService(
+            ILogService logService, 
+            IUploadsPostprocessor uploadsPostprocessor,
+            ILocService locService)
         {
             _logService = logService;
             _uploadsPostprocessor = uploadsPostprocessor;
+            _locService = locService;
 
             _transferGroup = BackgroundTransferGroup.CreateGroup(UPLOAD_TRASNFER_GROUP_NAME);
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
@@ -194,9 +200,9 @@ namespace VKSaver.Core.Services
             var uploader = new BackgroundUploader();
             uploader.TransferGroup = _transferGroup;
 
-            var operation = await uploader.CreateUploadAsync(new Uri(upload.UploadUrl), parts, "form-data", boundary);
-
             AttachNotifications(uploader, upload);
+
+            var operation = await uploader.CreateUploadAsync(new Uri(upload.UploadUrl), parts, "form-data", boundary);
 
             var completedUpload = new CompletedUpload
             {
@@ -211,7 +217,28 @@ namespace VKSaver.Core.Services
 
         private void AttachNotifications(BackgroundUploader uploader, IUpload upload)
         {
+            var successToast = ToastContentFactory.CreateToastText02();
+            successToast.Audio.Content = ToastAudioContent.SMS;
+            successToast.TextHeading.Text = _locService["Toast_Uploads_SuccessReturn_Text"];
+            successToast.TextBodyWrap.Text = upload.Uploadable.Name;
 
+            var successXml = successToast.GetXml();
+            ToastAudioHelper.SetSuccessAudio(successXml);
+
+            var successNotification = new ToastNotification(successXml);
+
+            var failToast = ToastContentFactory.CreateToastText02();
+            failToast.Audio.Content = ToastAudioContent.IM;
+            failToast.TextHeading.Text = _locService["Toast_Uploads_Fail_Text"];
+            failToast.TextBodyWrap.Text = upload.Uploadable.Name;
+
+            var failXml = failToast.GetXml();
+            ToastAudioHelper.SetFailAudio(failXml);
+
+            var failNotification = new ToastNotification(failXml);
+
+            uploader.SuccessToastNotification = successNotification;
+            uploader.FailureToastNotification = failNotification;
         }
 
         private async void HandleUploadAsync(UploadOperation operation, ICompletedUpload upload, bool start)
@@ -338,6 +365,7 @@ namespace VKSaver.Core.Services
 
         private readonly ILogService _logService;
         private readonly IUploadsPostprocessor _uploadsPostprocessor;
+        private readonly ILocService _locService;
 
         private readonly object _lockObject = new object();
 

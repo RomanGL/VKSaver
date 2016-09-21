@@ -1368,10 +1368,6 @@ Eng: TB</note>
           <source>Достигнуто максимальное количество отправок:</source>
           <target state="new">Достигнуто максимальное количество отправок:</target>
         </trans-unit>
-        <trans-unit id="Message_Uploads_PreprocessionError_Text" translate="yes" xml:space="preserve">
-          <source>Не удалось подготовить файл к отправке:</source>
-          <target state="new">Не удалось подготовить файл к отправке:</target>
-        </trans-unit>
         <trans-unit id="Message_Uploads_StartUploading_Title" translate="yes" xml:space="preserve">
           <source>Не удалось начать отправку</source>
           <target state="new">Не удалось начать отправку</target>
@@ -1383,6 +1379,130 @@ Eng: TB</note>
         <trans-unit id="TransferView_CancelAllUploadsButton.Label" translate="yes" xml:space="preserve">
           <source>отменить все отправки</source>
           <target state="new">отменить все отправки</target>
+        </trans-unit>
+        <trans-unit id="FileSize_SizeText.Text" translate="yes" xml:space="preserve">
+          <source>Размер:</source>
+          <target state="new">Размер:</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Размер файла.</note>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ConnectionError_Text" translate="yes" xml:space="preserve">
+          <source>Ошибка соединения. Проверьте подключение к сети. При следующем запуске мы повторим попытку завершить отправку {0}.</source>
+          <target state="new">Ошибка соединения. Проверьте подключение к сети. При следующем запуске мы повторим попытку завершить отправку {0}.</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_Error_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось завершить отправку</source>
+          <target state="new">Не удалось завершить отправку</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ServerError_105_Text" translate="yes" xml:space="preserve">
+          <source>Невозможно сохранить файл.</source>
+          <target state="new">Невозможно сохранить файл.</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ServerError_123_Text" translate="yes" xml:space="preserve">
+          <source>Недопустимый формат аудиозаписи.</source>
+          <target state="new">Недопустимый формат аудиозаписи.</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ServerError_204_Text" translate="yes" xml:space="preserve">
+          <source>Нет доступа.</source>
+          <target state="new">Нет доступа.</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ServerError_214_Text" translate="yes" xml:space="preserve">
+          <source>Нет прав на добавление поста.</source>
+          <target state="new">Нет прав на добавление поста.</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ServerError_270_Text" translate="yes" xml:space="preserve">
+          <source>Аудиозапись была изъята по запросу правообладателя и не может быть загружена.</source>
+          <target state="new">Аудиозапись была изъята по запросу правообладателя и не может быть загружена.</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ServerError_301_Text" translate="yes" xml:space="preserve">
+          <source>Недопустимое имя файла.</source>
+          <target state="new">Недопустимое имя файла.</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ServerError_302_Text" translate="yes" xml:space="preserve">
+          <source>Недопустимый размер файла.</source>
+          <target state="new">Недопустимый размер файла.</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ServerError_Text" translate="yes" xml:space="preserve">
+          <source>Сервер вернул ошибку, и мы не можем завершить отправку {0}.
+Код: {1} - {2}</source>
+          <target state="new">Сервер вернул ошибку, и мы не можем завершить отправку {0}.
+Код: {1} - {2}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например, "Код: 404 - не найдено".</note>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_ServerError_Unknown_Text" translate="yes" xml:space="preserve">
+          <source>Неизвестная ошибка.</source>
+          <target state="new">Неизвестная ошибка.</target>
+        </trans-unit>
+        <trans-unit id="Message_PostUploads_UnknownAppError_Text" translate="yes" xml:space="preserve">
+          <source>Произошла неизвестная ошибка, и мы не можем завершить отправку {0}.</source>
+          <target state="new">Произошла неизвестная ошибка, и мы не можем завершить отправку {0}.</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_PreprocessionConnectionError_Text" translate="yes" xml:space="preserve">
+          <source>Ошибка соединения. Проверьте подключение к сети и повторите попытку.</source>
+          <target state="new">Ошибка соединения. Проверьте подключение к сети и повторите попытку.</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_PreprocessionError_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось подготовить файл к отправке</source>
+          <target state="new">Не удалось подготовить файл к отправке</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_PreprocessionServerError_Text" translate="yes" xml:space="preserve">
+          <source>Ошибка сервера. Повторите попытку позднее.</source>
+          <target state="new">Ошибка сервера. Повторите попытку позднее.</target>
+        </trans-unit>
+        <trans-unit id="Toast_PostUploads_Success_Text" translate="yes" xml:space="preserve">
+          <source>Отправка завершена!</source>
+          <target state="new">Отправка завершена!</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_SelectAnotherFileButton.Content" translate="yes" xml:space="preserve">
+          <source>выбрать другой</source>
+          <target state="new">выбрать другой</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Выбрать другой файл.</note>
+        </trans-unit>
+        <trans-unit id="UploadFileView_SelectFileButton.Content" translate="yes" xml:space="preserve">
+          <source>выбрать файл</source>
+          <target state="new">выбрать файл</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_SelectTypeBox.Header" translate="yes" xml:space="preserve">
+          <source>Что отправим?</source>
+          <target state="new">Что отправим?</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_SelectTypeBox_Audio.Content" translate="yes" xml:space="preserve">
+          <source>аудиозапись</source>
+          <target state="new">аудиозапись</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_SelectTypeBox_Doc.Content" translate="yes" xml:space="preserve">
+          <source>документ</source>
+          <target state="new">документ</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_SelectTypeBox_Video.Content" translate="yes" xml:space="preserve">
+          <source>видеозапись</source>
+          <target state="new">видеозапись</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_Title.Text" translate="yes" xml:space="preserve">
+          <source>отправить файл</source>
+          <target state="new">отправить файл</target>
+        </trans-unit>
+        <trans-unit id="UploadFileView_UploadFileButton.Content" translate="yes" xml:space="preserve">
+          <source>отправить</source>
+          <target state="new">отправить</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Отправить файл.
+Eng: upload</note>
+        </trans-unit>
+        <trans-unit id="Toast_Downloads_Fail_Text" translate="yes" xml:space="preserve">
+          <source>Ошибка загрузки</source>
+          <target state="new">Ошибка загрузки</target>
+        </trans-unit>
+        <trans-unit id="Toast_Downloads_Success_Text" translate="yes" xml:space="preserve">
+          <source>Загрузка завершена!</source>
+          <target state="new">Загрузка завершена!</target>
+        </trans-unit>
+        <trans-unit id="Toast_Uploads_Fail_Text" translate="yes" xml:space="preserve">
+          <source>Ошибка отправки</source>
+          <target state="new">Ошибка отправки</target>
+        </trans-unit>
+        <trans-unit id="Toast_Uploads_SuccessReturn_Text" translate="yes" xml:space="preserve">
+          <source>Вернитесь для завершения</source>
+          <target state="new">Вернитесь для завершения</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Имеется ввиду, что отправка завершена и нужно вернуться в приложение для завершения операции сохранения.</note>
         </trans-unit>
       </group>
     </body>

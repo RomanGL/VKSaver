@@ -1179,13 +1179,14 @@ Eng: TB</comment>
     <value>Достигнуто максимальное количество отправок:</value>
   </data>
   <data name="Message_Uploads_PreprocessionConnectionError_Text" xml:space="preserve">
-    <value>Ошибка соединения. Проверьте подключение к сети и повторите попытку.</value>
+    <value>Произошла ошибка соединения, и мы не можем начать отправку {0}. Проверьте подключение к сети и повторите попытку.</value>
   </data>
   <data name="Message_Uploads_PreprocessionError_Title" xml:space="preserve">
     <value>Не удалось подготовить файл к отправке</value>
   </data>
   <data name="Message_Uploads_PreprocessionServerError_Text" xml:space="preserve">
-    <value>Ошибка сервера. Повторите попытку позднее.</value>
+    <value>Сервер вернул ошибку, и мы не можем начать отправку {0}. Повторите попытку позднее.
+Код: {1} - {2}</value>
   </data>
   <data name="Message_Uploads_StartUploading_Title" xml:space="preserve">
     <value>Не удалось начать отправку</value>
@@ -1194,7 +1195,7 @@ Eng: TB</comment>
     <value>Неизвестная ошибка:</value>
   </data>
   <data name="Toast_PostUploads_Success_Text" xml:space="preserve">
-    <value>Отправка успешно завершена!</value>
+    <value>Отправка завершена!</value>
   </data>
   <data name="TransferView_CancelAllUploadsButton.Label" xml:space="preserve">
     <value>отменить все отправки</value>
@@ -1225,5 +1226,21 @@ Eng: TB</comment>
     <value>отправить</value>
     <comment>Отправить файл.
 Eng: upload</comment>
+  </data>
+  <data name="Toast_Downloads_Fail_Text" xml:space="preserve">
+    <value>Ошибка загрузки</value>
+  </data>
+  <data name="Toast_Downloads_Success_Text" xml:space="preserve">
+    <value>Загрузка завершена!</value>
+  </data>
+  <data name="Toast_Uploads_Fail_Text" xml:space="preserve">
+    <value>Ошибка отправки</value>
+  </data>
+  <data name="Toast_Uploads_SuccessReturn_Text" xml:space="preserve">
+    <value>Вернитесь для завершения</value>
+    <comment>Имеется ввиду, что отправка завершена и нужно вернуться в приложение для завершения операции сохранения.</comment>
+  </data>
+  <data name="Message_Uploads_PreprocessionUnknownError_Text" xml:space="preserve">
+    <value>Произошла неизвестная ошибка, и мы не можем начать отправку {0}.</value>
   </data>
 </root>

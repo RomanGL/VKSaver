@@ -1,11 +1,14 @@
 ﻿using ModernDev.InTouch;
 using Newtonsoft.Json.Linq;
+using NotificationsExtensions.ToastContent;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
+using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
+using Windows.UI.Notifications;
 
 namespace VKSaver.Core.Services
 {
@@ -53,7 +56,16 @@ namespace VKSaver.Core.Services
 
             if (result.Item1 == UploadsPostprocessorResultType.Success)
             {
+                var successToast = ToastContentFactory.CreateToastText02();
+                successToast.Audio.Content = ToastAudioContent.IM;
+                successToast.TextHeading.Text = _locService["Toast_PostUploads_Success_Text"];
+                successToast.TextBodyWrap.Text = upload.Name;
 
+                var successXml = successToast.GetXml();
+                ToastAudioHelper.SetSuccessAudio(successXml);
+                var toast = new ToastNotification(successXml);
+
+                ToastNotificationManager.CreateToastNotifier().Show(toast);
             }
             else
                 ShowError(upload, result.Item1, result.Item2);
@@ -122,9 +134,9 @@ namespace VKSaver.Core.Services
             _dialogsService.Show(text, _locService["Message_PostUploads_Error_Title"]);
         }
 
-        private string GetServerErrorDescription(int code)
+        private string GetServerErrorDescription(int errorCode)
         {
-            switch (code)
+            switch (errorCode)
             {
                 case 105:
                     return _locService["Message_PostUploads_ServerError_105_Text"];
@@ -135,7 +147,7 @@ namespace VKSaver.Core.Services
                 case 301:
                     return _locService["Message_PostUploads_ServerError_301_Text"];
                 case 302:
-                    return _locService["Message_PostUploads_ServerError_302_Text"];                
+                    return _locService["Message_PostUploads_ServerError_302_Text"];
                 default:
                     return _locService["Message_PostUploads_ServerError_Unknown_Text"];
             }

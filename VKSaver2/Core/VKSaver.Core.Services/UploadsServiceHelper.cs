@@ -21,11 +21,8 @@ namespace VKSaver.Core.Services
         public async Task<bool> StartUploadingAsync(IUploadable item)
         {
             var preResult = await _uploadsPreprocessor.ProcessUploadableAsync(item);
-            if (preResult.Item1 == null)
-            {
-                ShowPreprocessionError(item, preResult.Item2);
+            if (preResult.Item2 != UploadsPreprocessorResultType.Success)
                 return false;
-            }
 
             var error = await _uploadsService.StartUploadingAsync(preResult.Item1);
             if (error == null)
@@ -33,26 +30,6 @@ namespace VKSaver.Core.Services
 
             ShowInitError(error);
             return false;
-        }
-        
-        private void ShowPreprocessionError(IUploadable upload, UploadsPreprocessorResultType error)
-        {
-            string text = null;
-            switch (error)
-            {
-                case UploadsPreprocessorResultType.ConnectionError:
-                    text = _locService["Message_Uploads_PreprocessionConnectionError_Text"];
-                    break;
-                case UploadsPreprocessorResultType.ServerError:
-                    text = _locService["Message_Uploads_PreprocessionServerError_Text"];
-                    break;
-                default:
-                    text = _locService["Message_Uploads_UnknownError_Text"];
-                    break;
-            }
-
-            _dialogsService.Show($"{text}\n{upload.Name}",
-                _locService["Message_Uploads_PreprocessionError_Title"]);
         }
 
         private void ShowInitError(UploadInitError error)

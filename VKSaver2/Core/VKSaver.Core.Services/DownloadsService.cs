@@ -14,6 +14,9 @@ using static VKSaver.Core.Services.Common.DownloadsExtensions;
 using static VKSaver.Core.Models.Common.FileContentTypeExtensions;
 using System.IO;
 using Newtonsoft.Json;
+using NotificationsExtensions.ToastContent;
+using VKSaver.Core.Services.Common;
+using Windows.UI.Notifications;
 
 namespace VKSaver.Core.Services
 {
@@ -35,12 +38,16 @@ namespace VKSaver.Core.Services
         /// </summary>
         public event EventHandler DownloadsCompleted;
 
-        public DownloadsService(IMusicCacheService musicCacheService, ISettingsService settingsService,
-            ILogService logService)
+        public DownloadsService(
+            IMusicCacheService musicCacheService, 
+            ISettingsService settingsService,
+            ILogService logService,
+            ILocService locService)
         {
             _musicCacheService = musicCacheService;
             _settingsService = settingsService;
             _logService = logService;
+            _locService = locService;
 
             _transferGroup = BackgroundTransferGroup.CreateGroup(DOWNLOAD_TRASNFER_GROUP_NAME);
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
@@ -256,6 +263,8 @@ namespace VKSaver.Core.Services
                 try
                 {
                     var downloader = new BackgroundDownloader() { TransferGroup = _transferGroup };
+                    AttachNotifications(downloader, item);
+
                     var download = downloader.CreateDownload(new Uri(item.Source), resultFile);
 
                     if (item.ContentType == FileContentType.Music)
@@ -275,6 +284,28 @@ namespace VKSaver.Core.Services
 
             await SaveDownloadsMetadataAsync();
             return errors;
+        }
+
+        private void AttachNotifications(BackgroundDownloader downloader, IDownloadable download)
+        {
+            var successToast = ToastContentFactory.CreateToastText02();
+            successToast.Audio.Content = ToastAudioContent.SMS;
+            successToast.TextHeading.Text = _locService["Toast_Downloads_Success_Text"];
+            successToast.TextBodyWrap.Text = download.FileName;
+
+            var successXml = successToast.GetXml();
+            ToastAudioHelper.SetSuccessAudio(successXml);
+
+            var failToast = ToastContentFactory.CreateToastText02();
+            failToast.Audio.Content = ToastAudioContent.IM;
+            failToast.TextHeading.Text = _locService["Toast_Downloads_Fail_Text"];
+            failToast.TextBodyWrap.Text = download.FileName;
+
+            var failXml = failToast.GetXml();
+            ToastAudioHelper.SetFailAudio(failXml);
+
+            downloader.SuccessToastNotification = new ToastNotification(successXml);
+            downloader.FailureToastNotification = new ToastNotification(failXml);
         }
 
         private async void HandleDownloadAsync(DownloadOperation operation, bool start = true)
@@ -434,6 +465,7 @@ namespace VKSaver.Core.Services
         private readonly IMusicCacheService _musicCacheService;
         private readonly ISettingsService _settingsService;
         private readonly ILogService _logService;
+        private readonly ILocService _locService;
 
         private readonly object _lockObject = new object();
 

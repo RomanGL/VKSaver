@@ -70,6 +70,7 @@
     <Compile Include="Common\MediaStreamSourceWorker.cs" />
     <Compile Include="Common\AudioEncryptedStream.cs" />
     <Compile Include="Common\TaskQueue.cs" />
+    <Compile Include="Common\ToastAudioHelper.cs" />
     <Compile Include="Common\VKAuthorization.cs" />
     <Compile Include="Database\UploadsDatabase.cs" />
     <Compile Include="Database\VKSaverDatabase.cs" />
