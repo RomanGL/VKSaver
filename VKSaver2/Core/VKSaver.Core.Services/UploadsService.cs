@@ -371,7 +371,7 @@ namespace VKSaver.Core.Services
 
         private const string UPLOAD_TRASNFER_GROUP_NAME = "VKSaverUploader";
         private const string UPLOADER_TEMP_FOLDER = "UploaderTemp";
-        private const string BOUNDARY_MASK = "---VKSaver 2 {0}";
+        private const string BOUNDARY_MASK = "------VKSaver 2 {0}";
         private const string PART_CONTENT_TYPE = "application/octet-stream";
         private const int INIT_DOWNLOADS_LIST_CAPACITY = 30;
     }
