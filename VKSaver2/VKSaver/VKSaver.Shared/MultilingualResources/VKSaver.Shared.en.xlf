@@ -1532,6 +1532,66 @@ Eng: upload</note>
           <source>отправить файл</source>
           <target state="translated">upload file</target>
         </trans-unit>
+        <trans-unit id="FirstStartView_ContentText.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай необходимо выполнить поиск аудиофайлов на вашем смартфоне, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
+
+Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
+
+Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</source>
+          <target state="new">ВКачай необходимо выполнить поиск аудиофайлов на вашем смартфоне, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
+
+Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
+
+Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Давайте начнем!</source>
+          <target state="new">Давайте начнем!</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_LetsGoButton.Content" translate="yes" xml:space="preserve">
+          <source>приступить</source>
+          <target state="new">приступить</target>
+        </trans-unit>
+        <trans-unit id="FirstInternetSettingsView_ContentText.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
+
+Этот параметр всегда можно изменить в настройках.</source>
+          <target state="new">ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
+
+Этот параметр всегда можно изменить в настройках.</target>
+        </trans-unit>
+        <trans-unit id="FirstInternetSettingsView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Доступ к интернету</source>
+          <target state="new">Доступ к интернету</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_NoButton.Content" translate="yes" xml:space="preserve">
+          <source>нет</source>
+          <target state="new">нет</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_WiFiButton.Content" translate="yes" xml:space="preserve">
+          <source>только через Wi-Fi</source>
+          <target state="new">только через Wi-Fi</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_YesButton.Content" translate="yes" xml:space="preserve">
+          <source>да</source>
+          <target state="new">да</target>
+        </trans-unit>
+        <trans-unit id="FirstStartRetryView_Title.Text" translate="yes" xml:space="preserve">
+          <source>С возвращением!</source>
+          <target state="new">С возвращением!</target>
+        </trans-unit>
+        <trans-unit id="FirstStartRetryView_ContentText.Text" translate="yes" xml:space="preserve">
+          <source>Рады видеть вас снова!
+
+В прошлый раз мы не завершили несколько моментов. Давайте продолжим!</source>
+          <target state="new">Рады видеть вас снова!
+
+В прошлый раз мы не завершили несколько моментов. Давайте продолжим!</target>
+        </trans-unit>
+        <trans-unit id="FirstStartRetryView_ContinueButton.Content" translate="yes" xml:space="preserve">
+          <source>продолжить</source>
+          <target state="new">продолжить</target>
+        </trans-unit>
       </group>
     </body>
   </file>

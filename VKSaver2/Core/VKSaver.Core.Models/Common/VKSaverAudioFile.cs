@@ -10,7 +10,7 @@ namespace VKSaver.Core.Models.Common
     /// <summary>
     /// Представляет файл аудиозаписи VKSaver.
     /// </summary>
-    public sealed class VKSaverAudioFile : IVKSaverFile<VKSaverAudio>
+    public sealed class VKSaverAudioFile : IVKSaverFile<VKSaverAudio>, IDisposable
     {       
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="VKSaverAudioFile"/>.

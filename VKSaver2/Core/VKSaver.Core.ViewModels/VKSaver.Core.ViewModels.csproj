@@ -69,6 +69,9 @@
     <Compile Include="Common\IFileOpenPickerSupport.cs" />
     <Compile Include="Common\UploadType.cs" />
     <Compile Include="DownloadableAudioViewModel.cs" />
+    <Compile Include="FirstStart\FirstInternetSettingsViewModel.cs" />
+    <Compile Include="FirstStart\FirstStartRetryViewModel.cs" />
+    <Compile Include="FirstStart\FirstStartViewModel.cs" />
     <Compile Include="LastFmLoginViewModel.cs" />
     <Compile Include="NewsMediaViewModel.cs" />
     <Compile Include="PackagingFilesViewModel.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Search\SearchNavigationParameter.cs" />
     <Compile Include="SelectionViewModel.cs" />
     <Compile Include="SettingsViewModel.cs" />
+    <Compile Include="UpdatingDatabaseViewModel.cs" />
     <Compile Include="UploadFileViewModel.cs" />
     <Compile Include="VideoSearchViewModel.cs" />
     <Compile Include="AudioSearchViewModel.cs" />
@@ -149,6 +153,22 @@
     </Reference>
     <Reference Include="SQLite-net, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\sqlite-net-pcl.1.0.11\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLite.Net-PCL.3.0.5\lib\portable-win81+wpa81\SQLite.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net.Async, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLite.Net.Async-PCL.3.0.5\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.WinRT, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLite.Net-PCL.3.0.5\lib\portable-win81+wpa81\SQLite.Net.Platform.WinRT.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLiteNetExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLiteNetExtensions.1.3.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\SQLiteNetExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLitePCL.raw, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">

@@ -60,6 +60,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\CachedView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FirstStart\FirstInternetSettingsView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FirstStart\FirstStartRetryView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FirstStart\UpdatingDatabaseView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\FirstStart\FirstStartView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\LastFmLoginView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NewsMediaView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ArtistAlbumView.xaml.cs" />

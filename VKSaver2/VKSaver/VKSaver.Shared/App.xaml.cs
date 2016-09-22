@@ -143,6 +143,7 @@ namespace VKSaver
             _container.RegisterType<ILastFmLoginService, LastFmLoginService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IUploadsPreprocessor, UploadsPreprocessor>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IUploadsPostprocessor, UploadsPostprocessor>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<ILibraryDatabaseService, LibraryDatabaseService>(new ContainerControlledLifetimeManager());
 
             var playerService = _container.Resolve<PlayerService>();
             var downloadsService = _container.Resolve<DownloadsService>();
@@ -166,7 +167,8 @@ namespace VKSaver
 
             vkLoginService.UserLogin += (s, e) =>
             {
-                NavigationService.Navigate("MainView", null);
+                if (!TryOpenFirstStartView())
+                    NavigationService.Navigate("MainView", null);
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
@@ -216,7 +218,10 @@ namespace VKSaver
                 if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, 0) < AppConstants.CURRENT_PROMO_INDEX)
                     NavigationService.Navigate("PromoView", null);
                 else if (vkLoginService.IsAuthorized)
-                    NavigationService.Navigate("MainView", null);
+                {
+                    if (!TryOpenFirstStartView())
+                        NavigationService.Navigate("MainView", null);
+                }
                 else
                     NavigationService.Navigate("LoginView", null);
             }
@@ -227,11 +232,6 @@ namespace VKSaver
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
             }
-
-            //if ((args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
-            //    args.PreviousExecutionState == ApplicationExecutionState.NotRunning) &&
-            //    downloadsService.GetDownloadsCount() > 0)
-            //    NavigationService.Navigate("PackagingFilesView", null);
 
             try
             {
@@ -264,7 +264,10 @@ namespace VKSaver
                 if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, 0) < AppConstants.CURRENT_PROMO_INDEX)
                     NavigationService.Navigate("PromoView", null);
                 else if (vkLoginService.IsAuthorized)
-                    NavigationService.Navigate("MainView", null);
+                {
+                    if (!TryOpenFirstStartView())
+                        NavigationService.Navigate("MainView", null);
+                }
                 else
                     NavigationService.Navigate("LoginView", null);
 
@@ -297,6 +300,23 @@ namespace VKSaver
                     continuationManager.Continue(continuationEventArgs, rootFrame);
                 }
             }
+        }
+
+        private bool TryOpenFirstStartView()
+        {
+            var settingsService = _container.Resolve<ISettingsService>();
+            if (settingsService.Get(AppConstants.CURRENT_FIRST_START_INDEX_PARAMETER, 0) < AppConstants.CURRENT_FIRST_START_INDEX)
+            {
+                string currentView = settingsService.Get<string>(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER);
+                if (currentView == null)
+                    NavigationService.Navigate("FirstStartView", null);
+                else if (currentView != "Completed")
+                    NavigationService.Navigate("FirstStartRetryView", null);
+
+                return true;
+            }
+
+            return false;
         }
 
         private void StartSuspendingServices()

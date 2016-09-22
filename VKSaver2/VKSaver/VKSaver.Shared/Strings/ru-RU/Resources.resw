@@ -1261,4 +1261,45 @@ Eng: upload</comment>
   <data name="Toast_PostUploads_Fail_Text" xml:space="preserve">
     <value>Отправка не может быть завершена</value>
   </data>
+  <data name="FirstInternetSettingsView_ContentText.Text" xml:space="preserve">
+    <value>ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
+
+Этот параметр всегда можно изменить в настройках.</value>
+  </data>
+  <data name="FirstInternetSettingsView_Title.Text" xml:space="preserve">
+    <value>Доступ к интернету</value>
+  </data>
+  <data name="FirstStartRetryView_ContentText.Text" xml:space="preserve">
+    <value>Рады видеть вас снова!
+
+В прошлый раз мы не завершили несколько моментов. Давайте продолжим!</value>
+  </data>
+  <data name="FirstStartRetryView_ContinueButton.Content" xml:space="preserve">
+    <value>продолжить</value>
+  </data>
+  <data name="FirstStartRetryView_Title.Text" xml:space="preserve">
+    <value>С возвращением!</value>
+  </data>
+  <data name="FirstStartView_ContentText.Text" xml:space="preserve">
+    <value>ВКачай необходимо выполнить поиск аудиофайлов на вашем смартфоне, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
+
+Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
+
+Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</value>
+  </data>
+  <data name="FirstStartView_LetsGoButton.Content" xml:space="preserve">
+    <value>приступить</value>
+  </data>
+  <data name="FirstStartView_NoButton.Content" xml:space="preserve">
+    <value>нет</value>
+  </data>
+  <data name="FirstStartView_Title.Text" xml:space="preserve">
+    <value>Давайте начнем!</value>
+  </data>
+  <data name="FirstStartView_WiFiButton.Content" xml:space="preserve">
+    <value>только через Wi-Fi</value>
+  </data>
+  <data name="FirstStartView_YesButton.Content" xml:space="preserve">
+    <value>да</value>
+  </data>
 </root>
