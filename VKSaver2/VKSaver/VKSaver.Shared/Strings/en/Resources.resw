@@ -401,7 +401,7 @@ Go back to continue</value>
     <value>resume</value>
   </data>
   <data name="TransferView_UploadsLoader.NoDataText" xml:space="preserve">
-    <value>Uploads are not supported yet</value>
+    <value>Currently not running any uploads</value>
   </data>
   <data name="AppBarButton_AddToMyAudios_Text" xml:space="preserve">
     <value>to my audios</value>
@@ -961,5 +961,201 @@ Please wait...</value>
   </data>
   <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
     <value>Always up-to-date Last.fm profile!</value>
+  </data>
+  <data name="FileSize_Bytes_Mask_Text" xml:space="preserve">
+    <value>{0} bytes</value>
+    <comment>Байты. Например, "256 байт"
+Eng: bytes</comment>
+  </data>
+  <data name="FileSize_EB_Mask_Text" xml:space="preserve">
+    <value>{0} EB</value>
+    <comment>Эксабайты. Например, "145 ЭБ"
+Eng: EB</comment>
+  </data>
+  <data name="FileSize_GB_Mask_Text" xml:space="preserve">
+    <value>{0} GB</value>
+    <comment>Гигабайты. Например, "12 ГБ"
+Eng: GB</comment>
+  </data>
+  <data name="FileSize_KB_Mask_Text" xml:space="preserve">
+    <value>{0} KB</value>
+    <comment>Килобайты. Например, "1023 КБ"
+Eng: KB</comment>
+  </data>
+  <data name="FileSize_MB_Mask_Text" xml:space="preserve">
+    <value>{0} MB</value>
+    <comment>Мегабайты. Например, "541 МБ"
+Eng: MB</comment>
+  </data>
+  <data name="FileSize_PB_Mask_Text" xml:space="preserve">
+    <value>{0} PB</value>
+    <comment>Петабайты. Например, "4 ПБ"
+Eng: PB</comment>
+  </data>
+  <data name="FileSize_TB_Mask_Text" xml:space="preserve">
+    <value>{0} TB</value>
+    <comment>Терабайты. Например, "968 ТБ"
+Eng: TB</comment>
+  </data>
+  <data name="TransferStatus_Canceled_Text" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="TransferStatus_Completed_Text" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="TransferStatus_Error_Text" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="TransferStatus_Idle_Text" xml:space="preserve">
+    <value>Idle...</value>
+  </data>
+  <data name="TransferStatus_PausedByApplication_Text" xml:space="preserve">
+    <value>Paused</value>
+  </data>
+  <data name="TransferStatus_PausedCostedNetwork_Text" xml:space="preserve">
+    <value>Costed network</value>
+  </data>
+  <data name="TransferStatus_PausedNoNetwork_Text" xml:space="preserve">
+    <value>No connection</value>
+  </data>
+  <data name="TransferStatus_Running_Text" xml:space="preserve">
+    <value>In progress...</value>
+  </data>
+  <data name="AppLoader_CancelAllUploads" xml:space="preserve">
+    <value>Cancelling all uploads...</value>
+  </data>
+  <data name="Message_Uploads_CantPrepareData_Text" xml:space="preserve">
+    <value>Couldn't prepare data:</value>
+  </data>
+  <data name="Message_Uploads_MaxUploadsExceeded_Text" xml:space="preserve">
+    <value>Maximum uploads number exceeded:</value>
+  </data>
+  <data name="Message_Uploads_StartUploading_Title" xml:space="preserve">
+    <value>Failed to start upload</value>
+  </data>
+  <data name="Message_Uploads_UnknownError_Text" xml:space="preserve">
+    <value>Unknown error:</value>
+  </data>
+  <data name="TransferView_CancelAllUploadsButton.Label" xml:space="preserve">
+    <value>cancel all uploads</value>
+  </data>
+  <data name="FileSize_SizeText.Text" xml:space="preserve">
+    <value>Size:</value>
+    <comment>Размер файла.</comment>
+  </data>
+  <data name="Message_PostUploads_ConnectionError_Text" xml:space="preserve">
+    <value>Connection error. Check your connection to the network. The next time we will repeat again to complete the upload of {0}.</value>
+  </data>
+  <data name="Message_PostUploads_Error_Title" xml:space="preserve">
+    <value>Couldn't finish the upload</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_105_Text" xml:space="preserve">
+    <value>Unable to save file.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_123_Text" xml:space="preserve">
+    <value>Audio format is invalid.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_204_Text" xml:space="preserve">
+    <value>Access denied.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_214_Text" xml:space="preserve">
+    <value>Don't have permission to add a post.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_270_Text" xml:space="preserve">
+    <value>An audio recording was withdrawn upon request of the copyright owner and can't be uploaded.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_301_Text" xml:space="preserve">
+    <value>Invalid file name.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_302_Text" xml:space="preserve">
+    <value>Invalid file size.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_Text" xml:space="preserve">
+    <value>The server returned an error, and we can't finish upload of {0}. 
+Error code: {1} - {2}</value>
+    <comment>Например, "Код: 404 - не найдено".</comment>
+  </data>
+  <data name="Message_PostUploads_ServerError_Unknown_Text" xml:space="preserve">
+    <value>Unknown error.</value>
+  </data>
+  <data name="Message_PostUploads_UnknownAppError_Text" xml:space="preserve">
+    <value>An unknown error occurred, and we can't finish upload of {0}.</value>
+  </data>
+  <data name="Message_Uploads_PreprocessionConnectionError_Text" xml:space="preserve">
+    <value>A connection error occurred, and we can't start upload of {0}. Check your network connection and try again.</value>
+  </data>
+  <data name="Message_Uploads_PreprocessionError_Title" xml:space="preserve">
+    <value>Couldn't prepare file to upload</value>
+  </data>
+  <data name="Message_Uploads_PreprocessionServerError_Text" xml:space="preserve">
+    <value>The server returned an error, and we can't start upload of {0}. Please try again later. 
+Error code: {1} - {2}</value>
+  </data>
+  <data name="Toast_PostUploads_Success_Text" xml:space="preserve">
+    <value>Upload completed!</value>
+  </data>
+  <data name="UploadFileView_SelectAnotherFileButton.Content" xml:space="preserve">
+    <value>select another</value>
+    <comment>Выбрать другой файл.</comment>
+  </data>
+  <data name="UploadFileView_SelectFileButton.Content" xml:space="preserve">
+    <value>select file</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox.Header" xml:space="preserve">
+    <value>What will send?</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox_Audio.Content" xml:space="preserve">
+    <value>audio</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox_Doc.Content" xml:space="preserve">
+    <value>document</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox_Video.Content" xml:space="preserve">
+    <value>video</value>
+  </data>
+  <data name="UploadFileView_Title.Text" xml:space="preserve">
+    <value>upload file</value>
+  </data>
+  <data name="UploadFileView_UploadFileButton.Content" xml:space="preserve">
+    <value>upload</value>
+    <comment>Отправить файл.
+Eng: upload</comment>
+  </data>
+  <data name="Toast_Downloads_Fail_Text" xml:space="preserve">
+    <value>Download failed</value>
+  </data>
+  <data name="Toast_Downloads_Success_Text" xml:space="preserve">
+    <value>Download completed!</value>
+  </data>
+  <data name="Toast_Uploads_Fail_Text" xml:space="preserve">
+    <value>Upload failed</value>
+  </data>
+  <data name="Toast_Uploads_SuccessReturn_Text" xml:space="preserve">
+    <value>Go back to finish</value>
+    <comment>Имеется ввиду, что отправка завершена и нужно вернуться в приложение для завершения операции сохранения.</comment>
+  </data>
+  <data name="Message_Uploads_PreprocessionUnknownError_Text" xml:space="preserve">
+    <value>An unknown error occurred, and we can't start uploading of {0}.</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_DescriptionBox.Header" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_NameBox.Header" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_RepeatSwitch.Header" xml:space="preserve">
+    <value>Loop playback</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_Title.Text" xml:space="preserve">
+    <value>Video options</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_WallPostSwitch.Header" xml:space="preserve">
+    <value>Post on wall</value>
+  </data>
+  <data name="Toast_PostUploads_Fail_Text" xml:space="preserve">
+    <value>Upload could't be complete</value>
+  </data>
+  <data name="AppBarButton_UploadFile.Label" xml:space="preserve">
+    <value>upload file</value>
   </data>
 </root>

@@ -1124,7 +1124,7 @@ Eng: TB</comment>
   <data name="TransferStatus_Running_Text" xml:space="preserve">
     <value>Выполняется...</value>
   </data>
-  <data name="AppBarButton_UploadFile" xml:space="preserve">
+  <data name="AppBarButton_UploadFile.Label" xml:space="preserve">
     <value>отправить файл</value>
   </data>
   <data name="AppLoader_CancelAllUploads" xml:space="preserve">
@@ -1257,5 +1257,8 @@ Eng: upload</comment>
   </data>
   <data name="UploadFileView_VideoSettings_WallPostSwitch.Header" xml:space="preserve">
     <value>Опубликовать на стене</value>
+  </data>
+  <data name="Toast_PostUploads_Fail_Text" xml:space="preserve">
+    <value>Отправка не может быть завершена</value>
   </data>
 </root>

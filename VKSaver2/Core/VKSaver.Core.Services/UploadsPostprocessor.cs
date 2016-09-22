@@ -18,17 +18,19 @@ namespace VKSaver.Core.Services
             InTouch inTouch, 
             IInTouchWrapper inTouchWrapper, 
             ILogService logService,
-            IDialogsService dialogsService)
+            IDialogsService dialogsService,
+            ILocService locService)
         {
             _inTouch = inTouch;
             _inTouchWrapper = inTouchWrapper;
             _logService = logService;
             _dialogsService = dialogsService;
+            _locService = locService;
         }
 
         public async Task<UploadsPostprocessorResultType> ProcessUploadAsync(ICompletedUpload upload)
         {
-            Tuple<UploadsPostprocessorResultType, int> result = null;
+            PostprocessionResult result = null;
 
             try
             {
@@ -38,7 +40,8 @@ namespace VKSaver.Core.Services
                         result = await SaveAudioAsync(upload.ServerResponse);
                         break;
                     case FileContentType.Video:
-                        return UploadsPostprocessorResultType.Unknown;
+                        result = SaveVideo(upload.ServerResponse);
+                        break;
                     default:
                         result = await SaveDocumentAsync(upload.ServerResponse);
                         break;
@@ -48,13 +51,12 @@ namespace VKSaver.Core.Services
             {
                 _logService.LogException(ex);
                 if (ex.InnerException != null && ex.InnerException is HttpRequestException)
-                {
-                    result = new Tuple<UploadsPostprocessorResultType, int>(
-                        UploadsPostprocessorResultType.ConnectionError, 0);
-                }
+                    result = new PostprocessionResult { Result = UploadsPostprocessorResultType.ConnectionError };
+                else
+                    result = new PostprocessionResult { Result = UploadsPostprocessorResultType.Unknown };
             }
 
-            if (result.Item1 == UploadsPostprocessorResultType.Success)
+            if (result.Result == UploadsPostprocessorResultType.Success)
             {
                 var successToast = ToastContentFactory.CreateToastText02();
                 successToast.Audio.Content = ToastAudioContent.IM;
@@ -68,14 +70,18 @@ namespace VKSaver.Core.Services
                 ToastNotificationManager.CreateToastNotifier().Show(toast);
             }
             else
-                ShowError(upload, result.Item1, result.Item2);
+                ShowError(upload, result);
 
-            return result.Item1;
+            return result.Result;
         } 
         
-        private async Task<Tuple<UploadsPostprocessorResultType, int>> SaveAudioAsync(string serverResponse)
+        private async Task<PostprocessionResult> SaveAudioAsync(string serverResponse)
         {
             var json = JObject.Parse(serverResponse);
+
+            var result = GetError(json);
+            if (result != null)
+                return result;
 
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Save(new AudioUploadResponse
             {
@@ -86,41 +92,88 @@ namespace VKSaver.Core.Services
 
             if (response.IsError)
             {
-                return new Tuple<UploadsPostprocessorResultType, int>(
-                    UploadsPostprocessorResultType.ServerError, response.Error.Code);
+                return new PostprocessionResult
+                {
+                    Result = UploadsPostprocessorResultType.ServerError,
+                    ErrorCode = response.Error.Code
+                };
             }
 
-            return new Tuple<UploadsPostprocessorResultType, int>(
-                UploadsPostprocessorResultType.Success, 0);
+            return new PostprocessionResult { Result = UploadsPostprocessorResultType.Success };
         }
 
-        private async Task<Tuple<UploadsPostprocessorResultType, int>> SaveDocumentAsync(string serverResponse)
+        private PostprocessionResult SaveVideo(string serverResponse)
         {
             var json = JObject.Parse(serverResponse);
+
+            var result = GetError(json);
+            if (result != null)
+                return result;
+
+            return new PostprocessionResult { Result = UploadsPostprocessorResultType.Success };
+        }
+
+        private async Task<PostprocessionResult> SaveDocumentAsync(string serverResponse)
+        {
+            var json = JObject.Parse(serverResponse);
+
+            var result = GetError(json);
+            if (result != null)
+                return result;
 
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Docs.Save(
                 json["file"].Value<string>()));
 
             if (response.IsError)
             {
-                return new Tuple<UploadsPostprocessorResultType, int>(
-                    UploadsPostprocessorResultType.ServerError, response.Error.Code);
+                return new PostprocessionResult
+                {
+                    Result = UploadsPostprocessorResultType.ServerError,
+                    ErrorCode = response.Error.Code
+                };
             }
 
-            return new Tuple<UploadsPostprocessorResultType, int>(
-                UploadsPostprocessorResultType.Success, 0);
+            return new PostprocessionResult { Result = UploadsPostprocessorResultType.Success };
         }
 
-        private void ShowError(ICompletedUpload upload, UploadsPostprocessorResultType result, int code)
+        private PostprocessionResult GetError(JObject obj)
         {
+            JToken errorToken = null;
+            obj.TryGetValue("error", out errorToken);
+
+            if (errorToken == null)
+                return null;
+
+            return new PostprocessionResult
+            {
+                Result = UploadsPostprocessorResultType.ServerError,
+                ErrorCode = -1,
+                UploadErrorText = errorToken.Value<string>()
+            };
+        }
+
+        private void ShowError(ICompletedUpload upload, PostprocessionResult result)
+        {
+            var fail = ToastContentFactory.CreateToastText02();
+            fail.Audio.Content = ToastAudioContent.IM;
+            fail.TextHeading.Text = _locService["Toast_PostUploads_Fail_Text"];
+            fail.TextBodyWrap.Text = upload.Name;
+
+            var failXml = fail.GetXml();
+            ToastAudioHelper.SetFailAudio(failXml);
+
+            ToastNotificationManager.CreateToastNotifier().Show(new ToastNotification(failXml));
+
             string text = null;
 
-            if (result == UploadsPostprocessorResultType.ServerError)
+            if (result.Result == UploadsPostprocessorResultType.ServerError)
             {
                 text = String.Format(_locService["Message_PostUploads_ServerError_Text"],
-                    upload.Name, code, GetServerErrorDescription(code));
+                    upload.Name, 
+                    result.ErrorCode, 
+                    GetServerErrorDescription(result.ErrorCode, result.UploadErrorText));
             }
-            else if (result == UploadsPostprocessorResultType.ConnectionError)
+            else if (result.Result == UploadsPostprocessorResultType.ConnectionError)
             {
                 text = String.Format(_locService["Message_PostUploads_ConnectionError_Text"],
                     upload.Name);
@@ -134,10 +187,12 @@ namespace VKSaver.Core.Services
             _dialogsService.Show(text, _locService["Message_PostUploads_Error_Title"]);
         }
 
-        private string GetServerErrorDescription(int errorCode)
+        private string GetServerErrorDescription(int errorCode, string errorText = null)
         {
             switch (errorCode)
             {
+                case -1:
+                    return errorText;
                 case 105:
                     return _locService["Message_PostUploads_ServerError_105_Text"];
                 case 123:
@@ -158,5 +213,12 @@ namespace VKSaver.Core.Services
         private readonly IInTouchWrapper _inTouchWrapper;
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
+
+        private sealed class PostprocessionResult
+        {
+            public UploadsPostprocessorResultType Result { get; set; }
+            public int ErrorCode { get; set; }
+            public string UploadErrorText { get; set; }
+        }
     }
 }
