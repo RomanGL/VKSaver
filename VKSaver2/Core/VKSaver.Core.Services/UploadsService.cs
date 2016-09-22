@@ -161,15 +161,13 @@ namespace VKSaver.Core.Services
             else
                 field = "file";
 
-            string boundary = String.Format(BOUNDARY_MASK, DateTime.Now.Ticks.ToString("x"));
-
             var part = CreateContentPart(upload, field);
             if (part == null)
                 return new UploadInitError(UploadInitErrorType.CantPrepareData, upload);
 
             try
             {
-                var tuple = await CreateUploadOperationAsync(new List<BackgroundTransferContentPart>(1) { part }, upload, boundary);
+                var tuple = await CreateUploadOperationAsync(new List<BackgroundTransferContentPart>(1) { part }, upload);
                 HandleUploadAsync(tuple.Item1, tuple.Item2, true);
             }
             catch (Exception ex)
@@ -188,21 +186,21 @@ namespace VKSaver.Core.Services
 
         private BackgroundTransferContentPart CreateContentPart(IUpload upload, string fieldName)
         {
-            var part = new BackgroundTransferContentPart(fieldName, upload.Uploadable.Source.GetFile().Path);
-            part.SetHeader("Content-Type", PART_CONTENT_TYPE);
+            var part = new BackgroundTransferContentPart(fieldName, $"{upload.Uploadable.Name}{upload.Uploadable.Extension}");
+            part.SetHeader("Content-Type", upload.Uploadable.Source.GetContentType());
             part.SetFile(upload.Uploadable.Source.GetFile());
             return part;
         }
         
         private async Task<Tuple<UploadOperation, ICompletedUpload>> CreateUploadOperationAsync(
-            IEnumerable<BackgroundTransferContentPart> parts, IUpload upload, string boundary)
+            IEnumerable<BackgroundTransferContentPart> parts, IUpload upload)
         {
             var uploader = new BackgroundUploader();
             uploader.TransferGroup = _transferGroup;
 
             AttachNotifications(uploader, upload);
 
-            var operation = await uploader.CreateUploadAsync(new Uri(upload.UploadUrl), parts, "form-data", boundary);
+            var operation = await uploader.CreateUploadAsync(new Uri(upload.UploadUrl), parts);
 
             var completedUpload = new CompletedUpload
             {
@@ -371,7 +369,6 @@ namespace VKSaver.Core.Services
 
         private const string UPLOAD_TRASNFER_GROUP_NAME = "VKSaverUploader";
         private const string UPLOADER_TEMP_FOLDER = "UploaderTemp";
-        private const string BOUNDARY_MASK = "------VKSaver 2 {0}";
         private const string PART_CONTENT_TYPE = "application/octet-stream";
         private const int INIT_DOWNLOADS_LIST_CAPACITY = 30;
     }
