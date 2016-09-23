@@ -220,7 +220,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FirstStart\UpdatingDatabaseView.xaml">
+    <Page Include="Views\UpdatingDatabaseView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

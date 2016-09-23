@@ -288,10 +288,16 @@ namespace VKSaver.Core.Services
 
         private void AttachNotifications(BackgroundDownloader downloader, IDownloadable download)
         {
+            string name = null;
+            if (download.ContentType == FileContentType.Music)
+                name = ((VKSaverAudio)download.Metadata).Track.Title;
+            else
+                name = download.FileName;
+
             var successToast = ToastContentFactory.CreateToastText02();
             successToast.Audio.Content = ToastAudioContent.SMS;
             successToast.TextHeading.Text = _locService["Toast_Downloads_Success_Text"];
-            successToast.TextBodyWrap.Text = download.FileName;
+            successToast.TextBodyWrap.Text = name;
 
             var successXml = successToast.GetXml();
             ToastAudioHelper.SetSuccessAudio(successXml);
@@ -299,7 +305,7 @@ namespace VKSaver.Core.Services
             var failToast = ToastContentFactory.CreateToastText02();
             failToast.Audio.Content = ToastAudioContent.IM;
             failToast.TextHeading.Text = _locService["Toast_Downloads_Fail_Text"];
-            failToast.TextBodyWrap.Text = download.FileName;
+            failToast.TextBodyWrap.Text = name;
 
             var failXml = failToast.GetXml();
             ToastAudioHelper.SetFailAudio(failXml);

@@ -1158,4 +1158,81 @@ Eng: upload</comment>
   <data name="AppBarButton_UploadFile.Label" xml:space="preserve">
     <value>upload file</value>
   </data>
+  <data name="FirstStartView_ContentText.Text" xml:space="preserve">
+    <value>VK Saver need to search audio files on your Smartphone before you can play them (this must be done only once). 
+
+Note that VK Saver can find audio files only in the Music folder in the Smartphone's memory or on the SD card.
+
+Next, we will help you to configure some basic application settings. Tap button below when you're ready.</value>
+  </data>
+  <data name="FirstStartView_Title.Text" xml:space="preserve">
+    <value>Let's get started!</value>
+  </data>
+  <data name="FirstStartView_LetsGoButton.Content" xml:space="preserve">
+    <value>let's go</value>
+  </data>
+  <data name="FirstInternetSettingsView_ContentText.Text" xml:space="preserve">
+    <value>VK Saver can download photos and album covers for your tracks. Load the data (additional charges may apply operator)? 
+
+You can always change this parameter in the settings.</value>
+  </data>
+  <data name="FirstInternetSettingsView_Title.Text" xml:space="preserve">
+    <value>Access to the Internet</value>
+  </data>
+  <data name="FirstStartView_NoButton.Content" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="FirstStartView_WiFiButton.Content" xml:space="preserve">
+    <value>only via Wi-Fi</value>
+  </data>
+  <data name="FirstStartView_YesButton.Content" xml:space="preserve">
+    <value>yes</value>
+  </data>
+  <data name="FirstStartRetryView_Title.Text" xml:space="preserve">
+    <value>Welcome back!</value>
+  </data>
+  <data name="FirstStartRetryView_ContentText.Text" xml:space="preserve">
+    <value>Glad to see you again!
+ 
+The last time we not complete a few moments. Let's continue!</value>
+  </data>
+  <data name="FirstStartRetryView_ContinueButton.Content" xml:space="preserve">
+    <value>continue</value>
+  </data>
+  <data name="UpdatingDatabaseView_ContentText.Text" xml:space="preserve">
+    <value>VK Saver is searching for your tracks. Pleace wait...</value>
+  </data>
+  <data name="UpdatingDatabaseView_StepMask_Text" xml:space="preserve">
+    <value>Step {0} of {1}</value>
+    <comment>Указывает номер текущей операции в процессе обновления базы данных.
+Например, "Шаг 1 из 5".</comment>
+  </data>
+  <data name="UpdatingDatabaseView_Title.Text" xml:space="preserve">
+    <value>Updating database</value>
+  </data>
+  <data name="UpdatingDatabaseView_SearchingAlbumsStep_Text" xml:space="preserve">
+    <value>Downloading album covers... {0} of {1}</value>
+    <comment>Поиск обложек альбомов. Например, "Рисуем обложки альбомов... 6 из 45".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск обложек альбомов... 6 из 45".</comment>
+  </data>
+  <data name="UpdatingDatabaseView_SearchingArtistsStep_Text" xml:space="preserve">
+    <value>Downloading artists images... {0} of {1}</value>
+    <comment>Поиск фотографий исполнителей. Например, "Фотографируем исполнителей... 33 из 35".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск изображений исполнителей... 33 из 35".</comment>
+  </data>
+  <data name="UpdatingDatabseView_PreparingDatabaseStep_Text" xml:space="preserve">
+    <value>Rewriting the manuscripts... {0} of {1}</value>
+    <comment>Обновление зависимостей в базе данных. Например, "Переписываем манускрипты... 2 из 21".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Обновление зависимостей... 2 из 21".</comment>
+  </data>
+  <data name="UpdatingDatabseView_SearchingFilesStep_Text" xml:space="preserve">
+    <value>Looking for audio files... {0} of {1}</value>
+    <comment>Поиск аудиофайлов. Например, "Ищем аудиофайлы... 20 из 199".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск аудиофайлов... 20 из 399"</comment>
+  </data>
+  <data name="UpdatingDatabseView_StartedStep_Text" xml:space="preserve">
+    <value>Preparing database...</value>
+    <comment>Подготовка к обновлению базы данных.
+На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</comment>
+  </data>
 </root>

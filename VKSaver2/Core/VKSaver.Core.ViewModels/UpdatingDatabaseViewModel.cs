@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Database;
 using VKSaver.Core.Services.Interfaces;
+using Windows.Storage;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -15,22 +16,24 @@ namespace VKSaver.Core.ViewModels
         public UpdatingDatabaseViewModel(
             INavigationService navigationService,
             ILibraryDatabaseService musicDatabaseService, 
-            ISettingsService settingsService)
+            ISettingsService settingsService, ILocService locService)
         {
             _navigationService = navigationService;
             _libraryDatabaseService = musicDatabaseService;
             _settingsService = settingsService;
+            _locService = locService;
         }
-
-        public int Total { get; private set; }
+        
         public int Current { get; private set; }
-        public int TotalSteps { get; private set; }
-        public int CurrentStep { get; private set; }
-        public string OperationName { get; private set; }
+        public int Total { get; private set; }
+        public string StepText { get; private set; }
+        public string OperationText { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            _settingsService.Set(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER, "UpdatingDatabaseView");            
+            _settingsService.Set(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER, "UpdatingDatabaseView");
+            _settingsService.Remove(AppConstants.CURRENT_LIBRARY_INDEX_PARAMETER);
+            _totalSteps = 2;
 
             _libraryDatabaseService.UpdateProgressChanged += LibraryDatabaseService_UpdateProgressChanged;
             _libraryDatabaseService.Update();
@@ -52,45 +55,79 @@ namespace VKSaver.Core.ViewModels
 
         private void LibraryDatabaseService_UpdateProgressChanged(ILibraryDatabaseService sender, DBUpdateProgressChangedEventArgs args)
         {
-            TotalSteps = 2;
             Current = args.CurrentItem;
             Total = args.TotalItems;
 
             switch (args.Step)
             {
                 case DatabaseUpdateStepType.Started:
-                    OperationName = "Снаряжаем рыцарей...";
-                    CurrentStep = 0;
+                    OperationText = _locService["UpdatingDatabseView_StartedStep_Text"];
+                    if (_currentStep != 0)
+                    {
+                        _currentStep = 0;
+                        UpdateStepText();
+                    }
                     break;
                 case DatabaseUpdateStepType.SearchingFiles:
-                    OperationName = "Ищем аудиофайлы...";
-                    CurrentStep = 1;
+                    OperationText = String.Format(_locService["UpdatingDatabseView_SearchingFilesStep_Text"],
+                        Current, Total);
+
+                    if (_currentStep != 1)
+                    {
+                        _currentStep = 1;
+                        UpdateStepText();
+                    }
                     break;
                 case DatabaseUpdateStepType.PreparingDatabase:
-                    OperationName = "Переписываем манускрипты...";
-                    CurrentStep = 2;
+                    OperationText = String.Format(_locService["UpdatingDatabseView_PreparingDatabaseStep_Text"],
+                        Current, Total);
+
+                    if (_currentStep != 2)
+                    {
+                        _currentStep = 2;
+                        UpdateStepText();
+                    }
                     break;
                 case DatabaseUpdateStepType.SearchingArtists:
-                    OperationName = "Фотографируем исполнителей...";
-                    CurrentStep = 3;
+                    OperationText = String.Format(_locService["UpdatingDatabaseView_SearchingArtistsStep_Text"],
+                        Current, Total);
+
+                    if (_currentStep != 3)
+                    {
+                        _currentStep = 3;
+                        UpdateStepText();
+                    }
                     break;
                 case DatabaseUpdateStepType.SearchingAlbums:
-                    OperationName = "Рисуем картинки альбомов...";
-                    CurrentStep = 4;
+                    OperationText = String.Format(_locService["UpdatingDatabaseView_SearchingAlbumsStep_Text"],
+                        Current, Total);
+
+                    if (_currentStep != 4)
+                    {
+                        _currentStep = 4;
+                        UpdateStepText();
+                    }
                     break;
                 case DatabaseUpdateStepType.Completed:
                     _settingsService.Set(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER, "Completed");
-                    _navigationService.Navigate("MainView", null);
                     _navigationService.ClearHistory();
-                    break;
-                default:
-                    OperationName = String.Empty;
+                    _navigationService.Navigate("MainView", null);                    
                     break;
             }
         }
 
+        private void UpdateStepText()
+        {
+            StepText = String.Format(_locService["UpdatingDatabaseView_StepMask_Text"],
+                _currentStep, _totalSteps);
+        }
+        
+        private int _totalSteps;
+        private int _currentStep = -1;
+
         private readonly INavigationService _navigationService;
         private readonly ILibraryDatabaseService _libraryDatabaseService;
         private readonly ISettingsService _settingsService;
+        private readonly ILocService _locService;
     }
 }

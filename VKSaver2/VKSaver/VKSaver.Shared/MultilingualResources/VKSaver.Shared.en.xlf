@@ -1538,59 +1538,103 @@ Eng: upload</note>
 Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
 
 Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</source>
-          <target state="new">ВКачай необходимо выполнить поиск аудиофайлов на вашем смартфоне, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
+          <target state="translated">VK Saver need to search audio files on your Smartphone before you can play them (this must be done only once). 
 
-Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
+Note that VK Saver can find audio files only in the Music folder in the Smartphone's memory or on the SD card.
 
-Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</target>
+Next, we will help you to configure some basic application settings. Tap button below when you're ready.</target>
         </trans-unit>
         <trans-unit id="FirstStartView_Title.Text" translate="yes" xml:space="preserve">
           <source>Давайте начнем!</source>
-          <target state="new">Давайте начнем!</target>
+          <target state="translated">Let's get started!</target>
         </trans-unit>
         <trans-unit id="FirstStartView_LetsGoButton.Content" translate="yes" xml:space="preserve">
           <source>приступить</source>
-          <target state="new">приступить</target>
+          <target state="translated">let's go</target>
         </trans-unit>
         <trans-unit id="FirstInternetSettingsView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
 
 Этот параметр всегда можно изменить в настройках.</source>
-          <target state="new">ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
+          <target state="translated">VK Saver can download photos and album covers for your tracks. Load the data (additional charges may apply operator)? 
 
-Этот параметр всегда можно изменить в настройках.</target>
+You can always change this parameter in the settings.</target>
         </trans-unit>
         <trans-unit id="FirstInternetSettingsView_Title.Text" translate="yes" xml:space="preserve">
           <source>Доступ к интернету</source>
-          <target state="new">Доступ к интернету</target>
+          <target state="translated">Access to the Internet</target>
         </trans-unit>
         <trans-unit id="FirstStartView_NoButton.Content" translate="yes" xml:space="preserve">
           <source>нет</source>
-          <target state="new">нет</target>
+          <target state="translated">no</target>
         </trans-unit>
         <trans-unit id="FirstStartView_WiFiButton.Content" translate="yes" xml:space="preserve">
           <source>только через Wi-Fi</source>
-          <target state="new">только через Wi-Fi</target>
+          <target state="translated">only via Wi-Fi</target>
         </trans-unit>
         <trans-unit id="FirstStartView_YesButton.Content" translate="yes" xml:space="preserve">
           <source>да</source>
-          <target state="new">да</target>
+          <target state="translated">yes</target>
         </trans-unit>
         <trans-unit id="FirstStartRetryView_Title.Text" translate="yes" xml:space="preserve">
           <source>С возвращением!</source>
-          <target state="new">С возвращением!</target>
+          <target state="translated">Welcome back!</target>
         </trans-unit>
         <trans-unit id="FirstStartRetryView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>Рады видеть вас снова!
 
 В прошлый раз мы не завершили несколько моментов. Давайте продолжим!</source>
-          <target state="new">Рады видеть вас снова!
-
-В прошлый раз мы не завершили несколько моментов. Давайте продолжим!</target>
+          <target state="translated">Glad to see you again!
+ 
+The last time we not complete a few moments. Let's continue!</target>
         </trans-unit>
         <trans-unit id="FirstStartRetryView_ContinueButton.Content" translate="yes" xml:space="preserve">
           <source>продолжить</source>
-          <target state="new">продолжить</target>
+          <target state="translated">continue</target>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabaseView_ContentText.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай выполняет сканирование ваших треков. Пожалуйста, подождите...</source>
+          <target state="translated">VK Saver is searching for your tracks. Pleace wait...</target>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabaseView_StepMask_Text" translate="yes" xml:space="preserve">
+          <source>Шаг {0} из {1}</source>
+          <target state="translated">Step {0} of {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Указывает номер текущей операции в процессе обновления базы данных.
+Например, "Шаг 1 из 5".</note>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabaseView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Обновление базы данных</source>
+          <target state="translated">Updating database</target>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabaseView_SearchingAlbumsStep_Text" translate="yes" xml:space="preserve">
+          <source>Рисуем обложки альбомов... {0} из {1}</source>
+          <target state="translated">Downloading album covers... {0} of {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Поиск обложек альбомов. Например, "Рисуем обложки альбомов... 6 из 45".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск обложек альбомов... 6 из 45".</note>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabaseView_SearchingArtistsStep_Text" translate="yes" xml:space="preserve">
+          <source>Фотографируем исполнителей... {0} из {1}</source>
+          <target state="translated">Downloading artists images... {0} of {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Поиск фотографий исполнителей. Например, "Фотографируем исполнителей... 33 из 35".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск изображений исполнителей... 33 из 35".</note>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabseView_PreparingDatabaseStep_Text" translate="yes" xml:space="preserve">
+          <source>Переписываем манускрипты... {0} из {1}</source>
+          <target state="translated">Rewriting the manuscripts... {0} of {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Обновление зависимостей в базе данных. Например, "Переписываем манускрипты... 2 из 21".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Обновление зависимостей... 2 из 21".</note>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabseView_SearchingFilesStep_Text" translate="yes" xml:space="preserve">
+          <source>Ищем аудиофайлы... {0} из {1}</source>
+          <target state="translated">Looking for audio files... {0} of {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Поиск аудиофайлов. Например, "Ищем аудиофайлы... 20 из 199".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск аудиофайлов... 20 из 399"</note>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabseView_StartedStep_Text" translate="yes" xml:space="preserve">
+          <source>Снаряжаем рыцарей...</source>
+          <target state="translated">Preparing database...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Подготовка к обновлению базы данных.
+На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</note>
         </trans-unit>
       </group>
     </body>

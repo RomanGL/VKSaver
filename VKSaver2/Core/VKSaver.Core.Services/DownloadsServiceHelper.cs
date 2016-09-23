@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Interfaces;
 
@@ -42,7 +43,12 @@ namespace VKSaver.Core.Services
             {
                 sb.AppendLine(GetDownloadInitErrorNameFromType(group.Key));
                 foreach (var error in group)
-                    sb.AppendLine(error.DownloadItem.FileName);
+                {
+                    if (error.DownloadItem.ContentType == FileContentType.Music)
+                        sb.AppendLine(((VKSaverAudio)error.DownloadItem.Metadata).Track.Title);
+                    else
+                        sb.AppendLine(error.DownloadItem.FileName);
+                }
 
                 sb.AppendLine();
             }

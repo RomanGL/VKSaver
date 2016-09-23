@@ -1302,4 +1302,40 @@ Eng: upload</comment>
   <data name="FirstStartView_YesButton.Content" xml:space="preserve">
     <value>да</value>
   </data>
+  <data name="UpdatingDatabaseView_ContentText.Text" xml:space="preserve">
+    <value>ВКачай выполняет сканирование ваших треков. Пожалуйста, подождите...</value>
+  </data>
+  <data name="UpdatingDatabaseView_SearchingAlbumsStep_Text" xml:space="preserve">
+    <value>Рисуем обложки альбомов... {0} из {1}</value>
+    <comment>Поиск обложек альбомов. Например, "Рисуем обложки альбомов... 6 из 45".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск обложек альбомов... 6 из 45".</comment>
+  </data>
+  <data name="UpdatingDatabaseView_SearchingArtistsStep_Text" xml:space="preserve">
+    <value>Фотографируем исполнителей... {0} из {1}</value>
+    <comment>Поиск фотографий исполнителей. Например, "Фотографируем исполнителей... 33 из 35".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск изображений исполнителей... 33 из 35".</comment>
+  </data>
+  <data name="UpdatingDatabaseView_StepMask_Text" xml:space="preserve">
+    <value>Шаг {0} из {1}</value>
+    <comment>Указывает номер текущей операции в процессе обновления базы данных.
+Например, "Шаг 1 из 5".</comment>
+  </data>
+  <data name="UpdatingDatabaseView_Title.Text" xml:space="preserve">
+    <value>Обновление базы данных</value>
+  </data>
+  <data name="UpdatingDatabseView_PreparingDatabaseStep_Text" xml:space="preserve">
+    <value>Переписываем манускрипты... {0} из {1}</value>
+    <comment>Обновление зависимостей в базе данных. Например, "Переписываем манускрипты... 2 из 21".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Обновление зависимостей... 2 из 21".</comment>
+  </data>
+  <data name="UpdatingDatabseView_SearchingFilesStep_Text" xml:space="preserve">
+    <value>Ищем аудиофайлы... {0} из {1}</value>
+    <comment>Поиск аудиофайлов. Например, "Ищем аудиофайлы... 20 из 199".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск аудиофайлов... 20 из 399"</comment>
+  </data>
+  <data name="UpdatingDatabseView_StartedStep_Text" xml:space="preserve">
+    <value>Снаряжаем рыцарей...</value>
+    <comment>Подготовка к обновлению базы данных.
+На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</comment>
+  </data>
 </root>

@@ -4,6 +4,7 @@ using SQLiteNetExtensions.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Database;
 
 namespace VKSaver.Core.Services.Database
@@ -23,6 +24,7 @@ namespace VKSaver.Core.Services.Database
 
                 conn.CreateTable<VKSaverTrack>();
                 conn.CreateTable<VKSaverArtist>();
+                conn.CreateTable<VKSaverAudioVKInfo>();
             });
         }
 
@@ -44,6 +46,7 @@ namespace VKSaver.Core.Services.Database
 
                 conn.DropTable<VKSaverTrack>();
                 conn.DropTable<VKSaverArtist>();
+                conn.DropTable<VKSaverAudioVKInfo>();
             });
         }
 
@@ -99,6 +102,16 @@ namespace VKSaver.Core.Services.Database
             conn.Update(item);
         }
 
+        public void CloseConnection()
+        {
+            if (_connection != null)
+            {
+                _connection.Close();
+                _connection.Dispose();
+                _connection = null;
+            }
+        }
+
         private SQLiteConnection GetDbConnection()
         {
             lock (_lockObject)
@@ -116,6 +129,6 @@ namespace VKSaver.Core.Services.Database
         private SQLiteConnection _connection;
         private readonly object _lockObject = new object();
 
-        private const string DATABASE_FILE_NAME = "library.db";
+        public const string DATABASE_FILE_NAME = "library.db";
     }
 }

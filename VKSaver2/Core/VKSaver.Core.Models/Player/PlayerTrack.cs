@@ -18,7 +18,7 @@ namespace VKSaver.Core.Models.Player
         
         [JsonProperty("vk_info")]
         public VKSaverAudioVKInfo VKInfo { get; set; }
-
+        
         [JsonIgnore]
         public FileContentType ContentType { get { return FileContentType.Music; } }
         

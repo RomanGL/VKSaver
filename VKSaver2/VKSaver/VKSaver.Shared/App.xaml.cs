@@ -24,6 +24,7 @@ using Windows.Storage;
 using System.IO;
 using Windows.UI.Core;
 using IF.Lastfm.Core.Api;
+using VKSaver.Core.Services.Database;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -165,9 +166,9 @@ namespace VKSaver
             _container.RegisterType<IBetaService, BetaService>(new ContainerControlledLifetimeManager());
 #endif
 
-            vkLoginService.UserLogin += (s, e) =>
+            vkLoginService.UserLogin += async (s, e) =>
             {
-                if (!TryOpenFirstStartView())
+                if (await TryOpenFirstStartView() == false)
                     NavigationService.Navigate("MainView", null);
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
@@ -203,7 +204,7 @@ namespace VKSaver
             base.OnInitialize(args);            
         }
 
-        protected override Task OnLaunchApplication(LaunchActivatedEventArgs args)
+        protected override async Task OnLaunchApplication(LaunchActivatedEventArgs args)
         {
             var playerService = _container.Resolve<IPlayerService>();
             var vkLoginService = _container.Resolve<IVKLoginService>();
@@ -219,8 +220,17 @@ namespace VKSaver
                     NavigationService.Navigate("PromoView", null);
                 else if (vkLoginService.IsAuthorized)
                 {
-                    if (!TryOpenFirstStartView())
+                    if (await TryOpenFirstStartView() == false)
+                    {
                         NavigationService.Navigate("MainView", null);
+                        try
+                        {
+                            var state = playerService.CurrentState;
+                            if (state == PlayerState.Playing)
+                                NavigationService.Navigate("PlayerView", null);
+                        }
+                        catch (Exception) { }
+                    }
                 }
                 else
                     NavigationService.Navigate("LoginView", null);
@@ -233,18 +243,8 @@ namespace VKSaver
 #endif
             }
 
-            try
-            {
-                var state = playerService.CurrentState;
-                if (state == PlayerState.Playing)
-                    NavigationService.Navigate("PlayerView", null);
-            }
-            catch (Exception) { }
-
             var logService = _container.Resolve<ILogService>();
             logService.LogText("App started");
-
-            return Task.FromResult<object>(null);
         }
 
         protected override async Task OnFileActivatedAsync(FileActivatedEventArgs args)
@@ -265,7 +265,7 @@ namespace VKSaver
                     NavigationService.Navigate("PromoView", null);
                 else if (vkLoginService.IsAuthorized)
                 {
-                    if (!TryOpenFirstStartView())
+                    if (await TryOpenFirstStartView() == false)
                         NavigationService.Navigate("MainView", null);
                 }
                 else
@@ -277,9 +277,6 @@ namespace VKSaver
                     _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
                 }
-
-                //if (downloadsService.GetDownloadsCount() > 0)
-                //    NavigationService.Navigate("PackagingFilesView", null);
             }
 
             await mediaFilesProcessService.ProcessFiles(args.Files);            
@@ -302,7 +299,7 @@ namespace VKSaver
             }
         }
 
-        private bool TryOpenFirstStartView()
+        private async Task<bool> TryOpenFirstStartView()
         {
             var settingsService = _container.Resolve<ISettingsService>();
             if (settingsService.Get(AppConstants.CURRENT_FIRST_START_INDEX_PARAMETER, 0) < AppConstants.CURRENT_FIRST_START_INDEX)
@@ -314,6 +311,23 @@ namespace VKSaver
                     NavigationService.Navigate("FirstStartRetryView", null);
 
                 return true;
+            }
+            else if (settingsService.Get(AppConstants.CURRENT_LIBRARY_INDEX_PARAMETER, 0) < AppConstants.CURRENT_LIBRARY_INDEX)
+            {
+                NavigationService.Navigate("UpdatingDatabaseView", null);
+                return true;
+            }
+            else
+            {
+                try
+                {
+                    var libraryDb = await ApplicationData.Current.LocalFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);
+                }
+                catch (Exception)
+                {
+                    NavigationService.Navigate("UpdatingDatabaseView", null);
+                    return true;
+                }
             }
 
             return false;

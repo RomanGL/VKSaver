@@ -9,6 +9,8 @@
         public const string CURRENT_LIBRARY_INDEX_PARAMETER = "CurrentLibraryIndex";
         public const int CURRENT_LIBRARY_INDEX = 1;
 
+        public const string LAST_MUSIC_CHANGING_DATE = "LastMusicChangingDate";
+
         public const string CURRENT_FIRST_START_INDEX_PARAMETER = "CurrentFirstStartIndex";
         public const int CURRENT_FIRST_START_INDEX = 1;
 

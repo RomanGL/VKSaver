@@ -23,6 +23,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Обновление базы данных"
+                   x:Uid="UpdatingDatabaseView_Title"
                    Style="{StaticResource OneTitleTextStyle}"
                    VerticalAlignment="Bottom"
                    Margin="20,48,0,0" />
@@ -30,18 +31,15 @@
         <StackPanel Grid.Row="2"
                     Margin="20,0">
             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                       x:Uid="UpdatingDatabaseView_ContentText"
                        Margin="0,28,0,0">
                 ВКачай выполняет сканирование ваших треков. Пожалуйста, подождите...
             </TextBlock>
 
             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
                        Margin="0,20,0,0"
-                       Foreground="{StaticResource PhoneLowBrush}">
-                <Run Text="Шаг" />
-                <Run Text="{Binding CurrentStep}" />
-                <Run Text="из" />
-                <Run Text="{Binding TotalSteps}" />
-            </TextBlock>
+                       Foreground="{StaticResource PhoneLowBrush}" 
+                       Text="{Binding StepText}"/>
             <ProgressBar Height="5"
                          Margin="0,5,0,0"
                          Foreground="{StaticResource AccentBrush}"
@@ -53,12 +51,8 @@
                 </ProgressBar.Background>
             </ProgressBar>
             <TextBlock Style="{StaticResource BodyTextBlockStyle}"
-                       Foreground="{StaticResource PhoneLowBrush}">
-                <Run Text="{Binding OperationName}" />
-                <Run Text="{Binding Current}" />
-                <Run Text="из" />
-                <Run Text="{Binding Total}" />
-            </TextBlock>
+                       Foreground="{StaticResource PhoneLowBrush}"
+                       Text="{Binding OperationText}"/>
         </StackPanel>
     </Grid>
 </mvvm:VisualStateAwarePage>

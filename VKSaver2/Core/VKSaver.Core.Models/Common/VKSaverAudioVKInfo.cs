@@ -5,9 +5,10 @@ using VKSaver.Core.Models.Database;
 
 namespace VKSaver.Core.Models.Common
 {
-    [Table("VKInfoTable")]
+    [Table("VKInfo")]
     public class VKSaverAudioVKInfo
     {
+        [JsonIgnore]
         [PrimaryKey]
         public string DbKey { get; set; }
 
@@ -22,9 +23,5 @@ namespace VKSaver.Core.Models.Common
 
         [JsonProperty("lyrics_id")]
         public int LyricsID { get; set; }
-
-        [JsonIgnore]
-        [OneToOne]
-        public VKSaverTrack LocalTrack { get; set; }
     }
 }

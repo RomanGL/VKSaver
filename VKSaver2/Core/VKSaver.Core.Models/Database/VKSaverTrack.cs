@@ -5,7 +5,7 @@ using VKSaver.Core.Models.Player;
 
 namespace VKSaver.Core.Models.Database
 {
-    [Table("LocalTracks")]
+    [Table("Tracks")]
     public class VKSaverTrack : IPlayerTrack
     {
         [PrimaryKey]

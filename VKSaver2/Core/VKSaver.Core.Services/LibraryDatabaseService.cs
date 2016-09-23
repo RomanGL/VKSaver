@@ -26,27 +26,42 @@ namespace VKSaver.Core.Services
 
         public async void Update()
         {
-            lock (_lockObject)
+            try
             {
-                if (_isUpdating)
-                    return;
-                _isUpdating = true;
+                lock (_lockObject)
+                {
+                    if (_isUpdating)
+                        return;
+                    _isUpdating = true;
+                }
+
+                UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Started });
+
+                await _database.ClearDatabase();
+                await _database.Initialize();
+
+                await LoadFiles();
+                await UpdateDatabase();
+                ClearUpdateTemp();
+
+                UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Completed });
             }
-
-            UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Started });
-
-            await _database.ClearDatabase();
-            await _database.Initialize();
-
-            await LoadFiles();
-            await UpdateDatabase();
-            ClearUpdateTemp();
-
-            UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Completed });
-
-            lock (_lockObject)
+            catch (Exception ex)
             {
-                _isUpdating = false;
+                _logService.LogException(ex);
+
+                _database.CloseConnection();
+                var dbFile = await ApplicationData.Current.LocalFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);
+                await dbFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+
+                UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Completed });
+            }
+            finally
+            {
+                lock (_lockObject)
+                {
+                    _isUpdating = false;
+                }
             }
         }
 
@@ -67,15 +82,24 @@ namespace VKSaver.Core.Services
 
         private async Task UpdateDatabase()
         {
-            _total = _artists.Count;
+            _total = _artists.Count + _vksmInfo.Count;
             _current = 0;
             OnPreparingDatabaseProgressChanged();
 
+            await _database.InsertItems(_artists.Values);
             foreach (VKSaverArtist artist in _artists.Values)
             {
                 _current++;
                 OnPreparingDatabaseProgressChanged();
                 await _database.UpdateItemChildrens(artist);
+            }
+
+            await _database.InsertItems(_vksmInfo);
+            foreach (VKSaverAudioVKInfo info in _vksmInfo)
+            {
+                _current++;
+                OnPreparingDatabaseProgressChanged();
+                await _database.UpdateItemChildrens(info);
             }
 
             _settingsService.Set(AppConstants.CURRENT_LIBRARY_INDEX_PARAMETER, AppConstants.CURRENT_LIBRARY_INDEX);
@@ -167,6 +191,7 @@ namespace VKSaver.Core.Services
                 };
 
                 ProcessArtist(track, metadata.Track.Artist);
+                ProcessVKInfo(track, metadata.VK);
                 return track;
             }
         }
@@ -188,22 +213,27 @@ namespace VKSaver.Core.Services
             artist.Tracks.Add(track);
         }
 
+        private void ProcessVKInfo(VKSaverTrack track, VKSaverAudioVKInfo info)
+        {
+            info.DbKey = $"{info.OwnerID} {info.ID}";
+            track.VKInfoKey = info.DbKey;
+            _vksmInfo.Add(info);
+        }
+
         private void ClearUpdateTemp()
         {
             _artists.Clear();
+            _vksmInfo.Clear();
         }
 
         private void OnSearchingFilesProgressChanged()
         {
-            if (UpdateProgressChanged != null)
+            UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs
             {
-                UpdateProgressChanged(this, new DBUpdateProgressChangedEventArgs
-                {
-                    Step = DatabaseUpdateStepType.SearchingFiles,
-                    TotalItems = _total,
-                    CurrentItem = _current
-                });
-            }
+                Step = DatabaseUpdateStepType.SearchingFiles,
+                TotalItems = _total,
+                CurrentItem = _current
+            });
         }
 
         private void OnPreparingDatabaseProgressChanged()
@@ -228,6 +258,7 @@ namespace VKSaver.Core.Services
         private readonly ILogService _logService;
 
         private readonly Dictionary<string, VKSaverArtist> _artists = new Dictionary<string, VKSaverArtist>();
+        private readonly List<VKSaverAudioVKInfo> _vksmInfo = new List<VKSaverAudioVKInfo>();
         private readonly object _lockObject = new object();        
     }
 }
