@@ -73,6 +73,7 @@
     <Compile Include="FirstStart\FirstStartRetryViewModel.cs" />
     <Compile Include="FirstStart\FirstStartViewModel.cs" />
     <Compile Include="LastFmLoginViewModel.cs" />
+    <Compile Include="LibraryViewModel.cs" />
     <Compile Include="NewsMediaViewModel.cs" />
     <Compile Include="PackagingFilesViewModel.cs" />
     <Compile Include="PromoViewModel.cs" />

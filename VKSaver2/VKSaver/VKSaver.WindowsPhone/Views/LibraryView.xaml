@@ -1,0 +1,118 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.LibraryView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           xmlns:i="using:Microsoft.Xaml.Interactivity"
+                           xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:b="using:VKSaver.Behaviors"
+                           xmlns:common="using:VKSaver.Common"
+                           xmlns:controls="using:VKSaver.Controls"
+                           xmlns:converters="using:VKSaver.Converters"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           Style="{StaticResource DefaultPageStyle}">
+
+    <mvvm:VisualStateAwarePage.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+
+        <Style x:Key="RemovableItemStyle"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
+                                        Command="{Binding DataSource.DeleteTrackCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+            <Setter Property="Margin"
+                    Value="19,10,0,10" />
+        </Style>
+
+        <CollectionViewSource x:Key="TracksSource"
+                              Source="{Binding Tracks}"
+                              IsSourceGrouped="True"/>
+    </mvvm:VisualStateAwarePage.Resources>
+    
+    <mvvm:VisualStateAwarePage.BottomAppBar>
+        <CommandBar Visibility="Collapsed">
+            <i:Interaction.Behaviors>
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}"
+                                                    SecondaryCommands="{Binding SecondaryItems}" />
+            </i:Interaction.Behaviors>
+        </CommandBar>
+    </mvvm:VisualStateAwarePage.BottomAppBar>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Margin="19,0,0,0">
+            <TextBlock Text="ВКАЧАЙ"
+                       x:Uid="AppName"
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       Margin="0,12,0,0" />
+            <TextBlock Text="музыка"
+                       Margin="-3,-6.5,0,26.5"
+                       Style="{ThemeResource HeaderTextBlockStyle}"
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+        </StackPanel>
+
+        <SemanticZoom Style="{StaticResource AlphaJumpListStyle}"
+                      Grid.Row="1">
+            <SemanticZoom.ZoomedInView>
+                <ListView ItemsSource="{Binding Source={StaticResource TracksSource}}"
+                          ItemTemplate="{StaticResource WithDurationAudioTemplate}"                          
+                          ItemContainerStyle="{StaticResource RemovableItemStyle}"
+                          IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                          SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
+                    <ListView.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource AlphaGroupHeaderTemplate}"
+                                    HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
+                                    HidesIfEmpty="True" />
+                    </ListView.GroupStyle>
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <controls:StateBlock State="{Binding TracksState}"
+                                                 ReloadCommand="{Binding ReloadDataCommand}"
+                                                 Margin="0,0,0,60"
+                                                 LoadingText="Загружаем список треков..."
+                                                 ErrorText="Не удалось загрузить список треков"
+                                                 NoDataText="Кэшированые аудиозаписи отсутствуют" />
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="ItemClick">
+                            <c:InvokeCommandAction Command="{Binding PlayTracksCommand}"
+                                                   InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                        </c:EventTriggerBehavior>
+                        <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                        SelectAll="{Binding SelectAll}"
+                                                        Command="{Binding SelectionChangedCommand}" />
+                    </i:Interaction.Behaviors>
+                </ListView>
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource TracksSource}}"
+                          Style="{StaticResource AlphaJumpListPickerStyle}" />
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
+    </Grid>
+</mvvm:VisualStateAwarePage>

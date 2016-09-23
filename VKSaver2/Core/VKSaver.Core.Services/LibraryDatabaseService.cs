@@ -176,6 +176,8 @@ namespace VKSaver.Core.Services
             else
                 ProcessArtist(track, "Unknown");
 
+            track.Duration = properties.Duration;
+
             return track;
         }
 
@@ -192,6 +194,8 @@ namespace VKSaver.Core.Services
 
                 ProcessArtist(track, metadata.Track.Artist);
                 ProcessVKInfo(track, metadata.VK);
+
+                track.Duration = TimeSpan.FromTicks(metadata.Track.Duration);
                 return track;
             }
         }

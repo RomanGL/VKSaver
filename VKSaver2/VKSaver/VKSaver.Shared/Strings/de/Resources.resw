@@ -12,4 +12,222 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutView_About.Text" xml:space="preserve">
+    <value>über App</value>
+  </data>
+  <data name="AboutView_AppName.Text" xml:space="preserve">
+    <value>VK Saver 2 Beta</value>
+  </data>
+  <data name="AboutView_Version.Text" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="AccessDeniedView_AccessDenied.Text" xml:space="preserve">
+    <value>Kein Zugang</value>
+  </data>
+  <data name="AccessDeniedView_SectionNotCompleted.Text" xml:space="preserve">
+    <value>Das ist nicht fertig!
+
+Kehren Sie zurück um zu fortfahren</value>
+  </data>
+  <data name="AddToMyAudiosFlyoutItem.Text" xml:space="preserve">
+    <value>zu meine Musik
+</value>
+  </data>
+  <data name="AddToMyDocsFlyoutItem.Text" xml:space="preserve">
+    <value>zu meinen Dokumenten</value>
+  </data>
+  <data name="AddToMyVideosFlyoutItem.Text" xml:space="preserve">
+    <value>zu meinen Videos</value>
+  </data>
+  <data name="AppBarButton_Select_Text" xml:space="preserve">
+    <value>auswählen</value>
+  </data>
+  <data name="AppLoader_AddingItem" xml:space="preserve">
+    <value>Hinzufugung {0}...</value>
+    <comment>Например, "Выполняется добавление Imagine Dragons - Warriors..."</comment>
+  </data>
+  <data name="AppName.Text" xml:space="preserve">
+    <value>VK Saver BETA</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Details.Header" xml:space="preserve">
+    <value>mehr
+</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Similar.Header" xml:space="preserve">
+    <value>ähnlich</value>
+  </data>
+  <data name="ArtistInfoView_SearchVKItem.Content" xml:space="preserve">
+    <value>finden es in VK</value>
+  </data>
+  <data name="AppBarButton_Player.Label" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="MainView_RecommendationsItem.Content" xml:space="preserve">
+    <value>Vorschläge </value>
+  </data>
+  <data name="MainView_SearchItem.Content" xml:space="preserve">
+    <value>suchen
+</value>
+  </data>
+  <data name="MainView_SettingsItem.Content" xml:space="preserve">
+    <value>Einladungen
+</value>
+  </data>
+  <data name="MainView_ShowMoreItem.Content" xml:space="preserve">
+    <value>mehr anzeigen</value>
+  </data>
+  <data name="PurchaseView_BuyNowButton.Content" xml:space="preserve">
+    <value>jetzt kaufen</value>
+  </data>
+  <data name="PurchaseView_BuyPermanentButton.Content" xml:space="preserve">
+    <value>auf immer kaufen</value>
+  </data>
+  <data name="PurchaseView_NextButton.Content" xml:space="preserve">
+    <value>weiter</value>
+  </data>
+  <data name="PurchaseView_Screen0_Line1_Text" xml:space="preserve">
+    <value>VK Saver 2</value>
+  </data>
+  <data name="UserCommView_PivotSection_FriendLists.Header" xml:space="preserve">
+    <value>Liste</value>
+    <comment>списки друзей</comment>
+  </data>
+  <data name="UserCommView_PivotSection_Friends.Header" xml:space="preserve">
+    <value>Freunde
+</value>
+  </data>
+  <data name="UserCommView_PivotSection_Groups.Header" xml:space="preserve">
+    <value>Gruppen
+</value>
+  </data>
+  <data name="UserCommView_UserOnline.Text" xml:space="preserve">
+    <value>Online
+</value>
+  </data>
+  <data name="UserContentView_AlbumsGroup_Text" xml:space="preserve">
+    <value>Alben</value>
+  </data>
+  <data name="UserContentView_PivotSection_Docs.Header" xml:space="preserve">
+    <value>Dokumenten</value>
+  </data>
+  <data name="UserContentView_PivotSection_Music.Header" xml:space="preserve">
+    <value>Musik</value>
+  </data>
+  <data name="UserContentView_PivotSection_Videos.Header" xml:space="preserve">
+    <value>Video
+</value>
+  </data>
+  <data name="UserContentView_VideosGroup_Text" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="Loader_ReloadButton_Text" xml:space="preserve">
+    <value>noch einmal</value>
+  </data>
+  <data name="AppBarButton_Player_Text" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="AppBarButton_TransferManager_Text" xml:space="preserve">
+    <value>Ladenmanager</value>
+  </data>
+  <data name="SearchView_Everywhere_Title.Header" xml:space="preserve">
+    <value>durchgängig</value>
+  </data>
+  <data name="SearchView_Loader.LoadingText" xml:space="preserve">
+    <value>Suchevorgang...</value>
+  </data>
+  <data name="SearchView_Loader.NoDataText" xml:space="preserve">
+    <value>Kein Suchergebnisse</value>
+  </data>
+  <data name="AppBarButton_Filter_Text" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="AudioSearchView_PerformerOnlySwitch.Header" xml:space="preserve">
+    <value>nur nach dem Künstler </value>
+  </data>
+  <data name="AudioSearchView_LyricsOnlySwitch.Header" xml:space="preserve">
+    <value>Nur mit dem Text</value>
+  </data>
+  <data name="VideoSearchView_Filters_All_Text" xml:space="preserve">
+    <value>alle</value>
+  </data>
+  <data name="VideoSearchView_OnlyHD_Switch.Header" xml:space="preserve">
+    <value>Nur HD</value>
+  </data>
+  <data name="VideoSearchView_VideoDurations_ComboBox.Header" xml:space="preserve">
+    <value>Videodauer</value>
+  </data>
+  <data name="VideoSearchView_VideoDurations_Long_Text" xml:space="preserve">
+    <value>lang
+</value>
+  </data>
+  <data name="VideoSearchView_VideoDurations_Short_Text" xml:space="preserve">
+    <value>kurz
+</value>
+  </data>
+  <data name="VideoSearchView_VideoSortMethods_ByDate_Text" xml:space="preserve">
+    <value>nach Datum</value>
+    <comment>Eng: by date</comment>
+  </data>
+  <data name="VideoSearchView_VideoSortMethods_ByDuration_Text" xml:space="preserve">
+    <value>nach Dauer</value>
+  </data>
+  <data name="VideoSearchView_VideoSortMethods_ByRelevance_Text" xml:space="preserve">
+    <value>nach Beliebtheit</value>
+    <comment>Eng: by popularity</comment>
+  </data>
+  <data name="VideoSearchView_VideoSortMethods_ComboBox.Header" xml:space="preserve">
+    <value>sortieren nach...</value>
+  </data>
+  <data name="VideoSearchView_VideoTypes_ComboBox.Header" xml:space="preserve">
+    <value>Videoformat</value>
+  </data>
+  <data name="CaptchaBox.SecondaryButtonText" xml:space="preserve">
+    <value>abbrechen</value>
+  </data>
+  <data name="AppLoader_PleaseWait" xml:space="preserve">
+    <value>Bitte warten Sie...</value>
+  </data>
+  <data name="ServiceName_VK_Text" xml:space="preserve">
+    <value>VK</value>
+  </data>
+  <data name="ServiceAuthBlock_SignedInAs.Text" xml:space="preserve">
+    <value>Sie sind angemeldet als</value>
+    <comment>Например: "Вы вошли как Иван Иванов"</comment>
+  </data>
+  <data name="ServiceAuthBlock_SignInButton.Content" xml:space="preserve">
+    <value>anmelden
+</value>
+  </data>
+  <data name="PackagingFilesView_Title.Text" xml:space="preserve">
+    <value>Ladevorgang</value>
+  </data>
+  <data name="PromoView_LetsGoButton.Content" xml:space="preserve">
+    <value>anfangen</value>
+  </data>
+  <data name="PromoView_Screen0_Line2_Text" xml:space="preserve">
+    <value>Fertig? Dann fangen wir an!</value>
+  </data>
+  <data name="PromoView_Screen1_Line1_Text" xml:space="preserve">
+    <value>Wir freuen uns Sie widerzusehen!</value>
+  </data>
+  <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
+    <value>VK Saver ist jetzt auf dem neusten Stand, lesen weiter um mehr zu erfahren. </value>
+  </data>
+  <data name="PromoView_Screen2_Line1_Text" xml:space="preserve">
+    <value>Musik-Caching</value>
+  </data>
+  <data name="PromoView_NextButton.Content" xml:space="preserve">
+    <value>weiter</value>
+  </data>
+  <data name="ArtistAlbumView_PivotSection_Details.Header" xml:space="preserve">
+    <value>mehr
+</value>
+  </data>
+  <data name="NewsMediaView_Title.Text" xml:space="preserve">
+    <value>Neuigkeiten</value>
+  </data>
+  <data name="MainView_CachedItem.Content" xml:space="preserve">
+    <value>Musik-Caching</value>
+    <comment>Кэшированные треки</comment>
+  </data>
 </root>

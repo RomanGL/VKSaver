@@ -1,5 +1,7 @@
-﻿using SQLite.Net.Attributes;
+﻿using Newtonsoft.Json;
+using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
+using System;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Player;
 
@@ -18,6 +20,9 @@ namespace VKSaver.Core.Models.Database
 
         [ForeignKey(typeof(VKSaverAudioVKInfo))]
         public string VKInfoKey { get; set; }
+
+        [JsonIgnore]
+        public TimeSpan Duration { get; set; }
 
         [OneToOne]
         public VKSaverAudioVKInfo VKInfo { get; set; }

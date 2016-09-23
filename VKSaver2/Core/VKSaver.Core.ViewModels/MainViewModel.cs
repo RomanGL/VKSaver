@@ -330,7 +330,7 @@ namespace VKSaver.Core.ViewModels
 
         private void OnGoToCachedViewCommand()
         {
-            _navigationService.Navigate("CachedView", null);
+            _navigationService.Navigate("LibraryView", null);
         }
 
         private void OnGoToUploadFileViewCommand()

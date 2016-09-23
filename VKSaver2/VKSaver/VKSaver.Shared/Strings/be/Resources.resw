@@ -12,4 +12,270 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutView_About.Text" xml:space="preserve">
+    <value>аб праграме</value>
+  </data>
+  <data name="AboutView_AppName.Text" xml:space="preserve">
+    <value>ВКачай 2 Beta</value>
+  </data>
+  <data name="AboutView_Version.Text" xml:space="preserve">
+    <value>Версія:</value>
+  </data>
+  <data name="AccessDeniedView_AccessDenied.Text" xml:space="preserve">
+    <value>Няма доступу</value>
+  </data>
+  <data name="AccessDeniedView_SectionNotCompleted.Text" xml:space="preserve">
+    <value>Гэты раздзел яшчэ не гатовы
+
+Калі ласка, вярніцеся назад, каб працягнуць</value>
+  </data>
+  <data name="AddToMyAudiosFlyoutItem.Text" xml:space="preserve">
+    <value>у маі аўдыязапісы</value>
+  </data>
+  <data name="AddToMyDocsFlyoutItem.Text" xml:space="preserve">
+    <value>у маі дакументы</value>
+  </data>
+  <data name="AddToMyVideosFlyoutItem.Text" xml:space="preserve">
+    <value>у маі відэазапісы</value>
+  </data>
+  <data name="AlbumTracksLoader.ErrorText" xml:space="preserve">
+    <value>Немагчыма загрузіць змест альбома</value>
+  </data>
+  <data name="AlbumTracksLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем спіс трэкаў альбома...</value>
+  </data>
+  <data name="AlbumTracksLoader.NoDataText" xml:space="preserve">
+    <value>У гэтым альбоме няма трэкаў</value>
+  </data>
+  <data name="AppBarButton_AddToMyAudios_Text" xml:space="preserve">
+    <value>у маі аўдыязапісы</value>
+  </data>
+  <data name="AppBarButton_AddToMyDocs_Text" xml:space="preserve">
+    <value>у маі дакументы</value>
+  </data>
+  <data name="AppBarButton_AddToMyVideos_Text" xml:space="preserve">
+    <value>у маі відэазапісы</value>
+  </data>
+  <data name="AppBarButton_Delete_Text" xml:space="preserve">
+    <value>выдальць</value>
+  </data>
+  <data name="AppBarButton_Download_Text" xml:space="preserve">
+    <value>дадаць у кэш</value>
+  </data>
+  <data name="AppBarButton_Play_Text" xml:space="preserve">
+    <value>прайграць</value>
+  </data>
+  <data name="AppBarButton_Refresh_Text" xml:space="preserve">
+    <value>абнавіць</value>
+  </data>
+  <data name="AppBarButton_SelectAll_Text" xml:space="preserve">
+    <value>выбраць усе</value>
+  </data>
+  <data name="AppBarButton_Select_Text" xml:space="preserve">
+    <value>выбраць</value>
+  </data>
+  <data name="AppLoader_AddingItem" xml:space="preserve">
+    <value>Дадаецца {0}...</value>
+    <comment>Например, "Выполняется добавление Imagine Dragons - Warriors..."</comment>
+  </data>
+  <data name="AppLoader_CancelAllDownloads" xml:space="preserve">
+    <value>Адмена усіх загрузак...</value>
+  </data>
+  <data name="AppLoader_DeletingItem" xml:space="preserve">
+    <value>Выдаляецца {0}...</value>
+    <comment>Например, "Выполняется удаление Photo0122.jpg..."</comment>
+  </data>
+  <data name="AppLoader_Preparing" xml:space="preserve">
+    <value>Падрыхтоўка...</value>
+  </data>
+  <data name="AppLoader_PreparingFilesToDownload" xml:space="preserve">
+    <value>Падрыхтоўка файлаў для загрузкі...</value>
+  </data>
+  <data name="AppName.Text" xml:space="preserve">
+    <value>УКАЧАЙ BETA</value>
+  </data>
+  <data name="AppNamePivot.Title" xml:space="preserve">
+    <value>УКАЧАЙ BETA</value>
+  </data>
+  <data name="AppNameText" xml:space="preserve">
+    <value>УКачай Beta</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс альбомаў выканаўца</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.LoadingText" xml:space="preserve">
+    <value>Праслухоўваем пласцінкі выканаўца...</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.NoDataText" xml:space="preserve">
+    <value>Падобна на тое, што гэты выканаўца старанна хавае свае альбомы</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць данныя аб выканаўцы</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.LoadingText" xml:space="preserve">
+    <value>Збіраем дасье на выканаўца...</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.NoDataText" xml:space="preserve">
+    <value>Аб гэтым выканаўцы няма ніякай інфармацыі</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Albums.Header" xml:space="preserve">
+    <value>альбомы</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Details.Header" xml:space="preserve">
+    <value>падрабязней</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Similar.Header" xml:space="preserve">
+    <value>падобныя</value>
+  </data>
+  <data name="ArtistInfoView_SearchVKItem.Content" xml:space="preserve">
+    <value>знайсці УКантакце</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася знайсці падобных выканаўцаў</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.LoadingText" xml:space="preserve">
+    <value>Шукаем падобных выканаўцаў...</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.NoDataText" xml:space="preserve">
+    <value>У гэтага выканаўцы унікальныя трэкі!</value>
+  </data>
+  <data name="DeleteFlyoutItem.Text" xml:space="preserve">
+    <value>выдаліць</value>
+  </data>
+  <data name="DownloadFlyoutItem.Text" xml:space="preserve">
+    <value>дадаць у кэш</value>
+  </data>
+  <data name="ErrorView_Error.Text" xml:space="preserve">
+    <value>Здарылася памылка</value>
+  </data>
+  <data name="ErrorView_ErrorSorry.Text" xml:space="preserve">
+    <value>Мы вельмі шкадуем аб тым, што здарылася
+
+Калі ласка, вярніцеся назад, каб працягнуць</value>
+  </data>
+  <data name="LoginView_Auth.Text" xml:space="preserve">
+    <value>Аўтарызацыя</value>
+  </data>
+  <data name="LoginView_JoinButton.Label" xml:space="preserve">
+    <value>зарэгістрыравацца</value>
+  </data>
+  <data name="LoginView_LoginButton.Content" xml:space="preserve">
+    <value>увайсці</value>
+  </data>
+  <data name="LoginView_RestorePasswordButton.Label" xml:space="preserve">
+    <value>аднавіць пароль</value>
+  </data>
+  <data name="MainView_AboutItem.Content" xml:space="preserve">
+    <value>аб праграме</value>
+  </data>
+  <data name="MainView_DocsItem.Content" xml:space="preserve">
+    <value>дакументы</value>
+  </data>
+  <data name="MainView_DownloadFlyoutItem.Text" xml:space="preserve">
+    <value>дадаць у кэш</value>
+  </data>
+  <data name="MainView_FriendsItem.Content" xml:space="preserve">
+    <value>сябры</value>
+  </data>
+  <data name="MainView_GroupsItem.Content" xml:space="preserve">
+    <value>суполкі</value>
+  </data>
+  <data name="MainView_Hub.Header" xml:space="preserve">
+    <value>укачай beta</value>
+  </data>
+  <data name="MainView_HubSection_Recommendations.Header" xml:space="preserve">
+    <value>РЭКАМЕНДУЕМ</value>
+  </data>
+  <data name="MainView_HubSection_SeeAlso.Header" xml:space="preserve">
+    <value>ГЛЯДЗІЦЕ ТАКСАМА</value>
+  </data>
+  <data name="MainView_HubSection_TopArtists.Header" xml:space="preserve">
+    <value>ЛЕПШЫЯ ВЫКАНАЎЦЫ</value>
+  </data>
+  <data name="MainView_HubSection_YourMusic.Header" xml:space="preserve">
+    <value>ВАША МУЗЫКА</value>
+  </data>
+  <data name="MainView_MusicItem.Content" xml:space="preserve">
+    <value>музыка</value>
+  </data>
+  <data name="MainView_NewsItem.Content" xml:space="preserve">
+    <value>навіны</value>
+  </data>
+  <data name="AppBarButton_Player.Label" xml:space="preserve">
+    <value>прайгравальнік</value>
+  </data>
+  <data name="MainView_RecommendationsItem.Content" xml:space="preserve">
+    <value>рэкамендацыі</value>
+  </data>
+  <data name="MainView_SearchItem.Content" xml:space="preserve">
+    <value>пошук</value>
+  </data>
+  <data name="MainView_SettingsItem.Content" xml:space="preserve">
+    <value>налады</value>
+  </data>
+  <data name="MainView_ShowMore.Text" xml:space="preserve">
+    <value>паказаць больш</value>
+  </data>
+  <data name="MainView_ShowMoreItem.Content" xml:space="preserve">
+    <value>паказаць больш</value>
+  </data>
+  <data name="MainView_TopArtistsItem.Content" xml:space="preserve">
+    <value>топ выканаўцаў</value>
+  </data>
+  <data name="MainView_TopTracksItem.Content" xml:space="preserve">
+    <value>топ трэкаў</value>
+  </data>
+  <data name="AppBarButton_TransferManager.Label" xml:space="preserve">
+    <value>загрузкі</value>
+  </data>
+  <data name="MainView_TransferManagerItem.Content" xml:space="preserve">
+    <value>загрузкі</value>
+  </data>
+  <data name="MainView_VideosItem.Content" xml:space="preserve">
+    <value>видэа</value>
+  </data>
+  <data name="MainView_YourMusicLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс вашых трэкаў</value>
+  </data>
+  <data name="MainView_YourMusicLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем спіс вашых трэкаў...</value>
+  </data>
+  <data name="MainView_YourMusicLoader.NoDataText" xml:space="preserve">
+    <value>У вашай калекцыі не знойдзена ніводнага трэка</value>
+  </data>
+  <data name="Message_AddSelectedError_Text" xml:space="preserve">
+    <value>Не атрымалася дадаць выбраныя элементы ў вашу калекцыю. Калі ласка, паспрабуйце пазней.</value>
+  </data>
+  <data name="Message_AddSelectedError_Title" xml:space="preserve">
+    <value>Не атрымалася дадаць</value>
+  </data>
+  <data name="Message_AudioAddError_Text" xml:space="preserve">
+    <value>Пры даданні аўдыязапісу ў калекцыю здарылася памылка. Калі ласка, паспрабуйце пазней.
+
+</value>
+  </data>
+  <data name="Message_AudioAddError_Title" xml:space="preserve">
+    <value>Не атрымалася дадаць аўдыязапіс</value>
+  </data>
+  <data name="Message_AudioAlbumDeleteError_Text" xml:space="preserve">
+    <value>Пры выдаленні альбому аўдыёзапісаў узникла памылка. Кали ласка, паспрабуйце пазней.</value>
+  </data>
+  <data name="Message_AudioAlbumDeleteError_Title" xml:space="preserve">
+    <value>Не атрымалася выдаліць альбом аўдыёзапісаў</value>
+  </data>
+  <data name="Message_AudioDeleteError_Text" xml:space="preserve">
+    <value>Пры выдаленні аўдыязапісу ўзнікла памылка. Калі ласка, паспрабуйце пазней.</value>
+  </data>
+  <data name="Message_AudioDeleteError_Title" xml:space="preserve">
+    <value>Не атрымалася выдаліць аўдыязапіс.</value>
+  </data>
+  <data name="Message_CantFindLyrics_Title" xml:space="preserve">
+    <value>Не атрымалася знайсці тэкст.</value>
+  </data>
+  <data name="Message_CantFindLyrics_Text" xml:space="preserve">
+    <value>Не атрымалася знайсці тэкст для гэтага аўдыязапісу.</value>
+  </data>
+  <data name="Message_DeleteSelectedError_Text" xml:space="preserve">
+    <value>Не атрымалася выдаліць выбраныя элементы з вашай калекцыі. Калі ласка, паспрабуйце пазней</value>
+  </data>
 </root>

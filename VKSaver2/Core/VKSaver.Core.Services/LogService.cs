@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,13 @@ namespace VKSaver.Core.Services
             if (writter == null)
                 return;
 
-            await writter.WriteLineAsync($"{DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")}: {text}\n");
+            string textToWrite = $"{DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")}: {text}\n";
+
+#if DEBUG
+            Debug.WriteLine(textToWrite);
+#endif
+
+            await writter.WriteLineAsync(textToWrite);
             writter.Flush();
         }
 
