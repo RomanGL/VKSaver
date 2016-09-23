@@ -184,7 +184,7 @@ namespace VKSaver.Core.Services
                 };
                 _artists[artistName] = artist;
             }
-
+            
             artist.Tracks.Add(track);
         }
 

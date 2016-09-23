@@ -70,6 +70,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Button Content="обновить базу данных"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding UpdateDatabaseCommand, Mode=OneTime}"
+                        Margin="0,20,0,0" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

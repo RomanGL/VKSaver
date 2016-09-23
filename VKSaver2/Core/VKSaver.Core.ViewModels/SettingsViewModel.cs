@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using ModernDev.InTouch;
 using PropertyChanged;
 using System;
@@ -16,10 +17,16 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class SettingsViewModel : ViewModelBase
     {
-        public SettingsViewModel(IVKLoginService vkLoginService, ISettingsService settingsService,
-            ILastFmLoginService lastFmLoginSevice, IPurchaseService purchaseService,
-            IInTouchWrapper inTouchWrapper, InTouch inTouch)
+        public SettingsViewModel(
+            INavigationService navigationService,
+            IVKLoginService vkLoginService, 
+            ISettingsService settingsService,
+            ILastFmLoginService lastFmLoginSevice, 
+            IPurchaseService purchaseService,
+            IInTouchWrapper inTouchWrapper, 
+            InTouch inTouch)
         {
+            _navigationService = navigationService;
             _vkLoginService = vkLoginService;
             _settingsService = settingsService;
             _lastFmLoginService = lastFmLoginSevice;
@@ -28,9 +35,14 @@ namespace VKSaver.Core.ViewModels
             _inTouch = inTouch;
 
             Authorizations = new ObservableCollection<IServiceAuthorization>();
+            UpdateDatabaseCommand = new DelegateCommand(OnUpdateDatabaseCommand);
         }
 
+        [DoNotNotify]
         public ObservableCollection<IServiceAuthorization> Authorizations { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand UpdateDatabaseCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -65,14 +77,24 @@ namespace VKSaver.Core.ViewModels
 
         private async void LoadVKUserName(VKAuthorization auth)
         {
-            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Users.Get());
-            if (!response.IsError)
+            try
             {
-                var user = response.Data[0];
-                auth.UserName = $"{user.FirstName} {user.LastName}";
+                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Users.Get());
+                if (!response.IsError)
+                {
+                    var user = response.Data[0];
+                    auth.UserName = $"{user.FirstName} {user.LastName}";
+                }
             }
+            catch (Exception) { }
         }
 
+        private void OnUpdateDatabaseCommand()
+        {
+            _navigationService.Navigate("UpdatingDatabaseView", null);
+        }
+
+        private readonly INavigationService _navigationService;
         private readonly IVKLoginService _vkLoginService;
         private readonly ISettingsService _settingsService;
         private readonly ILastFmLoginService _lastFmLoginService;
