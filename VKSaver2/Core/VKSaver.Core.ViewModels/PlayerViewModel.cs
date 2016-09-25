@@ -401,7 +401,7 @@ namespace VKSaver.Core.ViewModels
 
         private bool CanExecuteDownloadTrackCommand(PlayerItem item)
         {
-            return item != null && item.Track != null && !item.Track.Source.StartsWith("vks-token:");
+            return item != null && item.Track != null && item.Track.Source.StartsWith("http");
         }
 
         private void TryEnableScrobbleMode()

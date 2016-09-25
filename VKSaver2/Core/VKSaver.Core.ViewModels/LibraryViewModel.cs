@@ -32,6 +32,8 @@ namespace VKSaver.Core.ViewModels
         {
             _libraryDatabaseService = libraryDatabaseService;
             _logService = logService;
+
+            ExecuteItemCommand = new DelegateCommand<object>(OnExecuteItemCommand);
         }
                 
         public ContentState TracksState { get; private set; }
@@ -55,23 +57,26 @@ namespace VKSaver.Core.ViewModels
         public SimpleStateSupportCollection<JumpListGroup<VKSaverTrack>> Cached { get; private set; }
         public SimpleStateSupportCollection<VKSaverFolder> Folders { get; set; }
 
+        [DoNotNotify]
+        public DelegateCommand<object> ExecuteItemCommand { get; private set; }
+
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            if (e.NavigationMode == NavigationMode.New || e.NavigationMode == NavigationMode.Refresh)
-            {
-                Tracks = new SimpleStateSupportCollection<JumpListGroup<VKSaverTrack>>(LoadTracks);
-                Artists = new SimpleStateSupportCollection<JumpListGroup<VKSaverArtist>>(LoadArtists);
-                Albums = new SimpleStateSupportCollection<JumpListGroup<VKSaverAlbum>>(LoadAlbums);
-                Genres = new SimpleStateSupportCollection<JumpListGroup<VKSaverGenre>>(LoadGenres);
-                Folders = new SimpleStateSupportCollection<VKSaverFolder>(LoadFolders);
-                Cached = new SimpleStateSupportCollection<JumpListGroup<VKSaverTrack>>(LoadCachedTracks);
+            Tracks = Tracks ?? new SimpleStateSupportCollection<JumpListGroup<VKSaverTrack>>(LoadTracks);
+            Artists = Artists ?? new SimpleStateSupportCollection<JumpListGroup<VKSaverArtist>>(LoadArtists);
+            Albums = Albums ?? new SimpleStateSupportCollection<JumpListGroup<VKSaverAlbum>>(LoadAlbums);
+            Genres = Genres ?? new SimpleStateSupportCollection<JumpListGroup<VKSaverGenre>>(LoadGenres);
+            Folders = Folders ?? new SimpleStateSupportCollection<VKSaverFolder>(LoadFolders);
+            Cached = Cached ?? new SimpleStateSupportCollection<JumpListGroup<VKSaverTrack>>(LoadCachedTracks);
 
-                string viewName = (string)e.Parameter;
-                SetPivotIndex(viewName);
-            }
-            else if (viewModelState.Count > 0)
+            if (viewModelState.Count > 0)
             {
                 CurrentPivotIndex = (int)viewModelState[nameof(CurrentPivotIndex)];
+            }
+            else
+            {
+                string viewName = (string)e.Parameter;
+                SetPivotIndex(viewName);
             }
 
             base.OnNavigatedTo(e, viewModelState);
@@ -84,7 +89,7 @@ namespace VKSaver.Core.ViewModels
             if (e.Cancel)
                 return;
 
-            if (!suspending && e.NavigationMode == NavigationMode.Back)
+            if (e.NavigationMode == NavigationMode.Back)
             {
                 Tracks = null;
                 Artists = null;
@@ -267,6 +272,12 @@ namespace VKSaver.Core.ViewModels
                 return new List<VKSaverFolder>(0);
 
             return await _libraryDatabaseService.GetAllFolders();
+        }
+
+        private void OnExecuteItemCommand(object item)
+        {
+            if (item is VKSaverArtist)
+                _navigationService.Navigate("LocalArtistView", ((VKSaverArtist)item).DbKey);
         }
 
         private int _currentPivotIndex;

@@ -44,6 +44,9 @@ namespace VKSaver.Core.Services
         {
             try
             {
+                if (artistName == "Unknown")
+                    return null;
+
                 var folder = await GetCreateFolder(ARTISTS_FOLDER_NAME);
                 return await Get(artistName, folder);
             }
