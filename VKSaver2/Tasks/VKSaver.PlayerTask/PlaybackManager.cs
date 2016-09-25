@@ -63,7 +63,7 @@ namespace VKSaver.PlayerTask
         #endregion
 
         #region Публичные методы
-        
+
         public async Task Update()
         {
             IEnumerable<IPlayerTrack> tracks = null;
@@ -200,10 +200,12 @@ namespace VKSaver.PlayerTask
             Debug.WriteLine($"Next track is: {track.Title}");
 
             TrackChanged?.Invoke(this, new ManagerTrackChangedEventArgs(CurrentTrack, CurrentTrackID));
-            
-            if (track.VKInfo != null)
+
+            StorageFile file = await MusicFilesPathHelper.GetFileFromCapatibleName(track.Source);
+
+            if (track.VKInfo != null || (file != null && file.Path.EndsWith(".vksm")))
             {
-                var worker = new MediaStreamSourceWorker(CurrentTrack, _musicCasheService);
+                var worker = new MediaStreamSourceWorker(CurrentTrack, _musicCasheService, file);
                 var cachedSource = await worker.GetSource();
 
                 if (cachedSource != null)
@@ -214,6 +216,11 @@ namespace VKSaver.PlayerTask
                 }
                 else
                     worker.Dispose();
+            }
+            else if (file != null)
+            {
+                _player.SetFileSource(file);
+                return;
             }
 
             if (String.IsNullOrEmpty(track.Source))

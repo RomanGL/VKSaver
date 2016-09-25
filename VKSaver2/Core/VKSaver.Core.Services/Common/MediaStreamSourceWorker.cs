@@ -10,6 +10,7 @@ using Windows.Media.Core;
 using Windows.Media.MediaProperties;
 using Windows.Storage.Streams;
 using Windows.Storage.AccessCache;
+using Windows.Storage;
 
 namespace VKSaver.Core.Services.Common
 {
@@ -29,6 +30,12 @@ namespace VKSaver.Core.Services.Common
             _musicCacheService = musicCacheService;
         }
 
+        public MediaStreamSourceWorker(IPlayerTrack track, IMusicCacheService musicCacheService, StorageFile file)
+            : this(track, musicCacheService)
+        {
+            _file = file;
+        }
+
         /// <summary>
         /// Возвращает трек, для которого создан медиа источник.
         /// </summary>
@@ -44,18 +51,16 @@ namespace VKSaver.Core.Services.Common
 
             try
             {
-                string cacheFileName = $"{Track.VKInfo.OwnerID} {Track.VKInfo.ID}.vksm";
-
-                if (Track.Source.StartsWith("vks-token:"))
+                if (_file == null)
                 {
-                    var openedFile = await StorageApplicationPermissions.FutureAccessList.GetFileAsync(Track.Source.Substring(10));
-                    _fileData = new VKSaverAudioFile(openedFile);
-                }
-                else
-                {
+                    string cacheFileName = $"{Track.VKInfo.OwnerID} {Track.VKInfo.ID}.vksm";
                     _fileData = await _musicCacheService.GetVKSaverFile(cacheFileName);
                     if (_fileData == null)
                         return null;
+                }
+                else
+                {
+                    _fileData = new VKSaverAudioFile(_file);
                 }
                                 
                 _fileStream = await _fileData.GetContentStreamAsync();
@@ -192,5 +197,7 @@ namespace VKSaver.Core.Services.Common
         private uint _currentChannels;
         private uint _currentBitrate;
         private IMusicCacheService _musicCacheService;
+
+        private readonly StorageFile _file;
     }
 }
