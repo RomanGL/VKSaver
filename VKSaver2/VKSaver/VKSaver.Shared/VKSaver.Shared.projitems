@@ -51,6 +51,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PercentageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PlayerRepeatModeToIntConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ReverseBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ScreenHeightConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ScreenWidthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanToSecondsConverter.cs" />

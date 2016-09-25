@@ -55,18 +55,20 @@ namespace VKSaver.Behaviors
         {
             UpdateButtons(AttachedBar.PrimaryCommands, e);
 
-            if (AttachedBar.Visibility == Visibility.Collapsed &&
-                AttachedBar.Tag == null)
+            if (AttachedBar.Visibility == Visibility.Collapsed && AttachedBar.Tag == null)
                 AttachedBar.Visibility = Visibility.Visible;
+
+            UpdateBarVisibility(AttachedBar);
         }
 
         private void SecondaryCommands_Changed(object sender, NotifyCollectionChangedEventArgs e)
         {
             UpdateButtons(AttachedBar.SecondaryCommands, e);
 
-            if (AttachedBar.Visibility == Visibility.Collapsed &&
-                AttachedBar.Tag == null)
+            if (AttachedBar.Visibility == Visibility.Collapsed && AttachedBar.Tag == null)
                 AttachedBar.Visibility = Visibility.Visible;
+
+            UpdateBarVisibility(AttachedBar);
         }
 
         private static void UpdateButtons(IList<ICommandBarElement> barElements, NotifyCollectionChangedEventArgs e)
@@ -132,6 +134,8 @@ namespace VKSaver.Behaviors
                         behavior.AttachedBar.Visibility = Visibility.Visible;
                 }
             }
+
+            UpdateBarVisibility(behavior.AttachedBar);
         }
 
         private static void OnSecondaryCommandsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
@@ -162,6 +166,22 @@ namespace VKSaver.Behaviors
                         behavior.AttachedBar.Visibility = Visibility.Visible;
                 }
             }
+
+            UpdateBarVisibility(behavior.AttachedBar);
+        }
+
+        private static void UpdateBarVisibility(CommandBar bar)
+        {
+            if (bar.PrimaryCommands == null && bar.SecondaryCommands == null)
+                bar.Visibility = Visibility.Collapsed;
+            else if (bar.PrimaryCommands == null && !bar.SecondaryCommands.Any())
+                bar.Visibility = Visibility.Collapsed;
+            else if (bar.SecondaryCommands == null && !bar.PrimaryCommands.Any())
+                bar.Visibility = Visibility.Collapsed;
+            else if (!bar.PrimaryCommands.Any() && !bar.SecondaryCommands.Any())
+                bar.Visibility = Visibility.Collapsed;
+            else
+                bar.Visibility = Visibility.Visible;
         }
 
         private bool _isPrimaryCollectionAttached;

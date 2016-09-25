@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using ModernDev.InTouch;
+using Newtonsoft.Json;
 using SQLite.Net.Attributes;
-using SQLiteNetExtensions.Attributes;
-using VKSaver.Core.Models.Database;
 
 namespace VKSaver.Core.Models.Common
 {
@@ -23,5 +22,8 @@ namespace VKSaver.Core.Models.Common
 
         [JsonProperty("lyrics_id")]
         public int LyricsID { get; set; }
+
+        [JsonProperty("genre_id")]
+        public AudioGenres Genre { get; set; }
     }
 }

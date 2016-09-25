@@ -39,25 +39,171 @@ Kehren Sie zurück um zu fortfahren</value>
   <data name="AddToMyVideosFlyoutItem.Text" xml:space="preserve">
     <value>zu meinen Videos</value>
   </data>
+  <data name="AlbumTracksLoader.ErrorText" xml:space="preserve">
+    <value>Fehler beim Hochladen des Albums </value>
+  </data>
+  <data name="AlbumTracksLoader.LoadingText" xml:space="preserve">
+    <value>Ladevorgang der Playlist des Albums...</value>
+  </data>
+  <data name="AlbumTracksLoader.NoDataText" xml:space="preserve">
+    <value>Es gibt keine Musik dort</value>
+  </data>
+  <data name="AppBarButton_AddToMyAudios_Text" xml:space="preserve">
+    <value>zu meine Musik</value>
+  </data>
+  <data name="AppBarButton_AddToMyDocs_Text" xml:space="preserve">
+    <value>zu meinen Dokumenten</value>
+  </data>
+  <data name="AppBarButton_AddToMyVideos_Text" xml:space="preserve">
+    <value>zu meinen Videos</value>
+  </data>
+  <data name="AppBarButton_Delete_Text" xml:space="preserve">
+    <value>entfernen</value>
+  </data>
+  <data name="AppBarButton_Download_Text" xml:space="preserve">
+    <value>cachen</value>
+  </data>
+  <data name="AppBarButton_Play_Text" xml:space="preserve">
+    <value>abspielen</value>
+  </data>
+  <data name="AppBarButton_Refresh_Text" xml:space="preserve">
+    <value>aktualisieren</value>
+  </data>
+  <data name="AppBarButton_SelectAll_Text" xml:space="preserve">
+    <value>alle wählen</value>
+  </data>
   <data name="AppBarButton_Select_Text" xml:space="preserve">
     <value>auswählen</value>
   </data>
   <data name="AppLoader_AddingItem" xml:space="preserve">
-    <value>Hinzufugung {0}...</value>
+    <value>Hinzufügung {0}...</value>
     <comment>Например, "Выполняется добавление Imagine Dragons - Warriors..."</comment>
   </data>
+  <data name="AppLoader_CancelAllDownloads" xml:space="preserve">
+    <value>Alle Hochladen abbrechen...</value>
+  </data>
+  <data name="AppLoader_DeletingItem" xml:space="preserve">
+    <value>Entfernung {0}...</value>
+    <comment>Например, "Выполняется удаление Photo0122.jpg..."</comment>
+  </data>
+  <data name="AppLoader_Loading" xml:space="preserve">
+    <value>Ladevorgang...</value>
+  </data>
+  <data name="AppLoader_Preparing" xml:space="preserve">
+    <value>Vorbereitung...</value>
+  </data>
+  <data name="AppLoader_PreparingFilesToDownload" xml:space="preserve">
+    <value>Vorbereitung zum Hochladen...</value>
+  </data>
   <data name="AppName.Text" xml:space="preserve">
-    <value>VK Saver BETA</value>
+    <value>VK SAVER BETA</value>
+  </data>
+  <data name="AppNamePivot.Title" xml:space="preserve">
+    <value>VK SAVER BETA</value>
+  </data>
+  <data name="AppNameText" xml:space="preserve">
+    <value>VK Saver Beta</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der List den Künstleralben fehlt </value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.LoadingText" xml:space="preserve">
+    <value>Wir hören die Musik des Künstlers ab...</value>
+  </data>
+  <data name="ArtistInfoView_AlbumsLoader.NoDataText" xml:space="preserve">
+    <value>Es sieht so aus, als dieser Künstler die Alben bemäntelt</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.ErrorText" xml:space="preserve">
+    <value>Datenmaterial über den Künstler sind unzugänglich</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.LoadingText" xml:space="preserve">
+    <value>Wir sammeln Info über den Künstler</value>
+  </data>
+  <data name="ArtistInfoView_DetailsLoader.NoDataText" xml:space="preserve">
+    <value>Es gibt keine Info über den Künstler</value>
+  </data>
+  <data name="ArtistInfoView_PivotSection_Albums.Header" xml:space="preserve">
+    <value>Alben</value>
   </data>
   <data name="ArtistInfoView_PivotSection_Details.Header" xml:space="preserve">
-    <value>mehr
-</value>
+    <value>mehr</value>
   </data>
   <data name="ArtistInfoView_PivotSection_Similar.Header" xml:space="preserve">
     <value>ähnlich</value>
   </data>
   <data name="ArtistInfoView_SearchVKItem.Content" xml:space="preserve">
     <value>finden es in VK</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.ErrorText" xml:space="preserve">
+    <value>Es gibt keine ähnliche Künstler </value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.LoadingText" xml:space="preserve">
+    <value>Suchen nach den ähnlichen Künstlern...</value>
+  </data>
+  <data name="ArtistInfoView_SimilarLoader.NoDataText" xml:space="preserve">
+    <value>Dieser Künstler hat einzigartige Musik!</value>
+  </data>
+  <data name="DeleteFlyoutItem.Text" xml:space="preserve">
+    <value>entfernen</value>
+  </data>
+  <data name="DownloadFlyoutItem.Text" xml:space="preserve">
+    <value>cachen</value>
+  </data>
+  <data name="ErrorView_Error.Text" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="ErrorView_ErrorSorry.Text" xml:space="preserve">
+    <value>Wir sind am Boden zerstört, doch das Leben geht weiter!
+
+Kehren Sie zurück um fortzufahren </value>
+  </data>
+  <data name="LoginView_Auth.Text" xml:space="preserve">
+    <value>Authorisierung </value>
+  </data>
+  <data name="LoginView_JoinButton.Label" xml:space="preserve">
+    <value>anmelden </value>
+  </data>
+  <data name="LoginView_LoginButton.Content" xml:space="preserve">
+    <value>einloggen</value>
+  </data>
+  <data name="LoginView_RestorePasswordButton.Label" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="MainView_AboutItem.Content" xml:space="preserve">
+    <value>über App</value>
+  </data>
+  <data name="MainView_DocsItem.Content" xml:space="preserve">
+    <value>Dokumenten</value>
+  </data>
+  <data name="MainView_DownloadFlyoutItem.Text" xml:space="preserve">
+    <value>cachen</value>
+  </data>
+  <data name="MainView_FriendsItem.Content" xml:space="preserve">
+    <value>Freunde</value>
+  </data>
+  <data name="MainView_GroupsItem.Content" xml:space="preserve">
+    <value>Gruppen</value>
+  </data>
+  <data name="MainView_Hub.Header" xml:space="preserve">
+    <value>vk saver beta</value>
+  </data>
+  <data name="MainView_HubSection_Recommendations.Header" xml:space="preserve">
+    <value>EMPFEHLENDE</value>
+  </data>
+  <data name="MainView_HubSection_SeeAlso.Header" xml:space="preserve">
+    <value>SEHEN MAL AUCH</value>
+  </data>
+  <data name="MainView_HubSection_TopArtists.Header" xml:space="preserve">
+    <value>BESTE KÜNSTLER</value>
+  </data>
+  <data name="MainView_HubSection_YourMusic.Header" xml:space="preserve">
+    <value>IHRE MUSIK</value>
+  </data>
+  <data name="MainView_MusicItem.Content" xml:space="preserve">
+    <value>Musik</value>
+  </data>
+  <data name="MainView_NewsItem.Content" xml:space="preserve">
+    <value>Neuigkeiten</value>
   </data>
   <data name="AppBarButton_Player.Label" xml:space="preserve">
     <value>Player</value>
@@ -73,8 +219,188 @@ Kehren Sie zurück um zu fortfahren</value>
     <value>Einladungen
 </value>
   </data>
+  <data name="MainView_ShowMore.Text" xml:space="preserve">
+    <value>mehr anzeigen</value>
+  </data>
   <data name="MainView_ShowMoreItem.Content" xml:space="preserve">
     <value>mehr anzeigen</value>
+  </data>
+  <data name="MainView_TopArtistsItem.Content" xml:space="preserve">
+    <value>im Trend</value>
+  </data>
+  <data name="MainView_TopTracksItem.Content" xml:space="preserve">
+    <value>beste Songs</value>
+  </data>
+  <data name="AppBarButton_TransferManager.Label" xml:space="preserve">
+    <value>Hochladenmanager</value>
+  </data>
+  <data name="MainView_TransferManagerItem.Content" xml:space="preserve">
+    <value>Hochladenmanager</value>
+  </data>
+  <data name="MainView_VideosItem.Content" xml:space="preserve">
+    <value>Videos</value>
+  </data>
+  <data name="MainView_YourMusicLoader.ErrorText" xml:space="preserve">
+    <value>Ihre Musik ist unzugänglich </value>
+  </data>
+  <data name="MainView_YourMusicLoader.LoadingText" xml:space="preserve">
+    <value>Wir laden Ihre Playlist hoch...</value>
+  </data>
+  <data name="MainView_YourMusicLoader.NoDataText" xml:space="preserve">
+    <value>Keine Musik </value>
+  </data>
+  <data name="Message_AddSelectedError_Text" xml:space="preserve">
+    <value>Wir kann diese markierende Elementen hinzufügen nicht. Versuchen noch einmal</value>
+  </data>
+  <data name="Message_AddSelectedError_Title" xml:space="preserve">
+    <value>Hinzufügung ist fehlgeschlagen. </value>
+  </data>
+  <data name="Message_AudioAddError_Text" xml:space="preserve">
+    <value>Fehler bei der Hinzufügung. Versuchen später </value>
+  </data>
+  <data name="Message_AudioAddError_Title" xml:space="preserve">
+    <value>Musik kann nicht hinzugefügt werden</value>
+  </data>
+  <data name="Message_AudioAlbumDeleteError_Text" xml:space="preserve">
+    <value>Albenenfernung ist fehlgeschlagen. Versuchen Sie später</value>
+  </data>
+  <data name="Message_AudioAlbumDeleteError_Title" xml:space="preserve">
+    <value>Albenenfernung ist fehlgeschlagen. Versuchen Sie später</value>
+  </data>
+  <data name="Message_AudioDeleteError_Text" xml:space="preserve">
+    <value>Songenfernung ist fehlgeschlagen. Versuchen Sie später</value>
+  </data>
+  <data name="Message_AudioDeleteError_Title" xml:space="preserve">
+    <value>Songenfernung ist fehlgeschlagen </value>
+  </data>
+  <data name="Message_CantFindLyrics_Title" xml:space="preserve">
+    <value>Kein Text</value>
+  </data>
+  <data name="Message_CantFindLyrics_Text" xml:space="preserve">
+    <value>Kein Text für diese Song. Wir sehr bedauren!</value>
+  </data>
+  <data name="Message_DeleteSelectedError_Text" xml:space="preserve">
+    <value>Diese ELementen können nicht enfernt werden. Versuchen noch einmal</value>
+  </data>
+  <data name="Message_DeleteSelectedError_Title" xml:space="preserve">
+    <value>Entfernung ist fehlgeschlagen. </value>
+  </data>
+  <data name="Message_DocAddError_Text" xml:space="preserve">
+    <value>Fehler beim Hinzufügung des Dokementen zur Sammlung. Versuchen noch einmal </value>
+  </data>
+  <data name="Message_DocAddError_Title" xml:space="preserve">
+    <value>Dokument kann nicht gespeichert werden</value>
+  </data>
+  <data name="Message_DocDeleteError_Text" xml:space="preserve">
+    <value>Fehler bei der Dokumententfernung. Versuchen noch mal </value>
+  </data>
+  <data name="Message_DocDeleteError_Title" xml:space="preserve">
+    <value>Entfernung fehlt</value>
+  </data>
+  <data name="Message_Downloads_CantCreateFile_Text" xml:space="preserve">
+    <value>File kann nicht erstellt werden:</value>
+  </data>
+  <data name="Message_Downloads_CantCreateFolder_Text" xml:space="preserve">
+    <value>Ordner kann nicht erstellt werden:</value>
+  </data>
+  <data name="Message_Downloads_MaxDownloadsExceeded_Text" xml:space="preserve">
+    <value>Höchstanzahl der gleichzeitigen Hochladen wird erreicht:</value>
+  </data>
+  <data name="Message_Downloads_StartFailed_Title" xml:space="preserve">
+    <value>Hochladen ist fehlgeschlagen. </value>
+  </data>
+  <data name="Message_Downloads_UnknownError_Text" xml:space="preserve">
+    <value>Fehler:</value>
+  </data>
+  <data name="Message_Login_AccessDenied_Text" xml:space="preserve">
+    <value>Authorisierung ist fehlgeschlagen, da VK Saver kein Zugang hat. Versuchen noch einmal  </value>
+  </data>
+  <data name="Message_Login_AccessDenied_Title" xml:space="preserve">
+    <value>Zugangfehler</value>
+  </data>
+  <data name="Message_Login_AuthorizationFailed_Title" xml:space="preserve">
+    <value>Authorisierung ist fehlgeschlagen. </value>
+  </data>
+  <data name="Message_Login_ConnectionError_Text" xml:space="preserve">
+    <value>Verbindung mit VK fehlt. Bitte prüfen Sie den Internetzugang und versuchen noch ein mal </value>
+  </data>
+  <data name="Message_Login_UnknownError_Text" xml:space="preserve">
+    <value>Authorisierung ist fehlgeschlagen. Versuchen noch ein mal.
+Fehlerskode: {0}</value>
+  </data>
+  <data name="Message_Purchase_Failed_Text" xml:space="preserve">
+    <value>Ankauf ist fehlgeschlagen. Das ist aber jammerschade, versuchen noch ein mal!</value>
+  </data>
+  <data name="Message_Purchase_Failed_Title" xml:space="preserve">
+    <value>Ankauf fehlt</value>
+  </data>
+  <data name="Message_Purchase_Success_Text" xml:space="preserve">
+    <value>Jetzt beherrschen Sie voller VK Saver Version 2! </value>
+  </data>
+  <data name="Message_Purchase_Success_Title" xml:space="preserve">
+    <value>Herzlichen Dank!</value>
+  </data>
+  <data name="Message_Transfer_Error_Text" xml:space="preserve">
+    <value>Leider gibt es einige Fehler und wir können die Operation beenden nicht!</value>
+  </data>
+  <data name="Message_Transfer_Error_Title" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="Message_Transfer_Idle_Text" xml:space="preserve">
+    <value>Warten der Reihenfolge</value>
+  </data>
+  <data name="Message_Transfer_Idle_Title" xml:space="preserve">
+    <value>Warten der Reihenfolge</value>
+  </data>
+  <data name="Message_Transfer_PausedCostedNetwork_Text" xml:space="preserve">
+    <value>System sperrt die Datenverbindung, da Ihre Internetverbindung bezahlbarer Dienst ist. 
+
+Niederreißen Sie alle Schranken in "Datenkontrolle" und schalten Traffiklimit aus. Die Operation wird fortfahren so schnell wie möglich.</value>
+  </data>
+  <data name="Message_Transfer_PausedCostedNetwork_Title" xml:space="preserve">
+    <value>bezahlbarer Netzwerk</value>
+  </data>
+  <data name="Message_Transfer_PausedNoNetwork_Text" xml:space="preserve">
+    <value>Keine Internetverbindung. Bitte prüfen Sie die Einstellungen der Datenverbindung.
+Die Operation wird fortfahren so schnell wie möglich.</value>
+  </data>
+  <data name="Message_Transfer_PausedNoNetwork_Title" xml:space="preserve">
+    <value>Warten auf die Verbindung</value>
+  </data>
+  <data name="Message_VideoAddError_Text" xml:space="preserve">
+    <value>Fehler bei der Videoanfügung zur Sammlung. Versuchen noch einmal </value>
+  </data>
+  <data name="Message_VideoAddError_Title" xml:space="preserve">
+    <value>Fehler bei der Videanfügung </value>
+  </data>
+  <data name="Message_VideoAlbumDeleteError_Text" xml:space="preserve">
+    <value>Fehler bei der Entfernung des Videoalbums. Versuchen noch ein mal  </value>
+  </data>
+  <data name="Message_VideoAlbumDeleteError_Title" xml:space="preserve">
+    <value>Entfernung des Videoalbums fehlt</value>
+  </data>
+  <data name="Message_VideoDeleteError_Text" xml:space="preserve">
+    <value>Fehler bei der Videoentfernung. Versuchen noch einmal </value>
+  </data>
+  <data name="Message_VideoDeleteError_Title" xml:space="preserve">
+    <value>Video kann nicht enfernt werden</value>
+  </data>
+  <data name="NoTracksView_NoTracks.Text" xml:space="preserve">
+    <value>Kein Song wird jetzt abgespielt. 
+
+Kehren Sie zurück um fortzufahren </value>
+  </data>
+  <data name="NoTracksView_Silence.Text" xml:space="preserve">
+    <value>Ruhe und Frieden...</value>
+  </data>
+  <data name="PlayerView_PivotSection_NowPlaying.Header" xml:space="preserve">
+    <value>jetzt abgespielt</value>
+  </data>
+  <data name="PlayerView_PivotSection_Playlist.Header" xml:space="preserve">
+    <value>Playlist</value>
+  </data>
+  <data name="PurchaseView_BuyMonthlyButton.Content" xml:space="preserve">
+    <value>kaufen auf Monatsbasis</value>
   </data>
   <data name="PurchaseView_BuyNowButton.Content" xml:space="preserve">
     <value>jetzt kaufen</value>
@@ -88,17 +414,179 @@ Kehren Sie zurück um zu fortfahren</value>
   <data name="PurchaseView_Screen0_Line1_Text" xml:space="preserve">
     <value>VK Saver 2</value>
   </data>
+  <data name="PurchaseView_Screen0_Line2_Text" xml:space="preserve">
+    <value>Das Feinste vom Feinsten - nur für Sie!</value>
+  </data>
+  <data name="PurchaseView_Screen1_Line1_Text" xml:space="preserve">
+    <value>Nur beste Musik!</value>
+  </data>
+  <data name="PurchaseView_Screen1_Line2_Text" xml:space="preserve">
+    <value>In voller VK Saver Version </value>
+  </data>
+  <data name="PurchaseView_Screen2_Line1_Text" xml:space="preserve">
+    <value>Weltweite Kunstler- und Songscharten </value>
+  </data>
+  <data name="PurchaseView_Screen2_Line2_Text" xml:space="preserve">
+    <value>Sei im Trend!</value>
+  </data>
+  <data name="PurchaseView_Screen3_Line1_Text" xml:space="preserve">
+    <value>Personaler Tipps</value>
+  </data>
+  <data name="PurchaseView_Screen3_Line2_Text" xml:space="preserve">
+    <value>Hören Sie an was Sie lieben!</value>
+  </data>
+  <data name="PurchaseView_Screen4_Line1_Text" xml:space="preserve">
+    <value>Alle Dokumenten werden gespeichert werden!</value>
+  </data>
+  <data name="PurchaseView_Screen4_Line2_Text" xml:space="preserve">
+    <value>Schicken und hochladen des Dokumenten in VK </value>
+  </data>
+  <data name="PurchaseView_Screen5_Line1_Text" xml:space="preserve">
+    <value>Alle Videos sind griffbereit</value>
+  </data>
+  <data name="PurchaseView_Screen5_Line2_Text" xml:space="preserve">
+    <value>Sehen und hochladen geliebte Videos!</value>
+  </data>
+  <data name="RecommendationsLoader.ErrorText" xml:space="preserve">
+    <value>Empfelungen sind nicht erreichbar</value>
+  </data>
+  <data name="RecommendationsLoader.LoadingText" xml:space="preserve">
+    <value>Erforschen Ihre Musikvorlieben...</value>
+  </data>
+  <data name="RecommendationsLoader.NoDataText" xml:space="preserve">
+    <value>Wir können Ihnen nichts empfehlen</value>
+  </data>
+  <data name="RecommendedView_Title.Text" xml:space="preserve">
+    <value>empfehlende</value>
+  </data>
+  <data name="SettingsView_Title.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="TopArtistItem_ListenersCount.Text" xml:space="preserve">
+    <value>Zuhörers</value>
+    <comment>Например, "12 слушателей"</comment>
+  </data>
+  <data name="TopArtistsLoader.LoadingText" xml:space="preserve">
+    <value>Wir wahlen der besten Interpreten aus</value>
+  </data>
+  <data name="TopArtistsLoader.NoDataText" xml:space="preserve">
+    <value>Es scheint, dass es keinen besseren Künstler gibt </value>
+  </data>
+  <data name="TopArtistsView_Title.Text" xml:space="preserve">
+    <value>beste Künstlers</value>
+  </data>
+  <data name="TopTracksView_Title.Text" xml:space="preserve">
+    <value>beste Songs</value>
+  </data>
+  <data name="TopTracksView_TrackPlaybacksCount.Text" xml:space="preserve">
+    <value>Wiedergaben</value>
+    <comment>Например, "15 воспроизведений"</comment>
+  </data>
+  <data name="TopTracksView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der besten Trackliste ist fehlgeschlagen </value>
+  </data>
+  <data name="TopTracksView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Ladevorgang des besten Tracklist...</value>
+  </data>
+  <data name="TopTracksView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>Keine beste Songs</value>
+  </data>
+  <data name="TrackInfoView_PlayButton.Content" xml:space="preserve">
+    <value>abspielen</value>
+  </data>
+  <data name="TrackInfoView_Title.Text" xml:space="preserve">
+    <value>mehr</value>
+  </data>
+  <data name="TrackLyricView_LyricsLoader.ErrorText" xml:space="preserve">
+    <value>Fehler beim Textladen</value>
+  </data>
+  <data name="TrackLyricView_LyricsLoader.LoadingText" xml:space="preserve">
+    <value>Wir suchen nach dem Text...</value>
+  </data>
+  <data name="TrackLyricView_LyricsLoader.NoDataText" xml:space="preserve">
+    <value>Diese Lied hat keinen Text</value>
+  </data>
+  <data name="TransferView_CancelAllDownloadsButton.Label" xml:space="preserve">
+    <value>alle Hochladen abbrechen</value>
+  </data>
+  <data name="TransferView_CancelFlyoutItem.Text" xml:space="preserve">
+    <value>abbrechen</value>
+  </data>
+  <data name="TransferView_DownloadsLoader.ErrorText" xml:space="preserve">
+    <value>Wir könnten eine Liste der aktuellen Downloads erhalten nicht</value>
+  </data>
+  <data name="TransferView_DownloadsLoader.LoadingText" xml:space="preserve">
+    <value>Wir erhalten eine Liste der aktuellen Downloads...</value>
+  </data>
+  <data name="TransferView_DownloadsLoader.NoDataText" xml:space="preserve">
+    <value>Keine Downloads weden jetzt durchgeführt</value>
+  </data>
+  <data name="TransferView_HistoryLoader.ErrorText" xml:space="preserve">
+    <value>Wir könnten ein Verlauf der aktuellen Downloads erhalten nicht</value>
+  </data>
+  <data name="TransferView_HistoryLoader.LoadingText" xml:space="preserve">
+    <value>Wir erhalten ein Verlauf der aktuellen Downloads...</value>
+  </data>
+  <data name="TransferView_HistoryLoader.NoDataText" xml:space="preserve">
+    <value>Ein Verlauf der aktuellen Downloads bearbeitet</value>
+  </data>
+  <data name="TransferView_PauseFlyoutItem.Text" xml:space="preserve">
+    <value>halten</value>
+  </data>
+  <data name="TransferView_PivotSection_Downloads.Header" xml:space="preserve">
+    <value>Herunterladen</value>
+  </data>
+  <data name="TransferView_PivotSection_History.Header" xml:space="preserve">
+    <value>Verlauf</value>
+  </data>
+  <data name="TransferView_PivotSection_Uploads.Header" xml:space="preserve">
+    <value>Hochladen</value>
+  </data>
+  <data name="TransferView_ResumeFlyoutItem.Text" xml:space="preserve">
+    <value>erneuern</value>
+  </data>
+  <data name="TransferView_UploadsLoader.ErrorText" xml:space="preserve">
+    <value>Wir könnten eine Liste der aktuellen Sendungen erhalten nicht</value>
+  </data>
+  <data name="TransferView_UploadsLoader.LoadingText" xml:space="preserve">
+    <value>Liste der aktuellen Sendungen wird erhaltet...</value>
+  </data>
+  <data name="TransferView_UploadsLoader.NoDataText" xml:space="preserve">
+    <value>Keine aktuelle Sendungen </value>
+  </data>
+  <data name="UserCommView_FriendListsLoader.ErrorText" xml:space="preserve">
+    <value>Wir könnten eine Liste der Freunden erhalten nicht</value>
+  </data>
+  <data name="UserCommView_FriendListsLoader.LoadingText" xml:space="preserve">
+    <value>Laden eine Liste der Freunden...</value>
+  </data>
+  <data name="UserCommView_FriendListsLoader.NoDataText" xml:space="preserve">
+    <value>Keine Freundeliste oder kein Zugang</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.ErrorText" xml:space="preserve">
+    <value>Laden der Info vom Freundelist ist fehlgeschlagen</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.NoDataText" xml:space="preserve">
+    <value>Keine Freunde oder kein Zugang</value>
+  </data>
+  <data name="UserCommView_GroupsLoader.ErrorText" xml:space="preserve">
+    <value>Laden der Info vom Gruppenllist ist fehlgeschlagen</value>
+  </data>
+  <data name="UserCommView_GroupsLoader.LoadingText" xml:space="preserve">
+    <value>Laden der Info vom Gruppenllist...</value>
+  </data>
+  <data name="UserCommView_GroupsLoader.NoDataText" xml:space="preserve">
+    <value>Keine Gruppen oder kein Zugang</value>
+  </data>
   <data name="UserCommView_PivotSection_FriendLists.Header" xml:space="preserve">
     <value>Liste</value>
     <comment>списки друзей</comment>
   </data>
   <data name="UserCommView_PivotSection_Friends.Header" xml:space="preserve">
-    <value>Freunde
-</value>
+    <value>Freunde</value>
   </data>
   <data name="UserCommView_PivotSection_Groups.Header" xml:space="preserve">
-    <value>Gruppen
-</value>
+    <value>Gruppen</value>
   </data>
   <data name="UserCommView_UserOnline.Text" xml:space="preserve">
     <value>Online
@@ -107,6 +595,27 @@ Kehren Sie zurück um zu fortfahren</value>
   <data name="UserContentView_AlbumsGroup_Text" xml:space="preserve">
     <value>Alben</value>
   </data>
+  <data name="UserContentView_AudiosGroup_Text" xml:space="preserve">
+    <value>Musik</value>
+  </data>
+  <data name="UserContentView_AudiosLoader.ErrorText" xml:space="preserve">
+    <value>Laden des Playlistes ist fehlgeschlagen</value>
+  </data>
+  <data name="UserContentView_AudiosLoader.LoadingText" xml:space="preserve">
+    <value>Laden des Playlistes...</value>
+  </data>
+  <data name="UserContentView_AudiosLoader.NoDataText" xml:space="preserve">
+    <value>Keine Musik oder Zugang </value>
+  </data>
+  <data name="UserContentView_DocsLoader.ErrorText" xml:space="preserve">
+    <value>Laden des Dokumenten ist fehlgeschlagen</value>
+  </data>
+  <data name="UserContentView_DocsLoader.LoadingText" xml:space="preserve">
+    <value>Laden des Dokumenten...</value>
+  </data>
+  <data name="UserContentView_DocsLoader.NoDataText" xml:space="preserve">
+    <value>Keine Dokumenten oder kein Zugang</value>
+  </data>
   <data name="UserContentView_PivotSection_Docs.Header" xml:space="preserve">
     <value>Dokumenten</value>
   </data>
@@ -114,14 +623,85 @@ Kehren Sie zurück um zu fortfahren</value>
     <value>Musik</value>
   </data>
   <data name="UserContentView_PivotSection_Videos.Header" xml:space="preserve">
-    <value>Video
-</value>
+    <value>Video</value>
   </data>
   <data name="UserContentView_VideosGroup_Text" xml:space="preserve">
     <value>Video</value>
   </data>
+  <data name="UserContentView_VideosLoader.ErrorText" xml:space="preserve">
+    <value>Laden des Videoslisten ist fehlgeschlagen</value>
+  </data>
+  <data name="UserContentView_VideosLoader.LoadingText" xml:space="preserve">
+    <value>Laden die Videosliste...</value>
+  </data>
+  <data name="UserContentView_VideosLoader.NoDataText" xml:space="preserve">
+    <value>Keine Videos oder kein Zugang</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_Coub_Text" xml:space="preserve">
+    <value>Dieses Video wird auf Coub Servern gespeichert</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_Unsupported_Text" xml:space="preserve">
+    <value>Dieses Video wird auf einem nicht unterstützten Dienst gespeichert</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_Vimeo_Text" xml:space="preserve">
+    <value>Dieses Video wird auf Vimeo Servern gespeichert</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_VK_Text" xml:space="preserve">
+    <value>Dieses Video wird auf VK Servern gespeichert</value>
+  </data>
+  <data name="VideoInfoView_StoresOn_YouTube_Text" xml:space="preserve">
+    <value>Dieses Video wird auf YouTube Servern gespeichert</value>
+  </data>
   <data name="Loader_ReloadButton_Text" xml:space="preserve">
     <value>noch einmal</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.ButtonText" xml:space="preserve">
+    <value>Links erhalten</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.ErrorText" xml:space="preserve">
+    <value>Drucken Sie dort um die Links zu erhalten</value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.LoadingText" xml:space="preserve">
+    <value>Suchen nach der Videolinks </value>
+  </data>
+  <data name="VideoInfoView_LinksLoader.NoDataText" xml:space="preserve">
+    <value>Keine Links zu erhalten</value>
+  </data>
+  <data name="VideoInfoView_SelectQuality.Text" xml:space="preserve">
+    <value>Wählen Sie Videoqualität aus</value>
+  </data>
+  <data name="Message_VideoPlayer_Failed_Text" xml:space="preserve">
+    <value>Wir können dieses Video abspielen nicht. Es gibt keine Verbindung oder das Videoformat wird unterstützt nicht.</value>
+  </data>
+  <data name="Message_VideoPlayer_Failed_Title" xml:space="preserve">
+    <value>Abspielung ist fehlgeschlagen</value>
+  </data>
+  <data name="AboutView_Groove_Text.Text" xml:space="preserve">
+    <value>Love your music - set it free</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_Groove_Title.Text" xml:space="preserve">
+    <value>Groove Music</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_InTouch_Text.Text" xml:space="preserve">
+    <value>C# wrapper for VK API</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_InTouch_Title.Text" xml:space="preserve">
+    <value>InTouch</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="AboutView_LastFm_Title.Text" xml:space="preserve">
+    <value>Last.fm</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="Message_VideoInfo_GetLinksFailed_Text" xml:space="preserve">
+    <value>Videolinks zu erhalten ist fehlgeschlagen.
+Keine Verbindung oder kein Zugang</value>
+  </data>
+  <data name="Message_VideoInfo_GetLinksFailed_Title" xml:space="preserve">
+    <value>Links zu erhalten ist fehlgeschlagen</value>
   </data>
   <data name="AppBarButton_Player_Text" xml:space="preserve">
     <value>Player</value>
@@ -129,8 +709,29 @@ Kehren Sie zurück um zu fortfahren</value>
   <data name="AppBarButton_TransferManager_Text" xml:space="preserve">
     <value>Ladenmanager</value>
   </data>
+  <data name="VideoAlbumVideosLoader.ErrorText" xml:space="preserve">
+    <value>Laden des Albuminhaltes ist fehlgeschlagen</value>
+  </data>
+  <data name="VideoAlbumVideosLoader.LoadingText" xml:space="preserve">
+    <value>Laden die Videosliste des Albums</value>
+  </data>
+  <data name="VideoAlbumVideosLoader.NoDataText" xml:space="preserve">
+    <value>Es gibt keine Video im Album</value>
+  </data>
+  <data name="SelectSearchTypeView_Title.Text" xml:space="preserve">
+    <value>Was Sie wollen zu finden?</value>
+  </data>
+  <data name="SearchView_InCollection_Title.Header" xml:space="preserve">
+    <value>in der Sammlung</value>
+  </data>
   <data name="SearchView_Everywhere_Title.Header" xml:space="preserve">
     <value>durchgängig</value>
+  </data>
+  <data name="SearchView_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Drucken Sie die Anfrage ein und dann Enter</value>
+  </data>
+  <data name="SearchView_Loader.ErrorText" xml:space="preserve">
+    <value>Suche ist fehlgeschlagen</value>
   </data>
   <data name="SearchView_Loader.LoadingText" xml:space="preserve">
     <value>Suchevorgang...</value>
@@ -147,11 +748,30 @@ Kehren Sie zurück um zu fortfahren</value>
   <data name="AudioSearchView_LyricsOnlySwitch.Header" xml:space="preserve">
     <value>Nur mit dem Text</value>
   </data>
+  <data name="BetaBlockerView_Content.Text" xml:space="preserve">
+    <value>Vielen Dank für Ihre Teilnahme!
+Laden Sie VK Saver 2 jetzt herunter!</value>
+  </data>
+  <data name="BetaBlockerView_DownloadButton.Content" xml:space="preserve">
+    <value>zum Download</value>
+  </data>
+  <data name="BetaBlockerView_Title.Text" xml:space="preserve">
+    <value>Beta ist abgeschlossen</value>
+  </data>
+  <data name="VideoSearchView_FilterFlyout_Title.Text" xml:space="preserve">
+    <value>Videofilter</value>
+  </data>
   <data name="VideoSearchView_Filters_All_Text" xml:space="preserve">
     <value>alle</value>
   </data>
   <data name="VideoSearchView_OnlyHD_Switch.Header" xml:space="preserve">
     <value>Nur HD</value>
+  </data>
+  <data name="VideoSearchView_OwnVideos_Title.Header" xml:space="preserve">
+    <value>heruntergeladende</value>
+  </data>
+  <data name="VideoSearchView_SafeSearch_Switch.Header" xml:space="preserve">
+    <value>Sichere Suche</value>
   </data>
   <data name="VideoSearchView_VideoDurations_ComboBox.Header" xml:space="preserve">
     <value>Videodauer</value>
@@ -181,11 +801,32 @@ Kehren Sie zurück um zu fortfahren</value>
   <data name="VideoSearchView_VideoTypes_ComboBox.Header" xml:space="preserve">
     <value>Videoformat</value>
   </data>
+  <data name="VideoSearchView_VideoTypes_MP4_Text" xml:space="preserve">
+    <value>MP4</value>
+  </data>
+  <data name="VideoSearchView_VideoTypes_Vimeo_Text" xml:space="preserve">
+    <value>Vimeo</value>
+  </data>
+  <data name="VideoSearchView_VideoTypes_YouTube_Text" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="CaptchaBox.PrimaryButtonText" xml:space="preserve">
+    <value>оk</value>
+  </data>
   <data name="CaptchaBox.SecondaryButtonText" xml:space="preserve">
     <value>abbrechen</value>
   </data>
+  <data name="CaptchaBox.Title" xml:space="preserve">
+    <value>Prüfung erforderlich</value>
+  </data>
+  <data name="CaptchaBox_Content.Text" xml:space="preserve">
+    <value>Drucken Sie die Symbols, die Sie am Bild sehen </value>
+  </data>
   <data name="AppLoader_PleaseWait" xml:space="preserve">
     <value>Bitte warten Sie...</value>
+  </data>
+  <data name="ServiceName_LastFm_Text" xml:space="preserve">
+    <value>Last.fm</value>
   </data>
   <data name="ServiceName_VK_Text" xml:space="preserve">
     <value>VK</value>
@@ -195,14 +836,26 @@ Kehren Sie zurück um zu fortfahren</value>
     <comment>Например: "Вы вошли как Иван Иванов"</comment>
   </data>
   <data name="ServiceAuthBlock_SignInButton.Content" xml:space="preserve">
-    <value>anmelden
-</value>
+    <value>anmelden</value>
+  </data>
+  <data name="ServiceAuthBlock_SignOutButton.Content" xml:space="preserve">
+    <value>abmelden</value>
+  </data>
+  <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
+    <value>Authorisierung in den Diensten</value>
   </data>
   <data name="PackagingFilesView_Title.Text" xml:space="preserve">
     <value>Ladevorgang</value>
   </data>
+  <data name="PackagingFilesView_Processing.Text" xml:space="preserve">
+    <value>Die Verarbeitung der hochgeladenen Dateien läuft...
+Bitte warten Sie...</value>
+  </data>
   <data name="PromoView_LetsGoButton.Content" xml:space="preserve">
     <value>anfangen</value>
+  </data>
+  <data name="PromoView_Screen0_Line1_Text" xml:space="preserve">
+    <value>Die neuen Features warten auf Sie!</value>
   </data>
   <data name="PromoView_Screen0_Line2_Text" xml:space="preserve">
     <value>Fertig? Dann fangen wir an!</value>
@@ -216,18 +869,366 @@ Kehren Sie zurück um zu fortfahren</value>
   <data name="PromoView_Screen2_Line1_Text" xml:space="preserve">
     <value>Musik-Caching</value>
   </data>
+  <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
+    <value>Sie können Tracks im Cache anzusehen!</value>
+  </data>
+  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
+    <value>Weltweit Charts</value>
+  </data>
+  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
+    <value>Wiedergabe von Tracks der ausgewählte Künstler und Charts</value>
+  </data>
   <data name="PromoView_NextButton.Content" xml:space="preserve">
     <value>weiter</value>
+  </data>
+  <data name="ArtistAlbumView_DetailsLoader.ErrorText" xml:space="preserve">
+    <value>Download der Info zu diesem Album ist fehlgeschlagen</value>
+  </data>
+  <data name="ArtistAlbumView_DetailsLoader.LoadingText" xml:space="preserve">
+    <value>Wir sammeln Informationen über das Album...</value>
+  </data>
+  <data name="ArtistAlbumView_DetailsLoader.NoDataText" xml:space="preserve">
+    <value>Leider wissen wir nicht irgendwelche Details zu diesem Album</value>
   </data>
   <data name="ArtistAlbumView_PivotSection_Details.Header" xml:space="preserve">
     <value>mehr
 </value>
   </data>
+  <data name="ArtistAlbumView_PivotSection_Tracks.Header" xml:space="preserve">
+    <value>Tracks</value>
+  </data>
+  <data name="ArtistAlbumView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Fehler beim Laden der Trackliste auf diesem Album </value>
+  </data>
+  <data name="ArtistAlbumView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Wir lernen der Songliste dieses Albums...</value>
+  </data>
+  <data name="ArtistAlbumView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>Es gibt keinen Song im Album </value>
+  </data>
   <data name="NewsMediaView_Title.Text" xml:space="preserve">
     <value>Neuigkeiten</value>
+  </data>
+  <data name="NewsMediaView_Loader.ErrorText" xml:space="preserve">
+    <value>Fehler beim Laden der Nachrichten </value>
+  </data>
+  <data name="NewsMediaView_Loader.LoadingText" xml:space="preserve">
+    <value>Wir laden Liste der Neuigkeiten...</value>
+  </data>
+  <data name="NewsMediaView_Loader.NoDataText" xml:space="preserve">
+    <value>In den letzten Neuigkeiten gibt es keine Musik </value>
   </data>
   <data name="MainView_CachedItem.Content" xml:space="preserve">
     <value>Musik-Caching</value>
     <comment>Кэшированные треки</comment>
+  </data>
+  <data name="AppBarButton_DeleteAll_Text" xml:space="preserve">
+    <value>alle enfernen</value>
+  </data>
+  <data name="CachedView_Loader.ErrorText" xml:space="preserve">
+    <value>Laden des Videoslisten ist fehlgeschlagen</value>
+  </data>
+  <data name="CachedView_Loader.LoadingText" xml:space="preserve">
+    <value>Laden gespeicherte Musik im Cache...</value>
+  </data>
+  <data name="CachedView_Title.Text" xml:space="preserve">
+    <value>cachende</value>
+  </data>
+  <data name="Message_ClearCacheError_Text" xml:space="preserve">
+    <value>Ein Fehler (der Cache von Audio zu löschen) ist aufgetreten. Bitte versuchen Sie später</value>
+  </data>
+  <data name="Message_ClearCacheError_Title" xml:space="preserve">
+    <value>Cache kann nicht gesauert werden</value>
+  </data>
+  <data name="LoginView_LoginField.PlaceholderText" xml:space="preserve">
+    <value>Benutzername oder E-Mail</value>
+  </data>
+  <data name="LoginView_PasswordField.PlaceholderText" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="Message_Login_InvalidAccount_Text" xml:space="preserve">
+    <value>Falscher Benutzername oder Passwort.</value>
+  </data>
+  <data name="Message_Login_LfConnectionError_Text" xml:space="preserve">
+    <value>Fehler bei der Verbindung zu Last.fm. Überprüfen Sie den Zugriff auf das Internet und versuchen erneut.</value>
+  </data>
+  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
+    <value>Scrobbeln in Last.fm</value>
+  </data>
+  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
+    <value>Zeitloser Last.fm-Profil!</value>
+  </data>
+  <data name="FileSize_Bytes_Mask_Text" xml:space="preserve">
+    <value>{0} bytes</value>
+    <comment>Байты. Например, "256 байт"
+Eng: bytes</comment>
+  </data>
+  <data name="FileSize_EB_Mask_Text" xml:space="preserve">
+    <value>{0} EB</value>
+    <comment>Эксабайты. Например, "145 ЭБ"
+Eng: EB</comment>
+  </data>
+  <data name="FileSize_GB_Mask_Text" xml:space="preserve">
+    <value>{0} GB</value>
+    <comment>Гигабайты. Например, "12 ГБ"
+Eng: GB</comment>
+  </data>
+  <data name="FileSize_KB_Mask_Text" xml:space="preserve">
+    <value>{0} КB</value>
+    <comment>Килобайты. Например, "1023 КБ"
+Eng: KB</comment>
+  </data>
+  <data name="FileSize_MB_Mask_Text" xml:space="preserve">
+    <value>{0} МB</value>
+    <comment>Мегабайты. Например, "541 МБ"
+Eng: MB</comment>
+  </data>
+  <data name="FileSize_PB_Mask_Text" xml:space="preserve">
+    <value>{0} PB</value>
+    <comment>Петабайты. Например, "4 ПБ"
+Eng: PB</comment>
+  </data>
+  <data name="FileSize_TB_Mask_Text" xml:space="preserve">
+    <value>{0} TB</value>
+    <comment>Терабайты. Например, "968 ТБ"
+Eng: TB</comment>
+  </data>
+  <data name="TransferStatus_Canceled_Text" xml:space="preserve">
+    <value>Abgebrochen</value>
+  </data>
+  <data name="TransferStatus_Completed_Text" xml:space="preserve">
+    <value>Beendet</value>
+  </data>
+  <data name="TransferStatus_Error_Text" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="TransferStatus_Idle_Text" xml:space="preserve">
+    <value>Warten Sie...</value>
+  </data>
+  <data name="TransferStatus_PausedByApplication_Text" xml:space="preserve">
+    <value>Angehalten</value>
+  </data>
+  <data name="TransferStatus_PausedCostedNetwork_Text" xml:space="preserve">
+    <value>bezahlte Netzwerk</value>
+  </data>
+  <data name="TransferStatus_PausedNoNetwork_Text" xml:space="preserve">
+    <value>Keine Verbindung</value>
+  </data>
+  <data name="TransferStatus_Running_Text" xml:space="preserve">
+    <value>durchführt...</value>
+  </data>
+  <data name="AppBarButton_UploadFile.Label" xml:space="preserve">
+    <value>File schicken</value>
+  </data>
+  <data name="AppLoader_CancelAllUploads" xml:space="preserve">
+    <value>Abbrechung alle Sendungen...</value>
+  </data>
+  <data name="FileSize_SizeText.Text" xml:space="preserve">
+    <value>Größe:</value>
+    <comment>Размер файла.</comment>
+  </data>
+  <data name="Message_PostUploads_ConnectionError_Text" xml:space="preserve">
+    <value>Verbindungsfehler. Überprüfen Sie Ihre Netzwerkverbindung. Das nächste Mal werden wir den Versuch wiederholen um das Senden {0} zu beenden.</value>
+  </data>
+  <data name="Message_PostUploads_Error_Title" xml:space="preserve">
+    <value>Sendung ist fehlgeschlagen</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_105_Text" xml:space="preserve">
+    <value>File kann nicht gespeichert werden </value>
+  </data>
+  <data name="Message_PostUploads_ServerError_123_Text" xml:space="preserve">
+    <value>Ungültige Audioformat </value>
+  </data>
+  <data name="Message_PostUploads_ServerError_204_Text" xml:space="preserve">
+    <value>Kein Zugang</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_214_Text" xml:space="preserve">
+    <value>Keine Erlaubnis um einen Beitrag hinzuzufügen.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_270_Text" xml:space="preserve">
+    <value>Audio wurde auf Wunsch des Besitzers entfernt und kann nicht geladen werden.</value>
+  </data>
+  <data name="Message_PostUploads_ServerError_301_Text" xml:space="preserve">
+    <value>Ungültige Dateinamen </value>
+  </data>
+  <data name="Message_PostUploads_ServerError_302_Text" xml:space="preserve">
+    <value>Ungültige Dateigröße </value>
+  </data>
+  <data name="Message_PostUploads_ServerError_Text" xml:space="preserve">
+    <value>Der Server hat einen Fehler zurückgegeben, und wir können das Senden beenden nicht {0}.
+Code: {1} - {2}</value>
+    <comment>Например, "Код: 404 - не найдено".</comment>
+  </data>
+  <data name="Message_PostUploads_ServerError_Unknown_Text" xml:space="preserve">
+    <value>Unbekannte Fehler</value>
+  </data>
+  <data name="Message_PostUploads_UnknownAppError_Text" xml:space="preserve">
+    <value>Ein unbekannter Fehler ist aufgetreten und wir können das Senden nicht beenden {0}.</value>
+  </data>
+  <data name="Message_Uploads_CantPrepareData_Text" xml:space="preserve">
+    <value>Fehler bei der Datenvorbereitung:</value>
+  </data>
+  <data name="Message_Uploads_MaxUploadsExceeded_Text" xml:space="preserve">
+    <value>Die maximale Anzahl der Sendungen wird erreicht::</value>
+  </data>
+  <data name="Message_Uploads_PreprocessionConnectionError_Text" xml:space="preserve">
+    <value>Es gab einen Verbindungsfehler und wir können die Verschickung {0} beginnen nicht. Überprüfen Sie Ihre Netzwerkverbindung und versuchen Sie es erneut.</value>
+  </data>
+  <data name="Message_Uploads_PreprocessionError_Title" xml:space="preserve">
+    <value>Filesendung ist fehlgeschlagen</value>
+  </data>
+  <data name="Message_Uploads_PreprocessionServerError_Text" xml:space="preserve">
+    <value>Der Server hat einen Fehler zurückgegeben, und wir können das Senden anfangen nicht {0}. Bitte versuchen Sie es später noch einmal.
+Code: {1} - {2}</value>
+  </data>
+  <data name="Message_Uploads_StartUploading_Title" xml:space="preserve">
+    <value>Sendung ist fehlgeschlagen</value>
+  </data>
+  <data name="Message_Uploads_UnknownError_Text" xml:space="preserve">
+    <value>Unbekannte Fehler:</value>
+  </data>
+  <data name="Toast_PostUploads_Success_Text" xml:space="preserve">
+    <value>Sendung ist erfolgreich!</value>
+  </data>
+  <data name="TransferView_CancelAllUploadsButton.Label" xml:space="preserve">
+    <value>alle Sendungen abbrechen...</value>
+  </data>
+  <data name="UploadFileView_SelectAnotherFileButton.Content" xml:space="preserve">
+    <value>andere auswählen</value>
+    <comment>Выбрать другой файл.</comment>
+  </data>
+  <data name="UploadFileView_SelectFileButton.Content" xml:space="preserve">
+    <value>File auswählen</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox.Header" xml:space="preserve">
+    <value>Was ist zu schicken?</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox_Audio.Content" xml:space="preserve">
+    <value>Musik</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox_Doc.Content" xml:space="preserve">
+    <value>Dokument</value>
+  </data>
+  <data name="UploadFileView_SelectTypeBox_Video.Content" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="UploadFileView_Title.Text" xml:space="preserve">
+    <value>File schicken</value>
+  </data>
+  <data name="UploadFileView_UploadFileButton.Content" xml:space="preserve">
+    <value>schicken</value>
+    <comment>Отправить файл.
+Eng: upload</comment>
+  </data>
+  <data name="Toast_Downloads_Fail_Text" xml:space="preserve">
+    <value>Hochladenfehler</value>
+  </data>
+  <data name="Toast_Downloads_Success_Text" xml:space="preserve">
+    <value>Hochladen ist fertig!</value>
+  </data>
+  <data name="Toast_Uploads_Fail_Text" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="Toast_Uploads_SuccessReturn_Text" xml:space="preserve">
+    <value>Kehren Sie zurück um zu beenden</value>
+    <comment>Имеется ввиду, что отправка завершена и нужно вернуться в приложение для завершения операции сохранения.</comment>
+  </data>
+  <data name="Message_Uploads_PreprocessionUnknownError_Text" xml:space="preserve">
+    <value>Ein unbekannter Fehler ist aufgetreten und wir können die Versendung nicht beenden {0}.</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_DescriptionBox.Header" xml:space="preserve">
+    <value>Video Beschreibung</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_NameBox.Header" xml:space="preserve">
+    <value>Videotitel</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_RepeatSwitch.Header" xml:space="preserve">
+    <value>Loop-Wiedergabe</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_Title.Text" xml:space="preserve">
+    <value>Videoeinstellungen</value>
+  </data>
+  <data name="UploadFileView_VideoSettings_WallPostSwitch.Header" xml:space="preserve">
+    <value>An die Pinnwand veröffentlichen </value>
+  </data>
+  <data name="Toast_PostUploads_Fail_Text" xml:space="preserve">
+    <value>Sendung kann nicht beendet werden</value>
+  </data>
+  <data name="FirstInternetSettingsView_ContentText.Text" xml:space="preserve">
+    <value>VK Saver kann Aufnahmen von Interpreten und Album-Cover für Ihren Tracks herunterladen. Lass es (möglicherweise fallen zusätzliche Gebühren mit dem Betreiber)?
+
+Dieser Parameter kann immer in den Einstellungen geändert werden.</value>
+  </data>
+  <data name="FirstInternetSettingsView_Title.Text" xml:space="preserve">
+    <value>Internetzugang</value>
+  </data>
+  <data name="FirstStartRetryView_ContentText.Text" xml:space="preserve">
+    <value>Wir freuen uns Sie wiederzusehen!
+
+Das letzte Mal, schlossen wir ein paar Momente. Lassen Sie uns weiter!</value>
+  </data>
+  <data name="FirstStartRetryView_ContinueButton.Content" xml:space="preserve">
+    <value>fortfahren</value>
+  </data>
+  <data name="FirstStartRetryView_Title.Text" xml:space="preserve">
+    <value>Wir freuen uns Sie widerzusehen!</value>
+  </data>
+  <data name="FirstStartView_ContentText.Text" xml:space="preserve">
+    <value>VK Saver will Audio-Dateien auf Ihrem Smartphone zu suchen, bevor Sie sie abspielen können (dies ist notwendig, nur einmal durchzuführen).
+
+Bitte beachten Sie, dass VK Saver kann nur im Smartphone-Speicher oder auf der SD-Karte in den Ordner ``Musik`` Audiodateien zu finden.
+
+Als nächstes werden wir einige grundlegende Parameter der Anwendung zur Einrichtung helfen. Klicken Sie auf die Schaltfläche unten, wenn Sie bereit sind.</value>
+  </data>
+  <data name="FirstStartView_LetsGoButton.Content" xml:space="preserve">
+    <value>anfangen</value>
+  </data>
+  <data name="FirstStartView_NoButton.Content" xml:space="preserve">
+    <value>nein</value>
+  </data>
+  <data name="FirstStartView_Title.Text" xml:space="preserve">
+    <value>Also, fangen wir an!</value>
+  </data>
+  <data name="FirstStartView_WiFiButton.Content" xml:space="preserve">
+    <value>nur via Wi-Fi</value>
+  </data>
+  <data name="FirstStartView_YesButton.Content" xml:space="preserve">
+    <value>ja</value>
+  </data>
+  <data name="UpdatingDatabaseView_ContentText.Text" xml:space="preserve">
+    <value>VK Saver durchsucht Ihre Tracks. Warten Sie bitte...</value>
+  </data>
+  <data name="UpdatingDatabaseView_SearchingAlbumsStep_Text" xml:space="preserve">
+    <value>Erstellung des Album-Covers ... {0} von {1}... </value>
+    <comment>Поиск обложек альбомов. Например, "Рисуем обложки альбомов... 6 из 45".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск обложек альбомов... 6 из 45".</comment>
+  </data>
+  <data name="UpdatingDatabaseView_SearchingArtistsStep_Text" xml:space="preserve">
+    <value>Wir fotografieren den Künstlern ... {0} von {1}</value>
+    <comment>Поиск фотографий исполнителей. Например, "Фотографируем исполнителей... 33 из 35".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск изображений исполнителей... 33 из 35".</comment>
+  </data>
+  <data name="UpdatingDatabaseView_StepMask_Text" xml:space="preserve">
+    <value>Schritte {0} von {1}</value>
+    <comment>Указывает номер текущей операции в процессе обновления базы данных.
+Например, "Шаг 1 из 5".</comment>
+  </data>
+  <data name="UpdatingDatabaseView_Title.Text" xml:space="preserve">
+    <value>Aktualisierung der Database</value>
+  </data>
+  <data name="UpdatingDatabseView_PreparingDatabaseStep_Text" xml:space="preserve">
+    <value>Manuscript aktualisiert wird ... {0} из {1}</value>
+    <comment>Обновление зависимостей в базе данных. Например, "Переписываем манускрипты... 2 из 21".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Обновление зависимостей... 2 из 21".</comment>
+  </data>
+  <data name="UpdatingDatabseView_SearchingFilesStep_Text" xml:space="preserve">
+    <value>Suchen nach Musik... {0} von {1}</value>
+    <comment>Поиск аудиофайлов. Например, "Ищем аудиофайлы... 20 из 199".
+На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск аудиофайлов... 20 из 399"</comment>
+  </data>
+  <data name="UpdatingDatabseView_StartedStep_Text" xml:space="preserve">
+    <value>Wir rüsten Chevaliers aus...</value>
+    <comment>Подготовка к обновлению базы данных.
+На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</comment>
   </data>
 </root>

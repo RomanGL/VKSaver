@@ -569,7 +569,7 @@
     <comment>Например, "12 слушателей"</comment>
   </data>
   <data name="TopArtistsLoader.ErrorText" xml:space="preserve">
-    <value>Не удалось загрузить список лучших исполниетелей</value>
+    <value>Не удалось загрузить список лучших исполнителей</value>
   </data>
   <data name="TopArtistsLoader.LoadingText" xml:space="preserve">
     <value>Выбираем лучших исполнителей...</value>
@@ -672,7 +672,7 @@
     <value>Не удалось загрузить список друзей</value>
   </data>
   <data name="UserCommView_FriendsLoader.LoadingText" xml:space="preserve">
-    <value>Загружаем информацию друзьях...</value>
+    <value>Загружаем информацию о друзьях...</value>
   </data>
   <data name="UserCommView_FriendsLoader.NoDataText" xml:space="preserve">
     <value>Друзья отсутствуют либо доступ к ним закрыт</value>
@@ -1036,7 +1036,7 @@
     <value>Загружаем кэшированные аудиозаписи...</value>
   </data>
   <data name="CachedView_Loader.NoDataText" xml:space="preserve">
-    <value>Кэшированые аудиозаписи отсутствуют</value>
+    <value>Кэшированные аудиозаписи отсутствуют</value>
   </data>
   <data name="CachedView_Title.Text" xml:space="preserve">
     <value>кэшированные</value>
@@ -1337,5 +1337,12 @@ Eng: upload</comment>
     <value>Снаряжаем рыцарей...</value>
     <comment>Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</comment>
+  </data>
+  <data name="MainView_LibraryItem.Content" xml:space="preserve">
+    <value>локальная музыка</value>
+    <comment>Открывает страницу локальной музыки пользователя.</comment>
+  </data>
+  <data name="AppBarButton_Search.Label" xml:space="preserve">
+    <value>поиск</value>
   </data>
 </root>

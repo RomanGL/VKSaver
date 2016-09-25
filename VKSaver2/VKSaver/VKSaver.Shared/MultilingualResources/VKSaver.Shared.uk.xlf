@@ -614,8 +614,8 @@
           <note from="MultilingualBuild" annotates="source" priority="2">Например, "12 слушателей"</note>
         </trans-unit>
         <trans-unit id="TopArtistsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список лучших исполниетелей</source>
-          <target state="new">Не удалось загрузить список лучших исполниетелей</target>
+          <source>Не удалось загрузить список лучших исполнителей</source>
+          <target state="new">Не удалось загрузить список лучших исполнителей</target>
         </trans-unit>
         <trans-unit id="TopArtistsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Выбираем лучших исполнителей...</source>
@@ -751,8 +751,8 @@
           <target state="new">Не удалось загрузить список друзей</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем информацию друзьях...</source>
-          <target state="new">Загружаем информацию друзьях...</target>
+          <source>Загружаем информацию о друзьях...</source>
+          <target state="new">Загружаем информацию о друзьях...</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Друзья отсутствуют либо доступ к ним закрыт</source>
@@ -1235,8 +1235,8 @@
           <target state="new">Загружаем кэшированные аудиозаписи...</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Кэшированые аудиозаписи отсутствуют</source>
-          <target state="new">Кэшированые аудиозаписи отсутствуют</target>
+          <source>Кэшированные аудиозаписи отсутствуют</source>
+          <target state="new">Кэшированные аудиозаписи отсутствуют</target>
         </trans-unit>
         <trans-unit id="CachedView_Title.Text" translate="yes" xml:space="preserve">
           <source>кэшированные</source>
@@ -1633,6 +1633,15 @@ Eng: upload</note>
           <target state="new">Снаряжаем рыцарей...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</note>
+        </trans-unit>
+        <trans-unit id="MainView_LibraryItem.Content" translate="yes" xml:space="preserve">
+          <source>локальная музыка</source>
+          <target state="new">локальная музыка</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Открывает страницу локальной музыки пользователя.</note>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Search.Label" translate="yes" xml:space="preserve">
+          <source>поиск</source>
+          <target state="new">поиск</target>
         </trans-unit>
       </group>
     </body>

@@ -53,7 +53,7 @@ namespace VKSaver.Core.ViewModels
             GoToSearchCommand = new DelegateCommand(OnGoToSearchCommand);
             GoToSettingsViewCommand = new DelegateCommand(OnGoToSettingsViewCommand);
             GoToNewsViewCommand = new DelegateCommand(OnGoToNewsViewCommand);
-            GoToCachedViewCommand = new DelegateCommand(OnGoToCachedViewCommand);
+            GoToLibraryViewCommand = new DelegateCommand<string>(OnGoToLibraryViewCommand);
             GoToUploadFileViewCommand = new DelegateCommand(OnGoToUploadFileViewCommand);
 
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
@@ -120,7 +120,7 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand GoToNewsViewCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand GoToCachedViewCommand { get; private set; }
+        public DelegateCommand<string> GoToLibraryViewCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand GoToUploadFileViewCommand { get; private set; }
@@ -328,9 +328,9 @@ namespace VKSaver.Core.ViewModels
                     new KeyValuePair<string, string>("TopArtistsView", null)));
         }
 
-        private void OnGoToCachedViewCommand()
+        private void OnGoToLibraryViewCommand(string view)
         {
-            _navigationService.Navigate("LibraryView", null);
+            _navigationService.Navigate("LibraryView", view);
         }
 
         private void OnGoToUploadFileViewCommand()

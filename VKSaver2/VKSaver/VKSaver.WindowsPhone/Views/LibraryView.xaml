@@ -37,9 +37,32 @@
                     Value="19,10,0,10" />
         </Style>
 
+        <Style x:Key="LessMarginPivotItemStyle"
+               TargetType="PivotItem">
+            <Setter Property="Margin"
+                    Value="0,10,0,0" />
+        </Style>
+
         <CollectionViewSource x:Key="TracksSource"
                               Source="{Binding Tracks}"
-                              IsSourceGrouped="True"/>
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Tracks}" />
+        <CollectionViewSource x:Key="ArtistsSource"
+                              Source="{Binding Artists}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Artists}" />
+        <CollectionViewSource x:Key="AlbumsSource"
+                              Source="{Binding Albums}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Albums}" />
+        <CollectionViewSource x:Key="GenresSource"
+                              Source="{Binding Genres}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Genres}" />
+        <CollectionViewSource x:Key="CachedSource"
+                              Source="{Binding Cached}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Cached}" />
     </mvvm:VisualStateAwarePage.Resources>
     
     <mvvm:VisualStateAwarePage.BottomAppBar>
@@ -51,68 +74,182 @@
         </CommandBar>
     </mvvm:VisualStateAwarePage.BottomAppBar>
 
-    <Grid x:Name="LayoutRoot">
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+    <Pivot Title="ВКАЧАЙ"
+           SelectedIndex="{Binding CurrentPivotIndex, Mode=TwoWay}"
+           Style="{StaticResource PivotStyle}"
+           IsLocked="{Binding IsSelectionMode}">
+        <PivotItem Header="композиции"
+                   Style="{StaticResource LessMarginPivotItemStyle}">
+            <controls:ContentContainer State="{Binding Tracks.ContentState}"
+                                       ReloadCommand="{Binding Tracks.RefreshCommand}">
+                <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource TracksSource}}"
+                                  ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                                  ItemContainerStyle="{StaticResource RemovableItemStyle}"
+                                  IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                                  SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
+                            <ListView.GroupStyle>
+                                <GroupStyle HeaderTemplate="{StaticResource AlphaGroupHeaderTemplate}"
+                                            HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
+                                            HidesIfEmpty="True" />
+                            </ListView.GroupStyle>
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="ItemClick">
+                                    <c:InvokeCommandAction Command="{Binding PlayTracksCommand, Mode=OneTime}"
+                                                           InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </c:EventTriggerBehavior>
+                                <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                                SelectAll="{Binding SelectAll}"
+                                                                Command="{Binding SelectionChangedCommand}" />
+                            </i:Interaction.Behaviors>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource TracksSource}}"
+                                  Style="{StaticResource AlphaJumpListPickerStyle}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </controls:ContentContainer>
+        </PivotItem>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <PivotItem Header="исполнители"
+                   Style="{StaticResource LessMarginPivotItemStyle}">
+            <controls:ContentContainer State="{Binding Artists.ContentState}"
+                                       ReloadCommand="{Binding Artists.RefreshCommand}">
+                <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource ArtistsSource}}"
+                                  ItemTemplate="{StaticResource OnlyNameListItemTemplate}"
+                                  ItemContainerStyle="{StaticResource RemovableItemStyle}"
+                                  IsItemClickEnabled="True">
+                            <ListView.GroupStyle>
+                                <GroupStyle HeaderTemplate="{StaticResource AlphaGroupHeaderTemplate}"
+                                            HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
+                                            HidesIfEmpty="True" />
+                            </ListView.GroupStyle>
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="ItemClick">
+                                    <c:InvokeCommandAction Command="{Binding ExecuteItemCommand, Mode=OneTime}"
+                                                           InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource ArtistsSource}}"
+                                  Style="{StaticResource AlphaJumpListPickerStyle}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </controls:ContentContainer>
+        </PivotItem>
 
-        <StackPanel Grid.Row="0"
-                    Margin="19,0,0,0">
-            <TextBlock Text="ВКАЧАЙ"
-                       x:Uid="AppName"
-                       Style="{ThemeResource TitleTextBlockStyle}"
-                       Margin="0,12,0,0" />
-            <TextBlock Text="музыка"
-                       Margin="-3,-6.5,0,26.5"
-                       Style="{ThemeResource HeaderTextBlockStyle}"
-                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
-        </StackPanel>
+        <PivotItem Header="альбомы"
+                   Style="{StaticResource LessMarginPivotItemStyle}">
+            <controls:ContentContainer State="{Binding Albums.ContentState}"
+                                       ReloadCommand="{Binding Albums.RefreshCommand}">
+                <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource AlbumsSource}}"
+                                  ItemTemplate="{StaticResource OnlyNameListItemTemplate}"
+                                  ItemContainerStyle="{StaticResource RemovableItemStyle}"
+                                  IsItemClickEnabled="True">
+                            <ListView.GroupStyle>
+                                <GroupStyle HeaderTemplate="{StaticResource AlphaGroupHeaderTemplate}"
+                                            HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
+                                            HidesIfEmpty="True" />
+                            </ListView.GroupStyle>
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="ItemClick">
+                                    <c:InvokeCommandAction Command="{Binding ExecuteItemCommand, Mode=OneTime}"
+                                                           InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource AlbumsSource}}"
+                                  Style="{StaticResource AlphaJumpListPickerStyle}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </controls:ContentContainer>
+        </PivotItem>
 
-        <SemanticZoom Style="{StaticResource AlphaJumpListStyle}"
-                      Grid.Row="1">
-            <SemanticZoom.ZoomedInView>
-                <ListView ItemsSource="{Binding Source={StaticResource TracksSource}}"
-                          ItemTemplate="{StaticResource WithDurationAudioTemplate}"                          
-                          ItemContainerStyle="{StaticResource RemovableItemStyle}"
-                          IsItemClickEnabled="{Binding IsItemClickEnabled}"
-                          SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
-                    <ListView.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource AlphaGroupHeaderTemplate}"
-                                    HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
-                                    HidesIfEmpty="True" />
-                    </ListView.GroupStyle>
-                    <ListView.FooterTemplate>
-                        <DataTemplate>
-                            <controls:StateBlock State="{Binding TracksState}"
-                                                 ReloadCommand="{Binding ReloadDataCommand}"
-                                                 Margin="0,0,0,60"
-                                                 LoadingText="Загружаем список треков..."
-                                                 ErrorText="Не удалось загрузить список треков"
-                                                 NoDataText="Кэшированые аудиозаписи отсутствуют" />
-                        </DataTemplate>
-                    </ListView.FooterTemplate>
-                    <i:Interaction.Behaviors>
-                        <c:EventTriggerBehavior EventName="ItemClick">
-                            <c:InvokeCommandAction Command="{Binding PlayTracksCommand}"
-                                                   InputConverter="{StaticResource ItemClickEventArgsConverter}" />
-                        </c:EventTriggerBehavior>
-                        <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
-                                                        SelectAll="{Binding SelectAll}"
-                                                        Command="{Binding SelectionChangedCommand}" />
-                    </i:Interaction.Behaviors>
-                </ListView>
-            </SemanticZoom.ZoomedInView>
-            <SemanticZoom.ZoomedOutView>
-                <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource TracksSource}}"
-                          Style="{StaticResource AlphaJumpListPickerStyle}" />
-            </SemanticZoom.ZoomedOutView>
-        </SemanticZoom>
-    </Grid>
+        <PivotItem Header="жанры"
+                   Style="{StaticResource LessMarginPivotItemStyle}">
+            <controls:ContentContainer State="{Binding Genres.ContentState}"
+                                       ReloadCommand="{Binding Genres.RefreshCommand}">
+                <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource GenresSource}}"
+                                  ItemTemplate="{StaticResource OnlyNameListItemTemplate}"
+                                  ItemContainerStyle="{StaticResource RemovableItemStyle}"
+                                  IsItemClickEnabled="True">
+                            <ListView.GroupStyle>
+                                <GroupStyle HeaderTemplate="{StaticResource AlphaGroupHeaderTemplate}"
+                                            HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
+                                            HidesIfEmpty="True" />
+                            </ListView.GroupStyle>
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="ItemClick">
+                                    <c:InvokeCommandAction Command="{Binding ExecuteItemCommand, Mode=OneTime}"
+                                                           InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource GenresSource}}"
+                                  Style="{StaticResource AlphaJumpListPickerStyle}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </controls:ContentContainer>
+        </PivotItem>
+
+        <PivotItem Header="папки"
+                   Style="{StaticResource LessMarginPivotItemStyle}">
+            <controls:ContentContainer State="{Binding Folders.ContentState}"
+                                       ReloadCommand="{Binding Folders.RefreshCommand}">
+                <ListView ItemsSource="{Binding Folders}"
+                          ItemTemplate="{StaticResource OnlyNameListItemTemplate}"
+                          ItemContainerStyle="{StaticResource RemovableItemStyle}" 
+                          IsItemClickEnabled="true"/>
+            </controls:ContentContainer>
+        </PivotItem>
+
+        <PivotItem Header="кэшированные"
+                   Style="{StaticResource LessMarginPivotItemStyle}">
+            <controls:ContentContainer State="{Binding Cached.ContentState}"
+                                       ReloadCommand="{Binding Cached.RefreshCommand}">
+                <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource CachedSource}}"
+                                  ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                                  ItemContainerStyle="{StaticResource RemovableItemStyle}"
+                                  IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                                  SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
+                            <ListView.GroupStyle>
+                                <GroupStyle HeaderTemplate="{StaticResource AlphaGroupHeaderTemplate}"
+                                            HeaderContainerStyle="{StaticResource JumpListListHeaderContainerStyle}"
+                                            HidesIfEmpty="True" />
+                            </ListView.GroupStyle>
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="ItemClick">
+                                    <c:InvokeCommandAction Command="{Binding PlayTracksCommand, Mode=OneTime}"
+                                                           InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </c:EventTriggerBehavior>
+                                <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                                SelectAll="{Binding SelectAll}"
+                                                                Command="{Binding SelectionChangedCommand}" />
+                            </i:Interaction.Behaviors>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource CachedSource}}"
+                                  Style="{StaticResource AlphaJumpListPickerStyle}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </controls:ContentContainer>
+        </PivotItem>
+    </Pivot>
 </mvvm:VisualStateAwarePage>

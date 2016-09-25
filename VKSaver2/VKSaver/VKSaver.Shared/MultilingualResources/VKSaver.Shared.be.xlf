@@ -8,1557 +8,1559 @@
       <group id="VKSAVER.SHARED/STRINGS/RU-RU/RESOURCES.RESW" datatype="resx">
         <trans-unit id="AboutView_About.Text" translate="yes" xml:space="preserve">
           <source>о приложении</source>
-          <target state="translated">аб праграме</target>
+          <target state="final">аб праграме</target>
         </trans-unit>
         <trans-unit id="AboutView_AppName.Text" translate="yes" xml:space="preserve">
           <source>ВКачай 2 Beta</source>
-          <target state="translated">ВКачай 2 Beta</target>
+          <target state="final">ВКачай 2 Beta</target>
         </trans-unit>
         <trans-unit id="AboutView_Version.Text" translate="yes" xml:space="preserve">
           <source>Версия:</source>
-          <target state="translated">Версія:</target>
+          <target state="final">Версія:</target>
         </trans-unit>
         <trans-unit id="AccessDeniedView_AccessDenied.Text" translate="yes" xml:space="preserve">
           <source>Нет доступа</source>
-          <target state="translated">Няма доступу</target>
+          <target state="final">Няма доступу</target>
         </trans-unit>
         <trans-unit id="AccessDeniedView_SectionNotCompleted.Text" translate="yes" xml:space="preserve">
           <source>Этот раздел еще не готов
 
 Вернитесь назад, чтобы продолжить</source>
-          <target state="translated">Гэты раздзел яшчэ не гатовы
+          <target state="final">Гэты раздзел яшчэ не гатовы
 
 Калі ласка, вярніцеся назад, каб працягнуць</target>
         </trans-unit>
         <trans-unit id="AddToMyAudiosFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>в мои аудиозаписи</source>
-          <target state="translated">у маі аўдыязапісы</target>
+          <target state="final">у маі аўдыязапісы</target>
         </trans-unit>
         <trans-unit id="AddToMyDocsFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>в мои документы</source>
-          <target state="translated">у маі дакументы</target>
+          <target state="final">у маі дакументы</target>
         </trans-unit>
         <trans-unit id="AddToMyVideosFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>в мои видеозаписи</source>
-          <target state="translated">у маі відэазапісы</target>
+          <target state="final">у маі відэазапісы</target>
         </trans-unit>
         <trans-unit id="AlbumTracksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить содержимое альбома</source>
-          <target state="translated">Немагчыма загрузіць змест альбома</target>
+          <target state="final">Немагчыма загрузіць змест альбома</target>
         </trans-unit>
         <trans-unit id="AlbumTracksLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список треков альбома...</source>
-          <target state="translated">Загружаем спіс трэкаў альбома...</target>
+          <target state="final">Загружаем спіс трэкаў альбома...</target>
         </trans-unit>
         <trans-unit id="AlbumTracksLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В этом альбоме нет треков</source>
-          <target state="translated">У гэтым альбоме няма трэкаў</target>
+          <target state="final">У гэтым альбоме няма трэкаў</target>
         </trans-unit>
         <trans-unit id="AppBarButton_AddToMyAudios_Text" translate="yes" xml:space="preserve">
           <source>в мои аудиозаписи</source>
-          <target state="translated">у маі аўдыязапісы</target>
+          <target state="final">у маі аўдыязапісы</target>
         </trans-unit>
         <trans-unit id="AppBarButton_AddToMyDocs_Text" translate="yes" xml:space="preserve">
           <source>в мои документы</source>
-          <target state="translated">у маі дакументы</target>
+          <target state="final">у маі дакументы</target>
         </trans-unit>
         <trans-unit id="AppBarButton_AddToMyVideos_Text" translate="yes" xml:space="preserve">
           <source>в мои видеозаписи</source>
-          <target state="translated">у маі відэазапісы</target>
+          <target state="final">у маі відэазапісы</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Delete_Text" translate="yes" xml:space="preserve">
           <source>удалить</source>
-          <target state="translated">выдальць</target>
+          <target state="final">выдальць</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Download_Text" translate="yes" xml:space="preserve">
           <source>кэшировать</source>
-          <target state="translated">дадаць у кэш</target>
+          <target state="final">дадаць у кэш</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Play_Text" translate="yes" xml:space="preserve">
           <source>воспроизвести</source>
-          <target state="translated">прайграць</target>
+          <target state="final">прайграць</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Refresh_Text" translate="yes" xml:space="preserve">
           <source>обновить</source>
-          <target state="translated">абнавіць</target>
+          <target state="final">абнавіць</target>
         </trans-unit>
         <trans-unit id="AppBarButton_SelectAll_Text" translate="yes" xml:space="preserve">
           <source>выбрать все</source>
-          <target state="translated">выбраць усе</target>
+          <target state="final">выбраць усе</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Select_Text" translate="yes" xml:space="preserve">
           <source>выбрать</source>
-          <target state="translated">выбраць</target>
+          <target state="final">выбраць</target>
         </trans-unit>
         <trans-unit id="AppLoader_AddingItem" translate="yes" xml:space="preserve">
           <source>Выполняется добавление {0}...</source>
-          <target state="translated">Дадаецца {0}...</target>
+          <target state="final">Дадаецца {0}...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Например, "Выполняется добавление Imagine Dragons - Warriors..."</note>
         </trans-unit>
         <trans-unit id="AppLoader_CancelAllDownloads" translate="yes" xml:space="preserve">
           <source>Отмена всех загрузок...</source>
-          <target state="translated">Адмена усіх загрузак...</target>
+          <target state="final">Адмена усіх загрузак...</target>
         </trans-unit>
         <trans-unit id="AppLoader_DeletingItem" translate="yes" xml:space="preserve">
           <source>Выполняется удаление {0}...</source>
-          <target state="translated">Выдаляецца {0}...</target>
+          <target state="final">Выдаляецца {0}...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Например, "Выполняется удаление Photo0122.jpg..."</note>
         </trans-unit>
         <trans-unit id="AppLoader_Loading" translate="yes" xml:space="preserve">
           <source>Загрузка...</source>
-          <target state="new">Загрузка...</target>
+          <target state="final">Загрузка...</target>
         </trans-unit>
         <trans-unit id="AppLoader_Preparing" translate="yes" xml:space="preserve">
           <source>Подготовка...</source>
-          <target state="translated">Падрыхтоўка...</target>
+          <target state="final">Падрыхтоўка...</target>
         </trans-unit>
         <trans-unit id="AppLoader_PreparingFilesToDownload" translate="yes" xml:space="preserve">
           <source>Подготовка файлов для загрузки...</source>
-          <target state="translated">Падрыхтоўка файлаў для загрузкі...</target>
+          <target state="final">Падрыхтоўка файлаў для загрузкі...</target>
         </trans-unit>
         <trans-unit id="AppName.Text" translate="yes" xml:space="preserve">
           <source>ВКАЧАЙ BETA</source>
-          <target state="translated">УКАЧАЙ BETA</target>
+          <target state="final">ВКАЧАЙ BETA</target>
         </trans-unit>
         <trans-unit id="AppNamePivot.Title" translate="yes" xml:space="preserve">
           <source>ВКАЧАЙ BETA</source>
-          <target state="translated">УКАЧАЙ BETA</target>
+          <target state="final">ВКАЧАЙ BETA</target>
         </trans-unit>
         <trans-unit id="AppNameText" translate="yes" xml:space="preserve">
           <source>ВКачай Beta</source>
-          <target state="translated">УКачай Beta</target>
+          <target state="final">ВКачай Beta</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_AlbumsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список альбомов исполнителя</source>
-          <target state="translated">Не атрымалася загрузіць спіс альбомаў выканаўца</target>
+          <target state="final">Не атрымалася загрузіць спіс альбомаў выканаўца</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_AlbumsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Прослушиваем пластинки исполнителя...</source>
-          <target state="translated">Праслухоўваем пласцінкі выканаўца...</target>
+          <target state="final">Праслухоўваем пласцінкі выканаўца...</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_AlbumsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Похоже, этот исполнитель тщательно скрывает свои альбомы</source>
-          <target state="translated">Падобна на тое, што гэты выканаўца старанна хавае свае альбомы</target>
+          <target state="final">Падобна на тое, што гэты выканаўца старанна хавае свае альбомы</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_DetailsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить данные об исполнителе</source>
-          <target state="translated">Не атрымалася загрузіць данныя аб выканаўцы</target>
+          <target state="final">Не атрымалася загрузіць данныя аб выканаўцы</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_DetailsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Собираем досье на исполнителя...</source>
-          <target state="translated">Збіраем дасье на выканаўца...</target>
+          <target state="final">Збіраем дасье на выканаўца...</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_DetailsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Об этом исполнителе нет никакой информации</source>
-          <target state="translated">Аб гэтым выканаўцы няма ніякай інфармацыі</target>
+          <target state="final">Аб гэтым выканаўцы няма ніякай інфармацыі</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_PivotSection_Albums.Header" translate="yes" xml:space="preserve">
           <source>альбомы</source>
-          <target state="translated">альбомы</target>
+          <target state="final">альбомы</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
           <source>подробнее</source>
-          <target state="translated">падрабязней</target>
+          <target state="final">падрабязней</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_PivotSection_Similar.Header" translate="yes" xml:space="preserve">
           <source>похожие</source>
-          <target state="translated">падобныя</target>
+          <target state="final">падобныя</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_SearchVKItem.Content" translate="yes" xml:space="preserve">
           <source>найти ВКонтакте</source>
-          <target state="translated">знайсці УКантакце</target>
+          <target state="final">знайсці УКантакце</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_SimilarLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось найти похожих исполнителей</source>
-          <target state="translated">Не атрымалася знайсці падобных выканаўцаў</target>
+          <target state="final">Не атрымалася знайсці падобных выканаўцаў</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_SimilarLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Ищем похожих исполнителей...</source>
-          <target state="translated">Шукаем падобных выканаўцаў...</target>
+          <target state="final">Шукаем падобных выканаўцаў...</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_SimilarLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>У этого исполнителя уникальные композиции!</source>
-          <target state="translated">У гэтага выканаўцы унікальныя трэкі!</target>
+          <target state="final">У гэтага выканаўцы унікальныя трэкі!</target>
         </trans-unit>
         <trans-unit id="DeleteFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>удалить</source>
-          <target state="translated">выдаліць</target>
+          <target state="final">выдаліць</target>
         </trans-unit>
         <trans-unit id="DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>кэшировать</source>
-          <target state="translated">дадаць у кэш</target>
+          <target state="final">дадаць у кэш</target>
         </trans-unit>
         <trans-unit id="ErrorView_Error.Text" translate="yes" xml:space="preserve">
           <source>Произошла ошибка</source>
-          <target state="translated">Здарылася памылка</target>
+          <target state="final">Здарылася памылка</target>
         </trans-unit>
         <trans-unit id="ErrorView_ErrorSorry.Text" translate="yes" xml:space="preserve">
           <source>Мы очень сожалеем о случившемся
 
 Вернитесь назад, чтобы продолжить</source>
-          <target state="translated">Мы вельмі шкадуем аб тым, што здарылася
+          <target state="final">Мы вельмі шкадуем аб тым, што здарылася
 
 Калі ласка, вярніцеся назад, каб працягнуць</target>
         </trans-unit>
         <trans-unit id="LoginView_Auth.Text" translate="yes" xml:space="preserve">
           <source>Авторизация</source>
-          <target state="translated">Аўтарызацыя</target>
+          <target state="final">Аўтарызацыя</target>
         </trans-unit>
         <trans-unit id="LoginView_JoinButton.Label" translate="yes" xml:space="preserve">
           <source>зарегистрироваться</source>
-          <target state="translated">зарэгістрыравацца</target>
+          <target state="final">зарэгістрыравацца</target>
         </trans-unit>
         <trans-unit id="LoginView_LoginButton.Content" translate="yes" xml:space="preserve">
           <source>войти</source>
-          <target state="translated">увайсці</target>
+          <target state="final">увайсці</target>
         </trans-unit>
         <trans-unit id="LoginView_RestorePasswordButton.Label" translate="yes" xml:space="preserve">
           <source>восстановить пароль</source>
-          <target state="translated">аднавіць пароль</target>
+          <target state="final">аднавіць пароль</target>
         </trans-unit>
         <trans-unit id="MainView_AboutItem.Content" translate="yes" xml:space="preserve">
           <source>о программе</source>
-          <target state="translated">аб праграме</target>
+          <target state="final">аб праграме</target>
         </trans-unit>
         <trans-unit id="MainView_DocsItem.Content" translate="yes" xml:space="preserve">
           <source>документы</source>
-          <target state="translated">дакументы</target>
+          <target state="final">дакументы</target>
         </trans-unit>
         <trans-unit id="MainView_DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>кэшировать</source>
-          <target state="translated">дадаць у кэш</target>
+          <target state="final">дадаць у кэш</target>
         </trans-unit>
         <trans-unit id="MainView_FriendsItem.Content" translate="yes" xml:space="preserve">
           <source>друзья</source>
-          <target state="translated">сябры</target>
+          <target state="final">сябры</target>
         </trans-unit>
         <trans-unit id="MainView_GroupsItem.Content" translate="yes" xml:space="preserve">
           <source>сообщества</source>
-          <target state="translated">суполкі</target>
+          <target state="final">суполкі</target>
         </trans-unit>
         <trans-unit id="MainView_Hub.Header" translate="yes" xml:space="preserve">
           <source>вкачай beta</source>
-          <target state="translated">укачай beta</target>
+          <target state="final">вкачай beta</target>
         </trans-unit>
         <trans-unit id="MainView_HubSection_Recommendations.Header" translate="yes" xml:space="preserve">
           <source>РЕКОМЕНДУЕМ</source>
-          <target state="translated">РЭКАМЕНДУЕМ</target>
+          <target state="final">РЭКАМЕНДУЕМ</target>
         </trans-unit>
         <trans-unit id="MainView_HubSection_SeeAlso.Header" translate="yes" xml:space="preserve">
           <source>СМОТРИТЕ ТАКЖЕ</source>
-          <target state="translated">ГЛЯДЗІЦЕ ТАКСАМА</target>
+          <target state="final">ГЛЯДЗІЦЕ ТАКСАМА</target>
         </trans-unit>
         <trans-unit id="MainView_HubSection_TopArtists.Header" translate="yes" xml:space="preserve">
           <source>ЛУЧШИЕ ИСПОЛНИТЕЛИ</source>
-          <target state="translated">ЛЕПШЫЯ ВЫКАНАЎЦЫ</target>
+          <target state="final">ЛЕПШЫЯ ВЫКАНАЎЦЫ</target>
         </trans-unit>
         <trans-unit id="MainView_HubSection_YourMusic.Header" translate="yes" xml:space="preserve">
           <source>ВАША МУЗЫКА</source>
-          <target state="translated">ВАША МУЗЫКА</target>
+          <target state="final">ВАША МУЗЫКА</target>
         </trans-unit>
         <trans-unit id="MainView_MusicItem.Content" translate="yes" xml:space="preserve">
           <source>музыка</source>
-          <target state="translated">музыка</target>
+          <target state="final">музыка</target>
         </trans-unit>
         <trans-unit id="MainView_NewsItem.Content" translate="yes" xml:space="preserve">
           <source>новости</source>
-          <target state="translated">навіны</target>
+          <target state="final">навіны</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Player.Label" translate="yes" xml:space="preserve">
           <source>проигрыватель</source>
-          <target state="translated">прайгравальнік</target>
+          <target state="final">прайгравальнік</target>
         </trans-unit>
         <trans-unit id="MainView_RecommendationsItem.Content" translate="yes" xml:space="preserve">
           <source>рекомендации</source>
-          <target state="translated">рэкамендацыі</target>
+          <target state="final">рэкамендацыі</target>
         </trans-unit>
         <trans-unit id="MainView_SearchItem.Content" translate="yes" xml:space="preserve">
           <source>поиск</source>
-          <target state="translated">пошук</target>
+          <target state="final">пошук</target>
         </trans-unit>
         <trans-unit id="MainView_SettingsItem.Content" translate="yes" xml:space="preserve">
           <source>настройки</source>
-          <target state="translated">налады</target>
+          <target state="final">налады</target>
         </trans-unit>
         <trans-unit id="MainView_ShowMore.Text" translate="yes" xml:space="preserve">
           <source>показать больше</source>
-          <target state="translated">паказаць больш</target>
+          <target state="final">паказаць больш</target>
         </trans-unit>
         <trans-unit id="MainView_ShowMoreItem.Content" translate="yes" xml:space="preserve">
           <source>показать больше</source>
-          <target state="translated">паказаць больш</target>
+          <target state="final">паказаць больш</target>
         </trans-unit>
         <trans-unit id="MainView_TopArtistsItem.Content" translate="yes" xml:space="preserve">
           <source>топ исполнителей</source>
-          <target state="translated">топ выканаўцаў</target>
+          <target state="final">топ выканаўцаў</target>
         </trans-unit>
         <trans-unit id="MainView_TopTracksItem.Content" translate="yes" xml:space="preserve">
           <source>топ треков</source>
-          <target state="translated">топ трэкаў</target>
+          <target state="final">топ трэкаў</target>
         </trans-unit>
         <trans-unit id="AppBarButton_TransferManager.Label" translate="yes" xml:space="preserve">
           <source>менеджер загрузок</source>
-          <target state="needs-review-translation">загрузкі</target>
+          <target state="final">загрузкі</target>
         </trans-unit>
         <trans-unit id="MainView_TransferManagerItem.Content" translate="yes" xml:space="preserve">
           <source>менеджер загрузок</source>
-          <target state="needs-review-translation">загрузкі</target>
+          <target state="final">загрузкі</target>
         </trans-unit>
         <trans-unit id="MainView_VideosItem.Content" translate="yes" xml:space="preserve">
           <source>видео</source>
-          <target state="translated">видэа</target>
+          <target state="final">видэа</target>
         </trans-unit>
         <trans-unit id="MainView_YourMusicLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список ваших треков</source>
-          <target state="translated">Не атрымалася загрузіць спіс вашых трэкаў</target>
+          <target state="final">Не атрымалася загрузіць спіс вашых трэкаў</target>
         </trans-unit>
         <trans-unit id="MainView_YourMusicLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список ваших треков...</source>
-          <target state="translated">Загружаем спіс вашых трэкаў...</target>
+          <target state="final">Загружаем спіс вашых трэкаў...</target>
         </trans-unit>
         <trans-unit id="MainView_YourMusicLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В вашей коллекции не найдено ни одного трека</source>
-          <target state="translated">У вашай калекцыі не знойдзена ніводнага трэка</target>
+          <target state="final">У вашай калекцыі не знойдзена ніводнага трэка</target>
         </trans-unit>
         <trans-unit id="Message_AddSelectedError_Text" translate="yes" xml:space="preserve">
           <source>Не удалось добавить указанные элементы в вашу коллекцию. Повторите попытку позднее.</source>
-          <target state="translated">Не атрымалася дадаць выбраныя элементы ў вашу калекцыю. Калі ласка, паспрабуйце пазней.</target>
+          <target state="final">Не атрымалася дадаць выбраныя элементы ў вашу калекцыю. Калі ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_AddSelectedError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось добавить</source>
-          <target state="translated">Не атрымалася дадаць</target>
+          <target state="final">Не атрымалася дадаць</target>
         </trans-unit>
         <trans-unit id="Message_AudioAddError_Text" translate="yes" xml:space="preserve">
           <source>При добавлении аудиозаписи в коллекцию произошла ошибка. Повторите попытку позднее.</source>
-          <target state="needs-review-translation">Пры даданні аўдыязапісу ў калекцыю здарылася памылка. Калі ласка, паспрабуйце пазней.
+          <target state="final">Пры даданні аўдыязапісу ў калекцыю здарылася памылка. Калі ласка, паспрабуйце пазней.
 
 </target>
         </trans-unit>
         <trans-unit id="Message_AudioAddError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось добавить аудиозапись</source>
-          <target state="translated">Не атрымалася дадаць аўдыязапіс</target>
+          <target state="final">Не атрымалася дадаць аўдыязапіс</target>
         </trans-unit>
         <trans-unit id="Message_AudioAlbumDeleteError_Text" translate="yes" xml:space="preserve">
           <source>При удалении альбома аудиозаписей произошла ошибка. Повторите попытку позднее.</source>
-          <target state="translated">Пры выдаленні альбому аўдыёзапісаў узникла памылка. Кали ласка, паспрабуйце пазней.</target>
+          <target state="final">Пры выдаленні альбому аўдыязапісаў узникла памылка. Кали ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_AudioAlbumDeleteError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось удалить альбом аудиозаписей</source>
-          <target state="translated">Не атрымалася выдаліць альбом аўдыёзапісаў</target>
+          <target state="final">Не атрымалася выдаліць альбом аўдыязапісаў</target>
         </trans-unit>
         <trans-unit id="Message_AudioDeleteError_Text" translate="yes" xml:space="preserve">
           <source>При удалении аудиозаписи произошла ошибка. Повторите попытку позднее.</source>
-          <target state="translated">Пры выдаленні аўдыязапісу ўзнікла памылка. Калі ласка, паспрабуйце пазней.</target>
+          <target state="final">Пры выдаленні аўдыязапісу ўзнікла памылка. Калі ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_AudioDeleteError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось удалить аудиозапись</source>
-          <target state="translated">Не атрымалася выдаліць аўдыязапіс.</target>
+          <target state="final">Не атрымалася выдаліць аўдыязапіс.</target>
         </trans-unit>
         <trans-unit id="Message_CantFindLyrics_Title" translate="yes" xml:space="preserve">
           <source>Не удалось найти текст</source>
-          <target state="translated">Не атрымалася знайсці тэкст.</target>
+          <target state="final">Не атрымалася знайсці тэкст.</target>
         </trans-unit>
         <trans-unit id="Message_CantFindLyrics_Text" translate="yes" xml:space="preserve">
           <source>Не удалось найти текст для данной аудиозаписи. Мы очень сожалеем.</source>
-          <target state="needs-review-translation">Не атрымалася знайсці тэкст для гэтага аўдыязапісу.</target>
+          <target state="final">Не атрымалася знайсці тэкст для гэтага аўдыязапісу.</target>
         </trans-unit>
         <trans-unit id="Message_DeleteSelectedError_Text" translate="yes" xml:space="preserve">
           <source>Не удалось удалить указанные элементы из вашей коллекции. Повторите попытку позднее.</source>
-          <target state="translated">Не атрымалася выдаліць выбраныя элементы з вашай калекцыі. Калі ласка, паспрабуйце пазней</target>
+          <target state="final">Не атрымалася выдаліць выбраныя элементы з вашай калекцыі. Калі ласка, паспрабуйце пазней</target>
         </trans-unit>
         <trans-unit id="Message_DeleteSelectedError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось удалить</source>
-          <target state="new">Не удалось удалить</target>
+          <target state="final">Не атрымалася выдаліць</target>
         </trans-unit>
         <trans-unit id="Message_DocAddError_Text" translate="yes" xml:space="preserve">
           <source>При добавлении документа в коллекцию произошла ошибка. Повторите попытку позднее.</source>
-          <target state="new">При добавлении документа в коллекцию произошла ошибка. Повторите попытку позднее.</target>
+          <target state="final">Пры даданні дакумента ў калекцыю адбылася памылка. Калі ласка, паспабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_DocAddError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось добавить документ</source>
-          <target state="new">Не удалось добавить документ</target>
+          <target state="final">Не атрымалася дадаць дакумент</target>
         </trans-unit>
         <trans-unit id="Message_DocDeleteError_Text" translate="yes" xml:space="preserve">
           <source>При удалении документа произошла ошибка. Повторите попытку позднее.</source>
-          <target state="new">При удалении документа произошла ошибка. Повторите попытку позднее.</target>
+          <target state="final">При выдаленні дакумента адбылася памылка. Калі ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_DocDeleteError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось удалить документ</source>
-          <target state="new">Не удалось удалить документ</target>
+          <target state="final">Не артымалася выдаліць дакумент</target>
         </trans-unit>
         <trans-unit id="Message_Downloads_CantCreateFile_Text" translate="yes" xml:space="preserve">
           <source>Не удалось создать файл:</source>
-          <target state="new">Не удалось создать файл:</target>
+          <target state="final">Не атрымалася стварыць файл:</target>
         </trans-unit>
         <trans-unit id="Message_Downloads_CantCreateFolder_Text" translate="yes" xml:space="preserve">
           <source>Не удалось создать папку:</source>
-          <target state="new">Не удалось создать папку:</target>
+          <target state="final">Не атрымалася стварыць тэчку:</target>
         </trans-unit>
         <trans-unit id="Message_Downloads_MaxDownloadsExceeded_Text" translate="yes" xml:space="preserve">
           <source>Достигнуто максимальное количество одновременных загрузок:</source>
-          <target state="new">Достигнуто максимальное количество одновременных загрузок:</target>
+          <target state="final">Дасягнута максімальная колькасць адначасовых загрузак:</target>
         </trans-unit>
         <trans-unit id="Message_Downloads_StartFailed_Title" translate="yes" xml:space="preserve">
           <source>Не удалось начать загрузку</source>
-          <target state="new">Не удалось начать загрузку</target>
+          <target state="final">Не атрымалася пачаць загрузку</target>
         </trans-unit>
         <trans-unit id="Message_Downloads_UnknownError_Text" translate="yes" xml:space="preserve">
           <source>Неизвестная ошибка:</source>
-          <target state="new">Неизвестная ошибка:</target>
+          <target state="final">Невядомая памылка:</target>
         </trans-unit>
         <trans-unit id="Message_Login_AccessDenied_Text" translate="yes" xml:space="preserve">
           <source>Не удалось выполнить авторизацию, так как ВКачай было отказано в доступе. Повторите попытку позднее.</source>
-          <target state="new">Не удалось выполнить авторизацию, так как ВКачай было отказано в доступе. Повторите попытку позднее.</target>
+          <target state="final">Не ўдалося выканаць аўтарызацыю, так як ВКачай было адмоўлена ў доступе. Калі ласка, паспабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_Login_AccessDenied_Title" translate="yes" xml:space="preserve">
           <source>Ошибка доступа</source>
-          <target state="new">Ошибка доступа</target>
+          <target state="final">Памылка доступу</target>
         </trans-unit>
         <trans-unit id="Message_Login_AuthorizationFailed_Title" translate="yes" xml:space="preserve">
           <source>Авторизация не удалась</source>
-          <target state="new">Авторизация не удалась</target>
+          <target state="final">Аўтарызацыя не ўдалася</target>
         </trans-unit>
         <trans-unit id="Message_Login_ConnectionError_Text" translate="yes" xml:space="preserve">
           <source>Не удалось подключиться к ВКонтакте. Проверьте доступ к интернету и повторите попытку.</source>
-          <target state="new">Не удалось подключиться к ВКонтакте. Проверьте доступ к интернету и повторите попытку.</target>
+          <target state="final">Не атрымалася далучыцца да "УКантакце". Праверце доступ да інтэрнэту і паспабуйце яшчэ раз.</target>
         </trans-unit>
         <trans-unit id="Message_Login_UnknownError_Text" translate="yes" xml:space="preserve">
           <source>Не удалось выполнить авторизацию. Повторите попытку позднее.
 Код ошибки: {0}</source>
-          <target state="new">Не удалось выполнить авторизацию. Повторите попытку позднее.
-Код ошибки: {0}</target>
+          <target state="final">Не атрымалася выканаць аўтарызацыю. Паспрабуйце пазней.
+Код памылкі: {0}</target>
         </trans-unit>
         <trans-unit id="Message_Purchase_Failed_Text" translate="yes" xml:space="preserve">
           <source>Не удалось произвести покупку. Мы очень сожалеем, повторите попытку позднее.</source>
-          <target state="new">Не удалось произвести покупку. Мы очень сожалеем, повторите попытку позднее.</target>
+          <target state="final">Не атрымалася здзейсніць пакупку. Нам вельмі шкада, калі ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_Purchase_Failed_Title" translate="yes" xml:space="preserve">
           <source>Покупка не удалась</source>
-          <target state="new">Покупка не удалась</target>
+          <target state="final">Купля не ўдалася</target>
         </trans-unit>
         <trans-unit id="Message_Purchase_Success_Text" translate="yes" xml:space="preserve">
           <source>Теперь вы счастливый владелец полной версии ВКачай 2!</source>
-          <target state="new">Теперь вы счастливый владелец полной версии ВКачай 2!</target>
+          <target state="final">Цяпер вы шчаслівы ўладальнік поўнай версіі ВКачай 2!</target>
         </trans-unit>
         <trans-unit id="Message_Purchase_Success_Title" translate="yes" xml:space="preserve">
           <source>Спасибо за покупку</source>
-          <target state="new">Спасибо за покупку</target>
+          <target state="final">Дзякуй за пакупку!</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_Error_Text" translate="yes" xml:space="preserve">
           <source>К сожалению, при выполнении операции произошла ошибка, и мы не можем ее завершить. </source>
-          <target state="new">К сожалению, при выполнении операции произошла ошибка, и мы не можем ее завершить. </target>
+          <target state="final">На жаль, пры выкананні аперацыі адбылася памылка, і мы не можам яе завяршыць.</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_Error_Title" translate="yes" xml:space="preserve">
           <source>Произошла ошибка</source>
-          <target state="new">Произошла ошибка</target>
+          <target state="final">Адбылася памылка</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_Idle_Text" translate="yes" xml:space="preserve">
           <source>Операция ожидает своей очереди.</source>
-          <target state="new">Операция ожидает своей очереди.</target>
+          <target state="final">Аперацыя чакае сваёй чаргі.</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_Idle_Title" translate="yes" xml:space="preserve">
           <source>Ожидание очереди</source>
-          <target state="new">Ожидание очереди</target>
+          <target state="final">Чаканне чаргі</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_PausedCostedNetwork_Text" translate="yes" xml:space="preserve">
           <source>Система заблокировала передачу данных, так как за исползование интернет-соединения может взиматься плата оператором.
 
 Уберите все ограничения в "Контроле данных" и отключите лимит трафика. Операция продолжится, как только система разрешит передачу данных.</source>
-          <target state="new">Система заблокировала передачу данных, так как за исползование интернет-соединения может взиматься плата оператором.
+          <target state="final">Сістэма заблакавала перадачу дадзеных, так як за выкарыстанне інтэрнэт-злучэння аператар можа браць плату.
 
-Уберите все ограничения в "Контроле данных" и отключите лимит трафика. Операция продолжится, как только система разрешит передачу данных.</target>
+Зніміце ўсе абмежаванні ў "Кантролі дадзеных" і адключыце ліміт трафіку. Аперацыя працягнецца, як толькі сістэма дазволіць перадачу дадзеных.</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_PausedCostedNetwork_Title" translate="yes" xml:space="preserve">
           <source>Платная сеть</source>
-          <target state="new">Платная сеть</target>
+          <target state="final">Платная сетка</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_PausedNoNetwork_Text" translate="yes" xml:space="preserve">
           <source>Нет доступа к сети. Проверьте настройки передачи данных. 
 Операция продолжится, как только соединение станет доступно.</source>
-          <target state="new">Нет доступа к сети. Проверьте настройки передачи данных. 
-Операция продолжится, как только соединение станет доступно.</target>
+          <target state="final">Няма доступу да сеткі. Праверце налады перадачы дадзеных. 
+Аперацыя працягнецца, як толькі злучэнне стане даступна..</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_PausedNoNetwork_Title" translate="yes" xml:space="preserve">
           <source>Ожидание соединения</source>
-          <target state="new">Ожидание соединения</target>
+          <target state="final">Чаканне злучэння</target>
         </trans-unit>
         <trans-unit id="Message_VideoAddError_Text" translate="yes" xml:space="preserve">
           <source>При добавлении видеозаписи в коллекцию произошла ошибка. Повторите попытку позднее.</source>
-          <target state="new">При добавлении видеозаписи в коллекцию произошла ошибка. Повторите попытку позднее.</target>
+          <target state="final">Пры даданні відэазапісу ў калекцыю адбылася памылка. Калі ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_VideoAddError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось добавить видеозапись</source>
-          <target state="new">Не удалось добавить видеозапись</target>
+          <target state="final">Не атрымалася дадаць відэазапіс</target>
         </trans-unit>
         <trans-unit id="Message_VideoAlbumDeleteError_Text" translate="yes" xml:space="preserve">
           <source>При удалении альбома видеозаписей произошла ошибка. Повторите попытку позднее.</source>
-          <target state="new">При удалении альбома видеозаписей произошла ошибка. Повторите попытку позднее.</target>
+          <target state="final">Пры выдаленні альбома відэазапісаў адбылася памылка. Калі ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_VideoAlbumDeleteError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось удалить альбом видеозаписей</source>
-          <target state="new">Не удалось удалить альбом видеозаписей</target>
+          <target state="final">Не атрымалася выдаліць альбом відэазапісаў</target>
         </trans-unit>
         <trans-unit id="Message_VideoDeleteError_Text" translate="yes" xml:space="preserve">
           <source>При удалении видеозаписи произошла ошибка. Повторите попытку позднее.</source>
-          <target state="new">При удалении видеозаписи произошла ошибка. Повторите попытку позднее.</target>
+          <target state="final">Пры выдаленні відэазапісу адбылася памылка. Калі ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_VideoDeleteError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось удалить видеозапись</source>
-          <target state="new">Не удалось удалить видеозапись</target>
+          <target state="final">Не атрымалася выдаліць відэазапіс</target>
         </trans-unit>
         <trans-unit id="NoTracksView_NoTracks.Text" translate="yes" xml:space="preserve">
           <source>Сейчас не воспроизводится ни одного трека
 
 Вернитесь назад, чтобы продолжить</source>
-          <target state="new">Сейчас не воспроизводится ни одного трека
+          <target state="final">Зараз не прайграваецца ніводнага трэка
 
-Вернитесь назад, чтобы продолжить</target>
+Калі ласка, вярніцеся назад, каб працягнуць</target>
         </trans-unit>
         <trans-unit id="NoTracksView_Silence.Text" translate="yes" xml:space="preserve">
           <source>Тишина...</source>
-          <target state="new">Тишина...</target>
+          <target state="final">Цішыня...</target>
         </trans-unit>
         <trans-unit id="PlayerView_PivotSection_NowPlaying.Header" translate="yes" xml:space="preserve">
           <source>сейчас играет</source>
-          <target state="new">сейчас играет</target>
+          <target state="final">зараз грае</target>
         </trans-unit>
         <trans-unit id="PlayerView_PivotSection_Playlist.Header" translate="yes" xml:space="preserve">
           <source>плейлист</source>
-          <target state="new">плейлист</target>
+          <target state="final">плэйліст</target>
         </trans-unit>
         <trans-unit id="PurchaseView_BuyMonthlyButton.Content" translate="yes" xml:space="preserve">
           <source>купить на месяц</source>
-          <target state="new">купить на месяц</target>
+          <target state="final">купіць на месяц</target>
         </trans-unit>
         <trans-unit id="PurchaseView_BuyNowButton.Content" translate="yes" xml:space="preserve">
           <source>купить сейчас</source>
-          <target state="new">купить сейчас</target>
+          <target state="final">купіць зараз</target>
         </trans-unit>
         <trans-unit id="PurchaseView_BuyPermanentButton.Content" translate="yes" xml:space="preserve">
           <source>купить навсегда</source>
-          <target state="new">купить навсегда</target>
+          <target state="final">купіць назаўжды</target>
         </trans-unit>
         <trans-unit id="PurchaseView_NextButton.Content" translate="yes" xml:space="preserve">
           <source>далее</source>
-          <target state="new">далее</target>
+          <target state="final">далей</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen0_Line1_Text" translate="yes" xml:space="preserve">
           <source>ВКачай 2</source>
-          <target state="new">ВКачай 2</target>
+          <target state="final">ВКачай 2</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen0_Line2_Text" translate="yes" xml:space="preserve">
           <source>Все самое лучшее - только для Вас!</source>
-          <target state="new">Все самое лучшее - только для Вас!</target>
+          <target state="final">Усё самае лепшае - толькі для Вас!</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen1_Line1_Text" translate="yes" xml:space="preserve">
           <source>Только самые лучшие треки!</source>
-          <target state="new">Только самые лучшие треки!</target>
+          <target state="final">Толькі самыя лепшыя трэкі!
+</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen1_Line2_Text" translate="yes" xml:space="preserve">
           <source>В полной версии ВКачай</source>
-          <target state="new">В полной версии ВКачай</target>
+          <target state="final">У поўнай версіі ВКачай</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen2_Line1_Text" translate="yes" xml:space="preserve">
           <source>Мировые чарты исполнителей и треков</source>
-          <target state="new">Мировые чарты исполнителей и треков</target>
+          <target state="final">Сусветныя чарты выканаўцаў і трэкаў</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen2_Line2_Text" translate="yes" xml:space="preserve">
           <source>Будьте в тренде!</source>
-          <target state="new">Будьте в тренде!</target>
+          <target state="final">Будзьце ў трэндзе!</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen3_Line1_Text" translate="yes" xml:space="preserve">
           <source>Персональные рекомендации</source>
-          <target state="new">Персональные рекомендации</target>
+          <target state="final">Персанальныя рэкамендацыі</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen3_Line2_Text" translate="yes" xml:space="preserve">
           <source>Слушайте то, что вам нравится!</source>
-          <target state="new">Слушайте то, что вам нравится!</target>
+          <target state="final">Слухайце тое, што вам падабаецца!</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen4_Line1_Text" translate="yes" xml:space="preserve">
           <source>Ни один документ не потеряется!</source>
-          <target state="new">Ни один документ не потеряется!</target>
+          <target state="final">Ніводны дакумент не згубіцца!</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen4_Line2_Text" translate="yes" xml:space="preserve">
           <source>Отправка и загрузка документов ВКонтакте</source>
-          <target state="new">Отправка и загрузка документов ВКонтакте</target>
+          <target state="final">Адпраўка і загрузка дакументаў УКантакце</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen5_Line1_Text" translate="yes" xml:space="preserve">
           <source>Все видеозаписи под рукой</source>
-          <target state="new">Все видеозаписи под рукой</target>
+          <target state="final">Усе відэазапісы пад рукой</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen5_Line2_Text" translate="yes" xml:space="preserve">
           <source>Смотрите и загружайте любимые видео!</source>
-          <target state="new">Смотрите и загружайте любимые видео!</target>
+          <target state="final">Глядзіце і загружайце любімыя відэа!</target>
         </trans-unit>
         <trans-unit id="RecommendationsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить рекомендации</source>
-          <target state="new">Не удалось загрузить рекомендации</target>
+          <target state="final">Не атрымалася загрузіць рэкамендацыі</target>
         </trans-unit>
         <trans-unit id="RecommendationsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Изучаем ваши музыкальные предпочтения...</source>
-          <target state="new">Изучаем ваши музыкальные предпочтения...</target>
+          <target state="final">Вывучаем вашы музычныя перавагі...</target>
         </trans-unit>
         <trans-unit id="RecommendationsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Мы не можем вам ничего порекомендовать</source>
-          <target state="new">Мы не можем вам ничего порекомендовать</target>
+          <target state="final">Мы не можам вам нічога парэкамендаваць</target>
         </trans-unit>
         <trans-unit id="RecommendedView_Title.Text" translate="yes" xml:space="preserve">
           <source>рекомендуем</source>
-          <target state="new">рекомендуем</target>
+          <target state="final">рэкамендуем</target>
         </trans-unit>
         <trans-unit id="SettingsView_Title.Text" translate="yes" xml:space="preserve">
           <source>настройки</source>
-          <target state="new">настройки</target>
+          <target state="final">налады</target>
         </trans-unit>
         <trans-unit id="TopArtistItem_ListenersCount.Text" translate="yes" xml:space="preserve">
           <source>слушателей</source>
-          <target state="new">слушателей</target>
+          <target state="final">слухачоў</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Например, "12 слушателей"</note>
         </trans-unit>
         <trans-unit id="TopArtistsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список лучших исполниетелей</source>
-          <target state="new">Не удалось загрузить список лучших исполниетелей</target>
+          <source>Не удалось загрузить список лучших исполнителей</source>
+          <target state="new">Не удалось загрузить список лучших исполнителей</target>
         </trans-unit>
         <trans-unit id="TopArtistsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Выбираем лучших исполнителей...</source>
-          <target state="new">Выбираем лучших исполнителей...</target>
+          <target state="final">Выбіраем лепшых выканаўцаў...</target>
         </trans-unit>
         <trans-unit id="TopArtistsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Похоже, нет ни одного лучшего исполнителя</source>
-          <target state="new">Похоже, нет ни одного лучшего исполнителя</target>
+          <target state="final">Падобна на тое, што няма ніводнага лепшага выканаўцы</target>
         </trans-unit>
         <trans-unit id="TopArtistsView_Title.Text" translate="yes" xml:space="preserve">
           <source>лучшие исполнители</source>
-          <target state="new">лучшие исполнители</target>
+          <target state="final">лепшыя выканаўцы</target>
         </trans-unit>
         <trans-unit id="TopTracksView_Title.Text" translate="yes" xml:space="preserve">
           <source>лучшие треки</source>
-          <target state="new">лучшие треки</target>
+          <target state="final">лепшыя трэкі</target>
         </trans-unit>
         <trans-unit id="TopTracksView_TrackPlaybacksCount.Text" translate="yes" xml:space="preserve">
           <source>воспроизведений</source>
-          <target state="new">воспроизведений</target>
+          <target state="final">прайграванняў</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Например, "15 воспроизведений"</note>
         </trans-unit>
         <trans-unit id="TopTracksView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список лучших треков</source>
-          <target state="new">Не удалось загрузить список лучших треков</target>
+          <target state="final">Не атрымалася загрузіць спіс лепшых трэкаў</target>
         </trans-unit>
         <trans-unit id="TopTracksView_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список лучших треков...</source>
-          <target state="new">Загружаем список лучших треков...</target>
+          <target state="final">Загружаем спіс лепшых трэкаў...</target>
         </trans-unit>
         <trans-unit id="TopTracksView_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Нет ни одного лучшего трека</source>
-          <target state="new">Нет ни одного лучшего трека</target>
+          <target state="final">Няма ніводнага лепшага трэка</target>
         </trans-unit>
         <trans-unit id="TrackInfoView_PlayButton.Content" translate="yes" xml:space="preserve">
           <source>воспроизвести</source>
-          <target state="new">воспроизвести</target>
+          <target state="final">прайграць</target>
         </trans-unit>
         <trans-unit id="TrackInfoView_Title.Text" translate="yes" xml:space="preserve">
           <source>подробнее</source>
-          <target state="new">подробнее</target>
+          <target state="final">падрабязней</target>
         </trans-unit>
         <trans-unit id="TrackLyricView_LyricsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить текст аудиозаписи</source>
-          <target state="new">Не удалось загрузить текст аудиозаписи</target>
+          <target state="final">Не атрымалася загрузіць тэкст аўдыязапісу</target>
         </trans-unit>
         <trans-unit id="TrackLyricView_LyricsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Выполняем поиск текста аудиозаписи...</source>
-          <target state="new">Выполняем поиск текста аудиозаписи...</target>
+          <target state="final">Выконваем пошук тэксту аўдыязапісу...</target>
         </trans-unit>
         <trans-unit id="TrackLyricView_LyricsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>У этой аудиозаписи нет текста</source>
-          <target state="new">У этой аудиозаписи нет текста</target>
+          <target state="final">У гэтага аўдыязапісу няма тэксту</target>
         </trans-unit>
         <trans-unit id="TransferView_CancelAllDownloadsButton.Label" translate="yes" xml:space="preserve">
           <source>отменить все загрузки</source>
-          <target state="new">отменить все загрузки</target>
+          <target state="final">адмяніць усе загрузкі</target>
         </trans-unit>
         <trans-unit id="TransferView_CancelFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>отменить</source>
-          <target state="new">отменить</target>
+          <target state="final">адмяніць</target>
         </trans-unit>
         <trans-unit id="TransferView_DownloadsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось получить список текущих загрузок</source>
-          <target state="new">Не удалось получить список текущих загрузок</target>
+          <target state="final">Не атрымалася атрымаць спіс бягучых загрузак</target>
         </trans-unit>
         <trans-unit id="TransferView_DownloadsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Получение списка текущих загрузок...</source>
-          <target state="new">Получение списка текущих загрузок...</target>
+          <target state="final">Атрыманне спісу бягучых загрузак...</target>
         </trans-unit>
         <trans-unit id="TransferView_DownloadsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Сейчас не выполняется никаких загрузок</source>
-          <target state="new">Сейчас не выполняется никаких загрузок</target>
+          <target state="final">Зараз не выконваецца ніякіх загрузак</target>
         </trans-unit>
         <trans-unit id="TransferView_HistoryLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось получить журнал загрузок</source>
-          <target state="new">Не удалось получить журнал загрузок</target>
+          <target state="final">Не атрымалася атрымаць журнал загрузак</target>
         </trans-unit>
         <trans-unit id="TransferView_HistoryLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Получение журнала загрузок...</source>
-          <target state="new">Получение журнала загрузок...</target>
+          <target state="final">Атрыманне журнала загрузак...</target>
         </trans-unit>
         <trans-unit id="TransferView_HistoryLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Журнал загрузок пока не поддерживается</source>
-          <target state="new">Журнал загрузок пока не поддерживается</target>
+          <target state="final">Журнал загрузак пакуль што не падтрымліваецца</target>
         </trans-unit>
         <trans-unit id="TransferView_PauseFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>пауза</source>
-          <target state="new">пауза</target>
+          <target state="final">паўза</target>
         </trans-unit>
         <trans-unit id="TransferView_PivotSection_Downloads.Header" translate="yes" xml:space="preserve">
           <source>загрузки</source>
-          <target state="new">загрузки</target>
+          <target state="final">загрузкі</target>
         </trans-unit>
         <trans-unit id="TransferView_PivotSection_History.Header" translate="yes" xml:space="preserve">
           <source>журнал</source>
-          <target state="new">журнал</target>
+          <target state="final">журнал</target>
         </trans-unit>
         <trans-unit id="TransferView_PivotSection_Uploads.Header" translate="yes" xml:space="preserve">
           <source>отправки</source>
-          <target state="new">отправки</target>
+          <target state="final">адпраўкі</target>
         </trans-unit>
         <trans-unit id="TransferView_ResumeFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>возобновить</source>
-          <target state="new">возобновить</target>
+          <target state="final">узнавіць</target>
         </trans-unit>
         <trans-unit id="TransferView_UploadsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось получить список текущих отправок</source>
-          <target state="new">Не удалось получить список текущих отправок</target>
+          <target state="final">Не атрымалася атрымаць спіс бягучых адправак</target>
         </trans-unit>
         <trans-unit id="TransferView_UploadsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Получение списка текущих отправок...</source>
-          <target state="new">Получение списка текущих отправок...</target>
+          <target state="final">Атрыманне спісу бягучых адправак...</target>
         </trans-unit>
         <trans-unit id="TransferView_UploadsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Сейчас не выполняется никаких отправок</source>
-          <target state="new">Сейчас не выполняется никаких отправок</target>
+          <target state="final">Зараз не выконваецца ніякіх адправак</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendListsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить списки друзей</source>
-          <target state="new">Не удалось загрузить списки друзей</target>
+          <target state="final">Не атрымалася загрузіць спісы сяброў</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendListsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем списки друзей...</source>
-          <target state="new">Загружаем списки друзей...</target>
+          <target state="final">Загружаем спісы сяброў...</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendListsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Списки друзей отсутствуют либо доступ к ним закрыт</source>
-          <target state="new">Списки друзей отсутствуют либо доступ к ним закрыт</target>
+          <target state="final">Спісы сяброў адсутнічаюць або доступ да іх закрыты</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список друзей</source>
-          <target state="new">Не удалось загрузить список друзей</target>
+          <target state="final">Не атрымалася загрузіць спіс сяброў</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем информацию друзьях...</source>
-          <target state="new">Загружаем информацию друзьях...</target>
+          <source>Загружаем информацию о друзьях...</source>
+          <target state="new">Загружаем информацию о друзьях...</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Друзья отсутствуют либо доступ к ним закрыт</source>
-          <target state="new">Друзья отсутствуют либо доступ к ним закрыт</target>
+          <target state="final">Сябры адсутнічаюць або доступ да іх закрыты</target>
         </trans-unit>
         <trans-unit id="UserCommView_GroupsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список сообществ</source>
-          <target state="new">Не удалось загрузить список сообществ</target>
+          <target state="final">Не атрымалася загрузіць спіс суполак</target>
         </trans-unit>
         <trans-unit id="UserCommView_GroupsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем информацию о сообществах...</source>
-          <target state="new">Загружаем информацию о сообществах...</target>
+          <target state="final">Загружаем інфармацыю аб суполках...</target>
         </trans-unit>
         <trans-unit id="UserCommView_GroupsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Сообщества отсутствуют либо доступ к ним закрыт</source>
-          <target state="new">Сообщества отсутствуют либо доступ к ним закрыт</target>
+          <target state="final">Суполкі адсутнічаюць або доступ да іх закрыты</target>
         </trans-unit>
         <trans-unit id="UserCommView_PivotSection_FriendLists.Header" translate="yes" xml:space="preserve">
           <source>списки</source>
-          <target state="new">списки</target>
+          <target state="final">спісы</target>
           <note from="MultilingualBuild" annotates="source" priority="2">списки друзей</note>
         </trans-unit>
         <trans-unit id="UserCommView_PivotSection_Friends.Header" translate="yes" xml:space="preserve">
           <source>друзья</source>
-          <target state="new">друзья</target>
+          <target state="final">сябры</target>
         </trans-unit>
         <trans-unit id="UserCommView_PivotSection_Groups.Header" translate="yes" xml:space="preserve">
           <source>сообщества</source>
-          <target state="new">сообщества</target>
+          <target state="final">супокі</target>
         </trans-unit>
         <trans-unit id="UserCommView_UserOnline.Text" translate="yes" xml:space="preserve">
           <source>Онлайн</source>
-          <target state="new">Онлайн</target>
+          <target state="final">Онлайн</target>
         </trans-unit>
         <trans-unit id="UserContentView_AlbumsGroup_Text" translate="yes" xml:space="preserve">
           <source>альбомы</source>
-          <target state="new">альбомы</target>
+          <target state="final">альбомы</target>
         </trans-unit>
         <trans-unit id="UserContentView_AudiosGroup_Text" translate="yes" xml:space="preserve">
           <source>аудиозаписи</source>
-          <target state="new">аудиозаписи</target>
+          <target state="final">аўдыязапісы</target>
         </trans-unit>
         <trans-unit id="UserContentView_AudiosLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список аудиозаписей</source>
-          <target state="new">Не удалось загрузить список аудиозаписей</target>
+          <target state="final">Не атрымалася загрузіць спіс аўдыязапісаў</target>
         </trans-unit>
         <trans-unit id="UserContentView_AudiosLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список аудиозаписей...</source>
-          <target state="new">Загружаем список аудиозаписей...</target>
+          <target state="final">Загружаем спіс аўдыязапісаў...</target>
         </trans-unit>
         <trans-unit id="UserContentView_AudiosLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Аудиозаписи отсутствуют либо доступ к ним закрыт</source>
-          <target state="new">Аудиозаписи отсутствуют либо доступ к ним закрыт</target>
+          <target state="final">Аўдыязапісы адсутнічаюць або доступ да іх закрыты</target>
         </trans-unit>
         <trans-unit id="UserContentView_DocsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список документов</source>
-          <target state="new">Не удалось загрузить список документов</target>
+          <target state="final">Не атрымалася загрузіць спіс дакументаў</target>
         </trans-unit>
         <trans-unit id="UserContentView_DocsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список документов...</source>
-          <target state="new">Загружаем список документов...</target>
+          <target state="final">Загружаем спіс дакументаў...</target>
         </trans-unit>
         <trans-unit id="UserContentView_DocsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Документы отсутствуют либо доступ к ним закрыт</source>
-          <target state="new">Документы отсутствуют либо доступ к ним закрыт</target>
+          <target state="final">Дакументы адсутнічаюць або доступ да іх закрыты</target>
         </trans-unit>
         <trans-unit id="UserContentView_PivotSection_Docs.Header" translate="yes" xml:space="preserve">
           <source>документы</source>
-          <target state="new">документы</target>
+          <target state="final">дакументы</target>
         </trans-unit>
         <trans-unit id="UserContentView_PivotSection_Music.Header" translate="yes" xml:space="preserve">
           <source>музыка</source>
-          <target state="new">музыка</target>
+          <target state="final">музыка</target>
         </trans-unit>
         <trans-unit id="UserContentView_PivotSection_Videos.Header" translate="yes" xml:space="preserve">
           <source>видео</source>
-          <target state="new">видео</target>
+          <target state="final">відэа</target>
         </trans-unit>
         <trans-unit id="UserContentView_VideosGroup_Text" translate="yes" xml:space="preserve">
           <source>видеозаписи</source>
-          <target state="new">видеозаписи</target>
+          <target state="final">відэазапісы</target>
         </trans-unit>
         <trans-unit id="UserContentView_VideosLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список видеозаписей</source>
-          <target state="new">Не удалось загрузить список видеозаписей</target>
+          <target state="final">Не атрымалася загрузіць спіс відэазапісаў</target>
         </trans-unit>
         <trans-unit id="UserContentView_VideosLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список видеозаписей...</source>
-          <target state="new">Загружаем список видеозаписей...</target>
+          <target state="final">Загружаем спіс відэазапісаў...</target>
         </trans-unit>
         <trans-unit id="UserContentView_VideosLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Видеозаписи отсутствуют либо доступ к ним закрыт</source>
-          <target state="new">Видеозаписи отсутствуют либо доступ к ним закрыт</target>
+          <target state="final">Відэазапісы адсутнічаюць або доступ да іх закрыты</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_StoresOn_Coub_Text" translate="yes" xml:space="preserve">
           <source>Это видео хранится на серверах Coub</source>
-          <target state="new">Это видео хранится на серверах Coub</target>
+          <target state="final">Гэта відэа захоўваецца на серверах Coub</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_StoresOn_Unsupported_Text" translate="yes" xml:space="preserve">
           <source>Это видео хранится на неподдерживаемом сервисе</source>
-          <target state="new">Это видео хранится на неподдерживаемом сервисе</target>
+          <target state="final">Гэта відэа захоўваецца на непадтрымліваемым сэрвісе</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_StoresOn_Vimeo_Text" translate="yes" xml:space="preserve">
           <source>Это видео хранится на серверах Vimeo</source>
-          <target state="new">Это видео хранится на серверах Vimeo</target>
+          <target state="final">Гэта відэа захоўваецца на серверах Vimeo</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_StoresOn_VK_Text" translate="yes" xml:space="preserve">
           <source>Это видео хранится на серверах ВКонтакте</source>
-          <target state="new">Это видео хранится на серверах ВКонтакте</target>
+          <target state="final">Гэта відэа захоўваецца на серверах ВКонтакте</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_StoresOn_YouTube_Text" translate="yes" xml:space="preserve">
           <source>Это видео хранится на серверах YouTube</source>
-          <target state="new">Это видео хранится на серверах YouTube</target>
+          <target state="final">Гэта відэа захоўваецца на серверах YouTube</target>
         </trans-unit>
         <trans-unit id="Loader_ReloadButton_Text" translate="yes" xml:space="preserve">
           <source>повторить</source>
-          <target state="new">повторить</target>
+          <target state="final">паўтарыць</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_LinksLoader.ButtonText" translate="yes" xml:space="preserve">
           <source>получить ссылки</source>
-          <target state="new">получить ссылки</target>
+          <target state="final">атрымаць спасылкі</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_LinksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Нажмите эту кнопку, чтобы получить ссылки на видео</source>
-          <target state="new">Нажмите эту кнопку, чтобы получить ссылки на видео</target>
+          <target state="final">Націсніце гэтую кнопку, каб атрымаць спасылкі на відэа</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_LinksLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Ищем ссылки на видео...</source>
-          <target state="new">Ищем ссылки на видео...</target>
+          <target state="final">Шукаем спасылкі на відэа...</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_LinksLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Невозможно получить ссылки на это видео</source>
-          <target state="new">Невозможно получить ссылки на это видео</target>
+          <target state="final">Немагчыма атрымаць спасылкі на гэта відэа</target>
         </trans-unit>
         <trans-unit id="VideoInfoView_SelectQuality.Text" translate="yes" xml:space="preserve">
           <source>Выберите качество видео</source>
-          <target state="new">Выберите качество видео</target>
+          <target state="final">Выберыце якасць відэа</target>
         </trans-unit>
         <trans-unit id="Message_VideoPlayer_Failed_Text" translate="yes" xml:space="preserve">
           <source>Невозможно воспроизвести эту видеозапись. Отсутствует соединение либо данный формат видеозаписи не поддерживается.</source>
-          <target state="new">Невозможно воспроизвести эту видеозапись. Отсутствует соединение либо данный формат видеозаписи не поддерживается.</target>
+          <target state="final">Немагчыма прайграць гэты відэазапіс. Адсутнічае злучэнне або дадзены фармат відэазапісаў не падтрымліваецца.</target>
         </trans-unit>
         <trans-unit id="Message_VideoPlayer_Failed_Title" translate="yes" xml:space="preserve">
           <source>Невозможно воспроизвести</source>
-          <target state="new">Невозможно воспроизвести</target>
+          <target state="final">Немагчыма прайграць</target>
         </trans-unit>
         <trans-unit id="AboutView_Groove_Text.Text" translate="yes" xml:space="preserve">
           <source>Love your music - set it free</source>
-          <target state="new">Love your music - set it free</target>
+          <target state="final">Love your music - set it free</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="AboutView_Groove_Title.Text" translate="yes" xml:space="preserve">
           <source>Groove Music</source>
-          <target state="new">Groove Music</target>
+          <target state="final">Groove Music</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="AboutView_InTouch_Text.Text" translate="yes" xml:space="preserve">
           <source>C# wrapper for VK API</source>
-          <target state="new">C# wrapper for VK API</target>
+          <target state="final">C# wrapper for VK API</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="AboutView_InTouch_Title.Text" translate="yes" xml:space="preserve">
           <source>InTouch</source>
-          <target state="new">InTouch</target>
+          <target state="final">InTouch</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="AboutView_LastFm_Title.Text" translate="yes" xml:space="preserve">
           <source>Last.fm</source>
-          <target state="new">Last.fm</target>
+          <target state="final">Last.fm</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="Message_VideoInfo_GetLinksFailed_Text" translate="yes" xml:space="preserve">
           <source>Не удалось получить ссылки для этой видеозаписи.
 Отсутствует соединение либо доступ к видеозаписи закрыт.</source>
-          <target state="new">Не удалось получить ссылки для этой видеозаписи.
-Отсутствует соединение либо доступ к видеозаписи закрыт.</target>
+          <target state="final">Не атрымалася атрымаць спасылкі для гэтага відэазапісу.
+Адсутнічае злучэнне або доступ да відэазапісу зачынены.</target>
         </trans-unit>
         <trans-unit id="Message_VideoInfo_GetLinksFailed_Title" translate="yes" xml:space="preserve">
           <source>Не удалось получить ссылки</source>
-          <target state="new">Не удалось получить ссылки</target>
+          <target state="final">Не атрымалася атрымаць спасылкі</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Player_Text" translate="yes" xml:space="preserve">
           <source>проигрыватель</source>
-          <target state="new">проигрыватель</target>
+          <target state="final">прайгравальнік</target>
         </trans-unit>
         <trans-unit id="AppBarButton_TransferManager_Text" translate="yes" xml:space="preserve">
           <source>менеджер загрузок</source>
-          <target state="new">менеджер загрузок</target>
+          <target state="final">менеджэр загрузак</target>
         </trans-unit>
         <trans-unit id="VideoAlbumVideosLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить содержимое альбома</source>
-          <target state="new">Не удалось загрузить содержимое альбома</target>
+          <target state="final">Не атрымалася загрузіць змест альбома</target>
         </trans-unit>
         <trans-unit id="VideoAlbumVideosLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список видеозаписей альбома...</source>
-          <target state="new">Загружаем список видеозаписей альбома...</target>
+          <target state="final">Загружаем спіс відэазапісаў альбома...</target>
         </trans-unit>
         <trans-unit id="VideoAlbumVideosLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В этом альбоме нет видеозаписей</source>
-          <target state="new">В этом альбоме нет видеозаписей</target>
+          <target state="final">У гэтым альбоме няма відэазапісаў</target>
         </trans-unit>
         <trans-unit id="SelectSearchTypeView_Title.Text" translate="yes" xml:space="preserve">
           <source>Что вы хотите найти?</source>
-          <target state="new">Что вы хотите найти?</target>
+          <target state="final">Што Вы хочаце знайсці?</target>
         </trans-unit>
         <trans-unit id="SearchView_InCollection_Title.Header" translate="yes" xml:space="preserve">
           <source>в коллекции</source>
-          <target state="new">в коллекции</target>
+          <target state="final">у калекцыі</target>
         </trans-unit>
         <trans-unit id="SearchView_Everywhere_Title.Header" translate="yes" xml:space="preserve">
           <source>везде</source>
-          <target state="new">везде</target>
+          <target state="final">паўсюль</target>
         </trans-unit>
         <trans-unit id="SearchView_SearchBox.PlaceholderText" translate="yes" xml:space="preserve">
           <source>введите запрос и нажмите Enter</source>
-          <target state="new">введите запрос и нажмите Enter</target>
+          <target state="final">калі ласка, увядзіце запыт і націсніце Enter</target>
         </trans-unit>
         <trans-unit id="SearchView_Loader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось выполнить поиск</source>
-          <target state="new">Не удалось выполнить поиск</target>
+          <target state="final">Не атрымалася выканаць пошук</target>
         </trans-unit>
         <trans-unit id="SearchView_Loader.LoadingText" translate="yes" xml:space="preserve">
           <source>Выполняется поиск...</source>
-          <target state="new">Выполняется поиск...</target>
+          <target state="final">Выконваецца пошук...</target>
         </trans-unit>
         <trans-unit id="SearchView_Loader.NoDataText" translate="yes" xml:space="preserve">
           <source>По вашему запросу ничего не найдено</source>
-          <target state="new">По вашему запросу ничего не найдено</target>
+          <target state="final">Па вашым запыце нічога не знойдзена</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Filter_Text" translate="yes" xml:space="preserve">
           <source>фильтр</source>
-          <target state="new">фильтр</target>
+          <target state="final">фільтр</target>
         </trans-unit>
         <trans-unit id="AudioSearchView_PerformerOnlySwitch.Header" translate="yes" xml:space="preserve">
           <source>Искать только по исполнителю</source>
-          <target state="new">Искать только по исполнителю</target>
+          <target state="final">Шукаць толькі па выканаўцу</target>
         </trans-unit>
         <trans-unit id="AudioSearchView_LyricsOnlySwitch.Header" translate="yes" xml:space="preserve">
           <source>Искать только с текстом</source>
-          <target state="new">Искать только с текстом</target>
+          <target state="final">Шукаць толькі з тэкстам</target>
         </trans-unit>
         <trans-unit id="BetaBlockerView_Content.Text" translate="yes" xml:space="preserve">
           <source>Спасибо за участие!
 Загрузите ВКачай 2 сейчас!</source>
-          <target state="new">Спасибо за участие!
-Загрузите ВКачай 2 сейчас!</target>
+          <target state="final">Дзякуй за ўдзел!
+Загрузіце ВКачай 2 зараз!</target>
         </trans-unit>
         <trans-unit id="BetaBlockerView_DownloadButton.Content" translate="yes" xml:space="preserve">
           <source>перейти к загрузке</source>
-          <target state="new">перейти к загрузке</target>
+          <target state="final">перайсці да загрузкі</target>
         </trans-unit>
         <trans-unit id="BetaBlockerView_Title.Text" translate="yes" xml:space="preserve">
           <source>Бета-тест завершен</source>
-          <target state="new">Бета-тест завершен</target>
+          <target state="final">Бэта-тэст завершаны</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_FilterFlyout_Title.Text" translate="yes" xml:space="preserve">
           <source>Фильтр видео</source>
-          <target state="new">Фильтр видео</target>
+          <target state="final">Фільтр відэа</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_Filters_All_Text" translate="yes" xml:space="preserve">
           <source>все</source>
-          <target state="new">все</target>
+          <target state="final">усе</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_OnlyHD_Switch.Header" translate="yes" xml:space="preserve">
           <source>Только HD</source>
-          <target state="new">Только HD</target>
+          <target state="final">Толькі HD</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_OwnVideos_Title.Header" translate="yes" xml:space="preserve">
           <source>загруженные</source>
-          <target state="new">загруженные</target>
+          <target state="final">загружаныя</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_SafeSearch_Switch.Header" translate="yes" xml:space="preserve">
           <source>Безопасный поиск</source>
-          <target state="new">Безопасный поиск</target>
+          <target state="final">Бяспечны пошук</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoDurations_ComboBox.Header" translate="yes" xml:space="preserve">
           <source>Длительность видео</source>
-          <target state="new">Длительность видео</target>
+          <target state="final">Працягласць відэа</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoDurations_Long_Text" translate="yes" xml:space="preserve">
           <source>длинные</source>
-          <target state="new">длинные</target>
+          <target state="final">доўгія</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoDurations_Short_Text" translate="yes" xml:space="preserve">
           <source>короткие</source>
-          <target state="new">короткие</target>
+          <target state="final">кароткія</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoSortMethods_ByDate_Text" translate="yes" xml:space="preserve">
           <source>по дате добавления</source>
-          <target state="new">по дате добавления</target>
+          <target state="final">па даце дадання</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: by date</note>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoSortMethods_ByDuration_Text" translate="yes" xml:space="preserve">
           <source>по длительности</source>
-          <target state="new">по длительности</target>
+          <target state="final">па працягласці</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoSortMethods_ByRelevance_Text" translate="yes" xml:space="preserve">
           <source>по популярности</source>
-          <target state="new">по популярности</target>
+          <target state="final">па папулярнасці</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: by popularity</note>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoSortMethods_ComboBox.Header" translate="yes" xml:space="preserve">
           <source>Метод сортировки</source>
-          <target state="new">Метод сортировки</target>
+          <target state="final">Метад сартавання</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoTypes_ComboBox.Header" translate="yes" xml:space="preserve">
           <source>Тип видео</source>
-          <target state="new">Тип видео</target>
+          <target state="final">Тып відэа</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoTypes_MP4_Text" translate="yes" xml:space="preserve">
           <source>MP4</source>
-          <target state="new">MP4</target>
+          <target state="final">MP4</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoTypes_Vimeo_Text" translate="yes" xml:space="preserve">
           <source>Vimeo</source>
-          <target state="new">Vimeo</target>
+          <target state="final">Vimeo</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoTypes_YouTube_Text" translate="yes" xml:space="preserve">
           <source>YouTube</source>
-          <target state="new">YouTube</target>
+          <target state="final">YouTube</target>
         </trans-unit>
         <trans-unit id="CaptchaBox.PrimaryButtonText" translate="yes" xml:space="preserve">
           <source>ок</source>
-          <target state="new">ок</target>
+          <target state="final">ок</target>
         </trans-unit>
         <trans-unit id="CaptchaBox.SecondaryButtonText" translate="yes" xml:space="preserve">
           <source>отмена</source>
-          <target state="new">отмена</target>
+          <target state="final">адмена</target>
         </trans-unit>
         <trans-unit id="CaptchaBox.Title" translate="yes" xml:space="preserve">
           <source>Требуется проверка</source>
-          <target state="new">Требуется проверка</target>
+          <target state="final">Патрабуецца праверка</target>
         </trans-unit>
         <trans-unit id="CaptchaBox_Content.Text" translate="yes" xml:space="preserve">
           <source>Введите символы, которые вы видите на картинке</source>
-          <target state="new">Введите символы, которые вы видите на картинке</target>
+          <target state="final">Калі ласка, увядзіце сімвалы, якія вы бачыце на малюнку</target>
         </trans-unit>
         <trans-unit id="AppLoader_PleaseWait" translate="yes" xml:space="preserve">
           <source>Пожалуйста, подождите...</source>
-          <target state="new">Пожалуйста, подождите...</target>
+          <target state="final">Калі ласка, пачакайце...</target>
         </trans-unit>
         <trans-unit id="ServiceName_LastFm_Text" translate="yes" xml:space="preserve">
           <source>Last.fm</source>
-          <target state="new">Last.fm</target>
+          <target state="final">Last.fm</target>
         </trans-unit>
         <trans-unit id="ServiceName_VK_Text" translate="yes" xml:space="preserve">
           <source>ВКонтакте</source>
-          <target state="new">ВКонтакте</target>
+          <target state="final">Укантакце</target>
         </trans-unit>
         <trans-unit id="ServiceAuthBlock_SignedInAs.Text" translate="yes" xml:space="preserve">
           <source>Вы вошли как</source>
-          <target state="new">Вы вошли как</target>
+          <target state="final">Вы ўвайшлі як</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Например: "Вы вошли как Иван Иванов"</note>
         </trans-unit>
         <trans-unit id="ServiceAuthBlock_SignInButton.Content" translate="yes" xml:space="preserve">
           <source>войти</source>
-          <target state="new">войти</target>
+          <target state="final">увайсці</target>
         </trans-unit>
         <trans-unit id="ServiceAuthBlock_SignOutButton.Content" translate="yes" xml:space="preserve">
           <source>выйти</source>
-          <target state="new">выйти</target>
+          <target state="final">выйсці</target>
         </trans-unit>
         <trans-unit id="SettingsView_ServicesAuthorizations_Title.Text" translate="yes" xml:space="preserve">
           <source>Авторизация в сервисах</source>
-          <target state="new">Авторизация в сервисах</target>
+          <target state="final">Аўтарызацыя ў сэрвісах</target>
         </trans-unit>
         <trans-unit id="PackagingFilesView_Title.Text" translate="yes" xml:space="preserve">
           <source>обработка</source>
-          <target state="new">обработка</target>
+          <target state="final">апрацоўка</target>
         </trans-unit>
         <trans-unit id="PackagingFilesView_Processing.Text" translate="yes" xml:space="preserve">
           <source>Выполняется обработка загруженных файлов...
 Пожалуйста, подождите...</source>
-          <target state="new">Выполняется обработка загруженных файлов...
-Пожалуйста, подождите...</target>
+          <target state="final">Выконваецца апрацоўка загружаных файлаў...
+Калі ласка, пачакайце...</target>
         </trans-unit>
         <trans-unit id="PromoView_LetsGoButton.Content" translate="yes" xml:space="preserve">
           <source>начать</source>
-          <target state="new">начать</target>
+          <target state="final">пачаць</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen0_Line1_Text" translate="yes" xml:space="preserve">
           <source>Новые функции ждут вас!</source>
-          <target state="new">Новые функции ждут вас!</target>
+          <target state="final">Новыя функцыі чакаюць вас!</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen0_Line2_Text" translate="yes" xml:space="preserve">
           <source>Готовы? Тогда начнем!</source>
-          <target state="new">Готовы? Тогда начнем!</target>
+          <target state="final">Гатовыя? Тады пачнем!</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen1_Line1_Text" translate="yes" xml:space="preserve">
           <source>Рады видеть вас снова!</source>
-          <target state="new">Рады видеть вас снова!</target>
+          <target state="final">Рады бачыць вас зноў!</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen1_Line2_Text" translate="yes" xml:space="preserve">
           <source>ВКачай обновился, о всех новинках читайте далее</source>
-          <target state="new">ВКачай обновился, о всех новинках читайте далее</target>
+          <target state="final">ВКачай абнавіўся, аб усіх навінках чытайце далей</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen2_Line1_Text" translate="yes" xml:space="preserve">
           <source>Кэширование треков</source>
-          <target state="new">Кэширование треков</target>
+          <target state="final">Кэшаванне трэкаў</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen2_Line2_Text" translate="yes" xml:space="preserve">
           <source>Доступен просмотр кэшированных треков!</source>
-          <target state="new">Доступен просмотр кэшированных треков!</target>
+          <target state="final">Даступны прагляд кэшаваных трэкаў!</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen3_Line1_Text" translate="yes" xml:space="preserve">
           <source>Мировые чарты</source>
-          <target state="new">Мировые чарты</target>
+          <target state="final">Сусветныя чарты</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen3_Line2_Text" translate="yes" xml:space="preserve">
           <source>Проигрывание треков избранных исполнителей и чартов</source>
-          <target state="new">Проигрывание треков избранных исполнителей и чартов</target>
+          <target state="final">Прайграванне трэкаў абраных выканаўцаў і чартаў</target>
         </trans-unit>
         <trans-unit id="PromoView_NextButton.Content" translate="yes" xml:space="preserve">
           <source>далее</source>
-          <target state="new">далее</target>
+          <target state="final">далей</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_DetailsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить информацию об этом альбоме</source>
-          <target state="new">Не удалось загрузить информацию об этом альбоме</target>
+          <target state="final">Не атрымалася загрузіць інфармацыю аб гэтым альбоме</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_DetailsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Собираем информацию об альбоме...</source>
-          <target state="new">Собираем информацию об альбоме...</target>
+          <target state="final">Збіраем інфармацыю пра альбом...</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_DetailsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>К сожалению, мы не знаем никаких подробностей об этом альбоме</source>
-          <target state="new">К сожалению, мы не знаем никаких подробностей об этом альбоме</target>
+          <target state="final">На жаль, мы не ведаем ніякіх падрабязнасцяў аб гэтым альбоме</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
           <source>подробнее</source>
-          <target state="new">подробнее</target>
+          <target state="final">подрабязней</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_PivotSection_Tracks.Header" translate="yes" xml:space="preserve">
           <source>композиции</source>
-          <target state="new">композиции</target>
+          <target state="final">кампазіцыі</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список треков этого альбома</source>
-          <target state="new">Не удалось загрузить список треков этого альбома</target>
+          <target state="final">Не атрымалася загрузіць спіс трэкаў гэтага альбома</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Изучаем список композиций этого альбома...</source>
-          <target state="new">Изучаем список композиций этого альбома...</target>
+          <target state="final">Вывучаем спіс кампазіцый гэтага альбома...</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В этом альбоме нет ни одной композиции</source>
-          <target state="new">В этом альбоме нет ни одной композиции</target>
+          <target state="final">У гэтым альбоме няма ніводнай кампазіцыі</target>
         </trans-unit>
         <trans-unit id="NewsMediaView_Title.Text" translate="yes" xml:space="preserve">
           <source>новости</source>
-          <target state="new">новости</target>
+          <target state="final">навіны</target>
         </trans-unit>
         <trans-unit id="NewsMediaView_Loader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список новостей</source>
-          <target state="new">Не удалось загрузить список новостей</target>
+          <target state="final">Не атрымалася загрузіць спіс навін</target>
         </trans-unit>
         <trans-unit id="NewsMediaView_Loader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список последних новостей...</source>
-          <target state="new">Загружаем список последних новостей...</target>
+          <target state="final">Загружаем спіс апошніх навін...</target>
         </trans-unit>
         <trans-unit id="NewsMediaView_Loader.NoDataText" translate="yes" xml:space="preserve">
           <source>В последних новостях не найдено ни одной аудиозаписи</source>
-          <target state="new">В последних новостях не найдено ни одной аудиозаписи</target>
+          <target state="final">У апошніх навінах не знойдзена ніводнага аўдыязапісу</target>
         </trans-unit>
         <trans-unit id="MainView_CachedItem.Content" translate="yes" xml:space="preserve">
           <source>кэшированные</source>
-          <target state="new">кэшированные</target>
+          <target state="final">кэшаваныя</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Кэшированные треки</note>
         </trans-unit>
         <trans-unit id="AppBarButton_DeleteAll_Text" translate="yes" xml:space="preserve">
           <source>удалить все</source>
-          <target state="new">удалить все</target>
+          <target state="final">выдаліць усе</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список кэшированных аудиозаписей</source>
-          <target state="new">Не удалось загрузить список кэшированных аудиозаписей</target>
+          <target state="final">Не атрымалася загрузіць спіс кэшаваных аўдыёзапісаў</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем кэшированные аудиозаписи...</source>
-          <target state="new">Загружаем кэшированные аудиозаписи...</target>
+          <target state="final">Загружаем кэшаваныя аўдыёзапісы...</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Кэшированые аудиозаписи отсутствуют</source>
-          <target state="new">Кэшированые аудиозаписи отсутствуют</target>
+          <source>Кэшированные аудиозаписи отсутствуют</source>
+          <target state="new">Кэшированные аудиозаписи отсутствуют</target>
         </trans-unit>
         <trans-unit id="CachedView_Title.Text" translate="yes" xml:space="preserve">
           <source>кэшированные</source>
-          <target state="new">кэшированные</target>
+          <target state="final">кэшаваныя</target>
         </trans-unit>
         <trans-unit id="Message_ClearCacheError_Text" translate="yes" xml:space="preserve">
           <source>При очистке кэша аудиозаписей произошла ошибка. Повторите попытку позднее.</source>
-          <target state="new">При очистке кэша аудиозаписей произошла ошибка. Повторите попытку позднее.</target>
+          <target state="final">Пры выдаленни кэша аўдыёзапісаў адбылася памылка. Калі ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_ClearCacheError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось очистить кэш</source>
-          <target state="new">Не удалось очистить кэш</target>
+          <target state="final">Не ўдалося выдаліць кэш</target>
         </trans-unit>
         <trans-unit id="LoginView_LoginField.PlaceholderText" translate="yes" xml:space="preserve">
           <source>имя пользователя или email</source>
-          <target state="new">имя пользователя или email</target>
+          <target state="final">імя карыстальніка або email</target>
         </trans-unit>
         <trans-unit id="LoginView_PasswordField.PlaceholderText" translate="yes" xml:space="preserve">
           <source>пароль</source>
-          <target state="new">пароль</target>
+          <target state="final">пароль</target>
         </trans-unit>
         <trans-unit id="Message_Login_InvalidAccount_Text" translate="yes" xml:space="preserve">
           <source>Неверное имя пользователя или пароль.</source>
-          <target state="new">Неверное имя пользователя или пароль.</target>
+          <target state="final">Няправільнае імя карыстальніка або пароль.</target>
         </trans-unit>
         <trans-unit id="Message_Login_LfConnectionError_Text" translate="yes" xml:space="preserve">
           <source>Не удалось подключиться к Last.fm. Проверьте доступ к интернету и повторите попытку.</source>
-          <target state="new">Не удалось подключиться к Last.fm. Проверьте доступ к интернету и повторите попытку.</target>
+          <target state="final">Не атрымалася далучацца да Last.fm. Праверце доступ да інтэрнэту і паўтарыце спробу.</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen4_Line1_Text" translate="yes" xml:space="preserve">
           <source>Скробблинг Last.fm</source>
-          <target state="new">Скробблинг Last.fm</target>
+          <target state="final">Скробблінг Last.fm</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen4_Line2_Text" translate="yes" xml:space="preserve">
           <source>Всегда актуальный профиль Last.fm!</source>
-          <target state="new">Всегда актуальный профиль Last.fm!</target>
+          <target state="final">Заўсёды актуальны профіль Last.fm!</target>
         </trans-unit>
         <trans-unit id="FileSize_Bytes_Mask_Text" translate="yes" xml:space="preserve">
           <source>{0} байт</source>
-          <target state="new">{0} байт</target>
+          <target state="final">{0} байт</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Байты. Например, "256 байт"
 Eng: bytes</note>
         </trans-unit>
         <trans-unit id="FileSize_EB_Mask_Text" translate="yes" xml:space="preserve">
           <source>{0} ЭБ</source>
-          <target state="new">{0} ЭБ</target>
+          <target state="final">{0} ЭБ</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Эксабайты. Например, "145 ЭБ"
 Eng: EB</note>
         </trans-unit>
         <trans-unit id="FileSize_GB_Mask_Text" translate="yes" xml:space="preserve">
           <source>{0} ГБ</source>
-          <target state="new">{0} ГБ</target>
+          <target state="final">{0} ГБ</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Гигабайты. Например, "12 ГБ"
 Eng: GB</note>
         </trans-unit>
         <trans-unit id="FileSize_KB_Mask_Text" translate="yes" xml:space="preserve">
           <source>{0} КБ</source>
-          <target state="new">{0} КБ</target>
+          <target state="final">{0} КБ</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Килобайты. Например, "1023 КБ"
 Eng: KB</note>
         </trans-unit>
         <trans-unit id="FileSize_MB_Mask_Text" translate="yes" xml:space="preserve">
           <source>{0} МБ</source>
-          <target state="new">{0} МБ</target>
+          <target state="final">{0} МБ</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Мегабайты. Например, "541 МБ"
 Eng: MB</note>
         </trans-unit>
         <trans-unit id="FileSize_PB_Mask_Text" translate="yes" xml:space="preserve">
           <source>{0} ПБ</source>
-          <target state="new">{0} ПБ</target>
+          <target state="final">{0} ПБ</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Петабайты. Например, "4 ПБ"
 Eng: PB</note>
         </trans-unit>
         <trans-unit id="FileSize_TB_Mask_Text" translate="yes" xml:space="preserve">
           <source>{0} ТБ</source>
-          <target state="new">{0} ТБ</target>
+          <target state="final">{0} ТБ</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Терабайты. Например, "968 ТБ"
 Eng: TB</note>
         </trans-unit>
         <trans-unit id="TransferStatus_Canceled_Text" translate="yes" xml:space="preserve">
           <source>Отменено</source>
-          <target state="new">Отменено</target>
+          <target state="final">Адменена</target>
         </trans-unit>
         <trans-unit id="TransferStatus_Completed_Text" translate="yes" xml:space="preserve">
           <source>Завершено</source>
-          <target state="new">Завершено</target>
+          <target state="final">Завершана</target>
         </trans-unit>
         <trans-unit id="TransferStatus_Error_Text" translate="yes" xml:space="preserve">
           <source>Ошибка</source>
-          <target state="new">Ошибка</target>
+          <target state="final">Памылка</target>
         </trans-unit>
         <trans-unit id="TransferStatus_Idle_Text" translate="yes" xml:space="preserve">
           <source>Ожидание...</source>
-          <target state="new">Ожидание...</target>
+          <target state="final">Чаканне...</target>
         </trans-unit>
         <trans-unit id="TransferStatus_PausedByApplication_Text" translate="yes" xml:space="preserve">
           <source>Приостановлено</source>
-          <target state="new">Приостановлено</target>
+          <target state="final">Прыпынена</target>
         </trans-unit>
         <trans-unit id="TransferStatus_PausedCostedNetwork_Text" translate="yes" xml:space="preserve">
           <source>Платная сеть</source>
-          <target state="new">Платная сеть</target>
+          <target state="final">Платная сетка</target>
         </trans-unit>
         <trans-unit id="TransferStatus_PausedNoNetwork_Text" translate="yes" xml:space="preserve">
           <source>Соединение отсутствует</source>
-          <target state="new">Соединение отсутствует</target>
+          <target state="final">Злучэнне адсутнічае</target>
         </trans-unit>
         <trans-unit id="TransferStatus_Running_Text" translate="yes" xml:space="preserve">
           <source>Выполняется...</source>
-          <target state="new">Выполняется...</target>
+          <target state="final">Выконваецца...</target>
         </trans-unit>
         <trans-unit id="AppBarButton_UploadFile.Label" translate="yes" xml:space="preserve">
           <source>отправить файл</source>
-          <target state="new">отправить файл</target>
+          <target state="final">адправіць файл</target>
         </trans-unit>
         <trans-unit id="AppLoader_CancelAllUploads" translate="yes" xml:space="preserve">
           <source>Отмена всех отправок...</source>
-          <target state="new">Отмена всех отправок...</target>
+          <target state="final">Адмена ўсіх адправак...</target>
         </trans-unit>
         <trans-unit id="FileSize_SizeText.Text" translate="yes" xml:space="preserve">
           <source>Размер:</source>
-          <target state="new">Размер:</target>
+          <target state="final">Памер:</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Размер файла.</note>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ConnectionError_Text" translate="yes" xml:space="preserve">
           <source>Ошибка соединения. Проверьте подключение к сети. При следующем запуске мы повторим попытку завершить отправку {0}.</source>
-          <target state="new">Ошибка соединения. Проверьте подключение к сети. При следующем запуске мы повторим попытку завершить отправку {0}.</target>
+          <target state="final">Памылка злучэння. Калі ласка, праверце падлучэнне да сеткі. Пры наступным запуску мы паўторым спробу завяршыць адпраўку {0}.</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_Error_Title" translate="yes" xml:space="preserve">
           <source>Не удалось завершить отправку</source>
-          <target state="new">Не удалось завершить отправку</target>
+          <target state="final">Не атрымалася  завяршыць адпраўку</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ServerError_105_Text" translate="yes" xml:space="preserve">
           <source>Невозможно сохранить файл.</source>
-          <target state="new">Невозможно сохранить файл.</target>
+          <target state="final">Немагчыма захаваць файл.</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ServerError_123_Text" translate="yes" xml:space="preserve">
           <source>Недопустимый формат аудиозаписи.</source>
-          <target state="new">Недопустимый формат аудиозаписи.</target>
+          <target state="final">Недапушчальны фармат аўдыязапісу.</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ServerError_204_Text" translate="yes" xml:space="preserve">
           <source>Нет доступа.</source>
-          <target state="new">Нет доступа.</target>
+          <target state="final">Няма доступу.</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ServerError_214_Text" translate="yes" xml:space="preserve">
           <source>Нет прав на добавление поста.</source>
-          <target state="new">Нет прав на добавление поста.</target>
+          <target state="final">Няма праваў на даданне посту.</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ServerError_270_Text" translate="yes" xml:space="preserve">
           <source>Аудиозапись была изъята по запросу правообладателя и не может быть загружена.</source>
-          <target state="new">Аудиозапись была изъята по запросу правообладателя и не может быть загружена.</target>
+          <target state="final">Аўдыязапіс быў канфіскаваны па запыце праваўладальніка і не можа быць загружаны.</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ServerError_301_Text" translate="yes" xml:space="preserve">
           <source>Недопустимое имя файла.</source>
-          <target state="new">Недопустимое имя файла.</target>
+          <target state="final">Недапушчальнае імя файла.</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ServerError_302_Text" translate="yes" xml:space="preserve">
           <source>Недопустимый размер файла.</source>
-          <target state="new">Недопустимый размер файла.</target>
+          <target state="final">Недапушчальны памер файла.</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ServerError_Text" translate="yes" xml:space="preserve">
           <source>Сервер вернул ошибку, и мы не можем завершить отправку {0}.
 Код: {1} - {2}</source>
-          <target state="new">Сервер вернул ошибку, и мы не можем завершить отправку {0}.
+          <target state="final">Сервер вярнуў памылку, і мы не можам спыніць адпраўку {0}.
 Код: {1} - {2}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Например, "Код: 404 - не найдено".</note>
         </trans-unit>
         <trans-unit id="Message_PostUploads_ServerError_Unknown_Text" translate="yes" xml:space="preserve">
           <source>Неизвестная ошибка.</source>
-          <target state="new">Неизвестная ошибка.</target>
+          <target state="final">Невядомая памылка.</target>
         </trans-unit>
         <trans-unit id="Message_PostUploads_UnknownAppError_Text" translate="yes" xml:space="preserve">
           <source>Произошла неизвестная ошибка, и мы не можем завершить отправку {0}.</source>
-          <target state="new">Произошла неизвестная ошибка, и мы не можем завершить отправку {0}.</target>
+          <target state="final">Адбылася невядомая памылка, і мы не можам спыніць адпраўку {0}.</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_CantPrepareData_Text" translate="yes" xml:space="preserve">
           <source>Не удалось подготовить данные:</source>
-          <target state="new">Не удалось подготовить данные:</target>
+          <target state="final">Не атрымалася падрыхтаваць дадзеныя:</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_MaxUploadsExceeded_Text" translate="yes" xml:space="preserve">
           <source>Достигнуто максимальное количество отправок:</source>
-          <target state="new">Достигнуто максимальное количество отправок:</target>
+          <target state="final">Дасягнута максімальная колькасць адправак:</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_PreprocessionConnectionError_Text" translate="yes" xml:space="preserve">
           <source>Произошла ошибка соединения, и мы не можем начать отправку {0}. Проверьте подключение к сети и повторите попытку.</source>
-          <target state="new">Произошла ошибка соединения, и мы не можем начать отправку {0}. Проверьте подключение к сети и повторите попытку.</target>
+          <target state="final">Адбылася памылка злучэння, і мы не можам пачаць адпраўку {0}. Калі ласка, праверце падлучэнне да сеткі і паўтарыце спробу.</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_PreprocessionError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось подготовить файл к отправке</source>
-          <target state="new">Не удалось подготовить файл к отправке</target>
+          <target state="final">Не атрымалася падрыхтаваць файл да адпраўкі</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_PreprocessionServerError_Text" translate="yes" xml:space="preserve">
           <source>Сервер вернул ошибку, и мы не можем начать отправку {0}. Повторите попытку позднее.
 Код: {1} - {2}</source>
-          <target state="new">Сервер вернул ошибку, и мы не можем начать отправку {0}. Повторите попытку позднее.
+          <target state="final">Сервер вярнуў памылку, і мы не можам пачаць адпраўку {0}. Калі ласка, паспрабуйце пазней.
 Код: {1} - {2}</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_StartUploading_Title" translate="yes" xml:space="preserve">
           <source>Не удалось начать отправку</source>
-          <target state="new">Не удалось начать отправку</target>
+          <target state="final">Не атрымалася пачаць адпраўку</target>
         </trans-unit>
         <trans-unit id="Message_Uploads_UnknownError_Text" translate="yes" xml:space="preserve">
           <source>Неизвестная ошибка:</source>
-          <target state="new">Неизвестная ошибка:</target>
+          <target state="final">Невядомая памылка:</target>
         </trans-unit>
         <trans-unit id="Toast_PostUploads_Success_Text" translate="yes" xml:space="preserve">
           <source>Отправка завершена!</source>
-          <target state="new">Отправка завершена!</target>
+          <target state="final">Адпраўка завершана!</target>
         </trans-unit>
         <trans-unit id="TransferView_CancelAllUploadsButton.Label" translate="yes" xml:space="preserve">
           <source>отменить все отправки</source>
-          <target state="new">отменить все отправки</target>
+          <target state="final">адмяніць усе адпраўкі</target>
         </trans-unit>
         <trans-unit id="UploadFileView_SelectAnotherFileButton.Content" translate="yes" xml:space="preserve">
           <source>выбрать другой</source>
-          <target state="new">выбрать другой</target>
+          <target state="final">выбраць іншы </target>
           <note from="MultilingualBuild" annotates="source" priority="2">Выбрать другой файл.</note>
         </trans-unit>
         <trans-unit id="UploadFileView_SelectFileButton.Content" translate="yes" xml:space="preserve">
           <source>выбрать файл</source>
-          <target state="new">выбрать файл</target>
+          <target state="final">выбраць файл
+</target>
         </trans-unit>
         <trans-unit id="UploadFileView_SelectTypeBox.Header" translate="yes" xml:space="preserve">
           <source>Что отправим?</source>
-          <target state="new">Что отправим?</target>
+          <target state="final">Што адправім?</target>
         </trans-unit>
         <trans-unit id="UploadFileView_SelectTypeBox_Audio.Content" translate="yes" xml:space="preserve">
           <source>аудиозапись</source>
-          <target state="new">аудиозапись</target>
+          <target state="final">аўдыязапіс</target>
         </trans-unit>
         <trans-unit id="UploadFileView_SelectTypeBox_Doc.Content" translate="yes" xml:space="preserve">
           <source>документ</source>
-          <target state="new">документ</target>
+          <target state="final">дакумент</target>
         </trans-unit>
         <trans-unit id="UploadFileView_SelectTypeBox_Video.Content" translate="yes" xml:space="preserve">
           <source>видеозапись</source>
-          <target state="new">видеозапись</target>
+          <target state="final">відэазапіс</target>
         </trans-unit>
         <trans-unit id="UploadFileView_Title.Text" translate="yes" xml:space="preserve">
           <source>отправить файл</source>
-          <target state="new">отправить файл</target>
+          <target state="final">адправіць файл</target>
         </trans-unit>
         <trans-unit id="UploadFileView_UploadFileButton.Content" translate="yes" xml:space="preserve">
           <source>отправить</source>
-          <target state="new">отправить</target>
+          <target state="final">адправіць</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Отправить файл.
 Eng: upload</note>
         </trans-unit>
         <trans-unit id="Toast_Downloads_Fail_Text" translate="yes" xml:space="preserve">
           <source>Ошибка загрузки</source>
-          <target state="new">Ошибка загрузки</target>
+          <target state="final">Памылка загрузкі</target>
         </trans-unit>
         <trans-unit id="Toast_Downloads_Success_Text" translate="yes" xml:space="preserve">
           <source>Загрузка завершена!</source>
-          <target state="new">Загрузка завершена!</target>
+          <target state="final">Загрузка завершана!</target>
         </trans-unit>
         <trans-unit id="Toast_Uploads_Fail_Text" translate="yes" xml:space="preserve">
           <source>Ошибка отправки</source>
-          <target state="new">Ошибка отправки</target>
+          <target state="final">Памылка адпраўкі</target>
         </trans-unit>
         <trans-unit id="Toast_Uploads_SuccessReturn_Text" translate="yes" xml:space="preserve">
           <source>Вернитесь для завершения</source>
-          <target state="new">Вернитесь для завершения</target>
+          <target state="final">Калі ласка, вярніцеся для завяршэння</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Имеется ввиду, что отправка завершена и нужно вернуться в приложение для завершения операции сохранения.</note>
         </trans-unit>
         <trans-unit id="Message_Uploads_PreprocessionUnknownError_Text" translate="yes" xml:space="preserve">
           <source>Произошла неизвестная ошибка, и мы не можем начать отправку {0}.</source>
-          <target state="new">Произошла неизвестная ошибка, и мы не можем начать отправку {0}.</target>
+          <target state="final">Адбылася невядомая памылка, і мы не можам пачаць адпраўку {0}.</target>
         </trans-unit>
         <trans-unit id="UploadFileView_VideoSettings_DescriptionBox.Header" translate="yes" xml:space="preserve">
           <source>Описание видео</source>
-          <target state="new">Описание видео</target>
+          <target state="final">Апісанне відэа</target>
         </trans-unit>
         <trans-unit id="UploadFileView_VideoSettings_NameBox.Header" translate="yes" xml:space="preserve">
           <source>Название видео</source>
-          <target state="new">Название видео</target>
+          <target state="final">Назва відэа</target>
         </trans-unit>
         <trans-unit id="UploadFileView_VideoSettings_RepeatSwitch.Header" translate="yes" xml:space="preserve">
           <source>Зациклить воспроизведение</source>
-          <target state="new">Зациклить воспроизведение</target>
+          <target state="final">Зацыклиць прайграванне</target>
         </trans-unit>
         <trans-unit id="UploadFileView_VideoSettings_Title.Text" translate="yes" xml:space="preserve">
           <source>Параметры видео</source>
-          <target state="new">Параметры видео</target>
+          <target state="final">Параметры відэа</target>
         </trans-unit>
         <trans-unit id="UploadFileView_VideoSettings_WallPostSwitch.Header" translate="yes" xml:space="preserve">
           <source>Опубликовать на стене</source>
-          <target state="new">Опубликовать на стене</target>
+          <target state="final">Апублікаваць на сцяне</target>
         </trans-unit>
         <trans-unit id="Toast_PostUploads_Fail_Text" translate="yes" xml:space="preserve">
           <source>Отправка не может быть завершена</source>
-          <target state="new">Отправка не может быть завершена</target>
+          <target state="final">Адпраўка не можа быць завершана</target>
         </trans-unit>
         <trans-unit id="FirstInternetSettingsView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
 
 Этот параметр всегда можно изменить в настройках.</source>
-          <target state="new">ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
+          <target state="final">ВКачай можа загрузіць фатаграфіі выканаўцаў і вокладкі альбомаў для вашых трэкаў. Загружаць гэтыя дадзеныя (можа спаганяцца дадатковая плата аператарам)?
 
-Этот параметр всегда можно изменить в настройках.</target>
+Гэты параметр заўсёды можна змяніць у наладах.</target>
         </trans-unit>
         <trans-unit id="FirstInternetSettingsView_Title.Text" translate="yes" xml:space="preserve">
           <source>Доступ к интернету</source>
-          <target state="new">Доступ к интернету</target>
+          <target state="final">Доступ да інтэрнэту</target>
         </trans-unit>
         <trans-unit id="FirstStartRetryView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>Рады видеть вас снова!
 
 В прошлый раз мы не завершили несколько моментов. Давайте продолжим!</source>
-          <target state="new">Рады видеть вас снова!
+          <target state="final">Рады бачыць вас зноў!
 
-В прошлый раз мы не завершили несколько моментов. Давайте продолжим!</target>
+У мінулы раз мы не завершылі некалькі момантаў. Давайце працягнем!</target>
         </trans-unit>
         <trans-unit id="FirstStartRetryView_ContinueButton.Content" translate="yes" xml:space="preserve">
           <source>продолжить</source>
-          <target state="new">продолжить</target>
+          <target state="final">працягнуць</target>
         </trans-unit>
         <trans-unit id="FirstStartRetryView_Title.Text" translate="yes" xml:space="preserve">
           <source>С возвращением!</source>
-          <target state="new">С возвращением!</target>
+          <target state="final">З вяртаннем!</target>
         </trans-unit>
         <trans-unit id="FirstStartView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>ВКачай необходимо выполнить поиск аудиофайлов на вашем смартфоне, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
@@ -1566,75 +1568,84 @@ Eng: upload</note>
 Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
 
 Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</source>
-          <target state="new">ВКачай необходимо выполнить поиск аудиофайлов на вашем смартфоне, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
+          <target state="final">ВКачай неабходна выканаць пошук аўдыёфайлаў на вашым смартфоне, перш чым вы зможаце іх прайграць (гэта неабходна выканаць толькі аднойчы).
 
-Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
+Звярніце ўвагу, што ВКачай зможа знайсці аўдыяфайлы толькі ў папке.  Музыка ў памяці смартфона або на SD-карце.
 
-Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</target>
+Далей мы дапаможам наладзіць некалькі асноўных параметраў праграмы. Націсніце кнопку ніжэй, калі будзеце гатовыя.</target>
         </trans-unit>
         <trans-unit id="FirstStartView_LetsGoButton.Content" translate="yes" xml:space="preserve">
           <source>приступить</source>
-          <target state="new">приступить</target>
+          <target state="final">прыступіць</target>
         </trans-unit>
         <trans-unit id="FirstStartView_NoButton.Content" translate="yes" xml:space="preserve">
           <source>нет</source>
-          <target state="new">нет</target>
+          <target state="final">не</target>
         </trans-unit>
         <trans-unit id="FirstStartView_Title.Text" translate="yes" xml:space="preserve">
           <source>Давайте начнем!</source>
-          <target state="new">Давайте начнем!</target>
+          <target state="final">Давайце пачнем!</target>
         </trans-unit>
         <trans-unit id="FirstStartView_WiFiButton.Content" translate="yes" xml:space="preserve">
           <source>только через Wi-Fi</source>
-          <target state="new">только через Wi-Fi</target>
+          <target state="final">толькі праз Wi-Fi</target>
         </trans-unit>
         <trans-unit id="FirstStartView_YesButton.Content" translate="yes" xml:space="preserve">
           <source>да</source>
-          <target state="new">да</target>
+          <target state="final">так</target>
         </trans-unit>
         <trans-unit id="UpdatingDatabaseView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>ВКачай выполняет сканирование ваших треков. Пожалуйста, подождите...</source>
-          <target state="new">ВКачай выполняет сканирование ваших треков. Пожалуйста, подождите...</target>
+          <target state="final">ВКачай выконвае сканаванне вашых трэкаў. Калі ласка, пачакайце...</target>
         </trans-unit>
         <trans-unit id="UpdatingDatabaseView_SearchingAlbumsStep_Text" translate="yes" xml:space="preserve">
           <source>Рисуем обложки альбомов... {0} из {1}</source>
-          <target state="new">Рисуем обложки альбомов... {0} из {1}</target>
+          <target state="final">Малюем вокладкі альбомаў... {0} з {1}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Поиск обложек альбомов. Например, "Рисуем обложки альбомов... 6 из 45".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск обложек альбомов... 6 из 45".</note>
         </trans-unit>
         <trans-unit id="UpdatingDatabaseView_SearchingArtistsStep_Text" translate="yes" xml:space="preserve">
           <source>Фотографируем исполнителей... {0} из {1}</source>
-          <target state="new">Фотографируем исполнителей... {0} из {1}</target>
+          <target state="final">Фатаграфуем выканаўцаў... {0} з {1}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Поиск фотографий исполнителей. Например, "Фотографируем исполнителей... 33 из 35".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск изображений исполнителей... 33 из 35".</note>
         </trans-unit>
         <trans-unit id="UpdatingDatabaseView_StepMask_Text" translate="yes" xml:space="preserve">
           <source>Шаг {0} из {1}</source>
-          <target state="new">Шаг {0} из {1}</target>
+          <target state="final">Крок {0} з {1}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Указывает номер текущей операции в процессе обновления базы данных.
 Например, "Шаг 1 из 5".</note>
         </trans-unit>
         <trans-unit id="UpdatingDatabaseView_Title.Text" translate="yes" xml:space="preserve">
           <source>Обновление базы данных</source>
-          <target state="new">Обновление базы данных</target>
+          <target state="final">Абнаўленне базы дадзеных</target>
         </trans-unit>
         <trans-unit id="UpdatingDatabseView_PreparingDatabaseStep_Text" translate="yes" xml:space="preserve">
           <source>Переписываем манускрипты... {0} из {1}</source>
-          <target state="new">Переписываем манускрипты... {0} из {1}</target>
+          <target state="final">Перапісваем манускрыпты... {0} з {1}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Обновление зависимостей в базе данных. Например, "Переписываем манускрипты... 2 из 21".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Обновление зависимостей... 2 из 21".</note>
         </trans-unit>
         <trans-unit id="UpdatingDatabseView_SearchingFilesStep_Text" translate="yes" xml:space="preserve">
           <source>Ищем аудиофайлы... {0} из {1}</source>
-          <target state="new">Ищем аудиофайлы... {0} из {1}</target>
+          <target state="final">Шукаем аўдыяфайлы... {0} з {1}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Поиск аудиофайлов. Например, "Ищем аудиофайлы... 20 из 199".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск аудиофайлов... 20 из 399"</note>
         </trans-unit>
         <trans-unit id="UpdatingDatabseView_StartedStep_Text" translate="yes" xml:space="preserve">
           <source>Снаряжаем рыцарей...</source>
-          <target state="new">Снаряжаем рыцарей...</target>
+          <target state="final">Снаряжаем рыцараў...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</note>
+        </trans-unit>
+        <trans-unit id="MainView_LibraryItem.Content" translate="yes" xml:space="preserve">
+          <source>локальная музыка</source>
+          <target state="new">локальная музыка</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Открывает страницу локальной музыки пользователя.</note>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Search.Label" translate="yes" xml:space="preserve">
+          <source>поиск</source>
+          <target state="new">поиск</target>
         </trans-unit>
       </group>
     </body>

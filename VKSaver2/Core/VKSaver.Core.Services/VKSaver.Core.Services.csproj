@@ -69,6 +69,7 @@
     <Compile Include="Common\LFAuthorization.cs" />
     <Compile Include="Common\MediaStreamSourceWorker.cs" />
     <Compile Include="Common\AudioEncryptedStream.cs" />
+    <Compile Include="Common\MusicFilesPathHelper.cs" />
     <Compile Include="Common\TaskQueue.cs" />
     <Compile Include="Common\ToastAudioHelper.cs" />
     <Compile Include="Common\VKAuthorization.cs" />

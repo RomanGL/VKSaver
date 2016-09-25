@@ -1200,7 +1200,7 @@ The last time we not complete a few moments. Let's continue!</value>
     <value>continue</value>
   </data>
   <data name="UpdatingDatabaseView_ContentText.Text" xml:space="preserve">
-    <value>VK Saver is searching for your tracks. Pleace wait...</value>
+    <value>VK Saver is searching for your tracks. Please wait...</value>
   </data>
   <data name="UpdatingDatabaseView_StepMask_Text" xml:space="preserve">
     <value>Step {0} of {1}</value>

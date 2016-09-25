@@ -306,8 +306,9 @@ Go back to continue</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Например, "12 слушателей"</note>
         </trans-unit>
         <trans-unit id="TopArtistsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список лучших исполниетелей</source>
-          <target state="translated">Failed to load the list of best artists</target>
+          <source>Не удалось загрузить список лучших исполнителей</source>
+          <target state="needs-review-translation">Failed to load the list of best artists</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="TopArtistsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Выбираем лучших исполнителей...</source>
@@ -367,8 +368,9 @@ Go back to continue</target>
           <target state="translated">Failed to load the list of friends</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем информацию друзьях...</source>
-          <target state="translated">Loading friends list...</target>
+          <source>Загружаем информацию о друзьях...</source>
+          <target state="needs-review-translation">Loading friends list...</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="UserCommView_FriendsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Друзья отсутствуют либо доступ к ним закрыт</source>
@@ -1245,8 +1247,9 @@ Please wait...</target>
           <target state="translated">Loading cached tracks...</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Кэшированые аудиозаписи отсутствуют</source>
-          <target state="translated">There is no cached tracks</target>
+          <source>Кэшированные аудиозаписи отсутствуют</source>
+          <target state="needs-review-translation">There is no cached tracks</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="CachedView_Title.Text" translate="yes" xml:space="preserve">
           <source>кэшированные</source>
@@ -1594,7 +1597,7 @@ The last time we not complete a few moments. Let's continue!</target>
         </trans-unit>
         <trans-unit id="UpdatingDatabaseView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>ВКачай выполняет сканирование ваших треков. Пожалуйста, подождите...</source>
-          <target state="translated">VK Saver is searching for your tracks. Pleace wait...</target>
+          <target state="translated">VK Saver is searching for your tracks. Please wait...</target>
         </trans-unit>
         <trans-unit id="UpdatingDatabaseView_StepMask_Text" translate="yes" xml:space="preserve">
           <source>Шаг {0} из {1}</source>
@@ -1635,6 +1638,15 @@ The last time we not complete a few moments. Let's continue!</target>
           <target state="translated">Preparing database...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</note>
+        </trans-unit>
+        <trans-unit id="MainView_LibraryItem.Content" translate="yes" xml:space="preserve">
+          <source>локальная музыка</source>
+          <target state="new">локальная музыка</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Открывает страницу локальной музыки пользователя.</note>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Search.Label" translate="yes" xml:space="preserve">
+          <source>поиск</source>
+          <target state="new">поиск</target>
         </trans-unit>
       </group>
     </body>

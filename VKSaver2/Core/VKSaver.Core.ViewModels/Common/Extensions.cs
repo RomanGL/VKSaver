@@ -1,6 +1,7 @@
 ﻿using ModernDev.InTouch;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using VKSaver.Core.LinksExtractor;
 using VKSaver.Core.Models.Common;
@@ -62,7 +63,8 @@ namespace VKSaver.Core.ViewModels.Common
                     ID = audio.Id,
                     OwnerID = audio.OwnerId,
                     AlbumID = audio.AlbumId,
-                    LyricsID = audio.LyricsId ?? 0
+                    LyricsID = audio.LyricsId ?? 0,
+                    Genre = audio.GenreId
                 }
             };
         }
@@ -122,9 +124,15 @@ namespace VKSaver.Core.ViewModels.Common
                     ID = audio.Id,
                     OwnerID = audio.OwnerId,
                     AlbumID = audio.AlbumId,
-                    LyricsID = audio.LyricsId ?? 0
+                    LyricsID = audio.LyricsId ?? 0,
+                    Genre = audio.GenreId
                 }
             };
+        }
+
+        public static List<T> GroupsToList<T>(this IEnumerable<JumpListGroup<T>> source)
+        {
+            return source.SelectMany(g => g).ToList();
         }
     }
 }

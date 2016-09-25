@@ -1,6 +1,7 @@
 ﻿using SQLite.Net;
 using SQLite.Net.Interop;
 using SQLiteNetExtensions.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,6 +26,9 @@ namespace VKSaver.Core.Services.Database
                 conn.CreateTable<VKSaverTrack>();
                 conn.CreateTable<VKSaverArtist>();
                 conn.CreateTable<VKSaverAudioVKInfo>();
+                conn.CreateTable<VKSaverAlbum>();
+                conn.CreateTable<VKSaverGenre>();
+                conn.CreateTable<VKSaverFolder>();
             });
         }
 
@@ -47,6 +51,9 @@ namespace VKSaver.Core.Services.Database
                 conn.DropTable<VKSaverTrack>();
                 conn.DropTable<VKSaverArtist>();
                 conn.DropTable<VKSaverAudioVKInfo>();
+                conn.DropTable<VKSaverAlbum>();
+                conn.DropTable<VKSaverGenre>();
+                conn.DropTable<VKSaverFolder>();
             });
         }
 
@@ -74,6 +81,15 @@ namespace VKSaver.Core.Services.Database
             {
                 var conn = GetDbConnection();
                 return conn.Table<T>().ToList();
+            });
+        }
+
+        public Task<List<T>> GetItems<T>(Func<T, bool> selector) where T : class
+        {
+            return Task.Run(() =>
+            {
+                var conn = GetDbConnection();
+                return conn.Table<T>().Where(selector).ToList();
             });
         }
 

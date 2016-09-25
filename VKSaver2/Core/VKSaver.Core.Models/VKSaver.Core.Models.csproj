@@ -80,7 +80,10 @@
     <Compile Include="Common\VKSaverAudioFileSource.cs" />
     <Compile Include="Common\VKSaverAudioTrackInfo.cs" />
     <Compile Include="Common\VKSaverAudioVKInfo.cs" />
+    <Compile Include="Database\VKSaverAlbum.cs" />
     <Compile Include="Database\VKSaverArtist.cs" />
+    <Compile Include="Database\VKSaverFolder.cs" />
+    <Compile Include="Database\VKSaverGenre.cs" />
     <Compile Include="Database\VKSaverTrack.cs" />
     <Compile Include="Player\CachedTrack.cs" />
     <Compile Include="Player\IPlayerTrack.cs" />

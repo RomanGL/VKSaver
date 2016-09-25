@@ -59,6 +59,20 @@ namespace VKSaver.Core.ViewModels.Common
         public static ObservableCollection<JumpListGroup<TSource>> ToAlphaGroups<TSource>(
             this IEnumerable<TSource> source, Func<TSource, string> selector)
         {
+            var dict = ToAlphaGroupsDictionary(source, selector);
+            return new ObservableCollection<JumpListGroup<TSource>>(dict.Select(x => x.Value));
+        }
+
+        public static IEnumerable<JumpListGroup<TSource>> ToAlphaGroupsEnumerable<TSource>(
+            this IEnumerable<TSource> source, Func<TSource, string> selector)
+        {
+            var dict = ToAlphaGroupsDictionary(source, selector);
+            return dict.Select(x => x.Value);
+        }
+
+        private static Dictionary<string, JumpListGroup<TSource>> ToAlphaGroupsDictionary<TSource>(
+            IEnumerable<TSource> source, Func<TSource, string> selector)
+        {
             // Get the letters representing each group for current language using CharacterGroupings class
             var characterGroupings = new CharacterGroupings();
 
@@ -83,7 +97,7 @@ namespace VKSaver.Core.ViewModels.Common
                 groupDictionary[keys[characterGroupings.Lookup(sortValue)]].Add(item);
             }
 
-            return new ObservableCollection<JumpListGroup<TSource>>(groupDictionary.Select(x => x.Value));
+            return groupDictionary;
         }
     }
 }

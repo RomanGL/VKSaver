@@ -91,7 +91,8 @@
     <Page.BottomAppBar>
         <CommandBar Background="{ThemeResource ContentDialogDimmingThemeBrush}">
             <AppBarButton Label="поиск"
-                          Command="{Binding GoToSearchCommand}">
+                          Command="{Binding GoToSearchCommand}"
+                          x:Uid="AppBarButton_Search">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE1A3;"
                               FontSize="16" />
@@ -279,11 +280,74 @@
                     </controls:ContentContainer>
                 </DataTemplate>
             </HubSection>
+            <HubSection Header="ЛОКАЛЬНАЯ БИБЛИОТЕКА">
+                <DataTemplate>
+                    <ListView SelectionMode="None"
+                              IsSwipeEnabled="False">
+                        <ListViewItem Content="треки"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToLibraryViewCommand}"
+                                                           CommandParameter="tracks" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="исполнители"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToLibraryViewCommand}"
+                                                           CommandParameter="artists" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="альбомы"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToLibraryViewCommand}"
+                                                           CommandParameter="albums" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="жанры"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToLibraryViewCommand}"
+                                                           CommandParameter="genres" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                        <ListViewItem Content="папки"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToLibraryViewCommand}"
+                                                           CommandParameter="folders" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+
+                        <ListViewItem Content="кэшированные"
+                                      Style="{StaticResource ListViewMenuItemStyle}"
+                                      Margin="0,30,0,5">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToLibraryViewCommand}"
+                                                           CommandParameter="cached"/>
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
+                    </ListView>
+                </DataTemplate>
+            </HubSection>
             <HubSection Header="СМОТРИТЕ ТАКЖЕ"
                         x:Uid="MainView_HubSection_SeeAlso">
                 <DataTemplate>
                     <ListView SelectionMode="None"
-                              IsSwipeEnabled="False">
+                              IsSwipeEnabled="False">                        
                         <ListViewItem Content="аудиозаписи"
                                       x:Uid="MainView_MusicItem"
                                       Style="{StaticResource ListViewMenuItemStyle}">
@@ -353,17 +417,6 @@
                             </i:Interaction.Behaviors>
                         </ListViewItem>
 
-                        <ListViewItem Content="кэшированные"
-                                      x:Uid="MainView_CachedItem"
-                                      Style="{StaticResource ListViewMenuItemStyle}"
-                                      Margin="0,30,0,5">
-                            <i:Interaction.Behaviors>
-                                <c:EventTriggerBehavior EventName="Tapped">
-                                    <c:InvokeCommandAction Command="{Binding GoToCachedViewCommand}" />
-                                </c:EventTriggerBehavior>
-                            </i:Interaction.Behaviors>
-                        </ListViewItem>
-                        
                         <ListViewItem Content="топ треков"
                                       x:Uid="MainView_TopTracksItem"
                                       Style="{StaticResource ListViewMenuItemStyle}"
@@ -426,7 +479,7 @@
                         </ListViewItem>
                     </ListView>
                 </DataTemplate>
-            </HubSection>
+            </HubSection>            
         </Hub>
     </Grid>
 </prism:VisualStateAwarePage>

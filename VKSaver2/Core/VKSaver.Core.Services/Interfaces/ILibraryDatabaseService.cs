@@ -12,7 +12,11 @@ namespace VKSaver.Core.Services.Interfaces
         void Update();
 
         Task<List<VKSaverTrack>> GetAllTracks();
+        Task<List<VKSaverTrack>> GetAllCachedTracks();
         Task<List<VKSaverArtist>> GetAllArtists();
+        Task<List<VKSaverAlbum>> GetAllAlbums();
+        Task<List<VKSaverGenre>> GetAllGenres();
+        Task<List<VKSaverFolder>> GetAllFolders();
 
         Task<VKSaverArtist> GetArtist(string dbKey);
     }

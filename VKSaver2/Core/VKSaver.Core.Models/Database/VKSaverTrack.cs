@@ -18,17 +18,35 @@ namespace VKSaver.Core.Models.Database
         [ForeignKey(typeof(VKSaverArtist))]
         public string Artist { get; set; }
 
-        [ForeignKey(typeof(VKSaverAudioVKInfo))]
+        [ForeignKey(typeof(VKSaverAudioVKInfo)), JsonIgnore]
         public string VKInfoKey { get; set; }
+
+        [ForeignKey(typeof(VKSaverAlbum)), JsonIgnore]
+        public string AlbumKey { get; set; }
+
+        [ForeignKey(typeof(VKSaverGenre)), JsonIgnore]
+        public string GenreKey { get; set; }
+
+        [ForeignKey(typeof(VKSaverFolder)), JsonIgnore]
+        public string FolderKey { get; set; }
 
         [JsonIgnore]
         public TimeSpan Duration { get; set; }
 
         [OneToOne]
         public VKSaverAudioVKInfo VKInfo { get; set; }
-
-        [ManyToOne]
+        
+        [ManyToOne, JsonIgnore]
         public VKSaverArtist AppArtist { get; set; }
+
+        [ManyToOne, JsonIgnore]
+        public VKSaverAlbum AppAlbum { get; set; }
+
+        [ManyToOne, JsonIgnore]
+        public VKSaverGenre AppGenre { get; set; }
+
+        [ManyToOne, JsonIgnore]
+        public VKSaverFolder AppFolder { get; set; }
 
         public bool Equals(IPlayerTrack other)
         {

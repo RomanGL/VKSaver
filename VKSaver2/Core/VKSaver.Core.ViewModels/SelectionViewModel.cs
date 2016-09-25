@@ -131,6 +131,15 @@ namespace VKSaver.Core.ViewModels
             CreateDefaultAppBarButtons();
         }
 
+        protected void HideCommandBar()
+        {
+            IsSelectionMode = false;
+            IsItemClickEnabled = true;
+
+            AppBarItems.Clear();
+            SecondaryItems.Clear();
+        }
+
         protected bool HasSelectedItems()
         {
             return SelectedItems.Count > 0;

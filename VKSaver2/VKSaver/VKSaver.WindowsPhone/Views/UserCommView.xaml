@@ -86,7 +86,7 @@
     </mvvm:VisualStateAwarePage.Resources>
     
     <Pivot Title="{Binding PageTitle, Converter={StaticResource ToUpperConverter}}"
-           SelectedIndex="{Binding LastPivotIndex}"
+           SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
            Style="{StaticResource PivotStyle}">
         <PivotItem Header="друзья"
                    x:Uid="UserCommView_PivotSection_Friends"
