@@ -114,7 +114,7 @@
         <Canvas x:Name="AlbumsPanel" />
         <Rectangle x:Name="BlackSubstrate"
                    Opacity="0.5"
-                   Fill="Black" />
+                   Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
         <Rectangle x:Name="ColorSubstrate"
                    Opacity="0.3"
                    Fill="Transparent" />

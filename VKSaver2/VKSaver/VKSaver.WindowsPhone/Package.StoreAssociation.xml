@@ -358,17 +358,18 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>63005RomanGladkikh.Beta</MainPackageIdentityName>
+    <MainPackageIdentityName>63005RomanGladkikh.2915537A9FD8D</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>ВКачай Beta</ReservedName>
+      <ReservedName>ВКачай</ReservedName>
+      <ReservedName>VK Saver</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>63005RomanGladkikh.OneVK</MainPackageIdentityName>
     <MainPackageIdentityName>63005RomanGladkikh.OneVKBeta</MainPackageIdentityName>
     <MainPackageIdentityName>63005RomanGladkikh.VKMusicDownloaderBeta</MainPackageIdentityName>
-    <MainPackageIdentityName>63005RomanGladkikh.2915537A9FD8D</MainPackageIdentityName>
+    <MainPackageIdentityName>63005RomanGladkikh.Beta</MainPackageIdentityName>
     <MainPackageIdentityName>63005RomanGladkikh.388410B18739A</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9WZDNCRDR1P5" />
+  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9WZDNCRDR1P3" />
 </StoreAssociation>

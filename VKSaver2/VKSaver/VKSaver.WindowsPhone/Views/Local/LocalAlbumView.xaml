@@ -9,7 +9,7 @@
                            xmlns:i="using:Microsoft.Xaml.Interactivity"
                            xmlns:c="using:Microsoft.Xaml.Interactions.Core"
                            xmlns:b="using:VKSaver.Behaviors"
-                           x:Class="VKSaver.Views.LocalArtistView"
+                           x:Class="VKSaver.Views.LocalAlbumView"
                            mc:Ignorable="d"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            Style="{StaticResource DefaultPageStyle}">
@@ -45,13 +45,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <controls:PlayerBackground ArtistImage="{Binding ArtistImage}"
+        <controls:PlayerBackground ArtistImage="{Binding ArtistImage}" 
                                    Grid.RowSpan="2"
-                                   DefaultTheme="{ThemeResource PagePlayerTheme}" />
+                                   DefaultTheme="{ThemeResource PagePlayerTheme}"/>
 
         <StackPanel Grid.Row="0"
                     Margin="19,0,0,26.5">
-            <TextBlock Text="{Binding ArtistName, Converter={StaticResource ToUpperConverter}}"
+            <TextBlock Text="{Binding AlbumName, Converter={StaticResource ToUpperConverter}}"
                        Style="{ThemeResource TitleTextBlockStyle}"
                        Margin="0,12,0,0"
                        ContinuumNavigationTransitionInfo.IsEntranceElement="True" />
@@ -72,16 +72,24 @@
 
                 <StackPanel Margin="0,0,0,25">
                     <StackPanel>
-                        <TextBlock Text="{Binding ArtistName}"
+                        <TextBlock Text="{Binding AlbumName}"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    FontWeight="Black"
                                    TextLineBounds="Tight"
                                    FontSize="55"
                                    CharacterSpacing="-5"
                                    TextWrapping="NoWrap" />
+                        <TextBlock Text="{Binding ArtistName}"
+                                   Style="{StaticResource BodyTextBlockStyle}"
+                                   FontWeight="Black"
+                                   TextLineBounds="Tight"
+                                   FontSize="55"
+                                   CharacterSpacing="-5"
+                                   TextWrapping="NoWrap"
+                                   Margin="0,15,0,0" />
                     </StackPanel>
                     <controls:ImagePlaceholder Source="{Binding ArtistImage}"
-                                               Text="{Binding ArtistName}"
+                                               Text="{Binding AlbumName}"
                                                HorizontalAlignment="Left"
                                                Height="120"
                                                Width="120"
@@ -99,7 +107,7 @@
                             <controls:StateBlock State="{Binding Tracks.ContentState}"
                                                  ReloadCommand="{Binding Tracks.LoadCommand}"
                                                  Margin="0,0,0,60"
-                                                 LoadingText="Загружаем список треков исполнителя..."
+                                                 LoadingText="Загружаем список треков альбома..."
                                                  ErrorText="Ошибка"
                                                  NoDataText="Нет ни одного трека" />
                         </DataTemplate>

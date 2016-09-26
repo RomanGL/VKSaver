@@ -288,8 +288,8 @@ namespace VKSaver.Core.ViewModels
             if (imagePath == null)
             {
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                    () => ArtistImage = new BitmapImage(new Uri(DEFAULT_BACKGROUND_IMAGE)));
-                _artistImageUrl = DEFAULT_BACKGROUND_IMAGE;
+                    () => ArtistImage = new BitmapImage(new Uri(AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE)));
+                _artistImageUrl = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
 
                 imagePath = await _imagesCacheService.CacheAndGetArtistImage(track.Artist);
             }
@@ -453,8 +453,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IAppLoaderService _appLoaderService;
         private readonly ILastFmLoginService _lastFmLoginService;
         private readonly IPurchaseService _purchaseService;
-
-        private const string DEFAULT_BACKGROUND_IMAGE = "ms-appx:///Assets/Background/PlayerBackground.png";        
 
         [ImplementPropertyChanged]
         public sealed class PlayerItem : IEquatable<PlayerItem>

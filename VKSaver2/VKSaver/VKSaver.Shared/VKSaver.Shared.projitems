@@ -66,6 +66,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\FirstStart\FirstStartRetryView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\FirstStart\FirstStartView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\LastFmLoginView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Local\LocalFolderView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Local\LocalGenreView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Local\LocalAlbumView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Local\LocalArtistView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NewsMediaView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ArtistAlbumView.xaml.cs" />

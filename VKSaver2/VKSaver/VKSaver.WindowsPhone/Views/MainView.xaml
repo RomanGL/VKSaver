@@ -115,7 +115,7 @@
     </Page.BottomAppBar>
 
     <Grid Margin="0,0,0,-60">
-        <Hub Header="вкачай beta"
+        <Hub Header="вкачай"
              x:Uid="MainView_Hub">
             <Hub.Background>
                 <ImageBrush ImageSource="{Binding HubBackgroundImage}"
@@ -280,11 +280,13 @@
                     </controls:ContentContainer>
                 </DataTemplate>
             </HubSection>
-            <HubSection Header="ЛОКАЛЬНАЯ БИБЛИОТЕКА">
+            <HubSection Header="ЛОКАЛЬНАЯ БИБЛИОТЕКА"
+                        x:Uid="MainView_HubSection_LocalLibrary">
                 <DataTemplate>
                     <ListView SelectionMode="None"
                               IsSwipeEnabled="False">
                         <ListViewItem Content="треки"
+                                      x:Uid="MainView_LocalTracksItem"
                                       Style="{StaticResource ListViewMenuItemStyle}">
                             <i:Interaction.Behaviors>
                                 <c:EventTriggerBehavior EventName="Tapped">
@@ -294,6 +296,7 @@
                             </i:Interaction.Behaviors>
                         </ListViewItem>
                         <ListViewItem Content="исполнители"
+                                      x:Uid="MainView_ArtistsItem"
                                       Style="{StaticResource ListViewMenuItemStyle}">
                             <i:Interaction.Behaviors>
                                 <c:EventTriggerBehavior EventName="Tapped">
@@ -303,6 +306,7 @@
                             </i:Interaction.Behaviors>
                         </ListViewItem>
                         <ListViewItem Content="альбомы"
+                                      x:Uid="MainView_AlbumsItem"
                                       Style="{StaticResource ListViewMenuItemStyle}">
                             <i:Interaction.Behaviors>
                                 <c:EventTriggerBehavior EventName="Tapped">
@@ -312,6 +316,7 @@
                             </i:Interaction.Behaviors>
                         </ListViewItem>
                         <ListViewItem Content="жанры"
+                                      x:Uid="MainView_GenresItem"
                                       Style="{StaticResource ListViewMenuItemStyle}">
                             <i:Interaction.Behaviors>
                                 <c:EventTriggerBehavior EventName="Tapped">
@@ -321,6 +326,7 @@
                             </i:Interaction.Behaviors>
                         </ListViewItem>
                         <ListViewItem Content="папки"
+                                      x:Uid="MainView_FoldersItem"
                                       Style="{StaticResource ListViewMenuItemStyle}">
                             <i:Interaction.Behaviors>
                                 <c:EventTriggerBehavior EventName="Tapped">
@@ -331,6 +337,7 @@
                         </ListViewItem>
 
                         <ListViewItem Content="кэшированные"
+                                      x:Uid="MainView_CachedItem"
                                       Style="{StaticResource ListViewMenuItemStyle}"
                                       Margin="0,30,0,5">
                             <i:Interaction.Behaviors>

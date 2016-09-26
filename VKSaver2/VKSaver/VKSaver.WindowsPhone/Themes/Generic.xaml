@@ -13,6 +13,7 @@
                              Color="#B2000000" />
             <SolidColorBrush x:Key="ButtonBackgroundBrush"
                              Color="#7F000000" />
+            <controls:PlayerTheme x:Key="PagePlayerTheme">Black</controls:PlayerTheme>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
             <ImageBrush x:Key="HubBackgroundBrush"
@@ -22,6 +23,7 @@
                              Color="#B2FFFFFF" />
             <SolidColorBrush x:Key="ButtonBackgroundBrush"
                              Color="#7FFFFFFF" />
+            <controls:PlayerTheme x:Key="PagePlayerTheme">Gray</controls:PlayerTheme>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
@@ -252,7 +254,8 @@
                        FontWeight="Normal"
                        FontSize="18">
                     <Run Text="{Binding ListenersCount}" />
-                    <Run Text="слушателей" />
+                    <Run Text="слушателей"
+                         x:Uid="TopArtistItem_ListenersCount" />
             </TextBlock>
         </StackPanel>
     </DataTemplate>

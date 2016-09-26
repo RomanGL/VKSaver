@@ -55,7 +55,8 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            if (GetSelectionList().Count > 0)
+            var selectionList = GetSelectionList();
+            if (selectionList != null && selectionList.Count > 0)
                 SetDefaultMode();
 
             base.OnNavigatedTo(e, viewModelState);

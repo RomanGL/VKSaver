@@ -16,7 +16,7 @@
     <value>аб праграме</value>
   </data>
   <data name="AboutView_AppName.Text" xml:space="preserve">
-    <value>ВКачай 2 Beta</value>
+    <value>ВКачай 2</value>
   </data>
   <data name="AboutView_Version.Text" xml:space="preserve">
     <value>Версія:</value>
@@ -95,13 +95,13 @@
     <value>Падрыхтоўка файлаў для загрузкі...</value>
   </data>
   <data name="AppName.Text" xml:space="preserve">
-    <value>ВКАЧАЙ BETA</value>
+    <value>ВКАЧАЙ</value>
   </data>
   <data name="AppNamePivot.Title" xml:space="preserve">
-    <value>ВКАЧАЙ BETA</value>
+    <value>ВКАЧАЙ</value>
   </data>
   <data name="AppNameText" xml:space="preserve">
-    <value>ВКачай Beta</value>
+    <value>ВКачай</value>
   </data>
   <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
     <value>Не атрымалася загрузіць спіс альбомаў выканаўца</value>
@@ -184,7 +184,7 @@
     <value>суполкі</value>
   </data>
   <data name="MainView_Hub.Header" xml:space="preserve">
-    <value>вкачай beta</value>
+    <value>вкачай</value>
   </data>
   <data name="MainView_HubSection_Recommendations.Header" xml:space="preserve">
     <value>РЭКАМЕНДУЕМ</value>

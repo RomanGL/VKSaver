@@ -8,7 +8,7 @@ using VKSaver.Core.Models.Player;
 namespace VKSaver.Core.Models.Database
 {
     [Table("Tracks")]
-    public class VKSaverTrack : IPlayerTrack
+    public class VKSaverTrack : IPlayerTrack, IEquatable<VKSaverTrack>, IEquatable<IPlayerTrack>
     {
         [PrimaryKey]
         public string Source { get; set; }
@@ -33,7 +33,7 @@ namespace VKSaver.Core.Models.Database
         [JsonIgnore]
         public TimeSpan Duration { get; set; }
 
-        [OneToOne]
+        [OneToOne(CascadeOperations = CascadeOperation.All)]
         public VKSaverAudioVKInfo VKInfo { get; set; }
         
         [ManyToOne, JsonIgnore]
@@ -48,7 +48,7 @@ namespace VKSaver.Core.Models.Database
         [ManyToOne, JsonIgnore]
         public VKSaverFolder AppFolder { get; set; }
 
-        public bool Equals(IPlayerTrack other)
+        bool IEquatable<IPlayerTrack>.Equals(IPlayerTrack other)
         {
             if (ReferenceEquals(this, other))
                 return true;
@@ -56,6 +56,14 @@ namespace VKSaver.Core.Models.Database
             return this.Title == other.Title &&
                 this.Artist == other.Artist &&
                 this.Source == other.Source;
+        }
+
+        public bool Equals(VKSaverTrack other)
+        {
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return this.Source == other.Source;
         }
     }
 }

@@ -74,6 +74,9 @@
     <Compile Include="FirstStart\FirstStartViewModel.cs" />
     <Compile Include="LastFmLoginViewModel.cs" />
     <Compile Include="LibraryViewModel.cs" />
+    <Compile Include="Local\LocalFolderViewModel.cs" />
+    <Compile Include="Local\LocalGenreViewModel.cs" />
+    <Compile Include="Local\LocalAlbumViewModel.cs" />
     <Compile Include="Local\LocalArtistViewModel.cs" />
     <Compile Include="NewsMediaViewModel.cs" />
     <Compile Include="PackagingFilesViewModel.cs" />

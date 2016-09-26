@@ -26,7 +26,7 @@
                     <MenuFlyout>
                         <MenuFlyoutItem Text="удалить"
                                         x:Uid="DeleteFlyoutItem"
-                                        Command="{Binding DataSource.DeleteTrackCommand, Source={StaticResource DataContextProxy}}"
+                                        Command="{Binding DataSource.DeleteItemCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
                     </MenuFlyout>
                 </Setter.Value>
@@ -37,11 +37,58 @@
                     Value="19,10,0,10" />
         </Style>
 
+        <Style x:Key="RemovableAlbumStyle"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
+                                        Command="{Binding DataSource.DeleteItemCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+            <Setter Property="Margin"
+                    Value="19,0,0,10" />
+        </Style>
+
         <Style x:Key="LessMarginPivotItemStyle"
                TargetType="PivotItem">
             <Setter Property="Margin"
                     Value="0,10,0,0" />
         </Style>
+
+        <DataTemplate x:Key="LocalAlbumTemplate">
+            <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <controls:ImagePlaceholder Text="{Binding Name}"
+                                           Width="120"
+                                           Height="120"
+                                           Pivot.SlideInAnimationGroup="GroupOne"
+                                           Margin="0,0,10,0" />
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding Name}"
+                               Style="{StaticResource BaseItemStyle}"
+                               FontSize="28"
+                               TextWrapping="WrapWholeWords"
+                               MaxLines="2"
+                               ContinuumNavigationTransitionInfo.IsExitElement="True"
+                               Pivot.SlideInAnimationGroup="GroupTwo" />
+                    <TextBlock Text="{Binding ArtistName}"
+                               Style="{StaticResource BaseItemStyle}"
+                               FontSize="18"
+                               Margin="0,10,0,0"
+                               Pivot.SlideInAnimationGroup="GroupThree" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
 
         <CollectionViewSource x:Key="TracksSource"
                               Source="{Binding Tracks}"
@@ -75,13 +122,16 @@
     </mvvm:VisualStateAwarePage.BottomAppBar>
 
     <Pivot Title="ВКАЧАЙ"
+           x:Uid="AppNamePivot"
            SelectedIndex="{Binding CurrentPivotIndex, Mode=TwoWay}"
            Style="{StaticResource PivotStyle}"
            IsLocked="{Binding IsSelectionMode}">
         <PivotItem Header="композиции"
+                   x:Uid="LibraryView_PivotItem_Tracks"
                    Style="{StaticResource LessMarginPivotItemStyle}">
             <controls:ContentContainer State="{Binding Tracks.ContentState}"
-                                       ReloadCommand="{Binding Tracks.RefreshCommand}">
+                                       ReloadCommand="{Binding Tracks.RefreshCommand}"
+                                       x:Uid="LibraryView_TracksLoader">
                 <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
                     <SemanticZoom.ZoomedInView>
                         <ListView ItemsSource="{Binding Source={StaticResource TracksSource}}"
@@ -114,9 +164,11 @@
         </PivotItem>
 
         <PivotItem Header="исполнители"
+                   x:Uid="LibraryView_PivotItem_Artists"
                    Style="{StaticResource LessMarginPivotItemStyle}">
             <controls:ContentContainer State="{Binding Artists.ContentState}"
-                                       ReloadCommand="{Binding Artists.RefreshCommand}">
+                                       ReloadCommand="{Binding Artists.RefreshCommand}"
+                                       x:Uid="LibraryView_ArtistsLoader">
                 <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
                     <SemanticZoom.ZoomedInView>
                         <ListView ItemsSource="{Binding Source={StaticResource ArtistsSource}}"
@@ -145,14 +197,16 @@
         </PivotItem>
 
         <PivotItem Header="альбомы"
+                   x:Uid="LibraryView_PivotItem_Albums"
                    Style="{StaticResource LessMarginPivotItemStyle}">
             <controls:ContentContainer State="{Binding Albums.ContentState}"
-                                       ReloadCommand="{Binding Albums.RefreshCommand}">
+                                       ReloadCommand="{Binding Albums.RefreshCommand}"
+                                       x:Uid="LibraryView_AlbumsLoader">
                 <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
                     <SemanticZoom.ZoomedInView>
                         <ListView ItemsSource="{Binding Source={StaticResource AlbumsSource}}"
-                                  ItemTemplate="{StaticResource OnlyNameListItemTemplate}"
-                                  ItemContainerStyle="{StaticResource RemovableItemStyle}"
+                                  ItemTemplate="{StaticResource LocalAlbumTemplate}"
+                                  ItemContainerStyle="{StaticResource RemovableAlbumStyle}"
                                   IsItemClickEnabled="True">
                             <ListView.GroupStyle>
                                 <GroupStyle HeaderTemplate="{StaticResource AlphaGroupHeaderTemplate}"
@@ -176,9 +230,11 @@
         </PivotItem>
 
         <PivotItem Header="жанры"
+                   x:Uid="LibraryView_PivotItem_Genres"
                    Style="{StaticResource LessMarginPivotItemStyle}">
             <controls:ContentContainer State="{Binding Genres.ContentState}"
-                                       ReloadCommand="{Binding Genres.RefreshCommand}">
+                                       ReloadCommand="{Binding Genres.RefreshCommand}"
+                                       x:Uid="LibraryView_GenresLoader">
                 <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
                     <SemanticZoom.ZoomedInView>
                         <ListView ItemsSource="{Binding Source={StaticResource GenresSource}}"
@@ -207,20 +263,31 @@
         </PivotItem>
 
         <PivotItem Header="папки"
+                   x:Uid="LibraryView_PivotItem_Folders"
                    Style="{StaticResource LessMarginPivotItemStyle}">
             <controls:ContentContainer State="{Binding Folders.ContentState}"
-                                       ReloadCommand="{Binding Folders.RefreshCommand}">
+                                       ReloadCommand="{Binding Folders.RefreshCommand}"
+                                       x:Uid="LibraryView_FoldersLoader">
                 <ListView ItemsSource="{Binding Folders}"
                           ItemTemplate="{StaticResource OnlyNameListItemTemplate}"
-                          ItemContainerStyle="{StaticResource RemovableItemStyle}" 
-                          IsItemClickEnabled="true"/>
+                          ItemContainerStyle="{StaticResource RemovableItemStyle}"
+                          IsItemClickEnabled="true">
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="ItemClick">
+                            <c:InvokeCommandAction Command="{Binding ExecuteItemCommand, Mode=OneTime}"
+                                                   InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                        </c:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ListView>
             </controls:ContentContainer>
         </PivotItem>
 
         <PivotItem Header="кэшированные"
+                   x:Uid="LibraryView_PivotItem_Cached"
                    Style="{StaticResource LessMarginPivotItemStyle}">
             <controls:ContentContainer State="{Binding Cached.ContentState}"
-                                       ReloadCommand="{Binding Cached.RefreshCommand}">
+                                       ReloadCommand="{Binding Cached.RefreshCommand}"
+                                       x:Uid="LibraryView_CachedLoader">
                 <SemanticZoom Style="{StaticResource AlphaJumpListStyle}">
                     <SemanticZoom.ZoomedInView>
                         <ListView ItemsSource="{Binding Source={StaticResource CachedSource}}"

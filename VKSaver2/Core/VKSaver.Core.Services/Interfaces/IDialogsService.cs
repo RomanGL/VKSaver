@@ -1,4 +1,6 @@
-﻿namespace VKSaver.Core.Services.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace VKSaver.Core.Services.Interfaces
 {
     /// <summary>
     /// Представляет интерфейс для отображения диалоговых окон.
@@ -11,5 +13,7 @@
         /// <param name="message">Текст сообщения.</param>
         /// <param name="title">Заголовок собщения.</param>
         void Show(string message, string title = "");
+
+        Task<bool> ShowYesNoAsync(string message, string title = "");
     }
 }

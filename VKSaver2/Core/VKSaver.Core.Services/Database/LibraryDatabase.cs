@@ -112,6 +112,24 @@ namespace VKSaver.Core.Services.Database
             });
         }
 
+        public Task RemoveItem<T>(T item)
+        {
+            return Task.Run(() =>
+            {
+                var conn = GetDbConnection();
+                conn.Delete(item);
+            });
+        }
+
+        public Task RemoveItem<T>(object primaryKey)
+        {
+            return Task.Run(() =>
+            {
+                var conn = GetDbConnection();
+                conn.Delete<T>(primaryKey);
+            });
+        }
+
         public void UpdateItem(object item)
         {
             var conn = GetDbConnection();

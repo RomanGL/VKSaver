@@ -9,6 +9,8 @@ namespace VKSaver.Core.Services.Interfaces
     {
         event TypedEventHandler<ILibraryDatabaseService, DBUpdateProgressChangedEventArgs> UpdateProgressChanged;
 
+        bool NeedReloadLibraryView { get; set; }
+
         void Update();
 
         Task<List<VKSaverTrack>> GetAllTracks();
@@ -19,5 +21,11 @@ namespace VKSaver.Core.Services.Interfaces
         Task<List<VKSaverFolder>> GetAllFolders();
 
         Task<VKSaverArtist> GetArtist(string dbKey);
+        Task<VKSaverAlbum> GetAlbum(string dbKey);
+        Task<VKSaverGenre> GetGenre(string dbKey);
+        Task<VKSaverFolder> GetFolder(string dbKey);
+
+        Task RemoveItem<T>(T item);
+        Task RemoveItemByPrimaryKey<T>(object primaryKey);
     }
 }

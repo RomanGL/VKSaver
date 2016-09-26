@@ -319,15 +319,15 @@ namespace VKSaver.Controls
         /// <summary>
         /// Изображение исполнителя.
         /// </summary>
-        public ImageSource ArtistImage
+        public object ArtistImage
         {
-            get { return (ImageSource)GetValue(ArtistImageProperty); }
+            get { return (object)GetValue(ArtistImageProperty); }
             set { SetValue(ArtistImageProperty, value); }
         }
 
         public static readonly DependencyProperty ArtistImageProperty =
-            DependencyProperty.Register("ArtistImage", typeof(ImageSource), 
-                typeof(PlayerBackground), new PropertyMetadata(default(ImageSource), OnArtistImageChanged));
+            DependencyProperty.Register("ArtistImage", typeof(object), 
+                typeof(PlayerBackground), new PropertyMetadata(default(object), OnArtistImageChanged));
 
         /// <summary>
         /// Вызывается при изменении изображения исполнителя.
@@ -336,12 +336,16 @@ namespace VKSaver.Controls
         {
             var control = (PlayerBackground)obj;
 
-            //control.OldImage.Source = control.NewImage.Source;
-            //control.NewImage.Source = (ImageSource)e.NewValue;
+            ImageSource newSource = e.NewValue as ImageSource;
+            if (newSource == null && e.NewValue is string)
+            {
+                newSource = new BitmapImage(new Uri(e.NewValue.ToString()));
+            }
+
             control.OldImage.Fill = control.NewImage.Fill;
             control.NewImage.Fill = new ImageBrush
             {
-                ImageSource = (ImageSource)e.NewValue,
+                ImageSource = newSource,
                 AlignmentX = AlignmentX.Center,
                 AlignmentY = AlignmentY.Center,
                 Stretch = Stretch.UniformToFill
@@ -365,7 +369,13 @@ namespace VKSaver.Controls
 
         public static readonly DependencyProperty DefaultThemeProperty =
             DependencyProperty.Register("DefaultTheme", typeof(PlayerTheme),
-                typeof(PlayerBackground), new PropertyMetadata(PlayerTheme.None));
+                typeof(PlayerBackground), new PropertyMetadata(PlayerTheme.None, OnDefaultThemeChanged));
+
+        private static void OnDefaultThemeChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (PlayerBackground)obj;
+            control.NextTheme();
+        }
 
         #endregion
 

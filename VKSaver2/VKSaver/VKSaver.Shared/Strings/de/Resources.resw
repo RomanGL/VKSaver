@@ -16,7 +16,7 @@
     <value>über App</value>
   </data>
   <data name="AboutView_AppName.Text" xml:space="preserve">
-    <value>VK Saver 2 Beta</value>
+    <value>VK Saver 2</value>
   </data>
   <data name="AboutView_Version.Text" xml:space="preserve">
     <value>Version:</value>
@@ -96,13 +96,13 @@ Kehren Sie zurück um zu fortfahren</value>
     <value>Vorbereitung zum Hochladen...</value>
   </data>
   <data name="AppName.Text" xml:space="preserve">
-    <value>VK SAVER BETA</value>
+    <value>VK SAVER</value>
   </data>
   <data name="AppNamePivot.Title" xml:space="preserve">
-    <value>VK SAVER BETA</value>
+    <value>VK SAVER</value>
   </data>
   <data name="AppNameText" xml:space="preserve">
-    <value>VK Saver Beta</value>
+    <value>VK Saver</value>
   </data>
   <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
     <value>Hochladen der List den Künstleralben fehlt </value>
@@ -185,7 +185,7 @@ Kehren Sie zurück um fortzufahren </value>
     <value>Gruppen</value>
   </data>
   <data name="MainView_Hub.Header" xml:space="preserve">
-    <value>vk saver beta</value>
+    <value>vk saver</value>
   </data>
   <data name="MainView_HubSection_Recommendations.Header" xml:space="preserve">
     <value>EMPFEHLENDE</value>

@@ -11,8 +11,8 @@
           <target state="final">аб праграме</target>
         </trans-unit>
         <trans-unit id="AboutView_AppName.Text" translate="yes" xml:space="preserve">
-          <source>ВКачай 2 Beta</source>
-          <target state="final">ВКачай 2 Beta</target>
+          <source>ВКачай 2</source>
+          <target state="translated">ВКачай 2</target>
         </trans-unit>
         <trans-unit id="AboutView_Version.Text" translate="yes" xml:space="preserve">
           <source>Версия:</source>
@@ -117,16 +117,16 @@
           <target state="final">Падрыхтоўка файлаў для загрузкі...</target>
         </trans-unit>
         <trans-unit id="AppName.Text" translate="yes" xml:space="preserve">
-          <source>ВКАЧАЙ BETA</source>
-          <target state="final">ВКАЧАЙ BETA</target>
+          <source>ВКАЧАЙ</source>
+          <target state="translated">ВКАЧАЙ</target>
         </trans-unit>
         <trans-unit id="AppNamePivot.Title" translate="yes" xml:space="preserve">
-          <source>ВКАЧАЙ BETA</source>
-          <target state="final">ВКАЧАЙ BETA</target>
+          <source>ВКАЧАЙ</source>
+          <target state="translated">ВКАЧАЙ</target>
         </trans-unit>
         <trans-unit id="AppNameText" translate="yes" xml:space="preserve">
-          <source>ВКачай Beta</source>
-          <target state="final">ВКачай Beta</target>
+          <source>ВКачай</source>
+          <target state="translated">ВКачай</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_AlbumsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список альбомов исполнителя</source>
@@ -237,8 +237,8 @@
           <target state="final">суполкі</target>
         </trans-unit>
         <trans-unit id="MainView_Hub.Header" translate="yes" xml:space="preserve">
-          <source>вкачай beta</source>
-          <target state="final">вкачай beta</target>
+          <source>вкачай</source>
+          <target state="translated">вкачай</target>
         </trans-unit>
         <trans-unit id="MainView_HubSection_Recommendations.Header" translate="yes" xml:space="preserve">
           <source>РЕКОМЕНДУЕМ</source>
@@ -1638,14 +1638,172 @@ Eng: upload</note>
           <note from="MultilingualBuild" annotates="source" priority="2">Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</note>
         </trans-unit>
-        <trans-unit id="MainView_LibraryItem.Content" translate="yes" xml:space="preserve">
-          <source>локальная музыка</source>
-          <target state="new">локальная музыка</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Открывает страницу локальной музыки пользователя.</note>
-        </trans-unit>
         <trans-unit id="AppBarButton_Search.Label" translate="yes" xml:space="preserve">
           <source>поиск</source>
           <target state="new">поиск</target>
+        </trans-unit>
+        <trans-unit id="DetailsView_Subtitle.Text" translate="yes" xml:space="preserve">
+          <source>подробнее</source>
+          <target state="new">подробнее</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">details</note>
+        </trans-unit>
+        <trans-unit id="LocalFolderView_Title.Text" translate="yes" xml:space="preserve">
+          <source>ПАПКА</source>
+          <target state="new">ПАПКА</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ОБЯЗАТЕЛЬНО капсом!</note>
+        </trans-unit>
+        <trans-unit id="LocalGenreView_Title.Text" translate="yes" xml:space="preserve">
+          <source>ЖАНР</source>
+          <target state="new">ЖАНР</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">ОБЯЗАТЕЛЬНО капсом!</note>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Albums.Header" translate="yes" xml:space="preserve">
+          <source>альбомы</source>
+          <target state="new">альбомы</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Artists.Header" translate="yes" xml:space="preserve">
+          <source>исполнители</source>
+          <target state="new">исполнители</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">artists</note>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Cached.Header" translate="yes" xml:space="preserve">
+          <source>кэшированные</source>
+          <target state="new">кэшированные</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Folders.Header" translate="yes" xml:space="preserve">
+          <source>папки</source>
+          <target state="new">папки</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Genres.Header" translate="yes" xml:space="preserve">
+          <source>жанры</source>
+          <target state="new">жанры</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Tracks.Header" translate="yes" xml:space="preserve">
+          <source>композиции</source>
+          <target state="new">композиции</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">tracks</note>
+        </trans-unit>
+        <trans-unit id="LibraryView_AlbumsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список альбомов</source>
+          <target state="new">Не удалось загрузить список альбомов</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_AlbumsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список альбомов...</source>
+          <target state="new">Загружаем список альбомов...</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_AlbumsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В вашей коллекции нет ни одного альбома</source>
+          <target state="new">В вашей коллекции нет ни одного альбома</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_ArtistsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список исполнителей</source>
+          <target state="new">Не удалось загрузить список исполнителей</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_ArtistsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список исполнителей...</source>
+          <target state="new">Загружаем список исполнителей...</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_ArtistsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В вашей коллекции нет ни одного исполнителя</source>
+          <target state="new">В вашей коллекции нет ни одного исполнителя</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_CachedLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список кэшированных аудиозаписей</source>
+          <target state="new">Не удалось загрузить список кэшированных аудиозаписей</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_CachedLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список кэшированных аудиозаписей...</source>
+          <target state="new">Загружаем список кэшированных аудиозаписей...</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_CachedLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В вашей коллекции нет ни одной кэшированной аудиозаписи</source>
+          <target state="new">В вашей коллекции нет ни одной кэшированной аудиозаписи</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_FoldersLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список папок</source>
+          <target state="new">Не удалось загрузить список папок</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_FoldersLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список папок...</source>
+          <target state="new">Загружаем список папок...</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_FoldersLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В вашей коллекции нет ни одной папки</source>
+          <target state="new">В вашей коллекции нет ни одной папки</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_GenresLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список жанров</source>
+          <target state="new">Не удалось загрузить список жанров</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_GenresLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список жанров...</source>
+          <target state="new">Загружаем список жанров...</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_GenresLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В вашей коллекции нет ни одного жанра</source>
+          <target state="new">В вашей коллекции нет ни одного жанра</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список композиций</source>
+          <target state="new">Не удалось загрузить список композиций</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
+        </trans-unit>
+        <trans-unit id="LibraryView_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список композиций...</source>
+          <target state="new">Загружаем список композиций...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
+        </trans-unit>
+        <trans-unit id="LibraryView_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В вашей коллекции нет ни одной композиции</source>
+          <target state="new">В вашей коллекции нет ни одной композиции</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
+        </trans-unit>
+        <trans-unit id="MainView_HubSection_LocalLibrary.Header" translate="yes" xml:space="preserve">
+          <source>ЛОКАЛЬНАЯ БИБЛИОТЕКА</source>
+          <target state="new">ЛОКАЛЬНАЯ БИБЛИОТЕКА</target>
+        </trans-unit>
+        <trans-unit id="MainView_AlbumsItem.Content" translate="yes" xml:space="preserve">
+          <source>альбомы</source>
+          <target state="new">альбомы</target>
+        </trans-unit>
+        <trans-unit id="MainView_ArtistsItem.Content" translate="yes" xml:space="preserve">
+          <source>исполнители</source>
+          <target state="new">исполнители</target>
+        </trans-unit>
+        <trans-unit id="MainView_FoldersItem.Content" translate="yes" xml:space="preserve">
+          <source>папки</source>
+          <target state="new">папки</target>
+        </trans-unit>
+        <trans-unit id="MainView_GenresItem.Content" translate="yes" xml:space="preserve">
+          <source>жанры</source>
+          <target state="new">жанры</target>
+        </trans-unit>
+        <trans-unit id="MainView_LocalTracksItem.Content" translate="yes" xml:space="preserve">
+          <source>композиции</source>
+          <target state="new">композиции</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
+        </trans-unit>
+        <trans-unit id="Message_LocalView_DeleteArtist_Text" translate="yes" xml:space="preserve">
+          <source>Удаление исполнителя {0} приведет к удалению всех его альбомов и композиций из вашей коллекции.
+Это действие нельзя отменить.</source>
+          <target state="new">Удаление исполнителя {0} приведет к удалению всех его альбомов и композиций из вашей коллекции.
+Это действие нельзя отменить.</target>
+        </trans-unit>
+        <trans-unit id="Message_LocalView_DeleteArtist_Title" translate="yes" xml:space="preserve">
+          <source>Удалить исполнителя?</source>
+          <target state="new">Удалить исполнителя?</target>
+        </trans-unit>
+        <trans-unit id="Message_NoButton_Text" translate="yes" xml:space="preserve">
+          <source>нет</source>
+          <target state="new">нет</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка отказа.</note>
+        </trans-unit>
+        <trans-unit id="Message_YesButton_Text" translate="yes" xml:space="preserve">
+          <source>да</source>
+          <target state="new">да</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка согласия.</note>
         </trans-unit>
       </group>
     </body>

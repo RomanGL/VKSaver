@@ -64,7 +64,12 @@ namespace VKSaver.Core.ViewModels
 
             await Task.Run(async () =>
             {
-                var audiosList = GetAudiosList();                
+                var audiosList = GetAudiosList(); 
+                if (audiosList == null)
+                {
+                    _appLoaderService.Hide();
+                    return;
+                }               
 
                 int trackIndex = audiosList.IndexOf(track);
                 if (_maxPlayingTracks != -1 && audiosList.Count > _maxPlayingTracks)

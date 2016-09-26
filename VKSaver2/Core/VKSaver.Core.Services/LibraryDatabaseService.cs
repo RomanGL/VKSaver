@@ -1,5 +1,6 @@
 ﻿using ModernDev.InTouch;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
@@ -67,6 +68,8 @@ namespace VKSaver.Core.Services
             }
         }
 
+        public bool NeedReloadLibraryView { get; set; }
+
         public async Task<List<VKSaverTrack>> GetAllTracks()
         {
             return await _database.GetItems<VKSaverTrack>();
@@ -92,14 +95,41 @@ namespace VKSaver.Core.Services
             return await _database.GetItems<VKSaverFolder>();
         }
 
+        public async Task<List<VKSaverTrack>> GetAllCachedTracks()
+        {
+            return await _database.GetItems<VKSaverTrack>(t => t.VKInfoKey != null);
+        }
+
         public async Task<VKSaverArtist> GetArtist(string dbKey)
         {
             return await _database.GetItemWithChildrens<VKSaverArtist>(dbKey);
         }
 
-        public async Task<List<VKSaverTrack>> GetAllCachedTracks()
+        public async Task<VKSaverAlbum> GetAlbum(string dbKey)
         {
-            return await _database.GetItems<VKSaverTrack>(t => t.VKInfoKey != null);
+            return await _database.GetItemWithChildrens<VKSaverAlbum>(dbKey);
+        }
+
+        public async Task<VKSaverGenre> GetGenre(string dbKey)
+        {
+            return await _database.GetItemWithChildrens<VKSaverGenre>(dbKey);
+        }
+
+        public async Task<VKSaverFolder> GetFolder(string dbKey)
+        {
+            return await _database.GetItemWithChildrens<VKSaverFolder>(dbKey);
+        }
+
+        public async Task RemoveItem<T>(T item)
+        {
+            await _database.RemoveItem(item);
+            NeedReloadLibraryView = true;
+        }
+
+        public async Task RemoveItemByPrimaryKey<T>(object primaryKey)
+        {
+            await _database.RemoveItem<T>(primaryKey);
+            NeedReloadLibraryView = true;
         }
 
         private async Task UpdateDatabase()
@@ -285,7 +315,8 @@ namespace VKSaver.Core.Services
                 };
                 _artists[artistName] = artist;
             }
-            
+
+            track.Artist = artistName;
             artist.Tracks.Add(track);
         }
 
@@ -308,17 +339,27 @@ namespace VKSaver.Core.Services
 
         private void ProcessAlbum(VKSaverTrack track, string albumName)
         {
+            string dbKey = $"{track.Artist}-{albumName}";
+
             VKSaverAlbum album = null;
-            if (!_albums.TryGetValue(albumName, out album))
+            if (!_albums.TryGetValue(dbKey, out album))
             {
                 album = new VKSaverAlbum
                 {
-                    DbKey = albumName,
+                    DbKey = dbKey,
                     Name = albumName,
                     Tracks = new List<VKSaverTrack>()
                 };
-                _albums[albumName] = album;
+                _albums[dbKey] = album;
             }
+
+            VKSaverArtist artist = _artists[track.Artist];
+
+            if (artist.Albums == null)
+                artist.Albums = new List<VKSaverAlbum>();
+
+            if (artist.Albums.FirstOrDefault(a => a.DbKey == dbKey) == null)
+                artist.Albums.Add(album);
 
             album.Tracks.Add(track);
         }

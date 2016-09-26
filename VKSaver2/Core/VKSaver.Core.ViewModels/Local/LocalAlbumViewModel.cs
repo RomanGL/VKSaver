@@ -1,29 +1,25 @@
-﻿using System;
+﻿using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using PropertyChanged;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using VKSaver.Core.Models.Database;
 using VKSaver.Core.Models.Player;
-using VKSaver.Core.Services.Interfaces;
-using PropertyChanged;
-using Microsoft.Practices.Prism.StoreApps;
-using System.Collections.ObjectModel;
-using VKSaver.Core.ViewModels.Collections;
-using Windows.UI.Xaml.Navigation;
 using VKSaver.Core.Services;
+using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.ViewModels.Collections;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class LocalArtistViewModel : AudioViewModel<VKSaverTrack>
+    public sealed class LocalAlbumViewModel : AudioViewModel<VKSaverTrack>
     {
-        public LocalArtistViewModel(
-            IPlayerService playerService, 
-            ILocService locService, 
-            INavigationService navigationService, 
+        public LocalAlbumViewModel(
+            IPlayerService playerService,
+            ILocService locService,
+            INavigationService navigationService,
             IAppLoaderService appLoaderService,
             ILibraryDatabaseService libraryDatabaseService,
             IImagesCacheService imagesCacheService) 
@@ -33,6 +29,8 @@ namespace VKSaver.Core.ViewModels
             _imagesCacheService = imagesCacheService;
         }
 
+        public string AlbumName { get; private set; }
+
         public string ArtistName { get; private set; }
 
         public string ArtistImage { get; private set; }
@@ -41,10 +39,9 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            ArtistName = e.Parameter.ToString();
+            _albumDbKey = e.Parameter.ToString();
             Tracks = new SimpleStateSupportCollection<VKSaverTrack>(LoadTracks);
             Tracks.Load();
-            LoadArtistImage();
 
             base.OnNavigatedTo(e, viewModelState);
         }
@@ -69,25 +66,31 @@ namespace VKSaver.Core.ViewModels
             if (Tracks.Count > 0)
                 return new List<VKSaverTrack>(0);
 
-            var dbArtist = await _libraryDatabaseService.GetArtist(ArtistName);
+            var dbAlbum = await _libraryDatabaseService.GetAlbum(_albumDbKey);
 
-            if (dbArtist.Tracks.Any())
+            if (dbAlbum.Tracks.Any())
                 SetDefaultMode();
 
-            return dbArtist.Tracks;
+            AlbumName = dbAlbum.Name;
+            ArtistName = dbAlbum.ArtistName;
+            LoadArtistImage(dbAlbum.ArtistName);
+
+            return dbAlbum.Tracks;
         }
 
-        private async void LoadArtistImage()
+        private async void LoadArtistImage(string artistName)
         {
-            ArtistImage = await _imagesCacheService.GetCachedArtistImage(ArtistName);
+            ArtistImage = await _imagesCacheService.GetCachedArtistImage(artistName);
             if (ArtistImage == null)
             {
                 ArtistImage = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
-                var img = await _imagesCacheService.CacheAndGetArtistImage(ArtistName);
+                var img = await _imagesCacheService.CacheAndGetArtistImage(artistName);
                 if (img != null)
                     ArtistImage = img;
             }
         }
+
+        private string _albumDbKey;
 
         private readonly ILibraryDatabaseService _libraryDatabaseService;
         private readonly IImagesCacheService _imagesCacheService;

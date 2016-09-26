@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="63005RomanGladkikh.Beta" Publisher="CN=7B5C2571-5F76-4244-A81C-8A0EA0AC90C0" Version="1.8.8.0" />
-  <mp:PhoneIdentity PhoneProductId="5d7e0328-c01c-4362-9b60-7aa2e9d535c8" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="63005RomanGladkikh.2915537A9FD8D" Publisher="CN=7B5C2571-5F76-4244-A81C-8A0EA0AC90C0" Version="2.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="e119fc1c-8be1-42e9-a92d-53050fb083ac" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>ВКачай Beta</DisplayName>
+    <DisplayName>ВКачай</DisplayName>
     <PublisherDisplayName>Roman Gladkikh</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>

@@ -25,7 +25,7 @@
     <value>restore the password</value>
   </data>
   <data name="MainView_Hub.Header" xml:space="preserve">
-    <value>vk saver beta</value>
+    <value>vk saver</value>
   </data>
   <data name="MainView_HubSection_YourMusic.Header" xml:space="preserve">
     <value>YOUR MUSIC</value>
@@ -86,13 +86,13 @@
     <value>show more</value>
   </data>
   <data name="AppName.Text" xml:space="preserve">
-    <value>VK SAVER BETA</value>
+    <value>VK SAVER</value>
   </data>
   <data name="AboutView_About.Text" xml:space="preserve">
     <value>about</value>
   </data>
   <data name="AboutView_AppName.Text" xml:space="preserve">
-    <value>VK Saver 2 Beta</value>
+    <value>VK Saver 2</value>
   </data>
   <data name="AboutView_Version.Text" xml:space="preserve">
     <value>Version:</value>
@@ -179,7 +179,7 @@ Go back to continue</value>
     <value>playlist</value>
   </data>
   <data name="AppNamePivot.Title" xml:space="preserve">
-    <value>VK SAVER BETA</value>
+    <value>VK SAVER</value>
   </data>
   <data name="RecommendedView_Title.Text" xml:space="preserve">
     <value>we recommend</value>
@@ -448,7 +448,7 @@ Go back to continue</value>
     <value>Preparing files for download...</value>
   </data>
   <data name="AppNameText" xml:space="preserve">
-    <value>VK Saver Beta</value>
+    <value>VK Saver</value>
   </data>
   <data name="Message_AddSelectedError_Text" xml:space="preserve">
     <value>Failed to add the items to your collection. Try again later.</value>
@@ -1234,5 +1234,116 @@ The last time we not complete a few moments. Let's continue!</value>
     <value>Preparing database...</value>
     <comment>Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</comment>
+  </data>
+  <data name="AppBarButton_Search.Label" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="DetailsView_Subtitle.Text" xml:space="preserve">
+    <value>details</value>
+    <comment>details</comment>
+  </data>
+  <data name="LocalFolderView_Title.Text" xml:space="preserve">
+    <value>FOLDER</value>
+    <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
+  </data>
+  <data name="LocalGenreView_Title.Text" xml:space="preserve">
+    <value>GENRE</value>
+    <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
+  </data>
+  <data name="LibraryView_PivotItem_Albums.Header" xml:space="preserve">
+    <value>albums</value>
+  </data>
+  <data name="LibraryView_PivotItem_Artists.Header" xml:space="preserve">
+    <value>artists</value>
+    <comment>artists</comment>
+  </data>
+  <data name="LibraryView_PivotItem_Cached.Header" xml:space="preserve">
+    <value>cached tracks</value>
+  </data>
+  <data name="LibraryView_PivotItem_Folders.Header" xml:space="preserve">
+    <value>folders</value>
+  </data>
+  <data name="LibraryView_PivotItem_Genres.Header" xml:space="preserve">
+    <value>genres</value>
+  </data>
+  <data name="LibraryView_PivotItem_Tracks.Header" xml:space="preserve">
+    <value>tracks</value>
+    <comment>tracks</comment>
+  </data>
+  <data name="LibraryView_AlbumsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of albums</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.LoadingText" xml:space="preserve">
+    <value>Loading albums list...</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.NoDataText" xml:space="preserve">
+    <value>In your collection no one album</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of artists</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.LoadingText" xml:space="preserve">
+    <value>Loading artists list...</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.NoDataText" xml:space="preserve">
+    <value>In your collection no one artist</value>
+  </data>
+  <data name="LibraryView_CachedLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of cached audio</value>
+  </data>
+  <data name="LibraryView_CachedLoader.LoadingText" xml:space="preserve">
+    <value>Loading the list of cached audios...</value>
+  </data>
+  <data name="LibraryView_CachedLoader.NoDataText" xml:space="preserve">
+    <value>In your collection no one cached audios</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of folders</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.LoadingText" xml:space="preserve">
+    <value>Loading folders list...</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.NoDataText" xml:space="preserve">
+    <value>In your collection no one folder</value>
+  </data>
+  <data name="LibraryView_GenresLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of genres</value>
+  </data>
+  <data name="LibraryView_GenresLoader.LoadingText" xml:space="preserve">
+    <value>Loading genres list...</value>
+  </data>
+  <data name="LibraryView_GenresLoader.NoDataText" xml:space="preserve">
+    <value>In your collection no one genre</value>
+  </data>
+  <data name="LibraryView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of tracks</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="LibraryView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Loading tracks list...</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="LibraryView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>In your collection there are no tracks</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
+    <value>LOCAL LIBRARY</value>
+  </data>
+  <data name="MainView_AlbumsItem.Content" xml:space="preserve">
+    <value>albums</value>
+  </data>
+  <data name="MainView_ArtistsItem.Content" xml:space="preserve">
+    <value>artists</value>
+  </data>
+  <data name="MainView_FoldersItem.Content" xml:space="preserve">
+    <value>folders</value>
+  </data>
+  <data name="MainView_GenresItem.Content" xml:space="preserve">
+    <value>genres</value>
+  </data>
+  <data name="MainView_LocalTracksItem.Content" xml:space="preserve">
+    <value>tracks</value>
+    <comment>Eng: tracks, а не композиции</comment>
   </data>
 </root>

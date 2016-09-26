@@ -121,7 +121,7 @@
     <value>о приложении</value>
   </data>
   <data name="AboutView_AppName.Text" xml:space="preserve">
-    <value>ВКачай 2 Beta</value>
+    <value>ВКачай 2</value>
   </data>
   <data name="AboutView_Version.Text" xml:space="preserve">
     <value>Версия:</value>
@@ -200,13 +200,13 @@
     <value>Подготовка файлов для загрузки...</value>
   </data>
   <data name="AppName.Text" xml:space="preserve">
-    <value>ВКАЧАЙ BETA</value>
+    <value>ВКАЧАЙ</value>
   </data>
   <data name="AppNamePivot.Title" xml:space="preserve">
-    <value>ВКАЧАЙ BETA</value>
+    <value>ВКАЧАЙ</value>
   </data>
   <data name="AppNameText" xml:space="preserve">
-    <value>ВКачай Beta</value>
+    <value>ВКачай</value>
   </data>
   <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
     <value>Не удалось загрузить список альбомов исполнителя</value>
@@ -289,7 +289,7 @@
     <value>сообщества</value>
   </data>
   <data name="MainView_Hub.Header" xml:space="preserve">
-    <value>вкачай beta</value>
+    <value>вкачай</value>
   </data>
   <data name="MainView_HubSection_Recommendations.Header" xml:space="preserve">
     <value>РЕКОМЕНДУЕМ</value>
@@ -1338,11 +1338,132 @@ Eng: upload</comment>
     <comment>Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</comment>
   </data>
-  <data name="MainView_LibraryItem.Content" xml:space="preserve">
-    <value>локальная музыка</value>
-    <comment>Открывает страницу локальной музыки пользователя.</comment>
-  </data>
   <data name="AppBarButton_Search.Label" xml:space="preserve">
     <value>поиск</value>
+  </data>
+  <data name="DetailsView_Subtitle.Text" xml:space="preserve">
+    <value>подробнее</value>
+    <comment>details</comment>
+  </data>
+  <data name="LocalFolderView_Title.Text" xml:space="preserve">
+    <value>ПАПКА</value>
+    <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
+  </data>
+  <data name="LocalGenreView_Title.Text" xml:space="preserve">
+    <value>ЖАНР</value>
+    <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
+  </data>
+  <data name="LibraryView_AlbumsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список альбомов</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список альбомов...</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.NoDataText" xml:space="preserve">
+    <value>В вашей коллекции нет ни одного альбома</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список исполнителей</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список исполнителей...</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.NoDataText" xml:space="preserve">
+    <value>В вашей коллекции нет ни одного исполнителя</value>
+  </data>
+  <data name="LibraryView_CachedLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список кэшированных аудиозаписей</value>
+  </data>
+  <data name="LibraryView_CachedLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список кэшированных аудиозаписей...</value>
+  </data>
+  <data name="LibraryView_CachedLoader.NoDataText" xml:space="preserve">
+    <value>В вашей коллекции нет ни одной кэшированной аудиозаписи</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список папок</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список папок...</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.NoDataText" xml:space="preserve">
+    <value>В вашей коллекции нет ни одной папки</value>
+  </data>
+  <data name="LibraryView_GenresLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список жанров</value>
+  </data>
+  <data name="LibraryView_GenresLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список жанров...</value>
+  </data>
+  <data name="LibraryView_GenresLoader.NoDataText" xml:space="preserve">
+    <value>В вашей коллекции нет ни одного жанра</value>
+  </data>
+  <data name="LibraryView_PivotItem_Albums.Header" xml:space="preserve">
+    <value>альбомы</value>
+  </data>
+  <data name="LibraryView_PivotItem_Artists.Header" xml:space="preserve">
+    <value>исполнители</value>
+    <comment>artists</comment>
+  </data>
+  <data name="LibraryView_PivotItem_Cached.Header" xml:space="preserve">
+    <value>кэшированные</value>
+  </data>
+  <data name="LibraryView_PivotItem_Folders.Header" xml:space="preserve">
+    <value>папки</value>
+  </data>
+  <data name="LibraryView_PivotItem_Genres.Header" xml:space="preserve">
+    <value>жанры</value>
+  </data>
+  <data name="LibraryView_PivotItem_Tracks.Header" xml:space="preserve">
+    <value>композиции</value>
+    <comment>tracks</comment>
+  </data>
+  <data name="LibraryView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список композиций</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="LibraryView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список композиций...</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="LibraryView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>В вашей коллекции нет ни одной композиции</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="MainView_AlbumsItem.Content" xml:space="preserve">
+    <value>альбомы</value>
+  </data>
+  <data name="MainView_ArtistsItem.Content" xml:space="preserve">
+    <value>исполнители</value>
+  </data>
+  <data name="MainView_FoldersItem.Content" xml:space="preserve">
+    <value>папки</value>
+  </data>
+  <data name="MainView_GenresItem.Content" xml:space="preserve">
+    <value>жанры</value>
+  </data>
+  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
+    <value>ЛОКАЛЬНАЯ БИБЛИОТЕКА</value>
+  </data>
+  <data name="MainView_LocalTracksItem.Content" xml:space="preserve">
+    <value>композиции</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Message_LocalView_DeleteArtist_Text" xml:space="preserve">
+    <value>Удаление исполнителя {0} приведет к удалению всех его альбомов и композиций из вашей коллекции.
+Это действие нельзя отменить.</value>
+  </data>
+  <data name="Message_LocalView_DeleteArtist_Title" xml:space="preserve">
+    <value>Удалить исполнителя?</value>
+  </data>
+  <data name="Message_NoButton_Text" xml:space="preserve">
+    <value>нет</value>
+    <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка отказа.</comment>
+  </data>
+  <data name="Message_YesButton_Text" xml:space="preserve">
+    <value>да</value>
+    <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка согласия.</comment>
   </data>
 </root>

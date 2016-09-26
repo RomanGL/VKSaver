@@ -27,13 +27,16 @@ namespace VKSaver.Core.ViewModels
             IPlayerService playerService, 
             ILogService logService,
             IAppLoaderService appLoaderService,
-            ILocService locService)
+            ILocService locService,
+            IDialogsService dialogsService)
             : base(playerService, locService, navigationService, appLoaderService)
         {
             _libraryDatabaseService = libraryDatabaseService;
             _logService = logService;
+            _dialogsService = dialogsService;
 
             ExecuteItemCommand = new DelegateCommand<object>(OnExecuteItemCommand);
+            DeleteItemCommand = new DelegateCommand<object>(OnDeleteItemCommand);
         }
                 
         public ContentState TracksState { get; private set; }
@@ -60,6 +63,9 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand<object> ExecuteItemCommand { get; private set; }
 
+        [DoNotNotify]
+        public DelegateCommand<object> DeleteItemCommand { get; private set; }
+
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             Tracks = Tracks ?? new SimpleStateSupportCollection<JumpListGroup<VKSaverTrack>>(LoadTracks);
@@ -68,6 +74,18 @@ namespace VKSaver.Core.ViewModels
             Genres = Genres ?? new SimpleStateSupportCollection<JumpListGroup<VKSaverGenre>>(LoadGenres);
             Folders = Folders ?? new SimpleStateSupportCollection<VKSaverFolder>(LoadFolders);
             Cached = Cached ?? new SimpleStateSupportCollection<JumpListGroup<VKSaverTrack>>(LoadCachedTracks);
+
+            if (_libraryDatabaseService.NeedReloadLibraryView)
+            {
+                Tracks.Clear();
+                Artists.Clear();
+                Albums.Clear();
+                Genres.Clear();
+                Folders.Clear();
+                Cached.Clear();
+
+                _libraryDatabaseService.NeedReloadLibraryView = false;
+            }
 
             if (viewModelState.Count > 0)
             {
@@ -278,6 +296,99 @@ namespace VKSaver.Core.ViewModels
         {
             if (item is VKSaverArtist)
                 _navigationService.Navigate("LocalArtistView", ((VKSaverArtist)item).DbKey);
+            else if (item is VKSaverAlbum)
+                _navigationService.Navigate("LocalAlbumView", ((VKSaverAlbum)item).DbKey);
+            else if (item is VKSaverGenre)
+                _navigationService.Navigate("LocalGenreView", ((VKSaverGenre)item).DbKey);
+            else if (item is VKSaverFolder)
+                _navigationService.Navigate("LocalFolderView", ((VKSaverFolder)item).Path);
+        }
+
+        private async void OnDeleteItemCommand(object item)
+        {
+            if (item is VKSaverTrack)
+            {
+                if (CurrentPivotIndex == 0)
+                    await DeleteTrack((VKSaverTrack)item);
+                else if (CurrentPivotIndex == 5)
+                    await DeleteCachedTrack((VKSaverTrack)item);
+            }
+            else if (item is VKSaverArtist)
+            {
+                await DeleteArtist((VKSaverArtist)item);
+            }            
+        }
+
+        private async Task DeleteTrack(VKSaverTrack track)
+        {
+            _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.Title));
+
+            await _libraryDatabaseService.RemoveItem(track);
+            _allTracks.Remove(track);
+            DeleteItemFromGroups(track, Tracks);
+
+            _appLoaderService.Hide();
+        }
+
+        private async Task DeleteCachedTrack(VKSaverTrack track)
+        {
+            _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.Title));
+
+            await _libraryDatabaseService.RemoveItem(track);
+            _allCachedTracks.Remove(track);
+            DeleteItemFromGroups(track, Cached);
+
+            _appLoaderService.Hide();
+        }
+
+        private async Task DeleteArtist(VKSaverArtist artist)
+        {
+            _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], artist.Name));
+
+            bool canDelete = await _dialogsService.ShowYesNoAsync(
+                String.Format(_locService["Message_LocalView_DeleteArtist_Text"], artist.Name), 
+                _locService["Message_LocalView_DeleteArtist_Title"]);
+
+            if (!canDelete)
+            {
+                _appLoaderService.Hide();
+                return;
+            }
+
+            var dbArtist = await _libraryDatabaseService.GetArtist(artist.DbKey);
+
+            foreach (var track in dbArtist.Tracks)
+            {
+                DeleteItemFromGroups(track, Tracks);
+                if (track.VKInfoKey != null)
+                {
+                    await _libraryDatabaseService.RemoveItemByPrimaryKey<VKSaverAudioVKInfo>(track.VKInfoKey);
+                    DeleteItemFromGroups(track, Cached);
+                }
+
+                await _libraryDatabaseService.RemoveItem(track);
+            }
+
+            foreach (var album in dbArtist.Albums)
+            {
+                DeleteItemFromGroups(album, Albums);
+                await _libraryDatabaseService.RemoveItem(album);
+            }
+
+            await _libraryDatabaseService.RemoveItem(artist);
+            DeleteItemFromGroups(artist, Artists);
+
+            _libraryDatabaseService.NeedReloadLibraryView = false;
+            _appLoaderService.Hide();
+        }
+
+        private void DeleteItemFromGroups<T>(T item, IList<JumpListGroup<T>> collection)
+        {
+            for (int i = 0; i < collection.Count; i++)
+            {
+                if (collection[i].Remove(item))
+                    return;
+            }
         }
 
         private int _currentPivotIndex;
@@ -286,5 +397,6 @@ namespace VKSaver.Core.ViewModels
         
         private readonly ILibraryDatabaseService _libraryDatabaseService;
         private readonly ILogService _logService;
+        private readonly IDialogsService _dialogsService;
     }
 }
