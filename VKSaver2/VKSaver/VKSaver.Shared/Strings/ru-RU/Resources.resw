@@ -1493,4 +1493,44 @@ Eng: upload</comment>
   <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
     <value>Воспроизводите свои локальные аудиозаписи</value>
   </data>
+  <data name="Language_SystemLanguage_Text" xml:space="preserve">
+    <value>из настроек системы</value>
+    <comment>Язык приложения, как в настройках системы.</comment>
+  </data>
+  <data name="SetingsView_InternetAccess_Text.Text" xml:space="preserve">
+    <value>ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?</value>
+  </data>
+  <data name="SetingsView_LocalLibrary_Text.Text" xml:space="preserve">
+    <value>Если в вашей библиотеке отбражаются не все треки, попробуйте выполнить обновление базы данных.</value>
+  </data>
+  <data name="SetingsView_Notifications_Text.Text" xml:space="preserve">
+    <value>ВКачай может уведомлять вас о завершении загрузок.</value>
+  </data>
+  <data name="SettingsView_AppLanguage_Title.Text" xml:space="preserve">
+    <value>Язык приложения</value>
+  </data>
+  <data name="SettingsView_InternetAccess_Title.Text" xml:space="preserve">
+    <value>Доступ к интернету</value>
+  </data>
+  <data name="SettingsView_LocalLibrary_Title.Text" xml:space="preserve">
+    <value>Локальная библиотека</value>
+  </data>
+  <data name="SettingsView_Notifications_Title.Text" xml:space="preserve">
+    <value>Уведомления</value>
+  </data>
+  <data name="SettingsView_UpdateDatabaseButton.Content" xml:space="preserve">
+    <value>обновить базу данных</value>
+  </data>
+  <data name="Message_DownloadsNotificationsChanged_Text" xml:space="preserve">
+    <value>Этот параметр будет применен только к новым загрузкам, и не затронет текущие.</value>
+  </data>
+  <data name="Message_DownloadsNotificationsChanged_Title" xml:space="preserve">
+    <value>Обратите внимание</value>
+  </data>
+  <data name="Message_RestartRequired_Text" xml:space="preserve">
+    <value>Чтобы изменения вступили в силу, необходимо перезапустить приложение.</value>
+  </data>
+  <data name="Message_RestartRequired_Title" xml:space="preserve">
+    <value>Требуется перезапуск</value>
+  </data>
 </root>

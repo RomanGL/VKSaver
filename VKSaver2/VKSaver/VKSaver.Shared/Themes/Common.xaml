@@ -12,6 +12,25 @@
     <SolidColorBrush x:Key="AccentDarkDarkBrush"
                      Color="#FF801818" />
 
+    <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush"
+                     Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ToggleSwitchCurtainPointerOverBackgroundThemeBrush"
+                     Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ToggleSwitchCurtainPressedBackgroundThemeBrush"
+                     Color="{StaticResource AccentColor}" />
+
+    <SolidColorBrush x:Key="ComboBoxItemSelectedForegroundThemeBrush"
+                     Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="ComboBoxPressedBackgroundThemeBrush"
+                     Color="{StaticResource AccentColor}" />
+    <LinearGradientBrush x:Key="ComboBoxHighlightedBorderThemeBrush"
+                         EndPoint="1,1"
+                         StartPoint="0,0">
+        <GradientStop Color="Orange" />
+        <GradientStop Color="#FFFF006F"
+                      Offset="1" />
+    </LinearGradientBrush>
+
     <ImageBrush x:Key="ImagePlaceholderBrush"
                 Stretch="UniformToFill"
                 ImageSource="ms-appx:///Assets/ImagePlaceholder.png"/>

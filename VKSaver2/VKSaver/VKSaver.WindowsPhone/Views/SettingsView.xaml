@@ -39,10 +39,11 @@
         <ScrollViewer Grid.Row="1"
                       x:Name="ContentRoot"
                       Margin="19,0">
-            <StackPanel>
+            <StackPanel Margin="0,0,0,40">
                 <TextBlock Text="Авторизация в сервисах"
+                           Foreground="{ThemeResource TitleBrush}"
                            x:Uid="SettingsView_ServicesAuthorizations_Title"
-                           Style="{StaticResource ControlHeaderTextBlockStyle}" />
+                           Style="{StaticResource GroupHeaderTextBlockStyle}" />
                 <ListView ItemsSource="{Binding Authorizations}">
                     <ListView.ItemContainerTransitions>
                         <TransitionCollection>
@@ -70,10 +71,60 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+
+                <TextBlock Text="Локальная библиотека"
+                           x:Uid="SettingsView_LocalLibrary_Title"
+                           Foreground="{ThemeResource TitleBrush}"
+                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                           Margin="0,25,0,0" />
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                           x:Uid="SetingsView_LocalLibrary_Text"
+                           Margin="0,5,0,0">
+                    Если в вашей библиотеке отбражаются не все треки, попробуйте выполнить обновление базы данных.
+                </TextBlock>
                 <Button Content="обновить базу данных"
+                        x:Uid="SettingsView_UpdateDatabaseButton"
                         Style="{StaticResource ButtonStyle}"
                         Command="{Binding UpdateDatabaseCommand, Mode=OneTime}"
-                        Margin="0,20,0,0" />
+                        Margin="0,10,0,0" />
+
+                <TextBlock Text="Уведомления"
+                           x:Uid="SettingsView_Notifications_Title"
+                           Foreground="{ThemeResource TitleBrush}"
+                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                           Margin="0,25,0,0" />
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                           x:Uid="SetingsView_Notifications_Text"
+                           Margin="0,5,0,0">
+                    ВКачай может уведомлять вас о завершении загрузок.
+                </TextBlock>
+                <ToggleSwitch />
+
+                <TextBlock Text="Доступ к интернету"
+                           x:Uid="SettingsView_InternetAccess_Title"
+                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                           Margin="0,25,0,0"
+                           Foreground="{ThemeResource TitleBrush}" />
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                           x:Uid="SetingsView_InternetAccess_Text"
+                           Margin="0,5,0,0">
+                    ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
+                </TextBlock>
+                <ComboBox BorderBrush="{StaticResource TitleBrush}">
+                    <ComboBoxItem Content="да"
+                                  x:Uid="FirstStartView_YesButton"/>
+                    <ComboBoxItem Content="только через Wi-Fi"
+                                  x:Uid="FirstStartView_WiFiButton" />
+                    <ComboBoxItem Content="нет"
+                                  x:Uid="FirstStartView_NoButton" />
+                </ComboBox>
+
+                <TextBlock Text="Язык приложения"
+                           x:Uid="SettingsView_AppLanguage_Title"
+                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                           Margin="0,25,0,0"
+                           Foreground="{ThemeResource TitleBrush}" />
+                <ComboBox BorderBrush="{StaticResource TitleBrush}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -1836,6 +1836,59 @@ Eng: upload</note>
           <source>Всегда актуальный профиль Last.fm!</source>
           <target state="new">Всегда актуальный профиль Last.fm!</target>
         </trans-unit>
+        <trans-unit id="Language_SystemLanguage_Text" translate="yes" xml:space="preserve">
+          <source>из настроек системы</source>
+          <target state="new">из настроек системы</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Язык приложения, как в настройках системы.</note>
+        </trans-unit>
+        <trans-unit id="SetingsView_InternetAccess_Text.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?</source>
+          <target state="new">ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?</target>
+        </trans-unit>
+        <trans-unit id="SetingsView_LocalLibrary_Text.Text" translate="yes" xml:space="preserve">
+          <source>Если в вашей библиотеке отбражаются не все треки, попробуйте выполнить обновление базы данных.</source>
+          <target state="new">Если в вашей библиотеке отбражаются не все треки, попробуйте выполнить обновление базы данных.</target>
+        </trans-unit>
+        <trans-unit id="SetingsView_Notifications_Text.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай может уведомлять вас о завершении загрузок.</source>
+          <target state="new">ВКачай может уведомлять вас о завершении загрузок.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_AppLanguage_Title.Text" translate="yes" xml:space="preserve">
+          <source>Язык приложения</source>
+          <target state="new">Язык приложения</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InternetAccess_Title.Text" translate="yes" xml:space="preserve">
+          <source>Доступ к интернету</source>
+          <target state="new">Доступ к интернету</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_LocalLibrary_Title.Text" translate="yes" xml:space="preserve">
+          <source>Локальная библиотека</source>
+          <target state="new">Локальная библиотека</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_Notifications_Title.Text" translate="yes" xml:space="preserve">
+          <source>Уведомления</source>
+          <target state="new">Уведомления</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_UpdateDatabaseButton.Content" translate="yes" xml:space="preserve">
+          <source>обновить базу данных</source>
+          <target state="new">обновить базу данных</target>
+        </trans-unit>
+        <trans-unit id="Message_DownloadsNotificationsChanged_Text" translate="yes" xml:space="preserve">
+          <source>Этот параметр будет применен только к новым загрузкам, и не затронет текущие.</source>
+          <target state="new">Этот параметр будет применен только к новым загрузкам, и не затронет текущие.</target>
+        </trans-unit>
+        <trans-unit id="Message_DownloadsNotificationsChanged_Title" translate="yes" xml:space="preserve">
+          <source>Обратите внимание</source>
+          <target state="new">Обратите внимание</target>
+        </trans-unit>
+        <trans-unit id="Message_RestartRequired_Text" translate="yes" xml:space="preserve">
+          <source>Чтобы изменения вступили в силу, необходимо перезапустить приложение.</source>
+          <target state="new">Чтобы изменения вступили в силу, необходимо перезапустить приложение.</target>
+        </trans-unit>
+        <trans-unit id="Message_RestartRequired_Title" translate="yes" xml:space="preserve">
+          <source>Требуется перезапуск</source>
+          <target state="new">Требуется перезапуск</target>
+        </trans-unit>
       </group>
     </body>
   </file>

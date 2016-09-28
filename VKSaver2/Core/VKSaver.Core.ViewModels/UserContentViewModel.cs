@@ -17,6 +17,7 @@ using System.Collections.Specialized;
 using VKSaver.Core.Models.Transfer;
 using ModernDev.InTouch;
 using VKSaver.Core.Services.Common;
+using Windows.System;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -647,9 +648,13 @@ namespace VKSaver.Core.ViewModels
             {
                 _navigationService.Navigate("VideoAlbumView", JsonConvert.SerializeObject(item));
             }
-            else
+            else if (item is Doc)
             {
-                _navigationService.Navigate("AccessDeniedView", null);
+                var doc = (Doc)item;
+                if (doc.Ext == "gif" || doc.Ext == "png" || doc.Ext == "jpg")
+                    await Launcher.LaunchUriAsync(new Uri(doc.Url));
+                else
+                    await _downloadsServiceHelper.StartDownloadingAsync(doc.ToDownloadable());
             }
         }
 

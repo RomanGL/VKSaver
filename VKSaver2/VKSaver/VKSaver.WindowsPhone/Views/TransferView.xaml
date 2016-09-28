@@ -197,13 +197,13 @@
                 </ListView>
             </controls:ContentContainer>
         </PivotItem>
-        <PivotItem Header="журнал"
+        <!--<PivotItem Header="журнал"
                    x:Uid="TransferView_PivotSection_History"
                    Style="{StaticResource PivotItemStyle}">
             <controls:ContentContainer State="{Binding HistoryState}"
                                        x:Uid="TransferView_HistoryLoader"
                                        NoDataText="Журнал загрузок пока не поддерживается">
             </controls:ContentContainer>
-        </PivotItem>
+        </PivotItem>-->
     </Pivot>
 </mvvm:VisualStateAwarePage>

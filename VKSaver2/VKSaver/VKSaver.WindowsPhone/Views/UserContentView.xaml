@@ -315,7 +315,8 @@
                 </ListView.FooterTemplate>
                 <i:Interaction.Behaviors>
                     <c:EventTriggerBehavior EventName="ItemClick">
-                        <c:InvokeCommandAction Command="{Binding NotImplementedCommand}" />
+                        <c:InvokeCommandAction Command="{Binding ExecuteTracksListItemCommand}"
+                                               InputConverter="{StaticResource ItemClickEventArgsConverter}" />
                     </c:EventTriggerBehavior>
                     <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
                                                     SelectAll="{Binding SelectAllDocuments}"

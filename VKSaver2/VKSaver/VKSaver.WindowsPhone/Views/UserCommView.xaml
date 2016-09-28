@@ -115,7 +115,7 @@
                 </i:Interaction.Behaviors>
             </ListView>
         </PivotItem>
-        <PivotItem Header="списки"
+        <!--<PivotItem Header="списки"
                    x:Uid="UserCommView_PivotSection_FriendLists"
                    Style="{StaticResource PivotItemStyle}">
             <ListView ItemsSource="{Binding FriendsLists}"
@@ -147,7 +147,7 @@
                     </c:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
             </ListView>
-        </PivotItem>
+        </PivotItem>-->
         <PivotItem Header="сообщества"
                    x:Uid="UserCommView_PivotSection_Groups"
                    Style="{StaticResource PivotItemStyle}">
