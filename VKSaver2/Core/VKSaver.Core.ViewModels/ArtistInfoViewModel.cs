@@ -16,19 +16,25 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Windows.UI.Xaml.Navigation;
 using VKSaver.Core.ViewModels.Search;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Services;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public sealed class ArtistInfoViewModel : ViewModelBase
     {
-        public ArtistInfoViewModel(ILFService lfService, INavigationService navigationService,
-            ISettingsService settingsService, IPurchaseService purchaseService)
+        public ArtistInfoViewModel(
+            ILFService lfService,
+            INavigationService navigationService,
+            ISettingsService settingsService, 
+            IPurchaseService purchaseService,
+            IImagesCacheService imagesCacheService)
         {
             _lfService = lfService;
             _navigationService = navigationService;
             _settingsService = settingsService;
             _purchaseService = purchaseService;
+            _imagesCacheService = imagesCacheService;
 
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
             GoToSimilarArtistInfoCommand = new DelegateCommand<LFSimilarArtist>(OnGoToSimilarArtistInfoCommand);
@@ -43,6 +49,8 @@ namespace VKSaver.Core.ViewModels
         public SimpleStateSupportCollection<LFSimilarArtist> Similar { get; private set; }
 
         public LFArtistExtended Artist { get; private set; }
+
+        public string ArtistImage { get; private set; }
 
         public int LastPivotIndex { get; set; }
 
@@ -95,6 +103,7 @@ namespace VKSaver.Core.ViewModels
 
             Tracks.Load();
             Similar.Load();
+            LoadArtistImage(Artist.Name);
 
             base.OnNavigatedTo(e, viewModelState);
         }
@@ -205,13 +214,11 @@ namespace VKSaver.Core.ViewModels
 
         private void OnGoToAlbumInfoCommand(LFAlbumBase album)
         {
-            var parameter = new Tuple<LFAlbumBase, string>(album, Artist.MegaImage.URL);
-
             if (_purchaseService.IsFullVersionPurchased)
-                _navigationService.Navigate("ArtistAlbumView", JsonConvert.SerializeObject(parameter));
+                _navigationService.Navigate("ArtistAlbumView", JsonConvert.SerializeObject(album));
             else
                 _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
-                    new KeyValuePair<string, string>("ArtistAlbumView", JsonConvert.SerializeObject(parameter))));
+                    new KeyValuePair<string, string>("ArtistAlbumView", JsonConvert.SerializeObject(album))));
         }
 
         private void OnFindArtistInVKCommand()
@@ -227,9 +234,27 @@ namespace VKSaver.Core.ViewModels
                 }));
         }
 
+        private async void LoadArtistImage(string artist)
+        {
+            string img = await _imagesCacheService.GetCachedArtistImage(artist);
+            if (img == null)
+            {
+                ArtistImage = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
+                img = await _imagesCacheService.CacheAndGetArtistImage(artist);
+
+                if (img != null && artist == Artist?.Name)
+                    ArtistImage = img;
+            }
+            else if (artist == Artist?.Name)
+            {
+                ArtistImage = img;
+            }
+        }
+
         private readonly ILFService _lfService;
         private readonly INavigationService _navigationService;
         private readonly ISettingsService _settingsService;
         private readonly IPurchaseService _purchaseService;
+        private readonly IImagesCacheService _imagesCacheService;
     }
 }

@@ -17,6 +17,7 @@
         public const string CURRENT_FIRST_START_VIEW_PARAMETER = "CurrentFirstStartView";
 
         public const string INTERNET_ACCESS_TYPE = "InternetAccessType";
+        public const string DOWNLOADS_NOTIFICATIONS_PARAMETER = "DownloadsNotifications";
 
         public const string SUCCESS_TOAST_SOUND = "ms-appx:///Assets/Sounds/Success.wav";
         public const string FAIL_TOAST_SOUND = "ms-appx:///Assets/Sounds/Fail.wav";

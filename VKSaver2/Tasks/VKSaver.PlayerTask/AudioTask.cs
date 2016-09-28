@@ -35,7 +35,7 @@ namespace VKSaver.PlayerTask
             _logService = new LogService();
             _playerPlaylistService = new PlayerPlaylistService(_logService);
             _musicCacheService = new MusicCacheService(_logService);
-            _imagesCacheService = new ImagesCacheService(null, null);
+            _imagesCacheService = new ImagesCacheService(null, null, null);
 
             _player = BackgroundMediaPlayer.Current;
             _manager = new PlaybackManager(_player, _settingsService, _playerPlaylistService, _logService, _musicCacheService);

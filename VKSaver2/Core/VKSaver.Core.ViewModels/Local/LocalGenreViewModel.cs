@@ -77,6 +77,12 @@ namespace VKSaver.Core.ViewModels
             if (dbGenre.Tracks.Any())
                 SetDefaultMode();
 
+            foreach (var track in dbGenre.Tracks)
+            {
+                if (track.Artist == LibraryDatabaseService.UNKNOWN_ARTIST_NAME)
+                    track.Artist = _locService["UnknownArtist_Text"];
+            }
+
             return dbGenre.Tracks;
         }
 

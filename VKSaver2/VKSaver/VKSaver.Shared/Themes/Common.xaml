@@ -5,6 +5,8 @@
     <Color x:Key="AccentColor">#FFE52C2C</Color>
     <Color x:Key="SystemColorControlAccentColor">#FFE52C2C</Color>
 
+    <SolidColorBrush x:Key="PhoneAccentBrush"
+                     Color="{StaticResource AccentColor}" />
     <SolidColorBrush x:Key="AccentBrush"
                      Color="{StaticResource AccentColor}" />
     <SolidColorBrush x:Key="AccentDarkBrush"

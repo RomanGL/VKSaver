@@ -86,6 +86,12 @@ namespace VKSaver.Core.ViewModels
                 _locService["UnknownArtist_Text"] :
                 dbAlbum.ArtistName;
 
+            foreach (var track in dbAlbum.Tracks)
+            {
+                if (track.Artist == LibraryDatabaseService.UNKNOWN_ARTIST_NAME)
+                    track.Artist = _locService["UnknownArtist_Text"];
+            }
+
             LoadArtistImage(dbAlbum.ArtistName);
 
             return dbAlbum.Tracks;

@@ -89,7 +89,7 @@
     </Page.Resources>
 
     <Page.BottomAppBar>
-        <CommandBar Background="{ThemeResource ContentDialogDimmingThemeBrush}">
+        <CommandBar Background="{ThemeResource MainViewAppBarBackground}">
             <AppBarButton Label="поиск"
                           Command="{Binding GoToSearchCommand}"
                           x:Uid="AppBarButton_Search">

@@ -133,12 +133,12 @@ namespace VKSaver
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IDialogsService, DialogsService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IPurchaseService, PurchaseService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<INetworkInfoService, NetworkInfoService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ITracksShuffleService, TracksShuffleService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IPlayerPlaylistService, PlayerPlaylistService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ICultureProvider, CultureProvider>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IGrooveMusicService, GrooveMusicService>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IImagesCacheService, ImagesCacheService>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<INetworkInfoService, NetworkInfoService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IImagesCacheService, ImagesCacheService>(new ContainerControlledLifetimeManager());            
             _container.RegisterType<IMusicCacheService, MusicCacheService>(new ContainerControlledLifetimeManager());            
             _container.RegisterType<IVideoLinksExtractor, VideoLinksExtractor>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILastFmLoginService, LastFmLoginService>(new ContainerControlledLifetimeManager());

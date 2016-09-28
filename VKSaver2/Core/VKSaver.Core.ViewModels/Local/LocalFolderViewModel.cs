@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Database;
 using VKSaver.Core.Models.Player;
+using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
@@ -72,6 +73,12 @@ namespace VKSaver.Core.ViewModels
 
             if (dbFolder.Tracks.Any())
                 SetDefaultMode();
+
+            foreach (var track in dbFolder.Tracks)
+            {
+                if (track.Artist == LibraryDatabaseService.UNKNOWN_ARTIST_NAME)
+                    track.Artist = _locService["UnknownArtist_Text"];
+            }
 
             return dbFolder.Tracks;
         }

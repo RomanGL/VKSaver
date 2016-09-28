@@ -30,7 +30,8 @@
     
     <Page.Resources>
         <common:DataContextProxy x:Key="DataContextProxy" />
-        
+
+        <converters:ArtistNameLocalizedConverter x:Key="ArtistNameLocalizedConverter" />
         <converters:TimeSpanToSecondsConverter x:Key="TimespanToSecondsConverter" />
         <converters:PlayerRepeatModeToIntConverter x:Key="PlayerRepeatModeToIntConverter" />
         <converters:CurrentTrackToStyleConverter x:Key="CurrentTrackToStyleConverter"
@@ -255,7 +256,7 @@
                                    Margin="0,-1,0,0"
                                    ContinuumNavigationTransitionInfo.IsExitElement="True"/>
                         <TextBlock x:Name="ArtistTB"
-                                   Text="{Binding CurrentTrack.Track.Artist}"
+                                   Text="{Binding CurrentTrack.Track.Artist, Converter={StaticResource ArtistNameLocalizedConverter}}"
                                    Style="{StaticResource ArtistTextBlock}"
                                    Grid.Row="2"
                                    Grid.ColumnSpan="2" />

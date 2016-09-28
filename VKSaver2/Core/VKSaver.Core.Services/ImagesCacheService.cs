@@ -3,10 +3,8 @@ using OneTeam.SDK.LastFm.Models.Response;
 using OneTeam.SDK.LastFm.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
@@ -21,10 +19,14 @@ namespace VKSaver.Core.Services
     /// </summary>
     public sealed class ImagesCacheService : IImagesCacheService
     {    
-        public ImagesCacheService(IGrooveMusicService grooveMusicService, ILFService lfService)
+        public ImagesCacheService(
+            IGrooveMusicService grooveMusicService, 
+            ILFService lfService,
+            INetworkInfoService networkInfoService)
         {
             _grooveMusicService = grooveMusicService;
             _lfService = lfService;
+            _networkInfoService = networkInfoService;
 
             _artistsQueue = new TaskQueue();
             _albumsQueue = new TaskQueue();
@@ -48,7 +50,7 @@ namespace VKSaver.Core.Services
                     return null;
 
                 var folder = await GetCreateFolder(ARTISTS_FOLDER_NAME);
-                return await Get(artistName, folder);
+                return await Get(artistName + ".jpg", folder);
             }
             catch (Exception)
             {
@@ -61,7 +63,7 @@ namespace VKSaver.Core.Services
             try
             {
                 var folder = await GetCreateFolder(ALBUMS_FOLDER_NAME);
-                return await Get(trackTitle, folder);
+                return await Get(trackTitle + ".jpg", folder);
             }
             catch (Exception)
             {
@@ -75,7 +77,7 @@ namespace VKSaver.Core.Services
             {
                 var folder = await GetCreateFolder(ALBUMS_FOLDER_NAME);
                 var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, 0, count);
-                return files.Select(f => f.Path).ToList();
+                return files.Where(f => f.FileType == ".jpg").Select(f => f.Path).ToList();
             }
             catch (Exception)
             {
@@ -87,7 +89,7 @@ namespace VKSaver.Core.Services
         {
             try
             {
-                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(ALBUMS_FOLDER_NAME);
+                var folder = await KnownFolders.PicturesLibrary.GetFolderAsync(ALBUMS_FOLDER_NAME);
                 await folder.DeleteAsync(StorageDeleteOption.PermanentDelete);
                 return true;
             }
@@ -98,7 +100,7 @@ namespace VKSaver.Core.Services
         {
             try
             {
-                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(ARTISTS_FOLDER_NAME);
+                var folder = await KnownFolders.PicturesLibrary.GetFolderAsync(ARTISTS_FOLDER_NAME);
                 await folder.DeleteAsync(StorageDeleteOption.PermanentDelete);
                 return true;
             }
@@ -109,7 +111,7 @@ namespace VKSaver.Core.Services
         {
             try
             {
-                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(ALBUMS_FOLDER_NAME );
+                var folder = await KnownFolders.PicturesLibrary.GetFolderAsync(ALBUMS_FOLDER_NAME );
                 var basic = await folder.GetBasicPropertiesAsync();
                 IDictionary<string, object> properties = await folder.Properties.RetrievePropertiesAsync(new[] { "System.Size" });
 
@@ -122,7 +124,7 @@ namespace VKSaver.Core.Services
         {
             try
             {
-                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(ARTISTS_FOLDER_NAME);
+                var folder = await KnownFolders.PicturesLibrary.GetFolderAsync(ARTISTS_FOLDER_NAME);
                 var properties = await folder.GetBasicPropertiesAsync();
                 return FileSize.FromBytes(properties.Size);
             }
@@ -140,6 +142,9 @@ namespace VKSaver.Core.Services
 
             if (result != null)
                 return result;
+
+            if (!_networkInfoService.CanAppUseInternet)
+                return null;
 
             string imageUrl = await _grooveMusicService.GetArtistImageURL(artistName);
             if (imageUrl == null)
@@ -197,6 +202,9 @@ namespace VKSaver.Core.Services
             if (result != null)
                 return result;
 
+            if (!_networkInfoService.CanAppUseInternet)
+                return null;
+
             var parameters = new Dictionary<string, string>
             {
                 { "track", trackTitle },
@@ -228,7 +236,7 @@ namespace VKSaver.Core.Services
 
         private async Task<StorageFolder> GetCreateFolder(string folderName)
         {
-            return await ApplicationData.Current.LocalFolder.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
+            return await KnownFolders.PicturesLibrary.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
         }
         
         private async Task<string> CacheAndGet(string name, string url, StorageFolder folder)
@@ -247,7 +255,7 @@ namespace VKSaver.Core.Services
                     return null;
                 }
 
-                await file.RenameAsync(name);
+                await file.RenameAsync(name + ".jpg");
                 return file.Path;
             }
         }
@@ -265,8 +273,9 @@ namespace VKSaver.Core.Services
         private readonly TaskQueue _albumsQueue;
         private readonly IGrooveMusicService _grooveMusicService;
         private readonly ILFService _lfService;
+        private readonly INetworkInfoService _networkInfoService;
 
-        private const string ALBUMS_FOLDER_NAME = "AlbumsCache";
-        private const string ARTISTS_FOLDER_NAME = "ArtistsCache";
+        private const string ALBUMS_FOLDER_NAME = "VKSaver Albums";
+        private const string ARTISTS_FOLDER_NAME = "VKSaver Artists";        
     }
 }

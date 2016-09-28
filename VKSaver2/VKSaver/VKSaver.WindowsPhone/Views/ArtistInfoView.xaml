@@ -15,12 +15,6 @@
                            Style="{StaticResource DefaultPageStyle}"
                            d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=design:ArtistInfoViewModelDesign}">
 
-    <mvvm:VisualStateAwarePage.Background>
-        <ImageBrush ImageSource="{Binding Artist.MegaImage.URL}"
-                    Stretch="UniformToFill"
-                    Opacity="0.3" />
-    </mvvm:VisualStateAwarePage.Background>
-
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition>
@@ -95,143 +89,107 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Pivot SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
-           Style="{StaticResource PivotStyle}">
-        <Pivot.Title>
-            <TextBlock Text="{Binding Artist.Name, Converter={StaticResource ToUpperConverter}}"
-                       Style="{ThemeResource TitleTextBlockStyle}"
-                       ContinuumNavigationTransitionInfo.IsEntranceElement="True" />
-        </Pivot.Title>
-        <PivotItem Header="подробнее"
-                   x:Uid="ArtistInfoView_PivotSection_Details"
-                   Style="{StaticResource PivotItemStyle}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+    <Grid>
+        <controls:PlayerBackground ArtistImage="{Binding ArtistImage}"
+                                   DefaultTheme="{ThemeResource PagePlayerTheme}" />
 
+        <Pivot SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
+               Style="{StaticResource PivotStyle}">
+            <Pivot.Title>
+                <TextBlock Text="{Binding Artist.Name, Converter={StaticResource ToUpperConverter}}"
+                           Style="{ThemeResource TitleTextBlockStyle}"
+                           ContinuumNavigationTransitionInfo.IsEntranceElement="True" />
+            </Pivot.Title>
+            <PivotItem Header="подробнее"
+                       x:Uid="ArtistInfoView_PivotSection_Details"
+                       Style="{StaticResource PivotItemStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                              ItemsSource="{Binding Tracks}"
+                              ItemTemplate="{StaticResource TopTrackTemplate}"
+                              ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                              Grid.Row="1"
+                              IsItemClickEnabled="True"
+                              IncrementalLoadingTrigger="None">
+                        <i:Interaction.Behaviors>
+                            <c:EventTriggerBehavior EventName="ItemClick">
+                                <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
+                                                       InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                            </c:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <ListView.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,25">
+                                    <StackPanel.ChildrenTransitions>
+                                        <TransitionCollection>
+                                            <EntranceThemeTransition />
+                                        </TransitionCollection>
+                                    </StackPanel.ChildrenTransitions>
+
+                                    <TextBlock Text="{Binding Artist.Name}"
+                                               Style="{StaticResource BodyTextBlockStyle}"
+                                               FontWeight="Black"
+                                               FontSize="55"
+                                               CharacterSpacing="-5"
+                                               TextWrapping="NoWrap"
+                                               Pivot.SlideInAnimationGroup="GroupOne"
+                                               Height="75" />
+                                    <Grid Margin="0,20,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <controls:ImagePlaceholder Source="{Binding Artist.Images[2].URL}"
+                                                                   Text="{Binding Artist.Name}"
+                                                                   HorizontalAlignment="Left"
+                                                                   Height="120"
+                                                                   Width="120"
+                                                                   Margin="0,0,10,0"
+                                                                   Pivot.SlideInAnimationGroup="GroupTwo" />
+                                        <ListView Grid.Column="1">
+                                            <controls:ListViewCommandItem Content="найти ВКонтакте"
+                                                                          x:Uid="ArtistInfoView_SearchVKItem"
+                                                                          Command="{Binding FindArtistInVKCommand}" />
+                                        </ListView>
+                                    </Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.HeaderTemplate>
+
+                        <ListView.FooterTemplate>
+                            <DataTemplate>
+                                <Border MinHeight="50">
+                                    <controls:StateBlock State="{Binding Tracks.ContentState}"
+                                                         ReloadCommand="{Binding Tracks.LoadCommand}"
+                                                         x:Uid="ArtistInfoView_DetailsLoader"
+                                                         Margin="0,0,0,10"
+                                                         LoadingText="Собираем досье на исполнителя..."
+                                                         ErrorText="Не удалось загрузить данные об исполнителе"
+                                                         NoDataText="Об этом исполнителе нет никакой информации" />
+                                </Border>
+                            </DataTemplate>
+                        </ListView.FooterTemplate>
+                    </ListView>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="альбомы"
+                       x:Uid="ArtistInfoView_PivotSection_Albums"
+                       Margin="19,23,0,0"
+                       Style="{StaticResource PivotItemStyle}">
                 <ListView Style="{StaticResource NoSelectionListViewStyle}"
-                          ItemsSource="{Binding Tracks}"
-                          ItemTemplate="{StaticResource TopTrackTemplate}"
-                          ContinuumNavigationTransitionInfo.ExitElementContainer="True"
-                          Grid.Row="1" IsItemClickEnabled="True"
-                          IncrementalLoadingTrigger="None">
-                    <i:Interaction.Behaviors>
-                        <c:EventTriggerBehavior EventName="ItemClick">
-                            <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
-                                                   InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
-                        </c:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
-                    <ListView.ItemContainerTransitions>
-                        <TransitionCollection>
-                            <EntranceThemeTransition />
-                        </TransitionCollection>
-                    </ListView.ItemContainerTransitions>
-                    <ListView.HeaderTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,25">
-                                <StackPanel.ChildrenTransitions>
-                                    <TransitionCollection>
-                                        <EntranceThemeTransition />
-                                    </TransitionCollection>
-                                </StackPanel.ChildrenTransitions>
-
-                                <TextBlock Text="{Binding Artist.Name}"
-                                           Style="{StaticResource BodyTextBlockStyle}"
-                                           FontWeight="Black"
-                                           FontSize="55"
-                                           CharacterSpacing="-5"
-                                           TextWrapping="NoWrap"
-                                           Pivot.SlideInAnimationGroup="GroupOne"
-                                           Height="75" />
-                                <Grid Margin="0,20,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <controls:ImagePlaceholder Source="{Binding Artist.Images[2].URL}"
-                                                               Text="{Binding Artist.Name}"
-                                                               HorizontalAlignment="Left"
-                                                               Height="120"
-                                                               Width="120"
-                                                               Margin="0,0,10,0"
-                                                               Pivot.SlideInAnimationGroup="GroupTwo" />
-                                    <ListView Grid.Column="1">
-                                        <controls:ListViewCommandItem Content="найти ВКонтакте"
-                                                                      x:Uid="ArtistInfoView_SearchVKItem"
-                                                                      Command="{Binding FindArtistInVKCommand}"/>
-                                    </ListView>
-                                </Grid>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.HeaderTemplate>
-
-                    <ListView.FooterTemplate>
-                        <DataTemplate>
-                            <Border MinHeight="50">
-                                <controls:StateBlock State="{Binding Tracks.ContentState}"
-                                                     ReloadCommand="{Binding Tracks.LoadCommand}"
-                                                     x:Uid="ArtistInfoView_DetailsLoader"
-                                                     Margin="0,0,0,10" 
-                                                     LoadingText="Собираем досье на исполнителя..."
-                                                     ErrorText="Не удалось загрузить данные об исполнителе"
-                                                     NoDataText="Об этом исполнителе нет никакой информации"/>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.FooterTemplate>
-                </ListView>
-            </Grid>
-        </PivotItem>
-        <PivotItem Header="альбомы"
-                   x:Uid="ArtistInfoView_PivotSection_Albums"
-                   Margin="19,23,0,0"
-                   Style="{StaticResource PivotItemStyle}">
-            <ListView Style="{StaticResource NoSelectionListViewStyle}"
-                      ItemsSource="{Binding Albums}"
-                      ItemTemplate="{StaticResource AlbumTemplate}"
-                      Grid.Row="1"
-                      IsItemClickEnabled="True"
-                      ContinuumNavigationTransitionInfo.ExitElementContainer="True">
-                <ListView.ItemContainerTransitions>
-                    <TransitionCollection>
-                        <EntranceThemeTransition />
-                    </TransitionCollection>
-                </ListView.ItemContainerTransitions>
-                <ListView.FooterTemplate>
-                    <DataTemplate>
-                        <Border MinHeight="70">
-                            <controls:StateBlock State="{Binding Albums.ContentState}"
-                                                 ReloadCommand="{Binding Albums.LoadCommand}"
-                                                 x:Uid="ArtistInfoView_AlbumsLoader"
-                                                 Margin="0,0,0,10" 
-                                                 LoadingText="Прослушиваем пластинки исполнителя..."
-                                                 ErrorText="Не удалось загрузить список альбомов"
-                                                 NoDataText="Похоже, этот исполнитель дежит свои альбомы в тайне"/>
-                        </Border>
-                    </DataTemplate>
-                </ListView.FooterTemplate>
-
-                <i:Interaction.Behaviors>
-                    <c:EventTriggerBehavior EventName="ItemClick">
-                        <c:InvokeCommandAction Command="{Binding GoToAlbumInfoCommand}"
-                                               InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
-                    </c:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
-            </ListView>
-        </PivotItem>
-        <PivotItem Header="похожие"
-                   x:Uid="ArtistInfoView_PivotSection_Similar"
-                   Style="{StaticResource PivotItemStyle}">
-            <controls:ContentContainer State="{Binding Similar.ContentState}"
-                                       ReloadCommand="{Binding Similar.LoadCommand}"
-                                       x:Uid="ArtistInfoView_SimilarLoader"
-                                       LoadingText="Ищем похожих..."
-                                       ErrorText="Не удалось найти похожих исполнителей"
-                                       NoDataText="У этого исполнителя уникальная внешность!">
-                <ListView Style="{StaticResource NoSelectionListViewStyle}"
-                          ItemsSource="{Binding Similar}"
-                          ItemTemplate="{StaticResource SimilarArtistTemplate}"
+                          ItemsSource="{Binding Albums}"
+                          ItemTemplate="{StaticResource AlbumTemplate}"
+                          Grid.Row="1"
                           IsItemClickEnabled="True"
                           ContinuumNavigationTransitionInfo.ExitElementContainer="True">
                     <ListView.ItemContainerTransitions>
@@ -239,15 +197,57 @@
                             <EntranceThemeTransition />
                         </TransitionCollection>
                     </ListView.ItemContainerTransitions>
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <Border MinHeight="70">
+                                <controls:StateBlock State="{Binding Albums.ContentState}"
+                                                     ReloadCommand="{Binding Albums.LoadCommand}"
+                                                     x:Uid="ArtistInfoView_AlbumsLoader"
+                                                     Margin="0,0,0,10"
+                                                     LoadingText="Прослушиваем пластинки исполнителя..."
+                                                     ErrorText="Не удалось загрузить список альбомов"
+                                                     NoDataText="Похоже, этот исполнитель дежит свои альбомы в тайне" />
+                            </Border>
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
 
                     <i:Interaction.Behaviors>
                         <c:EventTriggerBehavior EventName="ItemClick">
-                            <c:InvokeCommandAction Command="{Binding GoToSimilarArtistInfoCommand}"
+                            <c:InvokeCommandAction Command="{Binding GoToAlbumInfoCommand}"
                                                    InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
                         </c:EventTriggerBehavior>
                     </i:Interaction.Behaviors>
                 </ListView>
-            </controls:ContentContainer>
-        </PivotItem>
-    </Pivot>
+            </PivotItem>
+            <PivotItem Header="похожие"
+                       x:Uid="ArtistInfoView_PivotSection_Similar"
+                       Style="{StaticResource PivotItemStyle}">
+                <controls:ContentContainer State="{Binding Similar.ContentState}"
+                                           ReloadCommand="{Binding Similar.LoadCommand}"
+                                           x:Uid="ArtistInfoView_SimilarLoader"
+                                           LoadingText="Ищем похожих..."
+                                           ErrorText="Не удалось найти похожих исполнителей"
+                                           NoDataText="У этого исполнителя уникальная внешность!">
+                    <ListView Style="{StaticResource NoSelectionListViewStyle}"
+                              ItemsSource="{Binding Similar}"
+                              ItemTemplate="{StaticResource SimilarArtistTemplate}"
+                              IsItemClickEnabled="True"
+                              ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+
+                        <i:Interaction.Behaviors>
+                            <c:EventTriggerBehavior EventName="ItemClick">
+                                <c:InvokeCommandAction Command="{Binding GoToSimilarArtistInfoCommand}"
+                                                       InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                            </c:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </ListView>
+                </controls:ContentContainer>
+            </PivotItem>
+        </Pivot>
+    </Grid>
 </mvvm:VisualStateAwarePage>

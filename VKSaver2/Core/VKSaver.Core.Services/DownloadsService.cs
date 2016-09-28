@@ -288,6 +288,9 @@ namespace VKSaver.Core.Services
 
         private void AttachNotifications(BackgroundDownloader downloader, IDownloadable download)
         {
+            if (!_settingsService.Get(AppConstants.DOWNLOADS_NOTIFICATIONS_PARAMETER, true))
+                return;
+
             string name = null;
             if (download.ContentType == FileContentType.Music)
                 name = ((VKSaverAudio)download.Metadata).Track.Title;

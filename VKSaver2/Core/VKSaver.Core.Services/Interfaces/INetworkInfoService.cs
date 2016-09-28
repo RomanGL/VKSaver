@@ -9,5 +9,7 @@ namespace VKSaver.Core.Services.Interfaces
     public interface INetworkInfoService
     {
         bool IsInternetAvailable { get; }
+
+        bool CanAppUseInternet { get; }
     }
 }

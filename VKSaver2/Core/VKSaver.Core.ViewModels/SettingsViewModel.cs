@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
+using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 
@@ -23,6 +24,8 @@ namespace VKSaver.Core.ViewModels
             ISettingsService settingsService,
             ILastFmLoginService lastFmLoginSevice, 
             IPurchaseService purchaseService,
+            ILocService locService,
+            IDialogsService dialogsService,
             IInTouchWrapper inTouchWrapper, 
             InTouch inTouch)
         {
@@ -33,6 +36,8 @@ namespace VKSaver.Core.ViewModels
             _purchaseService = purchaseService;
             _inTouchWrapper = inTouchWrapper;
             _inTouch = inTouch;
+            _locService = locService;
+            _dialogsService = dialogsService;
 
             Authorizations = new ObservableCollection<IServiceAuthorization>();
             UpdateDatabaseCommand = new DelegateCommand(OnUpdateDatabaseCommand);
@@ -43,6 +48,22 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand UpdateDatabaseCommand { get; private set; }
+
+        public int SelectedInternetAccessIndex
+        {
+            get { return (int)_settingsService.Get(AppConstants.INTERNET_ACCESS_TYPE, InternetAccessType.All); }
+            set { _settingsService.Set(AppConstants.INTERNET_ACCESS_TYPE, (InternetAccessType)value); }
+        }
+
+        public bool DownloadsNotifications
+        {
+            get { return _settingsService.Get(AppConstants.DOWNLOADS_NOTIFICATIONS_PARAMETER, true); }
+            set
+            {
+                _settingsService.Set(AppConstants.DOWNLOADS_NOTIFICATIONS_PARAMETER, value);
+                OnDownloadsNotificationsChanged();
+            }
+        }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -91,7 +112,14 @@ namespace VKSaver.Core.ViewModels
 
         private void OnUpdateDatabaseCommand()
         {
+            _navigationService.ClearHistory();
             _navigationService.Navigate("UpdatingDatabaseView", null);
+        }
+
+        private void OnDownloadsNotificationsChanged()
+        {
+            _dialogsService.Show(_locService["Message_DownloadsNotificationsChanged_Text"],
+                _locService["Message_DownloadsNotificationsChanged_Title"]);
         }
 
         private readonly INavigationService _navigationService;
@@ -100,6 +128,8 @@ namespace VKSaver.Core.ViewModels
         private readonly ILastFmLoginService _lastFmLoginService;
         private readonly IPurchaseService _purchaseService;
         private readonly IInTouchWrapper _inTouchWrapper;
+        private readonly ILocService _locService;
+        private readonly IDialogsService _dialogsService;
         private readonly InTouch _inTouch;
     }
 }

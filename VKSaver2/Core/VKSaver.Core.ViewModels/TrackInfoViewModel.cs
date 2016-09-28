@@ -9,20 +9,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Common;
+using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public sealed class TrackInfoViewModel : ViewModelBase
     {
-        public TrackInfoViewModel(INavigationService navigationService, InTouch inTouch,
-            IInTouchWrapper inTouchWrapper, IPlayerService playerService,
-            IDownloadsServiceHelper downloadsServiceHelper, IAppLoaderService appLoaderService,
-            IDialogsService dialogsService, ILocService locService)
+        public TrackInfoViewModel(
+            INavigationService navigationService, 
+            InTouch inTouch,
+            IInTouchWrapper inTouchWrapper, 
+            IPlayerService playerService,
+            IDownloadsServiceHelper downloadsServiceHelper, 
+            IAppLoaderService appLoaderService,
+            IDialogsService dialogsService, 
+            ILocService locService,
+            IImagesCacheService imagesCacheService)
         {
             _navigationService = navigationService;
             _inTouch = inTouch;
@@ -32,12 +40,15 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService = appLoaderService;
             _dialogsService = dialogsService;
             _locService = locService;
+            _imagesCacheService = imagesCacheService;
 
             ShowOtherTracksCommand = new DelegateCommand(OnShowOtherTracksCommand);
             PlayTracksCommand = new DelegateCommand<Audio>(OnPlayTracksCommand);
             DownloadTrackCommand = new DelegateCommand<Audio>(OnDownloadTrackCommand);
             AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand);
         }
+
+        public string ArtistImage { get; private set; }
 
         public LFAudioBase Track { get; private set; }
 
@@ -67,10 +78,23 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-
+                VKTracks = JsonConvert.DeserializeObject<SimpleStateSupportCollection<Audio>>(
+                    viewModelState[nameof(VKTracks)].ToString());
             }
 
+            LoadArtistImage(Track.Artist.Name);
             base.OnNavigatedTo(e, viewModelState);
+        }
+
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        {
+            if (!suspending && e.NavigationMode == NavigationMode.New)
+            {
+                if (VKTracks != null && VKTracks.Count > 0)
+                    viewModelState[nameof(VKTracks)] = JsonConvert.SerializeObject(VKTracks);
+            }
+
+            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         private async Task<IEnumerable<Audio>> LoadVKTracks()
@@ -138,6 +162,23 @@ namespace VKSaver.Core.ViewModels
             return !response.IsError;
         }
 
+        private async void LoadArtistImage(string artist)
+        {
+            string img = await _imagesCacheService.GetCachedArtistImage(artist);
+            if (img == null)
+            {
+                ArtistImage = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
+                img = await _imagesCacheService.CacheAndGetArtistImage(artist);
+
+                if (img != null && artist == Track?.Artist?.Name)
+                    ArtistImage = img;
+            }
+            else if (artist == Track?.Artist?.Name)
+            {
+                ArtistImage = img;
+            }
+        }
+
         private readonly INavigationService _navigationService;
         private readonly InTouch _inTouch;
         private readonly IInTouchWrapper _inTouchWrapper;
@@ -146,5 +187,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IAppLoaderService _appLoaderService;
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
+        private readonly IImagesCacheService _imagesCacheService;
     }
 }

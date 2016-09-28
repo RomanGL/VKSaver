@@ -98,7 +98,7 @@
                            Margin="0,5,0,0">
                     ВКачай может уведомлять вас о завершении загрузок.
                 </TextBlock>
-                <ToggleSwitch />
+                <ToggleSwitch IsOn="{Binding DownloadsNotifications, Mode=TwoWay}"/>
 
                 <TextBlock Text="Доступ к интернету"
                            x:Uid="SettingsView_InternetAccess_Title"
@@ -110,7 +110,8 @@
                            Margin="0,5,0,0">
                     ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
                 </TextBlock>
-                <ComboBox BorderBrush="{StaticResource TitleBrush}">
+                <ComboBox BorderBrush="{StaticResource TitleBrush}"
+                          SelectedIndex="{Binding SelectedInternetAccessIndex, Mode=TwoWay}">
                     <ComboBoxItem Content="да"
                                   x:Uid="FirstStartView_YesButton"/>
                     <ComboBoxItem Content="только через Wi-Fi"

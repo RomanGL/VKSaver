@@ -60,6 +60,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <controls:PlayerBackground ArtistImage="{Binding ArtistImage}"
+                                   DefaultTheme="{ThemeResource PagePlayerTheme}"
+                                   Grid.RowSpan="2"/>
+        
         <StackPanel Grid.Row="0"
                     Margin="19,0,0,26.5">
             <TextBlock Text="{Binding Track.Name, Converter={StaticResource ToUpperConverter}}"

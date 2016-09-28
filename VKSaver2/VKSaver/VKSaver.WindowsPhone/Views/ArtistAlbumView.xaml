@@ -14,12 +14,6 @@
                            mc:Ignorable="d"
                            Style="{StaticResource DefaultPageStyle}">
 
-    <mvvm:VisualStateAwarePage.Background>
-        <ImageBrush ImageSource="{Binding ArtistImage}"
-                    Stretch="UniformToFill"
-                    Opacity="0.3" />
-    </mvvm:VisualStateAwarePage.Background>
-
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition>
@@ -67,108 +61,113 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Pivot SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
-           Style="{StaticResource PivotStyle}">
-        <Pivot.Title>
-            <TextBlock Text="{Binding AlbumBase.Name, Converter={StaticResource ToUpperConverter}}"
-                       Style="{ThemeResource TitleTextBlockStyle}"
-                       ContinuumNavigationTransitionInfo.IsEntranceElement="True" />
-        </Pivot.Title>
-        <PivotItem Header="подробнее"
-                   x:Uid="ArtistAlbumView_PivotSection_Details"
-                   Style="{StaticResource PivotItemStyle}">
-            <ScrollViewer>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+    <Grid>
+        <controls:PlayerBackground ArtistImage="{Binding ArtistImage}"
+                                   DefaultTheme="{ThemeResource PagePlayerTheme}" />
+        
+        <Pivot SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
+               Style="{StaticResource PivotStyle}">
+            <Pivot.Title>
+                <TextBlock Text="{Binding AlbumBase.Name, Converter={StaticResource ToUpperConverter}}"
+                           Style="{ThemeResource TitleTextBlockStyle}"
+                           ContinuumNavigationTransitionInfo.IsEntranceElement="True" />
+            </Pivot.Title>
+            <PivotItem Header="подробнее"
+                       x:Uid="ArtistAlbumView_PivotSection_Details"
+                       Style="{StaticResource PivotItemStyle}">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
-                    <StackPanel Margin="0,0,0,25">
-                        <StackPanel.ChildrenTransitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition />
-                            </TransitionCollection>
-                        </StackPanel.ChildrenTransitions>
+                        <StackPanel Margin="0,0,0,25">
+                            <StackPanel.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition />
+                                </TransitionCollection>
+                            </StackPanel.ChildrenTransitions>
 
-                        <TextBlock Text="{Binding AlbumBase.Name}"
-                                   Style="{StaticResource BodyTextBlockStyle}"
-                                   FontWeight="Black"
-                                   FontSize="55"
-                                   CharacterSpacing="-5"
-                                   TextWrapping="NoWrap"
-                                   Pivot.SlideInAnimationGroup="GroupOne"
-                                   Height="75" />
-                        <Grid Margin="0,20,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <controls:ImagePlaceholder Source="{Binding AlbumImage}"
-                                                       Text="{Binding AlbumBase.Name}"
-                                                       HorizontalAlignment="Left"
-                                                       Height="120"
-                                                       Width="120"
-                                                       Margin="0,0,10,0"
-                                                       Pivot.SlideInAnimationGroup="GroupTwo" />
-                            <controls:ListViewCommandItem Content="{Binding AlbumBase.Artist.Name}"
-                                                          Grid.Column="1"
-                                                          Command="{Binding FindArtistInVKCommand}"
-                                                          VerticalAlignment="Top" />
-                        </Grid>
-                    </StackPanel>
-
-                    <controls:ContentContainer Grid.Row="1"
-                                               x:Uid="ArtistAlbumView_DetailsLoader"
-                                               State="{Binding WikiState}"
-                                               ReloadCommand="{Binding ReloadAlbumCommand}"
-                                               LoadingText="Собираем информацию об альбоме..."
-                                               ErrorText="Не удалось загрузить информацию об альбоме"
-                                               NoDataText="Мы не знаем подробностей об этом альбоме">
-                        <ScrollViewer Margin="0,0,19,0">
-                            <TextBlock Text="{Binding Album.Wiki.Content}"
+                            <TextBlock Text="{Binding AlbumBase.Name}"
                                        Style="{StaticResource BodyTextBlockStyle}"
-                                       Margin="0,0,0,30" />
-                        </ScrollViewer>
-                    </controls:ContentContainer>
-                </Grid>
-            </ScrollViewer>
-        </PivotItem>
-        <PivotItem Header="треки"
-                   x:Uid="ArtistAlbumView_PivotSection_Tracks"
-                   Margin="19,23,0,0"
-                   Style="{StaticResource PivotItemStyle}">
-            <ListView ItemsSource="{Binding Album.Tracks.Tracks}"
-                      ItemTemplate="{StaticResource AlbumTrackTemplate}"
-                      Grid.Row="1"
-                      IsItemClickEnabled="True"
-                      ContinuumNavigationTransitionInfo.ExitElementContainer="True">
-                <ListView.ItemContainerTransitions>
-                    <TransitionCollection>
-                        <EntranceThemeTransition />
-                    </TransitionCollection>
-                </ListView.ItemContainerTransitions>
-                <ListView.FooterTemplate>
-                    <DataTemplate>
-                        <Border MinHeight="70">
-                            <controls:StateBlock State="{Binding TracksState}"
-                                                 ReloadCommand="{Binding ReloadAlbumCommand}"
-                                                 x:Uid="ArtistAlbumView_TracksLoader"
-                                                 Margin="0,0,0,10" 
-                                                 LoadingText="Прослушиваем альбом исполнителя..."
-                                                 ErrorText="Не удалось загрузить список треков альбома"
-                                                 NoDataText="В этом альбоме нет ни одного трека"/>
-                        </Border>
-                    </DataTemplate>
-                </ListView.FooterTemplate>
+                                       FontWeight="Black"
+                                       FontSize="55"
+                                       CharacterSpacing="-5"
+                                       TextWrapping="NoWrap"
+                                       Pivot.SlideInAnimationGroup="GroupOne"
+                                       Height="75" />
+                            <Grid Margin="0,20,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <controls:ImagePlaceholder Source="{Binding AlbumImage}"
+                                                           Text="{Binding AlbumBase.Name}"
+                                                           HorizontalAlignment="Left"
+                                                           Height="120"
+                                                           Width="120"
+                                                           Margin="0,0,10,0"
+                                                           Pivot.SlideInAnimationGroup="GroupTwo" />
+                                <controls:ListViewCommandItem Content="{Binding AlbumBase.Artist.Name}"
+                                                              Grid.Column="1"
+                                                              Command="{Binding FindArtistInVKCommand}"
+                                                              VerticalAlignment="Top" />
+                            </Grid>
+                        </StackPanel>
 
-                <i:Interaction.Behaviors>
-                    <c:EventTriggerBehavior EventName="ItemClick">
-                        <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
-                                               InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
-                    </c:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
-            </ListView>
-        </PivotItem>
-    </Pivot>
+                        <controls:ContentContainer Grid.Row="1"
+                                                   x:Uid="ArtistAlbumView_DetailsLoader"
+                                                   State="{Binding WikiState}"
+                                                   ReloadCommand="{Binding ReloadAlbumCommand}"
+                                                   LoadingText="Собираем информацию об альбоме..."
+                                                   ErrorText="Не удалось загрузить информацию об альбоме"
+                                                   NoDataText="Мы не знаем подробностей об этом альбоме">
+                            <ScrollViewer Margin="0,0,19,0">
+                                <TextBlock Text="{Binding Album.Wiki.Content}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Margin="0,0,0,30" />
+                            </ScrollViewer>
+                        </controls:ContentContainer>
+                    </Grid>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem Header="треки"
+                       x:Uid="ArtistAlbumView_PivotSection_Tracks"
+                       Margin="19,23,0,0"
+                       Style="{StaticResource PivotItemStyle}">
+                <ListView ItemsSource="{Binding Album.Tracks.Tracks}"
+                          ItemTemplate="{StaticResource AlbumTrackTemplate}"
+                          Grid.Row="1"
+                          IsItemClickEnabled="True"
+                          ContinuumNavigationTransitionInfo.ExitElementContainer="True">
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition />
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <Border MinHeight="70">
+                                <controls:StateBlock State="{Binding TracksState}"
+                                                     ReloadCommand="{Binding ReloadAlbumCommand}"
+                                                     x:Uid="ArtistAlbumView_TracksLoader"
+                                                     Margin="0,0,0,10"
+                                                     LoadingText="Прослушиваем альбом исполнителя..."
+                                                     ErrorText="Не удалось загрузить список треков альбома"
+                                                     NoDataText="В этом альбоме нет ни одного трека" />
+                            </Border>
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+
+                    <i:Interaction.Behaviors>
+                        <c:EventTriggerBehavior EventName="ItemClick">
+                            <c:InvokeCommandAction Command="{Binding GoToTrackInfoCommand}"
+                                                   InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                        </c:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ListView>
+            </PivotItem>
+        </Pivot>
+    </Grid>
 </mvvm:VisualStateAwarePage>

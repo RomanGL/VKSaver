@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
+using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Search;
 using Windows.UI.Xaml.Navigation;
@@ -20,12 +21,16 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class ArtistAlbumViewModel : ViewModelBase
     {
-        public ArtistAlbumViewModel(ILFService lfService, INavigationService navigationService,
-            ISettingsService settingsService)
+        public ArtistAlbumViewModel(
+            ILFService lfService, 
+            INavigationService navigationService,
+            ISettingsService settingsService,
+            IImagesCacheService imagesCacheService)
         {
             _lfService = lfService;
             _navigationService = navigationService;
             _settingsService = settingsService;
+            _imagesCacheService = imagesCacheService;
 
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
             FindArtistInVKCommand = new DelegateCommand(OnFindArtistInVKCommand);
@@ -62,7 +67,6 @@ namespace VKSaver.Core.ViewModels
 
             if (viewModelState.Count > 0)
             {
-                ArtistImage = (string)viewModelState[nameof(ArtistImage)];
                 AlbumBase = JsonConvert.DeserializeObject<LFAlbumBase>(
                     viewModelState[nameof(AlbumBase)].ToString());
                 AlbumImage = AlbumBase.LargeImage.URL;
@@ -83,17 +87,14 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-                var parameter = JsonConvert.DeserializeObject<Tuple<LFAlbumBase, string>>(e.Parameter.ToString());
-
-                AlbumBase = parameter.Item1;
-                ArtistImage = parameter.Item2;
-
+                AlbumBase = JsonConvert.DeserializeObject<LFAlbumBase>(e.Parameter.ToString());
                 AlbumImage = AlbumBase.LargeImage.URL;
             }
 
             if (Album == null)
                 await LoadAlbumInfo();
 
+            LoadArtistImage(AlbumBase.Artist.Name);
             base.OnNavigatedTo(e, viewModelState);
         }
 
@@ -188,8 +189,26 @@ namespace VKSaver.Core.ViewModels
                 }));
         }
 
+        private async void LoadArtistImage(string artist)
+        {
+            string img = await _imagesCacheService.GetCachedArtistImage(artist);
+            if (img == null)
+            {
+                ArtistImage = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
+                img = await _imagesCacheService.CacheAndGetArtistImage(artist);
+
+                if (img != null && artist == AlbumBase?.Artist?.Name)
+                    ArtistImage = img;
+            }
+            else if (artist == AlbumBase?.Artist?.Name)
+            {
+                ArtistImage = img;
+            }
+        }
+
         private readonly ILFService _lfService;
         private readonly INavigationService _navigationService;
         private readonly ISettingsService _settingsService;
+        private readonly IImagesCacheService _imagesCacheService;
     }
 }

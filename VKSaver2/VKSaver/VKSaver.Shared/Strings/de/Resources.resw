@@ -466,6 +466,9 @@ Kehren Sie zurück um fortzufahren </value>
     <value>Zuhörers</value>
     <comment>Например, "12 слушателей"</comment>
   </data>
+  <data name="TopArtistsLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der besten Künstlerlisten ist fehlgeschlagen</value>
+  </data>
   <data name="TopArtistsLoader.LoadingText" xml:space="preserve">
     <value>Wir wahlen der besten Interpreten aus</value>
   </data>
@@ -565,6 +568,9 @@ Kehren Sie zurück um fortzufahren </value>
   </data>
   <data name="UserCommView_FriendsLoader.ErrorText" xml:space="preserve">
     <value>Laden der Info vom Freundelist ist fehlgeschlagen</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.LoadingText" xml:space="preserve">
+    <value>Hochladen von Info über Freunde...</value>
   </data>
   <data name="UserCommView_FriendsLoader.NoDataText" xml:space="preserve">
     <value>Keine Freunde oder kein Zugang</value>
@@ -861,7 +867,7 @@ Bitte warten Sie...</value>
     <value>Fertig? Dann fangen wir an!</value>
   </data>
   <data name="PromoView_Screen1_Line1_Text" xml:space="preserve">
-    <value>Wir freuen uns Sie widerzusehen!</value>
+    <value>Herzlich Willkommen!</value>
   </data>
   <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
     <value>VK Saver ist jetzt auf dem neusten Stand, lesen weiter um mehr zu erfahren. </value>
@@ -870,13 +876,13 @@ Bitte warten Sie...</value>
     <value>Musik-Caching</value>
   </data>
   <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
-    <value>Sie können Tracks im Cache anzusehen!</value>
+    <value>Cachen Sie die Tracks um оnline abzuspielen!</value>
   </data>
   <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
-    <value>Weltweit Charts</value>
+    <value>Lokale Bibliothek</value>
   </data>
   <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
-    <value>Wiedergabe von Tracks der ausgewählte Künstler und Charts</value>
+    <value>Geben Ihre lokale Tracks wider</value>
   </data>
   <data name="PromoView_NextButton.Content" xml:space="preserve">
     <value>weiter</value>
@@ -931,6 +937,9 @@ Bitte warten Sie...</value>
   <data name="CachedView_Loader.LoadingText" xml:space="preserve">
     <value>Laden gespeicherte Musik im Cache...</value>
   </data>
+  <data name="CachedView_Loader.NoDataText" xml:space="preserve">
+    <value>Keine Musik im Cache</value>
+  </data>
   <data name="CachedView_Title.Text" xml:space="preserve">
     <value>cachende</value>
   </data>
@@ -953,10 +962,10 @@ Bitte warten Sie...</value>
     <value>Fehler bei der Verbindung zu Last.fm. Überprüfen Sie den Zugriff auf das Internet und versuchen erneut.</value>
   </data>
   <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
-    <value>Scrobbeln in Last.fm</value>
+    <value>Wir wissen alles über die Musik!</value>
   </data>
   <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
-    <value>Zeitloser Last.fm-Profil!</value>
+    <value>Geben Sie Songs Ihrer Lieblings-Künstler wider</value>
   </data>
   <data name="FileSize_Bytes_Mask_Text" xml:space="preserve">
     <value>{0} bytes</value>
@@ -1230,5 +1239,200 @@ Als nächstes werden wir einige grundlegende Parameter der Anwendung zur Einrich
     <value>Wir rüsten Chevaliers aus...</value>
     <comment>Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</comment>
+  </data>
+  <data name="AppBarButton_Search.Label" xml:space="preserve">
+    <value>suchen</value>
+  </data>
+  <data name="DetailsView_Subtitle.Text" xml:space="preserve">
+    <value>mehr</value>
+    <comment>details</comment>
+  </data>
+  <data name="LocalFolderView_Title.Text" xml:space="preserve">
+    <value>ORDNER</value>
+    <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
+  </data>
+  <data name="LocalGenreView_Title.Text" xml:space="preserve">
+    <value>Genre</value>
+    <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
+  </data>
+  <data name="LibraryView_PivotItem_Albums.Header" xml:space="preserve">
+    <value>Alben</value>
+  </data>
+  <data name="LibraryView_PivotItem_Artists.Header" xml:space="preserve">
+    <value>Künstlern</value>
+    <comment>artists</comment>
+  </data>
+  <data name="LibraryView_PivotItem_Cached.Header" xml:space="preserve">
+    <value>im Cache</value>
+  </data>
+  <data name="LibraryView_PivotItem_Folders.Header" xml:space="preserve">
+    <value>Ordnern</value>
+  </data>
+  <data name="LibraryView_PivotItem_Genres.Header" xml:space="preserve">
+    <value>Genres</value>
+  </data>
+  <data name="LibraryView_PivotItem_Tracks.Header" xml:space="preserve">
+    <value>Musik</value>
+    <comment>tracks</comment>
+  </data>
+  <data name="LibraryView_AlbumsLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der besten Albenlisten ist fehlgeschlagen</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.LoadingText" xml:space="preserve">
+    <value>Hochladen der Albenlisten...</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.NoDataText" xml:space="preserve">
+    <value>In Ihrer Sammlung gibt es kein Album</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der Künstlerlisten ist fehlgeschlagen</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.LoadingText" xml:space="preserve">
+    <value>Hochladen der Künstlernlisten...</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.NoDataText" xml:space="preserve">
+    <value>In Ihrer Sammlung gibt es kein Künstler</value>
+  </data>
+  <data name="LibraryView_CachedLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der Musik im Cache ist fehlgeschlagen</value>
+  </data>
+  <data name="LibraryView_CachedLoader.LoadingText" xml:space="preserve">
+    <value>Laden der Liste der im Cache gespeicherten Audio...</value>
+  </data>
+  <data name="LibraryView_CachedLoader.NoDataText" xml:space="preserve">
+    <value>In Ihrer Sammlung gibt es keine Musik im Cache</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der Ordnerliste ist fehlgeschlagen</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.LoadingText" xml:space="preserve">
+    <value>Laden eine Liste von Ordnern...</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.NoDataText" xml:space="preserve">
+    <value>In Ihrer Sammlung gibt es kein Ordner</value>
+  </data>
+  <data name="LibraryView_GenresLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der Ganrelisten ist fehlgeschlagen</value>
+  </data>
+  <data name="LibraryView_GenresLoader.LoadingText" xml:space="preserve">
+    <value>Hochladen der Genreslisten...</value>
+  </data>
+  <data name="LibraryView_GenresLoader.NoDataText" xml:space="preserve">
+    <value>In Ihrer Sammlung gibt es kein Genre</value>
+  </data>
+  <data name="LibraryView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der beste Playliste ist fehlgeschlagen</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="LibraryView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Hochladen der Playlist...</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="LibraryView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>In Ihrer Sammlung gibt es keine Musik</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
+    <value>LOCALE BIBLIOTHEK</value>
+  </data>
+  <data name="MainView_AlbumsItem.Content" xml:space="preserve">
+    <value>Alben</value>
+  </data>
+  <data name="MainView_ArtistsItem.Content" xml:space="preserve">
+    <value>Künstlern</value>
+  </data>
+  <data name="MainView_FoldersItem.Content" xml:space="preserve">
+    <value>Ordnern</value>
+  </data>
+  <data name="MainView_GenresItem.Content" xml:space="preserve">
+    <value>Genres</value>
+  </data>
+  <data name="MainView_LocalTracksItem.Content" xml:space="preserve">
+    <value>Musik</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Message_LocalView_DeleteArtist_Text" xml:space="preserve">
+    <value>Künstlerentfernenung {0} wird alle seine Alben und Tracks aus Ihrer Sammlung löschen.
+Diese Aktion kann nicht rückgängig gemacht werden.</value>
+  </data>
+  <data name="Message_LocalView_DeleteArtist_Title" xml:space="preserve">
+    <value>Entfernen Künstler?</value>
+  </data>
+  <data name="Message_NoButton_Text" xml:space="preserve">
+    <value>nein</value>
+    <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка отказа.</comment>
+  </data>
+  <data name="Message_YesButton_Text" xml:space="preserve">
+    <value>ja</value>
+    <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка согласия.</comment>
+  </data>
+  <data name="Local_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Hochladen der beste Playliste ist fehlgeschlagen</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Local_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Hochladen der Playlist...</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Local_TracksLoader.NoDataText" xml:space="preserve">
+    <value>Kein Song</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="UnknownAlbum_Text" xml:space="preserve">
+    <value>unbekanntes Album</value>
+  </data>
+  <data name="UnknownArtist_Text" xml:space="preserve">
+    <value>unbekannter Künstler</value>
+  </data>
+  <data name="UnknownGenre_Text" xml:space="preserve">
+    <value>unbekanntes Genre</value>
+  </data>
+  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
+    <value>Skrobbeln von Last.fm</value>
+  </data>
+  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
+    <value>Zeitloser Last.fm-Profil!</value>
+  </data>
+  <data name="Language_SystemLanguage_Text" xml:space="preserve">
+    <value>nach den Systemeinstellungen</value>
+    <comment>Язык приложения, как в настройках системы.</comment>
+  </data>
+  <data name="SetingsView_InternetAccess_Text.Text" xml:space="preserve">
+    <value>VK Saver können für Ihre Tracks Fotos von Interpreten und Album-Cover hochladen. Laden Sie die Daten (möglicherweise fallen zusätzliche Gebühren vom Betreiber)?</value>
+  </data>
+  <data name="SetingsView_LocalLibrary_Text.Text" xml:space="preserve">
+    <value>Wenn die Bibliothek nicht alle Musik zeigt an, versuchen Sie die Database zu aktualisieren.</value>
+  </data>
+  <data name="SetingsView_Notifications_Text.Text" xml:space="preserve">
+    <value>VK Saver können Sie benachrichtigen, wann der Download abgeschlossen ist.</value>
+  </data>
+  <data name="SettingsView_AppLanguage_Title.Text" xml:space="preserve">
+    <value>Sprache der Anwendung</value>
+  </data>
+  <data name="SettingsView_InternetAccess_Title.Text" xml:space="preserve">
+    <value>Internetzugang</value>
+  </data>
+  <data name="SettingsView_LocalLibrary_Title.Text" xml:space="preserve">
+    <value>Lokale Bibliothek</value>
+  </data>
+  <data name="SettingsView_Notifications_Title.Text" xml:space="preserve">
+    <value>Benachrichtigungen</value>
+  </data>
+  <data name="SettingsView_UpdateDatabaseButton.Content" xml:space="preserve">
+    <value>Database aktualisieren</value>
+  </data>
+  <data name="Message_DownloadsNotificationsChanged_Text" xml:space="preserve">
+    <value>Diese Option wird nur auf neuen Herunterladungen angelegt werden und wird den aktuellen beeinflussen nicht.</value>
+  </data>
+  <data name="Message_DownloadsNotificationsChanged_Title" xml:space="preserve">
+    <value>Bitte beachten Sie</value>
+  </data>
+  <data name="Message_RestartRequired_Text" xml:space="preserve">
+    <value>Damit die Änderungen wirksam werden, müssen Sie die Anwendung neu starten.</value>
+  </data>
+  <data name="Message_RestartRequired_Title" xml:space="preserve">
+    <value>Neustart erforderlich</value>
   </data>
 </root>
