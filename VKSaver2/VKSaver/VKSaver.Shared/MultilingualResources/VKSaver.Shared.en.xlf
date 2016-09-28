@@ -1132,8 +1132,9 @@ Download VK Saver 2 now!</target>
 Please wait...</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen1_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Рады видеть вас снова!</source>
-          <target state="translated">Welcome back</target>
+          <source>Добро пожаловать!</source>
+          <target state="needs-review-translation">Welcome back</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_Screen1_Line2_Text" translate="yes" xml:space="preserve">
           <source>ВКачай обновился, о всех новинках читайте далее</source>
@@ -1144,16 +1145,19 @@ Please wait...</target>
           <target state="translated">Caching tracks</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen2_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Доступен просмотр кэшированных треков!</source>
-          <target state="translated">Browsing cached tracks!</target>
+          <source>Кэшируйте треки для оффлайн воспроизведения!</source>
+          <target state="needs-review-translation">Browsing cached tracks!</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_Screen3_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Мировые чарты</source>
-          <target state="translated">World music charts</target>
+          <source>Локальная библиотека</source>
+          <target state="needs-review-translation">World music charts</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_Screen3_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Проигрывание треков избранных исполнителей и чартов</source>
-          <target state="translated">Playing tracks of top artists and other charts</target>
+          <source>Воспроизводите свои локальные аудиозаписи</source>
+          <target state="needs-review-translation">Playing tracks of top artists and other charts</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_Screen0_Line1_Text" translate="yes" xml:space="preserve">
           <source>Новые функции ждут вас!</source>
@@ -1269,12 +1273,14 @@ Please wait...</target>
           <target state="translated">Unable to connect to Last.fm. Check the access to the Internet and try again.</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen4_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Скробблинг Last.fm</source>
-          <target state="translated">Last.fm scrobbler</target>
+          <source>Мы знаем о музыке все!</source>
+          <target state="needs-review-translation">Last.fm scrobbler</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_Screen4_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Всегда актуальный профиль Last.fm!</source>
-          <target state="translated">Always up-to-date Last.fm profile!</target>
+          <source>Воспроизводите треки любимых исполнителей</source>
+          <target state="needs-review-translation">Always up-to-date Last.fm profile!</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="FileSize_Bytes_Mask_Text" translate="yes" xml:space="preserve">
           <source>{0} байт</source>
@@ -1784,24 +1790,59 @@ The last time we not complete a few moments. Let's continue!</target>
         <trans-unit id="Message_LocalView_DeleteArtist_Text" translate="yes" xml:space="preserve">
           <source>Удаление исполнителя {0} приведет к удалению всех его альбомов и композиций из вашей коллекции.
 Это действие нельзя отменить.</source>
-          <target state="new">Удаление исполнителя {0} приведет к удалению всех его альбомов и композиций из вашей коллекции.
-Это действие нельзя отменить.</target>
+          <target state="translated">Delete artist {0} will delete all his albums and songs from your collection. 
+This action cannot be undone.</target>
         </trans-unit>
         <trans-unit id="Message_LocalView_DeleteArtist_Title" translate="yes" xml:space="preserve">
           <source>Удалить исполнителя?</source>
-          <target state="new">Удалить исполнителя?</target>
+          <target state="translated">Delete artist?</target>
         </trans-unit>
         <trans-unit id="Message_NoButton_Text" translate="yes" xml:space="preserve">
           <source>нет</source>
-          <target state="new">нет</target>
+          <target state="translated">no</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
 Это кнопка отказа.</note>
         </trans-unit>
         <trans-unit id="Message_YesButton_Text" translate="yes" xml:space="preserve">
           <source>да</source>
-          <target state="new">да</target>
+          <target state="translated">yes</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
 Это кнопка согласия.</note>
+        </trans-unit>
+        <trans-unit id="Local_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список композиций</source>
+          <target state="translated">Failed to load the list of tracks</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
+        </trans-unit>
+        <trans-unit id="Local_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список композиций...</source>
+          <target state="translated">Loading tracks list...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
+        </trans-unit>
+        <trans-unit id="Local_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Не найдено ни одной композиции</source>
+          <target state="translated">Not found any tracks</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
+        </trans-unit>
+        <trans-unit id="UnknownAlbum_Text" translate="yes" xml:space="preserve">
+          <source>Неизвестный альбом</source>
+          <target state="translated">Unknown album</target>
+        </trans-unit>
+        <trans-unit id="UnknownArtist_Text" translate="yes" xml:space="preserve">
+          <source>Неизвестный исполнитель</source>
+          <target state="translated">Unknown artist</target>
+        </trans-unit>
+        <trans-unit id="UnknownGenre_Text" translate="yes" xml:space="preserve">
+          <source>Неизвестный жанр</source>
+          <target state="translated">Unknown genre</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen5_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Скробблинг Last.fm</source>
+          <target state="new">Скробблинг Last.fm</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen5_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Всегда актуальный профиль Last.fm!</source>
+          <target state="new">Всегда актуальный профиль Last.fm!</target>
         </trans-unit>
       </group>
     </body>

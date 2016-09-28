@@ -76,6 +76,7 @@
     <Compile Include="Database\DatabaseUpdateStepType.cs" />
     <Compile Include="Database\DBUpdateProgressChangedEventArgs.cs" />
     <Compile Include="Database\LibraryDatabase.cs" />
+    <Compile Include="Database\LibraryDatabaseCleaner.cs" />
     <Compile Include="Database\SQLiteApiZ.cs" />
     <Compile Include="Database\SQLitePlatformZ.cs" />
     <Compile Include="Database\UploadsDatabase.cs" />

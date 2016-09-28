@@ -14,6 +14,8 @@ using System.Collections.ObjectModel;
 using VKSaver.Core.ViewModels.Collections;
 using Windows.UI.Xaml.Navigation;
 using VKSaver.Core.Services;
+using VKSaver.Core.Services.Common;
+using Windows.Storage;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -31,6 +33,8 @@ namespace VKSaver.Core.ViewModels
         {
             _libraryDatabaseService = libraryDatabaseService;
             _imagesCacheService = imagesCacheService;
+
+            DeleteItemCommand = new DelegateCommand<object>(OnDeleteItemCommand);
         }
 
         public string ArtistName { get; private set; }
@@ -39,12 +43,14 @@ namespace VKSaver.Core.ViewModels
 
         public SimpleStateSupportCollection<VKSaverTrack> Tracks { get; private set; }
 
+        [DoNotNotify]
+        public DelegateCommand<object> DeleteItemCommand { get; private set; }
+
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            ArtistName = e.Parameter.ToString();
+            _artistKey = e.Parameter.ToString();
             Tracks = new SimpleStateSupportCollection<VKSaverTrack>(LoadTracks);
             Tracks.Load();
-            LoadArtistImage();
 
             base.OnNavigatedTo(e, viewModelState);
         }
@@ -69,25 +75,65 @@ namespace VKSaver.Core.ViewModels
             if (Tracks.Count > 0)
                 return new List<VKSaverTrack>(0);
 
-            var dbArtist = await _libraryDatabaseService.GetArtist(ArtistName);
+            var dbArtist = await _libraryDatabaseService.GetArtist(_artistKey);
+
+            ArtistName = dbArtist.Name == LibraryDatabaseService.UNKNOWN_ARTIST_NAME ?
+                _locService["UnknownArtist_Text"] :
+                dbArtist.Name;
 
             if (dbArtist.Tracks.Any())
                 SetDefaultMode();
 
+            LoadArtistImage(_artistKey);
             return dbArtist.Tracks;
         }
 
-        private async void LoadArtistImage()
+        private async void LoadArtistImage(string artistName)
         {
-            ArtistImage = await _imagesCacheService.GetCachedArtistImage(ArtistName);
+            ArtistImage = await _imagesCacheService.GetCachedArtistImage(artistName);
             if (ArtistImage == null)
             {
                 ArtistImage = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
-                var img = await _imagesCacheService.CacheAndGetArtistImage(ArtistName);
+                var img = await _imagesCacheService.CacheAndGetArtistImage(artistName);
                 if (img != null)
                     ArtistImage = img;
             }
         }
+
+        private async void OnDeleteItemCommand(object item)
+        {
+            if (item is VKSaverTrack)
+            {
+                await DeleteTrack((VKSaverTrack)item);
+            }
+        }
+
+        private async Task DeleteTrack(VKSaverTrack track)
+        {
+            _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.Title));
+
+            var cleaner = _libraryDatabaseService.GetCleaner();
+            var result = await cleaner.RemoveItemAndCleanDependenciesAsync(track);
+
+            foreach (var item in result)
+            {
+                if (item is VKSaverTrack)
+                {
+                    Tracks.Remove((VKSaverTrack)item);
+
+                    var file = await MusicFilesPathHelper.GetFileFromCapatibleName(track.Source);
+                    await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                }
+                else if (item is VKSaverArtist)
+                {
+                    if (((VKSaverArtist)item).DbKey == track.Artist)
+                        _navigationService.GoBack();
+                }
+            }
+            _appLoaderService.Hide();
+        }
+
+        private string _artistKey;
 
         private readonly ILibraryDatabaseService _libraryDatabaseService;
         private readonly IImagesCacheService _imagesCacheService;

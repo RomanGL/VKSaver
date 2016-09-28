@@ -115,9 +115,10 @@
     <Content Include="Assets\LogoPlay.scale-240.png" />
     <Content Include="Assets\Promo\1.png" />
     <Content Include="Assets\Promo\2.png" />
-    <Content Include="Assets\Promo\3.png" />
-    <Content Include="Assets\Promo\0.png" />
     <Content Include="Assets\Promo\4.png" />
+    <Content Include="Assets\Promo\0.png" />
+    <Content Include="Assets\Promo\5.png" />
+    <Content Include="Assets\Promo\3.png" />
     <Content Include="Assets\Purchase\1.png" />
     <Content Include="Assets\Purchase\2.png" />
     <Content Include="Assets\Purchase\3.png" />

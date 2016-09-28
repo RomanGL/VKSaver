@@ -24,6 +24,27 @@
         </TransitionCollection>
     </mvvm:VisualStateAwarePage.Transitions>
 
+    <mvvm:VisualStateAwarePage.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+        
+        <Style x:Key="RemovableItemStyle"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
+                                        Command="{Binding DataSource.DeleteItemCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+    </mvvm:VisualStateAwarePage.Resources>
+    
     <mvvm:VisualStateAwarePage.BottomAppBar>
         <CommandBar Visibility="Collapsed">
             <i:Interaction.Behaviors>
@@ -91,6 +112,7 @@
                 <ListView Style="{StaticResource NoSelectionListViewStyle}"
                           ItemsSource="{Binding Tracks}"
                           ItemTemplate="{StaticResource WithDurationAudioTemplate}"
+                          ItemContainerStyle="{StaticResource RemovableItemStyle}"
                           IsItemClickEnabled="{Binding IsItemClickEnabled}"
                           SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
                           Grid.Row="1">
@@ -99,6 +121,7 @@
                             <controls:StateBlock State="{Binding Tracks.ContentState}"
                                                  ReloadCommand="{Binding Tracks.LoadCommand}"
                                                  Margin="0,0,0,60"
+                                                 x:Uid="Local_TracksLoader"
                                                  LoadingText="Загружаем список треков исполнителя..."
                                                  ErrorText="Ошибка"
                                                  NoDataText="Нет ни одного трека" />

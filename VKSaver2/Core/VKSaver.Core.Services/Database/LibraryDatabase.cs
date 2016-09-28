@@ -146,7 +146,7 @@ namespace VKSaver.Core.Services.Database
             }
         }
 
-        private SQLiteConnection GetDbConnection()
+        public SQLiteConnection GetDbConnection()
         {
             lock (_lockObject)
             {

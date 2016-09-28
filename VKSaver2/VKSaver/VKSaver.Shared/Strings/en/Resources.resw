@@ -1346,4 +1346,42 @@ The last time we not complete a few moments. Let's continue!</value>
     <value>tracks</value>
     <comment>Eng: tracks, а не композиции</comment>
   </data>
+  <data name="Message_LocalView_DeleteArtist_Text" xml:space="preserve">
+    <value>Delete artist {0} will delete all his albums and songs from your collection. 
+This action cannot be undone.</value>
+  </data>
+  <data name="Message_LocalView_DeleteArtist_Title" xml:space="preserve">
+    <value>Delete artist?</value>
+  </data>
+  <data name="Message_NoButton_Text" xml:space="preserve">
+    <value>no</value>
+    <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка отказа.</comment>
+  </data>
+  <data name="Message_YesButton_Text" xml:space="preserve">
+    <value>yes</value>
+    <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка согласия.</comment>
+  </data>
+  <data name="Local_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Failed to load the list of tracks</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Local_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Loading tracks list...</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Local_TracksLoader.NoDataText" xml:space="preserve">
+    <value>Not found any tracks</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="UnknownAlbum_Text" xml:space="preserve">
+    <value>Unknown album</value>
+  </data>
+  <data name="UnknownArtist_Text" xml:space="preserve">
+    <value>Unknown artist</value>
+  </data>
+  <data name="UnknownGenre_Text" xml:space="preserve">
+    <value>Unknown genre</value>
+  </data>
 </root>

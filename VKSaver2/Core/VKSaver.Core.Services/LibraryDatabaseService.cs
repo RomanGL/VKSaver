@@ -25,6 +25,8 @@ namespace VKSaver.Core.Services
             _database = database;
             _settingsService = settingsService;
             _logService = logService;
+
+            _cleaner = new Lazy<LibraryDatabaseCleaner>(() => new LibraryDatabaseCleaner(_database, this));
         }
 
         public async void Update()
@@ -69,6 +71,11 @@ namespace VKSaver.Core.Services
         }
 
         public bool NeedReloadLibraryView { get; set; }
+
+        public LibraryDatabaseCleaner GetCleaner()
+        {
+            return _cleaner.Value;
+        }
 
         public async Task<List<VKSaverTrack>> GetAllTracks()
         {
@@ -118,6 +125,11 @@ namespace VKSaver.Core.Services
         public async Task<VKSaverFolder> GetFolder(string dbKey)
         {
             return await _database.GetItemWithChildrens<VKSaverFolder>(dbKey);
+        }
+
+        public async Task<List<T>> GetItems<T>(Func<T, bool> selector) where T : class
+        {
+            return await _database.GetItems(selector);
         }
 
         public async Task RemoveItem<T>(T item)
@@ -262,12 +274,12 @@ namespace VKSaver.Core.Services
             if (!String.IsNullOrWhiteSpace(properties.Artist))
                 ProcessArtist(track, properties.Artist.Trim());
             else
-                ProcessArtist(track, "Unknown");
+                ProcessArtist(track, UNKNOWN_ARTIST_NAME);
 
             if (!String.IsNullOrWhiteSpace(properties.Album))
                 ProcessAlbum(track, properties.Album.Trim());
             else
-                ProcessAlbum(track, "Unknown");
+                ProcessAlbum(track, UNKNOWN_ALBUM_NAME);
 
             if (properties.Genre.Count > 0)
             {
@@ -275,7 +287,7 @@ namespace VKSaver.Core.Services
                     ProcessGenre(track, genre.Trim());
             }
             else
-                ProcessGenre(track, "Unknown");
+                ProcessGenre(track, UNKNOWN_GENRE_NAME);
 
             track.Duration = properties.Duration;
             return track;
@@ -293,8 +305,8 @@ namespace VKSaver.Core.Services
                 };
 
                 ProcessArtist(track, metadata.Track.Artist.Trim());
-                ProcessAlbum(track, "Unknown");
-                ProcessGenre(track, metadata.VK.Genre == (AudioGenres)0 ? "Unknown" : metadata.VK.Genre.ToString());
+                ProcessAlbum(track, UNKNOWN_ALBUM_NAME);
+                ProcessGenre(track, metadata.VK.Genre == (AudioGenres)0 ? UNKNOWN_GENRE_NAME : metadata.VK.Genre.ToString());
                 ProcessVKInfo(track, metadata.VK);
 
                 track.Duration = TimeSpan.FromTicks(metadata.Track.Duration);
@@ -411,12 +423,17 @@ namespace VKSaver.Core.Services
         private readonly ISettingsService _settingsService;
         private readonly ILogService _logService;
 
+        private readonly Lazy<LibraryDatabaseCleaner> _cleaner;
+        private readonly object _lockObject = new object();
+
         private readonly Dictionary<string, VKSaverFolder> _folders = new Dictionary<string, VKSaverFolder>();
         private readonly Dictionary<string, VKSaverArtist> _artists = new Dictionary<string, VKSaverArtist>();
         private readonly Dictionary<string, VKSaverAlbum> _albums = new Dictionary<string, VKSaverAlbum>();
         private readonly Dictionary<string, VKSaverGenre> _genres = new Dictionary<string, VKSaverGenre>();
         private readonly List<VKSaverAudioVKInfo> _vksmInfo = new List<VKSaverAudioVKInfo>();
 
-        private readonly object _lockObject = new object();        
+        public const string UNKNOWN_ARTIST_NAME = "VKSUnknownArtist";
+        public const string UNKNOWN_ALBUM_NAME = "VKSUnknownAlbum";
+        public const string UNKNOWN_GENRE_NAME = "VKSUnknownGenre";
     }
 }

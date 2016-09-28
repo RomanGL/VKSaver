@@ -15,6 +15,9 @@ using Windows.UI.Xaml.Navigation;
 using System.Collections;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.ViewModels.Collections;
+using VKSaver.Core.Services.Common;
+using Windows.Storage;
+using VKSaver.Core.Services;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -212,6 +215,18 @@ namespace VKSaver.Core.ViewModels
             }
 
             var dbTracks = await _libraryDatabaseService.GetAllTracks();
+            if (!dbTracks.Any())
+            {
+                HideCommandBar();
+                return new List<JumpListGroup<VKSaverTrack>>(0);
+            }
+
+            foreach (var track in dbTracks)
+            {
+                if (track.Artist == LibraryDatabaseService.UNKNOWN_ARTIST_NAME)
+                    track.Artist = _locService["UnknownArtist_Text"];
+            }
+
             var groups = dbTracks.ToAlphaGroupsEnumerable(t => t.Title);
 
             if (groups.Any())
@@ -231,6 +246,15 @@ namespace VKSaver.Core.ViewModels
                 return new List<JumpListGroup<VKSaverArtist>>(0);
 
             var dbArtists = await _libraryDatabaseService.GetAllArtists();
+            if (!dbArtists.Any())
+                return new List<JumpListGroup<VKSaverArtist>>(0);
+
+            foreach (var artist in dbArtists)
+            {
+                if (artist.Name == LibraryDatabaseService.UNKNOWN_ARTIST_NAME)
+                    artist.Name = _locService["UnknownArtist_Text"];
+            }
+
             var groups = dbArtists.ToAlphaGroupsEnumerable(t => t.Name);
 
             return groups;
@@ -244,11 +268,22 @@ namespace VKSaver.Core.ViewModels
                 return new List<JumpListGroup<VKSaverAlbum>>(0);
 
             var dbAlbums = await _libraryDatabaseService.GetAllAlbums();
+            if (!dbAlbums.Any())
+                return new List<JumpListGroup<VKSaverAlbum>>(0);
+
+            foreach (var album in dbAlbums)
+            {
+                if (album.Name == LibraryDatabaseService.UNKNOWN_ALBUM_NAME)
+                    album.Name = _locService["UnknownAlbum_Text"];
+                if (album.ArtistName == LibraryDatabaseService.UNKNOWN_ARTIST_NAME)
+                    album.ArtistName = _locService["UnknownArtist_Text"];
+            }
+
             var groups = dbAlbums.ToAlphaGroupsEnumerable(t => t.Name);
 
             return groups;
         }
-
+        
         private async Task<IEnumerable<JumpListGroup<VKSaverGenre>>> LoadGenres()
         {
             HideCommandBar();
@@ -257,6 +292,15 @@ namespace VKSaver.Core.ViewModels
                 return new List<JumpListGroup<VKSaverGenre>>(0);
 
             var dbGenres = await _libraryDatabaseService.GetAllGenres();
+            if (!dbGenres.Any())
+                return new List<JumpListGroup<VKSaverGenre>>(0);
+
+            foreach (var genre in dbGenres)
+            {
+                if (genre.Name == LibraryDatabaseService.UNKNOWN_GENRE_NAME)
+                    genre.Name = _locService["UnknownGenre_Text"];
+            }
+
             var groups = dbGenres.ToAlphaGroupsEnumerable(t => t.Name);
 
             return groups;
@@ -271,6 +315,18 @@ namespace VKSaver.Core.ViewModels
             }
 
             var dbTracks = await _libraryDatabaseService.GetAllCachedTracks();
+            if (!dbTracks.Any())
+            {
+                HideCommandBar();
+                return new List<JumpListGroup<VKSaverTrack>>(0);
+            }
+
+            foreach (var track in dbTracks)
+            {
+                if (track.Artist == LibraryDatabaseService.UNKNOWN_ARTIST_NAME)
+                    track.Artist = _locService["UnknownArtist_Text"];
+            }
+
             var groups = dbTracks.ToAlphaGroupsEnumerable(t => t.Title);
 
             if (groups.Any())
@@ -308,36 +364,54 @@ namespace VKSaver.Core.ViewModels
         {
             if (item is VKSaverTrack)
             {
-                if (CurrentPivotIndex == 0)
-                    await DeleteTrack((VKSaverTrack)item);
-                else if (CurrentPivotIndex == 5)
-                    await DeleteCachedTrack((VKSaverTrack)item);
-            }
-            else if (item is VKSaverArtist)
-            {
-                await DeleteArtist((VKSaverArtist)item);
-            }            
+                await DeleteTrack((VKSaverTrack)item);
+            }          
         }
 
         private async Task DeleteTrack(VKSaverTrack track)
         {
             _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.Title));
 
-            await _libraryDatabaseService.RemoveItem(track);
-            _allTracks.Remove(track);
-            DeleteItemFromGroups(track, Tracks);
+            var cleaner = _libraryDatabaseService.GetCleaner();
+            var result = await cleaner.RemoveItemAndCleanDependenciesAsync(track);            
 
-            _appLoaderService.Hide();
-        }
+            foreach (var item in result)
+            {
+                if (item is VKSaverTrack)
+                {
+                    var itemTrack = (VKSaverTrack)item;
 
-        private async Task DeleteCachedTrack(VKSaverTrack track)
-        {
-            _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], track.Title));
+                    _allTracks?.Remove(itemTrack);
+                    DeleteItemFromGroups(itemTrack, Tracks);
 
-            await _libraryDatabaseService.RemoveItem(track);
-            _allCachedTracks.Remove(track);
-            DeleteItemFromGroups(track, Cached);
+                    if (itemTrack.VKInfoKey != null)
+                    {
+                        _allCachedTracks?.Remove(itemTrack);
+                        DeleteItemFromGroups(itemTrack, Cached);
+                    }
 
+                    var file = await MusicFilesPathHelper.GetFileFromCapatibleName(track.Source);
+                    await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                }
+                else if (item is VKSaverArtist)
+                {
+                    DeleteItemFromGroups((VKSaverArtist)item, Artists);
+                }
+                else if (item is VKSaverGenre)
+                {
+                    DeleteItemFromGroups((VKSaverGenre)item, Genres);
+                }
+                else if (item is VKSaverAlbum)
+                {
+                    DeleteItemFromGroups((VKSaverAlbum)item, Albums);
+                }
+                else if (item is VKSaverFolder)
+                {
+                    Folders.Remove((VKSaverFolder)item);
+                }
+            }
+
+            _libraryDatabaseService.NeedReloadLibraryView = false;
             _appLoaderService.Hide();
         }
 
@@ -355,28 +429,36 @@ namespace VKSaver.Core.ViewModels
                 return;
             }
 
-            var dbArtist = await _libraryDatabaseService.GetArtist(artist.DbKey);
+            var result = await _libraryDatabaseService.GetCleaner().RemoveItemAndCleanDependenciesAsync(artist);
+            //var dbArtist = await _libraryDatabaseService.GetArtist(artist.DbKey);
 
-            foreach (var track in dbArtist.Tracks)
-            {
-                DeleteItemFromGroups(track, Tracks);
-                if (track.VKInfoKey != null)
-                {
-                    await _libraryDatabaseService.RemoveItemByPrimaryKey<VKSaverAudioVKInfo>(track.VKInfoKey);
-                    DeleteItemFromGroups(track, Cached);
-                }
+            //foreach (var track in dbArtist.Tracks)
+            //{
+            //    DeleteItemFromGroups(track, Tracks);
+            //    if (track.VKInfoKey != null)
+            //    {
+            //        await _libraryDatabaseService.RemoveItemByPrimaryKey<VKSaverAudioVKInfo>(track.VKInfoKey);
+            //        DeleteItemFromGroups(track, Cached);
+            //    }
 
-                await _libraryDatabaseService.RemoveItem(track);
-            }
+            //    var genre = await _libraryDatabaseService.GetGenre(track.GenreKey);
+            //    if (genre != null && genre.Tracks.Count == 1)
+            //    {
+            //        await _libraryDatabaseService.RemoveItem(genre);
+            //        DeleteItemFromGroups(genre, Genres);
+            //    }
 
-            foreach (var album in dbArtist.Albums)
-            {
-                DeleteItemFromGroups(album, Albums);
-                await _libraryDatabaseService.RemoveItem(album);
-            }
+            //    await _libraryDatabaseService.RemoveItem(track);
+            //}
 
-            await _libraryDatabaseService.RemoveItem(artist);
-            DeleteItemFromGroups(artist, Artists);
+            //foreach (var album in dbArtist.Albums)
+            //{
+            //    DeleteItemFromGroups(album, Albums);
+            //    await _libraryDatabaseService.RemoveItem(album);
+            //}
+
+            //await _libraryDatabaseService.RemoveItem(artist);
+            //DeleteItemFromGroups(artist, Artists);
 
             _libraryDatabaseService.NeedReloadLibraryView = false;
             _appLoaderService.Hide();

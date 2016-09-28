@@ -966,7 +966,7 @@
     <value>Готовы? Тогда начнем!</value>
   </data>
   <data name="PromoView_Screen1_Line1_Text" xml:space="preserve">
-    <value>Рады видеть вас снова!</value>
+    <value>Добро пожаловать!</value>
   </data>
   <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
     <value>ВКачай обновился, о всех новинках читайте далее</value>
@@ -975,13 +975,13 @@
     <value>Кэширование треков</value>
   </data>
   <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
-    <value>Доступен просмотр кэшированных треков!</value>
+    <value>Кэшируйте треки для оффлайн воспроизведения!</value>
   </data>
-  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
-    <value>Мировые чарты</value>
+  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
+    <value>Мы знаем о музыке все!</value>
   </data>
-  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
-    <value>Проигрывание треков избранных исполнителей и чартов</value>
+  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
+    <value>Воспроизводите треки любимых исполнителей</value>
   </data>
   <data name="PromoView_NextButton.Content" xml:space="preserve">
     <value>далее</value>
@@ -1059,10 +1059,10 @@
   <data name="Message_Login_LfConnectionError_Text" xml:space="preserve">
     <value>Не удалось подключиться к Last.fm. Проверьте доступ к интернету и повторите попытку.</value>
   </data>
-  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
+  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
     <value>Скробблинг Last.fm</value>
   </data>
-  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
+  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
     <value>Всегда актуальный профиль Last.fm!</value>
   </data>
   <data name="FileSize_Bytes_Mask_Text" xml:space="preserve">
@@ -1465,5 +1465,32 @@ Eng: upload</comment>
     <value>да</value>
     <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
 Это кнопка согласия.</comment>
+  </data>
+  <data name="Local_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить список композиций</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Local_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем список композиций...</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Local_TracksLoader.NoDataText" xml:space="preserve">
+    <value>Не найдено ни одной композиции</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="UnknownAlbum_Text" xml:space="preserve">
+    <value>Неизвестный альбом</value>
+  </data>
+  <data name="UnknownArtist_Text" xml:space="preserve">
+    <value>Неизвестный исполнитель</value>
+  </data>
+  <data name="UnknownGenre_Text" xml:space="preserve">
+    <value>Неизвестный жанр</value>
+  </data>
+  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
+    <value>Локальная библиотека</value>
+  </data>
+  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
+    <value>Воспроизводите свои локальные аудиозаписи</value>
   </data>
 </root>

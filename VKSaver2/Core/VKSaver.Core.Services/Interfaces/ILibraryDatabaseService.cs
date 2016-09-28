@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Database;
 using VKSaver.Core.Services.Database;
@@ -25,7 +26,11 @@ namespace VKSaver.Core.Services.Interfaces
         Task<VKSaverGenre> GetGenre(string dbKey);
         Task<VKSaverFolder> GetFolder(string dbKey);
 
+        Task<List<T>> GetItems<T>(Func<T, bool> selector) where T : class;
+
         Task RemoveItem<T>(T item);
         Task RemoveItemByPrimaryKey<T>(object primaryKey);
+
+        LibraryDatabaseCleaner GetCleaner();
     }
 }
