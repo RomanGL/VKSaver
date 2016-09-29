@@ -43,8 +43,7 @@ namespace VKSaver
 
             this.FrameFactory = () =>
             {
-                _locService = new LocService();
-                _appLoaderService = new AppLoaderService(_locService);
+                _appLoaderService = new AppLoaderService(this);
 #if WINDOWS_PHONE_APP
                 _frame = new WithLoaderFrame(_appLoaderService);
 
@@ -123,12 +122,12 @@ namespace VKSaver
             _container.RegisterInstance(this.SessionStateService);
             _container.RegisterInstance<IDispatcherWrapper>(this);       
             _container.RegisterInstance<ILFService>(new LFService(LAST_FM_API_KEY));
-            _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
-            _container.RegisterInstance<ILocService>(_locService);
+            _container.RegisterInstance<IAppLoaderService>(_appLoaderService);            
             _container.RegisterInstance<IVKLoginService>(vkLoginService);
             _container.RegisterInstance<InTouch>(inTouch);
-            _container.RegisterInstance<ILastAuth>(lastAuth);          
+            _container.RegisterInstance<ILastAuth>(lastAuth);
 
+            _container.RegisterType<ILocService, LocService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IInTouchWrapper, InTouchWrapper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IDialogsService, DialogsService>(new ContainerControlledLifetimeManager());
@@ -200,6 +199,9 @@ namespace VKSaver
                 lastFmLoginService.InitializeLastAuth();
 
             StartSuspendingServices();
+
+            var locService = _container.Resolve<ILocService>();
+            locService.ApplyAppLanguage();
 
             base.OnInitialize(args);            
         }
@@ -419,7 +421,6 @@ namespace VKSaver
 
         private IUnityContainer _container;
         private IAppLoaderService _appLoaderService;
-        private ILocService _locService;
         private UnityServiceLocator _unityServiceLocator;
         private Frame _frame;
 

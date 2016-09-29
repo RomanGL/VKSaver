@@ -1846,8 +1846,8 @@ Eng: upload</note>
           <target state="new">ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?</target>
         </trans-unit>
         <trans-unit id="SetingsView_LocalLibrary_Text.Text" translate="yes" xml:space="preserve">
-          <source>Если в вашей библиотеке отбражаются не все треки, попробуйте выполнить обновление базы данных.</source>
-          <target state="new">Если в вашей библиотеке отбражаются не все треки, попробуйте выполнить обновление базы данных.</target>
+          <source>Если в вашей библиотеке отображаются не все треки, попробуйте выполнить обновление базы данных.</source>
+          <target state="new">Если в вашей библиотеке отображаются не все треки, попробуйте выполнить обновление базы данных.</target>
         </trans-unit>
         <trans-unit id="SetingsView_Notifications_Text.Text" translate="yes" xml:space="preserve">
           <source>ВКачай может уведомлять вас о завершении загрузок.</source>

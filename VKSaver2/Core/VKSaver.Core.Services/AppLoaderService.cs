@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 
@@ -6,16 +7,17 @@ namespace VKSaver.Core.Services
 {
     public sealed class AppLoaderService : IAppLoaderService
     {
-        public AppLoaderService(ILocService locService)
+        public AppLoaderService(IServiceResolver serviceResolver)
         {
-            _locService = locService;
+            _serviceResolver = serviceResolver;
+            _locService = new Lazy<ILocService>(() => _serviceResolver.Resolve<ILocService>());
         }
 
         public bool IsShowed { get; private set; }
 
         public void Show()
         {
-            Show(_locService["AppLoader_Loading"]);
+            Show(_locService.Value["AppLoader_Loading"]);
         }
 
         public void Show(string text)
@@ -52,6 +54,8 @@ namespace VKSaver.Core.Services
 
         private readonly List<ILoader> _loaders = new List<ILoader>();
         private readonly object _lockObject = new object();
-        private readonly ILocService _locService;
+
+        private readonly IServiceResolver _serviceResolver;        
+        private readonly Lazy<ILocService> _locService;
     }
 }

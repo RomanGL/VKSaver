@@ -12,6 +12,8 @@ using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -46,6 +48,33 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public ObservableCollection<IServiceAuthorization> Authorizations { get; private set; }
 
+        public List<LanguageItem> AvailableLanguages { get; private set; }
+
+        [AlsoNotifyFor(nameof(AvailableLanguages))]
+        public int LanguageIndex
+        {
+            get
+            {
+                if (AvailableLanguages == null)
+                    return -1;
+
+                var currentLanguage = _locService.CurrentAppLanguage;
+                return AvailableLanguages.FindIndex(l => l.Lang == currentLanguage);
+            }
+            set
+            {
+                if (AvailableLanguages == null)
+                    return;
+
+                _locService.CurrentAppLanguage = AvailableLanguages[value].Lang;
+                OnLanguageChanged();
+
+                //_navigationService.ClearHistory();
+                //_navigationService.Navigate("MainView", null);
+                //_navigationService.Navigate("SettingsView", null);
+            }
+        }
+
         [DoNotNotify]
         public DelegateCommand UpdateDatabaseCommand { get; private set; }
 
@@ -75,6 +104,8 @@ namespace VKSaver.Core.ViewModels
             _lastFmLoginService.UserLogout += LastFmLoginService_UserLogout;
 
             LoadVKUserName(auth);
+
+            AvailableLanguages = _locService.GetAvailableLanguages();
             base.OnNavigatedTo(e, viewModelState);
         }
 
@@ -120,6 +151,12 @@ namespace VKSaver.Core.ViewModels
         {
             _dialogsService.Show(_locService["Message_DownloadsNotificationsChanged_Text"],
                 _locService["Message_DownloadsNotificationsChanged_Title"]);
+        }
+
+        private void OnLanguageChanged()
+        {
+            _dialogsService.Show(_locService["Message_RestartRequired_Text"],
+                _locService["Message_RestartRequired_Title"]);
         }
 
         private readonly INavigationService _navigationService;

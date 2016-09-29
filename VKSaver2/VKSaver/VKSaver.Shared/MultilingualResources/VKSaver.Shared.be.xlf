@@ -12,7 +12,7 @@
         </trans-unit>
         <trans-unit id="AboutView_AppName.Text" translate="yes" xml:space="preserve">
           <source>ВКачай 2</source>
-          <target state="translated">ВКачай 2</target>
+          <target state="final">ВКачай 2</target>
         </trans-unit>
         <trans-unit id="AboutView_Version.Text" translate="yes" xml:space="preserve">
           <source>Версия:</source>
@@ -118,15 +118,15 @@
         </trans-unit>
         <trans-unit id="AppName.Text" translate="yes" xml:space="preserve">
           <source>ВКАЧАЙ</source>
-          <target state="translated">ВКАЧАЙ</target>
+          <target state="final">ВКАЧАЙ</target>
         </trans-unit>
         <trans-unit id="AppNamePivot.Title" translate="yes" xml:space="preserve">
           <source>ВКАЧАЙ</source>
-          <target state="translated">ВКАЧАЙ</target>
+          <target state="final">ВКАЧАЙ</target>
         </trans-unit>
         <trans-unit id="AppNameText" translate="yes" xml:space="preserve">
           <source>ВКачай</source>
-          <target state="translated">ВКачай</target>
+          <target state="final">ВКачай</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_AlbumsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список альбомов исполнителя</source>
@@ -238,7 +238,7 @@
         </trans-unit>
         <trans-unit id="MainView_Hub.Header" translate="yes" xml:space="preserve">
           <source>вкачай</source>
-          <target state="translated">вкачай</target>
+          <target state="final">вкачай</target>
         </trans-unit>
         <trans-unit id="MainView_HubSection_Recommendations.Header" translate="yes" xml:space="preserve">
           <source>РЕКОМЕНДУЕМ</source>
@@ -464,7 +464,7 @@
           <source>Система заблокировала передачу данных, так как за исползование интернет-соединения может взиматься плата оператором.
 
 Уберите все ограничения в "Контроле данных" и отключите лимит трафика. Операция продолжится, как только система разрешит передачу данных.</source>
-          <target state="final">Сістэма заблакавала перадачу дадзеных, так як за выкарыстанне інтэрнэт-злучэння аператар можа браць плату.
+          <target state="final">Сістэма заблакавала перадачу дадзеных, так як за выкарыстанне інтэрнэт-злучэння аператар можа браць дадатковую плату.
 
 Зніміце ўсе абмежаванні ў "Кантролі дадзеных" і адключыце ліміт трафіку. Аперацыя працягнецца, як толькі сістэма дазволіць перадачу дадзеных.</target>
         </trans-unit>
@@ -618,7 +618,7 @@
         </trans-unit>
         <trans-unit id="TopArtistsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список лучших исполнителей</source>
-          <target state="new">Не удалось загрузить список лучших исполнителей</target>
+          <target state="final">Не атрымалася загрузіць спіс лепшых выканаўцаў</target>
         </trans-unit>
         <trans-unit id="TopArtistsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Выбираем лучших исполнителей...</source>
@@ -755,7 +755,7 @@
         </trans-unit>
         <trans-unit id="UserCommView_FriendsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем информацию о друзьях...</source>
-          <target state="new">Загружаем информацию о друзьях...</target>
+          <target state="final">Загружаем інфармацыю аб сябрах...</target>
         </trans-unit>
         <trans-unit id="UserCommView_FriendsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Друзья отсутствуют либо доступ к ним закрыт</source>
@@ -1146,7 +1146,7 @@
         </trans-unit>
         <trans-unit id="PromoView_Screen1_Line1_Text" translate="yes" xml:space="preserve">
           <source>Добро пожаловать!</source>
-          <target state="needs-review-translation">Рады бачыць вас зноў!</target>
+          <target state="final">Рады бачыць вас!</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_Screen1_Line2_Text" translate="yes" xml:space="preserve">
@@ -1159,17 +1159,17 @@
         </trans-unit>
         <trans-unit id="PromoView_Screen2_Line2_Text" translate="yes" xml:space="preserve">
           <source>Кэшируйте треки для оффлайн воспроизведения!</source>
-          <target state="needs-review-translation">Даступны прагляд кэшаваных трэкаў!</target>
+          <target state="final">Кэшыруйце трэкі для афлайн прайгравання!</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_Screen3_Line1_Text" translate="yes" xml:space="preserve">
           <source>Локальная библиотека</source>
-          <target state="needs-review-translation">Сусветныя чарты</target>
+          <target state="final">Лакальная бібліятэка</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_Screen3_Line2_Text" translate="yes" xml:space="preserve">
           <source>Воспроизводите свои локальные аудиозаписи</source>
-          <target state="needs-review-translation">Прайграванне трэкаў абраных выканаўцаў і чартаў</target>
+          <target state="final">Прайгравайце свае лакальныя аўдыязапісы</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_NextButton.Content" translate="yes" xml:space="preserve">
@@ -1235,15 +1235,15 @@
         </trans-unit>
         <trans-unit id="CachedView_Loader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список кэшированных аудиозаписей</source>
-          <target state="final">Не атрымалася загрузіць спіс кэшаваных аўдыёзапісаў</target>
+          <target state="final">Не атрымалася загрузіць спіс кэшаваных аўдыязапісаў</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем кэшированные аудиозаписи...</source>
-          <target state="final">Загружаем кэшаваныя аўдыёзапісы...</target>
+          <target state="final">Загружаем кэшаваныя аўдыязапісы...</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.NoDataText" translate="yes" xml:space="preserve">
           <source>Кэшированные аудиозаписи отсутствуют</source>
-          <target state="new">Кэшированные аудиозаписи отсутствуют</target>
+          <target state="final">Кэшаваныя аўдыязапісы адсутнічаюць</target>
         </trans-unit>
         <trans-unit id="CachedView_Title.Text" translate="yes" xml:space="preserve">
           <source>кэшированные</source>
@@ -1251,7 +1251,7 @@
         </trans-unit>
         <trans-unit id="Message_ClearCacheError_Text" translate="yes" xml:space="preserve">
           <source>При очистке кэша аудиозаписей произошла ошибка. Повторите попытку позднее.</source>
-          <target state="final">Пры выдаленни кэша аўдыёзапісаў адбылася памылка. Калі ласка, паспрабуйце пазней.</target>
+          <target state="final">Пры выдаленни кэша аўдыязапісаў адбылася памылка. Калі ласка, паспрабуйце пазней.</target>
         </trans-unit>
         <trans-unit id="Message_ClearCacheError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось очистить кэш</source>
@@ -1275,12 +1275,12 @@
         </trans-unit>
         <trans-unit id="PromoView_Screen4_Line1_Text" translate="yes" xml:space="preserve">
           <source>Мы знаем о музыке все!</source>
-          <target state="needs-review-translation">Скробблінг Last.fm</target>
+          <target state="final">Мы ведаем аб музыцы ўсё!</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="PromoView_Screen4_Line2_Text" translate="yes" xml:space="preserve">
           <source>Воспроизводите треки любимых исполнителей</source>
-          <target state="needs-review-translation">Заўсёды актуальны профіль Last.fm!</target>
+          <target state="final">Прайгравайце трэкі любімых выканаўцаў</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="FileSize_Bytes_Mask_Text" translate="yes" xml:space="preserve">
@@ -1544,7 +1544,7 @@ Eng: upload</note>
           <source>ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
 
 Этот параметр всегда можно изменить в настройках.</source>
-          <target state="final">ВКачай можа загрузіць фатаграфіі выканаўцаў і вокладкі альбомаў для вашых трэкаў. Загружаць гэтыя дадзеныя (можа спаганяцца дадатковая плата аператарам)?
+          <target state="final">ВКачай можа загрузіць фатаграфіі выканаўцаў і вокладкі альбомаў для вашых трэкаў. Загружаць гэтыя дадзеныя (за выкарыстанне інтэрнэт-злучэння аператар можа браць дадатковую плату)?
 
 Гэты параметр заўсёды можна змяніць у наладах.</target>
         </trans-unit>
@@ -1574,9 +1574,9 @@ Eng: upload</note>
 Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
 
 Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</source>
-          <target state="final">ВКачай неабходна выканаць пошук аўдыёфайлаў на вашым смартфоне, перш чым вы зможаце іх прайграць (гэта неабходна выканаць толькі аднойчы).
+          <target state="final">ВКачай неабходна выканаць пошук аўдыяфайлаў на вашым смартфоне, перш чым вы зможаце іх прайграць (гэта неабходна выканаць толькі аднойчы).
 
-Звярніце ўвагу, што ВКачай зможа знайсці аўдыяфайлы толькі ў папке.  Музыка ў памяці смартфона або на SD-карце.
+Звярніце ўвагу, што ВКачай зможа знайсці аўдыяфайлы толькі ў тэчцы Музыка ў памяці смартфона або на SD-карце.
 
 Далей мы дапаможам наладзіць некалькі асноўных параметраў праграмы. Націсніце кнопку ніжэй, калі будзеце гатовыя.</target>
         </trans-unit>
@@ -1646,258 +1646,258 @@ Eng: upload</note>
         </trans-unit>
         <trans-unit id="AppBarButton_Search.Label" translate="yes" xml:space="preserve">
           <source>поиск</source>
-          <target state="new">поиск</target>
+          <target state="final">пошук</target>
         </trans-unit>
         <trans-unit id="DetailsView_Subtitle.Text" translate="yes" xml:space="preserve">
           <source>подробнее</source>
-          <target state="new">подробнее</target>
+          <target state="final">падрабязней</target>
           <note from="MultilingualBuild" annotates="source" priority="2">details</note>
         </trans-unit>
         <trans-unit id="LocalFolderView_Title.Text" translate="yes" xml:space="preserve">
           <source>ПАПКА</source>
-          <target state="new">ПАПКА</target>
+          <target state="final">ТЭЧКА</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ОБЯЗАТЕЛЬНО капсом!</note>
         </trans-unit>
         <trans-unit id="LocalGenreView_Title.Text" translate="yes" xml:space="preserve">
           <source>ЖАНР</source>
-          <target state="new">ЖАНР</target>
+          <target state="final">ЖАНР</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ОБЯЗАТЕЛЬНО капсом!</note>
         </trans-unit>
         <trans-unit id="LibraryView_PivotItem_Albums.Header" translate="yes" xml:space="preserve">
           <source>альбомы</source>
-          <target state="new">альбомы</target>
+          <target state="final">альбомы</target>
         </trans-unit>
         <trans-unit id="LibraryView_PivotItem_Artists.Header" translate="yes" xml:space="preserve">
           <source>исполнители</source>
-          <target state="new">исполнители</target>
+          <target state="final">выканаўцы</target>
           <note from="MultilingualBuild" annotates="source" priority="2">artists</note>
         </trans-unit>
         <trans-unit id="LibraryView_PivotItem_Cached.Header" translate="yes" xml:space="preserve">
           <source>кэшированные</source>
-          <target state="new">кэшированные</target>
+          <target state="final">кэшаваныя</target>
         </trans-unit>
         <trans-unit id="LibraryView_PivotItem_Folders.Header" translate="yes" xml:space="preserve">
           <source>папки</source>
-          <target state="new">папки</target>
+          <target state="final">тэчкі</target>
         </trans-unit>
         <trans-unit id="LibraryView_PivotItem_Genres.Header" translate="yes" xml:space="preserve">
           <source>жанры</source>
-          <target state="new">жанры</target>
+          <target state="final">жанры</target>
         </trans-unit>
         <trans-unit id="LibraryView_PivotItem_Tracks.Header" translate="yes" xml:space="preserve">
           <source>композиции</source>
-          <target state="new">композиции</target>
+          <target state="final">кампазіцыі</target>
           <note from="MultilingualBuild" annotates="source" priority="2">tracks</note>
         </trans-unit>
         <trans-unit id="LibraryView_AlbumsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список альбомов</source>
-          <target state="new">Не удалось загрузить список альбомов</target>
+          <target state="final">Не атрымалася загрузіць спіс альбомаў</target>
         </trans-unit>
         <trans-unit id="LibraryView_AlbumsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список альбомов...</source>
-          <target state="new">Загружаем список альбомов...</target>
+          <target state="final">Загружаем спіс альбомаў...</target>
         </trans-unit>
         <trans-unit id="LibraryView_AlbumsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В вашей коллекции нет ни одного альбома</source>
-          <target state="new">В вашей коллекции нет ни одного альбома</target>
+          <target state="final">У вашай калекцыі няма ніводнага альбома</target>
         </trans-unit>
         <trans-unit id="LibraryView_ArtistsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список исполнителей</source>
-          <target state="new">Не удалось загрузить список исполнителей</target>
+          <target state="final">Не атрымалася загрузіць спіс выканаўцаў</target>
         </trans-unit>
         <trans-unit id="LibraryView_ArtistsLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список исполнителей...</source>
-          <target state="new">Загружаем список исполнителей...</target>
+          <target state="final">Загружаем спіс выканаўцаў...</target>
         </trans-unit>
         <trans-unit id="LibraryView_ArtistsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В вашей коллекции нет ни одного исполнителя</source>
-          <target state="new">В вашей коллекции нет ни одного исполнителя</target>
+          <target state="final">У вашай калекцыі няма ніводнага выканаўцы</target>
         </trans-unit>
         <trans-unit id="LibraryView_CachedLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список кэшированных аудиозаписей</source>
-          <target state="new">Не удалось загрузить список кэшированных аудиозаписей</target>
+          <target state="final">Не атрымалася загрузіць спіс кэшаваных аўдыязапісаў</target>
         </trans-unit>
         <trans-unit id="LibraryView_CachedLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список кэшированных аудиозаписей...</source>
-          <target state="new">Загружаем список кэшированных аудиозаписей...</target>
+          <target state="final">Загружаем спіс кэшаваных аўдыязапісаў...</target>
         </trans-unit>
         <trans-unit id="LibraryView_CachedLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В вашей коллекции нет ни одной кэшированной аудиозаписи</source>
-          <target state="new">В вашей коллекции нет ни одной кэшированной аудиозаписи</target>
+          <target state="final">У вашай калекцыі няма ніводнага кэшыраванага аўдыязапісу</target>
         </trans-unit>
         <trans-unit id="LibraryView_FoldersLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список папок</source>
-          <target state="new">Не удалось загрузить список папок</target>
+          <target state="final">Не атрымалася загрузіць спіс тэчак</target>
         </trans-unit>
         <trans-unit id="LibraryView_FoldersLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список папок...</source>
-          <target state="new">Загружаем список папок...</target>
+          <target state="final">Загружаем спіс тэчак...</target>
         </trans-unit>
         <trans-unit id="LibraryView_FoldersLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В вашей коллекции нет ни одной папки</source>
-          <target state="new">В вашей коллекции нет ни одной папки</target>
+          <target state="final">У вашай калекцыі няма ніводнай тэчкі</target>
         </trans-unit>
         <trans-unit id="LibraryView_GenresLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список жанров</source>
-          <target state="new">Не удалось загрузить список жанров</target>
+          <target state="final">Не атрымалася загрузіць спіс жанраў</target>
         </trans-unit>
         <trans-unit id="LibraryView_GenresLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список жанров...</source>
-          <target state="new">Загружаем список жанров...</target>
+          <target state="final">Загружаем спіс жанраў...</target>
         </trans-unit>
         <trans-unit id="LibraryView_GenresLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В вашей коллекции нет ни одного жанра</source>
-          <target state="new">В вашей коллекции нет ни одного жанра</target>
+          <target state="final">У вашай калекцыі няма ніводнага жанру</target>
         </trans-unit>
         <trans-unit id="LibraryView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список композиций</source>
-          <target state="new">Не удалось загрузить список композиций</target>
+          <target state="final">Не атрымалася загрузіць спіс кампазіцый</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
         </trans-unit>
         <trans-unit id="LibraryView_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список композиций...</source>
-          <target state="new">Загружаем список композиций...</target>
+          <target state="final">Загружаем спіс кампазіцый...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
         </trans-unit>
         <trans-unit id="LibraryView_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В вашей коллекции нет ни одной композиции</source>
-          <target state="new">В вашей коллекции нет ни одной композиции</target>
+          <target state="final">У вашай калекцыі няма ніводнай кампазіцыі</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
         </trans-unit>
         <trans-unit id="MainView_HubSection_LocalLibrary.Header" translate="yes" xml:space="preserve">
           <source>ЛОКАЛЬНАЯ БИБЛИОТЕКА</source>
-          <target state="new">ЛОКАЛЬНАЯ БИБЛИОТЕКА</target>
+          <target state="final">ЛАКАЛЬНАЯ БІБЛІЯТЭКА</target>
         </trans-unit>
         <trans-unit id="MainView_AlbumsItem.Content" translate="yes" xml:space="preserve">
           <source>альбомы</source>
-          <target state="new">альбомы</target>
+          <target state="final">альбомы</target>
         </trans-unit>
         <trans-unit id="MainView_ArtistsItem.Content" translate="yes" xml:space="preserve">
           <source>исполнители</source>
-          <target state="new">исполнители</target>
+          <target state="final">выканаўцы</target>
         </trans-unit>
         <trans-unit id="MainView_FoldersItem.Content" translate="yes" xml:space="preserve">
           <source>папки</source>
-          <target state="new">папки</target>
+          <target state="final">тэчкі</target>
         </trans-unit>
         <trans-unit id="MainView_GenresItem.Content" translate="yes" xml:space="preserve">
           <source>жанры</source>
-          <target state="new">жанры</target>
+          <target state="final">жанры</target>
         </trans-unit>
         <trans-unit id="MainView_LocalTracksItem.Content" translate="yes" xml:space="preserve">
           <source>композиции</source>
-          <target state="new">композиции</target>
+          <target state="final">кампазіцыі</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
         </trans-unit>
         <trans-unit id="Message_LocalView_DeleteArtist_Text" translate="yes" xml:space="preserve">
           <source>Удаление исполнителя {0} приведет к удалению всех его альбомов и композиций из вашей коллекции.
 Это действие нельзя отменить.</source>
-          <target state="new">Удаление исполнителя {0} приведет к удалению всех его альбомов и композиций из вашей коллекции.
-Это действие нельзя отменить.</target>
+          <target state="final">Выдаленне выканаўца {0} прывядзе да выдалення ўсіх яго альбомаў і кампазіцый з вашай калекцыі.
+Гэта дзеянне нельга адмяніць.</target>
         </trans-unit>
         <trans-unit id="Message_LocalView_DeleteArtist_Title" translate="yes" xml:space="preserve">
           <source>Удалить исполнителя?</source>
-          <target state="new">Удалить исполнителя?</target>
+          <target state="final">Выдаліць выканаўца?</target>
         </trans-unit>
         <trans-unit id="Message_NoButton_Text" translate="yes" xml:space="preserve">
           <source>нет</source>
-          <target state="new">нет</target>
+          <target state="final">не</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
 Это кнопка отказа.</note>
         </trans-unit>
         <trans-unit id="Message_YesButton_Text" translate="yes" xml:space="preserve">
           <source>да</source>
-          <target state="new">да</target>
+          <target state="final">так</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
 Это кнопка согласия.</note>
         </trans-unit>
         <trans-unit id="Local_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список композиций</source>
-          <target state="new">Не удалось загрузить список композиций</target>
+          <target state="final">Не атрымалася загрузіць спіс кампазіцый</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
         </trans-unit>
         <trans-unit id="Local_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список композиций...</source>
-          <target state="new">Загружаем список композиций...</target>
+          <target state="final">Загружаем спіс кампазіцый...</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
         </trans-unit>
         <trans-unit id="Local_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Не найдено ни одной композиции</source>
-          <target state="new">Не найдено ни одной композиции</target>
+          <target state="final">Не знойдзена ніводнай кампазіцыі</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
         </trans-unit>
         <trans-unit id="UnknownAlbum_Text" translate="yes" xml:space="preserve">
           <source>Неизвестный альбом</source>
-          <target state="new">Неизвестный альбом</target>
+          <target state="final">Невядомы альбом</target>
         </trans-unit>
         <trans-unit id="UnknownArtist_Text" translate="yes" xml:space="preserve">
           <source>Неизвестный исполнитель</source>
-          <target state="new">Неизвестный исполнитель</target>
+          <target state="final">Невядомы выканаўца</target>
         </trans-unit>
         <trans-unit id="UnknownGenre_Text" translate="yes" xml:space="preserve">
           <source>Неизвестный жанр</source>
-          <target state="new">Неизвестный жанр</target>
+          <target state="final">Невядомы жанр</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen5_Line1_Text" translate="yes" xml:space="preserve">
           <source>Скробблинг Last.fm</source>
-          <target state="new">Скробблинг Last.fm</target>
+          <target state="final">Скроблінг Last.fm</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen5_Line2_Text" translate="yes" xml:space="preserve">
           <source>Всегда актуальный профиль Last.fm!</source>
-          <target state="new">Всегда актуальный профиль Last.fm!</target>
+          <target state="final">Заўсёды актуальны профіль Last.fm!</target>
         </trans-unit>
         <trans-unit id="Language_SystemLanguage_Text" translate="yes" xml:space="preserve">
           <source>из настроек системы</source>
-          <target state="new">из настроек системы</target>
+          <target state="final">з налад сістэмы</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Язык приложения, как в настройках системы.</note>
         </trans-unit>
         <trans-unit id="SetingsView_InternetAccess_Text.Text" translate="yes" xml:space="preserve">
           <source>ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?</source>
-          <target state="new">ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?</target>
+          <target state="final">ВКачай можа загрузіць фатаграфіі выканаўцаў і вокладкі альбомаў для вашых трэкаў. Загружаць гэтыя дадзеныя (за выкарыстанне інтэрнэт-злучэння аператар можа браць дадатковую плату)?</target>
         </trans-unit>
         <trans-unit id="SetingsView_LocalLibrary_Text.Text" translate="yes" xml:space="preserve">
-          <source>Если в вашей библиотеке отбражаются не все треки, попробуйте выполнить обновление базы данных.</source>
-          <target state="new">Если в вашей библиотеке отбражаются не все треки, попробуйте выполнить обновление базы данных.</target>
+          <source>Если в вашей библиотеке отображаются не все треки, попробуйте выполнить обновление базы данных.</source>
+          <target state="final">Калі ў вашай бібліятэцы адлюстроўваюцца не ўсе трэкі, паспрабуйце выканаць абнаўленне базы дадзеных.</target>
         </trans-unit>
         <trans-unit id="SetingsView_Notifications_Text.Text" translate="yes" xml:space="preserve">
           <source>ВКачай может уведомлять вас о завершении загрузок.</source>
-          <target state="new">ВКачай может уведомлять вас о завершении загрузок.</target>
+          <target state="final">ВКачай можа паведамляць вас аб завяршэнні загрузак.</target>
         </trans-unit>
         <trans-unit id="SettingsView_AppLanguage_Title.Text" translate="yes" xml:space="preserve">
           <source>Язык приложения</source>
-          <target state="new">Язык приложения</target>
+          <target state="final">Мова праграмы</target>
         </trans-unit>
         <trans-unit id="SettingsView_InternetAccess_Title.Text" translate="yes" xml:space="preserve">
           <source>Доступ к интернету</source>
-          <target state="new">Доступ к интернету</target>
+          <target state="final">Доступ да інтэрнэту</target>
         </trans-unit>
         <trans-unit id="SettingsView_LocalLibrary_Title.Text" translate="yes" xml:space="preserve">
           <source>Локальная библиотека</source>
-          <target state="new">Локальная библиотека</target>
+          <target state="final">Лакальная бібліятэка</target>
         </trans-unit>
         <trans-unit id="SettingsView_Notifications_Title.Text" translate="yes" xml:space="preserve">
           <source>Уведомления</source>
-          <target state="new">Уведомления</target>
+          <target state="final">Паведамленні</target>
         </trans-unit>
         <trans-unit id="SettingsView_UpdateDatabaseButton.Content" translate="yes" xml:space="preserve">
           <source>обновить базу данных</source>
-          <target state="new">обновить базу данных</target>
+          <target state="final">абнавіць базу дадзеных</target>
         </trans-unit>
         <trans-unit id="Message_DownloadsNotificationsChanged_Text" translate="yes" xml:space="preserve">
           <source>Этот параметр будет применен только к новым загрузкам, и не затронет текущие.</source>
-          <target state="new">Этот параметр будет применен только к новым загрузкам, и не затронет текущие.</target>
+          <target state="final">Гэты параметр будзе ужыты толькі да новых загрузак, і не закране бягучыя.</target>
         </trans-unit>
         <trans-unit id="Message_DownloadsNotificationsChanged_Title" translate="yes" xml:space="preserve">
           <source>Обратите внимание</source>
-          <target state="new">Обратите внимание</target>
+          <target state="final">Звярніце ўвагу</target>
         </trans-unit>
         <trans-unit id="Message_RestartRequired_Text" translate="yes" xml:space="preserve">
           <source>Чтобы изменения вступили в силу, необходимо перезапустить приложение.</source>
-          <target state="new">Чтобы изменения вступили в силу, необходимо перезапустить приложение.</target>
+          <target state="final">Каб змены ўступілі ў сілу, неабходна перазапусціць праграму.</target>
         </trans-unit>
         <trans-unit id="Message_RestartRequired_Title" translate="yes" xml:space="preserve">
           <source>Требуется перезапуск</source>
-          <target state="new">Требуется перезапуск</target>
+          <target state="final">Патрабуецца перазапуск</target>
         </trans-unit>
       </group>
     </body>

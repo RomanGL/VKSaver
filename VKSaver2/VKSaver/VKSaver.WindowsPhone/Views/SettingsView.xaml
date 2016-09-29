@@ -125,7 +125,15 @@
                            Style="{StaticResource GroupHeaderTextBlockStyle}"
                            Margin="0,25,0,0"
                            Foreground="{ThemeResource TitleBrush}" />
-                <ComboBox BorderBrush="{StaticResource TitleBrush}" />
+                <ComboBox BorderBrush="{StaticResource TitleBrush}"
+                          ItemsSource="{Binding AvailableLanguages}"
+                          SelectedIndex="{Binding LanguageIndex, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
         </ScrollViewer>
     </Grid>

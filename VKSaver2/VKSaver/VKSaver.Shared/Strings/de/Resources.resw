@@ -126,10 +126,10 @@ Kehren Sie zurück um zu fortfahren</value>
     <value>Alben</value>
   </data>
   <data name="ArtistInfoView_PivotSection_Details.Header" xml:space="preserve">
-    <value>mehr</value>
+    <value>Mehr</value>
   </data>
   <data name="ArtistInfoView_PivotSection_Similar.Header" xml:space="preserve">
-    <value>ähnlich</value>
+    <value>Ähnlich</value>
   </data>
   <data name="ArtistInfoView_SearchVKItem.Content" xml:space="preserve">
     <value>finden es in VK</value>
@@ -212,12 +212,10 @@ Kehren Sie zurück um fortzufahren </value>
     <value>Vorschläge </value>
   </data>
   <data name="MainView_SearchItem.Content" xml:space="preserve">
-    <value>suchen
-</value>
+    <value>suchen</value>
   </data>
   <data name="MainView_SettingsItem.Content" xml:space="preserve">
-    <value>Einladungen
-</value>
+    <value>Einladungen</value>
   </data>
   <data name="MainView_ShowMore.Text" xml:space="preserve">
     <value>mehr anzeigen</value>
@@ -226,7 +224,7 @@ Kehren Sie zurück um fortzufahren </value>
     <value>mehr anzeigen</value>
   </data>
   <data name="MainView_TopArtistsItem.Content" xml:space="preserve">
-    <value>im Trend</value>
+    <value>beste Künstlers</value>
   </data>
   <data name="MainView_TopTracksItem.Content" xml:space="preserve">
     <value>beste Songs</value>
@@ -358,7 +356,7 @@ Fehlerskode: {0}</value>
 Niederreißen Sie alle Schranken in "Datenkontrolle" und schalten Traffiklimit aus. Die Operation wird fortfahren so schnell wie möglich.</value>
   </data>
   <data name="Message_Transfer_PausedCostedNetwork_Title" xml:space="preserve">
-    <value>bezahlbarer Netzwerk</value>
+    <value>Bezahlbarer Netzwerk</value>
   </data>
   <data name="Message_Transfer_PausedNoNetwork_Text" xml:space="preserve">
     <value>Keine Internetverbindung. Bitte prüfen Sie die Einstellungen der Datenverbindung.
@@ -394,7 +392,7 @@ Kehren Sie zurück um fortzufahren </value>
     <value>Ruhe und Frieden...</value>
   </data>
   <data name="PlayerView_PivotSection_NowPlaying.Header" xml:space="preserve">
-    <value>jetzt abgespielt</value>
+    <value>Jetzt abgespielt</value>
   </data>
   <data name="PlayerView_PivotSection_Playlist.Header" xml:space="preserve">
     <value>Playlist</value>
@@ -457,7 +455,7 @@ Kehren Sie zurück um fortzufahren </value>
     <value>Wir können Ihnen nichts empfehlen</value>
   </data>
   <data name="RecommendedView_Title.Text" xml:space="preserve">
-    <value>empfehlende</value>
+    <value>Empfehlende</value>
   </data>
   <data name="SettingsView_Title.Text" xml:space="preserve">
     <value>Einstellungen</value>
@@ -728,10 +726,10 @@ Keine Verbindung oder kein Zugang</value>
     <value>Was Sie wollen zu finden?</value>
   </data>
   <data name="SearchView_InCollection_Title.Header" xml:space="preserve">
-    <value>in der Sammlung</value>
+    <value>In der Sammlung</value>
   </data>
   <data name="SearchView_Everywhere_Title.Header" xml:space="preserve">
-    <value>durchgängig</value>
+    <value>Durchgängig</value>
   </data>
   <data name="SearchView_SearchBox.PlaceholderText" xml:space="preserve">
     <value>Drucken Sie die Anfrage ein und dann Enter</value>
@@ -774,7 +772,7 @@ Laden Sie VK Saver 2 jetzt herunter!</value>
     <value>Nur HD</value>
   </data>
   <data name="VideoSearchView_OwnVideos_Title.Header" xml:space="preserve">
-    <value>heruntergeladende</value>
+    <value>Heruntergeladende</value>
   </data>
   <data name="VideoSearchView_SafeSearch_Switch.Header" xml:space="preserve">
     <value>Sichere Suche</value>
@@ -897,8 +895,7 @@ Bitte warten Sie...</value>
     <value>Leider wissen wir nicht irgendwelche Details zu diesem Album</value>
   </data>
   <data name="ArtistAlbumView_PivotSection_Details.Header" xml:space="preserve">
-    <value>mehr
-</value>
+    <value>Mehr</value>
   </data>
   <data name="ArtistAlbumView_PivotSection_Tracks.Header" xml:space="preserve">
     <value>Tracks</value>
@@ -941,7 +938,7 @@ Bitte warten Sie...</value>
     <value>Keine Musik im Cache</value>
   </data>
   <data name="CachedView_Title.Text" xml:space="preserve">
-    <value>cachende</value>
+    <value>Cachende</value>
   </data>
   <data name="Message_ClearCacheError_Text" xml:space="preserve">
     <value>Ein Fehler (der Cache von Audio zu löschen) ist aufgetreten. Bitte versuchen Sie später</value>
@@ -1100,7 +1097,7 @@ Code: {1} - {2}</value>
     <value>Sendung ist erfolgreich!</value>
   </data>
   <data name="TransferView_CancelAllUploadsButton.Label" xml:space="preserve">
-    <value>alle Sendungen abbrechen...</value>
+    <value>alle Sendungen abbrechen</value>
   </data>
   <data name="UploadFileView_SelectAnotherFileButton.Content" xml:space="preserve">
     <value>andere auswählen</value>
@@ -1226,7 +1223,7 @@ Als nächstes werden wir einige grundlegende Parameter der Anwendung zur Einrich
     <value>Aktualisierung der Database</value>
   </data>
   <data name="UpdatingDatabseView_PreparingDatabaseStep_Text" xml:space="preserve">
-    <value>Manuscript aktualisiert wird ... {0} из {1}</value>
+    <value>Manuscript aktualisiert wird ... {0} von {1}</value>
     <comment>Обновление зависимостей в базе данных. Например, "Переписываем манускрипты... 2 из 21".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Обновление зависимостей... 2 из 21".</comment>
   </data>

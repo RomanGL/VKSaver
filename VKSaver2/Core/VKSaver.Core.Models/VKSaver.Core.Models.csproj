@@ -60,10 +60,12 @@
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AppLanguage.cs" />
     <Compile Include="Common\AudioEncryptedStream.cs" />
     <Compile Include="Common\AudioEncryptionMethod.cs" />
     <Compile Include="Common\IDataSource.cs" />
     <Compile Include="Common\InternetAccessType.cs" />
+    <Compile Include="Common\LanguageItem.cs" />
     <Compile Include="Common\NewsMediaItem.cs" />
     <Compile Include="Common\StorageFileSource.cs" />
     <Compile Include="Common\VKSaverAudioFile.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Database\VKSaverFolder.cs" />
     <Compile Include="Database\VKSaverGenre.cs" />
     <Compile Include="Database\VKSaverTrack.cs" />
+    <Compile Include="Extensions\CommonExtensions.cs" />
     <Compile Include="Player\CachedTrack.cs" />
     <Compile Include="Player\IPlayerTrack.cs" />
     <Compile Include="Player\PlayerRepeatMode.cs" />

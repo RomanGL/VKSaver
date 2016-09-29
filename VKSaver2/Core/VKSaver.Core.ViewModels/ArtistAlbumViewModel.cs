@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
+using VKSaver.Core.Models.Extensions;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Search;
@@ -25,12 +26,14 @@ namespace VKSaver.Core.ViewModels
             ILFService lfService, 
             INavigationService navigationService,
             ISettingsService settingsService,
-            IImagesCacheService imagesCacheService)
+            IImagesCacheService imagesCacheService,
+            ILocService locService)
         {
             _lfService = lfService;
             _navigationService = navigationService;
             _settingsService = settingsService;
             _imagesCacheService = imagesCacheService;
+            _locService = locService;
 
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
             FindArtistInVKCommand = new DelegateCommand(OnFindArtistInVKCommand);
@@ -117,10 +120,10 @@ namespace VKSaver.Core.ViewModels
         {
             TracksState = ContentState.Loading;
             WikiState = ContentState.Loading;
-
+            
             var parameters = new Dictionary<string, string>
             {
-                { "lang", "ru" }
+                { "lang", _locService.CurrentLanguage.ToLastFmLang() }
             };
             if (String.IsNullOrEmpty(AlbumBase.MBID))
             {
@@ -210,5 +213,6 @@ namespace VKSaver.Core.ViewModels
         private readonly INavigationService _navigationService;
         private readonly ISettingsService _settingsService;
         private readonly IImagesCacheService _imagesCacheService;
+        private readonly ILocService _locService;
     }
 }

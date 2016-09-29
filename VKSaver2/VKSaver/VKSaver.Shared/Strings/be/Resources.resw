@@ -352,7 +352,7 @@
     <value>Чаканне чаргі</value>
   </data>
   <data name="Message_Transfer_PausedCostedNetwork_Text" xml:space="preserve">
-    <value>Сістэма заблакавала перадачу дадзеных, так як за выкарыстанне інтэрнэт-злучэння аператар можа браць плату.
+    <value>Сістэма заблакавала перадачу дадзеных, так як за выкарыстанне інтэрнэт-злучэння аператар можа браць дадатковую плату.
 
 Зніміце ўсе абмежаванні ў "Кантролі дадзеных" і адключыце ліміт трафіку. Аперацыя працягнецца, як толькі сістэма дазволіць перадачу дадзеных.</value>
   </data>
@@ -466,6 +466,9 @@
     <value>слухачоў</value>
     <comment>Например, "12 слушателей"</comment>
   </data>
+  <data name="TopArtistsLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс лепшых выканаўцаў</value>
+  </data>
   <data name="TopArtistsLoader.LoadingText" xml:space="preserve">
     <value>Выбіраем лепшых выканаўцаў...</value>
   </data>
@@ -565,6 +568,9 @@
   </data>
   <data name="UserCommView_FriendsLoader.ErrorText" xml:space="preserve">
     <value>Не атрымалася загрузіць спіс сяброў</value>
+  </data>
+  <data name="UserCommView_FriendsLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем інфармацыю аб сябрах...</value>
   </data>
   <data name="UserCommView_FriendsLoader.NoDataText" xml:space="preserve">
     <value>Сябры адсутнічаюць або доступ да іх закрыты</value>
@@ -858,7 +864,7 @@
     <value>Гатовыя? Тады пачнем!</value>
   </data>
   <data name="PromoView_Screen1_Line1_Text" xml:space="preserve">
-    <value>Рады бачыць вас зноў!</value>
+    <value>Рады бачыць вас!</value>
   </data>
   <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
     <value>ВКачай абнавіўся, аб усіх навінках чытайце далей</value>
@@ -867,13 +873,13 @@
     <value>Кэшаванне трэкаў</value>
   </data>
   <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
-    <value>Даступны прагляд кэшаваных трэкаў!</value>
+    <value>Кэшыруйце трэкі для афлайн прайгравання!</value>
   </data>
   <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
-    <value>Сусветныя чарты</value>
+    <value>Лакальная бібліятэка</value>
   </data>
   <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
-    <value>Прайграванне трэкаў абраных выканаўцаў і чартаў</value>
+    <value>Прайгравайце свае лакальныя аўдыязапісы</value>
   </data>
   <data name="PromoView_NextButton.Content" xml:space="preserve">
     <value>далей</value>
@@ -922,16 +928,19 @@
     <value>выдаліць усе</value>
   </data>
   <data name="CachedView_Loader.ErrorText" xml:space="preserve">
-    <value>Не атрымалася загрузіць спіс кэшаваных аўдыёзапісаў</value>
+    <value>Не атрымалася загрузіць спіс кэшаваных аўдыязапісаў</value>
   </data>
   <data name="CachedView_Loader.LoadingText" xml:space="preserve">
-    <value>Загружаем кэшаваныя аўдыёзапісы...</value>
+    <value>Загружаем кэшаваныя аўдыязапісы...</value>
+  </data>
+  <data name="CachedView_Loader.NoDataText" xml:space="preserve">
+    <value>Кэшаваныя аўдыязапісы адсутнічаюць</value>
   </data>
   <data name="CachedView_Title.Text" xml:space="preserve">
     <value>кэшаваныя</value>
   </data>
   <data name="Message_ClearCacheError_Text" xml:space="preserve">
-    <value>Пры выдаленни кэша аўдыёзапісаў адбылася памылка. Калі ласка, паспрабуйце пазней.</value>
+    <value>Пры выдаленни кэша аўдыязапісаў адбылася памылка. Калі ласка, паспрабуйце пазней.</value>
   </data>
   <data name="Message_ClearCacheError_Title" xml:space="preserve">
     <value>Не ўдалося выдаліць кэш</value>
@@ -949,10 +958,10 @@
     <value>Не атрымалася далучацца да Last.fm. Праверце доступ да інтэрнэту і паўтарыце спробу.</value>
   </data>
   <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
-    <value>Скробблінг Last.fm</value>
+    <value>Мы ведаем аб музыцы ўсё!</value>
   </data>
   <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
-    <value>Заўсёды актуальны профіль Last.fm!</value>
+    <value>Прайгравайце трэкі любімых выканаўцаў</value>
   </data>
   <data name="FileSize_Bytes_Mask_Text" xml:space="preserve">
     <value>{0} байт</value>
@@ -1152,7 +1161,7 @@ Eng: upload</comment>
     <value>Адпраўка не можа быць завершана</value>
   </data>
   <data name="FirstInternetSettingsView_ContentText.Text" xml:space="preserve">
-    <value>ВКачай можа загрузіць фатаграфіі выканаўцаў і вокладкі альбомаў для вашых трэкаў. Загружаць гэтыя дадзеныя (можа спаганяцца дадатковая плата аператарам)?
+    <value>ВКачай можа загрузіць фатаграфіі выканаўцаў і вокладкі альбомаў для вашых трэкаў. Загружаць гэтыя дадзеныя (за выкарыстанне інтэрнэт-злучэння аператар можа браць дадатковую плату)?
 
 Гэты параметр заўсёды можна змяніць у наладах.</value>
   </data>
@@ -1171,9 +1180,9 @@ Eng: upload</comment>
     <value>З вяртаннем!</value>
   </data>
   <data name="FirstStartView_ContentText.Text" xml:space="preserve">
-    <value>ВКачай неабходна выканаць пошук аўдыёфайлаў на вашым смартфоне, перш чым вы зможаце іх прайграць (гэта неабходна выканаць толькі аднойчы).
+    <value>ВКачай неабходна выканаць пошук аўдыяфайлаў на вашым смартфоне, перш чым вы зможаце іх прайграць (гэта неабходна выканаць толькі аднойчы).
 
-Звярніце ўвагу, што ВКачай зможа знайсці аўдыяфайлы толькі ў папке.  Музыка ў памяці смартфона або на SD-карце.
+Звярніце ўвагу, што ВКачай зможа знайсці аўдыяфайлы толькі ў тэчцы Музыка ў памяці смартфона або на SD-карце.
 
 Далей мы дапаможам наладзіць некалькі асноўных параметраў праграмы. Націсніце кнопку ніжэй, калі будзеце гатовыя.</value>
   </data>
@@ -1227,5 +1236,200 @@ Eng: upload</comment>
     <value>Снаряжаем рыцараў...</value>
     <comment>Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</comment>
+  </data>
+  <data name="AppBarButton_Search.Label" xml:space="preserve">
+    <value>пошук</value>
+  </data>
+  <data name="DetailsView_Subtitle.Text" xml:space="preserve">
+    <value>падрабязней</value>
+    <comment>details</comment>
+  </data>
+  <data name="LocalFolderView_Title.Text" xml:space="preserve">
+    <value>ТЭЧКА</value>
+    <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
+  </data>
+  <data name="LocalGenreView_Title.Text" xml:space="preserve">
+    <value>ЖАНР</value>
+    <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
+  </data>
+  <data name="LibraryView_PivotItem_Albums.Header" xml:space="preserve">
+    <value>альбомы</value>
+  </data>
+  <data name="LibraryView_PivotItem_Artists.Header" xml:space="preserve">
+    <value>выканаўцы</value>
+    <comment>artists</comment>
+  </data>
+  <data name="LibraryView_PivotItem_Cached.Header" xml:space="preserve">
+    <value>кэшаваныя</value>
+  </data>
+  <data name="LibraryView_PivotItem_Folders.Header" xml:space="preserve">
+    <value>тэчкі</value>
+  </data>
+  <data name="LibraryView_PivotItem_Genres.Header" xml:space="preserve">
+    <value>жанры</value>
+  </data>
+  <data name="LibraryView_PivotItem_Tracks.Header" xml:space="preserve">
+    <value>кампазіцыі</value>
+    <comment>tracks</comment>
+  </data>
+  <data name="LibraryView_AlbumsLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс альбомаў</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем спіс альбомаў...</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.NoDataText" xml:space="preserve">
+    <value>У вашай калекцыі няма ніводнага альбома</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс выканаўцаў</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем спіс выканаўцаў...</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.NoDataText" xml:space="preserve">
+    <value>У вашай калекцыі няма ніводнага выканаўцы</value>
+  </data>
+  <data name="LibraryView_CachedLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс кэшаваных аўдыязапісаў</value>
+  </data>
+  <data name="LibraryView_CachedLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем спіс кэшаваных аўдыязапісаў...</value>
+  </data>
+  <data name="LibraryView_CachedLoader.NoDataText" xml:space="preserve">
+    <value>У вашай калекцыі няма ніводнага кэшыраванага аўдыязапісу</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс тэчак</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем спіс тэчак...</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.NoDataText" xml:space="preserve">
+    <value>У вашай калекцыі няма ніводнай тэчкі</value>
+  </data>
+  <data name="LibraryView_GenresLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс жанраў</value>
+  </data>
+  <data name="LibraryView_GenresLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем спіс жанраў...</value>
+  </data>
+  <data name="LibraryView_GenresLoader.NoDataText" xml:space="preserve">
+    <value>У вашай калекцыі няма ніводнага жанру</value>
+  </data>
+  <data name="LibraryView_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс кампазіцый</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="LibraryView_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем спіс кампазіцый...</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="LibraryView_TracksLoader.NoDataText" xml:space="preserve">
+    <value>У вашай калекцыі няма ніводнай кампазіцыі</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
+    <value>ЛАКАЛЬНАЯ БІБЛІЯТЭКА</value>
+  </data>
+  <data name="MainView_AlbumsItem.Content" xml:space="preserve">
+    <value>альбомы</value>
+  </data>
+  <data name="MainView_ArtistsItem.Content" xml:space="preserve">
+    <value>выканаўцы</value>
+  </data>
+  <data name="MainView_FoldersItem.Content" xml:space="preserve">
+    <value>тэчкі</value>
+  </data>
+  <data name="MainView_GenresItem.Content" xml:space="preserve">
+    <value>жанры</value>
+  </data>
+  <data name="MainView_LocalTracksItem.Content" xml:space="preserve">
+    <value>кампазіцыі</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Message_LocalView_DeleteArtist_Text" xml:space="preserve">
+    <value>Выдаленне выканаўца {0} прывядзе да выдалення ўсіх яго альбомаў і кампазіцый з вашай калекцыі.
+Гэта дзеянне нельга адмяніць.</value>
+  </data>
+  <data name="Message_LocalView_DeleteArtist_Title" xml:space="preserve">
+    <value>Выдаліць выканаўца?</value>
+  </data>
+  <data name="Message_NoButton_Text" xml:space="preserve">
+    <value>не</value>
+    <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка отказа.</comment>
+  </data>
+  <data name="Message_YesButton_Text" xml:space="preserve">
+    <value>так</value>
+    <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
+Это кнопка согласия.</comment>
+  </data>
+  <data name="Local_TracksLoader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць спіс кампазіцый</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Local_TracksLoader.LoadingText" xml:space="preserve">
+    <value>Загружаем спіс кампазіцый...</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="Local_TracksLoader.NoDataText" xml:space="preserve">
+    <value>Не знойдзена ніводнай кампазіцыі</value>
+    <comment>Eng: tracks, а не композиции</comment>
+  </data>
+  <data name="UnknownAlbum_Text" xml:space="preserve">
+    <value>Невядомы альбом</value>
+  </data>
+  <data name="UnknownArtist_Text" xml:space="preserve">
+    <value>Невядомы выканаўца</value>
+  </data>
+  <data name="UnknownGenre_Text" xml:space="preserve">
+    <value>Невядомы жанр</value>
+  </data>
+  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
+    <value>Скроблінг Last.fm</value>
+  </data>
+  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
+    <value>Заўсёды актуальны профіль Last.fm!</value>
+  </data>
+  <data name="Language_SystemLanguage_Text" xml:space="preserve">
+    <value>з налад сістэмы</value>
+    <comment>Язык приложения, как в настройках системы.</comment>
+  </data>
+  <data name="SetingsView_InternetAccess_Text.Text" xml:space="preserve">
+    <value>ВКачай можа загрузіць фатаграфіі выканаўцаў і вокладкі альбомаў для вашых трэкаў. Загружаць гэтыя дадзеныя (за выкарыстанне інтэрнэт-злучэння аператар можа браць дадатковую плату)?</value>
+  </data>
+  <data name="SetingsView_LocalLibrary_Text.Text" xml:space="preserve">
+    <value>Калі ў вашай бібліятэцы адлюстроўваюцца не ўсе трэкі, паспрабуйце выканаць абнаўленне базы дадзеных.</value>
+  </data>
+  <data name="SetingsView_Notifications_Text.Text" xml:space="preserve">
+    <value>ВКачай можа паведамляць вас аб завяршэнні загрузак.</value>
+  </data>
+  <data name="SettingsView_AppLanguage_Title.Text" xml:space="preserve">
+    <value>Мова праграмы</value>
+  </data>
+  <data name="SettingsView_InternetAccess_Title.Text" xml:space="preserve">
+    <value>Доступ да інтэрнэту</value>
+  </data>
+  <data name="SettingsView_LocalLibrary_Title.Text" xml:space="preserve">
+    <value>Лакальная бібліятэка</value>
+  </data>
+  <data name="SettingsView_Notifications_Title.Text" xml:space="preserve">
+    <value>Паведамленні</value>
+  </data>
+  <data name="SettingsView_UpdateDatabaseButton.Content" xml:space="preserve">
+    <value>абнавіць базу дадзеных</value>
+  </data>
+  <data name="Message_DownloadsNotificationsChanged_Text" xml:space="preserve">
+    <value>Гэты параметр будзе ужыты толькі да новых загрузак, і не закране бягучыя.</value>
+  </data>
+  <data name="Message_DownloadsNotificationsChanged_Title" xml:space="preserve">
+    <value>Звярніце ўвагу</value>
+  </data>
+  <data name="Message_RestartRequired_Text" xml:space="preserve">
+    <value>Каб змены ўступілі ў сілу, неабходна перазапусціць праграму.</value>
+  </data>
+  <data name="Message_RestartRequired_Title" xml:space="preserve">
+    <value>Патрабуецца перазапуск</value>
   </data>
 </root>

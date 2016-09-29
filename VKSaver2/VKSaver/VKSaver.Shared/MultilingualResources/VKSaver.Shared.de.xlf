@@ -159,11 +159,11 @@ Kehren Sie zurück um zu fortfahren</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
           <source>подробнее</source>
-          <target state="final">mehr</target>
+          <target state="final">Mehr</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_PivotSection_Similar.Header" translate="yes" xml:space="preserve">
           <source>похожие</source>
-          <target state="final">ähnlich</target>
+          <target state="final">Ähnlich</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_SearchVKItem.Content" translate="yes" xml:space="preserve">
           <source>найти ВКонтакте</source>
@@ -275,13 +275,11 @@ Kehren Sie zurück um fortzufahren </target>
         </trans-unit>
         <trans-unit id="MainView_SearchItem.Content" translate="yes" xml:space="preserve">
           <source>поиск</source>
-          <target state="final">suchen
-</target>
+          <target state="final">suchen</target>
         </trans-unit>
         <trans-unit id="MainView_SettingsItem.Content" translate="yes" xml:space="preserve">
           <source>настройки</source>
-          <target state="final">Einladungen
-</target>
+          <target state="final">Einladungen</target>
         </trans-unit>
         <trans-unit id="MainView_ShowMore.Text" translate="yes" xml:space="preserve">
           <source>показать больше</source>
@@ -293,7 +291,7 @@ Kehren Sie zurück um fortzufahren </target>
         </trans-unit>
         <trans-unit id="MainView_TopArtistsItem.Content" translate="yes" xml:space="preserve">
           <source>топ исполнителей</source>
-          <target state="translated">beste Künstlers</target>
+          <target state="final">beste Künstlers</target>
         </trans-unit>
         <trans-unit id="MainView_TopTracksItem.Content" translate="yes" xml:space="preserve">
           <source>топ треков</source>
@@ -471,7 +469,7 @@ Niederreißen Sie alle Schranken in "Datenkontrolle" und schalten Traffiklimit a
         </trans-unit>
         <trans-unit id="Message_Transfer_PausedCostedNetwork_Title" translate="yes" xml:space="preserve">
           <source>Платная сеть</source>
-          <target state="final">bezahlbarer Netzwerk</target>
+          <target state="final">Bezahlbarer Netzwerk</target>
         </trans-unit>
         <trans-unit id="Message_Transfer_PausedNoNetwork_Text" translate="yes" xml:space="preserve">
           <source>Нет доступа к сети. Проверьте настройки передачи данных. 
@@ -521,7 +519,7 @@ Kehren Sie zurück um fortzufahren </target>
         </trans-unit>
         <trans-unit id="PlayerView_PivotSection_NowPlaying.Header" translate="yes" xml:space="preserve">
           <source>сейчас играет</source>
-          <target state="final">jetzt abgespielt</target>
+          <target state="final">Jetzt abgespielt</target>
         </trans-unit>
         <trans-unit id="PlayerView_PivotSection_Playlist.Header" translate="yes" xml:space="preserve">
           <source>плейлист</source>
@@ -605,7 +603,7 @@ Kehren Sie zurück um fortzufahren </target>
         </trans-unit>
         <trans-unit id="RecommendedView_Title.Text" translate="yes" xml:space="preserve">
           <source>рекомендуем</source>
-          <target state="final">empfehlende</target>
+          <target state="final">Empfehlende</target>
         </trans-unit>
         <trans-unit id="SettingsView_Title.Text" translate="yes" xml:space="preserve">
           <source>настройки</source>
@@ -964,11 +962,11 @@ Keine Verbindung oder kein Zugang</target>
         </trans-unit>
         <trans-unit id="SearchView_InCollection_Title.Header" translate="yes" xml:space="preserve">
           <source>в коллекции</source>
-          <target state="final">in der Sammlung</target>
+          <target state="final">In der Sammlung</target>
         </trans-unit>
         <trans-unit id="SearchView_Everywhere_Title.Header" translate="yes" xml:space="preserve">
           <source>везде</source>
-          <target state="final">durchgängig</target>
+          <target state="final">Durchgängig</target>
         </trans-unit>
         <trans-unit id="SearchView_SearchBox.PlaceholderText" translate="yes" xml:space="preserve">
           <source>введите запрос и нажмите Enter</source>
@@ -1026,7 +1024,7 @@ Laden Sie VK Saver 2 jetzt herunter!</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_OwnVideos_Title.Header" translate="yes" xml:space="preserve">
           <source>загруженные</source>
-          <target state="final">heruntergeladende</target>
+          <target state="final">Heruntergeladende</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_SafeSearch_Switch.Header" translate="yes" xml:space="preserve">
           <source>Безопасный поиск</source>
@@ -1189,8 +1187,7 @@ Bitte warten Sie...</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
           <source>подробнее</source>
-          <target state="final">mehr
-</target>
+          <target state="final">Mehr</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_PivotSection_Tracks.Header" translate="yes" xml:space="preserve">
           <source>композиции</source>
@@ -1247,7 +1244,7 @@ Bitte warten Sie...</target>
         </trans-unit>
         <trans-unit id="CachedView_Title.Text" translate="yes" xml:space="preserve">
           <source>кэшированные</source>
-          <target state="final">cachende</target>
+          <target state="final">Cachende</target>
         </trans-unit>
         <trans-unit id="Message_ClearCacheError_Text" translate="yes" xml:space="preserve">
           <source>При очистке кэша аудиозаписей произошла ошибка. Повторите попытку позднее.</source>
@@ -1853,7 +1850,7 @@ Diese Aktion kann nicht rückgängig gemacht werden.</target>
           <target state="final">VK Saver können für Ihre Tracks Fotos von Interpreten und Album-Cover hochladen. Laden Sie die Daten (möglicherweise fallen zusätzliche Gebühren vom Betreiber)?</target>
         </trans-unit>
         <trans-unit id="SetingsView_LocalLibrary_Text.Text" translate="yes" xml:space="preserve">
-          <source>Если в вашей библиотеке отбражаются не все треки, попробуйте выполнить обновление базы данных.</source>
+          <source>Если в вашей библиотеке отображаются не все треки, попробуйте выполнить обновление базы данных.</source>
           <target state="final">Wenn die Bibliothek nicht alle Musik zeigt an, versuchen Sie die Database zu aktualisieren.</target>
         </trans-unit>
         <trans-unit id="SetingsView_Notifications_Text.Text" translate="yes" xml:space="preserve">
