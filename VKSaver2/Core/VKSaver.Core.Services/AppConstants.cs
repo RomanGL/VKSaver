@@ -22,5 +22,7 @@
         public const string SUCCESS_TOAST_SOUND = "ms-appx:///Assets/Sounds/Success.wav";
         public const string FAIL_TOAST_SOUND = "ms-appx:///Assets/Sounds/Fail.wav";
         public const string DEFAULT_PLAYER_BACKGROUND_IMAGE = "ms-appx:///Assets/Background/PlayerBackground.png";
+
+        public const string YANDEX_METRICA_API_KEY = "***REMOVED***";
     }
 }

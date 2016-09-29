@@ -10,25 +10,30 @@ namespace VKSaver.Core.Services
 {
     public sealed class LogService : ILogService
     {
-        public void LogException(Exception ex)
+        public LogService(IMetricaService metricaService)
         {
-            LogText(ex.ToString());
+            _metricaService = metricaService;
         }
 
-        public async void LogText(string text)
+        public void LogException(Exception ex)
         {
-            var writter = await GetWritterAsync();
-            if (writter == null)
-                return;
+            _metricaService?.LogException( ex);
+        }
 
-            string textToWrite = $"{DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")}: {text}\n";
+        public void LogText(string text)
+        {
+//            var writter = await GetWritterAsync();
+//            if (writter == null)
+//                return;
 
-#if DEBUG
-            Debug.WriteLine(textToWrite);
-#endif
+//            string textToWrite = $"{DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")}: {text}\n";
 
-            await writter.WriteLineAsync(textToWrite);
-            writter.Flush();
+//#if DEBUG
+//            Debug.WriteLine(textToWrite);
+//#endif
+
+//            await writter.WriteLineAsync(textToWrite);
+//            writter.Flush();
         }
 
         private Task<StreamWriter> GetWritterAsync()
@@ -61,6 +66,7 @@ namespace VKSaver.Core.Services
         private StreamWriter _writter;
 
         private readonly object _lockObject = new object();
+        private readonly IMetricaService _metricaService;
 
         private const string LOG_FILE_NAME = "vkslog.txt";
     }

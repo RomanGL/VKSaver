@@ -100,7 +100,7 @@ namespace VKSaver.Core.Services
         {
             try
             {
-                var folder = await KnownFolders.PicturesLibrary.GetFolderAsync(ARTISTS_FOLDER_NAME);
+                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(ARTISTS_FOLDER_NAME);
                 await folder.DeleteAsync(StorageDeleteOption.PermanentDelete);
                 return true;
             }
@@ -111,7 +111,7 @@ namespace VKSaver.Core.Services
         {
             try
             {
-                var folder = await KnownFolders.PicturesLibrary.GetFolderAsync(ALBUMS_FOLDER_NAME );
+                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(ALBUMS_FOLDER_NAME );
                 var basic = await folder.GetBasicPropertiesAsync();
                 IDictionary<string, object> properties = await folder.Properties.RetrievePropertiesAsync(new[] { "System.Size" });
 
@@ -124,7 +124,7 @@ namespace VKSaver.Core.Services
         {
             try
             {
-                var folder = await KnownFolders.PicturesLibrary.GetFolderAsync(ARTISTS_FOLDER_NAME);
+                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync(ARTISTS_FOLDER_NAME);
                 var properties = await folder.GetBasicPropertiesAsync();
                 return FileSize.FromBytes(properties.Size);
             }
@@ -236,7 +236,7 @@ namespace VKSaver.Core.Services
 
         private async Task<StorageFolder> GetCreateFolder(string folderName)
         {
-            return await KnownFolders.PicturesLibrary.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
+            return await ApplicationData.Current.LocalFolder.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
         }
         
         private async Task<string> CacheAndGet(string name, string url, StorageFolder folder)

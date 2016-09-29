@@ -45,15 +45,6 @@
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
-        <Extension Category="windows.fileTypeAssociation" EntryPoint="VKSaver.WindowsPhone.App">
-          <FileTypeAssociation Name="vksaver_video_file">
-            <DisplayName>VKSaver Video File</DisplayName>
-            <Logo>Assets/vksm-icon.png</Logo>
-            <SupportedFileTypes>
-              <FileType ContentType="video/vksaver">.vksv</FileType>
-            </SupportedFileTypes>
-          </FileTypeAssociation>
-        </Extension>
       </Extensions>
     </Application>
   </Applications>
@@ -62,5 +53,6 @@
     <Capability Name="picturesLibrary" />
     <Capability Name="musicLibrary" />
     <Capability Name="videosLibrary" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

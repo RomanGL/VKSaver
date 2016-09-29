@@ -61,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Services\MetricaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\LibraryView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\CachedView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\FirstStart\FirstInternetSettingsView.xaml.cs" />

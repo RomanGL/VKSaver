@@ -25,6 +25,7 @@ using System.IO;
 using Windows.UI.Core;
 using IF.Lastfm.Core.Api;
 using VKSaver.Core.Services.Database;
+using Yandex.Metrica;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -66,10 +67,13 @@ namespace VKSaver
             this.UnhandledException += App_UnhandledException;
             this.Suspending += App_Suspending;
             this.Resuming += App_Resuming;
+
+            YandexMetrica.Config.CrashTracking = false;
         }
 
         private void App_Resuming(object sender, object e)
         {
+            ActivateMetrica();
             StartSuspendingServices();
         }
 
@@ -87,6 +91,7 @@ namespace VKSaver
                 var logService = _container.Resolve<ILogService>();
                 logService.LogException(e.Exception);
 
+                YandexMetrica.ReportUnhandledException(e.Exception);
                 NavigationService.Navigate("ErrorView", null);
             }
             catch { }
@@ -127,6 +132,7 @@ namespace VKSaver
             _container.RegisterInstance<InTouch>(inTouch);
             _container.RegisterInstance<ILastAuth>(lastAuth);
 
+            _container.RegisterType<IMetricaService, MetricaService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILocService, LocService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IInTouchWrapper, InTouchWrapper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
@@ -208,6 +214,8 @@ namespace VKSaver
 
         protected override async Task OnLaunchApplication(LaunchActivatedEventArgs args)
         {
+            ActivateMetrica();
+
             var playerService = _container.Resolve<IPlayerService>();
             var vkLoginService = _container.Resolve<IVKLoginService>();
             var downloadsService = _container.Resolve<IDownloadsService>();
@@ -246,11 +254,12 @@ namespace VKSaver
             }
 
             var logService = _container.Resolve<ILogService>();
-            logService.LogText("App started");
         }
 
         protected override async Task OnFileActivatedAsync(FileActivatedEventArgs args)
         {
+            ActivateMetrica();
+
             var mediaFilesProcessService = _container.Resolve<IMediaFilesProcessService>();
             var downloadsService = _container.Resolve<IDownloadsService>();
             var settingsService = _container.Resolve<ISettingsService>();
@@ -351,6 +360,11 @@ namespace VKSaver
             {
                 service.StopService();
             }
+        }
+
+        private async void ActivateMetrica()
+        {
+            await Task.Run(() => YandexMetrica.Activate(AppConstants.YANDEX_METRICA_API_KEY));
         }
 
 #if DEBUG

@@ -84,12 +84,14 @@
     <Compile Include="Interfaces\ILastFmLoginService.cs" />
     <Compile Include="Interfaces\ILibraryDatabaseService.cs" />
     <Compile Include="Interfaces\IMediaFilesProcessService.cs" />
+    <Compile Include="Interfaces\IMetricaService.cs" />
     <Compile Include="Interfaces\IUploadsPostprocessor.cs" />
     <Compile Include="Interfaces\IUploadsPreprocessor.cs" />
     <Compile Include="Interfaces\IUploadsService.cs" />
     <Compile Include="Interfaces\IUploadsServiceHelper.cs" />
     <Compile Include="LastFmLoginService.cs" />
     <Compile Include="LibraryDatabaseService.cs" />
+    <Compile Include="LogService.cs" />
     <Compile Include="MediaFilesProcessService.cs" />
     <Compile Include="MusicCacheService.cs" />
     <Compile Include="DialogsService.cs" />
@@ -123,7 +125,6 @@
     <Compile Include="Interfaces\IVKLoginService.cs" />
     <Compile Include="ImagesCacheService.cs" />
     <Compile Include="LocService.cs" />
-    <Compile Include="LogService.cs" />
     <Compile Include="NetworkInfoService.cs" />
     <Compile Include="PlayerService\PlayerConstants.cs" />
     <Compile Include="PlayerService\PlayerPlaylistService.cs" />

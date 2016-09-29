@@ -53,7 +53,7 @@ namespace VKSaver.Core.Services
             }
             catch (Exception ex)
             {
-                _logService.LogException(ex);
+                _logService?.LogException(ex);
                 return null;
             }
         }
@@ -75,7 +75,7 @@ namespace VKSaver.Core.Services
             }
             catch (Exception ex)
             {
-                _logService.LogException(ex);
+                _logService?.LogException(ex);
                 return false;
             }
         }

@@ -32,7 +32,7 @@ namespace VKSaver.PlayerTask
             taskInstance.Task.Completed += Task_Completed;
 
             _settingsService = new SettingsService();
-            _logService = new LogService();
+            _logService = new LogService(null);
             _playerPlaylistService = new PlayerPlaylistService(_logService);
             _musicCacheService = new MusicCacheService(_logService);
             _imagesCacheService = new ImagesCacheService(null, null, null);
