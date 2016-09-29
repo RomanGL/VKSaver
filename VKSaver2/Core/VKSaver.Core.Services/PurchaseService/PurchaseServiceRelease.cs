@@ -26,9 +26,6 @@ namespace VKSaver.Core.Services
                 else
                     status = (await CurrentApp.RequestProductPurchaseAsync(StoreConstants.FullVersionVKSaver)).Status;
 
-                if (status == ProductPurchaseStatus.Succeeded ||
-                    status == ProductPurchaseStatus.AlreadyPurchased)
-                    _isFullVersionPurchased = true;
                 return status;
             }
             catch (Exception ex)
@@ -45,15 +42,13 @@ namespace VKSaver.Core.Services
 
             var licenseInformation = CurrentApp.LicenseInformation;
 
-            _isFullVersionPurchased = licenseInformation.ProductLicenses[StoreConstants.FullVersionVKSaver].IsActive;
-            if (!_isFullVersionPurchased.Value)
-                _isFullVersionPurchased = licenseInformation.ProductLicenses[StoreConstants.FullVersionVKSaverPernament].IsActive;
+            bool isMonthyActive = licenseInformation.ProductLicenses[StoreConstants.FullVersionVKSaver].IsActive;
+            if (!isMonthyActive)
+                return licenseInformation.ProductLicenses[StoreConstants.FullVersionVKSaverPernament].IsActive;
 
-            return _isFullVersionPurchased.Value;
+            return isMonthyActive
         }
-
-        private bool? _isFullVersionPurchased;
-
+        
         private readonly ILogService _logService;
     }
 #endif
