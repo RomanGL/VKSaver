@@ -144,6 +144,21 @@ namespace VKSaver.Core.Services
             NeedReloadLibraryView = true;
         }
 
+        public async Task InsertDownloadedTrack(VKSaverAudio audio, string filePath)
+        {
+            var artist = await _database.FindItem<VKSaverArtist>(audio.Track.Artist);
+            if (artist != null)
+                artist = await _database.GetItemWithChildrens<VKSaverArtist>(artist.DbKey);
+
+            var track = new VKSaverTrack
+            {
+                Title = audio.Track.Title,
+                Artist = audio.Track.Artist,
+                Duration = TimeSpan.FromTicks(audio.Track.Duration),
+                Source = MusicFilesPathHelper.GetCapatibleSource(filePath)
+            };
+        }
+
         private async Task UpdateDatabase()
         {
             _total = _folders.Count + _artists.Count + _albums.Count + _genres.Count + _vksmInfo.Count + 5;

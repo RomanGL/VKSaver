@@ -75,6 +75,15 @@ namespace VKSaver.Core.Services.Database
             });
         }
 
+        public Task<T> FindItem<T>(object primaryKey) where T : class
+        {
+            return Task.Run(() =>
+            {
+                var conn = GetDbConnection();
+                return conn.Find<T>(primaryKey);
+            });
+        }
+
         public async Task<List<T>> GetItems<T>() where T : class
         {
             return await Task.Run(() =>
