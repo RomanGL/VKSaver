@@ -66,6 +66,15 @@ namespace VKSaver.Core.Services.Database
             });
         }
 
+        public Task InsertItem(object item)
+        {
+            return Task.Run(() =>
+            {
+                var conn = GetDbConnection();
+                conn.Insert(item);
+            });
+        }
+
         public Task UpdateItemChildrens(object item)
         {
             return Task.Run(() =>

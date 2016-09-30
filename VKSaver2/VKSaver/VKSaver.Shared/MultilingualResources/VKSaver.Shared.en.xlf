@@ -20,7 +20,7 @@
         </trans-unit>
         <trans-unit id="LoginView_RestorePasswordButton.Label" translate="yes" xml:space="preserve">
           <source>восстановить пароль</source>
-          <target state="final">restore password</target>
+          <target state="translated">restore password</target>
         </trans-unit>
         <trans-unit id="MainView_Hub.Header" translate="yes" xml:space="preserve">
           <source>вкачай</source>
@@ -395,11 +395,11 @@ Go back to continue</target>
         </trans-unit>
         <trans-unit id="UserContentView_AudiosLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список аудиозаписей</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of audio recordings</target>
+          <target state="translated">Failed to load the list of audios</target>
         </trans-unit>
         <trans-unit id="UserContentView_AudiosLoader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем список аудиозаписей...</source>
-          <target state="final">Loading a list of audio recordings...</target>
+          <target state="translated">Loading a list of audios...</target>
         </trans-unit>
         <trans-unit id="UserContentView_AudiosLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>Аудиозаписи отсутствуют либо доступ к ним закрыт</source>
@@ -601,11 +601,11 @@ Go back to continue</target>
         </trans-unit>
         <trans-unit id="Message_AudioAddError_Text" translate="yes" xml:space="preserve">
           <source>При добавлении аудиозаписи в коллекцию произошла ошибка. Повторите попытку позднее.</source>
-          <target state="final">An error occured while adding a recording to the collection. Please try again later!</target>
+          <target state="translated">An error occured while adding a audio to the collection. Please try again later!</target>
         </trans-unit>
         <trans-unit id="Message_AudioAddError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось добавить аудиозапись</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to add audio recording</target>
+          <target state="translated">Failed to add audio</target>
         </trans-unit>
         <trans-unit id="Message_AudioAlbumDeleteError_Text" translate="yes" xml:space="preserve">
           <source>При удалении альбома аудиозаписей произошла ошибка. Повторите попытку позднее.</source>
@@ -653,7 +653,7 @@ Go back to continue</target>
         </trans-unit>
         <trans-unit id="Message_VideoAddError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось добавить видеозапись</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to add video recording</target>
+          <target state="translated">Failed to add video</target>
         </trans-unit>
         <trans-unit id="Message_VideoAlbumDeleteError_Text" translate="yes" xml:space="preserve">
           <source>При удалении альбома видеозаписей произошла ошибка. Повторите попытку позднее.</source>
@@ -1199,7 +1199,7 @@ Please wait...</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В этом альбоме нет ни одной композиции</source>
-          <target state="final">No recordings found in this album</target>
+          <target state="translated">No tracks found in this album</target>
         </trans-unit>
         <trans-unit id="NewsMediaView_Title.Text" translate="yes" xml:space="preserve">
           <source>новости</source>
@@ -1236,11 +1236,11 @@ Please wait...</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список кэшированных аудиозаписей</source>
-          <target state="final">Failed to load the list of cached recordings</target>
+          <target state="translated">Failed to load the list of cached tracks</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем кэшированные аудиозаписи...</source>
-          <target state="final">Loading the cached recordings...</target>
+          <target state="translated">Loading the cached tracks...</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.NoDataText" translate="yes" xml:space="preserve">
           <source>Кэшированные аудиозаписи отсутствуют</source>
@@ -1713,7 +1713,7 @@ Last time we didn't complete a few moments. Let's continue!</target>
         </trans-unit>
         <trans-unit id="LibraryView_CachedLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>В вашей коллекции нет ни одной кэшированной аудиозаписи</source>
-          <target state="final">No cached recordings found in your collection</target>
+          <target state="translated">No cached tracks found in your collection</target>
         </trans-unit>
         <trans-unit id="LibraryView_FoldersLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список папок</source>

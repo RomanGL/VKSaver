@@ -301,10 +301,10 @@ Go back to continue</value>
     <value>to my documents</value>
   </data>
   <data name="UserContentView_AudiosLoader.ErrorText" xml:space="preserve">
-    <value>Failed to load the list of audio recordings</value>
+    <value>Failed to load the list of audios</value>
   </data>
   <data name="UserContentView_AudiosLoader.LoadingText" xml:space="preserve">
-    <value>Loading a list of audio recordings...</value>
+    <value>Loading a list of audios...</value>
   </data>
   <data name="UserContentView_AudiosLoader.NoDataText" xml:space="preserve">
     <value>No audios or access is denied</value>
@@ -456,10 +456,10 @@ Go back to continue</value>
     <value>Unable to add</value>
   </data>
   <data name="Message_AudioAddError_Text" xml:space="preserve">
-    <value>An error occured while adding a recording to the collection. Please try again later!</value>
+    <value>An error occured while adding a audio to the collection. Please try again later!</value>
   </data>
   <data name="Message_AudioAddError_Title" xml:space="preserve">
-    <value>Failed to add audio recording</value>
+    <value>Failed to add audio</value>
   </data>
   <data name="Message_AudioAlbumDeleteError_Text" xml:space="preserve">
     <value>An error occurred while deleting an audio album. Please try again later.</value>
@@ -495,7 +495,7 @@ Go back to continue</value>
     <value>An error occurred while adding a video to the collection. Please try again later.</value>
   </data>
   <data name="Message_VideoAddError_Title" xml:space="preserve">
-    <value>Failed to add video recording</value>
+    <value>Failed to add video</value>
   </data>
   <data name="Message_VideoAlbumDeleteError_Text" xml:space="preserve">
     <value>An error occurred while deleting a video album. Please try again later.</value>
@@ -903,7 +903,7 @@ Please wait...</value>
     <value>Studying the track listing for this album...</value>
   </data>
   <data name="ArtistAlbumView_TracksLoader.NoDataText" xml:space="preserve">
-    <value>No recordings found in this album</value>
+    <value>No tracks found in this album</value>
   </data>
   <data name="NewsMediaView_Title.Text" xml:space="preserve">
     <value>news</value>
@@ -931,10 +931,10 @@ Please wait...</value>
     <value>Unable to clear the cache</value>
   </data>
   <data name="CachedView_Loader.ErrorText" xml:space="preserve">
-    <value>Failed to load the list of cached recordings</value>
+    <value>Failed to load the list of cached tracks</value>
   </data>
   <data name="CachedView_Loader.LoadingText" xml:space="preserve">
-    <value>Loading the cached recordings...</value>
+    <value>Loading the cached tracks...</value>
   </data>
   <data name="CachedView_Loader.NoDataText" xml:space="preserve">
     <value>There is no cached audios</value>
@@ -1172,7 +1172,7 @@ Then, we will help you to configure some basic settings application. Click the b
   <data name="FirstInternetSettingsView_ContentText.Text" xml:space="preserve">
     <value>VK Saver can load photos and album art for your songs. Load the data? (fees may apply)
  
-You can always change this setting in the preferences.</value>
+You can always change this setting in the settings.</value>
   </data>
   <data name="FirstInternetSettingsView_Title.Text" xml:space="preserve">
     <value>Access to the Internet</value>
@@ -1198,7 +1198,7 @@ Last time we didn't complete a few moments. Let's continue!</value>
     <value>continue</value>
   </data>
   <data name="UpdatingDatabaseView_ContentText.Text" xml:space="preserve">
-    <value>VK Saver performs a scan of your tracks. Please wait ...</value>
+    <value>VK Saver performs a scan of your tracks. Please wait...</value>
   </data>
   <data name="UpdatingDatabaseView_StepMask_Text" xml:space="preserve">
     <value>Step {0} of {1}</value>
@@ -1293,7 +1293,7 @@ Last time we didn't complete a few moments. Let's continue!</value>
     <value>Loading the list of cached audios...</value>
   </data>
   <data name="LibraryView_CachedLoader.NoDataText" xml:space="preserve">
-    <value>No cached recordings found in your collection</value>
+    <value>No cached tracks found in your collection</value>
   </data>
   <data name="LibraryView_FoldersLoader.ErrorText" xml:space="preserve">
     <value>Failed to load the list of folders</value>

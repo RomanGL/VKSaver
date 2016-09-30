@@ -144,19 +144,137 @@ namespace VKSaver.Core.Services
             NeedReloadLibraryView = true;
         }
 
-        public async Task InsertDownloadedTrack(VKSaverAudio audio, string filePath)
+        public async Task InsertDownloadedTrack(VKSaverAudio audio, StorageFolder folder, string filePath)
         {
-            var artist = await _database.FindItem<VKSaverArtist>(audio.Track.Artist);
-            if (artist != null)
-                artist = await _database.GetItemWithChildrens<VKSaverArtist>(artist.DbKey);
+            string artistName = null;
+            string folderPath = MusicFilesPathHelper.GetCapatibleSource(folder.Path);            
+            string genreKey = audio.VK.Genre == 0 ? UNKNOWN_GENRE_NAME : audio.VK.Genre.ToString();
+            string vkInfoKey = $"{audio.VK.OwnerID} {audio.VK.ID}";
+
+            if (String.IsNullOrEmpty(audio.Track.Artist))
+                artistName = UNKNOWN_ARTIST_NAME;
+            else
+                artistName = audio.Track.Artist;
+
+            string albumKey = $"{artistName}-{UNKNOWN_ALBUM_NAME}";
+            
+            var dbFolder = await _database.FindItem<VKSaverFolder>(folderPath);
+            if (dbFolder == null)
+            {
+                dbFolder = new VKSaverFolder
+                {
+                    Path = folderPath,
+                    Name = folder.DisplayName,
+                    Tracks = new List<VKSaverTrack>()
+                };
+                await _database.InsertItem(dbFolder);
+            }
+            else
+                dbFolder = null;
+            
+            var dbAlbum = await _database.FindItem<VKSaverAlbum>(albumKey);
+            if (dbAlbum == null)
+            {
+                dbAlbum = new VKSaverAlbum
+                {
+                    DbKey = albumKey,
+                    Name = UNKNOWN_ALBUM_NAME,
+                    ArtistName = artistName,
+                    Tracks = new List<VKSaverTrack>()
+                };
+                await _database.InsertItem(dbAlbum);
+            }
+            else
+                dbAlbum = null;
+
+            var dbArtist = await _database.FindItem<VKSaverArtist>(artistName);
+            if (dbArtist == null)
+            {
+                dbArtist = new VKSaverArtist
+                {
+                    DbKey = artistName,
+                    Name = artistName,
+                    Tracks = new List<VKSaverTrack>(),
+                    Albums = new List<VKSaverAlbum>()
+                };
+                await _database.InsertItem(dbArtist);
+            }
+            else if (dbAlbum != null)
+            {
+                dbArtist = await _database.GetItemWithChildrens<VKSaverArtist>(artistName);
+            }
+            else
+                dbArtist = null;
+
+            var dbGenre = await _database.FindItem<VKSaverGenre>(genreKey);
+            if (dbGenre == null)
+            {
+                dbGenre = new VKSaverGenre
+                {
+                    DbKey = genreKey,
+                    Name = genreKey,
+                    Tracks = new List<VKSaverTrack>()
+                };
+                await _database.InsertItem(dbGenre);
+            }
+            else
+                dbGenre = null;
+            
+            var dbVkInfo = await _database.FindItem<VKSaverAudioVKInfo>(vkInfoKey);
+            if (dbVkInfo == null)
+            {
+                dbVkInfo = audio.VK;
+                dbVkInfo.DbKey = vkInfoKey;
+                await _database.InsertItem(dbVkInfo);
+            }
+            else
+                dbVkInfo = null;
 
             var track = new VKSaverTrack
             {
-                Title = audio.Track.Title,
-                Artist = audio.Track.Artist,
+                Title = audio.Track.Title.Trim(),
+                Artist = artistName,
                 Duration = TimeSpan.FromTicks(audio.Track.Duration),
-                Source = MusicFilesPathHelper.GetCapatibleSource(filePath)
+                Source = MusicFilesPathHelper.GetCapatibleSource(filePath),
+                GenreKey = genreKey,
+                FolderKey = folderPath,
+                AlbumKey = albumKey,
+                VKInfoKey = vkInfoKey
             };
+
+            await _database.InsertItem(track);
+
+            if (dbAlbum != null)
+            {
+                dbAlbum.Tracks.Add(track);
+                await _database.UpdateItemChildrens(dbAlbum);
+            }
+
+            if (dbArtist != null)
+            {
+                if (dbAlbum != null)
+                    dbArtist.Albums.Add(dbAlbum);
+
+                dbArtist.Tracks.Add(track);
+                await _database.UpdateItemChildrens(dbArtist);
+            }
+
+            if (dbFolder != null)
+            {
+                dbFolder.Tracks.Add(track);
+                await _database.UpdateItemChildrens(dbFolder);
+            }
+
+            if (dbGenre != null)
+            {
+                dbGenre.Tracks.Add(track);
+                await _database.UpdateItemChildrens(dbGenre);
+            }
+
+            if (dbVkInfo != null)
+                await _database.UpdateItemChildrens(dbVkInfo);
+
+            NeedReloadLibraryView = true;
         }
 
         private async Task UpdateDatabase()
@@ -279,7 +397,6 @@ namespace VKSaver.Core.Services
             var properties = await file.Properties.GetMusicPropertiesAsync();
 
             var track = new VKSaverTrack();
-            track.Source = file.Path;
 
             if (String.IsNullOrWhiteSpace(properties.Title))
                 track.Title = file.DisplayName.Trim();
@@ -315,7 +432,6 @@ namespace VKSaver.Core.Services
                 var metadata = await audioFile.GetMetadataAsync();
                 var track = new VKSaverTrack
                 {
-                    Source = file.Path,
                     Title = metadata.Track.Title.Trim()
                 };
 
@@ -361,6 +477,7 @@ namespace VKSaver.Core.Services
                 _genres[genreName] = genre;
             }
 
+            track.GenreKey = genreName;
             genre.Tracks.Add(track);
         }
 

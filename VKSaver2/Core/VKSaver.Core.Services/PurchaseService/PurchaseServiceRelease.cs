@@ -37,16 +37,13 @@ namespace VKSaver.Core.Services
 
         private bool GetIsFullVersion()
         {
-            if (_isFullVersionPurchased != null)
-                return _isFullVersionPurchased.Value;
-
             var licenseInformation = CurrentApp.LicenseInformation;
 
             bool isMonthyActive = licenseInformation.ProductLicenses[StoreConstants.FullVersionVKSaver].IsActive;
             if (!isMonthyActive)
                 return licenseInformation.ProductLicenses[StoreConstants.FullVersionVKSaverPernament].IsActive;
 
-            return isMonthyActive
+            return isMonthyActive;
         }
         
         private readonly ILogService _logService;

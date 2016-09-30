@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Database;
 using VKSaver.Core.Services.Database;
+using Windows.Storage;
 
 namespace VKSaver.Core.Services.Interfaces
 {
@@ -30,6 +32,8 @@ namespace VKSaver.Core.Services.Interfaces
 
         Task RemoveItem<T>(T item);
         Task RemoveItemByPrimaryKey<T>(object primaryKey);
+
+        Task InsertDownloadedTrack(VKSaverAudio audio, StorageFolder folder, string filePath);
 
         LibraryDatabaseCleaner GetCleaner();
     }

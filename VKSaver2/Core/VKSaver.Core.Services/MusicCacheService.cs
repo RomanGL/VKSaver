@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
+using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Storage;
 using Windows.Storage.Search;
@@ -19,71 +20,16 @@ namespace VKSaver.Core.Services
         {
             _logService = logService;
             _libraryDatabseService = libraryDatabaseService;
+
+            _converterQueue = new TaskQueue();
         }
 
-        public async Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata)
+        public Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata)
         {
             if (metadata == null)
-                return false;
+                return Task.FromResult(false);
 
-            StorageFile zipFile = null;
-            Stream zipFileStream = null;
-            Stream fileStream = null;
-
-            try
-            {
-                var cacheFolder = await GetCacheFolder();
-                zipFile = await cacheFolder.CreateFileAsync(file.Name.Split(new char[] { '.' })[0] + FILES_EXTENSION,
-                    CreationCollisionOption.ReplaceExisting);
-                zipFileStream = (await zipFile.OpenAsync(FileAccessMode.ReadWrite)).AsStream();
-                fileStream = (await file.OpenAsync(FileAccessMode.Read)).AsStreamForRead();
-
-                var propertiesToRetrieve = new List<string>();
-
-                propertiesToRetrieve.Add(PROPERTY_SAMPLE_RATE);
-                propertiesToRetrieve.Add(PROPERTY_CHANNEL_COUNT);
-                propertiesToRetrieve.Add(PROPERTY_ENCODING_BITRATE);
-
-                var encodingProperties = await file.Properties.RetrievePropertiesAsync(propertiesToRetrieve);
-
-                metadata.Track.SampleRate = (uint)encodingProperties[PROPERTY_SAMPLE_RATE];
-                metadata.Track.ChannelCount = (uint)encodingProperties[PROPERTY_CHANNEL_COUNT];
-                metadata.Track.EncodingBitrate = (uint)encodingProperties[PROPERTY_ENCODING_BITRATE];
-
-                var fileProperties = await file.Properties.GetMusicPropertiesAsync();
-                metadata.Track.Duration = fileProperties.Duration.Ticks;
-
-                using (var zipStream = new ZipOutputStream(zipFileStream))
-                {
-                    zipStream.SetLevel(0);
-
-                    var contentEntry = new ZipEntry(FILES_CONTENT_NAME);
-                    contentEntry.CompressionMethod = CompressionMethod.Stored;
-                    WriteEntry(zipStream, contentEntry, fileStream);
-
-                    var metadataEntry = new ZipEntry(FILES_METADATA_NAME);
-                    metadataEntry.CompressionMethod = CompressionMethod.Stored;
-                    WriteEntry(zipStream, metadataEntry, new MemoryStream(
-                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(metadata))));
-
-                    zipStream.Finish();
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logService.LogException(ex);
-
-                zipFileStream?.Dispose();
-                zipFileStream = null;
-                await zipFile?.DeleteAsync(StorageDeleteOption.PermanentDelete);
-                return false;
-            }
-            finally
-            {
-                fileStream?.Dispose();
-            }
+            return _converterQueue.Enqueue(() => ConvertAudioToVKSaverFormatInternal(file, metadata));
         }
 
         public async Task<VKSaverAudioFile> GetVKSaverFile(string fileName)
@@ -148,6 +94,69 @@ namespace VKSaver.Core.Services
             }
         }
 
+        private async Task<bool> ConvertAudioToVKSaverFormatInternal(StorageFile file, VKSaverAudio metadata)
+        {
+            StorageFile zipFile = null;
+            Stream zipFileStream = null;
+            Stream fileStream = null;
+
+            try
+            {
+                var cacheFolder = await GetCacheFolder();
+                zipFile = await cacheFolder.CreateFileAsync(file.Name.Split(new char[] { '.' })[0] + FILES_EXTENSION,
+                    CreationCollisionOption.ReplaceExisting);
+                zipFileStream = (await zipFile.OpenAsync(FileAccessMode.ReadWrite)).AsStream();
+                fileStream = (await file.OpenAsync(FileAccessMode.Read)).AsStreamForRead();
+
+                var propertiesToRetrieve = new List<string>();
+
+                propertiesToRetrieve.Add(PROPERTY_SAMPLE_RATE);
+                propertiesToRetrieve.Add(PROPERTY_CHANNEL_COUNT);
+                propertiesToRetrieve.Add(PROPERTY_ENCODING_BITRATE);
+
+                var encodingProperties = await file.Properties.RetrievePropertiesAsync(propertiesToRetrieve);
+
+                metadata.Track.SampleRate = (uint)encodingProperties[PROPERTY_SAMPLE_RATE];
+                metadata.Track.ChannelCount = (uint)encodingProperties[PROPERTY_CHANNEL_COUNT];
+                metadata.Track.EncodingBitrate = (uint)encodingProperties[PROPERTY_ENCODING_BITRATE];
+
+                var fileProperties = await file.Properties.GetMusicPropertiesAsync();
+                metadata.Track.Duration = fileProperties.Duration.Ticks;
+
+                using (var zipStream = new ZipOutputStream(zipFileStream))
+                {
+                    zipStream.SetLevel(0);
+
+                    var contentEntry = new ZipEntry(FILES_CONTENT_NAME);
+                    contentEntry.CompressionMethod = CompressionMethod.Stored;
+                    WriteEntry(zipStream, contentEntry, fileStream);
+
+                    var metadataEntry = new ZipEntry(FILES_METADATA_NAME);
+                    metadataEntry.CompressionMethod = CompressionMethod.Stored;
+                    WriteEntry(zipStream, metadataEntry, new MemoryStream(
+                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(metadata))));
+
+                    zipStream.Finish();
+                }
+
+                await _libraryDatabseService.InsertDownloadedTrack(metadata, cacheFolder, zipFile.Path);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logService.LogException(ex);
+
+                zipFileStream?.Dispose();
+                zipFileStream = null;
+                await zipFile?.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                return false;
+            }
+            finally
+            {
+                fileStream?.Dispose();
+            }
+        }
+
         private static void WriteEntry(ZipOutputStream zipStream, ZipEntry entry, Stream contentStream)
         {
             zipStream.PutNextEntry(entry);
@@ -175,6 +184,7 @@ namespace VKSaver.Core.Services
                 MUSIC_CACHE_FOLDER_NAME, CreationCollisionOption.OpenIfExists);
         }
 
+        private readonly TaskQueue _converterQueue;
         private readonly ILogService _logService;
         private readonly ILibraryDatabaseService _libraryDatabseService;
 
