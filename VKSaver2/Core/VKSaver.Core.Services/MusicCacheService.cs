@@ -15,17 +15,16 @@ namespace VKSaver.Core.Services
 {
     public sealed class MusicCacheService : IMusicCacheService
     {
-        public MusicCacheService(ILogService logService)
+        public MusicCacheService(ILogService logService, ILibraryDatabaseService libraryDatabaseService)
         {
             _logService = logService;
+            _libraryDatabseService = libraryDatabaseService;
         }
 
         public async Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata)
         {
             if (metadata == null)
                 return false;
-
-            _logService.LogText($"{metadata.Track.Title} - processing started.");
 
             StorageFile zipFile = null;
             Stream zipFileStream = null;
@@ -83,7 +82,6 @@ namespace VKSaver.Core.Services
             }
             finally
             {
-                _logService.LogText($"{metadata.Track.Title} - processing finished.");
                 fileStream?.Dispose();
             }
         }
@@ -178,6 +176,7 @@ namespace VKSaver.Core.Services
         }
 
         private readonly ILogService _logService;
+        private readonly ILibraryDatabaseService _libraryDatabseService;
 
         internal const string FILES_PROTECTION_PASSWORD = "VktTYXZlciAy";
         internal const string FILES_METADATA_NAME = "metadata.vks";
@@ -187,6 +186,6 @@ namespace VKSaver.Core.Services
 
         private const string PROPERTY_SAMPLE_RATE = "System.Audio.SampleRate";
         private const string PROPERTY_CHANNEL_COUNT = "System.Audio.ChannelCount";
-        private const string PROPERTY_ENCODING_BITRATE = "System.Audio.EncodingBitrate";
+        private const string PROPERTY_ENCODING_BITRATE = "System.Audio.EncodingBitrate";        
     }
 }
