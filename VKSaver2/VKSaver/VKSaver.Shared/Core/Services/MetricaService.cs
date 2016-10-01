@@ -15,8 +15,22 @@ namespace VKSaver.Core.Services
             catch (Exception) { }
         }
 
-        public void LogText(string text)
+        public void LogEvent(string eventName)
         {
+            try
+            {
+                YandexMetrica.ReportEvent(eventName);
+            }
+            catch (Exception) { }
+        }
+
+        public void LogEvent(string eventName, string json)
+        {
+            try
+            {
+                YandexMetrica.ReportEvent(eventName, json);
+            }
+            catch (Exception) { }
         }
     }
 }

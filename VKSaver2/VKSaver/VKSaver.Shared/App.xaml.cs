@@ -26,6 +26,8 @@ using Windows.UI.Core;
 using IF.Lastfm.Core.Api;
 using VKSaver.Core.Services.Database;
 using Yandex.Metrica;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -55,6 +57,14 @@ namespace VKSaver
                         NavigationService.GoBack();
                         e.Handled = true;
                     }
+                };
+
+                _frame.Navigated += (s, e) =>
+                {
+                    var dict = new Dictionary<string, string>(1);
+                    dict[MetricaConstants.NAVIGATION_PAGE] = e.SourcePageType.Name;
+
+                    _metricaService?.LogEvent(MetricaConstants.NAVIGATION_EVENT, JsonConvert.SerializeObject(dict));
                 };
 
                 return _frame;
@@ -114,13 +124,24 @@ namespace VKSaver
             ViewModelLocator.SetDefaultViewTypeToViewModelTypeResolver(GetViewModelType);
 
             var settingsService = new SettingsService();
+
+            int settingsVersion = settingsService.Get(AppConstants.SETTINGS_VERSION_PARAMETER, 0);
+            if (settingsVersion < AppConstants.SETTINGS_VERSION)
+            {
+                settingsService.Clear();
+                settingsService.Set(AppConstants.SETTINGS_VERSION_PARAMETER, AppConstants.SETTINGS_VERSION);
+            }
+
+            _metricaService = new MetricaService();
+
             var inTouch = new InTouch();
             var lastAuth = new LastAuth(LAST_FM_API_KEY, LAST_FM_API_SECRET);
 
             var vkLoginService = new VKLoginService(settingsService, inTouch);
             if (vkLoginService.IsAuthorized)
-                vkLoginService.InitializeInTouch();            
+                vkLoginService.InitializeInTouch();
 
+            _container.RegisterInstance<IMetricaService>(_metricaService);
             _container.RegisterInstance<IServiceResolver>(this);
             _container.RegisterInstance<ISettingsService>(settingsService);
             _container.RegisterInstance(this.NavigationService);
@@ -132,7 +153,6 @@ namespace VKSaver
             _container.RegisterInstance<InTouch>(inTouch);
             _container.RegisterInstance<ILastAuth>(lastAuth);
 
-            _container.RegisterType<IMetricaService, MetricaService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILocService, LocService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IInTouchWrapper, InTouchWrapper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
@@ -435,6 +455,7 @@ namespace VKSaver
 
         private IUnityContainer _container;
         private IAppLoaderService _appLoaderService;
+        private IMetricaService _metricaService;
         private UnityServiceLocator _unityServiceLocator;
         private Frame _frame;
 

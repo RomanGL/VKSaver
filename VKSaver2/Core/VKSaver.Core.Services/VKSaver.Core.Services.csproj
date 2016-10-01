@@ -93,6 +93,7 @@
     <Compile Include="LibraryDatabaseService.cs" />
     <Compile Include="LogService.cs" />
     <Compile Include="MediaFilesProcessService.cs" />
+    <Compile Include="MetricaConstants.cs" />
     <Compile Include="MusicCacheService.cs" />
     <Compile Include="DialogsService.cs" />
     <Compile Include="DownloadsService.cs" />

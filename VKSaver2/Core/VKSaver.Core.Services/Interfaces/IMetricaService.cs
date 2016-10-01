@@ -4,6 +4,7 @@ namespace VKSaver.Core.Services.Interfaces
     public interface IMetricaService
     {
         void LogException(Exception ex);
-        void LogText(string text);
+        void LogEvent(string eventName);
+        void LogEvent(string eventName, string json);
     }
 }
