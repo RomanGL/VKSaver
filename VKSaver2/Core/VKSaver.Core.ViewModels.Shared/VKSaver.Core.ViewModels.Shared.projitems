@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ee806675-bc95-4321-8ea0-50ffcd9ca647</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VKSaver.Core.ViewModels.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ArtistAlbumViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ArtistInfoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioAlbumViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioSearchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CachedViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\IMultiSelectCollectionView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\IncrementalLoadingJumpListCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\IStateSupportCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\ISupportUpDownIncrementalLoading.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\PaginatedCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\PaginatedJumpListGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\SimpleStateSupportCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\StateChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\StateSupportCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\StateSupportMultiSelectCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\IFileOpenPickerSupport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\JumpListGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\JumpListHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\UploadType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VKAudioWithLastFm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DownloadableAudioViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FirstStart\FirstInternetSettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FirstStart\FirstStartRetryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FirstStart\FirstStartViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LastFmLoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LibraryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Local\LocalAlbumViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Local\LocalArtistViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Local\LocalFolderViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Local\LocalGenreViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NewsMediaViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PackagingFilesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PromoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PurchaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RecommendedViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Search\SearchNavigationParameter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Search\SearchViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SelectionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SelectSearchTypeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TopArtistsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TopTracksViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TrackInfoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TrackLyricsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TransferViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UpdatingDatabaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UploadFileViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserCommViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserContentViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VideoAlbumViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VideoInfoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VideoPlayerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VideoSearchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VKAudioViewModel.cs" />
+  </ItemGroup>
+</Project>

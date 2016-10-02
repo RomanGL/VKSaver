@@ -27,7 +27,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_PHONE_APP;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -62,67 +62,7 @@
     <MultilingualFallbackLanguage>ru-RU</MultilingualFallbackLanguage>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ArtistAlbumViewModel.cs" />
-    <Compile Include="ArtistInfoViewModel.cs" />
-    <Compile Include="AudioViewModel.cs" />
-    <Compile Include="CachedViewModel.cs" />
-    <Compile Include="Common\IFileOpenPickerSupport.cs" />
-    <Compile Include="Common\UploadType.cs" />
-    <Compile Include="DownloadableAudioViewModel.cs" />
-    <Compile Include="FirstStart\FirstInternetSettingsViewModel.cs" />
-    <Compile Include="FirstStart\FirstStartRetryViewModel.cs" />
-    <Compile Include="FirstStart\FirstStartViewModel.cs" />
-    <Compile Include="LastFmLoginViewModel.cs" />
-    <Compile Include="LibraryViewModel.cs" />
-    <Compile Include="Local\LocalFolderViewModel.cs" />
-    <Compile Include="Local\LocalGenreViewModel.cs" />
-    <Compile Include="Local\LocalAlbumViewModel.cs" />
-    <Compile Include="Local\LocalArtistViewModel.cs" />
-    <Compile Include="NewsMediaViewModel.cs" />
-    <Compile Include="PackagingFilesViewModel.cs" />
-    <Compile Include="PromoViewModel.cs" />
-    <Compile Include="Search\SearchNavigationParameter.cs" />
-    <Compile Include="SelectionViewModel.cs" />
-    <Compile Include="SettingsViewModel.cs" />
-    <Compile Include="UpdatingDatabaseViewModel.cs" />
-    <Compile Include="UploadFileViewModel.cs" />
-    <Compile Include="VideoSearchViewModel.cs" />
-    <Compile Include="AudioSearchViewModel.cs" />
-    <Compile Include="Search\SearchViewModelBase.cs" />
-    <Compile Include="SelectSearchTypeViewModel.cs" />
-    <Compile Include="VideoAlbumViewModel.cs" />
-    <Compile Include="AudioAlbumViewModel.cs" />
-    <Compile Include="Collections\IMultiSelectCollectionView.cs" />
-    <Compile Include="Collections\StateSupportMultiSelectCollection.cs" />
-    <Compile Include="Common\Extensions.cs" />
-    <Compile Include="Common\VKAudioWithLastFm.cs" />
-    <Compile Include="PlayerViewModel.cs" />
-    <Compile Include="RecommendedViewModel.cs" />
-    <Compile Include="TrackLyricsViewModel.cs" />
-    <Compile Include="TransferViewModel.cs" />
-    <Compile Include="Transfer\TransferItemViewModel.cs" />
-    <Compile Include="UserCommViewModel.cs" />
-    <Compile Include="UserContentViewModel.cs" />
-    <Compile Include="Collections\IncrementalLoadingJumpListCollection.cs" />
-    <Compile Include="Collections\IStateSupportCollection.cs" />
-    <Compile Include="Collections\ISupportUpDownIncrementalLoading.cs" />
-    <Compile Include="Collections\PaginatedCollection.cs" />
-    <Compile Include="Collections\PaginatedJumpListGroup.cs" />
-    <Compile Include="Collections\SimpleStateSupportCollection.cs" />
-    <Compile Include="Collections\StateChangedEventArgs.cs" />
-    <Compile Include="Collections\StateSupportCollection.cs" />
-    <Compile Include="Common\JumpListGroup.cs" />
-    <Compile Include="Common\JumpListHelper.cs" />
-    <Compile Include="LoginViewModel.cs" />
-    <Compile Include="MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseViewModel.cs" />
-    <Compile Include="TopArtistsViewModel.cs" />
-    <Compile Include="TopTracksViewModel.cs" />
-    <Compile Include="TrackInfoViewModel.cs" />
-    <Compile Include="VideoInfoViewModel.cs" />
-    <Compile Include="VideoPlayerViewModel.cs" />
-    <Compile Include="VKAudioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="IF.Lastfm.Core, Version=0.2.4.274, Culture=neutral, processorArchitecture=MSIL">
@@ -210,6 +150,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" />
   <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" Label="MultilingualAppToolkit">
