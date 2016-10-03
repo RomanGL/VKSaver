@@ -60,93 +60,7 @@
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppConstants.cs" />
-    <Compile Include="AppLoaderService.cs" />
-    <Compile Include="BetaService.cs" />
-    <Compile Include="Common\DownloadsExtensions.cs" />
-    <Compile Include="Common\EncryptionHelper.cs" />
-    <Compile Include="Common\InTouchExtensions.cs" />
-    <Compile Include="Common\LFAuthorization.cs" />
-    <Compile Include="Common\MediaStreamSourceWorker.cs" />
-    <Compile Include="Common\AudioEncryptedStream.cs" />
-    <Compile Include="Common\MusicFilesPathHelper.cs" />
-    <Compile Include="Common\TaskQueue.cs" />
-    <Compile Include="Common\ToastAudioHelper.cs" />
-    <Compile Include="Common\VKAuthorization.cs" />
-    <Compile Include="Database\DatabaseUpdateStepType.cs" />
-    <Compile Include="Database\DBUpdateProgressChangedEventArgs.cs" />
-    <Compile Include="Database\LibraryDatabase.cs" />
-    <Compile Include="Database\LibraryDatabaseCleaner.cs" />
-    <Compile Include="Database\SQLiteApiZ.cs" />
-    <Compile Include="Database\SQLitePlatformZ.cs" />
-    <Compile Include="Database\UploadsDatabase.cs" />
-    <Compile Include="Database\VKSaverDatabase.cs" />
-    <Compile Include="Interfaces\ILastFmLoginService.cs" />
-    <Compile Include="Interfaces\ILibraryDatabaseService.cs" />
-    <Compile Include="Interfaces\IMediaFilesProcessService.cs" />
-    <Compile Include="Interfaces\IMetricaService.cs" />
-    <Compile Include="Interfaces\IUploadsPostprocessor.cs" />
-    <Compile Include="Interfaces\IUploadsPreprocessor.cs" />
-    <Compile Include="Interfaces\IUploadsService.cs" />
-    <Compile Include="Interfaces\IUploadsServiceHelper.cs" />
-    <Compile Include="LastFmLoginService.cs" />
-    <Compile Include="LibraryDatabaseService.cs" />
-    <Compile Include="LogService.cs" />
-    <Compile Include="MediaFilesProcessService.cs" />
-    <Compile Include="MetricaConstants.cs" />
-    <Compile Include="MusicCacheService.cs" />
-    <Compile Include="DialogsService.cs" />
-    <Compile Include="DownloadsService.cs" />
-    <Compile Include="DownloadsService2.cs" />
-    <Compile Include="DownloadsServiceHelper.cs" />
-    <Compile Include="GrooveMusicService.cs" />
-    <Compile Include="Interfaces\IAppLoaderService.cs" />
-    <Compile Include="Interfaces\IBetaService.cs" />
-    <Compile Include="Interfaces\ICultureProvider.cs" />
-    <Compile Include="Interfaces\IDialogsService.cs" />
-    <Compile Include="Interfaces\IDispatcherWrapper.cs" />
-    <Compile Include="Interfaces\IDownloadsService.cs" />
-    <Compile Include="Interfaces\IDownloadsServiceHelper.cs" />
-    <Compile Include="Interfaces\IGrooveMusicService.cs" />
-    <Compile Include="Interfaces\IImagesCacheService.cs" />
-    <Compile Include="Interfaces\IInTouchWrapper.cs" />
-    <Compile Include="Interfaces\ILocService.cs" />
-    <Compile Include="Interfaces\ILogService.cs" />
-    <Compile Include="Interfaces\IMediaDecryptor.cs" />
-    <Compile Include="Interfaces\IMediaEncryptor.cs" />
-    <Compile Include="Interfaces\IMusicCacheService.cs" />
-    <Compile Include="Interfaces\INetworkInfoService.cs" />
-    <Compile Include="Interfaces\IPlayerPlaylistService.cs" />
-    <Compile Include="Interfaces\IPlayerService.cs" />
-    <Compile Include="Interfaces\IPurchaseService.cs" />
-    <Compile Include="Interfaces\IServiceResolver.cs" />
-    <Compile Include="Interfaces\ISettingsService.cs" />
-    <Compile Include="Interfaces\ISuspendingService.cs" />
-    <Compile Include="Interfaces\ITracksShuffleService.cs" />
-    <Compile Include="Interfaces\IVKLoginService.cs" />
-    <Compile Include="ImagesCacheService.cs" />
-    <Compile Include="LocService.cs" />
-    <Compile Include="NetworkInfoService.cs" />
-    <Compile Include="PlayerService\PlayerConstants.cs" />
-    <Compile Include="PlayerService\PlayerPlaylistService.cs" />
-    <Compile Include="PlayerService\PlayerStateChangedEventArgs.cs" />
-    <Compile Include="PlayerService\TrackChangedEventArgs.cs" />
-    <Compile Include="PlayerService\TracksShuffleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseService\PurchaseServiceDebug.cs" />
-    <Compile Include="PurchaseService\PurchaseServiceFull.cs" />
-    <Compile Include="PurchaseService\PurchaseServiceRelease.cs" />
-    <Compile Include="SettingsService.cs" />
-    <Compile Include="PurchaseService\StoreConstants.cs" />
-    <Compile Include="Transfer\TransferOperationErrorEventArgs.cs" />
-    <Compile Include="Transfer\TransferStatusComparer.cs" />
-    <Compile Include="Transfer\TransferStatusExtensions.cs" />
-    <Compile Include="TypedEventHandler.cs" />
-    <Compile Include="UploadsPostprocessor.cs" />
-    <Compile Include="UploadsPreprocessor.cs" />
-    <Compile Include="UploadsService.cs" />
-    <Compile Include="UploadsServiceHelper.cs" />
-    <Compile Include="VKLoginService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib.Portable, Version=0.86.0.51803, Culture=neutral, processorArchitecture=MSIL">
@@ -228,6 +142,7 @@
       <Name>VKSaver.Core.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

@@ -417,8 +417,8 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\HtmlAgilityPack.1.4.9.4\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.4.9.5\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib.Portable, Version=0.86.0.51803, Culture=neutral, processorArchitecture=MSIL">

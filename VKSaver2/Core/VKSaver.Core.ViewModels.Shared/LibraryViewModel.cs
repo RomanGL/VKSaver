@@ -1,11 +1,16 @@
-﻿using Microsoft.Practices.Prism.StoreApps;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Mvvm;
+using Prism.Commands;
+using Prism.Windows.Navigation;
+#else
+using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#endif
+
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Database;

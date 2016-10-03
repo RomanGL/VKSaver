@@ -1,7 +1,12 @@
-﻿using IF.Lastfm.Core.Api;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Navigation;
+#else
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#endif
+
+using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

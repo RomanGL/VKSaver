@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{000A719A-990E-43F4-81C9-D6BF83D091A0}</ProjectGuid>
+    <ProjectGuid>{536FCC50-09B3-4A4B-B4F9-3F3EC845D09F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VKSaver.Core.ViewModels</RootNamespace>
-    <AssemblyName>VKSaver.Core.ViewModels.UWP</AssemblyName>
-    <DefaultLanguage>ru-RU</DefaultLanguage>
+    <RootNamespace>VKSaver.Core.Services</RootNamespace>
+    <AssemblyName>VKSaver.Core.Services.UWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
@@ -108,7 +108,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\VKSaver.Core.ViewModels.UWP.rd.xml" />
+    <EmbeddedResource Include="Properties\VKSaver.Core.Services.UWP.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
+      <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
+      <Name>VKSaver.Core.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ModernDev.InTouch">
@@ -121,24 +127,7 @@
       <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\VKSaver.Core.LinksExtractor.UWP\VKSaver.Core.LinksExtractor.UWP.csproj">
-      <Project>{df4da91e-2448-4e8a-a62c-28a9f3aa779d}</Project>
-      <Name>VKSaver.Core.LinksExtractor.UWP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
-      <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
-      <Name>VKSaver.Core.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VKSaver.Core.Services\VKSaver.Core.Services.csproj">
-      <Project>{e772fd74-56dc-4398-b85d-f33d34c2f11b}</Project>
-      <Name>VKSaver.Core.Services</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <Import Project="..\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems" Label="Shared" />
+  <Import Project="..\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

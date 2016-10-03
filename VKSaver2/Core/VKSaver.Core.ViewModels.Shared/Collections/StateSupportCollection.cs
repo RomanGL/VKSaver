@@ -1,4 +1,9 @@
-﻿using Microsoft.Practices.Prism.StoreApps;
+﻿#if WINDOWS_UWP
+using Prism.Commands;
+#else
+using Microsoft.Practices.Prism.StoreApps;
+#endif
+
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,8 +11,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using VKSaver.Core.Models.Common;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
-using System.Collections.Specialized;
 
 namespace VKSaver.Core.ViewModels.Collections
 {

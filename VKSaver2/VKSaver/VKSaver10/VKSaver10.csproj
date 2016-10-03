@@ -151,9 +151,17 @@
       <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
       <Name>VKSaver.Core.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\VKSaver.Core.Services.UWP\VKSaver.Core.Services.UWP.csproj">
+      <Project>{536fcc50-09b3-4a4b-b4f9-3f3ec845d09f}</Project>
+      <Name>VKSaver.Core.Services.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\VKSaver.Core.ViewModels.UWP\VKSaver.Core.ViewModels.UWP.csproj">
       <Project>{000a719a-990e-43f4-81c9-d6bf83d091a0}</Project>
       <Name>VKSaver.Core.ViewModels.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\VKSaver.Core.LinksExtractor.UWP\VKSaver.Core.LinksExtractor.UWP.csproj">
+      <Project>{df4da91e-2448-4e8a-a62c-28a9f3aa779d}</Project>
+      <Name>VKSaver.Core.LinksExtractor.UWP</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

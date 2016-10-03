@@ -1,4 +1,11 @@
-﻿using Microsoft.Practices.Prism.StoreApps;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Mvvm;
+using Prism.Commands;
+using Prism.Windows.Navigation;
+#else
+using Microsoft.Practices.Prism.StoreApps;
+#endif
+
 using PropertyChanged;
 using System.Collections;
 using System.Collections.Generic;

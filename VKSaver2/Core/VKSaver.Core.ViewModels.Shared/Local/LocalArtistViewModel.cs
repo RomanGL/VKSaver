@@ -1,20 +1,24 @@
-﻿using System;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Mvvm;
+using Prism.Commands;
+using Prism.Windows.Navigation;
+#else
+using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#endif
+
+using PropertyChanged;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using VKSaver.Core.Models.Database;
 using VKSaver.Core.Models.Player;
-using VKSaver.Core.Services.Interfaces;
-using PropertyChanged;
-using Microsoft.Practices.Prism.StoreApps;
-using System.Collections.ObjectModel;
-using VKSaver.Core.ViewModels.Collections;
-using Windows.UI.Xaml.Navigation;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
+using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.ViewModels.Collections;
 using Windows.Storage;
 
 namespace VKSaver.Core.ViewModels

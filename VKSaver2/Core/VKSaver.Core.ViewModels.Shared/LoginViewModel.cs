@@ -1,4 +1,10 @@
-﻿using Microsoft.Practices.Prism.StoreApps;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Mvvm;
+using Prism.Commands;
+#else
+using Microsoft.Practices.Prism.StoreApps;
+#endif
+
 using ModernDev.InTouch;
 using System;
 using VKSaver.Core.Services.Interfaces;

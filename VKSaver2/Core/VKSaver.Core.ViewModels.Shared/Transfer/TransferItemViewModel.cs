@@ -1,4 +1,9 @@
-﻿using Microsoft.Practices.Prism.StoreApps;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Mvvm;
+#else
+using Microsoft.Practices.Prism.StoreApps;
+#endif
+
 using System;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;

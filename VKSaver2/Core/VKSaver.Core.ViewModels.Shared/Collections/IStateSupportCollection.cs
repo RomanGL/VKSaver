@@ -1,4 +1,9 @@
-﻿using Microsoft.Practices.Prism.StoreApps;
+﻿#if WINDOWS_UWP
+using Prism.Commands;
+#else
+using Microsoft.Practices.Prism.StoreApps;
+#endif
+
 using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.ViewModels.Collections

@@ -1,21 +1,23 @@
-﻿using Microsoft.Practices.Prism.StoreApps;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Mvvm;
+using Prism.Commands;
+using Prism.Windows.Navigation;
+#else
+using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#endif
+
 using ModernDev.InTouch;
 using Newtonsoft.Json;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
-using VKSaver.Core.ViewModels.Collections;
-using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Core.ViewModels

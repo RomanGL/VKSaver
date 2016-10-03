@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6bc8895b-5d84-4bd5-b053-413b8deb763e</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VKSaver.Core.Services.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppLoaderService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BetaService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\AudioEncryptedStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DownloadsExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\EncryptionHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\InTouchExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\LFAuthorization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\MediaStreamSourceWorker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\MusicFilesPathHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\TaskQueue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ToastAudioHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VKAuthorization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DatabaseUpdateStepType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DBUpdateProgressChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\LibraryDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\LibraryDatabaseCleaner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\SQLiteApiZ.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\SQLitePlatformZ.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\UploadsDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DialogsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DownloadsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DownloadsService2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DownloadsServiceHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GrooveMusicService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImagesCacheService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAppLoaderService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IBetaService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICultureProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDialogsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDispatcherWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDownloadsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDownloadsServiceHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGrooveMusicService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IImagesCacheService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInTouchWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILastFmLoginService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILibraryDatabaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILocService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMediaDecryptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMediaEncryptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMediaFilesProcessService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMetricaService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMusicCacheService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\INetworkInfoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlayerPlaylistService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlayerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPurchaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IServiceResolver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISuspendingService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITracksShuffleService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsPostprocessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsPreprocessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsServiceHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVKLoginService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LastFmLoginService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LibraryDatabaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaFilesProcessService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MetricaConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MusicCacheService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkInfoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerService\PlayerConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerService\PlayerPlaylistService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerService\PlayerStateChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerService\TrackChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerService\TracksShuffleService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceDebug.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceFull.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceRelease.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\StoreConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferOperationErrorEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferStatusComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferStatusExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TypedEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UploadsPostprocessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UploadsPreprocessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UploadsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UploadsServiceHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VKLoginService.cs" />
+  </ItemGroup>
+</Project>
