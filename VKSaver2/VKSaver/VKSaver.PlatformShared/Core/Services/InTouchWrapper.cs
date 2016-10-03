@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Common;
-using VKSaver.Controls;
 using Windows.UI.Xaml.Controls;
 
 namespace VKSaver.Core.Services
@@ -34,18 +33,18 @@ namespace VKSaver.Core.Services
 
             while (true)
             {
-                var enterCaptcha = new EnterCaptcha(errorResponse.Error.CaptchaImg);
-                if (await enterCaptcha.ShowAsync() == ContentDialogResult.Primary)
-                {
-                    string captcha = String.IsNullOrWhiteSpace(enterCaptcha.Captcha) ? "empty" : enterCaptcha.Captcha;
+                //var enterCaptcha = new EnterCaptcha(errorResponse.Error.CaptchaImg);
+                //if (await enterCaptcha.ShowAsync() == ContentDialogResult.Primary)
+                //{
+                //    string captcha = String.IsNullOrWhiteSpace(enterCaptcha.Captcha) ? "empty" : enterCaptcha.Captcha;
 
-                    response = await _inTouch.SendCaptcha<T>(captcha, response.Error);
-                    if (response.IsError && response.Error.Code == 14)
-                        return await ProcessCaptcha(response);
-                    else
-                        return response;
-                }
-                else
+                //    response = await _inTouch.SendCaptcha<T>(captcha, response.Error);
+                //    if (response.IsError && response.Error.Code == 14)
+                //        return await ProcessCaptcha(response);
+                //    else
+                //        return response;
+                //}
+                //else
                     return response;
             }
         }

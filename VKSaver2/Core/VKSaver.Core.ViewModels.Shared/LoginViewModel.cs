@@ -12,7 +12,7 @@ using Windows.System;
 
 namespace VKSaver.Core.ViewModels
 {
-    public sealed class LoginViewModel : ViewModelBase
+    public sealed partial class LoginViewModel : ViewModelBase
     {
         public LoginViewModel(IVKLoginService vkLoginService, IDialogsService dialogsService,
             ILocService locService)
@@ -23,6 +23,10 @@ namespace VKSaver.Core.ViewModels
 
             JoinCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/join")));
             RestoreCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/restore")));
+
+#if WINDOWS_UWP
+            LoginCommand = new DelegateCommand(() => LoginUwp());
+#endif
         }
 
         /// <summary>
@@ -33,6 +37,10 @@ namespace VKSaver.Core.ViewModels
         /// Команда, запускающая процесс восстановления пароля.
         /// </summary>
         public DelegateCommand RestoreCommand { get; private set; }
+
+#if WINDOWS_UWP
+        public DelegateCommand LoginCommand { get; private set; }
+#endif
 
         /// <summary>
         /// Возвращает URL для проведения авторизации.

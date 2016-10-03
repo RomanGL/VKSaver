@@ -48,7 +48,7 @@ namespace VKSaver.Controls
             });
         }
 
-        protected override async void OnContentChanged(object oldContent, object newContent)
+        protected override void OnContentChanged(object oldContent, object newContent)
         {
             var page = Content as Page;
             if (page != null && page.BottomAppBar != null && _appBarHided)

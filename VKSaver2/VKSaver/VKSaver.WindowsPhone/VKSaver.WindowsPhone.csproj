@@ -87,10 +87,6 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Label="MultilingualAppToolkit">
-    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
-    <MultilingualFallbackLanguage>ru-RU</MultilingualFallbackLanguage>
-  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\Album.jpg" />
@@ -165,15 +161,12 @@
     <Compile Include="Controls\TransferProgressIndicator.xaml.cs">
       <DependentUpon>TransferProgressIndicator.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WithLoaderFrame.cs" />
     <Compile Include="Converters\HalfSizeConverter.cs" />
     <Compile Include="Converters\NumberToUploadTypeConverter.cs" />
     <Compile Include="Converters\OneItemsListSizeConverter.cs" />
     <Compile Include="Converters\TwoItemsListSizeConverter.cs" />
     <Compile Include="Converters\UserContentGroupKeyToStringConverter.cs" />
-    <Compile Include="Core\Services\InTouchWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core\Services\PlayerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -399,7 +392,7 @@
       <Project>{72db73be-2845-4991-94c9-7342241fec3e}</Project>
       <Name>VKSaver.PlayerTask</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\VKSaver.Core.LinksExtractor\VKSaver.Core.LinksExtractor.csproj">
+    <ProjectReference Include="..\..\Core\VKSaver.Core.LinksExtractor\VKSaver.Core.LinksExtractor.csproj">
       <Project>{8a78fe74-730a-4d36-8c44-32df960ad957}</Project>
       <Name>VKSaver.Core.LinksExtractor</Name>
     </ProjectReference>
@@ -476,10 +469,6 @@
       <HintPath>..\..\packages\SQLite.Net-PCL.3.0.5\lib\portable-win81+wpa81\SQLite.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SQLite.Net.Async, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLite.Net.Async-PCL.3.0.5\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.Async.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="SQLite.Net.Platform.WinRT, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SQLite.Net-PCL.3.0.5\lib\portable-win81+wpa81\SQLite.Net.Platform.WinRT.dll</HintPath>
       <Private>True</Private>
@@ -490,6 +479,14 @@
     </Reference>
     <Reference Include="SQLitePCL.raw, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SQLitePCL.raw_basic.0.7.1\lib\wpa81\SQLitePCL.raw.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.core.1.0.1\lib\wpa81\SQLitePCLRaw.core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9c301db686d0bd12, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SQLitePCLRaw.provider.e_sqlite3.wpa81.1.0.1\lib\wpa81\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -600,6 +597,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <Import Project="..\VKSaver.Shared\VKSaver.Shared.projitems" Label="Shared" />
+  <Import Project="..\VKSaver.PlatformShared\VKSaver.PlatformShared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -608,10 +606,6 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
     <Error Condition="!Exists('..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
     <Error Condition="!Exists('..\..\packages\SQLitePCL.raw_basic.0.7.1\build\wpa81\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\SQLitePCL.raw_basic.0.7.1\build\wpa81\SQLitePCL.raw_basic.targets'))" />
-  </Target>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" />
-  <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" Label="MultilingualAppToolkit">
-    <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />

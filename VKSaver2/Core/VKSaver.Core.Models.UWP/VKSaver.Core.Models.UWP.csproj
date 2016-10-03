@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{000A719A-990E-43F4-81C9-D6BF83D091A0}</ProjectGuid>
+    <ProjectGuid>{65FE87D2-65B8-4643-A538-4E33A2D815DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VKSaver.Core.ViewModels</RootNamespace>
-    <AssemblyName>VKSaver.Core.ViewModels.UWP</AssemblyName>
+    <RootNamespace>VKSaver.Core.Models</RootNamespace>
+    <AssemblyName>VKSaver.Core.Models.UWP</AssemblyName>
     <DefaultLanguage>ru-RU</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
@@ -107,39 +107,15 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\VKSaver.Core.ViewModels.UWP.rd.xml" />
+    <EmbeddedResource Include="Properties\VKSaver.Core.Models.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ModernDev.InTouch">
       <HintPath>..\..\Libs\ModernDev.InTouch.dll</HintPath>
     </Reference>
-    <Reference Include="OneTeam.SDK.Core">
-      <HintPath>..\..\Libs\OneTeam.SDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="OneTeam.SDK.LastFm">
-      <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
-    </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VKSaver.Core.LinksExtractor.UWP\VKSaver.Core.LinksExtractor.UWP.csproj">
-      <Project>{df4da91e-2448-4e8a-a62c-28a9f3aa779d}</Project>
-      <Name>VKSaver.Core.LinksExtractor.UWP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VKSaver.Core.Models.UWP\VKSaver.Core.Models.UWP.csproj">
-      <Project>{65fe87d2-65b8-4643-a538-4e33a2d815de}</Project>
-      <Name>VKSaver.Core.Models.UWP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VKSaver.Core.Services.UWP\VKSaver.Core.Services.UWP.csproj">
-      <Project>{536fcc50-09b3-4a4b-b4f9-3f3ec845d09f}</Project>
-      <Name>VKSaver.Core.Services.UWP</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <Import Project="..\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems" Label="Shared" />
+  <Import Project="..\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

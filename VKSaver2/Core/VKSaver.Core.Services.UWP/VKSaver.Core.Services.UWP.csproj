@@ -111,12 +111,6 @@
     <EmbeddedResource Include="Properties\VKSaver.Core.Services.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
-      <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
-      <Name>VKSaver.Core.Models</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="ModernDev.InTouch">
       <HintPath>..\..\Libs\ModernDev.InTouch.dll</HintPath>
     </Reference>
@@ -126,6 +120,12 @@
     <Reference Include="OneTeam.SDK.LastFm">
       <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VKSaver.Core.Models.UWP\VKSaver.Core.Models.UWP.csproj">
+      <Project>{65fe87d2-65b8-4643-a538-4e33a2d815de}</Project>
+      <Name>VKSaver.Core.Models.UWP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

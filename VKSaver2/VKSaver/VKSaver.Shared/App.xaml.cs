@@ -271,9 +271,7 @@ namespace VKSaver
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
-            }
-
-            var logService = _container.Resolve<ILogService>();
+            }            
         }
 
         protected override async Task OnFileActivatedAsync(FileActivatedEventArgs args)

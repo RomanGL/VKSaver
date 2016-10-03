@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8660fc13-44d7-4838-ae8b-b866e87e4ad2</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VKSaver</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\StoryboardServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagePlaceholder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MoreStatesOptionButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerBackground.xaml.cs">
+      <DependentUpon>PlayerBackground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerShapesType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\TextImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\WithLoaderFrame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Services\InTouchWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Services\MetricaService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Services\PlayerService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\be\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ru\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\uk\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.Shared.be.xlf" />
+    <None Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.Shared.de.xlf" />
+    <None Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.Shared.en.xlf" />
+    <None Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.Shared.ru.xlf" />
+    <None Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.Shared.uk.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Common.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

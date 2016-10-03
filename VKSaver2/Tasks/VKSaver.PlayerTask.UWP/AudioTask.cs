@@ -36,7 +36,7 @@ namespace VKSaver.PlayerTask
 
             await _manager.UpdateLastFm();
 
-            _controls = SystemMediaTransportControls.GetForCurrentView();
+            _controls = BackgroundMediaPlayer.Current.SystemMediaTransportControls;
             _controls.ButtonPressed += Controls_ButtonPressed;
             _player.CurrentStateChanged += Player_CurrentStateChanged;
             _manager.TrackChanged += Manager_TrackChanged;

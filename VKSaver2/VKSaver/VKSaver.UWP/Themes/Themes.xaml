@@ -1,0 +1,78 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="MenuPanelBackgroundThemeBrush"
+                             Color="#FF171717" />
+            <SolidColorBrush x:Key="MenuDimmingBackgroundThemeBrush"
+                             Color="#7F000000" />
+            <SolidColorBrush x:Key="PageHeaderBackgroundThemeBrush"
+                             Color="#FF171717" />
+            <SolidColorBrush x:Key="PageHeaderOpacityBackgroundThemeBrush"
+                             Color="#99171717" />
+            <SolidColorBrush x:Key="PageBackgroundThemeBrush"
+                             Color="Black" />
+
+            <SolidColorBrush x:Key="ListViewFirstItemBackgroundThemeBrush"
+                             Color="Black" />
+            <SolidColorBrush x:Key="ListViewSecondItemBackgroundThemeBrush"
+                             Color="#FF1A1A1A" />
+
+            <SolidColorBrush x:Key="TitleBarBackgroundThemeBrush"
+                             Color="#FF171717" />
+            <SolidColorBrush x:Key="TitleBarForegroundThemeBrush"
+                             Color="{StaticResource AccentColor}" />
+            <SolidColorBrush x:Key="TitleBarInactiveForegroundThemeBrush"
+                             Color="#FF464646" />
+
+            <SolidColorBrush x:Key="TitleBarButtonBackgroundThemeBrush"
+                             Color="#FF171717" />
+            <SolidColorBrush x:Key="TitleBarButtonForegroundThemeBrush"
+                             Color="{StaticResource AccentColor}" />
+            <SolidColorBrush x:Key="TitleBarButtonHoverBackgroundThemeBrush"
+                             Color="#FF232323" />
+            <SolidColorBrush x:Key="TitleBarButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AccentColor}" />
+            <SolidColorBrush x:Key="TitleBarButtonPressedForegroundThemeBrush"
+                             Color="White" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="MenuPanelBackgroundThemeBrush"
+                             Color="#FFF2F2F2" />
+            <SolidColorBrush x:Key="MenuDimmingBackgroundThemeBrush"
+                             Color="#7FFFFFFF" />
+            <SolidColorBrush x:Key="PageHeaderBackgroundThemeBrush"
+                             Color="#FFF2F2F2" />
+            <SolidColorBrush x:Key="PageHeaderOpacityBackgroundThemeBrush"
+                             Color="#99F2F2F2" />
+            <SolidColorBrush x:Key="PageBackgroundThemeBrush"
+                             Color="White" />
+
+            <SolidColorBrush x:Key="ListViewFirstItemBackgroundThemeBrush"
+                             Color="White" />
+            <SolidColorBrush x:Key="ListViewSecondItemBackgroundThemeBrush"
+                             Color="#FFF2F2F2" />
+
+            <SolidColorBrush x:Key="TitleBarBackgroundThemeBrush"
+                             Color="#FFF2F2F2" />
+            <SolidColorBrush x:Key="TitleBarForegroundThemeBrush"
+                             Color="{StaticResource AccentColor}" />
+            <SolidColorBrush x:Key="TitleBarInactiveForegroundThemeBrush"
+                             Color="#FF969696" />
+
+            <SolidColorBrush x:Key="TitleBarButtonBackgroundThemeBrush"
+                             Color="#FFF2F2F2" />
+            <SolidColorBrush x:Key="TitleBarButtonForegroundThemeBrush"
+                             Color="{StaticResource AccentColor}" />
+            <SolidColorBrush x:Key="TitleBarButtonHoverBackgroundThemeBrush"
+                             Color="#FFD7D7D7" />
+            <SolidColorBrush x:Key="TitleBarButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AccentColor}" />
+            <SolidColorBrush x:Key="TitleBarButtonPressedForegroundThemeBrush"
+                             Color="White" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

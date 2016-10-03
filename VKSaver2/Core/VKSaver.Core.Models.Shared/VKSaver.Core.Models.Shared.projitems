@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>469617f5-aebb-4030-9011-b7b7658c32ee</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VKSaver.Core.Models.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\AppLanguage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\AudioEncryptedStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\AudioEncryptionMethod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ContentState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ContentStateExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\FileContentType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\FileContentTypeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\FileSize.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\IDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ILoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\InternetAccessType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\IServiceAuthorization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\IVKSaverFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\LanguageItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\NewsMediaItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\StorageFileSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudio.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudioFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudioFileSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudioTrackInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudioVKInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverAlbum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverArtist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverGenre.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\CommonExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Player\CachedTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Player\IPlayerTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Player\PlayerRepeatMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Player\PlayerState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Player\PlayerTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\CompletedUpload.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\DownloadedAudioInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\DownloadInitError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\DownloadInitErrorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\ICompletedUpload.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\IDownloadable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\IUpload.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\IUploadable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\SimpleDownloadable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\SimpleUploadable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\Upload.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\UploadInitError.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\UploadInitErrorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\UploadsPostprocessorResultType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transfer\UploadsPreprocessorResultType.cs" />
+  </ItemGroup>
+</Project>

@@ -12,8 +12,8 @@ namespace VKSaver.Core.Services
     public sealed class VKLoginService : IVKLoginService
     {
         public const string ACCESS_TOKEN_PARAMETER = "AccessToken";
-        private const string AUTHORIZATION_URL = "https://oauth.vk.com/authorize";
-        private const string REDIRECT_URL = "https://oauth.vk.com/blank.html";
+        public const string REDIRECT_URL = "https://oauth.vk.com/blank.html";
+        private const string AUTHORIZATION_URL = "https://oauth.vk.com/authorize";        
         private const string PARAMETERS_MASK = "{0}?client_id={1}&scope={2}&redirect_uri={3}&display=popup&v={4}&response_type=token";
         private const string SCOPE = "audio,friends,docs,groups,offline,status,video,wall";
         private const string AUTH_VERSION_PARAMETER = "AuthVersion";
