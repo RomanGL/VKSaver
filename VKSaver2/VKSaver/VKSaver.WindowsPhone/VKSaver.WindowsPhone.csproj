@@ -142,8 +142,6 @@
     <Compile Include="Common\ContentViewItemContainerStyleSelector.cs" />
     <Compile Include="Common\ControlExtensions.cs" />
     <Compile Include="Common\DataContextProxy.cs" />
-    <Compile Include="Common\PromoViewTemplateSelector.cs" />
-    <Compile Include="Common\PurchaseViewTemplateSelector.cs" />
     <Compile Include="Common\MultiSelector.cs" />
     <Compile Include="Common\VideoGroupTemplateSelector.cs" />
     <Compile Include="Controls\BusyControl.cs" />

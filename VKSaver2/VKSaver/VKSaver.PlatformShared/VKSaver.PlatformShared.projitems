@@ -9,6 +9,8 @@
     <Import_RootNamespace>VKSaver</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\PurchaseViewTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\PromoViewTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\StoryboardServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagePlaceholder.cs" />

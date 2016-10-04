@@ -13,7 +13,7 @@
             <SolidColorBrush x:Key="PageHeaderOpacityBackgroundThemeBrush"
                              Color="#99171717" />
             <SolidColorBrush x:Key="PageBackgroundThemeBrush"
-                             Color="Black" />
+                             Color="#FF171717" />
 
             <SolidColorBrush x:Key="ListViewFirstItemBackgroundThemeBrush"
                              Color="Black" />
@@ -37,6 +37,8 @@
                              Color="{StaticResource AccentColor}" />
             <SolidColorBrush x:Key="TitleBarButtonPressedForegroundThemeBrush"
                              Color="White" />
+            <SolidColorBrush x:Key="ButtonBackgroundBrush"
+                             Color="#7F000000" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
@@ -49,7 +51,7 @@
             <SolidColorBrush x:Key="PageHeaderOpacityBackgroundThemeBrush"
                              Color="#99F2F2F2" />
             <SolidColorBrush x:Key="PageBackgroundThemeBrush"
-                             Color="White" />
+                             Color="#FFF2F2F2" />
 
             <SolidColorBrush x:Key="ListViewFirstItemBackgroundThemeBrush"
                              Color="White" />
@@ -73,6 +75,8 @@
                              Color="{StaticResource AccentColor}" />
             <SolidColorBrush x:Key="TitleBarButtonPressedForegroundThemeBrush"
                              Color="White" />
+            <SolidColorBrush x:Key="ButtonBackgroundBrush"
+                             Color="#7FFFFFFF" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

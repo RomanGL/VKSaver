@@ -8,7 +8,7 @@
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <StackPanel VerticalAlignment="Center">
             <Path HorizontalAlignment="Center"
                   VerticalAlignment="Bottom"
@@ -40,7 +40,8 @@
                     VerticalAlignment="Stretch"
                     Command="{Binding LoginCommand}"
                     Margin="0,50,0,0"
-                    MinWidth="150" />
+                    MinWidth="150" 
+                    Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </mvvm:SessionStateAwarePage>

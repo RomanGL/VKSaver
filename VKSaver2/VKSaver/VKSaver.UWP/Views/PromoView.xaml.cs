@@ -1,4 +1,6 @@
 ﻿using Prism.Windows.Mvvm;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Views
@@ -22,12 +24,12 @@ namespace VKSaver.Views
             base.OnNavigatedFrom(e);
         }
 
-        //private void NextButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (rootPivot.SelectedIndex + 1 == rootPivot.Items.Count)
-        //        rootPivot.SelectedIndex = 0;
-        //    else
-        //        rootPivot.SelectedIndex++;
-        //}
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (rootFlipView.SelectedIndex + 1 == rootFlipView.Items.Count)
+                rootFlipView.SelectedIndex = 0;
+            else
+                rootFlipView.SelectedIndex++;
+        }
     }
 }

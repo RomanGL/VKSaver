@@ -148,9 +148,9 @@ namespace VKSaver
             Container.RegisterType<IMediaFilesProcessService, MediaFilesProcessService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IUploadsServiceHelper, UploadsServiceHelper>(new ContainerControlledLifetimeManager());
 
-            vkLoginService.UserLogin += (s, e) =>
+            vkLoginService.UserLogin += async (s, e) =>
             {
-                //if (await TryOpenFirstStartView() == false)
+                if (await TryOpenFirstStartView() == false)
                     NavigationService.Navigate("MainView", null);
             };
             vkLoginService.UserLogout += (s, e) =>
@@ -318,7 +318,7 @@ namespace VKSaver
 
         private async void ActivateMetrica()
         {
-            await Task.Run(() => YandexMetrica.Activate(AppConstants.YANDEX_METRICA_API_KEY));
+            //await Task.Run(() => YandexMetrica.Activate(AppConstants.YANDEX_METRICA_API_KEY));
         }
 
         private Type GetViewModelType(Type viewType)

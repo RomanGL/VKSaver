@@ -1,0 +1,117 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:VKSaver.Controls">
+
+    <Style TargetType="controls:WithLoaderFrame">
+        <Setter Property="ContentTransitions">
+            <Setter.Value>
+                <TransitionCollection>
+                    <NavigationThemeTransition />
+                </TransitionCollection>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:WithLoaderFrame">
+                    <Grid Background="{ThemeResource PageBackgroundThemeBrush}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="LoaderStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Showed"
+                                                      GeneratedDuration="0"
+                                                      To="Normal">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.5"
+                                                             Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                             Storyboard.TargetName="LoaderGrid" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ProgressRing.IsActive)"
+                                                                           Storyboard.TargetName="LoaderProgress">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <x:Boolean>True</x:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.517">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <x:Boolean>False</x:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                           Storyboard.TargetName="LoaderGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.517">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Showed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                                       Storyboard.TargetName="LoaderGrid">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="LoaderGrid">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ProgressRing.IsActive)"
+                                                                       Storyboard.TargetName="LoaderProgress">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <x:Boolean>True</x:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}" />
+
+                        <Grid Background="{ThemeResource ContentDialogDimmingThemeBrush}"
+                              Visibility="Collapsed"
+                              Opacity="0"
+                              x:Name="LoaderGrid">
+                            <StackPanel VerticalAlignment="Center"
+                                        Margin="19">
+                                <ProgressRing IsActive="False"
+                                              HorizontalAlignment="Center"
+                                              Foreground="{StaticResource AccentBrush}"
+                                              Background="Transparent"
+                                              Width="80"
+                                              Height="80"
+                                              x:Name="LoaderProgress" />
+                                <TextBlock Text="{TemplateBinding LoaderText}"
+                                           Style="{StaticResource BaseTextBlockStyle}"
+                                           TextAlignment="Center"
+                                           OpticalMarginAlignment="None"
+                                           TextWrapping="WrapWholeWords"
+                                           x:Name="LoaderText" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
