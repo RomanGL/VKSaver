@@ -37,9 +37,8 @@
         </StackPanel>
 
         <ScrollViewer Grid.Row="1"
-                      x:Name="ContentRoot"
-                      Margin="19,0">
-            <StackPanel Margin="0,0,0,40">
+                      x:Name="ContentRoot">
+            <StackPanel Margin="19,0,19,40">
                 <TextBlock Text="Авторизация в сервисах"
                            Foreground="{ThemeResource TitleBrush}"
                            x:Uid="SettingsView_ServicesAuthorizations_Title"
@@ -86,6 +85,17 @@
                         x:Uid="SettingsView_UpdateDatabaseButton"
                         Style="{StaticResource ButtonStyle}"
                         Command="{Binding UpdateDatabaseCommand, Mode=OneTime}"
+                        Margin="0,10,0,0" />
+
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                           x:Uid="SetingsView_ExtractMp3FromVksm_Text"
+                           Margin="0,10,0,0">
+                    Если вы хотите извлечь MP3 из всех кэшированных VKSM-файлов, нажмите кнопку ниже.
+                </TextBlock>
+                <Button Content="извлечь"
+                        x:Uid="SetingsView_ExtractMp3FromVksmButton"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding ExtractMp3FromVksmCommand, Mode=OneTime}"
                         Margin="0,10,0,0" />
 
                 <TextBlock Text="Уведомления"

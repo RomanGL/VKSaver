@@ -7,9 +7,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using VKSaver.Core.Models.Common;
+using VKSaver.Core.Models.Database;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
+using VKSaver.Core.Services.Database;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Media.Playback;
 using Windows.Storage;
@@ -34,6 +37,8 @@ namespace VKSaver.PlayerTask
             _playerPlaylistService = playerPlaylistService;
             _logService = logService;
             _musicCasheService = musicCacheService;
+
+            _database = new LibraryDatabase();
 
             _player.AutoPlay = false;
             _player.MediaOpened += Player_MediaOpened;
@@ -66,6 +71,8 @@ namespace VKSaver.PlayerTask
 
         public async Task Update()
         {
+            await _database.Initialize();
+
             IEnumerable<IPlayerTrack> tracks = null;
             if (_isShuffleMode)
                 tracks = await _playerPlaylistService.ReadShuffledPlaylist();
@@ -148,7 +155,6 @@ namespace VKSaver.PlayerTask
         {
             if (!await HasTracks())
             {
-                _logService.LogText("PlaybackManager has empty tracks list. Cant play next track.");
                 return;
             }
 
@@ -162,7 +168,6 @@ namespace VKSaver.PlayerTask
         {
             if (!await HasTracks())
             {
-                _logService.LogText("PlaybackManager has empty tracks list. Cant play previous track.");
                 return;
             }
 
@@ -187,7 +192,6 @@ namespace VKSaver.PlayerTask
 
             if (!await HasTracks())
             {
-                _logService.LogText($"PlaybackManager has empty tracks list. Cant play from id \"{trackID}\".");
                 return;
             }
 
@@ -198,15 +202,28 @@ namespace VKSaver.PlayerTask
             CurrentTrackID = trackID;
 
             Debug.WriteLine($"Next track is: {track.Title}");
-
             TrackChanged?.Invoke(this, new ManagerTrackChangedEventArgs(CurrentTrack, CurrentTrackID));
 
             StorageFile file = await MusicFilesPathHelper.GetFileFromCapatibleName(track.Source);
+            bool skipMss = false;
 
-            if (track.VKInfo != null || (file != null && file.Path.EndsWith(".vksm")))
+            if (file == null)
+            {
+                string vkInfoKey = $"{track.VKInfo.OwnerID} {track.VKInfo.ID}";
+                var dbTrack = await _database.FindItem<VKSaverTrack>(t => t.VKInfoKey == vkInfoKey);
+
+                if (dbTrack != null)
+                {
+                    file = await MusicFilesPathHelper.GetFileFromCapatibleName(dbTrack.Source);
+                    if (file != null)
+                        skipMss = true;
+                }
+            }
+
+            if (!skipMss && (track.VKInfo != null || (file != null && file.Path.EndsWith(".vksm"))))
             {
                 var worker = new MediaStreamSourceWorker(CurrentTrack, _musicCasheService, file);
-                var cachedSource = await worker.GetSource();
+                var cachedSource = await worker.GetSource(); 
 
                 if (cachedSource != null)
                 {
@@ -307,6 +324,7 @@ namespace VKSaver.PlayerTask
 
         private IScrobbler _scrobbler;
         private ILastAuth _lastAuth;
+        private LibraryDatabase _database;
 
         private readonly SettingsService _settingsService;
         private readonly MediaPlayer _player;

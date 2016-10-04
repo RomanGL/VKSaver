@@ -1,111 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="ru-RU" target-language="en" original="VKSAVER.SHARED/STRINGS/RU-RU/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="ru-RU" target-language="en" original="VKSAVER.PLATFORMSHARED/STRINGS/RU-RU/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
     </header>
     <body>
-      <group id="VKSAVER.SHARED/STRINGS/RU-RU/RESOURCES.RESW" datatype="resx">
-        <trans-unit id="LoginView_Auth.Text" translate="yes" xml:space="preserve">
-          <source>Авторизация</source>
-          <target state="final">Authorization</target>
-        </trans-unit>
-        <trans-unit id="LoginView_JoinButton.Label" translate="yes" xml:space="preserve">
-          <source>зарегистрироваться</source>
-          <target state="final" state-qualifier="tm-suggestion">sign up</target>
-        </trans-unit>
-        <trans-unit id="LoginView_LoginButton.Content" translate="yes" xml:space="preserve">
-          <source>войти</source>
-          <target state="final">sign in</target>
-        </trans-unit>
-        <trans-unit id="LoginView_RestorePasswordButton.Label" translate="yes" xml:space="preserve">
-          <source>восстановить пароль</source>
-          <target state="translated">restore password</target>
-        </trans-unit>
-        <trans-unit id="MainView_Hub.Header" translate="yes" xml:space="preserve">
-          <source>вкачай</source>
-          <target state="final">vk saver</target>
-        </trans-unit>
-        <trans-unit id="MainView_HubSection_YourMusic.Header" translate="yes" xml:space="preserve">
-          <source>ВАША МУЗЫКА</source>
-          <target state="final">YOUR MUSIC</target>
-        </trans-unit>
-        <trans-unit id="MainView_HubSection_TopArtists.Header" translate="yes" xml:space="preserve">
-          <source>ЛУЧШИЕ ИСПОЛНИТЕЛИ</source>
-          <target state="final">BEST ARTISTS</target>
-        </trans-unit>
-        <trans-unit id="MainView_HubSection_Recommendations.Header" translate="yes" xml:space="preserve">
-          <source>РЕКОМЕНДУЕМ</source>
-          <target state="final">WE RECOMMEND</target>
-        </trans-unit>
-        <trans-unit id="MainView_HubSection_SeeAlso.Header" translate="yes" xml:space="preserve">
-          <source>СМОТРИТЕ ТАКЖЕ</source>
-          <target state="final" state-qualifier="mt-suggestion">SEE ALSO</target>
-        </trans-unit>
-        <trans-unit id="MainView_ShowMore.Text" translate="yes" xml:space="preserve">
-          <source>показать больше</source>
-          <target state="final" state-qualifier="tm-suggestion">show more</target>
-        </trans-unit>
-        <trans-unit id="MainView_AboutItem.Content" translate="yes" xml:space="preserve">
-          <source>о программе</source>
-          <target state="final">about</target>
-        </trans-unit>
-        <trans-unit id="MainView_DocsItem.Content" translate="yes" xml:space="preserve">
-          <source>документы</source>
-          <target state="final">documents</target>
-        </trans-unit>
-        <trans-unit id="MainView_FriendsItem.Content" translate="yes" xml:space="preserve">
-          <source>друзья</source>
-          <target state="final" state-qualifier="tm-suggestion">friends</target>
-        </trans-unit>
-        <trans-unit id="MainView_GroupsItem.Content" translate="yes" xml:space="preserve">
-          <source>сообщества</source>
-          <target state="final">communities</target>
-        </trans-unit>
-        <trans-unit id="MainView_MusicItem.Content" translate="yes" xml:space="preserve">
-          <source>музыка</source>
-          <target state="final" state-qualifier="tm-suggestion">music</target>
-        </trans-unit>
-        <trans-unit id="MainView_NewsItem.Content" translate="yes" xml:space="preserve">
-          <source>новости</source>
-          <target state="final" state-qualifier="tm-suggestion">news</target>
-        </trans-unit>
-        <trans-unit id="MainView_RecommendationsItem.Content" translate="yes" xml:space="preserve">
-          <source>рекомендации</source>
-          <target state="final" state-qualifier="tm-suggestion">recommendations</target>
-        </trans-unit>
-        <trans-unit id="MainView_SearchItem.Content" translate="yes" xml:space="preserve">
-          <source>поиск</source>
-          <target state="final">search</target>
-        </trans-unit>
-        <trans-unit id="MainView_SettingsItem.Content" translate="yes" xml:space="preserve">
-          <source>настройки</source>
-          <target state="final" state-qualifier="tm-suggestion">settings</target>
-        </trans-unit>
-        <trans-unit id="MainView_TopArtistsItem.Content" translate="yes" xml:space="preserve">
-          <source>топ исполнителей</source>
-          <target state="final">top artists</target>
-        </trans-unit>
-        <trans-unit id="MainView_TopTracksItem.Content" translate="yes" xml:space="preserve">
-          <source>топ треков</source>
-          <target state="final" state-qualifier="mt-suggestion">top tracks</target>
-        </trans-unit>
-        <trans-unit id="MainView_TransferManagerItem.Content" translate="yes" xml:space="preserve">
-          <source>менеджер загрузок</source>
-          <target state="final">transfer manager</target>
-        </trans-unit>
-        <trans-unit id="MainView_DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>кэшировать</source>
-          <target state="final" state-qualifier="mt-suggestion">cache</target>
-        </trans-unit>
-        <trans-unit id="MainView_ShowMoreItem.Content" translate="yes" xml:space="preserve">
-          <source>показать больше</source>
-          <target state="final" state-qualifier="tm-suggestion">show more</target>
-        </trans-unit>
-        <trans-unit id="AppName.Text" translate="yes" xml:space="preserve">
-          <source>ВКАЧАЙ</source>
-          <target state="final">VK SAVER</target>
-        </trans-unit>
+      <group id="VKSAVER.PLATFORMSHARED/STRINGS/RU-RU/RESOURCES.RESW" datatype="resx">
         <trans-unit id="AboutView_About.Text" translate="yes" xml:space="preserve">
           <source>о приложении</source>
           <target state="final">about</target>
@@ -117,18 +17,6 @@
         <trans-unit id="AboutView_Version.Text" translate="yes" xml:space="preserve">
           <source>Версия:</source>
           <target state="final">Version:</target>
-        </trans-unit>
-        <trans-unit id="MainView_YourMusicLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список ваших треков</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of your tracks</target>
-        </trans-unit>
-        <trans-unit id="MainView_YourMusicLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем список ваших треков...</source>
-          <target state="final">Loading the list of your tracks...</target>
-        </trans-unit>
-        <trans-unit id="MainView_YourMusicLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>В вашей коллекции не найдено ни одного трека</source>
-          <target state="final">No tracks found in your collection</target>
         </trans-unit>
         <trans-unit id="AccessDeniedView_AccessDenied.Text" translate="yes" xml:space="preserve">
           <source>Нет доступа</source>
@@ -142,37 +30,103 @@
 
 Go back to continue</target>
         </trans-unit>
-        <trans-unit id="MainView_VideosItem.Content" translate="yes" xml:space="preserve">
-          <source>видео</source>
-          <target state="final">videos</target>
+        <trans-unit id="AddToMyAudiosFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>в мои аудиозаписи</source>
+          <target state="final">to my audios</target>
         </trans-unit>
-        <trans-unit id="ErrorView_Error.Text" translate="yes" xml:space="preserve">
-          <source>Произошла ошибка</source>
-          <target state="final">An error occured</target>
+        <trans-unit id="AddToMyDocsFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>в мои документы</source>
+          <target state="final">to my documents</target>
         </trans-unit>
-        <trans-unit id="ErrorView_ErrorSorry.Text" translate="yes" xml:space="preserve">
-          <source>Мы очень сожалеем о случившемся
-
-Вернитесь назад, чтобы продолжить</source>
-          <target state="final">We are very sorry about what happened
-
-Go back to continue</target>
+        <trans-unit id="AddToMyVideosFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>в мои видеозаписи</source>
+          <target state="final">to my videos</target>
         </trans-unit>
-        <trans-unit id="ArtistInfoView_PivotSection_Albums.Header" translate="yes" xml:space="preserve">
-          <source>альбомы</source>
-          <target state="final">albums</target>
+        <trans-unit id="AlbumTracksLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить содержимое альбома</source>
+          <target state="final" state-qualifier="mt-suggestion">Failed to load the contents of the album</target>
         </trans-unit>
-        <trans-unit id="ArtistInfoView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
-          <source>подробнее</source>
-          <target state="final">details</target>
+        <trans-unit id="AlbumTracksLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список треков альбома...</source>
+          <target state="final">Loading a list of tracks in the album...</target>
         </trans-unit>
-        <trans-unit id="ArtistInfoView_PivotSection_Similar.Header" translate="yes" xml:space="preserve">
-          <source>похожие</source>
-          <target state="final">similar</target>
+        <trans-unit id="AlbumTracksLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В этом альбоме нет треков</source>
+          <target state="final">No tracks in this album</target>
         </trans-unit>
-        <trans-unit id="ArtistInfoView_SearchVKItem.Content" translate="yes" xml:space="preserve">
-          <source>найти ВКонтакте</source>
-          <target state="final">find in the VK</target>
+        <trans-unit id="AppBarButton_AddToMyAudios_Text" translate="yes" xml:space="preserve">
+          <source>в мои аудиозаписи</source>
+          <target state="final">to my audios</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_AddToMyDocs_Text" translate="yes" xml:space="preserve">
+          <source>в мои документы</source>
+          <target state="final">to my documents</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_AddToMyVideos_Text" translate="yes" xml:space="preserve">
+          <source>в мои видеозаписи</source>
+          <target state="final">to my videos</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Delete_Text" translate="yes" xml:space="preserve">
+          <source>удалить</source>
+          <target state="final">delete</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Download_Text" translate="yes" xml:space="preserve">
+          <source>загрузить</source>
+          <target state="translated">download</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Play_Text" translate="yes" xml:space="preserve">
+          <source>воспроизвести</source>
+          <target state="final" state-qualifier="tm-suggestion">play</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Refresh_Text" translate="yes" xml:space="preserve">
+          <source>обновить</source>
+          <target state="final" state-qualifier="tm-suggestion">refresh</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_SelectAll_Text" translate="yes" xml:space="preserve">
+          <source>выбрать все</source>
+          <target state="final" state-qualifier="tm-suggestion">select all</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Select_Text" translate="yes" xml:space="preserve">
+          <source>выбрать</source>
+          <target state="final" state-qualifier="tm-suggestion">select</target>
+        </trans-unit>
+        <trans-unit id="AppLoader_AddingItem" translate="yes" xml:space="preserve">
+          <source>Выполняется добавление {0}...</source>
+          <target state="final">Adding {0}...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например, "Выполняется добавление Imagine Dragons - Warriors..."</note>
+        </trans-unit>
+        <trans-unit id="AppLoader_CancelAllDownloads" translate="yes" xml:space="preserve">
+          <source>Отмена всех загрузок...</source>
+          <target state="final">Cancelling all downloads...</target>
+        </trans-unit>
+        <trans-unit id="AppLoader_DeletingItem" translate="yes" xml:space="preserve">
+          <source>Выполняется удаление {0}...</source>
+          <target state="final">Deleting {0}...</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например, "Выполняется удаление Photo0122.jpg..."</note>
+        </trans-unit>
+        <trans-unit id="AppLoader_Loading" translate="yes" xml:space="preserve">
+          <source>Загрузка...</source>
+          <target state="final">Loading...</target>
+        </trans-unit>
+        <trans-unit id="AppLoader_Preparing" translate="yes" xml:space="preserve">
+          <source>Подготовка...</source>
+          <target state="final" state-qualifier="tm-suggestion">Preparing...</target>
+        </trans-unit>
+        <trans-unit id="AppLoader_PreparingFilesToDownload" translate="yes" xml:space="preserve">
+          <source>Подготовка файлов для загрузки...</source>
+          <target state="final">Preparing files for download...</target>
+        </trans-unit>
+        <trans-unit id="AppName.Text" translate="yes" xml:space="preserve">
+          <source>ВКАЧАЙ</source>
+          <target state="final">VK SAVER</target>
+        </trans-unit>
+        <trans-unit id="AppNamePivot.Title" translate="yes" xml:space="preserve">
+          <source>ВКАЧАЙ</source>
+          <target state="final">VK SAVER</target>
+        </trans-unit>
+        <trans-unit id="AppNameText" translate="yes" xml:space="preserve">
+          <source>ВКачай</source>
+          <target state="final">VK Saver</target>
         </trans-unit>
         <trans-unit id="ArtistInfoView_AlbumsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список альбомов исполнителя</source>
@@ -198,6 +152,22 @@ Go back to continue</target>
           <source>Об этом исполнителе нет никакой информации</source>
           <target state="final">No information about this artist</target>
         </trans-unit>
+        <trans-unit id="ArtistInfoView_PivotSection_Albums.Header" translate="yes" xml:space="preserve">
+          <source>альбомы</source>
+          <target state="final">albums</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
+          <source>подробнее</source>
+          <target state="final">details</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_PivotSection_Similar.Header" translate="yes" xml:space="preserve">
+          <source>похожие</source>
+          <target state="final">similar</target>
+        </trans-unit>
+        <trans-unit id="ArtistInfoView_SearchVKItem.Content" translate="yes" xml:space="preserve">
+          <source>найти ВКонтакте</source>
+          <target state="final">find in the VK</target>
+        </trans-unit>
         <trans-unit id="ArtistInfoView_SimilarLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось найти похожих исполнителей</source>
           <target state="final" state-qualifier="mt-suggestion">Could not find similar artists</target>
@@ -210,386 +180,145 @@ Go back to continue</target>
           <source>У этого исполнителя уникальные композиции!</source>
           <target state="final">This artist has unique tracks</target>
         </trans-unit>
-        <trans-unit id="NoTracksView_NoTracks.Text" translate="yes" xml:space="preserve">
-          <source>Сейчас не воспроизводится ни одного трека
-
-Вернитесь назад, чтобы продолжить</source>
-          <target state="final">No tracks are being played at the moment
-
-Go back to continue</target>
-        </trans-unit>
-        <trans-unit id="NoTracksView_Silence.Text" translate="yes" xml:space="preserve">
-          <source>Тишина...</source>
-          <target state="final">Silence...</target>
-        </trans-unit>
-        <trans-unit id="PlayerView_PivotSection_NowPlaying.Header" translate="yes" xml:space="preserve">
-          <source>сейчас играет</source>
-          <target state="final" state-qualifier="mt-suggestion">now playing</target>
-        </trans-unit>
-        <trans-unit id="PlayerView_PivotSection_Playlist.Header" translate="yes" xml:space="preserve">
-          <source>плейлист</source>
-          <target state="final" state-qualifier="mt-suggestion">playlist</target>
-        </trans-unit>
-        <trans-unit id="AppNamePivot.Title" translate="yes" xml:space="preserve">
-          <source>ВКАЧАЙ</source>
-          <target state="final">VK SAVER</target>
-        </trans-unit>
-        <trans-unit id="RecommendedView_Title.Text" translate="yes" xml:space="preserve">
-          <source>рекомендуем</source>
-          <target state="final">we recommend</target>
-        </trans-unit>
-        <trans-unit id="DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>кэшировать</source>
-          <target state="final" state-qualifier="mt-suggestion">cache</target>
-        </trans-unit>
-        <trans-unit id="RecommendationsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить рекомендации</source>
-          <target state="final" state-qualifier="mt-suggestion">Could not load recommendations</target>
-        </trans-unit>
-        <trans-unit id="RecommendationsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Изучаем ваши музыкальные предпочтения...</source>
-          <target state="final">Learning your musical preferences...</target>
-        </trans-unit>
-        <trans-unit id="RecommendationsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Мы не можем вам ничего порекомендовать</source>
-          <target state="final" state-qualifier="mt-suggestion">We can't recommend anything for you</target>
-        </trans-unit>
-        <trans-unit id="TrackInfoView_PlayButton.Content" translate="yes" xml:space="preserve">
-          <source>воспроизвести</source>
-          <target state="final" state-qualifier="tm-suggestion">play</target>
-        </trans-unit>
-        <trans-unit id="TrackInfoView_Title.Text" translate="yes" xml:space="preserve">
-          <source>подробнее</source>
-          <target state="translated">details</target>
-        </trans-unit>
-        <trans-unit id="TrackLyricView_LyricsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить текст аудиозаписи</source>
-          <target state="final">Failed to load lyrics</target>
-        </trans-unit>
-        <trans-unit id="TrackLyricView_LyricsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Выполняем поиск текста аудиозаписи...</source>
-          <target state="final">Performing a lyrics search...</target>
-        </trans-unit>
-        <trans-unit id="TrackLyricView_LyricsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>У этой аудиозаписи нет текста</source>
-          <target state="final">This audio has no lyrics</target>
-        </trans-unit>
-        <trans-unit id="TopTracksView_Title.Text" translate="yes" xml:space="preserve">
-          <source>лучшие треки</source>
-          <target state="final" state-qualifier="mt-suggestion">best tracks</target>
-        </trans-unit>
-        <trans-unit id="TopTracksView_TrackPlaybacksCount.Text" translate="yes" xml:space="preserve">
-          <source>воспроизведений</source>
-          <target state="translated">playbacks</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Например, "15 воспроизведений"</note>
-        </trans-unit>
-        <trans-unit id="TopTracksView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список лучших треков</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of best tracks</target>
-        </trans-unit>
-        <trans-unit id="TopTracksView_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем список лучших треков...</source>
-          <target state="final">Loading the list of best tracks...</target>
-        </trans-unit>
-        <trans-unit id="TopTracksView_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Нет ни одного лучшего трека</source>
-          <target state="final">There are no best tracks</target>
-        </trans-unit>
-        <trans-unit id="TopArtistsView_Title.Text" translate="yes" xml:space="preserve">
-          <source>лучшие исполнители</source>
-          <target state="final">best artists</target>
-        </trans-unit>
-        <trans-unit id="TopArtistItem_ListenersCount.Text" translate="yes" xml:space="preserve">
-          <source>слушателей</source>
-          <target state="final" state-qualifier="mt-suggestion">listeners</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Например, "12 слушателей"</note>
-        </trans-unit>
-        <trans-unit id="TopArtistsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список лучших исполнителей</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of top performers</target>
-        </trans-unit>
-        <trans-unit id="TopArtistsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Выбираем лучших исполнителей...</source>
-          <target state="translated">Choosing the best artists...</target>
-        </trans-unit>
-        <trans-unit id="TopArtistsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Похоже, нет ни одного лучшего исполнителя</source>
-          <target state="final">It looks like there are no best artists</target>
-        </trans-unit>
         <trans-unit id="DeleteFlyoutItem.Text" translate="yes" xml:space="preserve">
           <source>удалить</source>
           <target state="final">delete</target>
         </trans-unit>
-        <trans-unit id="AlbumTracksLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить содержимое альбома</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to load the contents of the album</target>
+        <trans-unit id="DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>загрузить</source>
+          <target state="translated">download</target>
         </trans-unit>
-        <trans-unit id="AlbumTracksLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем список треков альбома...</source>
-          <target state="final">Loading a list of tracks in the album...</target>
+        <trans-unit id="ErrorView_Error.Text" translate="yes" xml:space="preserve">
+          <source>Произошла ошибка</source>
+          <target state="final">An error occured</target>
         </trans-unit>
-        <trans-unit id="AlbumTracksLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>В этом альбоме нет треков</source>
-          <target state="final">No tracks in this album</target>
+        <trans-unit id="ErrorView_ErrorSorry.Text" translate="yes" xml:space="preserve">
+          <source>Мы очень сожалеем о случившемся
+
+Вернитесь назад, чтобы продолжить</source>
+          <target state="final">We are very sorry about what happened
+
+Go back to continue</target>
         </trans-unit>
-        <trans-unit id="UserCommView_UserOnline.Text" translate="yes" xml:space="preserve">
-          <source>Онлайн</source>
-          <target state="final" state-qualifier="tm-suggestion">Online</target>
+        <trans-unit id="LoginView_Auth.Text" translate="yes" xml:space="preserve">
+          <source>Авторизация</source>
+          <target state="final">Authorization</target>
         </trans-unit>
-        <trans-unit id="UserCommView_PivotSection_FriendLists.Header" translate="yes" xml:space="preserve">
-          <source>списки</source>
-          <target state="final">friends lists</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">списки друзей</note>
+        <trans-unit id="LoginView_JoinButton.Label" translate="yes" xml:space="preserve">
+          <source>зарегистрироваться</source>
+          <target state="final" state-qualifier="tm-suggestion">sign up</target>
         </trans-unit>
-        <trans-unit id="UserCommView_PivotSection_Friends.Header" translate="yes" xml:space="preserve">
-          <source>друзья</source>
-          <target state="final" state-qualifier="tm-suggestion">friends</target>
+        <trans-unit id="LoginView_LoginButton.Content" translate="yes" xml:space="preserve">
+          <source>войти</source>
+          <target state="final">sign in</target>
         </trans-unit>
-        <trans-unit id="UserCommView_PivotSection_Groups.Header" translate="yes" xml:space="preserve">
-          <source>сообщества</source>
-          <target state="final">communities</target>
+        <trans-unit id="LoginView_RestorePasswordButton.Label" translate="yes" xml:space="preserve">
+          <source>восстановить пароль</source>
+          <target state="translated">restore password</target>
         </trans-unit>
-        <trans-unit id="UserCommView_FriendListsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить списки друзей</source>
-          <target state="final" state-qualifier="mt-suggestion">Could not load the friends lists</target>
+        <trans-unit id="MainView_AboutItem.Content" translate="yes" xml:space="preserve">
+          <source>о программе</source>
+          <target state="final">about</target>
         </trans-unit>
-        <trans-unit id="UserCommView_FriendListsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем списки друзей...</source>
-          <target state="final">Loading the friends lists...</target>
-        </trans-unit>
-        <trans-unit id="UserCommView_FriendListsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Списки друзей отсутствуют либо доступ к ним закрыт</source>
-          <target state="final">No friends lists or access is denied</target>
-        </trans-unit>
-        <trans-unit id="UserCommView_FriendsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список друзей</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of friends</target>
-        </trans-unit>
-        <trans-unit id="UserCommView_FriendsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем информацию о друзьях...</source>
-          <target state="final">Loading information about friends...</target>
-        </trans-unit>
-        <trans-unit id="UserCommView_FriendsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Друзья отсутствуют либо доступ к ним закрыт</source>
-          <target state="final">There are no friends or access is denied</target>
-        </trans-unit>
-        <trans-unit id="UserCommView_GroupsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список сообществ</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of communities</target>
-        </trans-unit>
-        <trans-unit id="UserCommView_GroupsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем информацию о сообществах...</source>
-          <target state="final">Loading information about communities...</target>
-        </trans-unit>
-        <trans-unit id="UserCommView_GroupsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Сообщества отсутствуют либо доступ к ним закрыт</source>
-          <target state="final">There are no communities or access is denied</target>
-        </trans-unit>
-        <trans-unit id="AddToMyVideosFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>в мои видеозаписи</source>
-          <target state="final">to my videos</target>
-        </trans-unit>
-        <trans-unit id="AddToMyDocsFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>в мои документы</source>
-          <target state="final">to my documents</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_AudiosLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список аудиозаписей</source>
-          <target state="translated">Failed to load the list of audios</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_AudiosLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем список аудиозаписей...</source>
-          <target state="translated">Loading a list of audios...</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_AudiosLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Аудиозаписи отсутствуют либо доступ к ним закрыт</source>
-          <target state="final">No audios or access is denied</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_DocsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список документов</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of documents</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_DocsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем список документов...</source>
-          <target state="final">Loading the list of documents...</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_DocsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Документы отсутствуют либо доступ к ним закрыт</source>
-          <target state="final">There are no documents or access is denied</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_VideosLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось загрузить список видеозаписей</source>
-          <target state="final" state-qualifier="mt-suggestion">Unable to retrieve a list of videos</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_VideosLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Загружаем список видеозаписей...</source>
-          <target state="final">Loading videos list...</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_VideosLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Видеозаписи отсутствуют либо доступ к ним закрыт</source>
-          <target state="final">No videos or access is denied</target>
-        </trans-unit>
-        <trans-unit id="SettingsView_Title.Text" translate="yes" xml:space="preserve">
-          <source>настройки</source>
-          <target state="final" state-qualifier="tm-suggestion">settings</target>
-        </trans-unit>
-        <trans-unit id="PurchaseView_BuyMonthlyButton.Content" translate="yes" xml:space="preserve">
-          <source>купить на месяц</source>
-          <target state="final">buy for a month</target>
-        </trans-unit>
-        <trans-unit id="PurchaseView_BuyNowButton.Content" translate="yes" xml:space="preserve">
-          <source>купить сейчас</source>
-          <target state="final" state-qualifier="mt-suggestion">buy now</target>
-        </trans-unit>
-        <trans-unit id="PurchaseView_BuyPermanentButton.Content" translate="yes" xml:space="preserve">
-          <source>купить навсегда</source>
-          <target state="final" state-qualifier="mt-suggestion">buy forever</target>
-        </trans-unit>
-        <trans-unit id="PurchaseView_NextButton.Content" translate="yes" xml:space="preserve">
-          <source>далее</source>
-          <target state="final" state-qualifier="tm-suggestion">next</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_PivotSection_Docs.Header" translate="yes" xml:space="preserve">
+        <trans-unit id="MainView_DocsItem.Content" translate="yes" xml:space="preserve">
           <source>документы</source>
           <target state="final">documents</target>
         </trans-unit>
-        <trans-unit id="UserContentView_PivotSection_Music.Header" translate="yes" xml:space="preserve">
+        <trans-unit id="MainView_DownloadFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>загрузить</source>
+          <target state="translated">download</target>
+        </trans-unit>
+        <trans-unit id="MainView_FriendsItem.Content" translate="yes" xml:space="preserve">
+          <source>друзья</source>
+          <target state="final" state-qualifier="tm-suggestion">friends</target>
+        </trans-unit>
+        <trans-unit id="MainView_GroupsItem.Content" translate="yes" xml:space="preserve">
+          <source>сообщества</source>
+          <target state="final">communities</target>
+        </trans-unit>
+        <trans-unit id="MainView_Hub.Header" translate="yes" xml:space="preserve">
+          <source>вкачай</source>
+          <target state="final">vk saver</target>
+        </trans-unit>
+        <trans-unit id="MainView_HubSection_Recommendations.Header" translate="yes" xml:space="preserve">
+          <source>РЕКОМЕНДУЕМ</source>
+          <target state="final">WE RECOMMEND</target>
+        </trans-unit>
+        <trans-unit id="MainView_HubSection_SeeAlso.Header" translate="yes" xml:space="preserve">
+          <source>СМОТРИТЕ ТАКЖЕ</source>
+          <target state="final" state-qualifier="mt-suggestion">SEE ALSO</target>
+        </trans-unit>
+        <trans-unit id="MainView_HubSection_TopArtists.Header" translate="yes" xml:space="preserve">
+          <source>ЛУЧШИЕ ИСПОЛНИТЕЛИ</source>
+          <target state="final">BEST ARTISTS</target>
+        </trans-unit>
+        <trans-unit id="MainView_HubSection_YourMusic.Header" translate="yes" xml:space="preserve">
+          <source>ВАША МУЗЫКА</source>
+          <target state="final">YOUR MUSIC</target>
+        </trans-unit>
+        <trans-unit id="MainView_MusicItem.Content" translate="yes" xml:space="preserve">
           <source>музыка</source>
           <target state="final" state-qualifier="tm-suggestion">music</target>
         </trans-unit>
-        <trans-unit id="UserContentView_PivotSection_Videos.Header" translate="yes" xml:space="preserve">
+        <trans-unit id="MainView_NewsItem.Content" translate="yes" xml:space="preserve">
+          <source>новости</source>
+          <target state="final" state-qualifier="tm-suggestion">news</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_Player.Label" translate="yes" xml:space="preserve">
+          <source>проигрыватель</source>
+          <target state="final" state-qualifier="tm-suggestion">player</target>
+        </trans-unit>
+        <trans-unit id="MainView_RecommendationsItem.Content" translate="yes" xml:space="preserve">
+          <source>рекомендации</source>
+          <target state="final" state-qualifier="tm-suggestion">recommendations</target>
+        </trans-unit>
+        <trans-unit id="MainView_SearchItem.Content" translate="yes" xml:space="preserve">
+          <source>поиск</source>
+          <target state="final">search</target>
+        </trans-unit>
+        <trans-unit id="MainView_SettingsItem.Content" translate="yes" xml:space="preserve">
+          <source>настройки</source>
+          <target state="final" state-qualifier="tm-suggestion">settings</target>
+        </trans-unit>
+        <trans-unit id="MainView_ShowMore.Text" translate="yes" xml:space="preserve">
+          <source>показать больше</source>
+          <target state="final" state-qualifier="tm-suggestion">show more</target>
+        </trans-unit>
+        <trans-unit id="MainView_ShowMoreItem.Content" translate="yes" xml:space="preserve">
+          <source>показать больше</source>
+          <target state="final" state-qualifier="tm-suggestion">show more</target>
+        </trans-unit>
+        <trans-unit id="MainView_TopArtistsItem.Content" translate="yes" xml:space="preserve">
+          <source>топ исполнителей</source>
+          <target state="final">top artists</target>
+        </trans-unit>
+        <trans-unit id="MainView_TopTracksItem.Content" translate="yes" xml:space="preserve">
+          <source>топ треков</source>
+          <target state="final" state-qualifier="mt-suggestion">top tracks</target>
+        </trans-unit>
+        <trans-unit id="AppBarButton_TransferManager.Label" translate="yes" xml:space="preserve">
+          <source>менеджер загрузок</source>
+          <target state="final">transfer manager</target>
+        </trans-unit>
+        <trans-unit id="MainView_TransferManagerItem.Content" translate="yes" xml:space="preserve">
+          <source>менеджер загрузок</source>
+          <target state="final">transfer manager</target>
+        </trans-unit>
+        <trans-unit id="MainView_VideosItem.Content" translate="yes" xml:space="preserve">
           <source>видео</source>
-          <target state="final">video</target>
+          <target state="final">videos</target>
         </trans-unit>
-        <trans-unit id="AddToMyAudiosFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>в мои аудиозаписи</source>
-          <target state="final">to my audios</target>
+        <trans-unit id="MainView_YourMusicLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список ваших треков</source>
+          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of your tracks</target>
         </trans-unit>
-        <trans-unit id="TransferView_CancelAllDownloadsButton.Label" translate="yes" xml:space="preserve">
-          <source>отменить все загрузки</source>
-          <target state="final" state-qualifier="mt-suggestion">cancel all downloads</target>
+        <trans-unit id="MainView_YourMusicLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список ваших треков...</source>
+          <target state="final">Loading the list of your tracks...</target>
         </trans-unit>
-        <trans-unit id="TransferView_PivotSection_History.Header" translate="yes" xml:space="preserve">
-          <source>журнал</source>
-          <target state="final" state-qualifier="tm-suggestion">history</target>
-        </trans-unit>
-        <trans-unit id="TransferView_PivotSection_Uploads.Header" translate="yes" xml:space="preserve">
-          <source>отправки</source>
-          <target state="final">uploads</target>
-        </trans-unit>
-        <trans-unit id="TransferView_PivotSection_Downloads.Header" translate="yes" xml:space="preserve">
-          <source>загрузки</source>
-          <target state="final" state-qualifier="tm-suggestion">downloads</target>
-        </trans-unit>
-        <trans-unit id="TransferView_DownloadsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось получить список текущих загрузок</source>
-          <target state="final" state-qualifier="mt-suggestion">Failed to get the list of current downloads</target>
-        </trans-unit>
-        <trans-unit id="TransferView_DownloadsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Получение списка текущих загрузок...</source>
-          <target state="final">Getting a list of current downloads...</target>
-        </trans-unit>
-        <trans-unit id="TransferView_DownloadsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Сейчас не выполняется никаких загрузок</source>
-          <target state="final">No downloads are in progress</target>
-        </trans-unit>
-        <trans-unit id="TransferView_HistoryLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось получить журнал загрузок</source>
-          <target state="final" state-qualifier="mt-suggestion">Could not get the download history</target>
-        </trans-unit>
-        <trans-unit id="TransferView_HistoryLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Получение журнала загрузок...</source>
-          <target state="final">Receiving downloads list...</target>
-        </trans-unit>
-        <trans-unit id="TransferView_HistoryLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Журнал загрузок пока не поддерживается</source>
-          <target state="final">Your download history is not supported yet</target>
-        </trans-unit>
-        <trans-unit id="TransferView_UploadsLoader.ErrorText" translate="yes" xml:space="preserve">
-          <source>Не удалось получить список текущих отправок</source>
-          <target state="final">Failed to get the list of current uploads</target>
-        </trans-unit>
-        <trans-unit id="TransferView_UploadsLoader.LoadingText" translate="yes" xml:space="preserve">
-          <source>Получение списка текущих отправок...</source>
-          <target state="final">Getting a list of current uploads...</target>
-        </trans-unit>
-        <trans-unit id="TransferView_CancelFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>отменить</source>
-          <target state="final">cancel</target>
-        </trans-unit>
-        <trans-unit id="TransferView_PauseFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>пауза</source>
-          <target state="final" state-qualifier="tm-suggestion">pause</target>
-        </trans-unit>
-        <trans-unit id="TransferView_ResumeFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>возобновить</source>
-          <target state="final">resume</target>
-        </trans-unit>
-        <trans-unit id="TransferView_UploadsLoader.NoDataText" translate="yes" xml:space="preserve">
-          <source>Сейчас не выполняется никаких отправок</source>
-          <target state="final">No uploads are in progress</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_AddToMyAudios_Text" translate="yes" xml:space="preserve">
-          <source>в мои аудиозаписи</source>
-          <target state="final">to my audios</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_AddToMyDocs_Text" translate="yes" xml:space="preserve">
-          <source>в мои документы</source>
-          <target state="final">to my documents</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_AddToMyVideos_Text" translate="yes" xml:space="preserve">
-          <source>в мои видеозаписи</source>
-          <target state="final">to my videos</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_Delete_Text" translate="yes" xml:space="preserve">
-          <source>удалить</source>
-          <target state="final">delete</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_Download_Text" translate="yes" xml:space="preserve">
-          <source>кэшировать</source>
-          <target state="final" state-qualifier="mt-suggestion">cache</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_Play_Text" translate="yes" xml:space="preserve">
-          <source>воспроизвести</source>
-          <target state="final" state-qualifier="tm-suggestion">play</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_Refresh_Text" translate="yes" xml:space="preserve">
-          <source>обновить</source>
-          <target state="final" state-qualifier="tm-suggestion">refresh</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_SelectAll_Text" translate="yes" xml:space="preserve">
-          <source>выбрать все</source>
-          <target state="final" state-qualifier="tm-suggestion">select all</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_Select_Text" translate="yes" xml:space="preserve">
-          <source>выбрать</source>
-          <target state="final" state-qualifier="tm-suggestion">select</target>
-        </trans-unit>
-        <trans-unit id="AppLoader_AddingItem" translate="yes" xml:space="preserve">
-          <source>Выполняется добавление {0}...</source>
-          <target state="final">Adding {0}...</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Например, "Выполняется добавление Imagine Dragons - Warriors..."</note>
-        </trans-unit>
-        <trans-unit id="AppLoader_DeletingItem" translate="yes" xml:space="preserve">
-          <source>Выполняется удаление {0}...</source>
-          <target state="final">Deleting {0}...</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Например, "Выполняется удаление Photo0122.jpg..."</note>
-        </trans-unit>
-        <trans-unit id="AppLoader_Loading" translate="yes" xml:space="preserve">
-          <source>Загрузка...</source>
-          <target state="final">Loading...</target>
-        </trans-unit>
-        <trans-unit id="AppLoader_Preparing" translate="yes" xml:space="preserve">
-          <source>Подготовка...</source>
-          <target state="final" state-qualifier="tm-suggestion">Preparing...</target>
-        </trans-unit>
-        <trans-unit id="AppLoader_PreparingFilesToDownload" translate="yes" xml:space="preserve">
-          <source>Подготовка файлов для загрузки...</source>
-          <target state="final">Preparing files for download...</target>
-        </trans-unit>
-        <trans-unit id="AppNameText" translate="yes" xml:space="preserve">
-          <source>ВКачай</source>
-          <target state="final">VK Saver</target>
+        <trans-unit id="MainView_YourMusicLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>В вашей коллекции не найдено ни одного трека</source>
+          <target state="final">No tracks found in your collection</target>
         </trans-unit>
         <trans-unit id="Message_AddSelectedError_Text" translate="yes" xml:space="preserve">
           <source>Не удалось добавить указанные элементы в вашу коллекцию. Повторите попытку позднее.</source>
@@ -623,6 +352,14 @@ Go back to continue</target>
           <source>Не удалось удалить аудиозапись</source>
           <target state="final">Failed to delete the audio</target>
         </trans-unit>
+        <trans-unit id="Message_CantFindLyrics_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось найти текст</source>
+          <target state="final">The lyrics could not be found</target>
+        </trans-unit>
+        <trans-unit id="Message_CantFindLyrics_Text" translate="yes" xml:space="preserve">
+          <source>Не удалось найти текст для данной аудиозаписи. Мы очень сожалеем.</source>
+          <target state="final">Could not find lyrics for this track. We are very sorry.</target>
+        </trans-unit>
         <trans-unit id="Message_DeleteSelectedError_Text" translate="yes" xml:space="preserve">
           <source>Не удалось удалить указанные элементы из вашей коллекции. Повторите попытку позднее.</source>
           <target state="final" state-qualifier="mt-suggestion">Failed to delete the specified items from your collection. Please try again later.</target>
@@ -646,50 +383,6 @@ Go back to continue</target>
         <trans-unit id="Message_DocDeleteError_Title" translate="yes" xml:space="preserve">
           <source>Не удалось удалить документ</source>
           <target state="final">Failed to delete the document</target>
-        </trans-unit>
-        <trans-unit id="Message_VideoAddError_Text" translate="yes" xml:space="preserve">
-          <source>При добавлении видеозаписи в коллекцию произошла ошибка. Повторите попытку позднее.</source>
-          <target state="final">An error occurred while adding a video to the collection. Please try again later.</target>
-        </trans-unit>
-        <trans-unit id="Message_VideoAddError_Title" translate="yes" xml:space="preserve">
-          <source>Не удалось добавить видеозапись</source>
-          <target state="translated">Failed to add video</target>
-        </trans-unit>
-        <trans-unit id="Message_VideoAlbumDeleteError_Text" translate="yes" xml:space="preserve">
-          <source>При удалении альбома видеозаписей произошла ошибка. Повторите попытку позднее.</source>
-          <target state="final">An error occurred while deleting a video album. Please try again later.</target>
-        </trans-unit>
-        <trans-unit id="Message_VideoAlbumDeleteError_Title" translate="yes" xml:space="preserve">
-          <source>Не удалось удалить альбом видеозаписей</source>
-          <target state="final">Failed to delete a video album</target>
-        </trans-unit>
-        <trans-unit id="Message_VideoDeleteError_Text" translate="yes" xml:space="preserve">
-          <source>При удалении видеозаписи произошла ошибка. Повторите попытку позднее.</source>
-          <target state="final">An error occurred while deleting a video. Please try again later.</target>
-        </trans-unit>
-        <trans-unit id="Message_VideoDeleteError_Title" translate="yes" xml:space="preserve">
-          <source>Не удалось удалить видеозапись</source>
-          <target state="final">Failed to delete a video</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_AlbumsGroup_Text" translate="yes" xml:space="preserve">
-          <source>альбомы</source>
-          <target state="final">albums</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_AudiosGroup_Text" translate="yes" xml:space="preserve">
-          <source>аудиозаписи</source>
-          <target state="final">audios</target>
-        </trans-unit>
-        <trans-unit id="UserContentView_VideosGroup_Text" translate="yes" xml:space="preserve">
-          <source>видеозаписи</source>
-          <target state="final">videos</target>
-        </trans-unit>
-        <trans-unit id="AppLoader_CancelAllDownloads" translate="yes" xml:space="preserve">
-          <source>Отмена всех загрузок...</source>
-          <target state="final">Cancelling all downloads...</target>
-        </trans-unit>
-        <trans-unit id="Message_CantFindLyrics_Text" translate="yes" xml:space="preserve">
-          <source>Не удалось найти текст для данной аудиозаписи. Мы очень сожалеем.</source>
-          <target state="final">Could not find lyrics for this track. We are very sorry.</target>
         </trans-unit>
         <trans-unit id="Message_Downloads_CantCreateFile_Text" translate="yes" xml:space="preserve">
           <source>Не удалось создать файл:</source>
@@ -733,6 +426,22 @@ Go back to continue</target>
           <target state="final" state-qualifier="mt-suggestion">Authorization failed. Please try again later. 
 Error code: {0}</target>
         </trans-unit>
+        <trans-unit id="Message_Purchase_Failed_Text" translate="yes" xml:space="preserve">
+          <source>Не удалось произвести покупку. Мы очень сожалеем, повторите попытку позднее.</source>
+          <target state="final" state-qualifier="mt-suggestion">Unable to purchase. We are very sorry, try again later.</target>
+        </trans-unit>
+        <trans-unit id="Message_Purchase_Failed_Title" translate="yes" xml:space="preserve">
+          <source>Покупка не удалась</source>
+          <target state="final">Purchasing failed</target>
+        </trans-unit>
+        <trans-unit id="Message_Purchase_Success_Text" translate="yes" xml:space="preserve">
+          <source>Теперь вы счастливый владелец полной версии ВКачай 2!</source>
+          <target state="final">Now you are a happy owner of VK Saver 2</target>
+        </trans-unit>
+        <trans-unit id="Message_Purchase_Success_Title" translate="yes" xml:space="preserve">
+          <source>Спасибо за покупку</source>
+          <target state="final" state-qualifier="mt-suggestion">Thank you for your purchase</target>
+        </trans-unit>
         <trans-unit id="Message_Transfer_Error_Text" translate="yes" xml:space="preserve">
           <source>К сожалению, при выполнении операции произошла ошибка, и мы не можем ее завершить. </source>
           <target state="final">Unfortunately, an error has occurred during the operation, and couldn't finish it. </target>
@@ -771,21 +480,65 @@ Operation will resume once the connection becomes available.</target>
           <source>Ожидание соединения</source>
           <target state="final">Waiting for connection</target>
         </trans-unit>
-        <trans-unit id="Message_Purchase_Failed_Text" translate="yes" xml:space="preserve">
-          <source>Не удалось произвести покупку. Мы очень сожалеем, повторите попытку позднее.</source>
-          <target state="final" state-qualifier="mt-suggestion">Unable to purchase. We are very sorry, try again later.</target>
+        <trans-unit id="Message_VideoAddError_Text" translate="yes" xml:space="preserve">
+          <source>При добавлении видеозаписи в коллекцию произошла ошибка. Повторите попытку позднее.</source>
+          <target state="final">An error occurred while adding a video to the collection. Please try again later.</target>
         </trans-unit>
-        <trans-unit id="Message_Purchase_Failed_Title" translate="yes" xml:space="preserve">
-          <source>Покупка не удалась</source>
-          <target state="final">Purchasing failed</target>
+        <trans-unit id="Message_VideoAddError_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось добавить видеозапись</source>
+          <target state="translated">Failed to add video</target>
         </trans-unit>
-        <trans-unit id="Message_Purchase_Success_Text" translate="yes" xml:space="preserve">
-          <source>Теперь вы счастливый владелец полной версии ВКачай 2!</source>
-          <target state="final">Now you are a happy owner of VK Saver 2</target>
+        <trans-unit id="Message_VideoAlbumDeleteError_Text" translate="yes" xml:space="preserve">
+          <source>При удалении альбома видеозаписей произошла ошибка. Повторите попытку позднее.</source>
+          <target state="final">An error occurred while deleting a video album. Please try again later.</target>
         </trans-unit>
-        <trans-unit id="Message_Purchase_Success_Title" translate="yes" xml:space="preserve">
-          <source>Спасибо за покупку</source>
-          <target state="final" state-qualifier="mt-suggestion">Thank you for your purchase</target>
+        <trans-unit id="Message_VideoAlbumDeleteError_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось удалить альбом видеозаписей</source>
+          <target state="final">Failed to delete a video album</target>
+        </trans-unit>
+        <trans-unit id="Message_VideoDeleteError_Text" translate="yes" xml:space="preserve">
+          <source>При удалении видеозаписи произошла ошибка. Повторите попытку позднее.</source>
+          <target state="final">An error occurred while deleting a video. Please try again later.</target>
+        </trans-unit>
+        <trans-unit id="Message_VideoDeleteError_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось удалить видеозапись</source>
+          <target state="final">Failed to delete a video</target>
+        </trans-unit>
+        <trans-unit id="NoTracksView_NoTracks.Text" translate="yes" xml:space="preserve">
+          <source>Сейчас не воспроизводится ни одного трека
+
+Вернитесь назад, чтобы продолжить</source>
+          <target state="final">No tracks are being played at the moment
+
+Go back to continue</target>
+        </trans-unit>
+        <trans-unit id="NoTracksView_Silence.Text" translate="yes" xml:space="preserve">
+          <source>Тишина...</source>
+          <target state="final">Silence...</target>
+        </trans-unit>
+        <trans-unit id="PlayerView_PivotSection_NowPlaying.Header" translate="yes" xml:space="preserve">
+          <source>сейчас играет</source>
+          <target state="final" state-qualifier="mt-suggestion">now playing</target>
+        </trans-unit>
+        <trans-unit id="PlayerView_PivotSection_Playlist.Header" translate="yes" xml:space="preserve">
+          <source>плейлист</source>
+          <target state="final" state-qualifier="mt-suggestion">playlist</target>
+        </trans-unit>
+        <trans-unit id="PurchaseView_BuyMonthlyButton.Content" translate="yes" xml:space="preserve">
+          <source>купить на месяц</source>
+          <target state="final">buy for a month</target>
+        </trans-unit>
+        <trans-unit id="PurchaseView_BuyNowButton.Content" translate="yes" xml:space="preserve">
+          <source>купить сейчас</source>
+          <target state="final" state-qualifier="mt-suggestion">buy now</target>
+        </trans-unit>
+        <trans-unit id="PurchaseView_BuyPermanentButton.Content" translate="yes" xml:space="preserve">
+          <source>купить навсегда</source>
+          <target state="final" state-qualifier="mt-suggestion">buy forever</target>
+        </trans-unit>
+        <trans-unit id="PurchaseView_NextButton.Content" translate="yes" xml:space="preserve">
+          <source>далее</source>
+          <target state="final" state-qualifier="tm-suggestion">next</target>
         </trans-unit>
         <trans-unit id="PurchaseView_Screen0_Line1_Text" translate="yes" xml:space="preserve">
           <source>ВКачай 2</source>
@@ -835,6 +588,269 @@ Operation will resume once the connection becomes available.</target>
           <source>Смотрите и загружайте любимые видео!</source>
           <target state="final" state-qualifier="mt-suggestion">Watch and download your favorite videos!</target>
         </trans-unit>
+        <trans-unit id="RecommendationsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить рекомендации</source>
+          <target state="final" state-qualifier="mt-suggestion">Could not load recommendations</target>
+        </trans-unit>
+        <trans-unit id="RecommendationsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Изучаем ваши музыкальные предпочтения...</source>
+          <target state="final">Learning your musical preferences...</target>
+        </trans-unit>
+        <trans-unit id="RecommendationsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Мы не можем вам ничего порекомендовать</source>
+          <target state="final" state-qualifier="mt-suggestion">We can't recommend anything for you</target>
+        </trans-unit>
+        <trans-unit id="RecommendedView_Title.Text" translate="yes" xml:space="preserve">
+          <source>рекомендуем</source>
+          <target state="final">we recommend</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_Title.Text" translate="yes" xml:space="preserve">
+          <source>настройки</source>
+          <target state="final" state-qualifier="tm-suggestion">settings</target>
+        </trans-unit>
+        <trans-unit id="TopArtistItem_ListenersCount.Text" translate="yes" xml:space="preserve">
+          <source>слушателей</source>
+          <target state="final" state-qualifier="mt-suggestion">listeners</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например, "12 слушателей"</note>
+        </trans-unit>
+        <trans-unit id="TopArtistsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список лучших исполнителей</source>
+          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of top performers</target>
+        </trans-unit>
+        <trans-unit id="TopArtistsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Выбираем лучших исполнителей...</source>
+          <target state="translated">Choosing the best artists...</target>
+        </trans-unit>
+        <trans-unit id="TopArtistsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Похоже, нет ни одного лучшего исполнителя</source>
+          <target state="final">It looks like there are no best artists</target>
+        </trans-unit>
+        <trans-unit id="TopArtistsView_Title.Text" translate="yes" xml:space="preserve">
+          <source>лучшие исполнители</source>
+          <target state="final">best artists</target>
+        </trans-unit>
+        <trans-unit id="TopTracksView_Title.Text" translate="yes" xml:space="preserve">
+          <source>лучшие треки</source>
+          <target state="final" state-qualifier="mt-suggestion">best tracks</target>
+        </trans-unit>
+        <trans-unit id="TopTracksView_TrackPlaybacksCount.Text" translate="yes" xml:space="preserve">
+          <source>воспроизведений</source>
+          <target state="translated">playbacks</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например, "15 воспроизведений"</note>
+        </trans-unit>
+        <trans-unit id="TopTracksView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список лучших треков</source>
+          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of best tracks</target>
+        </trans-unit>
+        <trans-unit id="TopTracksView_TracksLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список лучших треков...</source>
+          <target state="final">Loading the list of best tracks...</target>
+        </trans-unit>
+        <trans-unit id="TopTracksView_TracksLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Нет ни одного лучшего трека</source>
+          <target state="final">There are no best tracks</target>
+        </trans-unit>
+        <trans-unit id="TrackInfoView_PlayButton.Content" translate="yes" xml:space="preserve">
+          <source>воспроизвести</source>
+          <target state="final" state-qualifier="tm-suggestion">play</target>
+        </trans-unit>
+        <trans-unit id="TrackInfoView_Title.Text" translate="yes" xml:space="preserve">
+          <source>подробнее</source>
+          <target state="final">details</target>
+        </trans-unit>
+        <trans-unit id="TrackLyricView_LyricsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить текст аудиозаписи</source>
+          <target state="final">Failed to load lyrics</target>
+        </trans-unit>
+        <trans-unit id="TrackLyricView_LyricsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Выполняем поиск текста аудиозаписи...</source>
+          <target state="final">Performing a lyrics search...</target>
+        </trans-unit>
+        <trans-unit id="TrackLyricView_LyricsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>У этой аудиозаписи нет текста</source>
+          <target state="final">This audio has no lyrics</target>
+        </trans-unit>
+        <trans-unit id="TransferView_CancelAllDownloadsButton.Label" translate="yes" xml:space="preserve">
+          <source>отменить все загрузки</source>
+          <target state="final" state-qualifier="mt-suggestion">cancel all downloads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_CancelFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>отменить</source>
+          <target state="final">cancel</target>
+        </trans-unit>
+        <trans-unit id="TransferView_DownloadsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось получить список текущих загрузок</source>
+          <target state="final" state-qualifier="mt-suggestion">Failed to get the list of current downloads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_DownloadsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Получение списка текущих загрузок...</source>
+          <target state="final">Getting a list of current downloads...</target>
+        </trans-unit>
+        <trans-unit id="TransferView_DownloadsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Сейчас не выполняется никаких загрузок</source>
+          <target state="final">No downloads are in progress</target>
+        </trans-unit>
+        <trans-unit id="TransferView_HistoryLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось получить журнал загрузок</source>
+          <target state="final" state-qualifier="mt-suggestion">Could not get the download history</target>
+        </trans-unit>
+        <trans-unit id="TransferView_HistoryLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Получение журнала загрузок...</source>
+          <target state="final">Receiving downloads list...</target>
+        </trans-unit>
+        <trans-unit id="TransferView_HistoryLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Журнал загрузок пока не поддерживается</source>
+          <target state="final">Your download history is not supported yet</target>
+        </trans-unit>
+        <trans-unit id="TransferView_PauseFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>пауза</source>
+          <target state="final" state-qualifier="tm-suggestion">pause</target>
+        </trans-unit>
+        <trans-unit id="TransferView_PivotSection_Downloads.Header" translate="yes" xml:space="preserve">
+          <source>загрузки</source>
+          <target state="final" state-qualifier="tm-suggestion">downloads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_PivotSection_History.Header" translate="yes" xml:space="preserve">
+          <source>журнал</source>
+          <target state="final" state-qualifier="tm-suggestion">history</target>
+        </trans-unit>
+        <trans-unit id="TransferView_PivotSection_Uploads.Header" translate="yes" xml:space="preserve">
+          <source>отправки</source>
+          <target state="final">uploads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_ResumeFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>возобновить</source>
+          <target state="final">resume</target>
+        </trans-unit>
+        <trans-unit id="TransferView_UploadsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось получить список текущих отправок</source>
+          <target state="final">Failed to get the list of current uploads</target>
+        </trans-unit>
+        <trans-unit id="TransferView_UploadsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Получение списка текущих отправок...</source>
+          <target state="final">Getting a list of current uploads...</target>
+        </trans-unit>
+        <trans-unit id="TransferView_UploadsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Сейчас не выполняется никаких отправок</source>
+          <target state="final">No uploads are in progress</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendListsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить списки друзей</source>
+          <target state="final" state-qualifier="mt-suggestion">Could not load the friends lists</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendListsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем списки друзей...</source>
+          <target state="final">Loading the friends lists...</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendListsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Списки друзей отсутствуют либо доступ к ним закрыт</source>
+          <target state="final">No friends lists or access is denied</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список друзей</source>
+          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of friends</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем информацию о друзьях...</source>
+          <target state="final">Loading information about friends...</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_FriendsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Друзья отсутствуют либо доступ к ним закрыт</source>
+          <target state="final">There are no friends or access is denied</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_GroupsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список сообществ</source>
+          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of communities</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_GroupsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем информацию о сообществах...</source>
+          <target state="final">Loading information about communities...</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_GroupsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Сообщества отсутствуют либо доступ к ним закрыт</source>
+          <target state="final">There are no communities or access is denied</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_PivotSection_FriendLists.Header" translate="yes" xml:space="preserve">
+          <source>списки</source>
+          <target state="final">friends lists</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">списки друзей</note>
+        </trans-unit>
+        <trans-unit id="UserCommView_PivotSection_Friends.Header" translate="yes" xml:space="preserve">
+          <source>друзья</source>
+          <target state="final" state-qualifier="tm-suggestion">friends</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_PivotSection_Groups.Header" translate="yes" xml:space="preserve">
+          <source>сообщества</source>
+          <target state="final">communities</target>
+        </trans-unit>
+        <trans-unit id="UserCommView_UserOnline.Text" translate="yes" xml:space="preserve">
+          <source>Онлайн</source>
+          <target state="final" state-qualifier="tm-suggestion">Online</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_AlbumsGroup_Text" translate="yes" xml:space="preserve">
+          <source>альбомы</source>
+          <target state="final">albums</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_AudiosGroup_Text" translate="yes" xml:space="preserve">
+          <source>аудиозаписи</source>
+          <target state="final">audios</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_AudiosLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список аудиозаписей</source>
+          <target state="translated">Failed to load the list of audios</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_AudiosLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список аудиозаписей...</source>
+          <target state="translated">Loading a list of audios...</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_AudiosLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Аудиозаписи отсутствуют либо доступ к ним закрыт</source>
+          <target state="final">No audios or access is denied</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_DocsLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список документов</source>
+          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of documents</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_DocsLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список документов...</source>
+          <target state="final">Loading the list of documents...</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_DocsLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Документы отсутствуют либо доступ к ним закрыт</source>
+          <target state="final">There are no documents or access is denied</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_PivotSection_Docs.Header" translate="yes" xml:space="preserve">
+          <source>документы</source>
+          <target state="final">documents</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_PivotSection_Music.Header" translate="yes" xml:space="preserve">
+          <source>музыка</source>
+          <target state="final" state-qualifier="tm-suggestion">music</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_PivotSection_Videos.Header" translate="yes" xml:space="preserve">
+          <source>видео</source>
+          <target state="final">videos</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_VideosGroup_Text" translate="yes" xml:space="preserve">
+          <source>видеозаписи</source>
+          <target state="final">videos</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_VideosLoader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить список видеозаписей</source>
+          <target state="final" state-qualifier="mt-suggestion">Unable to retrieve a list of videos</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_VideosLoader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Загружаем список видеозаписей...</source>
+          <target state="final">Loading videos list...</target>
+        </trans-unit>
+        <trans-unit id="UserContentView_VideosLoader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Видеозаписи отсутствуют либо доступ к ним закрыт</source>
+          <target state="final">No videos or access is denied</target>
+        </trans-unit>
+        <trans-unit id="VideoInfoView_StoresOn_Coub_Text" translate="yes" xml:space="preserve">
+          <source>Это видео хранится на серверах Coub</source>
+          <target state="final">This video is stored on Coub servers</target>
+        </trans-unit>
         <trans-unit id="VideoInfoView_StoresOn_Unsupported_Text" translate="yes" xml:space="preserve">
           <source>Это видео хранится на неподдерживаемом сервисе</source>
           <target state="final" state-qualifier="mt-suggestion">This video is stored on an unsupported service</target>
@@ -850,10 +866,6 @@ Operation will resume once the connection becomes available.</target>
         <trans-unit id="VideoInfoView_StoresOn_YouTube_Text" translate="yes" xml:space="preserve">
           <source>Это видео хранится на серверах YouTube</source>
           <target state="final" state-qualifier="mt-suggestion">This video is stored on the servers of YouTube</target>
-        </trans-unit>
-        <trans-unit id="VideoInfoView_StoresOn_Coub_Text" translate="yes" xml:space="preserve">
-          <source>Это видео хранится на серверах Coub</source>
-          <target state="final">This video is stored on Coub servers</target>
         </trans-unit>
         <trans-unit id="Loader_ReloadButton_Text" translate="yes" xml:space="preserve">
           <source>повторить</source>
@@ -922,14 +934,6 @@ There is no connection or access to the video is denied.</target>
           <source>Не удалось получить ссылки</source>
           <target state="final" state-qualifier="mt-suggestion">Failed to get the links</target>
         </trans-unit>
-        <trans-unit id="AppBarButton_Player.Label" translate="yes" xml:space="preserve">
-          <source>проигрыватель</source>
-          <target state="final" state-qualifier="tm-suggestion">player</target>
-        </trans-unit>
-        <trans-unit id="AppBarButton_TransferManager.Label" translate="yes" xml:space="preserve">
-          <source>менеджер загрузок</source>
-          <target state="final">transfer manager</target>
-        </trans-unit>
         <trans-unit id="AppBarButton_Player_Text" translate="yes" xml:space="preserve">
           <source>проигрыватель</source>
           <target state="final" state-qualifier="tm-suggestion">player</target>
@@ -958,13 +962,13 @@ There is no connection or access to the video is denied.</target>
           <source>в коллекции</source>
           <target state="translated">in collection</target>
         </trans-unit>
-        <trans-unit id="SearchView_SearchBox.PlaceholderText" translate="yes" xml:space="preserve">
-          <source>введите запрос и нажмите Enter</source>
-          <target state="final">type your request and press Enter</target>
-        </trans-unit>
         <trans-unit id="SearchView_Everywhere_Title.Header" translate="yes" xml:space="preserve">
           <source>везде</source>
           <target state="final">everywhere</target>
+        </trans-unit>
+        <trans-unit id="SearchView_SearchBox.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>введите запрос и нажмите Enter</source>
+          <target state="final">type your request and press Enter</target>
         </trans-unit>
         <trans-unit id="SearchView_Loader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось выполнить поиск</source>
@@ -1004,17 +1008,21 @@ Download VK Saver 2 now!</target>
           <source>Бета-тест завершен</source>
           <target state="final">Beta test is over</target>
         </trans-unit>
-        <trans-unit id="VideoSearchView_OwnVideos_Title.Header" translate="yes" xml:space="preserve">
-          <source>загруженные</source>
-          <target state="final" state-qualifier="mt-suggestion">downloaded</target>
-        </trans-unit>
         <trans-unit id="VideoSearchView_FilterFlyout_Title.Text" translate="yes" xml:space="preserve">
           <source>Фильтр видео</source>
           <target state="final" state-qualifier="mt-suggestion">Video filter</target>
         </trans-unit>
+        <trans-unit id="VideoSearchView_Filters_All_Text" translate="yes" xml:space="preserve">
+          <source>все</source>
+          <target state="final" state-qualifier="tm-suggestion">all</target>
+        </trans-unit>
         <trans-unit id="VideoSearchView_OnlyHD_Switch.Header" translate="yes" xml:space="preserve">
           <source>Только HD</source>
           <target state="final">HD only</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_OwnVideos_Title.Header" translate="yes" xml:space="preserve">
+          <source>загруженные</source>
+          <target state="final" state-qualifier="mt-suggestion">downloaded</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_SafeSearch_Switch.Header" translate="yes" xml:space="preserve">
           <source>Безопасный поиск</source>
@@ -1023,18 +1031,6 @@ Download VK Saver 2 now!</target>
         <trans-unit id="VideoSearchView_VideoDurations_ComboBox.Header" translate="yes" xml:space="preserve">
           <source>Длительность видео</source>
           <target state="final" state-qualifier="mt-suggestion">Video duration</target>
-        </trans-unit>
-        <trans-unit id="VideoSearchView_VideoSortMethods_ComboBox.Header" translate="yes" xml:space="preserve">
-          <source>Метод сортировки</source>
-          <target state="final">Sorting method</target>
-        </trans-unit>
-        <trans-unit id="VideoSearchView_VideoTypes_ComboBox.Header" translate="yes" xml:space="preserve">
-          <source>Тип видео</source>
-          <target state="final" state-qualifier="mt-suggestion">Video type</target>
-        </trans-unit>
-        <trans-unit id="VideoSearchView_Filters_All_Text" translate="yes" xml:space="preserve">
-          <source>все</source>
-          <target state="final" state-qualifier="tm-suggestion">all</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoDurations_Long_Text" translate="yes" xml:space="preserve">
           <source>длинные</source>
@@ -1057,6 +1053,14 @@ Download VK Saver 2 now!</target>
           <source>по популярности</source>
           <target state="final" state-qualifier="mt-suggestion">by popularity</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: by popularity</note>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoSortMethods_ComboBox.Header" translate="yes" xml:space="preserve">
+          <source>Метод сортировки</source>
+          <target state="final">Sorting method</target>
+        </trans-unit>
+        <trans-unit id="VideoSearchView_VideoTypes_ComboBox.Header" translate="yes" xml:space="preserve">
+          <source>Тип видео</source>
+          <target state="final" state-qualifier="mt-suggestion">Video type</target>
         </trans-unit>
         <trans-unit id="VideoSearchView_VideoTypes_MP4_Text" translate="yes" xml:space="preserve">
           <source>MP4</source>
@@ -1105,7 +1109,7 @@ Download VK Saver 2 now!</target>
         </trans-unit>
         <trans-unit id="ServiceAuthBlock_SignInButton.Content" translate="yes" xml:space="preserve">
           <source>войти</source>
-          <target state="final">sing in</target>
+          <target state="final">sign in</target>
         </trans-unit>
         <trans-unit id="ServiceAuthBlock_SignOutButton.Content" translate="yes" xml:space="preserve">
           <source>выйти</source>
@@ -1114,10 +1118,6 @@ Download VK Saver 2 now!</target>
         <trans-unit id="SettingsView_ServicesAuthorizations_Title.Text" translate="yes" xml:space="preserve">
           <source>Авторизация в сервисах</source>
           <target state="final">Services authorisation</target>
-        </trans-unit>
-        <trans-unit id="Message_CantFindLyrics_Title" translate="yes" xml:space="preserve">
-          <source>Не удалось найти текст</source>
-          <target state="final">The lyrics could not be found</target>
         </trans-unit>
         <trans-unit id="PackagingFilesView_Title.Text" translate="yes" xml:space="preserve">
           <source>обработка</source>
@@ -1128,6 +1128,18 @@ Download VK Saver 2 now!</target>
 Пожалуйста, подождите...</source>
           <target state="final">Processing the downloaded files...
 Please wait...</target>
+        </trans-unit>
+        <trans-unit id="PromoView_LetsGoButton.Content" translate="yes" xml:space="preserve">
+          <source>начать</source>
+          <target state="final">lets go!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen0_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Новые функции ждут вас!</source>
+          <target state="final" state-qualifier="mt-suggestion">New features are waiting for you!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen0_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Готовы? Тогда начнем!</source>
+          <target state="final">Ready? Then let's start!</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen1_Line1_Text" translate="yes" xml:space="preserve">
           <source>Добро пожаловать!</source>
@@ -1145,37 +1157,17 @@ Please wait...</target>
           <source>Кэшируйте треки для оффлайн воспроизведения!</source>
           <target state="final" state-qualifier="mt-suggestion">Cache tracks for offline playback!</target>
         </trans-unit>
-        <trans-unit id="PromoView_Screen3_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Локальная библиотека</source>
-          <target state="final" state-qualifier="tm-suggestion">Local Library</target>
+        <trans-unit id="PromoView_Screen4_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Мы знаем о музыке все!</source>
+          <target state="final">We know everything about the music!</target>
         </trans-unit>
-        <trans-unit id="PromoView_Screen3_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Воспроизводите свои локальные аудиозаписи</source>
-          <target state="final" state-qualifier="mt-suggestion">Play your local audio</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen0_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Новые функции ждут вас!</source>
-          <target state="final" state-qualifier="mt-suggestion">New features are waiting for you!</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen0_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Готовы? Тогда начнем!</source>
-          <target state="final">Ready? Then let's start!</target>
-        </trans-unit>
-        <trans-unit id="PromoView_LetsGoButton.Content" translate="yes" xml:space="preserve">
-          <source>начать</source>
-          <target state="final">lets go!</target>
+        <trans-unit id="PromoView_Screen4_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Воспроизводите треки любимых исполнителей</source>
+          <target state="final">Play tracks of your favorite artists</target>
         </trans-unit>
         <trans-unit id="PromoView_NextButton.Content" translate="yes" xml:space="preserve">
           <source>далее</source>
           <target state="final" state-qualifier="tm-suggestion">next</target>
-        </trans-unit>
-        <trans-unit id="ArtistAlbumView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
-          <source>подробнее</source>
-          <target state="final">details</target>
-        </trans-unit>
-        <trans-unit id="ArtistAlbumView_PivotSection_Tracks.Header" translate="yes" xml:space="preserve">
-          <source>композиции</source>
-          <target state="final" state-qualifier="tm-suggestion">songs</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_DetailsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить информацию об этом альбоме</source>
@@ -1188,6 +1180,14 @@ Please wait...</target>
         <trans-unit id="ArtistAlbumView_DetailsLoader.NoDataText" translate="yes" xml:space="preserve">
           <source>К сожалению, мы не знаем никаких подробностей об этом альбоме</source>
           <target state="final">Unfortunately, we don't know any details on this album</target>
+        </trans-unit>
+        <trans-unit id="ArtistAlbumView_PivotSection_Details.Header" translate="yes" xml:space="preserve">
+          <source>подробнее</source>
+          <target state="final">details</target>
+        </trans-unit>
+        <trans-unit id="ArtistAlbumView_PivotSection_Tracks.Header" translate="yes" xml:space="preserve">
+          <source>композиции</source>
+          <target state="final" state-qualifier="tm-suggestion">songs</target>
         </trans-unit>
         <trans-unit id="ArtistAlbumView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список треков этого альбома</source>
@@ -1226,17 +1226,9 @@ Please wait...</target>
           <source>удалить все</source>
           <target state="final" state-qualifier="mt-suggestion">delete all</target>
         </trans-unit>
-        <trans-unit id="Message_ClearCacheError_Text" translate="yes" xml:space="preserve">
-          <source>При очистке кэша аудиозаписей произошла ошибка. Повторите попытку позднее.</source>
-          <target state="final">An error occurred while clearing audio cache. Please try again later.</target>
-        </trans-unit>
-        <trans-unit id="Message_ClearCacheError_Title" translate="yes" xml:space="preserve">
-          <source>Не удалось очистить кэш</source>
-          <target state="final" state-qualifier="mt-suggestion">Unable to clear the cache</target>
-        </trans-unit>
         <trans-unit id="CachedView_Loader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список кэшированных аудиозаписей</source>
-          <target state="translated">Failed to load the list of cached tracks</target>
+          <target state="final" state-qualifier="mt-suggestion">Failed to load the list of cached audio</target>
         </trans-unit>
         <trans-unit id="CachedView_Loader.LoadingText" translate="yes" xml:space="preserve">
           <source>Загружаем кэшированные аудиозаписи...</source>
@@ -1248,7 +1240,15 @@ Please wait...</target>
         </trans-unit>
         <trans-unit id="CachedView_Title.Text" translate="yes" xml:space="preserve">
           <source>кэшированные</source>
-          <target state="final" state-qualifier="mt-suggestion">cached</target>
+          <target state="final">cached tracks</target>
+        </trans-unit>
+        <trans-unit id="Message_ClearCacheError_Text" translate="yes" xml:space="preserve">
+          <source>При очистке кэша аудиозаписей произошла ошибка. Повторите попытку позднее.</source>
+          <target state="final">An error occurred while clearing audio cache. Please try again later.</target>
+        </trans-unit>
+        <trans-unit id="Message_ClearCacheError_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось очистить кэш</source>
+          <target state="final" state-qualifier="mt-suggestion">Unable to clear the cache</target>
         </trans-unit>
         <trans-unit id="LoginView_LoginField.PlaceholderText" translate="yes" xml:space="preserve">
           <source>имя пользователя или email</source>
@@ -1266,13 +1266,13 @@ Please wait...</target>
           <source>Не удалось подключиться к Last.fm. Проверьте доступ к интернету и повторите попытку.</source>
           <target state="final" state-qualifier="mt-suggestion">Could not connect to Last.fm. Check the access to the Internet and try again.</target>
         </trans-unit>
-        <trans-unit id="PromoView_Screen4_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Мы знаем о музыке все!</source>
-          <target state="final">We know everything about the music!</target>
+        <trans-unit id="PromoView_Screen5_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Скробблинг Last.fm</source>
+          <target state="final" state-qualifier="mt-suggestion">Last.fm scrobbler</target>
         </trans-unit>
-        <trans-unit id="PromoView_Screen4_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Воспроизводите треки любимых исполнителей</source>
-          <target state="final">Play tracks of your favorite artists</target>
+        <trans-unit id="PromoView_Screen5_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Всегда актуальный профиль Last.fm!</source>
+          <target state="final">Always up-to-dated Last.fm profile!</target>
         </trans-unit>
         <trans-unit id="FileSize_Bytes_Mask_Text" translate="yes" xml:space="preserve">
           <source>{0} байт</source>
@@ -1348,29 +1348,13 @@ Eng: TB</note>
           <source>Выполняется...</source>
           <target state="final">In progress...</target>
         </trans-unit>
+        <trans-unit id="AppBarButton_UploadFile.Label" translate="yes" xml:space="preserve">
+          <source>отправить файл</source>
+          <target state="final">upload a file</target>
+        </trans-unit>
         <trans-unit id="AppLoader_CancelAllUploads" translate="yes" xml:space="preserve">
           <source>Отмена всех отправок...</source>
           <target state="final">Cancelling all uploads...</target>
-        </trans-unit>
-        <trans-unit id="Message_Uploads_CantPrepareData_Text" translate="yes" xml:space="preserve">
-          <source>Не удалось подготовить данные:</source>
-          <target state="final">Unable to prepare the data:</target>
-        </trans-unit>
-        <trans-unit id="Message_Uploads_MaxUploadsExceeded_Text" translate="yes" xml:space="preserve">
-          <source>Достигнуто максимальное количество отправок:</source>
-          <target state="final">You have reached the maximum number of uploads:</target>
-        </trans-unit>
-        <trans-unit id="Message_Uploads_StartUploading_Title" translate="yes" xml:space="preserve">
-          <source>Не удалось начать отправку</source>
-          <target state="final">Failed to start upload</target>
-        </trans-unit>
-        <trans-unit id="Message_Uploads_UnknownError_Text" translate="yes" xml:space="preserve">
-          <source>Неизвестная ошибка:</source>
-          <target state="final">An unknown error occurred:</target>
-        </trans-unit>
-        <trans-unit id="TransferView_CancelAllUploadsButton.Label" translate="yes" xml:space="preserve">
-          <source>отменить все отправки</source>
-          <target state="final" state-qualifier="tm-suggestion">cancel all uploads</target>
         </trans-unit>
         <trans-unit id="FileSize_SizeText.Text" translate="yes" xml:space="preserve">
           <source>Размер:</source>
@@ -1428,6 +1412,14 @@ Code: {1} - {2}</target>
           <source>Произошла неизвестная ошибка, и мы не можем завершить отправку {0}.</source>
           <target state="final">An unknown error has occurred, and we can not finish upload {0}.</target>
         </trans-unit>
+        <trans-unit id="Message_Uploads_CantPrepareData_Text" translate="yes" xml:space="preserve">
+          <source>Не удалось подготовить данные:</source>
+          <target state="final">Unable to prepare the data:</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_MaxUploadsExceeded_Text" translate="yes" xml:space="preserve">
+          <source>Достигнуто максимальное количество отправок:</source>
+          <target state="final">You have reached the maximum number of uploads:</target>
+        </trans-unit>
         <trans-unit id="Message_Uploads_PreprocessionConnectionError_Text" translate="yes" xml:space="preserve">
           <source>Произошла ошибка соединения, и мы не можем начать отправку {0}. Проверьте подключение к сети и повторите попытку.</source>
           <target state="final">A connection error has occurred, and we can't start uploading {0}. Check your network connection and try again.</target>
@@ -1442,9 +1434,21 @@ Code: {1} - {2}</target>
           <target state="final">The server returned an error, and we can't start uploading {0}. Please try again later. 
 Code: {1} - {2}</target>
         </trans-unit>
+        <trans-unit id="Message_Uploads_StartUploading_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось начать отправку</source>
+          <target state="final">Failed to start upload</target>
+        </trans-unit>
+        <trans-unit id="Message_Uploads_UnknownError_Text" translate="yes" xml:space="preserve">
+          <source>Неизвестная ошибка:</source>
+          <target state="final" state-qualifier="tm-suggestion">An unexpected error occurred:</target>
+        </trans-unit>
         <trans-unit id="Toast_PostUploads_Success_Text" translate="yes" xml:space="preserve">
           <source>Отправка завершена!</source>
           <target state="final">Uploading completed!</target>
+        </trans-unit>
+        <trans-unit id="TransferView_CancelAllUploadsButton.Label" translate="yes" xml:space="preserve">
+          <source>отменить все отправки</source>
+          <target state="final" state-qualifier="tm-suggestion">cancel all uploads</target>
         </trans-unit>
         <trans-unit id="UploadFileView_SelectAnotherFileButton.Content" translate="yes" xml:space="preserve">
           <source>выбрать другой</source>
@@ -1526,30 +1530,6 @@ Eng: upload</note>
           <source>Отправка не может быть завершена</source>
           <target state="final">Uploading could not be completed</target>
         </trans-unit>
-        <trans-unit id="AppBarButton_UploadFile.Label" translate="yes" xml:space="preserve">
-          <source>отправить файл</source>
-          <target state="final">upload a file</target>
-        </trans-unit>
-        <trans-unit id="FirstStartView_ContentText.Text" translate="yes" xml:space="preserve">
-          <source>ВКачай необходимо выполнить поиск аудиофайлов на вашем смартфоне, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
-
-Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
-
-Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</source>
-          <target state="final">VK Saver has to search audio files on your Smartphone before you can play them (this is a one time task). 
- 
-Note that VK Saver can find audio files only in the music folder in the Smartphone's memory or on the SD card.
- 
-Then, we will help you to configure some basic settings application. Click the button below when you're ready.</target>
-        </trans-unit>
-        <trans-unit id="FirstStartView_Title.Text" translate="yes" xml:space="preserve">
-          <source>Давайте начнем!</source>
-          <target state="final" state-qualifier="mt-suggestion">Let's get started!</target>
-        </trans-unit>
-        <trans-unit id="FirstStartView_LetsGoButton.Content" translate="yes" xml:space="preserve">
-          <source>приступить</source>
-          <target state="final">lets go!</target>
-        </trans-unit>
         <trans-unit id="FirstInternetSettingsView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>ВКачай может загрузить фотографии исполнителей и обложки альбомов для ваших треков. Загружать эти данные (может взиматься дополнительная плата оператором)?
 
@@ -1561,22 +1541,6 @@ You can always change this setting in the settings.</target>
         <trans-unit id="FirstInternetSettingsView_Title.Text" translate="yes" xml:space="preserve">
           <source>Доступ к интернету</source>
           <target state="final" state-qualifier="mt-suggestion">Access to the Internet</target>
-        </trans-unit>
-        <trans-unit id="FirstStartView_NoButton.Content" translate="yes" xml:space="preserve">
-          <source>нет</source>
-          <target state="final">no</target>
-        </trans-unit>
-        <trans-unit id="FirstStartView_WiFiButton.Content" translate="yes" xml:space="preserve">
-          <source>только через Wi-Fi</source>
-          <target state="final" state-qualifier="mt-suggestion">only through Wi-Fi</target>
-        </trans-unit>
-        <trans-unit id="FirstStartView_YesButton.Content" translate="yes" xml:space="preserve">
-          <source>да</source>
-          <target state="final" state-qualifier="tm-suggestion">yes</target>
-        </trans-unit>
-        <trans-unit id="FirstStartRetryView_Title.Text" translate="yes" xml:space="preserve">
-          <source>С возвращением!</source>
-          <target state="final" state-qualifier="mt-suggestion">Welcome back!</target>
         </trans-unit>
         <trans-unit id="FirstStartRetryView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>Рады видеть вас снова!
@@ -1590,19 +1554,45 @@ Last time we didn't complete a few moments. Let's continue!</target>
           <source>продолжить</source>
           <target state="final" state-qualifier="tm-suggestion">continue</target>
         </trans-unit>
+        <trans-unit id="FirstStartRetryView_Title.Text" translate="yes" xml:space="preserve">
+          <source>С возвращением!</source>
+          <target state="final" state-qualifier="mt-suggestion">Welcome back!</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_ContentText.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай необходимо выполнить поиск аудиофайлов на вашем смартфоне, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
+
+Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
+
+Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</source>
+          <target state="final">VK Saver has to search audio files on your Smartphone before you can play them (this is a one time task). 
+ 
+Note that VK Saver can find audio files only in the music folder in the Smartphone's memory or on the SD card.
+ 
+Then, we will help you to configure some basic settings application. Click the button below when you're ready.</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_LetsGoButton.Content" translate="yes" xml:space="preserve">
+          <source>приступить</source>
+          <target state="final">lets go!</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_NoButton.Content" translate="yes" xml:space="preserve">
+          <source>нет</source>
+          <target state="final">no</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Давайте начнем!</source>
+          <target state="final" state-qualifier="mt-suggestion">Let's get started!</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_WiFiButton.Content" translate="yes" xml:space="preserve">
+          <source>только через Wi-Fi</source>
+          <target state="final" state-qualifier="mt-suggestion">only through Wi-Fi</target>
+        </trans-unit>
+        <trans-unit id="FirstStartView_YesButton.Content" translate="yes" xml:space="preserve">
+          <source>да</source>
+          <target state="final" state-qualifier="tm-suggestion">yes</target>
+        </trans-unit>
         <trans-unit id="UpdatingDatabaseView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>ВКачай выполняет сканирование ваших треков. Пожалуйста, подождите...</source>
           <target state="translated">VK Saver performs a scan of your tracks. Please wait...</target>
-        </trans-unit>
-        <trans-unit id="UpdatingDatabaseView_StepMask_Text" translate="yes" xml:space="preserve">
-          <source>Шаг {0} из {1}</source>
-          <target state="final" state-qualifier="tm-suggestion">Step {0} of {1}</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Указывает номер текущей операции в процессе обновления базы данных.
-Например, "Шаг 1 из 5".</note>
-        </trans-unit>
-        <trans-unit id="UpdatingDatabaseView_Title.Text" translate="yes" xml:space="preserve">
-          <source>Обновление базы данных</source>
-          <target state="translated">Updating database</target>
         </trans-unit>
         <trans-unit id="UpdatingDatabaseView_SearchingAlbumsStep_Text" translate="yes" xml:space="preserve">
           <source>Рисуем обложки альбомов... {0} из {1}</source>
@@ -1615,6 +1605,16 @@ Last time we didn't complete a few moments. Let's continue!</target>
           <target state="translated">Searching for artist photos... {0} of {1}</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Поиск фотографий исполнителей. Например, "Фотографируем исполнителей... 33 из 35".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск изображений исполнителей... 33 из 35".</note>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabaseView_StepMask_Text" translate="yes" xml:space="preserve">
+          <source>Шаг {0} из {1}</source>
+          <target state="final" state-qualifier="tm-suggestion">Step {0} of {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Указывает номер текущей операции в процессе обновления базы данных.
+Например, "Шаг 1 из 5".</note>
+        </trans-unit>
+        <trans-unit id="UpdatingDatabaseView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Обновление базы данных</source>
+          <target state="translated">Updating database</target>
         </trans-unit>
         <trans-unit id="UpdatingDatabseView_PreparingDatabaseStep_Text" translate="yes" xml:space="preserve">
           <source>Переписываем манускрипты... {0} из {1}</source>
@@ -1652,32 +1652,6 @@ Last time we didn't complete a few moments. Let's continue!</target>
           <source>ЖАНР</source>
           <target state="final" state-qualifier="tm-suggestion">GENRE</target>
           <note from="MultilingualBuild" annotates="source" priority="2">ОБЯЗАТЕЛЬНО капсом!</note>
-        </trans-unit>
-        <trans-unit id="LibraryView_PivotItem_Albums.Header" translate="yes" xml:space="preserve">
-          <source>альбомы</source>
-          <target state="final">albums</target>
-        </trans-unit>
-        <trans-unit id="LibraryView_PivotItem_Artists.Header" translate="yes" xml:space="preserve">
-          <source>исполнители</source>
-          <target state="final" state-qualifier="tm-suggestion">artists</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">artists</note>
-        </trans-unit>
-        <trans-unit id="LibraryView_PivotItem_Cached.Header" translate="yes" xml:space="preserve">
-          <source>кэшированные</source>
-          <target state="final" state-qualifier="mt-suggestion">cached</target>
-        </trans-unit>
-        <trans-unit id="LibraryView_PivotItem_Folders.Header" translate="yes" xml:space="preserve">
-          <source>папки</source>
-          <target state="final">folders</target>
-        </trans-unit>
-        <trans-unit id="LibraryView_PivotItem_Genres.Header" translate="yes" xml:space="preserve">
-          <source>жанры</source>
-          <target state="final" state-qualifier="tm-suggestion">genres</target>
-        </trans-unit>
-        <trans-unit id="LibraryView_PivotItem_Tracks.Header" translate="yes" xml:space="preserve">
-          <source>композиции</source>
-          <target state="final">tracks</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">tracks</note>
         </trans-unit>
         <trans-unit id="LibraryView_AlbumsLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список альбомов</source>
@@ -1739,6 +1713,32 @@ Last time we didn't complete a few moments. Let's continue!</target>
           <source>В вашей коллекции нет ни одного жанра</source>
           <target state="final">No genres found in your collection</target>
         </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Albums.Header" translate="yes" xml:space="preserve">
+          <source>альбомы</source>
+          <target state="final">albums</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Artists.Header" translate="yes" xml:space="preserve">
+          <source>исполнители</source>
+          <target state="final" state-qualifier="tm-suggestion">artists</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">artists</note>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Cached.Header" translate="yes" xml:space="preserve">
+          <source>кэшированные</source>
+          <target state="final">cached tracks</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Folders.Header" translate="yes" xml:space="preserve">
+          <source>папки</source>
+          <target state="final">folders</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Genres.Header" translate="yes" xml:space="preserve">
+          <source>жанры</source>
+          <target state="final" state-qualifier="tm-suggestion">genres</target>
+        </trans-unit>
+        <trans-unit id="LibraryView_PivotItem_Tracks.Header" translate="yes" xml:space="preserve">
+          <source>композиции</source>
+          <target state="final" state-qualifier="tm-suggestion">songs</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">tracks</note>
+        </trans-unit>
         <trans-unit id="LibraryView_TracksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить список композиций</source>
           <target state="final">Unable to load list of tracks</target>
@@ -1753,10 +1753,6 @@ Last time we didn't complete a few moments. Let's continue!</target>
           <source>В вашей коллекции нет ни одной композиции</source>
           <target state="final">No tracks found in your collection</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
-        </trans-unit>
-        <trans-unit id="MainView_HubSection_LocalLibrary.Header" translate="yes" xml:space="preserve">
-          <source>ЛОКАЛЬНАЯ БИБЛИОТЕКА</source>
-          <target state="final" state-qualifier="mt-suggestion">LOCAL LIBRARY</target>
         </trans-unit>
         <trans-unit id="MainView_AlbumsItem.Content" translate="yes" xml:space="preserve">
           <source>альбомы</source>
@@ -1774,9 +1770,13 @@ Last time we didn't complete a few moments. Let's continue!</target>
           <source>жанры</source>
           <target state="final" state-qualifier="tm-suggestion">genres</target>
         </trans-unit>
+        <trans-unit id="MainView_HubSection_LocalLibrary.Header" translate="yes" xml:space="preserve">
+          <source>ЛОКАЛЬНАЯ БИБЛИОТЕКА</source>
+          <target state="final" state-qualifier="mt-suggestion">LOCAL LIBRARY</target>
+        </trans-unit>
         <trans-unit id="MainView_LocalTracksItem.Content" translate="yes" xml:space="preserve">
           <source>композиции</source>
-          <target state="final">tracks</target>
+          <target state="final" state-qualifier="tm-suggestion">songs</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Eng: tracks, а не композиции</note>
         </trans-unit>
         <trans-unit id="Message_LocalView_DeleteArtist_Text" translate="yes" xml:space="preserve">
@@ -1828,13 +1828,13 @@ This action cannot be undone.</target>
           <source>Неизвестный жанр</source>
           <target state="translated">Unknown genre</target>
         </trans-unit>
-        <trans-unit id="PromoView_Screen5_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Скробблинг Last.fm</source>
-          <target state="final" state-qualifier="mt-suggestion">Last.fm scrobbler</target>
+        <trans-unit id="PromoView_Screen3_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Локальная библиотека</source>
+          <target state="final" state-qualifier="tm-suggestion">Local Library</target>
         </trans-unit>
-        <trans-unit id="PromoView_Screen5_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Всегда актуальный профиль Last.fm!</source>
-          <target state="final">Always up-to-dated Last.fm profile!</target>
+        <trans-unit id="PromoView_Screen3_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Воспроизводите свои локальные аудиозаписи</source>
+          <target state="final" state-qualifier="mt-suggestion">Play your local audio</target>
         </trans-unit>
         <trans-unit id="Language_SystemLanguage_Text" translate="yes" xml:space="preserve">
           <source>из настроек системы</source>
@@ -1888,6 +1888,14 @@ This action cannot be undone.</target>
         <trans-unit id="Message_RestartRequired_Title" translate="yes" xml:space="preserve">
           <source>Требуется перезапуск</source>
           <target state="final">Restart required</target>
+        </trans-unit>
+        <trans-unit id="SetingsView_ExtractMp3FromVksmButton.Content" translate="yes" xml:space="preserve">
+          <source>извлечь</source>
+          <target state="translated">extract</target>
+        </trans-unit>
+        <trans-unit id="SetingsView_ExtractMp3FromVksm_Text.Text" translate="yes" xml:space="preserve">
+          <source>Если вы хотите извлечь MP3 из всех кэшированных VKSM-файлов, нажмите кнопку ниже.</source>
+          <target state="translated">If you want to extract MP3 from all cached VKSM files, click the button below.</target>
         </trans-unit>
       </group>
     </body>

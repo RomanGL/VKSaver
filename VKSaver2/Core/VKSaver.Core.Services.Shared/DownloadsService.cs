@@ -49,7 +49,7 @@ namespace VKSaver.Core.Services
             _logService = logService;
             _locService = locService;
 
-            _transferGroup = BackgroundTransferGroup.CreateGroup(DOWNLOAD_TRASNFER_GROUP_NAME);
+            _transferGroup = BackgroundTransferGroup.CreateGroup(DOWNLOADS_TRANSFER_GROUP_NAME);
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
             _downloads = new List<DownloadOperation>(INIT_DOWNLOADS_LIST_CAPACITY);
             _cts = new Dictionary<Guid, CancellationTokenSource>(INIT_DOWNLOADS_LIST_CAPACITY);
@@ -356,18 +356,13 @@ namespace VKSaver.Core.Services
                         VKSaverAudio metadata = null;
                         _musicDownloads.TryGetValue(fileName, out metadata);
 
-                        bool converted = await _musicCacheService.ConvertAudioToVKSaverFormat(
-                            (StorageFile)operation.ResultFile, metadata);
+                        await _musicCacheService.PostprocessAudioAsync((StorageFile)operation.ResultFile, metadata);
                     }
                 }
             }
             catch (Exception ex)
             {
                 _logService.LogException(ex);
-            }
-            finally
-            {
-                await operation.ResultFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
             }
 
             OnDownloadProgressChanged(operation);
@@ -478,7 +473,7 @@ namespace VKSaver.Core.Services
 
         private readonly object _lockObject = new object();
 
-        private const string DOWNLOAD_TRASNFER_GROUP_NAME = "VKSaverDownloader";
+        private const string DOWNLOADS_TRANSFER_GROUP_NAME = "VKSaverDownloader";
         private const string DOWNLOADS_FOLDER_NAME = "VKSaver";
         private const string DOWNLOADS_OTHER_FOLDER_NAME = "VKSaver Other";
         private const string MUSIC_DOWNLOADS_PARAMETER = "MusicDownloads";

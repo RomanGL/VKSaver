@@ -49,7 +49,8 @@ Kehren Sie zurück um zu fortfahren</value>
     <value>Es gibt keine Musik dort</value>
   </data>
   <data name="AppBarButton_AddToMyAudios_Text" xml:space="preserve">
-    <value>zu meine Musik</value>
+    <value>zu meine Musik
+</value>
   </data>
   <data name="AppBarButton_AddToMyDocs_Text" xml:space="preserve">
     <value>zu meinen Dokumenten</value>
@@ -59,9 +60,6 @@ Kehren Sie zurück um zu fortfahren</value>
   </data>
   <data name="AppBarButton_Delete_Text" xml:space="preserve">
     <value>entfernen</value>
-  </data>
-  <data name="AppBarButton_Download_Text" xml:space="preserve">
-    <value>cachen</value>
   </data>
   <data name="AppBarButton_Play_Text" xml:space="preserve">
     <value>abspielen</value>
@@ -146,9 +144,6 @@ Kehren Sie zurück um zu fortfahren</value>
   <data name="DeleteFlyoutItem.Text" xml:space="preserve">
     <value>entfernen</value>
   </data>
-  <data name="DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>cachen</value>
-  </data>
   <data name="ErrorView_Error.Text" xml:space="preserve">
     <value>Fehler</value>
   </data>
@@ -174,9 +169,6 @@ Kehren Sie zurück um fortzufahren </value>
   </data>
   <data name="MainView_DocsItem.Content" xml:space="preserve">
     <value>Dokumenten</value>
-  </data>
-  <data name="MainView_DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>cachen</value>
   </data>
   <data name="MainView_FriendsItem.Content" xml:space="preserve">
     <value>Freunde</value>
@@ -458,7 +450,7 @@ Kehren Sie zurück um fortzufahren </value>
     <value>Empfehlende</value>
   </data>
   <data name="SettingsView_Title.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+    <value>Einladungen</value>
   </data>
   <data name="TopArtistItem_ListenersCount.Text" xml:space="preserve">
     <value>Zuhörers</value>
@@ -496,7 +488,7 @@ Kehren Sie zurück um fortzufahren </value>
     <value>abspielen</value>
   </data>
   <data name="TrackInfoView_Title.Text" xml:space="preserve">
-    <value>mehr</value>
+    <value>Mehr</value>
   </data>
   <data name="TrackLyricView_LyricsLoader.ErrorText" xml:space="preserve">
     <value>Fehler beim Textladen</value>
@@ -627,7 +619,7 @@ Kehren Sie zurück um fortzufahren </value>
     <value>Musik</value>
   </data>
   <data name="UserContentView_PivotSection_Videos.Header" xml:space="preserve">
-    <value>Video</value>
+    <value>Videos</value>
   </data>
   <data name="UserContentView_VideosGroup_Text" xml:space="preserve">
     <value>Video</value>
@@ -711,10 +703,10 @@ Keine Verbindung oder kein Zugang</value>
     <value>Player</value>
   </data>
   <data name="AppBarButton_TransferManager_Text" xml:space="preserve">
-    <value>Ladenmanager</value>
+    <value>Hochladenmanager</value>
   </data>
   <data name="VideoAlbumVideosLoader.ErrorText" xml:space="preserve">
-    <value>Laden des Albuminhaltes ist fehlgeschlagen</value>
+    <value>Fehler beim Hochladen des Albums </value>
   </data>
   <data name="VideoAlbumVideosLoader.LoadingText" xml:space="preserve">
     <value>Laden die Videosliste des Albums</value>
@@ -840,7 +832,7 @@ Laden Sie VK Saver 2 jetzt herunter!</value>
     <comment>Например: "Вы вошли как Иван Иванов"</comment>
   </data>
   <data name="ServiceAuthBlock_SignInButton.Content" xml:space="preserve">
-    <value>anmelden</value>
+    <value>einloggen</value>
   </data>
   <data name="ServiceAuthBlock_SignOutButton.Content" xml:space="preserve">
     <value>abmelden</value>
@@ -876,11 +868,11 @@ Bitte warten Sie...</value>
   <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
     <value>Cachen Sie die Tracks um оnline abzuspielen!</value>
   </data>
-  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
-    <value>Lokale Bibliothek</value>
+  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
+    <value>Wir wissen alles über die Musik!</value>
   </data>
-  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
-    <value>Geben Ihre lokale Tracks wider</value>
+  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
+    <value>Geben Sie Songs Ihrer Lieblings-Künstler wider</value>
   </data>
   <data name="PromoView_NextButton.Content" xml:space="preserve">
     <value>weiter</value>
@@ -938,7 +930,7 @@ Bitte warten Sie...</value>
     <value>Keine Musik im Cache</value>
   </data>
   <data name="CachedView_Title.Text" xml:space="preserve">
-    <value>Cachende</value>
+    <value>Musik-Caching</value>
   </data>
   <data name="Message_ClearCacheError_Text" xml:space="preserve">
     <value>Ein Fehler (der Cache von Audio zu löschen) ist aufgetreten. Bitte versuchen Sie später</value>
@@ -958,11 +950,11 @@ Bitte warten Sie...</value>
   <data name="Message_Login_LfConnectionError_Text" xml:space="preserve">
     <value>Fehler bei der Verbindung zu Last.fm. Überprüfen Sie den Zugriff auf das Internet und versuchen erneut.</value>
   </data>
-  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
-    <value>Wir wissen alles über die Musik!</value>
+  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
+    <value>Skrobbeln von Last.fm</value>
   </data>
-  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
-    <value>Geben Sie Songs Ihrer Lieblings-Künstler wider</value>
+  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
+    <value>Zeitloser Last.fm-Profil!</value>
   </data>
   <data name="FileSize_Bytes_Mask_Text" xml:space="preserve">
     <value>{0} bytes</value>
@@ -1015,7 +1007,7 @@ Eng: TB</comment>
     <value>Angehalten</value>
   </data>
   <data name="TransferStatus_PausedCostedNetwork_Text" xml:space="preserve">
-    <value>bezahlte Netzwerk</value>
+    <value>Bezahlbarer Netzwerk</value>
   </data>
   <data name="TransferStatus_PausedNoNetwork_Text" xml:space="preserve">
     <value>Keine Verbindung</value>
@@ -1091,7 +1083,7 @@ Code: {1} - {2}</value>
     <value>Sendung ist fehlgeschlagen</value>
   </data>
   <data name="Message_Uploads_UnknownError_Text" xml:space="preserve">
-    <value>Unbekannte Fehler:</value>
+    <value>Fehler:</value>
   </data>
   <data name="Toast_PostUploads_Success_Text" xml:space="preserve">
     <value>Sendung ist erfolgreich!</value>
@@ -1241,7 +1233,7 @@ Als nächstes werden wir einige grundlegende Parameter der Anwendung zur Einrich
     <value>suchen</value>
   </data>
   <data name="DetailsView_Subtitle.Text" xml:space="preserve">
-    <value>mehr</value>
+    <value>Mehr</value>
     <comment>details</comment>
   </data>
   <data name="LocalFolderView_Title.Text" xml:space="preserve">
@@ -1251,26 +1243,6 @@ Als nächstes werden wir einige grundlegende Parameter der Anwendung zur Einrich
   <data name="LocalGenreView_Title.Text" xml:space="preserve">
     <value>Genre</value>
     <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
-  </data>
-  <data name="LibraryView_PivotItem_Albums.Header" xml:space="preserve">
-    <value>Alben</value>
-  </data>
-  <data name="LibraryView_PivotItem_Artists.Header" xml:space="preserve">
-    <value>Künstlern</value>
-    <comment>artists</comment>
-  </data>
-  <data name="LibraryView_PivotItem_Cached.Header" xml:space="preserve">
-    <value>im Cache</value>
-  </data>
-  <data name="LibraryView_PivotItem_Folders.Header" xml:space="preserve">
-    <value>Ordnern</value>
-  </data>
-  <data name="LibraryView_PivotItem_Genres.Header" xml:space="preserve">
-    <value>Genres</value>
-  </data>
-  <data name="LibraryView_PivotItem_Tracks.Header" xml:space="preserve">
-    <value>Musik</value>
-    <comment>tracks</comment>
   </data>
   <data name="LibraryView_AlbumsLoader.ErrorText" xml:space="preserve">
     <value>Hochladen der besten Albenlisten ist fehlgeschlagen</value>
@@ -1291,7 +1263,7 @@ Als nächstes werden wir einige grundlegende Parameter der Anwendung zur Einrich
     <value>In Ihrer Sammlung gibt es kein Künstler</value>
   </data>
   <data name="LibraryView_CachedLoader.ErrorText" xml:space="preserve">
-    <value>Hochladen der Musik im Cache ist fehlgeschlagen</value>
+    <value>Laden des Videoslisten ist fehlgeschlagen</value>
   </data>
   <data name="LibraryView_CachedLoader.LoadingText" xml:space="preserve">
     <value>Laden der Liste der im Cache gespeicherten Audio...</value>
@@ -1317,6 +1289,26 @@ Als nächstes werden wir einige grundlegende Parameter der Anwendung zur Einrich
   <data name="LibraryView_GenresLoader.NoDataText" xml:space="preserve">
     <value>In Ihrer Sammlung gibt es kein Genre</value>
   </data>
+  <data name="LibraryView_PivotItem_Albums.Header" xml:space="preserve">
+    <value>Alben</value>
+  </data>
+  <data name="LibraryView_PivotItem_Artists.Header" xml:space="preserve">
+    <value>Künstlern</value>
+    <comment>artists</comment>
+  </data>
+  <data name="LibraryView_PivotItem_Cached.Header" xml:space="preserve">
+    <value>Musik-Caching</value>
+  </data>
+  <data name="LibraryView_PivotItem_Folders.Header" xml:space="preserve">
+    <value>Ordnern</value>
+  </data>
+  <data name="LibraryView_PivotItem_Genres.Header" xml:space="preserve">
+    <value>Genres</value>
+  </data>
+  <data name="LibraryView_PivotItem_Tracks.Header" xml:space="preserve">
+    <value>Tracks</value>
+    <comment>tracks</comment>
+  </data>
   <data name="LibraryView_TracksLoader.ErrorText" xml:space="preserve">
     <value>Hochladen der beste Playliste ist fehlgeschlagen</value>
     <comment>Eng: tracks, а не композиции</comment>
@@ -1328,9 +1320,6 @@ Als nächstes werden wir einige grundlegende Parameter der Anwendung zur Einrich
   <data name="LibraryView_TracksLoader.NoDataText" xml:space="preserve">
     <value>In Ihrer Sammlung gibt es keine Musik</value>
     <comment>Eng: tracks, а не композиции</comment>
-  </data>
-  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
-    <value>LOCALE BIBLIOTHEK</value>
   </data>
   <data name="MainView_AlbumsItem.Content" xml:space="preserve">
     <value>Alben</value>
@@ -1344,8 +1333,11 @@ Als nächstes werden wir einige grundlegende Parameter der Anwendung zur Einrich
   <data name="MainView_GenresItem.Content" xml:space="preserve">
     <value>Genres</value>
   </data>
+  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
+    <value>LOCALE BIBLIOTHEK</value>
+  </data>
   <data name="MainView_LocalTracksItem.Content" xml:space="preserve">
-    <value>Musik</value>
+    <value>Tracks</value>
     <comment>Eng: tracks, а не композиции</comment>
   </data>
   <data name="Message_LocalView_DeleteArtist_Text" xml:space="preserve">
@@ -1386,11 +1378,11 @@ Diese Aktion kann nicht rückgängig gemacht werden.</value>
   <data name="UnknownGenre_Text" xml:space="preserve">
     <value>unbekanntes Genre</value>
   </data>
-  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
-    <value>Skrobbeln von Last.fm</value>
+  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
+    <value>Lokale Bibliothek</value>
   </data>
-  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
-    <value>Zeitloser Last.fm-Profil!</value>
+  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
+    <value>Geben Ihre lokale Tracks wider</value>
   </data>
   <data name="Language_SystemLanguage_Text" xml:space="preserve">
     <value>nach den Systemeinstellungen</value>

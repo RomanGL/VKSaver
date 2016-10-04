@@ -24,6 +24,19 @@ namespace VKSaver.Core.Services.Common
             }
         }
 
+        public async Task Enqueue(Func<Task> taskGenerator)
+        {
+            await _semaphore.WaitAsync();
+            try
+            {
+                await taskGenerator();
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
+        }
+
         private readonly SemaphoreSlim _semaphore;
     }
 }

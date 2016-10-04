@@ -4,6 +4,7 @@ using SQLiteNetExtensions.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Database;
@@ -90,6 +91,15 @@ namespace VKSaver.Core.Services.Database
             {
                 var conn = GetDbConnection();
                 return conn.Find<T>(primaryKey);
+            });
+        }
+
+        public Task<T> FindItem<T>(Expression<Func<T, bool>> predicate) where T : class
+        {
+            return Task.Run(() =>
+            {
+                var conn = GetDbConnection();
+                return conn.Find<T>(predicate);
             });
         }
 

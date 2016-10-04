@@ -13,7 +13,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutView_About.Text" xml:space="preserve">
-    <value>про програму</value>
+    <value>про застосунок</value>
   </data>
   <data name="AboutView_AppName.Text" xml:space="preserve">
     <value>ВКачай 2</value>
@@ -25,42 +25,39 @@
     <value>Немає доступу</value>
   </data>
   <data name="AccessDeniedView_SectionNotCompleted.Text" xml:space="preserve">
-    <value>Цей розділ є ще не готовий до
+    <value>Цей розділ ще не готовий
 
-Повернутися назад, щоб продовжити</value>
+Поверніться назад, щоб продовжити</value>
   </data>
   <data name="AddToMyAudiosFlyoutItem.Text" xml:space="preserve">
-    <value>у моєму аудіо</value>
+    <value>в мої аудіозаписи</value>
   </data>
   <data name="AddToMyDocsFlyoutItem.Text" xml:space="preserve">
-    <value>у мої документи</value>
+    <value>в мої документи</value>
   </data>
   <data name="AddToMyVideosFlyoutItem.Text" xml:space="preserve">
-    <value>у мої відео</value>
+    <value>в мої відеозаписи</value>
   </data>
   <data name="AlbumTracksLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалося завантажити вміст альбому</value>
+    <value>Не вдалося відобразити вміст альбому</value>
   </data>
   <data name="AlbumTracksLoader.LoadingText" xml:space="preserve">
-    <value>Завантажити список треки на альбомі...</value>
+    <value>Завантажуємо список треків альбому...</value>
   </data>
   <data name="AlbumTracksLoader.NoDataText" xml:space="preserve">
-    <value>У цьому альбомі треків</value>
+    <value>В цьому альбомі немає композицій</value>
   </data>
   <data name="AppBarButton_AddToMyAudios_Text" xml:space="preserve">
-    <value>в мої аудіо</value>
+    <value>в мої аудіозаписи</value>
   </data>
   <data name="AppBarButton_AddToMyDocs_Text" xml:space="preserve">
     <value>в мої документи</value>
   </data>
   <data name="AppBarButton_AddToMyVideos_Text" xml:space="preserve">
-    <value>в мої відео</value>
+    <value>в мої відеозаписи</value>
   </data>
   <data name="AppBarButton_Delete_Text" xml:space="preserve">
     <value>видалити</value>
-  </data>
-  <data name="AppBarButton_Download_Text" xml:space="preserve">
-    <value>кешувати</value>
   </data>
   <data name="AppBarButton_Play_Text" xml:space="preserve">
     <value>відтворити</value>
@@ -69,10 +66,10 @@
     <value>оновити</value>
   </data>
   <data name="AppBarButton_SelectAll_Text" xml:space="preserve">
-    <value>вибрати все</value>
+    <value>обрати все</value>
   </data>
   <data name="AppBarButton_Select_Text" xml:space="preserve">
-    <value>вибрати</value>
+    <value>обрати</value>
   </data>
   <data name="AppLoader_AddingItem" xml:space="preserve">
     <value>Виконується додавання {0}...</value>
@@ -104,7 +101,7 @@
     <value>ВКачай</value>
   </data>
   <data name="ArtistInfoView_AlbumsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалося завантажити список альбомів виконавця</value>
+    <value>Не вдалося відобразити список альбомів виконавця</value>
   </data>
   <data name="ArtistInfoView_AlbumsLoader.LoadingText" xml:space="preserve">
     <value>Слухаємо платівки виконавця...</value>
@@ -113,13 +110,13 @@
     <value>Схоже, цей виконавець ретельно приховує свої альбоми</value>
   </data>
   <data name="ArtistInfoView_DetailsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалося завантажити дані про виконавця</value>
+    <value>Не вдалося відобразити дані про виконавця</value>
   </data>
   <data name="ArtistInfoView_DetailsLoader.LoadingText" xml:space="preserve">
-    <value>Збираємо досьє на виконавця...</value>
+    <value>Збираємо дані про виконавця...</value>
   </data>
   <data name="ArtistInfoView_DetailsLoader.NoDataText" xml:space="preserve">
-    <value>Про це виконавця немає ніякої інформації</value>
+    <value>За цього виконавця немає ніякої інформації</value>
   </data>
   <data name="ArtistInfoView_PivotSection_Albums.Header" xml:space="preserve">
     <value>альбоми</value>
@@ -134,7 +131,7 @@
     <value>знайти ВКонтакті</value>
   </data>
   <data name="ArtistInfoView_SimilarLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалося знайти схожих виконавців</value>
+    <value>Не вдалося відшукати схожих виконавців</value>
   </data>
   <data name="ArtistInfoView_SimilarLoader.LoadingText" xml:space="preserve">
     <value>Шукаємо схожих виконавців...</value>
@@ -145,22 +142,19 @@
   <data name="DeleteFlyoutItem.Text" xml:space="preserve">
     <value>видалити</value>
   </data>
-  <data name="DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>кешувати</value>
-  </data>
   <data name="ErrorView_Error.Text" xml:space="preserve">
     <value>Виникла помилка</value>
   </data>
   <data name="ErrorView_ErrorSorry.Text" xml:space="preserve">
     <value>Ми дуже жалкуємо про те, що трапилося
 
-Верніться назад, щоб продовжити</value>
+Поверніться назад, щоб продовжити</value>
   </data>
   <data name="LoginView_Auth.Text" xml:space="preserve">
     <value>Авторизація</value>
   </data>
   <data name="LoginView_JoinButton.Label" xml:space="preserve">
-    <value>зареєструватися</value>
+    <value>реєстрація</value>
   </data>
   <data name="LoginView_LoginButton.Content" xml:space="preserve">
     <value>увійти</value>
@@ -169,13 +163,10 @@
     <value>відновити пароль</value>
   </data>
   <data name="MainView_AboutItem.Content" xml:space="preserve">
-    <value>про програму</value>
+    <value>про застосунок</value>
   </data>
   <data name="MainView_DocsItem.Content" xml:space="preserve">
     <value>документи</value>
-  </data>
-  <data name="MainView_DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>кешувати</value>
   </data>
   <data name="MainView_FriendsItem.Content" xml:space="preserve">
     <value>друзі</value>
@@ -190,7 +181,7 @@
     <value>РЕКОМЕНДУЄМО</value>
   </data>
   <data name="MainView_HubSection_SeeAlso.Header" xml:space="preserve">
-    <value>ДИВІТЬСЯ ТАКОЖ</value>
+    <value>ПЕРЕГЛЯДАЙТЕ ТАКОЖ</value>
   </data>
   <data name="MainView_HubSection_TopArtists.Header" xml:space="preserve">
     <value>КРАЩІ ВИКОНАВЦІ</value>
@@ -214,7 +205,7 @@
     <value>пошук</value>
   </data>
   <data name="MainView_SettingsItem.Content" xml:space="preserve">
-    <value>настройки</value>
+    <value>налаштування</value>
   </data>
   <data name="MainView_ShowMore.Text" xml:space="preserve">
     <value>показати більше</value>
@@ -238,10 +229,10 @@
     <value>відео</value>
   </data>
   <data name="MainView_YourMusicLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалося завантажити список ваших треків</value>
+    <value>Не вдалося відобразити перелік ваших треків</value>
   </data>
   <data name="MainView_YourMusicLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список ваших треків...</value>
+    <value>Завантажуємо перелік ваших треків...</value>
   </data>
   <data name="MainView_YourMusicLoader.NoDataText" xml:space="preserve">
     <value>У вашій колекції не знайдено жодного треку</value>
@@ -253,7 +244,7 @@
     <value>Не вдалося додати</value>
   </data>
   <data name="Message_AudioAddError_Text" xml:space="preserve">
-    <value>При додаванні аудіозаписи в колекцію сталася помилка. Будь ласка, спробуйте пізніше.</value>
+    <value>При додаванні аудіозаписів в колекцію сталася помилка. Будь ласка, спробуйте пізніше.</value>
   </data>
   <data name="Message_AudioAddError_Title" xml:space="preserve">
     <value>Не вдалося додати аудіозапис</value>
@@ -262,25 +253,25 @@
     <value>При видаленні альбому аудіозаписів сталася помилка. Будь ласка, спробуйте пізніше.</value>
   </data>
   <data name="Message_AudioAlbumDeleteError_Title" xml:space="preserve">
-    <value>Чи не вдалося видалити альбом аудіозаписів</value>
+    <value>Не вдалося видалити альбом аудіозаписів</value>
   </data>
   <data name="Message_AudioDeleteError_Text" xml:space="preserve">
-    <value>При видаленні аудіозаписи сталася помилка. Будь ласка, спробуйте пізніше.</value>
+    <value>При видаленні аудіозаписів сталася помилка. Будь ласка, спробуйте пізніше.</value>
   </data>
   <data name="Message_AudioDeleteError_Title" xml:space="preserve">
-    <value>Чи не вдалося видалити аудіозапис</value>
+    <value>Не вдалося видалити аудіозапис</value>
   </data>
   <data name="Message_CantFindLyrics_Title" xml:space="preserve">
-    <value>Не вдалося знайти текст</value>
+    <value>Не вдалося відшукати текст</value>
   </data>
   <data name="Message_CantFindLyrics_Text" xml:space="preserve">
-    <value>Не вдалося знайти текст для даної аудіозаписи. Ми дуже шкодуємо.</value>
+    <value>Не вдалося відшукати текст для даного аудіозапису. Ми дуже жалкуємо.</value>
   </data>
   <data name="Message_DeleteSelectedError_Text" xml:space="preserve">
-    <value>Чи не вдалося видалити зазначені елементи з вашої колекції. Будь ласка, спробуйте пізніше.</value>
+    <value>Не вдалося видалити зазначені елементи з вашої колекції. Будь ласка, спробуйте пізніше.</value>
   </data>
   <data name="Message_DeleteSelectedError_Title" xml:space="preserve">
-    <value>Чи не вдалося видалити</value>
+    <value>Не вдалося видалити</value>
   </data>
   <data name="Message_DocAddError_Text" xml:space="preserve">
     <value>При додаванні документа в колекцію сталася помилка. Будь ласка, спробуйте пізніше.</value>
@@ -292,25 +283,25 @@
     <value>При видаленні документа сталася помилка. Будь ласка, спробуйте пізніше.</value>
   </data>
   <data name="Message_DocDeleteError_Title" xml:space="preserve">
-    <value>Чи не вдалося видалити документ</value>
+    <value>Не вдалося видалити документ</value>
   </data>
   <data name="Message_Downloads_CantCreateFile_Text" xml:space="preserve">
     <value>Не вдалося створити файл:</value>
   </data>
   <data name="Message_Downloads_CantCreateFolder_Text" xml:space="preserve">
-    <value>Не вдалося створити папку:</value>
+    <value>Не вдалося створити теку:</value>
   </data>
   <data name="Message_Downloads_MaxDownloadsExceeded_Text" xml:space="preserve">
     <value>Досягнуто максимальну кількість одночасних завантажень:</value>
   </data>
   <data name="Message_Downloads_StartFailed_Title" xml:space="preserve">
-    <value>Не вдалося ініціювати завантаження</value>
+    <value>Не вдалося розпочати завантаження</value>
   </data>
   <data name="Message_Downloads_UnknownError_Text" xml:space="preserve">
     <value>Невідома помилка:</value>
   </data>
   <data name="Message_Login_AccessDenied_Text" xml:space="preserve">
-    <value>Чи не вдалося виконати авторизацію, так як ВКачай було відмовлено в доступі. Будь ласка, спробуйте пізніше.</value>
+    <value>Не вдалося виконати авторизацію, так як ВКачай не отримав доступ. Будь ласка, спробуйте пізніше.</value>
   </data>
   <data name="Message_Login_AccessDenied_Title" xml:space="preserve">
     <value>Помилка доступу</value>
@@ -319,26 +310,26 @@
     <value>Авторизація не вдалася</value>
   </data>
   <data name="Message_Login_ConnectionError_Text" xml:space="preserve">
-    <value>Помилка з'єднання із ВКонтакті. Перевірте доступ до інтернету і спробуйте ще раз.</value>
+    <value>Помилка з'єднання із VK. Перевірте доступ до інтернету і спробуйте ще раз.</value>
   </data>
   <data name="Message_Login_UnknownError_Text" xml:space="preserve">
-    <value>Чи не вдалося виконати авторизацію. Будь ласка, спробуйте пізніше.
+    <value>Не вдалося виконати авторизацію. Будь ласка, спробуйте пізніше.
 Код помилки: {0}</value>
   </data>
   <data name="Message_Purchase_Failed_Text" xml:space="preserve">
-    <value>Чи не вдалося зробити покупку. Ми дуже шкодуємо, спробуйте ще раз пізніше.</value>
+    <value>Не вдалося зробити покупку. Ми дуже шкодуємо, спробуйте ще раз пізніше.</value>
   </data>
   <data name="Message_Purchase_Failed_Title" xml:space="preserve">
-    <value>Покупка не вдалася</value>
+    <value>Придбати не вдалося</value>
   </data>
   <data name="Message_Purchase_Success_Text" xml:space="preserve">
     <value>Тепер ви щасливий власник повної версії ВКачай 2!</value>
   </data>
   <data name="Message_Purchase_Success_Title" xml:space="preserve">
-    <value>Дякую за покупку</value>
+    <value>Дякуємо що придбали</value>
   </data>
   <data name="Message_Transfer_Error_Text" xml:space="preserve">
-    <value>На жаль, при виконанні операції сталася помилка, і ми не можемо її завершити.</value>
+    <value>На жаль, при виконанні операції сталася помилка, і ми не можемо її завершити. </value>
   </data>
   <data name="Message_Transfer_Error_Title" xml:space="preserve">
     <value>Виникла помилка</value>
@@ -350,15 +341,15 @@
     <value>Очікування черги</value>
   </data>
   <data name="Message_Transfer_PausedCostedNetwork_Text" xml:space="preserve">
-    <value>Система заблокувала передачу даних, так як за ісползованія інтернет-з'єднання може стягуватися плата оператором.
+    <value>Система заблокувала передачу даних, так як за використання інтернет-з'єднання може стягуватися плата оператором.
 
-Приберіть всі обмеження в "Датчик даних" і відключіть ліміт трафіку. Операція триватиме, як тільки система дозволить передачу даних.</value>
+Приберіть всі обмеження в "Контроль даних" і відключіть ліміт трафіку. Операція триватиме, як тільки система дозволить передачу даних.</value>
   </data>
   <data name="Message_Transfer_PausedCostedNetwork_Title" xml:space="preserve">
-    <value>Платна мережу</value>
+    <value>Платна мережа</value>
   </data>
   <data name="Message_Transfer_PausedNoNetwork_Text" xml:space="preserve">
-    <value>Немає доступу до мережі. Перевірте налаштування передачі даних.
+    <value>Немає доступу до мережі. Перевірте налаштування передачі даних. 
 Операція триватиме, як тільки з'єднання стане доступним.</value>
   </data>
   <data name="Message_Transfer_PausedNoNetwork_Title" xml:space="preserve">
@@ -374,36 +365,36 @@
     <value>При видаленні альбому відеозаписів сталася помилка. Будь ласка, спробуйте пізніше.</value>
   </data>
   <data name="Message_VideoAlbumDeleteError_Title" xml:space="preserve">
-    <value>Чи не вдалося видалити альбом відеозаписів</value>
+    <value>Не вдалося видалити альбом відеозаписів</value>
   </data>
   <data name="Message_VideoDeleteError_Text" xml:space="preserve">
-    <value>При видаленні аудіозаписи сталася помилка. Будь ласка, спробуйте пізніше.</value>
+    <value>При видаленні аудіозапису сталася помилка. Будь ласка, спробуйте пізніше.</value>
   </data>
   <data name="Message_VideoDeleteError_Title" xml:space="preserve">
-    <value>Не вдалось видалити відео</value>
+    <value>Неможливо видалити відео</value>
   </data>
   <data name="NoTracksView_NoTracks.Text" xml:space="preserve">
-    <value>Зараз не відтворюється жодного треку
+    <value>Зараз не лунає жодної музики
 
-Верніться назад, щоб продовжити</value>
+Поверніться назад, щоб продовжити</value>
   </data>
   <data name="NoTracksView_Silence.Text" xml:space="preserve">
     <value>Тиша...</value>
   </data>
   <data name="PlayerView_PivotSection_NowPlaying.Header" xml:space="preserve">
-    <value>зараз грає</value>
+    <value>зараз лунає</value>
   </data>
   <data name="PlayerView_PivotSection_Playlist.Header" xml:space="preserve">
     <value>плейлист</value>
   </data>
   <data name="PurchaseView_BuyMonthlyButton.Content" xml:space="preserve">
-    <value>купити на місяць</value>
+    <value>придбати на місяць</value>
   </data>
   <data name="PurchaseView_BuyNowButton.Content" xml:space="preserve">
-    <value>купити зараз</value>
+    <value>придбати зараз</value>
   </data>
   <data name="PurchaseView_BuyPermanentButton.Content" xml:space="preserve">
-    <value>купити назавжди</value>
+    <value>придбати назавжди</value>
   </data>
   <data name="PurchaseView_NextButton.Content" xml:space="preserve">
     <value>далі</value>
@@ -445,10 +436,10 @@
     <value>Дивіться і завантажуйте улюблені відео!</value>
   </data>
   <data name="RecommendationsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити рекомендації</value>
+    <value>Не вдалося відобразити рекомендації</value>
   </data>
   <data name="RecommendationsLoader.LoadingText" xml:space="preserve">
-    <value>Вивчаємо ваші музичні уподобання...</value>
+    <value>Вивчаємо ваші музичні смаки...</value>
   </data>
   <data name="RecommendationsLoader.NoDataText" xml:space="preserve">
     <value>Ми не можемо вам нічого порекомендувати</value>
@@ -457,14 +448,14 @@
     <value>рекомендуємо</value>
   </data>
   <data name="SettingsView_Title.Text" xml:space="preserve">
-    <value>настройки</value>
+    <value>налаштування</value>
   </data>
   <data name="TopArtistItem_ListenersCount.Text" xml:space="preserve">
     <value>слухачів</value>
     <comment>Например, "12 слушателей"</comment>
   </data>
   <data name="TopArtistsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список кращих виконавців</value>
+    <value>Не вдалося відобразити перелік кращих виконавців</value>
   </data>
   <data name="TopArtistsLoader.LoadingText" xml:space="preserve">
     <value>Вибираємо кращих виконавців...</value>
@@ -483,13 +474,13 @@
     <comment>Например, "15 воспроизведений"</comment>
   </data>
   <data name="TopTracksView_TracksLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список кращих треків</value>
+    <value>Не вдалося відобразити перелік кращих треків</value>
   </data>
   <data name="TopTracksView_TracksLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список кращих треків...</value>
+    <value>Завантажуємо перелік кращих треків...</value>
   </data>
   <data name="TopTracksView_TracksLoader.NoDataText" xml:space="preserve">
-    <value>Немає жодного кращого треку</value>
+    <value>Немає жодного кращого трека</value>
   </data>
   <data name="TrackInfoView_PlayButton.Content" xml:space="preserve">
     <value>відтворити</value>
@@ -498,13 +489,13 @@
     <value>детальніше</value>
   </data>
   <data name="TrackLyricView_LyricsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити текст аудіозаписи</value>
+    <value>Не вдалося відобразити текст аудіозапису</value>
   </data>
   <data name="TrackLyricView_LyricsLoader.LoadingText" xml:space="preserve">
-    <value>Виконуємо пошук тексту аудіозаписи...</value>
+    <value>Виконуємо пошук тексту аудіозапису...</value>
   </data>
   <data name="TrackLyricView_LyricsLoader.NoDataText" xml:space="preserve">
-    <value>У цій аудіозаписи немає тексту</value>
+    <value>У цьому аудіо немає тексту</value>
   </data>
   <data name="TransferView_CancelAllDownloadsButton.Label" xml:space="preserve">
     <value>скасувати всі завантаження</value>
@@ -513,7 +504,7 @@
     <value>скасувати</value>
   </data>
   <data name="TransferView_DownloadsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалося список поточних завантажень</value>
+    <value>Не вдалося отримати перелік поточних завантажень</value>
   </data>
   <data name="TransferView_DownloadsLoader.LoadingText" xml:space="preserve">
     <value>Отримання списку поточних завантажень...</value>
@@ -522,7 +513,7 @@
     <value>Зараз не виконується ніяких завантажень</value>
   </data>
   <data name="TransferView_HistoryLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалося журнал завантажень</value>
+    <value>Не вдалося отримати журнал завантажень</value>
   </data>
   <data name="TransferView_HistoryLoader.LoadingText" xml:space="preserve">
     <value>Отримання журналу завантажень...</value>
@@ -540,49 +531,49 @@
     <value>журнал</value>
   </data>
   <data name="TransferView_PivotSection_Uploads.Header" xml:space="preserve">
-    <value>відправлення</value>
+    <value>відвантаження</value>
   </data>
   <data name="TransferView_ResumeFlyoutItem.Text" xml:space="preserve">
     <value>відновити</value>
   </data>
   <data name="TransferView_UploadsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалося список поточних відправок</value>
+    <value>Не вдалося отримати перелік поточних відправок</value>
   </data>
   <data name="TransferView_UploadsLoader.LoadingText" xml:space="preserve">
-    <value>Отримання списку поточних відправок...</value>
+    <value>Отримання списку поточних відвантажень...</value>
   </data>
   <data name="TransferView_UploadsLoader.NoDataText" xml:space="preserve">
-    <value>Зараз не виконується ніяких відправлень</value>
+    <value>Зараз не виконується ніяких відвантажень</value>
   </data>
   <data name="UserCommView_FriendListsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити списки друзів</value>
+    <value>Не вдалося відобразити перелік друзів</value>
   </data>
   <data name="UserCommView_FriendListsLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо списки друзів...</value>
+    <value>Завантажуємо перелік друзів...</value>
   </data>
   <data name="UserCommView_FriendListsLoader.NoDataText" xml:space="preserve">
-    <value>Списки друзів відсутні або доступ до них закритий</value>
+    <value>Перелік друзів відсутній або доступ до них закритий</value>
   </data>
   <data name="UserCommView_FriendsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список друзів</value>
+    <value>Не вдалося відобразити перелік друзів</value>
   </data>
   <data name="UserCommView_FriendsLoader.LoadingText" xml:space="preserve">
     <value>Завантажуємо інформацію про друзів...</value>
   </data>
   <data name="UserCommView_FriendsLoader.NoDataText" xml:space="preserve">
-    <value>Друзі відсутні або доступ до них закритий</value>
+    <value>Друзі відсутні або доступ до них зачинений</value>
   </data>
   <data name="UserCommView_GroupsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список спільнот</value>
+    <value>Не вдалося відобразити перелік спільнот</value>
   </data>
   <data name="UserCommView_GroupsLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо інформацію про співтовариствах...</value>
+    <value>Завантажуємо інформацію про спільноти...</value>
   </data>
   <data name="UserCommView_GroupsLoader.NoDataText" xml:space="preserve">
-    <value>Спільноти відсутні або доступ до них закритий</value>
+    <value>Спільноти відсутні або доступ до них зачинений</value>
   </data>
   <data name="UserCommView_PivotSection_FriendLists.Header" xml:space="preserve">
-    <value>списки</value>
+    <value>перелік</value>
     <comment>списки друзей</comment>
   </data>
   <data name="UserCommView_PivotSection_Friends.Header" xml:space="preserve">
@@ -601,22 +592,22 @@
     <value>аудіозаписи</value>
   </data>
   <data name="UserContentView_AudiosLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список аудіозаписів</value>
+    <value>Не вдалося відобразити перелік аудіозаписів</value>
   </data>
   <data name="UserContentView_AudiosLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список аудіозаписів...</value>
+    <value>Завантажуємо перелік аудіозаписів...</value>
   </data>
   <data name="UserContentView_AudiosLoader.NoDataText" xml:space="preserve">
-    <value>Аудіозаписи відсутні або доступ до них закритий</value>
+    <value>Аудіозаписи відсутні або доступ до них зачинений</value>
   </data>
   <data name="UserContentView_DocsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список документів</value>
+    <value>Не вдалося відобразити перелік документів</value>
   </data>
   <data name="UserContentView_DocsLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список документів...</value>
+    <value>Завантажуємо перелік документів...</value>
   </data>
   <data name="UserContentView_DocsLoader.NoDataText" xml:space="preserve">
-    <value>Документи відсутні або доступ до них закритий</value>
+    <value>Документи відсутні або доступ до них зачинений</value>
   </data>
   <data name="UserContentView_PivotSection_Docs.Header" xml:space="preserve">
     <value>документи</value>
@@ -628,31 +619,31 @@
     <value>відео</value>
   </data>
   <data name="UserContentView_VideosGroup_Text" xml:space="preserve">
-    <value>відеозапису</value>
+    <value>відеозаписи</value>
   </data>
   <data name="UserContentView_VideosLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список відеозаписів</value>
+    <value>Не вдалося відобразити перелік відеозаписів</value>
   </data>
   <data name="UserContentView_VideosLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список відеозаписів...</value>
+    <value>Завантажуємо перелік відеозаписів...</value>
   </data>
   <data name="UserContentView_VideosLoader.NoDataText" xml:space="preserve">
-    <value>Відеозаписи відсутні або доступ до них закритий</value>
+    <value>Відеозаписи відсутні або доступ до них зачинений</value>
   </data>
   <data name="VideoInfoView_StoresOn_Coub_Text" xml:space="preserve">
-    <value>Це відео зберігається на серверах Coub</value>
+    <value>Це відео міститься на серверах Coub</value>
   </data>
   <data name="VideoInfoView_StoresOn_Unsupported_Text" xml:space="preserve">
-    <value>Це відео зберігається на підтримуваному сервісі</value>
+    <value>Формат відеозапису не підтримується</value>
   </data>
   <data name="VideoInfoView_StoresOn_Vimeo_Text" xml:space="preserve">
-    <value>Це відео зберігається на серверах Vimeo</value>
+    <value>Це відео міститься на серверах Vimeo</value>
   </data>
   <data name="VideoInfoView_StoresOn_VK_Text" xml:space="preserve">
-    <value>Це відео зберігається на серверах ВКонтакті</value>
+    <value>Це відео міститься на серверах ВКонтакті</value>
   </data>
   <data name="VideoInfoView_StoresOn_YouTube_Text" xml:space="preserve">
-    <value>Це відео зберігається на серверах YouTube</value>
+    <value>Це відео міститься на серверах YouTube</value>
   </data>
   <data name="Loader_ReloadButton_Text" xml:space="preserve">
     <value>повторити</value>
@@ -673,7 +664,7 @@
     <value>Виберіть якість відео</value>
   </data>
   <data name="Message_VideoPlayer_Failed_Text" xml:space="preserve">
-    <value>Неможливо відтворити цей відеозапис. Не з'єднані або даний формат відеозапису не підтримується.</value>
+    <value>Неможливо відтворити цей відеозапис. Відсутнє з'єднання або даний формат відеозапису не підтримується.</value>
   </data>
   <data name="Message_VideoPlayer_Failed_Title" xml:space="preserve">
     <value>Неможливо відтворити</value>
@@ -699,11 +690,11 @@
     <comment>Не переводить</comment>
   </data>
   <data name="Message_VideoInfo_GetLinksFailed_Text" xml:space="preserve">
-    <value>Не вдалося посилання для цього відеозапису.
-Не з'єднані або доступ до відеозапису закритий.</value>
+    <value>Не вдалося отримати посилання для цього відеозапису.
+Відсутнє з'єднання або доступ до відеозапису закритий.</value>
   </data>
   <data name="Message_VideoInfo_GetLinksFailed_Title" xml:space="preserve">
-    <value>Не вдалося дістати посилання</value>
+    <value>Не вдалося отримати посилання</value>
   </data>
   <data name="AppBarButton_Player_Text" xml:space="preserve">
     <value>програвач</value>
@@ -712,16 +703,16 @@
     <value>менеджер завантажень</value>
   </data>
   <data name="VideoAlbumVideosLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити вміст альбому</value>
+    <value>Не вдалося відобразити вміст альбому</value>
   </data>
   <data name="VideoAlbumVideosLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список відеозаписів альбому...</value>
+    <value>Завантажуємо перелік відеозаписів альбому...</value>
   </data>
   <data name="VideoAlbumVideosLoader.NoDataText" xml:space="preserve">
     <value>В цьому альбомі немає відеозаписів</value>
   </data>
   <data name="SelectSearchTypeView_Title.Text" xml:space="preserve">
-    <value>Що ви хочете знайти?</value>
+    <value>Що ви хочете відшукати?</value>
   </data>
   <data name="SearchView_InCollection_Title.Header" xml:space="preserve">
     <value>в колекції</value>
@@ -733,7 +724,7 @@
     <value>введіть запит і натисніть Enter</value>
   </data>
   <data name="SearchView_Loader.ErrorText" xml:space="preserve">
-    <value>Чи не вдалося виконати пошук</value>
+    <value>Не вдалося виконати пошук</value>
   </data>
   <data name="SearchView_Loader.LoadingText" xml:space="preserve">
     <value>Виконується пошук...</value>
@@ -745,17 +736,17 @@
     <value>фільтр</value>
   </data>
   <data name="AudioSearchView_PerformerOnlySwitch.Header" xml:space="preserve">
-    <value>Шукати тільки по виконавцю</value>
+    <value>Шукати тільки за виконавцями</value>
   </data>
   <data name="AudioSearchView_LyricsOnlySwitch.Header" xml:space="preserve">
-    <value>Шукати тільки з текстом</value>
+    <value>Шукати тільки за композиціями</value>
   </data>
   <data name="BetaBlockerView_Content.Text" xml:space="preserve">
     <value>Дякую за участь!
-Завантажте ВКачай 2 зараз!</value>
+Встановіть ВКачай 2 зараз!</value>
   </data>
   <data name="BetaBlockerView_DownloadButton.Content" xml:space="preserve">
-    <value>перейти до завантаження</value>
+    <value>перейти до завантажень</value>
   </data>
   <data name="BetaBlockerView_Title.Text" xml:space="preserve">
     <value>Бета-тест завершений</value>
@@ -764,7 +755,7 @@
     <value>Фільтр відео</value>
   </data>
   <data name="VideoSearchView_Filters_All_Text" xml:space="preserve">
-    <value>всі</value>
+    <value>усі</value>
   </data>
   <data name="VideoSearchView_OnlyHD_Switch.Header" xml:space="preserve">
     <value>Тільки HD</value>
@@ -785,18 +776,18 @@
     <value>короткі</value>
   </data>
   <data name="VideoSearchView_VideoSortMethods_ByDate_Text" xml:space="preserve">
-    <value>по датою додавання</value>
+    <value>за датою додавання</value>
     <comment>Eng: by date</comment>
   </data>
   <data name="VideoSearchView_VideoSortMethods_ByDuration_Text" xml:space="preserve">
-    <value>по тривалості</value>
+    <value>за тривалістю</value>
   </data>
   <data name="VideoSearchView_VideoSortMethods_ByRelevance_Text" xml:space="preserve">
     <value>за популярністю</value>
     <comment>Eng: by popularity</comment>
   </data>
   <data name="VideoSearchView_VideoSortMethods_ComboBox.Header" xml:space="preserve">
-    <value>Мметод сортування</value>
+    <value>Тип сортування</value>
   </data>
   <data name="VideoSearchView_VideoTypes_ComboBox.Header" xml:space="preserve">
     <value>Тип відео</value>
@@ -832,7 +823,7 @@
     <value>ВКонтакті</value>
   </data>
   <data name="ServiceAuthBlock_SignedInAs.Text" xml:space="preserve">
-    <value>Ви зайшли як</value>
+    <value>Ви увійшли як</value>
     <comment>Например: "Вы вошли как Иван Иванов"</comment>
   </data>
   <data name="ServiceAuthBlock_SignInButton.Content" xml:space="preserve">
@@ -848,41 +839,41 @@
     <value>обробка</value>
   </data>
   <data name="PackagingFilesView_Processing.Text" xml:space="preserve">
-    <value>Виконується обробка завантажених файлів ...
+    <value>Виконується обробка завантажених файлів...
 Будь ласка, зачекайте...</value>
   </data>
   <data name="PromoView_LetsGoButton.Content" xml:space="preserve">
-    <value>почати</value>
+    <value>розпочнімо</value>
   </data>
   <data name="PromoView_Screen0_Line1_Text" xml:space="preserve">
-    <value>Нові функції чекають вас!</value>
+    <value>Нові функції чекають Вас!</value>
   </data>
   <data name="PromoView_Screen0_Line2_Text" xml:space="preserve">
-    <value>Чи готові? Тоді почнемо!</value>
+    <value>Чи готові Ви? Тоді розпочнемо!</value>
   </data>
   <data name="PromoView_Screen1_Line1_Text" xml:space="preserve">
     <value>Ласкаво просимо!</value>
   </data>
   <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
-    <value>ВКачай оновився, про всі новинки читайте далі</value>
+    <value>ВКачай модернізувався, про всі новинки читайте далі</value>
   </data>
   <data name="PromoView_Screen2_Line1_Text" xml:space="preserve">
-    <value>Копіювання треків</value>
+    <value>Кешування музики</value>
   </data>
   <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
-    <value>Кешуйте треки для оффлайн відтворення!</value>
+    <value>Кешуйте музику для оффлайн відтворення!</value>
   </data>
-  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
-    <value>Локальна бібліотека</value>
+  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
+    <value>Ми знаємо про музику все!</value>
   </data>
-  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
-    <value>Відтворення свої локальні аудіозаписи</value>
+  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
+    <value>Відтворення треків улюблених виконавців</value>
   </data>
   <data name="PromoView_NextButton.Content" xml:space="preserve">
     <value>далі</value>
   </data>
   <data name="ArtistAlbumView_DetailsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити інформацію про цей альбом</value>
+    <value>Не вдалося відобразити інформацію про цей альбом</value>
   </data>
   <data name="ArtistAlbumView_DetailsLoader.LoadingText" xml:space="preserve">
     <value>Збираємо інформацію про альбом...</value>
@@ -897,10 +888,10 @@
     <value>композиції</value>
   </data>
   <data name="ArtistAlbumView_TracksLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список треків цього альбому</value>
+    <value>Не вдалося відобразити перелік треків цього альбому</value>
   </data>
   <data name="ArtistAlbumView_TracksLoader.LoadingText" xml:space="preserve">
-    <value>Вивчаємо список композицій цього альбому...</value>
+    <value>Вивчаємо перелік композицій цього альбому...</value>
   </data>
   <data name="ArtistAlbumView_TracksLoader.NoDataText" xml:space="preserve">
     <value>В цьому альбомі немає жодної композиції</value>
@@ -909,38 +900,38 @@
     <value>новини</value>
   </data>
   <data name="NewsMediaView_Loader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список новин</value>
+    <value>Не вдалося відобразити перелік новин</value>
   </data>
   <data name="NewsMediaView_Loader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список останніх новин...</value>
+    <value>Завантажуємо перелік останніх новин...</value>
   </data>
   <data name="NewsMediaView_Loader.NoDataText" xml:space="preserve">
-    <value>В останні новини не знайдено жодної аудіозаписи</value>
+    <value>В останніх новинах не знайдено жодного аудіозапису</value>
   </data>
   <data name="MainView_CachedItem.Content" xml:space="preserve">
-    <value>кешированниє</value>
+    <value>кешовані</value>
     <comment>Кэшированные треки</comment>
   </data>
   <data name="AppBarButton_DeleteAll_Text" xml:space="preserve">
-    <value>видалити всі</value>
+    <value>видалити все</value>
   </data>
   <data name="CachedView_Loader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список кешованих аудіозаписів</value>
+    <value>Не вдалося відобразити перелік кешованих аудіозаписів</value>
   </data>
   <data name="CachedView_Loader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо кешированниє аудіозаписи...</value>
+    <value>Завантажуємо кешовані аудіозаписи...</value>
   </data>
   <data name="CachedView_Loader.NoDataText" xml:space="preserve">
     <value>Кешовані аудіозаписи відсутні</value>
   </data>
   <data name="CachedView_Title.Text" xml:space="preserve">
-    <value>кешированниє</value>
+    <value>кешовані</value>
   </data>
   <data name="Message_ClearCacheError_Text" xml:space="preserve">
-    <value>Коли кеш очищується аудіозаписів сталася помилка. Будь ласка, спробуйте пізніше.</value>
+    <value>При очищенні кешу аудіозаписів сталася помилка. Будь ласка, спробуйте пізніше.</value>
   </data>
   <data name="Message_ClearCacheError_Title" xml:space="preserve">
-    <value>Чи не вдалося очистити кеш</value>
+    <value>Не вдалося очистити кеш</value>
   </data>
   <data name="LoginView_LoginField.PlaceholderText" xml:space="preserve">
     <value>ім'я користувача або email</value>
@@ -954,11 +945,11 @@
   <data name="Message_Login_LfConnectionError_Text" xml:space="preserve">
     <value>Помилка з'єднання із Last.fm. Перевірте доступ до інтернету і спробуйте ще раз.</value>
   </data>
-  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
-    <value>Ми знаємо про музику всі!</value>
+  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
+    <value>Скробблінг Last.fm</value>
   </data>
-  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
-    <value>Відтворення треки улюблених виконавців</value>
+  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
+    <value>Завжди актуальний профіль Last.fm!</value>
   </data>
   <data name="FileSize_Bytes_Mask_Text" xml:space="preserve">
     <value>{0} байт</value>
@@ -1014,32 +1005,32 @@ Eng: TB</comment>
     <value>Платна мережа</value>
   </data>
   <data name="TransferStatus_PausedNoNetwork_Text" xml:space="preserve">
-    <value>З'єднання відсутня</value>
+    <value>З'єднання відсутнє</value>
   </data>
   <data name="TransferStatus_Running_Text" xml:space="preserve">
     <value>Виконується...</value>
   </data>
   <data name="AppBarButton_UploadFile.Label" xml:space="preserve">
-    <value>відправити файл</value>
+    <value>відвантажити файл</value>
   </data>
   <data name="AppLoader_CancelAllUploads" xml:space="preserve">
-    <value>Скасування всіх відправлень...</value>
+    <value>Скасування всіх відвантажень...</value>
   </data>
   <data name="FileSize_SizeText.Text" xml:space="preserve">
     <value>Розмір:</value>
     <comment>Размер файла.</comment>
   </data>
   <data name="Message_PostUploads_ConnectionError_Text" xml:space="preserve">
-    <value>Помилка з'єднання. Перевірте підключення до мережі. Під час наступного запуску ми повторимо спробу завершити відправку {0}.</value>
+    <value>Помилка з'єднання. Перевірте підключення до мережі. Під час наступного запуску ми повторимо спробу завершити надсилання {0}.</value>
   </data>
   <data name="Message_PostUploads_Error_Title" xml:space="preserve">
-    <value>Не вдалось завершити відправку</value>
+    <value>Не вдалося завершити відвантаження</value>
   </data>
   <data name="Message_PostUploads_ServerError_105_Text" xml:space="preserve">
     <value>Неможливо зберегти файл.</value>
   </data>
   <data name="Message_PostUploads_ServerError_123_Text" xml:space="preserve">
-    <value>Неприпустимий формат аудіозаписи.</value>
+    <value>Неприпустимий формат аудіозапису.</value>
   </data>
   <data name="Message_PostUploads_ServerError_204_Text" xml:space="preserve">
     <value>Немає доступу.</value>
@@ -1048,7 +1039,7 @@ Eng: TB</comment>
     <value>Немає прав на додавання поста.</value>
   </data>
   <data name="Message_PostUploads_ServerError_270_Text" xml:space="preserve">
-    <value>Аудіозапис була вилучена на вимогу правовласника і не може бути завантажена.</value>
+    <value>Аудіозапис був вилучений на вимогу правовласника і не може бути завантажений.</value>
   </data>
   <data name="Message_PostUploads_ServerError_301_Text" xml:space="preserve">
     <value>Неприпустиме ім'я файлу.</value>
@@ -1057,7 +1048,7 @@ Eng: TB</comment>
     <value>Неприпустимий розмір файлу.</value>
   </data>
   <data name="Message_PostUploads_ServerError_Text" xml:space="preserve">
-    <value>Сервер повернув помилку, і ми не можемо завершити відправку {0}.
+    <value>Сервер повернув помилку, і ми не можемо завершити відвантаження {0}.
 Код: {1} - {2}</value>
     <comment>Например, "Код: 404 - не найдено".</comment>
   </data>
@@ -1065,35 +1056,35 @@ Eng: TB</comment>
     <value>Невідома помилка.</value>
   </data>
   <data name="Message_PostUploads_UnknownAppError_Text" xml:space="preserve">
-    <value>Виникла невідома помилка, і ми не можемо завершити відправку {0}.</value>
+    <value>Виникла невідома помилка, і ми не можемо завершити відвантаження {0}.</value>
   </data>
   <data name="Message_Uploads_CantPrepareData_Text" xml:space="preserve">
-    <value>Чи не вдалося підготувати дані:</value>
+    <value>Не вдалося підготувати дані:</value>
   </data>
   <data name="Message_Uploads_MaxUploadsExceeded_Text" xml:space="preserve">
-    <value>Досягнуто максимальну кількість відправлень:</value>
+    <value>Досягнуто максимальну кількість відвантажень:</value>
   </data>
   <data name="Message_Uploads_PreprocessionConnectionError_Text" xml:space="preserve">
-    <value>Сталася помилка з'єднання, і ми не можемо почати відправку {0}. Перевірте підключення до мережі та спробуйте ще раз.</value>
+    <value>Сталася помилка з'єднання, і ми не можемо почати відвантаження {0}. Перевірте підключення до мережі та спробуйте ще раз.</value>
   </data>
   <data name="Message_Uploads_PreprocessionError_Title" xml:space="preserve">
-    <value>Чи не вдалося підготувати файл до відправки</value>
+    <value>Не вдалося підготувати файл до надсилання</value>
   </data>
   <data name="Message_Uploads_PreprocessionServerError_Text" xml:space="preserve">
-    <value>Сервер повернув помилку, і ми не можемо почати відправку {0}. Будь ласка, спробуйте пізніше.
+    <value>Сервер повернув помилку, і ми не можемо почати відвантаження{0}. Будь ласка, спробуйте пізніше.
 Код: {1} - {2}</value>
   </data>
   <data name="Message_Uploads_StartUploading_Title" xml:space="preserve">
-    <value>Не вдалося ініціювати відправку</value>
+    <value>Не вдалося розпочати надсилання</value>
   </data>
   <data name="Message_Uploads_UnknownError_Text" xml:space="preserve">
     <value>Невідома помилка:</value>
   </data>
   <data name="Toast_PostUploads_Success_Text" xml:space="preserve">
-    <value>Відправка завершена!</value>
+    <value>Відвантаження завершено!</value>
   </data>
   <data name="TransferView_CancelAllUploadsButton.Label" xml:space="preserve">
-    <value>скасувати всі відправлення</value>
+    <value>скасувати всі надсилання</value>
   </data>
   <data name="UploadFileView_SelectAnotherFileButton.Content" xml:space="preserve">
     <value>вибрати інший</value>
@@ -1103,7 +1094,7 @@ Eng: TB</comment>
     <value>вибрати файл</value>
   </data>
   <data name="UploadFileView_SelectTypeBox.Header" xml:space="preserve">
-    <value>Що відправимо?</value>
+    <value>Що надішлемо?</value>
   </data>
   <data name="UploadFileView_SelectTypeBox_Audio.Content" xml:space="preserve">
     <value>аудіозапис</value>
@@ -1115,10 +1106,10 @@ Eng: TB</comment>
     <value>відеозапис</value>
   </data>
   <data name="UploadFileView_Title.Text" xml:space="preserve">
-    <value>відправити файл</value>
+    <value>відвантажити файл</value>
   </data>
   <data name="UploadFileView_UploadFileButton.Content" xml:space="preserve">
-    <value>відправити</value>
+    <value>відвантажити</value>
     <comment>Отправить файл.
 Eng: upload</comment>
   </data>
@@ -1129,23 +1120,23 @@ Eng: upload</comment>
     <value>Завантаження завершено!</value>
   </data>
   <data name="Toast_Uploads_Fail_Text" xml:space="preserve">
-    <value>Помилка відправлення</value>
+    <value>Помилка відвантаження</value>
   </data>
   <data name="Toast_Uploads_SuccessReturn_Text" xml:space="preserve">
-    <value>Верніться для завершення</value>
+    <value>Поверніться для завершення в застосунок</value>
     <comment>Имеется ввиду, что отправка завершена и нужно вернуться в приложение для завершения операции сохранения.</comment>
   </data>
   <data name="Message_Uploads_PreprocessionUnknownError_Text" xml:space="preserve">
-    <value>Виникла невідома помилка, і ми не можемо почати відправку {0}.</value>
+    <value>Виникла невідома помилка, і ми не можемо почати відвантаження {0}.</value>
   </data>
   <data name="UploadFileView_VideoSettings_DescriptionBox.Header" xml:space="preserve">
-    <value>Описання відео</value>
+    <value>Опис відео</value>
   </data>
   <data name="UploadFileView_VideoSettings_NameBox.Header" xml:space="preserve">
     <value>Назва відео</value>
   </data>
   <data name="UploadFileView_VideoSettings_RepeatSwitch.Header" xml:space="preserve">
-    <value>Зациклити відтворення</value>
+    <value>Зациклювати відтворення</value>
   </data>
   <data name="UploadFileView_VideoSettings_Title.Text" xml:space="preserve">
     <value>Параметри відео</value>
@@ -1154,18 +1145,18 @@ Eng: upload</comment>
     <value>Опублікувати на стіні</value>
   </data>
   <data name="Toast_PostUploads_Fail_Text" xml:space="preserve">
-    <value>Відправлення не може бути завершена</value>
+    <value>Публікація не може бути завершена</value>
   </data>
   <data name="FirstInternetSettingsView_ContentText.Text" xml:space="preserve">
-    <value>ВКачай може завантажити фотографії виконавців та обкладинки альбомів для ваших треків. Завантажувати ці дані (може стягуватися додаткова плата оператором)?
+    <value>ВКачай може завантажити фотографії виконавців та обкладинки альбомів для ваших треків. Завантажувати ці дані? (може стягуватися додаткова плата оператором)
 
-Цей параметр завжди можна змінити в настройках.</value>
+Цей параметр завжди можна змінити в налаштуваннях.</value>
   </data>
   <data name="FirstInternetSettingsView_Title.Text" xml:space="preserve">
-    <value>Доступ до Інтернету</value>
+    <value>Доступ до інтернету</value>
   </data>
   <data name="FirstStartRetryView_ContentText.Text" xml:space="preserve">
-    <value>Раді бачити вас знову!
+    <value>Раді бачити Вас знову!
 
 Минулого разу ми не завершили кілька моментів. Давайте продовжимо!</value>
   </data>
@@ -1176,9 +1167,9 @@ Eng: upload</comment>
     <value>З поверненням!</value>
   </data>
   <data name="FirstStartView_ContentText.Text" xml:space="preserve">
-    <value>ВКачай необхідно виконати пошук аудіофайлів на вашому смартфоні, перш ніж ви зможете їх відтворити (це необхідно виконати лише один раз).
+    <value>ВКачай повинен виконати пошук аудіофайлів на вашому смартфоні, перш ніж Ви зможете їх відтворити (це необхідно виконати лише один раз).
 
-Зверніть увагу, що ВКачай зможе знайти аудіофайли тільки в папці Музика в пам'яті смартфона або на SD-карті.
+Зверніть увагу, що ВКачай зможе відшукати аудіо файли тільки в папці Музика у пам'яті смартфона або на SD-карті.
 
 Далі ми допоможемо налаштувати декілька основних параметрів програми. Натисніть кнопку нижче, коли будете готові.</value>
   </data>
@@ -1186,32 +1177,32 @@ Eng: upload</comment>
     <value>приступити</value>
   </data>
   <data name="FirstStartView_NoButton.Content" xml:space="preserve">
-    <value>немає</value>
+    <value>ні</value>
   </data>
   <data name="FirstStartView_Title.Text" xml:space="preserve">
-    <value>Давайте почнемо!</value>
+    <value>Давайте розпочнімо!</value>
   </data>
   <data name="FirstStartView_WiFiButton.Content" xml:space="preserve">
     <value>тільки через Wi-Fi</value>
   </data>
   <data name="FirstStartView_YesButton.Content" xml:space="preserve">
-    <value>да</value>
+    <value>так</value>
   </data>
   <data name="UpdatingDatabaseView_ContentText.Text" xml:space="preserve">
-    <value>ВКачай виконує сканування ваших треків. Будь ласка, зачекайте ...</value>
+    <value>ВКачай виконує сканування вашої музики. Будь ласка зачекайте...</value>
   </data>
   <data name="UpdatingDatabaseView_SearchingAlbumsStep_Text" xml:space="preserve">
-    <value>Малюємо обкладинки альбомів... {0} з {1}</value>
+    <value>Малюємо обкладинки альбомів... {0} із {1}</value>
     <comment>Поиск обложек альбомов. Например, "Рисуем обложки альбомов... 6 из 45".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск обложек альбомов... 6 из 45".</comment>
   </data>
   <data name="UpdatingDatabaseView_SearchingArtistsStep_Text" xml:space="preserve">
-    <value>Фотографуємо виконавців... {0} з {1}</value>
+    <value>Фотографуємо виконавців... {0} із {1}</value>
     <comment>Поиск фотографий исполнителей. Например, "Фотографируем исполнителей... 33 из 35".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск изображений исполнителей... 33 из 35".</comment>
   </data>
   <data name="UpdatingDatabaseView_StepMask_Text" xml:space="preserve">
-    <value>Крок {0} з {1}</value>
+    <value>Крок {0} із {1}</value>
     <comment>Указывает номер текущей операции в процессе обновления базы данных.
 Например, "Шаг 1 из 5".</comment>
   </data>
@@ -1219,17 +1210,17 @@ Eng: upload</comment>
     <value>Оновлення бази даних</value>
   </data>
   <data name="UpdatingDatabseView_PreparingDatabaseStep_Text" xml:space="preserve">
-    <value>Переписуємо манускрипти... {0} з {1}</value>
+    <value>Переписуємо манускрипти... {0} із {1}</value>
     <comment>Обновление зависимостей в базе данных. Например, "Переписываем манускрипты... 2 из 21".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Обновление зависимостей... 2 из 21".</comment>
   </data>
   <data name="UpdatingDatabseView_SearchingFilesStep_Text" xml:space="preserve">
-    <value>Шукаємо аудіофайли... {0} з {1}</value>
+    <value>Шукаємо аудіофайли... {0} із {1}</value>
     <comment>Поиск аудиофайлов. Например, "Ищем аудиофайлы... 20 из 199".
 На английском и немецком возможно стоит использовать более серьезную фразу, например, "Поиск аудиофайлов... 20 из 399"</comment>
   </data>
   <data name="UpdatingDatabseView_StartedStep_Text" xml:space="preserve">
-    <value>Споряджаємо лицарів...</value>
+    <value>Підготовлюємо козаків...</value>
     <comment>Подготовка к обновлению базы данных.
 На английском и немецком возможно будет лучше более серьезная фраза, например, "Подготовка базы данных..."</comment>
   </data>
@@ -1241,12 +1232,57 @@ Eng: upload</comment>
     <comment>details</comment>
   </data>
   <data name="LocalFolderView_Title.Text" xml:space="preserve">
-    <value>ПАПКА</value>
+    <value>ТЕКА</value>
     <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
   </data>
   <data name="LocalGenreView_Title.Text" xml:space="preserve">
     <value>ЖАНР</value>
     <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
+  </data>
+  <data name="LibraryView_AlbumsLoader.ErrorText" xml:space="preserve">
+    <value>Не вдалося відобразити перелік альбомів</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.LoadingText" xml:space="preserve">
+    <value>Завантажуємо перелік альбомів...</value>
+  </data>
+  <data name="LibraryView_AlbumsLoader.NoDataText" xml:space="preserve">
+    <value>У вашій колекції немає жодного альбому</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.ErrorText" xml:space="preserve">
+    <value>Не вдалося відобразити перелік виконавців</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.LoadingText" xml:space="preserve">
+    <value>Завантажуємо перелік виконавців...</value>
+  </data>
+  <data name="LibraryView_ArtistsLoader.NoDataText" xml:space="preserve">
+    <value>У вашій колекції немає жодного виконавця</value>
+  </data>
+  <data name="LibraryView_CachedLoader.ErrorText" xml:space="preserve">
+    <value>Не вдалося відобразити перелік кешованих аудіозаписів</value>
+  </data>
+  <data name="LibraryView_CachedLoader.LoadingText" xml:space="preserve">
+    <value>Завантажуємо перелік кешованих аудіозаписів...</value>
+  </data>
+  <data name="LibraryView_CachedLoader.NoDataText" xml:space="preserve">
+    <value>У вашій колекції немає жодного кешованого аудіозапису</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.ErrorText" xml:space="preserve">
+    <value>Не вдалося відобразити перелік папок</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.LoadingText" xml:space="preserve">
+    <value>Завантажуємо перелік папок...</value>
+  </data>
+  <data name="LibraryView_FoldersLoader.NoDataText" xml:space="preserve">
+    <value>У вашій колекції немає жодної теки</value>
+  </data>
+  <data name="LibraryView_GenresLoader.ErrorText" xml:space="preserve">
+    <value>Не вдалося відобразити перелік жанрів</value>
+  </data>
+  <data name="LibraryView_GenresLoader.LoadingText" xml:space="preserve">
+    <value>Завантажуємо перелік жанрів...</value>
+  </data>
+  <data name="LibraryView_GenresLoader.NoDataText" xml:space="preserve">
+    <value>У вашій колекції немає жодного жанру</value>
   </data>
   <data name="LibraryView_PivotItem_Albums.Header" xml:space="preserve">
     <value>альбоми</value>
@@ -1256,77 +1292,29 @@ Eng: upload</comment>
     <comment>artists</comment>
   </data>
   <data name="LibraryView_PivotItem_Cached.Header" xml:space="preserve">
-    <value>кешированниє</value>
+    <value>кешовані</value>
   </data>
   <data name="LibraryView_PivotItem_Folders.Header" xml:space="preserve">
-    <value>папки</value>
+    <value>теки</value>
   </data>
   <data name="LibraryView_PivotItem_Genres.Header" xml:space="preserve">
-    <value>жанры</value>
+    <value>жанри</value>
   </data>
   <data name="LibraryView_PivotItem_Tracks.Header" xml:space="preserve">
     <value>композиції</value>
     <comment>tracks</comment>
   </data>
-  <data name="LibraryView_AlbumsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список альбомів</value>
-  </data>
-  <data name="LibraryView_AlbumsLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список альбомів...</value>
-  </data>
-  <data name="LibraryView_AlbumsLoader.NoDataText" xml:space="preserve">
-    <value>У вашій колекції немає жодного альбому</value>
-  </data>
-  <data name="LibraryView_ArtistsLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список виконавців</value>
-  </data>
-  <data name="LibraryView_ArtistsLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список виконавців...</value>
-  </data>
-  <data name="LibraryView_ArtistsLoader.NoDataText" xml:space="preserve">
-    <value>У вашій колекції немає жодного виконавця</value>
-  </data>
-  <data name="LibraryView_CachedLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список кешованих аудіозаписів</value>
-  </data>
-  <data name="LibraryView_CachedLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список кешованих аудіозаписів...</value>
-  </data>
-  <data name="LibraryView_CachedLoader.NoDataText" xml:space="preserve">
-    <value>У вашій колекції немає жодної кешованої аудіозаписи</value>
-  </data>
-  <data name="LibraryView_FoldersLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список папок</value>
-  </data>
-  <data name="LibraryView_FoldersLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список папок...</value>
-  </data>
-  <data name="LibraryView_FoldersLoader.NoDataText" xml:space="preserve">
-    <value>У вашій колекції немає жодної папки</value>
-  </data>
-  <data name="LibraryView_GenresLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список жанрів</value>
-  </data>
-  <data name="LibraryView_GenresLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список жанрів...</value>
-  </data>
-  <data name="LibraryView_GenresLoader.NoDataText" xml:space="preserve">
-    <value>У вашій колекції немає жодного жанру</value>
-  </data>
   <data name="LibraryView_TracksLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список композицій</value>
+    <value>Не вдалося відобразити перелік композицій</value>
     <comment>Eng: tracks, а не композиции</comment>
   </data>
   <data name="LibraryView_TracksLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список композицій...</value>
+    <value>Завантажуємо перелік композицій...</value>
     <comment>Eng: tracks, а не композиции</comment>
   </data>
   <data name="LibraryView_TracksLoader.NoDataText" xml:space="preserve">
     <value>У вашій колекції немає жодної композиції</value>
     <comment>Eng: tracks, а не композиции</comment>
-  </data>
-  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
-    <value>ЛОКАЛЬНА БІБЛІОТЕКА</value>
   </data>
   <data name="MainView_AlbumsItem.Content" xml:space="preserve">
     <value>альбоми</value>
@@ -1335,10 +1323,13 @@ Eng: upload</comment>
     <value>виконавці</value>
   </data>
   <data name="MainView_FoldersItem.Content" xml:space="preserve">
-    <value>папки</value>
+    <value>теки</value>
   </data>
   <data name="MainView_GenresItem.Content" xml:space="preserve">
-    <value>жанры</value>
+    <value>жанри</value>
+  </data>
+  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
+    <value>ЛОКАЛЬНА БІБЛІОТЕКА</value>
   </data>
   <data name="MainView_LocalTracksItem.Content" xml:space="preserve">
     <value>композиції</value>
@@ -1346,31 +1337,31 @@ Eng: upload</comment>
   </data>
   <data name="Message_LocalView_DeleteArtist_Text" xml:space="preserve">
     <value>Видалення виконавця {0} призведе до видалення всіх його альбомів і композицій з вашої колекції.
-Ця дія не можна скасувати.</value>
+Цю дію не можливо скасувати.</value>
   </data>
   <data name="Message_LocalView_DeleteArtist_Title" xml:space="preserve">
     <value>Видалити виконавця?</value>
   </data>
   <data name="Message_NoButton_Text" xml:space="preserve">
-    <value>немає</value>
+    <value>ні</value>
     <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
 Это кнопка отказа.</comment>
   </data>
   <data name="Message_YesButton_Text" xml:space="preserve">
-    <value>да</value>
+    <value>так</value>
     <comment>Кнопка в окне сообщения с вопросом, на который пользователь должен согласиться или отказаться.
 Это кнопка согласия.</comment>
   </data>
   <data name="Local_TracksLoader.ErrorText" xml:space="preserve">
-    <value>Не вдалось завантажити список композицій</value>
+    <value>Не вдалося відобразити перелік композицій</value>
     <comment>Eng: tracks, а не композиции</comment>
   </data>
   <data name="Local_TracksLoader.LoadingText" xml:space="preserve">
-    <value>Завантажуємо список композицій...</value>
+    <value>Завантажуємо перелік композицій...</value>
     <comment>Eng: tracks, а не композиции</comment>
   </data>
   <data name="Local_TracksLoader.NoDataText" xml:space="preserve">
-    <value>Не знайдено жодної композиції</value>
+    <value>Не знайдено композиції</value>
     <comment>Eng: tracks, а не композиции</comment>
   </data>
   <data name="UnknownAlbum_Text" xml:space="preserve">
@@ -1382,50 +1373,47 @@ Eng: upload</comment>
   <data name="UnknownGenre_Text" xml:space="preserve">
     <value>Невідомий жанр</value>
   </data>
-  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
-    <value>Скробблінг Last.fm</value>
+  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
+    <value>Локальна бібліотека</value>
   </data>
-  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
-    <value>Завжди актуальний профіль Last.fm!</value>
+  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
+    <value>Відтворення завантаженої музики із телефону</value>
   </data>
   <data name="Language_SystemLanguage_Text" xml:space="preserve">
     <value>з налаштувань системи</value>
     <comment>Язык приложения, как в настройках системы.</comment>
   </data>
   <data name="SetingsView_InternetAccess_Text.Text" xml:space="preserve">
-    <value>ВКачай може завантажити фотографії виконавців та обкладинки альбомів для ваших треків. Завантажувати ці дані (може стягуватися додаткова плата оператором)?</value>
-  </data>
-  <data name="SetingsView_LocalLibrary_Text.Text" xml:space="preserve">
-    <value>Якщо у вашій бібліотеці відображаються не всі треки, спробуйте виконати оновлення бази даних.</value>
+    <value>ВКачай може завантажити фотографії виконавців та обкладинки альбомів для ваших треків. Завантажувати ці дані? (може стягуватися додаткова плата оператором)</value>
   </data>
   <data name="SetingsView_Notifications_Text.Text" xml:space="preserve">
     <value>ВКачай може повідомляти вас про завершення завантажень.</value>
   </data>
   <data name="SettingsView_AppLanguage_Title.Text" xml:space="preserve">
-    <value>Мова програми</value>
+    <value>Мова застосунку</value>
   </data>
   <data name="SettingsView_InternetAccess_Title.Text" xml:space="preserve">
-    <value>Доступ до Інтернету</value>
+    <value>Доступ до інтернету</value>
   </data>
   <data name="SettingsView_LocalLibrary_Title.Text" xml:space="preserve">
     <value>Локальна бібліотека</value>
   </data>
   <data name="SettingsView_Notifications_Title.Text" xml:space="preserve">
-    <value>Повідомлення</value>
+    <value>Сповіщення</value>
   </data>
   <data name="SettingsView_UpdateDatabaseButton.Content" xml:space="preserve">
     <value>оновити базу даних</value>
   </data>
   <data name="Message_DownloadsNotificationsChanged_Text" xml:space="preserve">
-    <value>Цей параметр буде застосований лише до нових навантажень, і не торкнеться поточні.</value>
+    <value>Цей параметр буде застосований лише до нових завантажень, і не торкнеться до поточних.</value>
   </data>
   <data name="Message_DownloadsNotificationsChanged_Title" xml:space="preserve">
     <value>Зверніть увагу</value>
   </data>
   <data name="Message_RestartRequired_Text" xml:space="preserve">
-    <value>Щоб зміни вступили в силу, необхідно перезапустити програму.</value>
+    <value>Щоб зміни вступили в силу, необхідно перезапустити застосунок.</value>
   </data>
   <data name="Message_RestartRequired_Title" xml:space="preserve">
-    <value>Потрібно перезапуск</value>
+    <value>Потрібне перезавантаження</value>
   </data>
 </root>

@@ -59,9 +59,6 @@
   <data name="AppBarButton_Delete_Text" xml:space="preserve">
     <value>выдальць</value>
   </data>
-  <data name="AppBarButton_Download_Text" xml:space="preserve">
-    <value>дадаць у кэш</value>
-  </data>
   <data name="AppBarButton_Play_Text" xml:space="preserve">
     <value>прайграць</value>
   </data>
@@ -143,10 +140,7 @@
     <value>У гэтага выканаўцы унікальныя трэкі!</value>
   </data>
   <data name="DeleteFlyoutItem.Text" xml:space="preserve">
-    <value>выдаліць</value>
-  </data>
-  <data name="DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>дадаць у кэш</value>
+    <value>выдальць</value>
   </data>
   <data name="ErrorView_Error.Text" xml:space="preserve">
     <value>Здарылася памылка</value>
@@ -173,9 +167,6 @@
   </data>
   <data name="MainView_DocsItem.Content" xml:space="preserve">
     <value>дакументы</value>
-  </data>
-  <data name="MainView_DownloadFlyoutItem.Text" xml:space="preserve">
-    <value>дадаць у кэш</value>
   </data>
   <data name="MainView_FriendsItem.Content" xml:space="preserve">
     <value>сябры</value>
@@ -343,7 +334,7 @@
     <value>На жаль, пры выкананні аперацыі адбылася памылка, і мы не можам яе завяршыць.</value>
   </data>
   <data name="Message_Transfer_Error_Title" xml:space="preserve">
-    <value>Адбылася памылка</value>
+    <value>Здарылася памылка</value>
   </data>
   <data name="Message_Transfer_Idle_Text" xml:space="preserve">
     <value>Аперацыя чакае сваёй чаргі.</value>
@@ -592,7 +583,7 @@
     <value>сябры</value>
   </data>
   <data name="UserCommView_PivotSection_Groups.Header" xml:space="preserve">
-    <value>супокі</value>
+    <value>суполкі</value>
   </data>
   <data name="UserCommView_UserOnline.Text" xml:space="preserve">
     <value>Онлайн</value>
@@ -628,7 +619,7 @@
     <value>музыка</value>
   </data>
   <data name="UserContentView_PivotSection_Videos.Header" xml:space="preserve">
-    <value>відэа</value>
+    <value>видэа</value>
   </data>
   <data name="UserContentView_VideosGroup_Text" xml:space="preserve">
     <value>відэазапісы</value>
@@ -712,10 +703,10 @@
     <value>прайгравальнік</value>
   </data>
   <data name="AppBarButton_TransferManager_Text" xml:space="preserve">
-    <value>менеджэр загрузак</value>
+    <value>загрузкі</value>
   </data>
   <data name="VideoAlbumVideosLoader.ErrorText" xml:space="preserve">
-    <value>Не атрымалася загрузіць змест альбома</value>
+    <value>Немагчыма загрузіць змест альбома</value>
   </data>
   <data name="VideoAlbumVideosLoader.LoadingText" xml:space="preserve">
     <value>Загружаем спіс відэазапісаў альбома...</value>
@@ -875,11 +866,11 @@
   <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
     <value>Кэшыруйце трэкі для афлайн прайгравання!</value>
   </data>
-  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
-    <value>Лакальная бібліятэка</value>
+  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
+    <value>Мы ведаем аб музыцы ўсё!</value>
   </data>
-  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
-    <value>Прайгравайце свае лакальныя аўдыязапісы</value>
+  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
+    <value>Прайгравайце трэкі любімых выканаўцаў</value>
   </data>
   <data name="PromoView_NextButton.Content" xml:space="preserve">
     <value>далей</value>
@@ -894,7 +885,7 @@
     <value>На жаль, мы не ведаем ніякіх падрабязнасцяў аб гэтым альбоме</value>
   </data>
   <data name="ArtistAlbumView_PivotSection_Details.Header" xml:space="preserve">
-    <value>подрабязней</value>
+    <value>падрабязней</value>
   </data>
   <data name="ArtistAlbumView_PivotSection_Tracks.Header" xml:space="preserve">
     <value>кампазіцыі</value>
@@ -957,11 +948,11 @@
   <data name="Message_Login_LfConnectionError_Text" xml:space="preserve">
     <value>Не атрымалася далучацца да Last.fm. Праверце доступ да інтэрнэту і паўтарыце спробу.</value>
   </data>
-  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
-    <value>Мы ведаем аб музыцы ўсё!</value>
+  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
+    <value>Скроблінг Last.fm</value>
   </data>
-  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
-    <value>Прайгравайце трэкі любімых выканаўцаў</value>
+  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
+    <value>Заўсёды актуальны профіль Last.fm!</value>
   </data>
   <data name="FileSize_Bytes_Mask_Text" xml:space="preserve">
     <value>{0} байт</value>
@@ -1252,26 +1243,6 @@ Eng: upload</comment>
     <value>ЖАНР</value>
     <comment>ОБЯЗАТЕЛЬНО капсом!</comment>
   </data>
-  <data name="LibraryView_PivotItem_Albums.Header" xml:space="preserve">
-    <value>альбомы</value>
-  </data>
-  <data name="LibraryView_PivotItem_Artists.Header" xml:space="preserve">
-    <value>выканаўцы</value>
-    <comment>artists</comment>
-  </data>
-  <data name="LibraryView_PivotItem_Cached.Header" xml:space="preserve">
-    <value>кэшаваныя</value>
-  </data>
-  <data name="LibraryView_PivotItem_Folders.Header" xml:space="preserve">
-    <value>тэчкі</value>
-  </data>
-  <data name="LibraryView_PivotItem_Genres.Header" xml:space="preserve">
-    <value>жанры</value>
-  </data>
-  <data name="LibraryView_PivotItem_Tracks.Header" xml:space="preserve">
-    <value>кампазіцыі</value>
-    <comment>tracks</comment>
-  </data>
   <data name="LibraryView_AlbumsLoader.ErrorText" xml:space="preserve">
     <value>Не атрымалася загрузіць спіс альбомаў</value>
   </data>
@@ -1317,6 +1288,26 @@ Eng: upload</comment>
   <data name="LibraryView_GenresLoader.NoDataText" xml:space="preserve">
     <value>У вашай калекцыі няма ніводнага жанру</value>
   </data>
+  <data name="LibraryView_PivotItem_Albums.Header" xml:space="preserve">
+    <value>альбомы</value>
+  </data>
+  <data name="LibraryView_PivotItem_Artists.Header" xml:space="preserve">
+    <value>выканаўцы</value>
+    <comment>artists</comment>
+  </data>
+  <data name="LibraryView_PivotItem_Cached.Header" xml:space="preserve">
+    <value>кэшаваныя</value>
+  </data>
+  <data name="LibraryView_PivotItem_Folders.Header" xml:space="preserve">
+    <value>тэчкі</value>
+  </data>
+  <data name="LibraryView_PivotItem_Genres.Header" xml:space="preserve">
+    <value>жанры</value>
+  </data>
+  <data name="LibraryView_PivotItem_Tracks.Header" xml:space="preserve">
+    <value>кампазіцыі</value>
+    <comment>tracks</comment>
+  </data>
   <data name="LibraryView_TracksLoader.ErrorText" xml:space="preserve">
     <value>Не атрымалася загрузіць спіс кампазіцый</value>
     <comment>Eng: tracks, а не композиции</comment>
@@ -1329,9 +1320,6 @@ Eng: upload</comment>
     <value>У вашай калекцыі няма ніводнай кампазіцыі</value>
     <comment>Eng: tracks, а не композиции</comment>
   </data>
-  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
-    <value>ЛАКАЛЬНАЯ БІБЛІЯТЭКА</value>
-  </data>
   <data name="MainView_AlbumsItem.Content" xml:space="preserve">
     <value>альбомы</value>
   </data>
@@ -1343,6 +1331,9 @@ Eng: upload</comment>
   </data>
   <data name="MainView_GenresItem.Content" xml:space="preserve">
     <value>жанры</value>
+  </data>
+  <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
+    <value>ЛАКАЛЬНАЯ БІБЛІЯТЭКА</value>
   </data>
   <data name="MainView_LocalTracksItem.Content" xml:space="preserve">
     <value>кампазіцыі</value>
@@ -1386,11 +1377,11 @@ Eng: upload</comment>
   <data name="UnknownGenre_Text" xml:space="preserve">
     <value>Невядомы жанр</value>
   </data>
-  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
-    <value>Скроблінг Last.fm</value>
+  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
+    <value>Лакальная бібліятэка</value>
   </data>
-  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
-    <value>Заўсёды актуальны профіль Last.fm!</value>
+  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
+    <value>Прайгравайце свае лакальныя аўдыязапісы</value>
   </data>
   <data name="Language_SystemLanguage_Text" xml:space="preserve">
     <value>з налад сістэмы</value>

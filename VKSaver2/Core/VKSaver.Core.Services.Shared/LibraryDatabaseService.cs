@@ -10,6 +10,7 @@ using VKSaver.Core.Services.Database;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Storage;
 using Windows.Storage.Search;
+using System.IO;
 
 namespace VKSaver.Core.Services
 {
@@ -144,10 +145,10 @@ namespace VKSaver.Core.Services
             NeedReloadLibraryView = true;
         }
 
-        public async Task InsertDownloadedTrack(VKSaverAudio audio, StorageFolder folder, string filePath)
+        public async Task InsertDownloadedTrack(VKSaverAudio audio, string folderPath, string filePath)
         {
             string artistName = null;
-            string folderPath = MusicFilesPathHelper.GetCapatibleSource(folder.Path);            
+            string capatibleFolderPath = MusicFilesPathHelper.GetCapatibleSource(folderPath);            
             string genreKey = audio.VK.Genre == 0 ? UNKNOWN_GENRE_NAME : audio.VK.Genre.ToString();
             string vkInfoKey = $"{audio.VK.OwnerID} {audio.VK.ID}";
 
@@ -158,13 +159,13 @@ namespace VKSaver.Core.Services
 
             string albumKey = $"{artistName}-{UNKNOWN_ALBUM_NAME}";
             
-            var dbFolder = await _database.FindItem<VKSaverFolder>(folderPath);
+            var dbFolder = await _database.FindItem<VKSaverFolder>(capatibleFolderPath);
             if (dbFolder == null)
             {
                 dbFolder = new VKSaverFolder
                 {
-                    Path = folderPath,
-                    Name = folder.DisplayName,
+                    Path = capatibleFolderPath,
+                    Name = Path.GetFileName(folderPath),
                     Tracks = new List<VKSaverTrack>()
                 };
                 await _database.InsertItem(dbFolder);
@@ -237,7 +238,7 @@ namespace VKSaver.Core.Services
                 Duration = TimeSpan.FromTicks(audio.Track.Duration),
                 Source = MusicFilesPathHelper.GetCapatibleSource(filePath),
                 GenreKey = genreKey,
-                FolderKey = folderPath,
+                FolderKey = capatibleFolderPath,
                 AlbumKey = albumKey,
                 VKInfoKey = vkInfoKey
             };

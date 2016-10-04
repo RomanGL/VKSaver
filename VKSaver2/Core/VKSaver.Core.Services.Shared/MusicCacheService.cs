@@ -24,6 +24,11 @@ namespace VKSaver.Core.Services
             _converterQueue = new TaskQueue();
         }
 
+        public Task PostprocessAudioAsync(StorageFile file, VKSaverAudio metadata)
+        {
+            return _converterQueue.Enqueue(() => PostprocessAudioInternal(file, metadata));
+        }
+
         public Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata)
         {
             if (metadata == null)
@@ -94,6 +99,17 @@ namespace VKSaver.Core.Services
             }
         }
 
+        private async Task PostprocessAudioInternal(StorageFile file, VKSaverAudio metadata)
+        {
+            if (metadata == null)
+                return;
+
+            var fileProperties = await file.Properties.GetMusicPropertiesAsync();
+            metadata.Track.Duration = fileProperties.Duration.Ticks;
+
+            await _libraryDatabseService.InsertDownloadedTrack(metadata, Path.GetDirectoryName(file.Path), file.Path);
+        }
+
         private async Task<bool> ConvertAudioToVKSaverFormatInternal(StorageFile file, VKSaverAudio metadata)
         {
             StorageFile zipFile = null;
@@ -139,7 +155,7 @@ namespace VKSaver.Core.Services
                     zipStream.Finish();
                 }
 
-                await _libraryDatabseService.InsertDownloadedTrack(metadata, cacheFolder, zipFile.Path);
+                await _libraryDatabseService.InsertDownloadedTrack(metadata, cacheFolder.Path, zipFile.Path);
                 return true;
             }
             catch (Exception ex)

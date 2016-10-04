@@ -33,7 +33,7 @@ namespace VKSaver.Core.Services.Interfaces
         Task RemoveItem<T>(T item);
         Task RemoveItemByPrimaryKey<T>(object primaryKey);
 
-        Task InsertDownloadedTrack(VKSaverAudio audio, StorageFolder folder, string filePath);
+        Task InsertDownloadedTrack(VKSaverAudio audio, string folderPath, string filePath);
 
         LibraryDatabaseCleaner GetCleaner();
     }

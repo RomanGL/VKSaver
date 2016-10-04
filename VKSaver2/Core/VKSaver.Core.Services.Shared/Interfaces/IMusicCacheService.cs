@@ -14,6 +14,7 @@ namespace VKSaver.Core.Services.Interfaces
         Task<IEnumerable<VKSaverAudioFile>> GetCachedFiles();
 
         Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata);
+        Task PostprocessAudioAsync(StorageFile file, VKSaverAudio metadata);
 
         Task<bool> ClearMusicCache();
     }
