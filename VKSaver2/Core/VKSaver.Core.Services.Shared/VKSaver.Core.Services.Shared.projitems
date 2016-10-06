@@ -6,7 +6,7 @@
     <SharedGUID>6bc8895b-5d84-4bd5-b053-413b8deb763e</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>VKSaver.Core.Services.Shared</Import_RootNamespace>
+    <Import_RootNamespace>VKSaver.Core.Services</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AppConstants.cs" />
@@ -68,6 +68,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVKLoginService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVksmExtractionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LastFmLoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LibraryDatabaseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocService.cs" />
@@ -95,5 +96,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)UploadsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadsServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKLoginService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VksmExtractionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VksmExtraction\ExtractingProgressChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VksmExtraction\SearchingProgressChangedEventArgs.cs" />
   </ItemGroup>
 </Project>

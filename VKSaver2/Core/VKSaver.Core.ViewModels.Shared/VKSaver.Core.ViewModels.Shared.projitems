@@ -6,7 +6,7 @@
     <SharedGUID>ee806675-bc95-4321-8ea0-50ffcd9ca647</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>VKSaver.Core.ViewModels.Shared</Import_RootNamespace>
+    <Import_RootNamespace>VKSaver.Core.ViewModels</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ArtistAlbumViewModel.cs" />
@@ -69,5 +69,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)VideoPlayerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VideoSearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKAudioViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VksmExtractionViewModel.cs" />
   </ItemGroup>
 </Project>

@@ -131,6 +131,7 @@ namespace VKSaver
             Container.RegisterType<IUploadsPreprocessor, UploadsPreprocessor>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IUploadsPostprocessor, UploadsPostprocessor>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ILibraryDatabaseService, LibraryDatabaseService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IVksmExtractionService, VksmExtractionService>(new ContainerControlledLifetimeManager());
 
             var playerService = Container.Resolve<PlayerService>();
             var downloadsService = Container.Resolve<DownloadsService>();
@@ -267,14 +268,20 @@ namespace VKSaver
         private async Task<bool> TryOpenFirstStartView()
         {
             var settingsService = Container.Resolve<ISettingsService>();
+            string currentFirstView = settingsService.Get<string>(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER, null);
+
             if (settingsService.Get(AppConstants.CURRENT_FIRST_START_INDEX_PARAMETER, 0) < AppConstants.CURRENT_FIRST_START_INDEX)
             {
-                string currentView = settingsService.Get<string>(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER);
-                if (currentView == null)
+                if (currentFirstView == null)
                     NavigationService.Navigate("FirstStartView", null);
-                else if (currentView != "Completed")
+                else
                     NavigationService.Navigate("FirstStartRetryView", null);
 
+                return true;
+            }
+            else if (currentFirstView != null && currentFirstView != "Completed")
+            {
+                NavigationService.Navigate("FirstStartRetryView", null);
                 return true;
             }
             else if (settingsService.Get(AppConstants.CURRENT_LIBRARY_INDEX_PARAMETER, 0) < AppConstants.CURRENT_LIBRARY_INDEX)

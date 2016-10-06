@@ -1,0 +1,65 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.VksmExtractionView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           Style="{StaticResource DefaultPageStyle}">
+
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"
+                           MinHeight="95" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Извлечение"
+                   x:Uid="VksmExtractionView_Title"
+                   Style="{StaticResource OneTitleTextStyle}"
+                   VerticalAlignment="Bottom"
+                   Margin="20,48,0,0" />
+
+        <StackPanel Grid.Row="2"
+                    Margin="20,0">
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                       x:Uid="VksmExtractionView_ContentText"
+                       Margin="0,28,0,0">
+                ВКачай выполняет извлечение MP3 из кэшированных VKSM файлов. Пожалуйста, подождите...
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                       Margin="0,20,0,0"
+                       Foreground="{StaticResource PhoneLowBrush}" 
+                       Text="{Binding SearchingText}"/>
+            <ProgressBar Height="5"
+                         Margin="0,5,0,0"
+                         Foreground="{StaticResource AccentBrush}"
+                         Value="{Binding CurrentFile}"
+                         Maximum="{Binding TotalFiles}">
+                <ProgressBar.Background>
+                    <SolidColorBrush Color="{StaticResource AccentColor}"
+                                     Opacity="0.15" />
+                </ProgressBar.Background>
+            </ProgressBar>
+            <ProgressBar Height="5"
+                         Margin="0,20,0,0"
+                         Foreground="{StaticResource AccentBrush}"
+                         Value="{Binding CompletedBytes}"
+                         Maximum="{Binding TotalBytes}">
+                <ProgressBar.Background>
+                    <SolidColorBrush Color="{StaticResource AccentColor}"
+                                     Opacity="0.15" />
+                </ProgressBar.Background>
+            </ProgressBar>
+        </StackPanel>
+    </Grid>
+</mvvm:VisualStateAwarePage>

@@ -62,6 +62,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Local\LocalArtistView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NewsMediaView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ArtistAlbumView.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VksmExtractionView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\UpdatingDatabaseView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\UploadFileView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\PackagingFilesView.xaml.cs" />

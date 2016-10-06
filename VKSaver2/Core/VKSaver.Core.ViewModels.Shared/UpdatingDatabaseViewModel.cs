@@ -116,7 +116,7 @@ namespace VKSaver.Core.ViewModels
                     }
                     break;
                 case DatabaseUpdateStepType.Completed:
-                    _settingsService.Set(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER, "Completed");
+                    _settingsService.Set<string>(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER, null);
                     _navigationService.ClearHistory();
                     _navigationService.Navigate("MainView", null);                    
                     break;

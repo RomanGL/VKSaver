@@ -50,6 +50,7 @@ namespace VKSaver.Core.ViewModels
 
             Authorizations = new ObservableCollection<IServiceAuthorization>();
             UpdateDatabaseCommand = new DelegateCommand(OnUpdateDatabaseCommand);
+            ExtractMp3FromVksmCommand = new DelegateCommand(OnExtractMp3FromVksmCommand);
         }
 
         [DoNotNotify]
@@ -84,6 +85,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand UpdateDatabaseCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand ExtractMp3FromVksmCommand { get; private set; }
 
         public int SelectedInternetAccessIndex
         {
@@ -152,6 +156,12 @@ namespace VKSaver.Core.ViewModels
         {
             _navigationService.ClearHistory();
             _navigationService.Navigate("UpdatingDatabaseView", null);
+        }
+
+        private void OnExtractMp3FromVksmCommand()
+        {
+            _navigationService.ClearHistory();
+            _navigationService.Navigate("VksmExtractionView", null);
         }
 
         private void OnDownloadsNotificationsChanged()
