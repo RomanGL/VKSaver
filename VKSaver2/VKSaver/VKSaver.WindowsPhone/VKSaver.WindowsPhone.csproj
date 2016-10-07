@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VKSaver</RootNamespace>
     <AssemblyName>VKSaver.WindowsPhone</AssemblyName>
-    <DefaultLanguage>ru-RU</DefaultLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -93,6 +93,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\Ads\BuyonLumia650.jpg" />
     <Content Include="Assets\Album.jpg" />
     <Content Include="Assets\Background\PlayerBackground.png" />
     <Content Include="Assets\groove-logo.png" />
@@ -233,6 +234,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Local\LocalArtistView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AdInfoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

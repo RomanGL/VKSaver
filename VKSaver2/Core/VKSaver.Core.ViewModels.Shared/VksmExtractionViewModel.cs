@@ -9,7 +9,6 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.VksmExtraction;

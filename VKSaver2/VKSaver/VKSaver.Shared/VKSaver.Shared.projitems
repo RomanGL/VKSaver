@@ -50,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AdInfoView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\LibraryView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\CachedView.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\FirstStart\FirstInternetSettingsView.xaml.cs" />

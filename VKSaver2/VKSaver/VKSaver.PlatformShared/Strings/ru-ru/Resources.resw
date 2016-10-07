@@ -1539,4 +1539,38 @@ Eng: upload</comment>
   <data name="SetingsView_ExtractMp3FromVksm_Text.Text" xml:space="preserve">
     <value>Если вы хотите извлечь MP3 из всех кэшированных VKSM-файлов, нажмите кнопку ниже.</value>
   </data>
+  <data name="Ads_BuyonLumia650_Action_Link" xml:space="preserve">
+    <value>https://vk.com/buyon?w=wall-50073493_40903</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Action_Text" xml:space="preserve">
+    <value>участвовать</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Text" xml:space="preserve">
+    <value>ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
+
+Чтобы выиграть смартфон вам нужно:
+- Вступить в группу Байон и в группу ВКачай
+- Сделать репост записи
+
+Победитель будет выбран случайным образом 24 октября через вконкурс.рф
+
+* только для жителей РФ
+* победитель должен быть старше 16-ти лет</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Title" xml:space="preserve">
+    <value>Выиграй Microsoft Lumia 650 от ВКачай и Байон!</value>
+  </data>
+  <data name="Ads_Message_BuyonLumia650_Text" xml:space="preserve">
+    <value>ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
+Хотите узнать, как выиграть смартфон?</value>
+  </data>
+  <data name="Ads_Message_BuyonLumia650_Title" xml:space="preserve">
+    <value>Выиграй Microsoft Lumia 650!</value>
+  </data>
+  <data name="VksmExtractionView_ContentText.Text" xml:space="preserve">
+    <value>ВКачай выполняет извлечение MP3 из кэшированных VKSM файлов. Пожалуйста, подождите...</value>
+  </data>
+  <data name="VksmExtractionView_Title.Text" xml:space="preserve">
+    <value>Извлечение</value>
+  </data>
 </root>

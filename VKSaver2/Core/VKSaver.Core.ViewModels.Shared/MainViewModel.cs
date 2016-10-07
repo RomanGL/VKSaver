@@ -29,10 +29,17 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class MainViewModel : ViewModelBase
     {
-        public MainViewModel(InTouch inTouch, IInTouchWrapper inTouchWrapper, ILFService lfService,
-            ISettingsService settingsService, INavigationService navigationService,
-            IPurchaseService purchaseService, IPlayerService playerService,
-            IDownloadsServiceHelper downloadsServiceHelper, IImagesCacheService imagesCacheService)
+        public MainViewModel(
+            InTouch inTouch, 
+            IInTouchWrapper inTouchWrapper, 
+            ILFService lfService,
+            ISettingsService settingsService, 
+            INavigationService navigationService,
+            IPurchaseService purchaseService, 
+            IPlayerService playerService,
+            IDownloadsServiceHelper downloadsServiceHelper, 
+            IImagesCacheService imagesCacheService,
+            IAdsService adsService)
         {
             _inTouch = inTouch;
             _inTouchWrapper = inTouchWrapper;
@@ -43,6 +50,7 @@ namespace VKSaver.Core.ViewModels
             _playerService = playerService;
             _downloadsServiceHelper = downloadsServiceHelper;
             _imagesCacheService = imagesCacheService;
+            _adsService = adsService;
 
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
             GoToArtistInfoCommand = new DelegateCommand<LFArtistExtended>(OnGoToArtistInfoCommand);
@@ -136,7 +144,7 @@ namespace VKSaver.Core.ViewModels
 
         public string HubBackgroundImage { get; private set; }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             _backgroundLoaded = false;
             if (viewModelState.Count > 0)
@@ -169,6 +177,9 @@ namespace VKSaver.Core.ViewModels
             //TryLoadTopArtistBackground(TopArtistsLF?.FirstOrDefault());
 
             base.OnNavigatedTo(e, viewModelState);
+
+            await Task.Delay(2000);
+            _adsService.ActivateAds();
         }
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
@@ -433,6 +444,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IPlayerService _playerService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
         private readonly IImagesCacheService _imagesCacheService;
+        private readonly IAdsService _adsService;
 
         private const string HUB_BACKGROUND_DEFAULT = "ms-appx:///Assets/HubBackground.jpg";        
     }

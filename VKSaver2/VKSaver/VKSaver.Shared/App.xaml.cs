@@ -171,6 +171,7 @@ namespace VKSaver
             _container.RegisterType<IUploadsPostprocessor, UploadsPostprocessor>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILibraryDatabaseService, LibraryDatabaseService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IVksmExtractionService, VksmExtractionService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IAdsService, AdsService>(new ContainerControlledLifetimeManager());
 
             var playerService = _container.Resolve<PlayerService>();
             var downloadsService = _container.Resolve<DownloadsService>();

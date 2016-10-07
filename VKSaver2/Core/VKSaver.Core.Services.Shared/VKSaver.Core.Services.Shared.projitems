@@ -9,6 +9,7 @@
     <Import_RootNamespace>VKSaver.Core.Services</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AdsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppLoaderService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BetaService.cs" />
@@ -36,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DownloadsServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GrooveMusicService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImagesCacheService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAdsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAppLoaderService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IBetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICultureProvider.cs" />
