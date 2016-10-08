@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VKSaver", "VKSaver", "{5E94328A-054A-4920-A2E8-39FB09AC4B97}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VKSaver.Shared", "VKSaver\VKSaver.Shared\VKSaver.Shared.shproj", "{463FB7C8-7399-4D98-BA23-CFDEF2BB66AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.WindowsPhone", "VKSaver\VKSaver.WindowsPhone\VKSaver.WindowsPhone.csproj", "{C1FD3070-7FC8-4E20-BA49-13E576B6F852}"
 EndProject
@@ -55,26 +53,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.PlayerTask.UWP", "T
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{000a719a-990e-43f4-81c9-d6bf83d091a0}*SharedItemsImports = 4
-		Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems*{0c76fe69-8e32-4222-9fe4-c975a48edbd9}*SharedItemsImports = 4
-		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{28af1e71-69eb-4d02-9f07-6eead1f117af}*SharedItemsImports = 4
-		VKSaver\VKSaver.Shared\VKSaver.Shared.projitems*{463fb7c8-7399-4d98-ba23-cfdef2bb66ae}*SharedItemsImports = 13
-		Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems*{469617f5-aebb-4030-9011-b7b7658c32ee}*SharedItemsImports = 13
-		Tasks\VKSaver.PlayerTask.Shared\VKSaver.PlayerTask.Shared.projitems*{49b1de23-1521-4447-a51e-e9337d0f0eb1}*SharedItemsImports = 4
-		Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems*{536fcc50-09b3-4a4b-b4f9-3f3ec845d09f}*SharedItemsImports = 4
-		Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems*{65fe87d2-65b8-4643-a538-4e33a2d815de}*SharedItemsImports = 4
-		Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems*{6bc8895b-5d84-4bd5-b053-413b8deb763e}*SharedItemsImports = 13
-		Tasks\VKSaver.PlayerTask.Shared\VKSaver.PlayerTask.Shared.projitems*{72db73be-2845-4991-94c9-7342241fec3e}*SharedItemsImports = 4
-		VKSaver\VKSaver.PlatformShared\VKSaver.PlatformShared.projitems*{773a3619-c084-40da-a5fe-edb2d26f9212}*SharedItemsImports = 4
-		Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems*{79a9dc02-d964-4dee-a7f8-857c2dc08e03}*SharedItemsImports = 13
-		VKSaver\VKSaver.PlatformShared\VKSaver.PlatformShared.projitems*{8660fc13-44d7-4838-ae8b-b866e87e4ad2}*SharedItemsImports = 13
-		Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems*{8a78fe74-730a-4d36-8c44-32df960ad957}*SharedItemsImports = 4
 		VKSaver\VKSaver.PlatformShared\VKSaver.PlatformShared.projitems*{c1fd3070-7fc8-4e20-ba49-13e576b6f852}*SharedItemsImports = 4
-		VKSaver\VKSaver.Shared\VKSaver.Shared.projitems*{c1fd3070-7fc8-4e20-ba49-13e576b6f852}*SharedItemsImports = 4
+		Tasks\VKSaver.PlayerTask.Shared\VKSaver.PlayerTask.Shared.projitems*{49b1de23-1521-4447-a51e-e9337d0f0eb1}*SharedItemsImports = 4
+		Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems*{8a78fe74-730a-4d36-8c44-32df960ad957}*SharedItemsImports = 4
 		Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems*{df4da91e-2448-4e8a-a62c-28a9f3aa779d}*SharedItemsImports = 4
-		Tasks\VKSaver.PlayerTask.Shared\VKSaver.PlayerTask.Shared.projitems*{e03cd799-da6d-4be7-befe-5b20546a9de1}*SharedItemsImports = 13
-		Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems*{e772fd74-56dc-4398-b85d-f33d34c2f11b}*SharedItemsImports = 4
 		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{ee806675-bc95-4321-8ea0-50ffcd9ca647}*SharedItemsImports = 13
+		Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems*{79a9dc02-d964-4dee-a7f8-857c2dc08e03}*SharedItemsImports = 13
+		Tasks\VKSaver.PlayerTask.Shared\VKSaver.PlayerTask.Shared.projitems*{72db73be-2845-4991-94c9-7342241fec3e}*SharedItemsImports = 4
+		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{28af1e71-69eb-4d02-9f07-6eead1f117af}*SharedItemsImports = 4
+		Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems*{e772fd74-56dc-4398-b85d-f33d34c2f11b}*SharedItemsImports = 4
+		Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems*{0c76fe69-8e32-4222-9fe4-c975a48edbd9}*SharedItemsImports = 4
+		Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems*{65fe87d2-65b8-4643-a538-4e33a2d815de}*SharedItemsImports = 4
+		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{000a719a-990e-43f4-81c9-d6bf83d091a0}*SharedItemsImports = 4
+		VKSaver\VKSaver.PlatformShared\VKSaver.PlatformShared.projitems*{773a3619-c084-40da-a5fe-edb2d26f9212}*SharedItemsImports = 4
+		Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems*{469617f5-aebb-4030-9011-b7b7658c32ee}*SharedItemsImports = 13
+		Tasks\VKSaver.PlayerTask.Shared\VKSaver.PlayerTask.Shared.projitems*{e03cd799-da6d-4be7-befe-5b20546a9de1}*SharedItemsImports = 13
+		Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems*{536fcc50-09b3-4a4b-b4f9-3f3ec845d09f}*SharedItemsImports = 4
+		Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems*{6bc8895b-5d84-4bd5-b053-413b8deb763e}*SharedItemsImports = 13
+		VKSaver\VKSaver.PlatformShared\VKSaver.PlatformShared.projitems*{8660fc13-44d7-4838-ae8b-b866e87e4ad2}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -457,7 +453,6 @@ Global
 		{000A719A-990E-43F4-81C9-D6BF83D091A0}.DebugFull|ARM.ActiveCfg = Debug|ARM
 		{000A719A-990E-43F4-81C9-D6BF83D091A0}.DebugFull|ARM.Build.0 = Debug|ARM
 		{000A719A-990E-43F4-81C9-D6BF83D091A0}.DebugFull|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{000A719A-990E-43F4-81C9-D6BF83D091A0}.DebugFull|Mixed Platforms.Build.0 = Debug|Any CPU
 		{000A719A-990E-43F4-81C9-D6BF83D091A0}.DebugFull|x64.ActiveCfg = Debug|x64
 		{000A719A-990E-43F4-81C9-D6BF83D091A0}.DebugFull|x64.Build.0 = Debug|x64
 		{000A719A-990E-43F4-81C9-D6BF83D091A0}.DebugFull|x86.ActiveCfg = Debug|Any CPU
@@ -496,7 +491,6 @@ Global
 		{DF4DA91E-2448-4E8A-A62C-28A9F3AA779D}.DebugFull|ARM.ActiveCfg = Debug|ARM
 		{DF4DA91E-2448-4E8A-A62C-28A9F3AA779D}.DebugFull|ARM.Build.0 = Debug|ARM
 		{DF4DA91E-2448-4E8A-A62C-28A9F3AA779D}.DebugFull|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{DF4DA91E-2448-4E8A-A62C-28A9F3AA779D}.DebugFull|Mixed Platforms.Build.0 = Debug|Any CPU
 		{DF4DA91E-2448-4E8A-A62C-28A9F3AA779D}.DebugFull|x64.ActiveCfg = Debug|x64
 		{DF4DA91E-2448-4E8A-A62C-28A9F3AA779D}.DebugFull|x64.Build.0 = Debug|x64
 		{DF4DA91E-2448-4E8A-A62C-28A9F3AA779D}.DebugFull|x86.ActiveCfg = Debug|Any CPU
@@ -534,7 +528,6 @@ Global
 		{536FCC50-09B3-4A4B-B4F9-3F3EC845D09F}.DebugFull|ARM.ActiveCfg = Debug|ARM
 		{536FCC50-09B3-4A4B-B4F9-3F3EC845D09F}.DebugFull|ARM.Build.0 = Debug|ARM
 		{536FCC50-09B3-4A4B-B4F9-3F3EC845D09F}.DebugFull|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{536FCC50-09B3-4A4B-B4F9-3F3EC845D09F}.DebugFull|Mixed Platforms.Build.0 = Debug|Any CPU
 		{536FCC50-09B3-4A4B-B4F9-3F3EC845D09F}.DebugFull|x64.ActiveCfg = Debug|x64
 		{536FCC50-09B3-4A4B-B4F9-3F3EC845D09F}.DebugFull|x64.Build.0 = Debug|x64
 		{536FCC50-09B3-4A4B-B4F9-3F3EC845D09F}.DebugFull|x86.ActiveCfg = Debug|Any CPU
@@ -573,7 +566,6 @@ Global
 		{65FE87D2-65B8-4643-A538-4E33A2D815DE}.DebugFull|ARM.ActiveCfg = Debug|ARM
 		{65FE87D2-65B8-4643-A538-4E33A2D815DE}.DebugFull|ARM.Build.0 = Debug|ARM
 		{65FE87D2-65B8-4643-A538-4E33A2D815DE}.DebugFull|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{65FE87D2-65B8-4643-A538-4E33A2D815DE}.DebugFull|Mixed Platforms.Build.0 = Debug|Any CPU
 		{65FE87D2-65B8-4643-A538-4E33A2D815DE}.DebugFull|x64.ActiveCfg = Debug|x64
 		{65FE87D2-65B8-4643-A538-4E33A2D815DE}.DebugFull|x64.Build.0 = Debug|x64
 		{65FE87D2-65B8-4643-A538-4E33A2D815DE}.DebugFull|x86.ActiveCfg = Debug|Any CPU
@@ -612,7 +604,6 @@ Global
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|ARM.ActiveCfg = Debug|ARM
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|ARM.Build.0 = Debug|ARM
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|Mixed Platforms.ActiveCfg = Debug|x86
-		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|Mixed Platforms.Build.0 = Debug|x86
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x64.ActiveCfg = Debug|x64
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x64.Build.0 = Debug|x64
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x86.ActiveCfg = Debug|x86
@@ -641,7 +632,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{463FB7C8-7399-4D98-BA23-CFDEF2BB66AE} = {5E94328A-054A-4920-A2E8-39FB09AC4B97}
 		{C1FD3070-7FC8-4E20-BA49-13E576B6F852} = {5E94328A-054A-4920-A2E8-39FB09AC4B97}
 		{28AF1E71-69EB-4D02-9F07-6EEAD1F117AF} = {384242D4-025D-4137-B820-EBF966949FD7}
 		{E772FD74-56DC-4398-B85D-F33D34C2F11B} = {384242D4-025D-4137-B820-EBF966949FD7}

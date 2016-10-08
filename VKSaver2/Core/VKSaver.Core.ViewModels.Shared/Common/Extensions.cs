@@ -80,7 +80,7 @@ namespace VKSaver.Core.ViewModels.Common
             {
                 ContentType = FileContentType.Music,
                 Extension = ".mp3",
-                FileName = $"{audio.OwnerId} {audio.Id}",
+                FileName = audio.Title,
                 Source = audio.Url,
                 Metadata = audio.ToVKSaverAudio()
             };
