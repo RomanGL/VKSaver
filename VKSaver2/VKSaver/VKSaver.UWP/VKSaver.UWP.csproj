@@ -97,6 +97,9 @@
     </Compile>
     <Compile Include="Core\Services\JsonSessionStateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ErrorView.xaml.cs">
+      <DependentUpon>ErrorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FirstStart\FirstInternetSettingsView.xaml.cs">
       <DependentUpon>FirstInternetSettingsView.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,9 @@
     <Compile Include="Views\PromoView.xaml.cs">
       <DependentUpon>PromoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdatingDatabaseView.xaml.cs">
+      <DependentUpon>UpdatingDatabaseView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -124,6 +130,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Background\Background.dark.jpg" />
+    <Content Include="Assets\Images\AccessDenied.png" />
+    <Content Include="Assets\Images\BetaIsOver.png" />
+    <Content Include="Assets\Images\Error.png" />
+    <Content Include="Assets\Images\NoTracks.png" />
+    <Content Include="Assets\Images\PlayerLogo1.png" />
+    <Content Include="Assets\Images\PlayerLogo2.png" />
+    <Content Include="Assets\Images\PlayerLogo3.png" />
+    <Content Include="Assets\Images\PlayerLogo4.png" />
+    <Content Include="Assets\Images\SearchType.png" />
+    <Content Include="Assets\Images\VideoPlayerPoster.png" />
     <Content Include="Assets\Promo\0.png" />
     <Content Include="Assets\Promo\1.png" />
     <Content Include="Assets\Promo\2.png" />
@@ -161,6 +177,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
     <SDKReference Include="Microsoft.VCLibs.120, Version=14.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Universal</Name>
     </SDKReference>
@@ -209,6 +228,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Views\ErrorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\FirstStart\FirstInternetSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -232,6 +255,10 @@
     <Page Include="Views\PromoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdatingDatabaseView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <Import Project="..\VKSaver.PlatformShared\VKSaver.PlatformShared.projitems" Label="Shared" />

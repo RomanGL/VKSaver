@@ -52,6 +52,7 @@ namespace VKSaver
         protected override UIElement CreateShell(Frame rootFrame)
         {
             Dispatcher = Window.Current.Dispatcher;
+            //ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             return base.CreateShell(rootFrame);
         }
 
