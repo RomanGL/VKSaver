@@ -1,11 +1,11 @@
-﻿using SQLite;
-using System;
-using System.Collections;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
+using SQLite.Net.Attributes;
+using SQLite.Net;
 
 namespace VKSaver.Core.Services.Database
 {
@@ -20,7 +20,7 @@ namespace VKSaver.Core.Services.Database
         {
             return Task.Run(() =>
             {
-                using (var db = new SQLiteConnection(_databasePath))
+                using (var db = new SQLiteConnection(_platform, _databasePath))
                 {
                     CreateTableIfNotExist<UploadDatabaseItem>(db);
 
@@ -42,7 +42,7 @@ namespace VKSaver.Core.Services.Database
         {
             return Task.Run(() =>
             {
-                using (var db = new SQLiteConnection(_databasePath))
+                using (var db = new SQLiteConnection(_platform, _databasePath))
                 {
                     CreateTableIfNotExist<UploadDatabaseItem>(db);
 
@@ -64,7 +64,7 @@ namespace VKSaver.Core.Services.Database
         {
             return Task.Run<ICompletedUpload>(() =>
             {
-                using (var db = new SQLiteConnection(_databasePath))
+                using (var db = new SQLiteConnection(_platform, _databasePath))
                 {
                     CreateTableIfNotExist<UploadDatabaseItem>(db);
 
@@ -87,7 +87,7 @@ namespace VKSaver.Core.Services.Database
         {
             return Task.Run<IEnumerable<ICompletedUpload>>(() =>
             {
-                using (var db = new SQLiteConnection(_databasePath))
+                using (var db = new SQLiteConnection(_platform, _databasePath))
                 {
                     CreateTableIfNotExist<UploadDatabaseItem>(db);
 
@@ -109,7 +109,7 @@ namespace VKSaver.Core.Services.Database
         {
             return Task.Run(() =>
             {
-                using (var db = new SQLiteConnection(_databasePath))
+                using (var db = new SQLiteConnection(_platform, _databasePath))
                 {
                     CreateTableIfNotExist<UploadDatabaseItem>(db);
                     db.Delete<UploadDatabaseItem>(guid);
@@ -126,6 +126,7 @@ namespace VKSaver.Core.Services.Database
             return new UploadsDatabase(path);
         }
 
+        private readonly SQLitePlatformZ _platform = new SQLitePlatformZ();
         private const string DATABASE_NAME = "uploads.db";
 
         private class UploadDatabaseItem

@@ -5,10 +5,84 @@
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:mvvm="using:Prism.Windows.Mvvm"
+                            xmlns:controls="using:VKSaver.Controls"
+                            xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                            xmlns:tbeh="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+                            xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             mc:Ignorable="d">
+    
+    <ScrollViewer>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Width0">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TopArtistsBlock.Height"
+                                Value="220" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Width640">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TopArtistsBlock.Height"
+                                Value="320" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Width1008">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1280" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TopArtistsBlock.Height"
+                                Value="420" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <StackPanel>
+            <FlipView x:Name="TopArtistsBlock"
+                      ItemsSource="{Binding TopArtistsLF}">                
+                <FlipView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <controls:ImagePlaceholder Text="{Binding Name}"
+                                                       Source="{Binding MegaImage.URL}"
+                                                       Grid.RowSpan="2">
+                                <interactivity:Interaction.Behaviors>
+                                    <tbeh:Blur x:Name="BlurBehavior"
+                                               Value="5"
+                                               Duration="0"
+                                               Delay="0"
+                                               AutomaticallyStart="True" />
+                                </interactivity:Interaction.Behaviors>
+                            </controls:ImagePlaceholder>
 
-    <Grid>
-        <TextBlock Text="Главная" />
-    </Grid>
+                            <controls:ImagePlaceholder Text="{Binding Name}"
+                                                       Source="{Binding MediumImage.URL}"
+                                                       Height="100"
+                                                       Width="100"
+                                                       Margin="0,0,0,12"
+                                                       VerticalAlignment="Bottom" />
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource HeaderTextBlockStyle}"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Center"
+                                       Margin="12,0,12,10" 
+                                       Grid.Row="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </FlipView.ItemTemplate>
+            </FlipView>
+        </StackPanel>
+    </ScrollViewer>
 </mvvm:SessionStateAwarePage>

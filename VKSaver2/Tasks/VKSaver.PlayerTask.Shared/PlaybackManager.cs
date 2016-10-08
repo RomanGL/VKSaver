@@ -1,7 +1,10 @@
-﻿using IF.Lastfm.Core.Api;
+﻿#if !WINDOWS_UWP
+using IF.Lastfm.SQLite;
+#endif
+
+using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Scrobblers;
-using IF.Lastfm.SQLite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -116,10 +119,13 @@ namespace VKSaver.PlayerTask
 
                 _lastAuth.LoadSession(session);
 
+#if WINDOWS_UWP
+                _scrobbler = new Scrobbler(_lastAuth);
+#else
                 var dbFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(
                     "scrobbler.db", CreationCollisionOption.OpenIfExists);
-
                 _scrobbler = new SQLiteScrobbler(_lastAuth, dbFile.Path);
+#endif
             }
             catch (Exception ex)
             {
@@ -249,9 +255,9 @@ namespace VKSaver.PlayerTask
             _player.SetUriSource(new Uri(track.Source));  
         }
 
-        #endregion
+#endregion
 
-        #region Приватные методы  
+#region Приватные методы  
                
         private async void ScrobbleTrack(IPlayerTrack track)
         {
@@ -314,7 +320,7 @@ namespace VKSaver.PlayerTask
             Debug.WriteLine($"Track failed: {CurrentTrack.Title}\nInfo: {args.ExtendedErrorCode.Message}");
         }
 
-        #endregion
+#endregion
 
         private List<IPlayerTrack> _playlist;
         private bool _isShuffleMode;

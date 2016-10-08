@@ -146,10 +146,10 @@
     <Content Include="Assets\Promo\3.png" />
     <Content Include="Assets\Promo\4.png" />
     <Content Include="Assets\Promo\5.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
@@ -177,11 +177,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
-      <Name>Behaviors SDK %28XAML%29</Name>
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
+      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
-    <SDKReference Include="Microsoft.VCLibs.120, Version=14.0">
-      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Universal</Name>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.14.2">
+      <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.14393.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
