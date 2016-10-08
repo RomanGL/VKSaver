@@ -207,7 +207,9 @@
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AccessDeniedView.xaml.cs" />
+    <Compile Include="Views\AccessDeniedView.xaml.cs">
+		<DependentUpon>AccessDeniedView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AdInfoView.xaml.cs">
       <DependentUpon>AdInfoView.xaml</DependentUpon>
     </Compile>
