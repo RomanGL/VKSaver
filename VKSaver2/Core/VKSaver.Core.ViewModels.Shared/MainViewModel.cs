@@ -140,19 +140,24 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand GoToUploadFileViewCommand { get; private set; }
 
+#if !WINDOWS_UWP
         public VKAudioWithImage FirstTrack { get; private set; }
 
         public string HubBackgroundImage { get; private set; }
+#endif
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             _backgroundLoaded = false;
             if (viewModelState.Count > 0)
             {
-                UserTracks = JsonConvert.DeserializeObject<SimpleStateSupportCollection<Audio>>(
-                    viewModelState[nameof(UserTracks)].ToString());
+#if !WINDOWS_UWP
                 FirstTrack = JsonConvert.DeserializeObject<VKAudioWithImage>(
                     viewModelState[nameof(FirstTrack)].ToString());
+#endif
+
+                UserTracks = JsonConvert.DeserializeObject<SimpleStateSupportCollection<Audio>>(
+                    viewModelState[nameof(UserTracks)].ToString());                
                 TopArtistsLF = JsonConvert.DeserializeObject<SimpleStateSupportCollection<LFArtistExtended>>(
                     viewModelState[nameof(TopArtistsLF)].ToString());
                 RecommendedTracksVK = JsonConvert.DeserializeObject<SimpleStateSupportCollection<Audio>>(
@@ -173,8 +178,9 @@ namespace VKSaver.Core.ViewModels
             TopArtistsLF.Load();
             RecommendedTracksVK.Load();
 
+#if !WINDOWS_UWP
             TryLoadBackground(FirstTrack);
-            //TryLoadTopArtistBackground(TopArtistsLF?.FirstOrDefault());
+#endif
 
             base.OnNavigatedTo(e, viewModelState);
 
@@ -186,7 +192,9 @@ namespace VKSaver.Core.ViewModels
         {
             if (e.NavigationMode == NavigationMode.New)
             {
+#if !WINDOWS_UWP
                 viewModelState[nameof(FirstTrack)] = JsonConvert.SerializeObject(FirstTrack);
+#endif
                 viewModelState[nameof(UserTracks)] = JsonConvert.SerializeObject(UserTracks.ToList());
                 viewModelState[nameof(TopArtistsLF)] = JsonConvert.SerializeObject(TopArtistsLF.ToList());
                 viewModelState[nameof(RecommendedTracksVK)] = JsonConvert.SerializeObject(RecommendedTracksVK.ToList());
@@ -208,6 +216,9 @@ namespace VKSaver.Core.ViewModels
                 if (response.Data.Items.Count == 0)
                     return new List<Audio>();
 
+#if WINDOWS_UWP
+                return response.Data.Items;
+#else
                 FirstTrack = new VKAudioWithImage
                 {
                     VKTrack = response.Data.Items[0]
@@ -216,6 +227,7 @@ namespace VKSaver.Core.ViewModels
                 TryLoadFirstTrackInfo(FirstTrack);
                 TryLoadBackground(FirstTrack);
                 return response.Data.Items.Skip(1);
+#endif
             }
         }
 
@@ -230,7 +242,9 @@ namespace VKSaver.Core.ViewModels
 
             if (response.IsValid())
             {
+#if !WINDOWS_UWP
                 TryLoadTopArtistBackground(response.Data.Artists[0]);
+#endif
                 return response.Data.Artists;
             }
             else
@@ -249,6 +263,7 @@ namespace VKSaver.Core.ViewModels
                 return response.Data.Items;
         }
 
+#if !WINDOWS_UWP
         private async void TryLoadBackground(VKAudioWithImage track)
         {
             if (_backgroundLoaded)
@@ -308,6 +323,8 @@ namespace VKSaver.Core.ViewModels
             if (imagePath != null)
                 track.ImageURL = imagePath;
         }
+
+#endif
 
         private void OnGoToTrackInfoCommand(LFAudioBase audio)
         {
@@ -414,9 +431,13 @@ namespace VKSaver.Core.ViewModels
             List<IPlayerTrack> tracksToPlay = null;
             await Task.Run(() =>
             {
+#if WINDOWS_UWP
+                tracksToPlay = new List<IPlayerTrack>(UserTracks.Select(a => a.ToPlayerTrack()));
+#else
                 tracksToPlay = new List<IPlayerTrack>(UserTracks.Count + 1);
                 tracksToPlay.Add(FirstTrack.VKTrack.ToPlayerTrack());
                 tracksToPlay.AddRange(UserTracks.Select(a => a.ToPlayerTrack()));
+#endif
             });
 
             if (tracksToPlay == null)

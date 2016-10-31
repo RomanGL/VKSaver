@@ -177,8 +177,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AlternateListView.cs" />
     <Compile Include="Core\Services\JsonSessionStateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleData\MainViewSampleData\MainViewSampleData.xaml.cs">
+      <DependentUpon>MainViewSampleData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
     </Compile>
@@ -208,6 +212,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="SampleData\MainViewSampleData\MainViewSampleData.xsd" />
     <None Include="VKSaver.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +251,9 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
+    <DesignTimeOnly Include="SampleData\MainViewSampleData\MainViewSampleData_Files\image1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </DesignTimeOnly>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -304,6 +312,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <DesignTimeOnly Include="SampleData\MainViewSampleData\MainViewSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignTimeOnly>
     <Page Include="Themes\Controls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -352,6 +364,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\VKSaver.PlatformShared\VKSaver.PlatformShared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

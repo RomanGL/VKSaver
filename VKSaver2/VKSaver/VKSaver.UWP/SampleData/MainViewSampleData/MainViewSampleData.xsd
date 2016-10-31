@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+      *********    НЕ ИЗМЕНЯЙТЕ ЭТОТ ФАЙЛ     *********
+      Этот файл обновляется средством разработки. Внесение
+      изменений в этот файл может привести к ошибкам.
+-->
+<xs:schema xmlns:blend="http://schemas.microsoft.com/expression/blend/2008" xmlns:tns="Blend.SampleData.MainViewSampleData" targetNamespace="Blend.SampleData.MainViewSampleData" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MainViewSampleData" type="tns:MainViewSampleData" />
+  <xs:complexType name="MainViewSampleData">
+    <xs:sequence>
+      <xs:element name="TopArtistsLF" type="tns:TopArtistsLF" />
+      <xs:element name="UserTracks" type="tns:UserTracks" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TopArtistsLF">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="TopArtistsLFItem" type="tns:TopArtistsLFItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TopArtistsLFItem">
+    <xs:sequence>
+      <xs:element name="MegaImage" type="tns:MegaImage" />
+    </xs:sequence>
+    <xs:attribute blend:FormatParameters="2,9" name="Name" type="xs:string" />
+    <xs:attribute blend:FormatParameters="4" name="PlayCount" type="xs:double" />
+  </xs:complexType>
+  <xs:complexType name="MegaImage">
+    <xs:attribute name="URL" type="tns:Basic-Image" />
+  </xs:complexType>
+  <xs:simpleType name="Basic-Image">
+    <xs:restriction base="xs:anyURI" />
+  </xs:simpleType>
+  <xs:complexType name="UserTracks">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="UserTracksItem" type="tns:UserTracksItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UserTracksItem">
+    <xs:attribute name="Title" type="xs:string" />
+    <xs:attribute name="Artist" type="xs:string" />
+    <xs:attribute blend:FormatParameters="8" name="Duration" type="xs:double" />
+  </xs:complexType>
+</xs:schema>
