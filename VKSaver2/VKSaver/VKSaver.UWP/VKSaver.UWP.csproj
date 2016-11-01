@@ -178,6 +178,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\AlternateListView.cs" />
+    <Compile Include="Converters\HamburgerItemClickConverter.cs" />
     <Compile Include="Core\Services\JsonSessionStateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData\MainViewSampleData\MainViewSampleData.xaml.cs">
@@ -317,6 +318,11 @@
       <SubType>Designer</SubType>
     </DesignTimeOnly>
     <Page Include="Themes\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\Hamburger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

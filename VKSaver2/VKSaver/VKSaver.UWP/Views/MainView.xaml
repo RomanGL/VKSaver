@@ -7,6 +7,7 @@
                             xmlns:controls="using:VKSaver.Controls"
                             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                             xmlns:tbeh="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+                            xmlns:tc="using:Microsoft.Toolkit.Uwp.UI.Controls"
                             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                             xmlns:intouch="using:ModernDev.InTouch"
                             xmlns:SampleData="using:Blend.SampleData.MainViewSampleData"
@@ -18,6 +19,116 @@
     <mvvm:SessionStateAwarePage.Resources>
         <SampleData:MainViewSampleData x:Key="MainViewSampleData"
                                        d:IsDataSource="True" />
+
+        <DataTemplate x:Key="TopArtistTemplate"
+                      xmlns:lf="using:OneTeam.SDK.LastFm.Models.Audio"
+                      x:DataType="lf:LFArtistExtended">
+            <UserControl>
+                <Grid>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup>
+                            <VisualState>
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="0" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState>
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="640" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Target="ArtistName.HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Target="Playcount.HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Target="ArtistName.FontSize"
+                                            Value="42" />
+                                    <Setter Target="ArtistName.FontWeight"
+                                            Value="Black" />
+                                    <Setter Target="Playcount.FontSize"
+                                            Value="24" />
+                                    <Setter Target="ArtistEllipse.Width"
+                                            Value="170" />
+                                    <Setter Target="ArtistEllipse.Height"
+                                            Value="170" />
+                                    <Setter Target="ArtistEllipse.HorizontalAlignment"
+                                            Value="Center" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState>
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="1280" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Target="ArtistName.HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Target="Playcount.HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Target="ArtistName.FontSize"
+                                            Value="64" />
+                                    <Setter Target="ArtistName.FontWeight"
+                                            Value="Black" />
+                                    <Setter Target="Playcount.FontSize"
+                                            Value="26" />
+                                    <Setter Target="ArtistEllipse.Width"
+                                            Value="240" />
+                                    <Setter Target="ArtistEllipse.Height"
+                                            Value="240" />
+                                    <Setter Target="ArtistEllipse.HorizontalAlignment"
+                                            Value="Center" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+
+                    <controls:ImagePlaceholder Text="{x:Bind Name}"
+                                               Source="{x:Bind MegaImage.URL}">
+                        <interactivity:Interaction.Behaviors>
+                            <tbeh:Blur AutomaticallyStart="True"
+                                       Duration="0"
+                                       Value="10" />
+                        </interactivity:Interaction.Behaviors>
+                    </controls:ImagePlaceholder>
+
+                    <Rectangle Grid.RowSpan="2">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1"
+                                                 StartPoint="0.5,0">
+                                <GradientStop Color="#CC000000"
+                                              Offset="1" />
+                                <GradientStop />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <StackPanel Margin="12,20"
+                                VerticalAlignment="Bottom">
+                        <Ellipse x:Name="ArtistEllipse"
+                                 Width="120"
+                                 Height="120"
+                                 HorizontalAlignment="Center">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{x:Bind MegaImage.URL}"
+                                            Stretch="UniformToFill" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Text="{x:Bind Name}"
+                                   x:Name="ArtistName"
+                                   HorizontalAlignment="Center"
+                                   Style="{StaticResource PromoTitleTextBlock}"
+                                   Margin="0,0,0,-8" />
+                        <TextBlock x:Name="Playcount"
+                                   HorizontalAlignment="Center"
+                                   Style="{StaticResource PromoSubtitleTextBlock}">
+                                        <Run Text="{x:Bind PlayCount}" />
+                                        <Run Text="воспроизведений" />
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </UserControl>
+        </DataTemplate>
 
         <DataTemplate x:Key="NormalAudioTemplate"
                       x:DataType="intouch:Audio">
@@ -31,9 +142,11 @@
                 <TextBlock Text="{x:Bind Title}"
                            Foreground="{ThemeResource AccentBrush}" />
                 <TextBlock Text="{x:Bind Artist}"
-                           Grid.Row="1" />
+                           Grid.Row="1"
+                           Opacity="0.5" />
                 <TextBlock Text="{x:Bind Duration, Converter={StaticResource TimeConverter}}"
-                           Grid.Row="2" />
+                           Grid.Row="2"
+                           Opacity="0.3" />
             </Grid>
         </DataTemplate>
 
@@ -57,7 +170,8 @@
                            Margin="0,0,6,0" />
                 <TextBlock Text="{x:Bind Duration, Converter={StaticResource TimeConverter}}"
                            Grid.Column="2"
-                           Opacity="0.3" />
+                           Opacity="0.3"
+                           Margin="0,0,12,0" />
             </Grid>
         </DataTemplate>
     </mvvm:SessionStateAwarePage.Resources>
@@ -82,7 +196,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="TopArtistsBlock.Height"
-                                Value="330" />
+                                Value="290" />
                         <Setter Target="UserTracksList.ItemTemplate"
                                 Value="{StaticResource WideAudioTemplate}" />
                     </VisualState.Setters>
@@ -93,7 +207,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="TopArtistsBlock.Height"
-                                Value="440" />
+                                Value="400" />
                         <Setter Target="UserTracksList.ItemTemplate"
                                 Value="{StaticResource WideAudioTemplate}" />
                     </VisualState.Setters>
@@ -103,92 +217,8 @@
 
         <StackPanel>
             <FlipView x:Name="TopArtistsBlock"
-                      ItemsSource="{Binding TopArtistsLF}">
-                <FlipView.ItemTemplate>
-                    <DataTemplate>
-                        <UserControl>
-                            <Grid>
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup>
-                                        <VisualState>
-                                            <VisualState.StateTriggers>
-                                                <AdaptiveTrigger MinWindowWidth="0" />
-                                            </VisualState.StateTriggers>
-                                            <VisualState.Setters>
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                        <VisualState>
-                                            <VisualState.StateTriggers>
-                                                <AdaptiveTrigger MinWindowWidth="640" />
-                                            </VisualState.StateTriggers>
-                                            <VisualState.Setters>
-                                                <Setter Target="ArtistName.HorizontalAlignment"
-                                                        Value="Center" />
-                                                <Setter Target="Playcount.HorizontalAlignment"
-                                                        Value="Center" />
-                                                <Setter Target="ArtistName.FontSize"
-                                                        Value="42" />
-                                                <Setter Target="ArtistName.FontWeight"
-                                                        Value="Black" />
-                                                <Setter Target="Playcount.FontSize"
-                                                        Value="24" />
-                                                
-                                                
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                        <VisualState>
-                                            <VisualState.StateTriggers>
-                                                <AdaptiveTrigger MinWindowWidth="1280" />
-                                            </VisualState.StateTriggers>
-                                            <VisualState.Setters>
-                                                <Setter Target="ArtistName.HorizontalAlignment"
-                                                        Value="Center" />
-                                                <Setter Target="Playcount.HorizontalAlignment"
-                                                        Value="Center" />
-                                                <Setter Target="ArtistName.FontSize"
-                                                        Value="64" />
-                                                <Setter Target="ArtistName.FontWeight"
-                                                        Value="Black" />
-                                                <Setter Target="Playcount.FontSize"
-                                                        Value="26" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-
-                                <controls:ImagePlaceholder Text="{Binding Name}"
-                                                           Source="{Binding MegaImage.URL}" />
-
-                                <Rectangle Grid.RowSpan="2">
-                                    <Rectangle.Fill>
-                                        <LinearGradientBrush EndPoint="0.5,1"
-                                                             StartPoint="0.5,0">
-                                            <GradientStop Color="#CC000000"
-                                                          Offset="1" />
-                                            <GradientStop />
-                                        </LinearGradientBrush>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-
-                                <StackPanel Margin="12,20"
-                                            VerticalAlignment="Bottom">
-                                    <TextBlock Text="{Binding Name}"
-                                               x:Name="ArtistName"
-                                               HorizontalAlignment="Stretch"
-                                               Style="{StaticResource PromoTitleTextBlock}"
-                                               Margin="0,0,0,-8" />
-                                    <TextBlock x:Name="Playcount"
-                                               HorizontalAlignment="Stretch"
-                                               Style="{StaticResource PromoSubtitleTextBlock}">
-                                        <Run Text="{Binding PlayCount}" />
-                                        <Run Text="воспроизведений" />
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                        </UserControl>
-                    </DataTemplate>
-                </FlipView.ItemTemplate>
-            </FlipView>
+                      ItemsSource="{Binding TopArtistsLF}"
+                      ItemTemplate="{StaticResource TopArtistTemplate}" />
 
             <controls:AlternateListView x:Name="UserTracksList"
                                         ItemsSource="{Binding UserTracks}"
@@ -196,7 +226,14 @@
                                         ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                         FirstItemBackground="{ThemeResource ListViewFirstItemBackgroundThemeBrush}"
                                         SecondItemBackground="{ThemeResource ListViewSecondItemBackgroundThemeBrush}"
-                                        Margin="0,12,0,0">
+                                        Margin="0,12,0,0"
+                                        IsItemClickEnabled="True">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="ItemClick">
+                        <core:InvokeCommandAction Command="{Binding PlayUserTracksCommand}"
+                                                  InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
             </controls:AlternateListView>
         </StackPanel>
     </ScrollViewer>

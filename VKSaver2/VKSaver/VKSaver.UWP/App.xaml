@@ -12,7 +12,8 @@
                 <ResourceDictionary Source="Themes/Common.xaml" />
                 <ResourceDictionary Source="Themes/Themes.xaml" />
                 <ResourceDictionary Source="Themes/Styles.xaml" />
-                <ResourceDictionary Source="Themes/Controls.xaml" />
+                <ResourceDictionary Source="Themes/Hamburger.xaml" />
+                <ResourceDictionary Source="Themes/Controls.xaml" />                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </mvvm:PrismUnityApplication.Resources>

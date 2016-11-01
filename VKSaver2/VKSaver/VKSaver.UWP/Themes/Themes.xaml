@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.ThemeDictionaries>
-        <ResourceDictionary x:Key="Dark">
+        <ResourceDictionary x:Key="Dark">            
             <SolidColorBrush x:Key="MenuPanelBackgroundThemeBrush"
                              Color="#FF171717" />
             <SolidColorBrush x:Key="MenuDimmingBackgroundThemeBrush"
@@ -39,6 +39,13 @@
                              Color="White" />
             <SolidColorBrush x:Key="ButtonBackgroundBrush"
                              Color="#7F000000" />
+
+            <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush"
+                             Color="{StaticResource AccentColor}" 
+                             Opacity="0.5"/>
+            <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush" 
+                             Color="{StaticResource AccentColor}"
+                             Opacity="0.7"/>
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
@@ -77,6 +84,13 @@
                              Color="White" />
             <SolidColorBrush x:Key="ButtonBackgroundBrush"
                              Color="#7FFFFFFF" />
+
+            <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush"
+                             Color="{StaticResource AccentColor}" 
+                             Opacity="0.5"/>
+            <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush"
+                             Color="{StaticResource AccentColor}" 
+                             Opacity="0.7"/>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
