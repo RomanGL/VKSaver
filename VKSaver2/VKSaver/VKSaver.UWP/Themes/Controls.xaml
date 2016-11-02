@@ -130,9 +130,7 @@
                                           Style="{StaticResource HamburgerStyle}"
                                           mvvm:ViewModelLocator.AutoWireViewModel="True"
                                           IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay}"
-                                          DisplayMode="{Binding DisplayMode, Mode=TwoWay}"
-                                          SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
-                                          SelectedOptionsIndex="{Binding SelectedOptionsIndex, Mode=TwoWay}">
+                                          DisplayMode="{Binding DisplayMode, Mode=TwoWay}">
                             <i:Interaction.Behaviors>
                                 <c:EventTriggerBehavior EventName="ItemClick">
                                     <c:InvokeCommandAction Command="{Binding ItemClickCommand}"

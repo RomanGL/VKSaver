@@ -9,6 +9,9 @@
     <Import_RootNamespace>VKSaver</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ShowAttachedFlyoutAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ControlExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DataContextProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\PurchaseViewTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\PromoViewTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\StoryboardServices.cs" />

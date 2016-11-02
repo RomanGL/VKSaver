@@ -349,14 +349,14 @@ namespace VKSaver
             return pageType;
         }
 
-        public new T Resolve<T>() where T : class
+        public T Resolve<T>() where T : class
         {
-            throw new NotImplementedException();
+            return Container.Resolve<T>();
         }
 
-        public new T Resolve<T>(string name) where T : class
+        public T Resolve<T>(string name) where T : class
         {
-            throw new NotImplementedException();
+            return Container.Resolve<T>(name);
         }
         
         private IAppLoaderService _appLoaderService;

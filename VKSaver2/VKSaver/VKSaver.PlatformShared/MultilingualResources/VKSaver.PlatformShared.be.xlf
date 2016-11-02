@@ -1953,6 +1953,26 @@ Eng: upload</note>
           <source>Извлечение</source>
           <target state="translated">Выманне</target>
         </trans-unit>
+        <trans-unit id="Ads_Message_JoinBuyon_Text" translate="yes" xml:space="preserve">
+          <source>Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
+Подписаться?</source>
+          <target state="new">Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
+Подписаться?</target>
+        </trans-unit>
+        <trans-unit id="Ads_Message_JoinBuyon_Title" translate="yes" xml:space="preserve">
+          <source>Подпишись на Байон!</source>
+          <target state="new">Подпишись на Байон!</target>
+        </trans-unit>
+        <trans-unit id="Ads_Message_JoinNStore_Text" translate="yes" xml:space="preserve">
+          <source>В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
+Подписаться?</source>
+          <target state="new">В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
+Подписаться?</target>
+        </trans-unit>
+        <trans-unit id="Ads_Message_JoinNStore_Title" translate="yes" xml:space="preserve">
+          <source>Подпишись на Microsoft Store Russia!</source>
+          <target state="new">Подпишись на Microsoft Store Russia!</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -20,10 +20,6 @@ namespace VKSaver.Core.ViewModels
             ItemClickCommand = new DelegateCommand<string>(OnItemClickCommand);
         }
 
-        public int SelectedOptionsIndex { get; set; }
-
-        public int SelectedIndex { get; set; }
-
         public bool IsPaneOpen { get; set; }
 
         public int DisplayMode { get; set; }
@@ -40,6 +36,7 @@ namespace VKSaver.Core.ViewModels
                     break;
                 case "audios":
                 case "videos":
+                case "docs":
                     _navigationService.Navigate("UserContentView", JsonConvert.SerializeObject(
                         new KeyValuePair<string, string>(tag, "0")));
                     break;

@@ -38,7 +38,7 @@ namespace VKSaver.Core.Services
             return DateTime.Now >= _maxDate;
         }
 
-        private readonly DateTime _maxDate = new DateTime(2016, 10, 20);
+        private readonly DateTime _maxDate = new DateTime(2017, 10, 20);
         private readonly InTouch _inTouch;
         private readonly INavigationService _navigationService;
     }

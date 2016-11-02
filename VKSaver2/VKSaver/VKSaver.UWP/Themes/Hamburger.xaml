@@ -15,15 +15,39 @@
         <tc:HamburgerMenuGlyphItem Label="Видео"
                                    Glyph="&#xE786;" 
                                    Tag="videos"/>
+        <tc:HamburgerMenuGlyphItem Label="Документы"
+                                   Glyph="&#xE160;"
+                                   Tag="docs" />
+        <tc:HamburgerMenuGlyphItem Label="Группы"
+                                   Glyph="&#xE125;"
+                                   Tag="groups" />
+        <tc:HamburgerMenuGlyphItem Label="Друзья"
+                                   Glyph="&#xE13D;"
+                                   Tag="friends" />
+        <tc:HamburgerMenuGlyphItem Label="Новости"
+                                   Glyph="&#xE12A;"
+                                   Tag="news" />
+        <tc:HamburgerMenuGlyphItem Label="Топ треков"
+                                   Glyph="&#xE189;"
+                                   Tag="top_tracks" />
+        <tc:HamburgerMenuGlyphItem Label="Топ исполнителей"
+                                   Glyph="&#xE187;"
+                                   Tag="top_artists" />
+        <tc:HamburgerMenuGlyphItem Label="Рекомендации"
+                                   Glyph="&#xE006;"
+                                   Tag="recommendations" />
+        <tc:HamburgerMenuGlyphItem Label="Менеджер загрузок"
+                                   Glyph="&#xE118;"
+                                   Tag="transfer_manager" />
     </tc:HamburgerMenuItemCollection>
 
     <tc:HamburgerMenuItemCollection x:Key="OptionsItems">
+        <tc:HamburgerMenuGlyphItem Label="Поиск"
+                                   Glyph="&#xE11A;"
+                                   Tag="search" />
         <tc:HamburgerMenuGlyphItem Label="Настройки"
                                    Glyph="&#xE713;" 
                                    Tag="settings"/>
-        <tc:HamburgerMenuGlyphItem Label="Выйти из аккаунта"
-                                   Glyph="&#xE748;" 
-                                   Tag="logout"/>
     </tc:HamburgerMenuItemCollection>
 
     <DataTemplate x:Key="HamburgerMenuItem">

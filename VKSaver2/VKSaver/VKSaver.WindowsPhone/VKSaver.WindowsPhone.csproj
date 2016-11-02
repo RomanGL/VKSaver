@@ -153,12 +153,9 @@
     <Compile Include="Behaviors\IncrementalUpDownLoadingBehavior.cs" />
     <Compile Include="Behaviors\KeyBehavior.cs" />
     <Compile Include="Behaviors\SelectedItemsBindingBehavior.cs" />
-    <Compile Include="Behaviors\ShowAttachedFlyoutAction.cs" />
     <Compile Include="Behaviors\WithCommandDependencyObject.cs" />
     <Compile Include="Common\AudioGroupTemplateSelector.cs" />
     <Compile Include="Common\ContentViewItemContainerStyleSelector.cs" />
-    <Compile Include="Common\ControlExtensions.cs" />
-    <Compile Include="Common\DataContextProxy.cs" />
     <Compile Include="Common\LocalizationXamlWrapper.cs" />
     <Compile Include="Common\MultiSelector.cs" />
     <Compile Include="Common\VideoGroupTemplateSelector.cs" />

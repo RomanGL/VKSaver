@@ -1573,4 +1573,18 @@ Eng: upload</comment>
   <data name="VksmExtractionView_Title.Text" xml:space="preserve">
     <value>Извлечение</value>
   </data>
+  <data name="Ads_Message_JoinBuyon_Text" xml:space="preserve">
+    <value>Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
+Подписаться?</value>
+  </data>
+  <data name="Ads_Message_JoinBuyon_Title" xml:space="preserve">
+    <value>Подпишись на Байон!</value>
+  </data>
+  <data name="Ads_Message_JoinNStore_Text" xml:space="preserve">
+    <value>В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
+Подписаться?</value>
+  </data>
+  <data name="Ads_Message_JoinNStore_Title" xml:space="preserve">
+    <value>Подпишись на Microsoft Store Russia!</value>
+  </data>
 </root>
