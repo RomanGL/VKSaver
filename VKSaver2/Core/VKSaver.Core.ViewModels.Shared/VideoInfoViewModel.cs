@@ -77,12 +77,12 @@ namespace VKSaver.Core.ViewModels
                     return Video.Photo130;
             }
         }
-        
+
         public string VideoStoresOn { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand LoadLinksCommand { get; private set; }  
-        
+        public DelegateCommand LoadLinksCommand { get; private set; }
+
         [DoNotNotify]
         public DelegateCommand PlayVideoCommand { get; private set; }
 
@@ -94,7 +94,7 @@ namespace VKSaver.Core.ViewModels
             Video = JsonConvert.DeserializeObject<Video>(e.Parameter.ToString());
 
             if (viewModelState.Count > 0)
-            {                
+            {
                 VideoLinks = JsonConvert.DeserializeObject<List<CommonVideoLink>>(
                     viewModelState[nameof(VideoLinks)].ToString()).Cast<IVideoLink>().ToList();
                 SelectedLinkIndex = (int)viewModelState[nameof(SelectedLinkIndex)];
@@ -122,13 +122,15 @@ namespace VKSaver.Core.ViewModels
 
         private void UpdateState()
         {
-            if (String.IsNullOrEmpty(Video.Player))
+            if (TrySetVkVideos())
+                return;
+            else if (String.IsNullOrEmpty(Video.Player))
             {
                 LinksState = ContentState.NoData;
                 VideoStoresOn = _locService["VideoInfoView_StoresOn_Unsupported_Text"];
+                return;
             }
-
-            if (Video.Player.Contains("vk.com"))
+            else if (Video.Player.Contains("vk.com"))
                 VideoStoresOn = _locService["VideoInfoView_StoresOn_VK_Text"];
             //else if (Video.Player.Contains("youtube"))
             //    VideoStoresOn = _locService["VideoInfoView_StoresOn_YouTube_Text"];            
@@ -137,7 +139,7 @@ namespace VKSaver.Core.ViewModels
             //else if (Video.Player.Contains("coub.com"))
             //    VideoStoresOn = _locService["VideoInfoView_StoresOn_Coub_Text"];
             else
-            {                
+            {
                 VideoStoresOn = _locService["VideoInfoView_StoresOn_Unsupported_Text"];
                 LinksState = ContentState.NoData;
                 return;
@@ -147,6 +149,28 @@ namespace VKSaver.Core.ViewModels
                 LinksState = ContentState.Normal;
             else
                 LinksState = ContentState.Error;
+        }
+
+        private bool TrySetVkVideos()
+        {
+            if (Video.Files != null && Video.Files.Vid240 != null)
+            {
+                VideoLinks = new List<IVideoLink>();
+                VideoLinks.Add(new CommonVideoLink { Name = "MP4 240p", Source = Video.Files.Vid240 });
+
+                if (Video.Files.Vid360 != null)
+                    VideoLinks.Add(new CommonVideoLink { Name = "MP4 360p", Source = Video.Files.Vid360 });
+                if (Video.Files.Vid480 != null)
+                    VideoLinks.Add(new CommonVideoLink { Name = "MP4 480p", Source = Video.Files.Vid480 });
+                if (Video.Files.Vid720 != null)
+                    VideoLinks.Add(new CommonVideoLink { Name = "MP4 720p", Source = Video.Files.Vid720 });
+                if (Video.Files.Vid1080 != null)
+                    VideoLinks.Add(new CommonVideoLink { Name = "MP4 1080p", Source = Video.Files.Vid1080 });
+
+                return true;
+            }
+
+            return false;
         }
 
         private async void OnLoadLinksCommand()
