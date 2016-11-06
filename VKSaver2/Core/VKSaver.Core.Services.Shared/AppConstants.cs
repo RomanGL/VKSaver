@@ -3,7 +3,16 @@
     public static class AppConstants
     {
         public const string CURRENT_PROMO_INDEX_PARAMETER = "CurrentPromoIndex";
-        public const int CURRENT_PROMO_INDEX = 2;
+        public const int CURRENT_PROMO_INDEX = 3;   // Текущий (последний) индекс промо-элементов.
+        public const int DEFAULT_PROMO_INDEX = 1;   // Начальный индекс промо-элементов.
+
+        #region Количество элементов в промо-индексах
+
+        public const int COUNT_OF_PROMO_INDEX_2 = 4;
+        public const int COUNT_OF_PROMO_INDEX_3 = 1;
+
+        #endregion
+
         public const int CONNECTION_ERROR_CODE = -1;
 
         public const string CURRENT_LIBRARY_INDEX_PARAMETER = "CurrentLibraryIndex";

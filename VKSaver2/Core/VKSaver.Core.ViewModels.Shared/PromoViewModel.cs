@@ -9,6 +9,7 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 
 using PropertyChanged;
 using System;
+using System.Collections.Generic;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 
@@ -25,42 +26,69 @@ namespace VKSaver.Core.ViewModels
             _vkLoginService = vkLoginService;
             _settingsService = settingsService;
 
-            _screenItems = new ScreenItem[]
-            {
-                new ScreenItem(_locService["PromoView_Screen1_Line1_Text"], 
-                    _locService["PromoView_Screen1_Line2_Text"], 1),
-                new ScreenItem(_locService["PromoView_Screen2_Line1_Text"],
-                    _locService["PromoView_Screen2_Line2_Text"], 2),
-                new ScreenItem(_locService["PromoView_Screen3_Line1_Text"],
-                    _locService["PromoView_Screen3_Line2_Text"], 3),
-                new ScreenItem(_locService["PromoView_Screen4_Line1_Text"],
-                    _locService["PromoView_Screen4_Line2_Text"], 4),
-                new ScreenItem(_locService["PromoView_Screen5_Line1_Text"],
-                    _locService["PromoView_Screen5_Line2_Text"], 5),
-                new ScreenItem(_locService["PromoView_Screen0_Line1_Text"],
-                    _locService["PromoView_Screen0_Line2_Text"], 0, true)
-                {
-                    LetsGoCommand = new DelegateCommand(OnLetsGoCommand)
-                }
-            };
+            FillScreenItems();
         }
         
         [DoNotNotify]
-        public ScreenItem[] ScreenItems { get { return _screenItems; } }
+        public List<ScreenItem> ScreenItems { get; private set; }
+
+        private void FillScreenItems()
+        {
+            ScreenItems = new List<ScreenItem>();
+            ScreenItems.Add(new ScreenItem(
+                _locService["PromoView_Screen1_Line1_Text"],
+                _locService["PromoView_Screen1_Line2_Text"], 1));
+
+            int promoIndex = _settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, AppConstants.DEFAULT_PROMO_INDEX);
+            promoIndex++;
+
+            while (promoIndex <= AppConstants.CURRENT_PROMO_INDEX)
+            {
+                int count = GetItemsCountFromPromoIndex(promoIndex);
+                for (int i = 1; i <= count; i++)
+                {
+                    ScreenItems.Add(new ScreenItem(
+                        _locService[$"PromoView_Screen{promoIndex}{i}_Line1_Text"],
+                        _locService[$"PromoView_Screen{promoIndex}{i}_Line2_Text"], 
+                        promoIndex * 10 + i));  // Получаем индекс картинки. Например, 2 * 10 + 2 = 22. Картинка 22.
+                }
+
+                promoIndex++;
+            }
+
+            ScreenItems.Add(new ScreenItem(
+                _locService["PromoView_Screen0_Line1_Text"],
+                _locService["PromoView_Screen0_Line2_Text"], 0, true)
+                {
+                    LetsGoCommand = new DelegateCommand(OnLetsGoCommand)
+                });
+        }
 
         private void OnLetsGoCommand()
         {
             if (_vkLoginService.IsAuthorized)
                 _navigationService.Navigate("MainView", null);
             else
-                _navigationService.Navigate("LoginView", null);
+                _navigationService.Navigate("DirectAuthView", null);
 
             _navigationService.ClearHistory();
             _settingsService.Set(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, AppConstants.CURRENT_PROMO_INDEX);
         }
         
+        private static int GetItemsCountFromPromoIndex(int promoIndex)
+        {
+            switch (promoIndex)
+            {
+                case 2:
+                    return AppConstants.COUNT_OF_PROMO_INDEX_2;
+                case 3:
+                    return AppConstants.COUNT_OF_PROMO_INDEX_3;
+                default:
+                    return 0;
+            }
+        }
+
         private readonly INavigationService _navigationService;
-        private readonly ScreenItem[] _screenItems;
         private readonly ILocService _locService;
         private readonly IVKLoginService _vkLoginService;
         private readonly ISettingsService _settingsService;

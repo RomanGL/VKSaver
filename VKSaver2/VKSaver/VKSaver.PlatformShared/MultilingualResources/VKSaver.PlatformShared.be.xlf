@@ -69,11 +69,11 @@
         </trans-unit>
         <trans-unit id="Ads_BuyonLumia650_Action_Link" translate="yes" xml:space="preserve">
           <source>https://vk.com/buyon?w=wall-50073493_40903</source>
-          <target state="new">https://vk.com/buyon?w=wall-50073493_40903</target>
+          <target state="needs-review-translation">https://vk.com/buyon?w=wall-50073493_40903</target>
         </trans-unit>
         <trans-unit id="Ads_BuyonLumia650_Action_Text" translate="yes" xml:space="preserve">
           <source>участвовать</source>
-          <target state="new">участвовать</target>
+          <target state="needs-review-translation">участвовать</target>
         </trans-unit>
         <trans-unit id="Ads_BuyonLumia650_Text" translate="yes" xml:space="preserve">
           <source>ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
@@ -86,7 +86,7 @@
 
 * только для жителей РФ
 * победитель должен быть старше 16-ти лет</source>
-          <target state="new">ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
+          <target state="needs-review-translation">ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
 
 Чтобы выиграть смартфон вам нужно:
 - Вступить в группу Байон и в группу ВКачай
@@ -99,17 +99,17 @@
         </trans-unit>
         <trans-unit id="Ads_BuyonLumia650_Title" translate="yes" xml:space="preserve">
           <source>Выиграй Microsoft Lumia 650 от ВКачай и Байон!</source>
-          <target state="new">Выиграй Microsoft Lumia 650 от ВКачай и Байон!</target>
+          <target state="needs-review-translation">Выиграй Microsoft Lumia 650 от ВКачай и Байон!</target>
         </trans-unit>
         <trans-unit id="Ads_Message_BuyonLumia650_Text" translate="yes" xml:space="preserve">
           <source>ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
 Хотите узнать, как выиграть смартфон?</source>
-          <target state="new">ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
+          <target state="needs-review-translation">ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
 Хотите узнать, как выиграть смартфон?</target>
         </trans-unit>
         <trans-unit id="Ads_Message_BuyonLumia650_Title" translate="yes" xml:space="preserve">
           <source>Выиграй Microsoft Lumia 650!</source>
-          <target state="new">Выиграй Microsoft Lumia 650!</target>
+          <target state="needs-review-translation">Выиграй Microsoft Lumia 650!</target>
         </trans-unit>
         <trans-unit id="AlbumTracksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить содержимое альбома</source>
@@ -1205,38 +1205,6 @@ Eng: TB</note>
           <source>ВКачай обновился, о всех новинках читайте далее</source>
           <target state="final">ВКачай абнавіўся, аб усіх навінках чытайце далей</target>
         </trans-unit>
-        <trans-unit id="PromoView_Screen2_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Кэширование треков</source>
-          <target state="final">Кэшаванне трэкаў</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen2_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Кэшируйте треки для оффлайн воспроизведения!</source>
-          <target state="final">Кэшыруйце трэкі для афлайн прайгравання!</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen3_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Локальная библиотека</source>
-          <target state="final">Лакальная бібліятэка</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen3_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Воспроизводите свои локальные аудиозаписи</source>
-          <target state="final">Прайгравайце свае лакальныя аўдыязапісы</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen4_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Мы знаем о музыке все!</source>
-          <target state="final">Мы ведаем аб музыцы ўсё!</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen4_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Воспроизводите треки любимых исполнителей</source>
-          <target state="final">Прайгравайце трэкі любімых выканаўцаў</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen5_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Скробблинг Last.fm</source>
-          <target state="final">Скроблінг Last.fm</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen5_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Всегда актуальный профиль Last.fm!</source>
-          <target state="final">Заўсёды актуальны профіль Last.fm!</target>
-        </trans-unit>
         <trans-unit id="PurchaseView_BuyMonthlyButton.Content" translate="yes" xml:space="preserve">
           <source>купить на месяц</source>
           <target state="final">купіць на месяц</target>
@@ -1956,22 +1924,92 @@ Eng: upload</note>
         <trans-unit id="Ads_Message_JoinBuyon_Text" translate="yes" xml:space="preserve">
           <source>Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
 Подписаться?</source>
-          <target state="new">Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
+          <target state="needs-review-translation">Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
 Подписаться?</target>
         </trans-unit>
         <trans-unit id="Ads_Message_JoinBuyon_Title" translate="yes" xml:space="preserve">
           <source>Подпишись на Байон!</source>
-          <target state="new">Подпишись на Байон!</target>
+          <target state="needs-review-translation">Подпишись на Байон!</target>
         </trans-unit>
         <trans-unit id="Ads_Message_JoinNStore_Text" translate="yes" xml:space="preserve">
           <source>В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
 Подписаться?</source>
-          <target state="new">В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
+          <target state="needs-review-translation">В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
 Подписаться?</target>
         </trans-unit>
         <trans-unit id="Ads_Message_JoinNStore_Title" translate="yes" xml:space="preserve">
           <source>Подпишись на Microsoft Store Russia!</source>
-          <target state="new">Подпишись на Microsoft Store Russia!</target>
+          <target state="needs-review-translation">Подпишись на Microsoft Store Russia!</target>
+        </trans-unit>
+        <trans-unit id="LoginView_DirectAuth.Text" translate="yes" xml:space="preserve">
+          <source>Прямая авторизация</source>
+          <target state="translated">Прамая аўтарызацыя</target>
+        </trans-unit>
+        <trans-unit id="LoginView_LoginExtendedField.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>логин, номер телефона или email</source>
+          <target state="translated">лагін, нумар тэлефона або email</target>
+        </trans-unit>
+        <trans-unit id="LoginView_DirectAuthButton.Label" translate="yes" xml:space="preserve">
+          <source>прямая авторизация</source>
+          <target state="translated">прамая аўтарызацыя</target>
+        </trans-unit>
+        <trans-unit id="LoginView_OAuth.Text" translate="yes" xml:space="preserve">
+          <source>Авторизация через браузер</source>
+          <target state="translated">Аўтарызацыя праз браўзэр</target>
+        </trans-unit>
+        <trans-unit id="LoginView_OAuthButton.Label" translate="yes" xml:space="preserve">
+          <source>войти через браузер</source>
+          <target state="translated">увайсці праз браўзэр</target>
+        </trans-unit>
+        <trans-unit id="Message_OAuth_Attention_Text" translate="yes" xml:space="preserve">
+          <source>При использовании авторизации через браузер загрузка и просмотр некоторых видеозаписей могут стать недоступны. Если вам требуется загружать и воспроизводить видеозаписи, используйте прямую авторизацию.
+Вы действительно хотите войти через браузер?</source>
+          <target state="translated">Пры выкарыстанні аўтарызацыі праз браўзэр загрузка і прагляд некаторых відэазапісаў могуць стаць недаступныя. Калі вам патрабуецца загружаць і прайграваць відэазапісы, выкарыстоўвайце прамую аўтарызацыю.
+Вы сапраўды хочаце ўвайсці праз браўзэр?</target>
+        </trans-unit>
+        <trans-unit id="Message_OAuth_Attention_Title" translate="yes" xml:space="preserve">
+          <source>Вы уверены?</source>
+          <target state="translated">Вы ўпэўнены?</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen21_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Кэширование треков</source>
+          <target state="translated">Кэшаванне трэкаў</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen21_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Кэшируйте треки для оффлайн воспроизведения!</source>
+          <target state="translated">Кэшыруйце трэкі для афлайн прайгравання!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen22_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Локальная библиотека</source>
+          <target state="translated">Лакальная бібліятэка</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen22_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Воспроизводите свои локальные аудиозаписи</source>
+          <target state="translated">Прайгравайце свае лакальныя аўдыязапісы</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen23_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Мы знаем о музыке все!</source>
+          <target state="translated">Мы ведаем аб музыцы ўсё!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen23_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Воспроизводите треки любимых исполнителей</source>
+          <target state="translated">Прайгравайце трэкі любімых выканаўцаў</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen24_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Скробблинг Last.fm</source>
+          <target state="translated">Скроблінг Last.fm</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen24_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Всегда актуальный профиль Last.fm!</source>
+          <target state="translated">Заўсёды актуальны профіль Last.fm!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen31_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Прямая авторизация</source>
+          <target state="translated">Прамая аўтарызацыя</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen31_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Станут доступны все видео ВКонтакте!</source>
+          <target state="translated">Стануць даступныя ўсе відэа Укантакце!</target>
         </trans-unit>
       </group>
     </body>

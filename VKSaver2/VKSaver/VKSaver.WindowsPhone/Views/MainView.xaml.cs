@@ -14,39 +14,18 @@ namespace VKSaver.Views
         public MainView()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Required;      
-#if WINDOWS_APP
-            this.SizeChanged += MainView_SizeChanged;
-#endif
-        } 
+        }
 
-#if WINDOWS_APP
-        /// <summary>
-        /// Вызывается при нажатии на заголовок хаба.
-        /// </summary>
-        private void Hub_SectionHeaderClick(object sender, HubSectionHeaderClickEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            switch ((string)e.Section.Tag)
-            {
-                case "TopTracks":
-                    Commands.GoToTopTracksView.Execute(null);
-                    break;
-                case "TopArtists":
-                    Commands.GoToTopArtistsView.Execute(null);
-                    break;
+            if (e.NavigationMode == NavigationMode.New)
+            {                
+                this.NavigationCacheMode = NavigationCacheMode.Disabled;
+                this.NavigationCacheMode = NavigationCacheMode.Required;
+                RootHub.ScrollToSection(RootHub.Sections[0]);
             }
+
+            base.OnNavigatedTo(e);
         }
-        private void MainView_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            //if (e.NewSize.Width < 500)
-            //{
-            //    VisualStateManager.GoToState(this, "MinimalLayout", true);
-            //}
-            //else
-            //{
-            //    VisualStateManager.GoToState(this, "DefaultLayout", true);
-            //}
-        }
-#endif
     }
 }

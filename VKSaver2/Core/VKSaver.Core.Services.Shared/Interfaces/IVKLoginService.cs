@@ -1,5 +1,6 @@
 ﻿using ModernDev.InTouch;
 using System;
+using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.Services.Interfaces
@@ -42,6 +43,13 @@ namespace VKSaver.Core.Services.Interfaces
         /// Выполняет авторизацию по полученному токену.
         /// </summary>
         void Login(APISession session);
+
+        /// <summary>
+        /// Выполняет авторизацию по имени пользователя и паролю.
+        /// </summary>
+        /// <param name="userName">Имя пользователя.</param>
+        /// <param name="password">Пароль.</param>
+        Task<VKDirectAuthResponse> Login(string userName, string password, string code = null, bool forseSms = false);
 
         /// <summary>
         /// Возвращает ключ доступа к ВКонтакте из redireted-пути oAuth.

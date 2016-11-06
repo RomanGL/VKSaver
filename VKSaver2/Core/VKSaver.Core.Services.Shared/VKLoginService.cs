@@ -1,8 +1,13 @@
 ﻿using ModernDev.InTouch;
 using System;
+using Windows.Web.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace VKSaver.Core.Services
 {
@@ -16,10 +21,15 @@ namespace VKSaver.Core.Services
         private const string AUTHORIZATION_URL = "https://oauth.vk.com/authorize";        
         private const string PARAMETERS_MASK = "{0}?client_id={1}&scope={2}&redirect_uri={3}&display=popup&v={4}&response_type=token";
         private const string SCOPE = "audio,friends,docs,groups,offline,status,video,wall";
+
+        private const string DIRECT_AUTH_URL = "https://oauth.vk.com/token?grant_type=password&client_id={0}&client_secret={1}&username={2}&password={3}&scope={4}&v={5}";
+
         private const string AUTH_VERSION_PARAMETER = "AuthVersion";
-        private const uint CURRENT_AUTH_VERSION = 1;
-        private const int CLIENT_ID = ***REMOVED***;  // VK WP AppID
+        private const uint CURRENT_AUTH_VERSION = 2;
+
         //private const int CLIENT_ID = ***REMOVED***;  // ВКачай AppID
+        private const int CLIENT_ID = ***REMOVED***;  // VK WP AppID
+        private const string CLIENT_SECRET = "***REMOVED***";        
 
         private VKAccessToken AccessToken { get { return _settingsService?.Get<VKAccessToken>(ACCESS_TOKEN_PARAMETER); } }
 
@@ -75,8 +85,8 @@ namespace VKSaver.Core.Services
         {
             get
             {
-                return AccessToken != null &&
-                    _settingsService.Get<uint>(AUTH_VERSION_PARAMETER, 0) >= CURRENT_AUTH_VERSION;  
+                return _settingsService.Get<uint>(AUTH_VERSION_PARAMETER, 0) >= CURRENT_AUTH_VERSION && 
+                    AccessToken != null;
             }
         }
 
@@ -129,6 +139,32 @@ namespace VKSaver.Core.Services
             _settingsService?.Set(AUTH_VERSION_PARAMETER, CURRENT_AUTH_VERSION);
             _inTouch.SetSessionData(session);
             UserLogin?.Invoke(this, EventArgs.Empty);
+        }
+
+        public async Task<VKDirectAuthResponse> Login(string userName, string password, string code = null, bool forseSms = false)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var sb = new StringBuilder();
+                    sb.AppendFormat(DIRECT_AUTH_URL, CLIENT_ID, CLIENT_SECRET, userName, password, SCOPE, InTouch.APIVersion);
+
+                    if (!String.IsNullOrWhiteSpace(code))
+                        sb.AppendFormat("&code={0}", code);
+                    if (forseSms)
+                        sb.Append("&force_sms=1");
+
+                    string response = await (await client.GetAsync(new Uri(sb.ToString()))).Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<VKDirectAuthResponse>(response);
+
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                return new VKDirectAuthResponse { Error = DirectAuthErrors.connection_error };
+            }
         }
 
         /// <summary>

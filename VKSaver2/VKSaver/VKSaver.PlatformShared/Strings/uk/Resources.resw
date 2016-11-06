@@ -58,6 +58,34 @@
   <data name="AddToMyVideosFlyoutItem.Text" xml:space="preserve">
     <value>в мої відеозаписи</value>
   </data>
+  <data name="Ads_BuyonLumia650_Action_Link" xml:space="preserve">
+    <value>https://vk.com/buyon?w=wall-50073493_40903</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Action_Text" xml:space="preserve">
+    <value>участвовать</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Text" xml:space="preserve">
+    <value>ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
+
+Чтобы выиграть смартфон вам нужно:
+- Вступить в группу Байон и в группу ВКачай
+- Сделать репост записи
+
+Победитель будет выбран случайным образом 24 октября через вконкурс.рф
+
+* только для жителей РФ
+* победитель должен быть старше 16-ти лет</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Title" xml:space="preserve">
+    <value>Выиграй Microsoft Lumia 650 от ВКачай и Байон!</value>
+  </data>
+  <data name="Ads_Message_BuyonLumia650_Text" xml:space="preserve">
+    <value>ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
+Хотите узнать, как выиграть смартфон?</value>
+  </data>
+  <data name="Ads_Message_BuyonLumia650_Title" xml:space="preserve">
+    <value>Выиграй Microsoft Lumia 650!</value>
+  </data>
   <data name="AlbumTracksLoader.ErrorText" xml:space="preserve">
     <value>Не вдалося відобразити вміст альбому</value>
   </data>
@@ -875,30 +903,6 @@ Eng: TB</comment>
   <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
     <value>ВКачай модернізувався, про всі новинки читайте далі</value>
   </data>
-  <data name="PromoView_Screen2_Line1_Text" xml:space="preserve">
-    <value>Кешування музики</value>
-  </data>
-  <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
-    <value>Кешуйте музику для оффлайн відтворення!</value>
-  </data>
-  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
-    <value>Локальна бібліотека</value>
-  </data>
-  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
-    <value>Відтворення завантаженої музики із телефону</value>
-  </data>
-  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
-    <value>Ми знаємо про музику все!</value>
-  </data>
-  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
-    <value>Відтворення треків улюблених виконавців</value>
-  </data>
-  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
-    <value>Скробблінг Last.fm</value>
-  </data>
-  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
-    <value>Завжди актуальний профіль Last.fm!</value>
-  </data>
   <data name="PurchaseView_BuyMonthlyButton.Content" xml:space="preserve">
     <value>придбати на місяць</value>
   </data>
@@ -1439,5 +1443,71 @@ Eng: upload</comment>
   </data>
   <data name="VksmExtractionView_Title.Text" xml:space="preserve">
     <value>Витяг</value>
+  </data>
+  <data name="Ads_Message_JoinBuyon_Text" xml:space="preserve">
+    <value>Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
+Подписаться?</value>
+  </data>
+  <data name="Ads_Message_JoinBuyon_Title" xml:space="preserve">
+    <value>Подпишись на Байон!</value>
+  </data>
+  <data name="Ads_Message_JoinNStore_Text" xml:space="preserve">
+    <value>В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
+Подписаться?</value>
+  </data>
+  <data name="Ads_Message_JoinNStore_Title" xml:space="preserve">
+    <value>Подпишись на Microsoft Store Russia!</value>
+  </data>
+  <data name="LoginView_DirectAuth.Text" xml:space="preserve">
+    <value>Пряма авторизація</value>
+  </data>
+  <data name="LoginView_LoginExtendedField.PlaceholderText" xml:space="preserve">
+    <value>логін, номер телефону або email</value>
+  </data>
+  <data name="LoginView_DirectAuthButton.Label" xml:space="preserve">
+    <value>пряма авторизація</value>
+  </data>
+  <data name="LoginView_OAuth.Text" xml:space="preserve">
+    <value>Авторизація через браузер</value>
+  </data>
+  <data name="LoginView_OAuthButton.Label" xml:space="preserve">
+    <value>увійти через браузер</value>
+  </data>
+  <data name="Message_OAuth_Attention_Text" xml:space="preserve">
+    <value>При використанні авторизації через браузер завантаження і перегляд деяких відеозаписів можуть стати недоступними. Якщо вам потрібно завантажувати і відтворювати відеозаписи, використовуйте пряму авторизацію.
+Ви дійсно хочете увійти через браузер?</value>
+  </data>
+  <data name="Message_OAuth_Attention_Title" xml:space="preserve">
+    <value>Ви впевнені?</value>
+  </data>
+  <data name="PromoView_Screen21_Line1_Text" xml:space="preserve">
+    <value>Кешування музики</value>
+  </data>
+  <data name="PromoView_Screen21_Line2_Text" xml:space="preserve">
+    <value>Кешуйте музику для оффлайн відтворення!</value>
+  </data>
+  <data name="PromoView_Screen22_Line1_Text" xml:space="preserve">
+    <value>Локальна бібліотека</value>
+  </data>
+  <data name="PromoView_Screen22_Line2_Text" xml:space="preserve">
+    <value>Відтворення завантаженої музики із телефону</value>
+  </data>
+  <data name="PromoView_Screen23_Line1_Text" xml:space="preserve">
+    <value>Ми знаємо про музику все!</value>
+  </data>
+  <data name="PromoView_Screen23_Line2_Text" xml:space="preserve">
+    <value>Відтворення треків улюблених виконавців</value>
+  </data>
+  <data name="PromoView_Screen24_Line1_Text" xml:space="preserve">
+    <value>Скробблінг Last.fm</value>
+  </data>
+  <data name="PromoView_Screen24_Line2_Text" xml:space="preserve">
+    <value>Завжди актуальний профіль Last.fm!</value>
+  </data>
+  <data name="PromoView_Screen31_Line1_Text" xml:space="preserve">
+    <value>Пряма авторизація</value>
+  </data>
+  <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
+    <value>Стануть доступні всі відео ВКонтакті!</value>
   </data>
 </root>
