@@ -123,7 +123,9 @@ namespace VKSaver.Core.ViewModels
         private void UpdateState()
         {
             if (TrySetVkVideos())
-                return;
+            {
+                SelectedLinkIndex = 0;
+            }
             else if (String.IsNullOrEmpty(Video.Player))
             {
                 LinksState = ContentState.NoData;

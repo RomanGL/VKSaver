@@ -15,9 +15,9 @@
         <CommandBar ClosedDisplayMode="Minimal"
                     Background="{ThemeResource ContentDialogDimmingThemeBrush}">
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="прямая авторизация"
+                <!--<AppBarButton Label="прямая авторизация"
                               Command="{Binding GoToDirectAuthCommand, Mode=OneWay}"
-                              x:Uid="LoginView_DirectAuthButton" />
+                              x:Uid="LoginView_DirectAuthButton" />-->
                 <AppBarButton Label="зарегистрироваться"
                               Command="{Binding JoinCommand, Mode=OneWay}"
                               x:Uid="LoginView_JoinButton"/>
@@ -188,7 +188,7 @@
                        TextLineBounds="Tight"
                        FontWeight="Light"
                        Foreground="{StaticResource TitleBrush}" />
-            <TextBlock Text="Авторизация через браузер"
+            <!--<TextBlock Text="Авторизация через браузер"
                        x:Uid="LoginView_OAuth"
                        HorizontalAlignment="Center"
                        FontSize="24"
@@ -196,7 +196,7 @@
                        TextWrapping="NoWrap"
                        TextLineBounds="Tight"
                        FontWeight="Light"
-                       Margin="0,10,0,0" />
+                       Margin="0,10,0,0" />-->
             <Button Content="войти"
                     x:Uid="LoginView_LoginButton"
                     Style="{StaticResource ButtonStyle}"

@@ -2,14 +2,15 @@
 {
     public static class AppConstants
     {
+        public const string DEFAULT_LOGIN_VIEW = "LoginView";
+
         public const string CURRENT_PROMO_INDEX_PARAMETER = "CurrentPromoIndex";
-        public const int CURRENT_PROMO_INDEX = 3;   // Текущий (последний) индекс промо-элементов.
+        public const int CURRENT_PROMO_INDEX = 2;   // Текущий (последний) индекс промо-элементов.
         public const int DEFAULT_PROMO_INDEX = 1;   // Начальный индекс промо-элементов.
 
         #region Количество элементов в промо-индексах
 
         public const int COUNT_OF_PROMO_INDEX_2 = 4;
-        public const int COUNT_OF_PROMO_INDEX_3 = 1;
 
         #endregion
 

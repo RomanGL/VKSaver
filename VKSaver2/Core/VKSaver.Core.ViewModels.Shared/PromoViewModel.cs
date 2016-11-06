@@ -69,7 +69,7 @@ namespace VKSaver.Core.ViewModels
             if (_vkLoginService.IsAuthorized)
                 _navigationService.Navigate("MainView", null);
             else
-                _navigationService.Navigate("DirectAuthView", null);
+                _navigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
 
             _navigationService.ClearHistory();
             _settingsService.Set(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, AppConstants.CURRENT_PROMO_INDEX);
@@ -81,8 +81,6 @@ namespace VKSaver.Core.ViewModels
             {
                 case 2:
                     return AppConstants.COUNT_OF_PROMO_INDEX_2;
-                case 3:
-                    return AppConstants.COUNT_OF_PROMO_INDEX_3;
                 default:
                     return 0;
             }

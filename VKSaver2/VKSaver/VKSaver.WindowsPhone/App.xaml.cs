@@ -206,12 +206,12 @@ namespace VKSaver
             vkLoginService.UserLogout += (s, e) =>
             {
                 NavigationService.ClearHistory();
-                NavigationService.Navigate("DirectAuthView", null);                
+                NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);                
             };
             inTouch.AuthorizationFailed += (s, e) =>
             {
                 NavigationService.ClearHistory();
-                NavigationService.Navigate("DirectAuthView", null);                
+                NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);                
             };
             
 #if DEBUG
@@ -267,7 +267,7 @@ namespace VKSaver
                     }
                 }
                 else
-                    NavigationService.Navigate("DirectAuthView", null);
+                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
             }
 
             if (vkLoginService.IsAuthorized)
@@ -302,7 +302,7 @@ namespace VKSaver
                         NavigationService.Navigate("MainView", null);
                 }
                 else
-                    NavigationService.Navigate("DirectAuthView", null);
+                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
 
                 if (vkLoginService.IsAuthorized)
                 {

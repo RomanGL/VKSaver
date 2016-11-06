@@ -25,7 +25,7 @@ namespace VKSaver.Core.Services
         private const string DIRECT_AUTH_URL = "https://oauth.vk.com/token?grant_type=password&client_id={0}&client_secret={1}&username={2}&password={3}&scope={4}&v={5}";
 
         private const string AUTH_VERSION_PARAMETER = "AuthVersion";
-        private const uint CURRENT_AUTH_VERSION = 2;
+        private const uint CURRENT_AUTH_VERSION = 1;
 
         //private const int CLIENT_ID = ***REMOVED***;  // ВКачай AppID
         private const int CLIENT_ID = ***REMOVED***;  // VK WP AppID
