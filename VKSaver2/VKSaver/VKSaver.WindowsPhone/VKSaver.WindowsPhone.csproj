@@ -116,11 +116,12 @@
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\LogoPlay.scale-240.png" />
     <Content Include="Assets\Promo\1.png" />
-    <Content Include="Assets\Promo\2.png" />
-    <Content Include="Assets\Promo\4.png" />
+    <Content Include="Assets\Promo\21.png" />
+    <Content Include="Assets\Promo\23.png" />
     <Content Include="Assets\Promo\0.png" />
-    <Content Include="Assets\Promo\5.png" />
-    <Content Include="Assets\Promo\3.png" />
+    <Content Include="Assets\Promo\24.png" />
+    <Content Include="Assets\Promo\22.png" />
+    <Content Include="Assets\Promo\31.png" />
     <Content Include="Assets\Purchase\1.png" />
     <Content Include="Assets\Purchase\2.png" />
     <Content Include="Assets\Purchase\3.png" />
@@ -203,6 +204,12 @@
     </Compile>
     <Compile Include="Views\CachedView.xaml.cs">
       <DependentUpon>CachedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DirectAuth\DirectAuthView.xaml.cs">
+      <DependentUpon>DirectAuthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DirectAuth\DirectAuth2FaView.xaml.cs">
+      <DependentUpon>DirectAuth2FaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
@@ -344,6 +351,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DirectAuth\DirectAuthView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DirectAuth\DirectAuth2FaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -658,6 +673,7 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

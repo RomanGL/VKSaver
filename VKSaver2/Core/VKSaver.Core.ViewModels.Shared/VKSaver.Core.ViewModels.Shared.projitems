@@ -32,6 +32,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\JumpListHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\UploadType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKAudioWithLastFm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DirectAuth\DirectAuthViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DirectAuth\IValidationSupport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DownloadableAudioViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FirstStart\FirstInternetSettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FirstStart\FirstStartRetryViewModel.cs" />

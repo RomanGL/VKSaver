@@ -195,21 +195,23 @@ namespace VKSaver
 
             vkLoginService.UserLogin += async (s, e) =>
             {
+                NavigationService.ClearHistory();
+
                 if (await TryOpenFirstStartView() == false)
-                    NavigationService.Navigate("MainView", null);
+                    NavigationService.Navigate("MainView", null);                
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
             };
             vkLoginService.UserLogout += (s, e) =>
             {
-                NavigationService.Navigate("LoginView", null);
                 NavigationService.ClearHistory();
+                NavigationService.Navigate("DirectAuthView", null);                
             };
             inTouch.AuthorizationFailed += (s, e) =>
             {
-                NavigationService.Navigate("LoginView", null);
                 NavigationService.ClearHistory();
+                NavigationService.Navigate("DirectAuthView", null);                
             };
             
 #if DEBUG
@@ -248,7 +250,7 @@ namespace VKSaver
             if (args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning)
             {
-                if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, 0) < AppConstants.CURRENT_PROMO_INDEX)
+                if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, AppConstants.DEFAULT_PROMO_INDEX) < AppConstants.CURRENT_PROMO_INDEX)
                     NavigationService.Navigate("PromoView", null);
                 else if (vkLoginService.IsAuthorized)
                 {
@@ -265,7 +267,7 @@ namespace VKSaver
                     }
                 }
                 else
-                    NavigationService.Navigate("LoginView", null);
+                    NavigationService.Navigate("DirectAuthView", null);
             }
 
             if (vkLoginService.IsAuthorized)
@@ -292,7 +294,7 @@ namespace VKSaver
                 var playerService = _container.Resolve<IPlayerService>();
                 var vkLoginService = _container.Resolve<IVKLoginService>();
 
-                if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, 0) < AppConstants.CURRENT_PROMO_INDEX)
+                if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, AppConstants.DEFAULT_PROMO_INDEX) < AppConstants.CURRENT_PROMO_INDEX)
                     NavigationService.Navigate("PromoView", null);
                 else if (vkLoginService.IsAuthorized)
                 {
@@ -300,7 +302,7 @@ namespace VKSaver
                         NavigationService.Navigate("MainView", null);
                 }
                 else
-                    NavigationService.Navigate("LoginView", null);
+                    NavigationService.Navigate("DirectAuthView", null);
 
                 if (vkLoginService.IsAuthorized)
                 {

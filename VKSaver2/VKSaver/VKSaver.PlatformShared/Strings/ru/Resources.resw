@@ -1008,28 +1008,28 @@ Eng: TB</comment>
   <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
     <value>ВКачай обновился, о всех новинках читайте далее</value>
   </data>
-  <data name="PromoView_Screen2_Line1_Text" xml:space="preserve">
+  <data name="PromoView_Screen21_Line1_Text" xml:space="preserve">
     <value>Кэширование треков</value>
   </data>
-  <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
+  <data name="PromoView_Screen21_Line2_Text" xml:space="preserve">
     <value>Кэшируйте треки для оффлайн воспроизведения!</value>
   </data>
-  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
+  <data name="PromoView_Screen22_Line1_Text" xml:space="preserve">
     <value>Локальная библиотека</value>
   </data>
-  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
+  <data name="PromoView_Screen22_Line2_Text" xml:space="preserve">
     <value>Воспроизводите свои локальные аудиозаписи</value>
   </data>
-  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
+  <data name="PromoView_Screen23_Line1_Text" xml:space="preserve">
     <value>Мы знаем о музыке все!</value>
   </data>
-  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
+  <data name="PromoView_Screen23_Line2_Text" xml:space="preserve">
     <value>Воспроизводите треки любимых исполнителей</value>
   </data>
-  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
+  <data name="PromoView_Screen24_Line1_Text" xml:space="preserve">
     <value>Скробблинг Last.fm</value>
   </data>
-  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
+  <data name="PromoView_Screen24_Line2_Text" xml:space="preserve">
     <value>Всегда актуальный профиль Last.fm!</value>
   </data>
   <data name="PurchaseView_BuyMonthlyButton.Content" xml:space="preserve">
@@ -1586,5 +1586,33 @@ Eng: upload</comment>
   </data>
   <data name="Ads_Message_JoinNStore_Title" xml:space="preserve">
     <value>Подпишись на Microsoft Store Russia!</value>
+  </data>
+  <data name="LoginView_DirectAuth.Text" xml:space="preserve">
+    <value>Прямая авторизация</value>
+  </data>
+  <data name="LoginView_DirectAuthButton.Label" xml:space="preserve">
+    <value>прямая авторизация</value>
+  </data>
+  <data name="LoginView_LoginExtendedField.PlaceholderText" xml:space="preserve">
+    <value>логин, номер телефона или email</value>
+  </data>
+  <data name="LoginView_OAuth.Text" xml:space="preserve">
+    <value>Авторизация через браузер</value>
+  </data>
+  <data name="LoginView_OAuthButton.Label" xml:space="preserve">
+    <value>войти через браузер</value>
+  </data>
+  <data name="Message_OAuth_Attention_Text" xml:space="preserve">
+    <value>При использовании авторизации через браузер загрузка и просмотр некоторых видеозаписей могут стать недоступны. Если вам требуется загружать и воспроизводить видеозаписи, используйте прямую авторизацию.
+Вы действительно хотите войти через браузер?</value>
+  </data>
+  <data name="Message_OAuth_Attention_Title" xml:space="preserve">
+    <value>Вы уверены?</value>
+  </data>
+  <data name="PromoView_Screen31_Line1_Text" xml:space="preserve">
+    <value>Прямая авторизация</value>
+  </data>
+  <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
+    <value>Станут доступны все видео ВКонтакте!</value>
   </data>
 </root>

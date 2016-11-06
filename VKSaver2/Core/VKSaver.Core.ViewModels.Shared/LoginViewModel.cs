@@ -1,8 +1,10 @@
 ﻿#if WINDOWS_UWP
 using Prism.Windows.Mvvm;
 using Prism.Commands;
+using Prism.Windows.Navigation;
 #else
 using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #endif
 
 using ModernDev.InTouch;
@@ -14,21 +16,27 @@ namespace VKSaver.Core.ViewModels
 {
     public sealed partial class LoginViewModel : ViewModelBase
     {
-        public LoginViewModel(IVKLoginService vkLoginService, IDialogsService dialogsService,
-            ILocService locService)
+        public LoginViewModel(
+            IVKLoginService vkLoginService, 
+            IDialogsService dialogsService,
+            ILocService locService,
+            INavigationService navigationService)
         {
             _vkLoginService = vkLoginService;
             _dialogsService = dialogsService;
             _locService = locService;
+            _navigationService = navigationService;
 
             JoinCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/join")));
             RestoreCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/restore")));
+            GoToDirectAuthCommand = new DelegateCommand(OnGoToDirectAuthCommand);
 
 #if WINDOWS_UWP
             LoginCommand = new DelegateCommand(() => LoginUwp());
 #endif
         }
 
+        public DelegateCommand GoToDirectAuthCommand { get; private set; }
         /// <summary>
         /// Команда, запускающая процесс регистрации.
         /// </summary>
@@ -78,8 +86,15 @@ namespace VKSaver.Core.ViewModels
             }
         }
 
+        private void OnGoToDirectAuthCommand()
+        {
+            _navigationService.Navigate("DirectAuthView", null);
+            _navigationService.ClearHistory();
+        }
+
         private readonly IVKLoginService _vkLoginService;
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
+        private readonly INavigationService _navigationService;
     }
 }

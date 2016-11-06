@@ -59,6 +59,34 @@ Kehren Sie zurück um zu fortfahren</value>
   <data name="AddToMyVideosFlyoutItem.Text" xml:space="preserve">
     <value>zu meinen Videos</value>
   </data>
+  <data name="Ads_BuyonLumia650_Action_Link" xml:space="preserve">
+    <value>https://vk.com/buyon?w=wall-50073493_40903</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Action_Text" xml:space="preserve">
+    <value>участвовать</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Text" xml:space="preserve">
+    <value>ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
+
+Чтобы выиграть смартфон вам нужно:
+- Вступить в группу Байон и в группу ВКачай
+- Сделать репост записи
+
+Победитель будет выбран случайным образом 24 октября через вконкурс.рф
+
+* только для жителей РФ
+* победитель должен быть старше 16-ти лет</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Title" xml:space="preserve">
+    <value>Выиграй Microsoft Lumia 650 от ВКачай и Байон!</value>
+  </data>
+  <data name="Ads_Message_BuyonLumia650_Text" xml:space="preserve">
+    <value>ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
+Хотите узнать, как выиграть смартфон?</value>
+  </data>
+  <data name="Ads_Message_BuyonLumia650_Title" xml:space="preserve">
+    <value>Выиграй Microsoft Lumia 650!</value>
+  </data>
   <data name="AlbumTracksLoader.ErrorText" xml:space="preserve">
     <value>Fehler beim Hochladen des Albums </value>
   </data>
@@ -877,30 +905,6 @@ Bitte warten Sie...</value>
   <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
     <value>VK Saver ist jetzt auf dem neusten Stand, lesen weiter um mehr zu erfahren. </value>
   </data>
-  <data name="PromoView_Screen2_Line1_Text" xml:space="preserve">
-    <value>Musik-Caching</value>
-  </data>
-  <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
-    <value>Cachen Sie die Tracks um оnline abzuspielen!</value>
-  </data>
-  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
-    <value>Lokale Bibliothek</value>
-  </data>
-  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
-    <value>Geben Ihre lokale Tracks wider</value>
-  </data>
-  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
-    <value>Wir wissen alles über die Musik!</value>
-  </data>
-  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
-    <value>Geben Sie Songs Ihrer Lieblings-Künstler wider</value>
-  </data>
-  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
-    <value>Skrobbeln von Last.fm</value>
-  </data>
-  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
-    <value>Zeitloser Last.fm-Profil!</value>
-  </data>
   <data name="PurchaseView_BuyMonthlyButton.Content" xml:space="preserve">
     <value>kaufen auf Monatsbasis</value>
   </data>
@@ -1444,5 +1448,71 @@ Eng: upload</comment>
   </data>
   <data name="VksmExtractionView_Title.Text" xml:space="preserve">
     <value>Extrahieren</value>
+  </data>
+  <data name="Ads_Message_JoinBuyon_Text" xml:space="preserve">
+    <value>Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
+Подписаться?</value>
+  </data>
+  <data name="Ads_Message_JoinBuyon_Title" xml:space="preserve">
+    <value>Подпишись на Байон!</value>
+  </data>
+  <data name="Ads_Message_JoinNStore_Text" xml:space="preserve">
+    <value>В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
+Подписаться?</value>
+  </data>
+  <data name="Ads_Message_JoinNStore_Title" xml:space="preserve">
+    <value>Подпишись на Microsoft Store Russia!</value>
+  </data>
+  <data name="LoginView_DirectAuth.Text" xml:space="preserve">
+    <value>Direkte Autorisierung</value>
+  </data>
+  <data name="LoginView_LoginExtendedField.PlaceholderText" xml:space="preserve">
+    <value>Login-Name, Telefonnummer oder E-Mail</value>
+  </data>
+  <data name="LoginView_DirectAuthButton.Label" xml:space="preserve">
+    <value>direkte Autorisierung</value>
+  </data>
+  <data name="LoginView_OAuth.Text" xml:space="preserve">
+    <value>Autorisierung über einen Browser</value>
+  </data>
+  <data name="LoginView_OAuthButton.Label" xml:space="preserve">
+    <value>Autorisierung über einen Browser</value>
+  </data>
+  <data name="Message_OAuth_Attention_Text" xml:space="preserve">
+    <value>Wenn die Authentifizierung über den Browser verwenden werden einige Videos zum Download und sehen möglicherweise nicht zur Verfügung. Wenn Sie herunterladen müssen und ein Video abspielen, verwenden Sie die direkte Genehmigung.
+Wollen Sie wirklich über den Browser zu gehen?</value>
+  </data>
+  <data name="Message_OAuth_Attention_Title" xml:space="preserve">
+    <value>Sind Sie sicher?</value>
+  </data>
+  <data name="PromoView_Screen21_Line1_Text" xml:space="preserve">
+    <value>Musik-Caching</value>
+  </data>
+  <data name="PromoView_Screen21_Line2_Text" xml:space="preserve">
+    <value>Cachen Sie die Tracks um оnline abzuspielen!</value>
+  </data>
+  <data name="PromoView_Screen22_Line1_Text" xml:space="preserve">
+    <value>Lokale Bibliothek</value>
+  </data>
+  <data name="PromoView_Screen22_Line2_Text" xml:space="preserve">
+    <value>Geben Ihre lokale Tracks wider</value>
+  </data>
+  <data name="PromoView_Screen23_Line1_Text" xml:space="preserve">
+    <value>Wir wissen alles über die Musik!</value>
+  </data>
+  <data name="PromoView_Screen23_Line2_Text" xml:space="preserve">
+    <value>Geben Sie Songs Ihrer Lieblings-Künstler wider</value>
+  </data>
+  <data name="PromoView_Screen24_Line1_Text" xml:space="preserve">
+    <value>Skrobbeln von Last.fm</value>
+  </data>
+  <data name="PromoView_Screen24_Line2_Text" xml:space="preserve">
+    <value>Zeitloser Last.fm-Profil!</value>
+  </data>
+  <data name="PromoView_Screen31_Line1_Text" xml:space="preserve">
+    <value>Direkte Autorisierung</value>
+  </data>
+  <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
+    <value>Wird an alle Video VK verfügbar sein!</value>
   </data>
 </root>

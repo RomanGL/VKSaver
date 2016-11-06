@@ -58,6 +58,34 @@ Go back to continue</value>
   <data name="AddToMyVideosFlyoutItem.Text" xml:space="preserve">
     <value>to my videos</value>
   </data>
+  <data name="Ads_BuyonLumia650_Action_Link" xml:space="preserve">
+    <value>https://vk.com/buyon?w=wall-50073493_40903</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Action_Text" xml:space="preserve">
+    <value>участвовать</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Text" xml:space="preserve">
+    <value>ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
+
+Чтобы выиграть смартфон вам нужно:
+- Вступить в группу Байон и в группу ВКачай
+- Сделать репост записи
+
+Победитель будет выбран случайным образом 24 октября через вконкурс.рф
+
+* только для жителей РФ
+* победитель должен быть старше 16-ти лет</value>
+  </data>
+  <data name="Ads_BuyonLumia650_Title" xml:space="preserve">
+    <value>Выиграй Microsoft Lumia 650 от ВКачай и Байон!</value>
+  </data>
+  <data name="Ads_Message_BuyonLumia650_Text" xml:space="preserve">
+    <value>ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
+Хотите узнать, как выиграть смартфон?</value>
+  </data>
+  <data name="Ads_Message_BuyonLumia650_Title" xml:space="preserve">
+    <value>Выиграй Microsoft Lumia 650!</value>
+  </data>
   <data name="AlbumTracksLoader.ErrorText" xml:space="preserve">
     <value>Failed to load the contents of the album</value>
   </data>
@@ -875,30 +903,6 @@ Please wait...</value>
   <data name="PromoView_Screen1_Line2_Text" xml:space="preserve">
     <value>VK Saver has just got updated. Read the changelog to find out more</value>
   </data>
-  <data name="PromoView_Screen2_Line1_Text" xml:space="preserve">
-    <value>Caching tracks</value>
-  </data>
-  <data name="PromoView_Screen2_Line2_Text" xml:space="preserve">
-    <value>Cache tracks for offline playback!</value>
-  </data>
-  <data name="PromoView_Screen3_Line1_Text" xml:space="preserve">
-    <value>Local Library</value>
-  </data>
-  <data name="PromoView_Screen3_Line2_Text" xml:space="preserve">
-    <value>Play your local audio</value>
-  </data>
-  <data name="PromoView_Screen4_Line1_Text" xml:space="preserve">
-    <value>We know everything about the music!</value>
-  </data>
-  <data name="PromoView_Screen4_Line2_Text" xml:space="preserve">
-    <value>Play tracks of your favorite artists</value>
-  </data>
-  <data name="PromoView_Screen5_Line1_Text" xml:space="preserve">
-    <value>Last.fm scrobbler</value>
-  </data>
-  <data name="PromoView_Screen5_Line2_Text" xml:space="preserve">
-    <value>Always up-to-dated Last.fm profile!</value>
-  </data>
   <data name="PurchaseView_BuyMonthlyButton.Content" xml:space="preserve">
     <value>buy for a month</value>
   </data>
@@ -1439,5 +1443,71 @@ Eng: upload</comment>
   </data>
   <data name="VksmExtractionView_Title.Text" xml:space="preserve">
     <value>Extraction</value>
+  </data>
+  <data name="Ads_Message_JoinBuyon_Text" xml:space="preserve">
+    <value>Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
+Подписаться?</value>
+  </data>
+  <data name="Ads_Message_JoinBuyon_Title" xml:space="preserve">
+    <value>Подпишись на Байон!</value>
+  </data>
+  <data name="Ads_Message_JoinNStore_Text" xml:space="preserve">
+    <value>В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
+Подписаться?</value>
+  </data>
+  <data name="Ads_Message_JoinNStore_Title" xml:space="preserve">
+    <value>Подпишись на Microsoft Store Russia!</value>
+  </data>
+  <data name="LoginView_DirectAuth.Text" xml:space="preserve">
+    <value>Direct authorization</value>
+  </data>
+  <data name="LoginView_LoginExtendedField.PlaceholderText" xml:space="preserve">
+    <value>login, phone number or email</value>
+  </data>
+  <data name="LoginView_DirectAuthButton.Label" xml:space="preserve">
+    <value>direct authorization</value>
+  </data>
+  <data name="LoginView_OAuth.Text" xml:space="preserve">
+    <value>Authorization via browser</value>
+  </data>
+  <data name="LoginView_OAuthButton.Label" xml:space="preserve">
+    <value>login via browser</value>
+  </data>
+  <data name="Message_OAuth_Attention_Text" xml:space="preserve">
+    <value>When using authorization through the browser, downloading and playing some videos may not be available. If you need to download and play all videos, use the direct authorization.
+Do you really want to login through the browser?</value>
+  </data>
+  <data name="Message_OAuth_Attention_Title" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="PromoView_Screen21_Line1_Text" xml:space="preserve">
+    <value>Caching tracks</value>
+  </data>
+  <data name="PromoView_Screen21_Line2_Text" xml:space="preserve">
+    <value>Cache tracks for offline playback!</value>
+  </data>
+  <data name="PromoView_Screen22_Line1_Text" xml:space="preserve">
+    <value>Local Library</value>
+  </data>
+  <data name="PromoView_Screen22_Line2_Text" xml:space="preserve">
+    <value>Play your local audio</value>
+  </data>
+  <data name="PromoView_Screen23_Line1_Text" xml:space="preserve">
+    <value>We know everything about the music!</value>
+  </data>
+  <data name="PromoView_Screen23_Line2_Text" xml:space="preserve">
+    <value>Play tracks of your favorite artists</value>
+  </data>
+  <data name="PromoView_Screen24_Line1_Text" xml:space="preserve">
+    <value>Last.fm scrobbler</value>
+  </data>
+  <data name="PromoView_Screen24_Line2_Text" xml:space="preserve">
+    <value>Always up-to-dated Last.fm profile!</value>
+  </data>
+  <data name="PromoView_Screen31_Line1_Text" xml:space="preserve">
+    <value>Direct authorization</value>
+  </data>
+  <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
+    <value>All VK videos will be available!</value>
   </data>
 </root>
