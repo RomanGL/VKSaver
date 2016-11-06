@@ -3,6 +3,7 @@ using Prism.Windows.Navigation;
 #else
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using ModernDev.InTouch;
+using Newtonsoft.Json;
 #endif
 
 using System;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
+using static VKSaver.Core.Services.MetricaConstants;
 
 namespace VKSaver.Core.Services
 {
@@ -20,6 +22,7 @@ namespace VKSaver.Core.Services
             ISettingsService settingsService,
             IDialogsService dialogsService,
             ILocService locService,
+            IMetricaService metricaService,
             IInTouchWrapper inTouchWrapper,
             InTouch inTouch)
         {
@@ -27,6 +30,7 @@ namespace VKSaver.Core.Services
             _settingsService = settingsService;
             _dialogsService = dialogsService;
             _locService = locService;
+            _metricaService = metricaService;
             _inTouchWrapper = inTouchWrapper;
             _inTouch = inTouch;
         }
@@ -38,9 +42,11 @@ namespace VKSaver.Core.Services
                 if (_locService.CurrentLanguage != "ru")
                     return;
 
-                if (await ShowAdAsync(JOIN_BUYON_AD_NAME, JOIN_BUYON_DELAY, Subscribe(BUYON_ID), IsSubscriber(BUYON_ID)))
+                if (await ShowAdAsync(JOIN_BUYON_AD_NAME, JOIN_BUYON_DELAY, () => Subscribe(BUYON_ID), 
+                    () => LogDeniedSubscribe(BUYON_ID), () => IsSubscriber(BUYON_ID)))
                     return;
-                else if (await ShowAdAsync(JOIN_NSTORE_AD_NAME, JOIN_NSTORE_DELAY, Subscribe(NSTORE_ID), IsSubscriber(NSTORE_ID)))
+                else if (await ShowAdAsync(JOIN_NSTORE_AD_NAME, JOIN_NSTORE_DELAY, () => Subscribe(NSTORE_ID), 
+                    () => LogDeniedSubscribe(NSTORE_ID), () => IsSubscriber(NSTORE_ID)))
                     return;
             }
             catch (Exception)
@@ -53,14 +59,17 @@ namespace VKSaver.Core.Services
             if (DateTime.Now > expirationdate)
                 return Task.FromResult(false);
 
-            return ShowAdAsync(adName, startupsDelay, new Task<bool>(() =>
-            {
-                _navigationService.Navigate("AdInfoView", adName);
-                return true;
-            }));
+            return ShowAdAsync(adName, startupsDelay, () => 
+            new Task<bool>(
+                () =>
+                {
+                    _navigationService.Navigate("AdInfoView", adName);
+                    return true;
+                }));
         }
 
-        private async Task<bool> ShowAdAsync(string adName, int startupsDelay, Task<bool> actionToDo, Task<bool> precondition = null)
+        private async Task<bool> ShowAdAsync(string adName, int startupsDelay, Func<Task<bool>> actionSuccess, Action actionFail = null,
+            Func<Task<bool>> precondition = null)
         {
             int startNumer = _settingsService.Get(adName, 0);
             if (startNumer == -1)
@@ -76,7 +85,7 @@ namespace VKSaver.Core.Services
                 startNumer = 0;
             }
 
-            if (precondition != null && await precondition)
+            if (precondition != null && await precondition())
             {
                 _settingsService.Set(adName, -1);
                 return false;
@@ -87,11 +96,14 @@ namespace VKSaver.Core.Services
 
             if (result)
             {
-                if (await actionToDo)
-                    _settingsService.Set(adName, -1);                
+                if (await actionSuccess())
+                    _settingsService.Set(adName, -1);
             }
             else
+            {
+                actionFail?.Invoke();
                 _settingsService.Set(adName, startNumer + 1);
+            }
 
             return result;
         }
@@ -102,28 +114,74 @@ namespace VKSaver.Core.Services
             if (response.IsError)
                 return false;
 
+            if (response.Data)
+            {
+                var dict = new Dictionary<string, string>(1);
+                switch (groupId)
+                {
+                    case BUYON_ID:
+                        dict[SUBSCRIBE_SUCCESS] = SUBSCRIBE_BUYON;
+                        break;
+                    case NSTORE_ID:
+                        dict[SUBSCRIBE_SUCCESS] = SUBSCRIBE_NSTORE;
+                        break;
+                    default:
+                        return true;
+                }
+                _metricaService.LogEvent(SUBSCRIBE_EVENT, JsonConvert.SerializeObject(dict));
+            }
+
             return response.Data;
         }
 
         private async Task<bool> IsSubscriber(int groupId)
         {
-            try
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Groups.IsMember(groupId));
+            if (response.IsError)
+                throw new InvalidOperationException("IsSubscriber");
+
+            if (response.Data.IsMemeber)
             {
-                var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Groups.IsMember(groupId));
-                if (response.IsError)
-                    return false;
-                return response.Data.IsMemeber;
+                var dict = new Dictionary<string, string>(1);
+                switch (groupId)
+                {
+                    case BUYON_ID:
+                        dict[SUBSCRIBE_ALREADY] = SUBSCRIBE_BUYON;
+                        break;
+                    case NSTORE_ID:
+                        dict[SUBSCRIBE_ALREADY] = SUBSCRIBE_NSTORE;
+                        break;
+                    default:
+                        return true;
+                }
+                _metricaService.LogEvent(SUBSCRIBE_EVENT, JsonConvert.SerializeObject(dict));
             }
-            catch (Exception)
+
+            return response.Data.IsMemeber;
+        }
+
+        private void LogDeniedSubscribe(int groupId)
+        {
+            var dict = new Dictionary<string, string>(1);
+            switch (groupId)
             {
-                return false;
+                case BUYON_ID:
+                    dict[SUBSCRIBE_DENIED] = SUBSCRIBE_BUYON;
+                    break;
+                case NSTORE_ID:
+                    dict[SUBSCRIBE_DENIED] = SUBSCRIBE_NSTORE;
+                    break;
+                default:
+                    return;
             }
+            _metricaService.LogEvent(SUBSCRIBE_EVENT, JsonConvert.SerializeObject(dict));
         }
 
         private readonly INavigationService _navigationService;
         private readonly ISettingsService _settingsService;
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
+        private readonly IMetricaService _metricaService;
         private readonly IInTouchWrapper _inTouchWrapper;
         private readonly InTouch _inTouch;
 
