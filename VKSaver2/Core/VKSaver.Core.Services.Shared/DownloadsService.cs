@@ -1,22 +1,22 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using NotificationsExtensions.ToastContent;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
+using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Transfer;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
-using Windows.Web;
-using static VKSaver.Core.Services.Common.DownloadsExtensions;
-using static VKSaver.Core.Models.Common.FileContentTypeExtensions;
-using System.IO;
-using Newtonsoft.Json;
-using NotificationsExtensions.ToastContent;
-using VKSaver.Core.Services.Common;
 using Windows.UI.Notifications;
+using Windows.Web;
+using static VKSaver.Core.Models.Common.FileContentTypeExtensions;
+using static VKSaver.Core.Services.Common.DownloadsExtensions;
 
 namespace VKSaver.Core.Services
 {

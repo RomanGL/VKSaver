@@ -30,8 +30,8 @@ namespace VKSaver.Core.Models.Player
         {
             get
             {
-                if (VKInfo != null)
-                    return $"{VKInfo.OwnerID} {VKInfo.ID}";
+                //if (VKInfo != null)
+                //    return $"{VKInfo.OwnerID} {VKInfo.ID}";
                 return Title;
             }
         }
