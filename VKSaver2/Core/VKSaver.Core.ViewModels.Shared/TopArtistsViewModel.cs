@@ -3,20 +3,20 @@ using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
 #else
+using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Objects;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #endif
 
 using Newtonsoft.Json;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.LastFm.Models.Audio;
-using OneTeam.SDK.LastFm.Models.Response;
 using OneTeam.SDK.LastFm.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Collections;
 using Windows.UI.Xaml.Navigation;
 
@@ -25,34 +25,36 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class TopArtistsViewModel : ViewModelBase
     {
-        public TopArtistsViewModel(ILFService lfService, INavigationService navigationService)
+        public TopArtistsViewModel(
+            LastfmClient lfClient,
+            INavigationService navigationService)
         {
-            _lfService = lfService;
+            _lfClient = lfClient;
             _navigationService = navigationService;
 
-            GoToArtistInfoCommand = new DelegateCommand<LFArtistExtended>(OnGoToArtistInfoCommand);
+            GoToArtistInfoCommand = new DelegateCommand<LastArtist>(OnGoToArtistInfoCommand);
         }
 
-        public PaginatedCollection<LFArtistExtended> Artists { get; private set; }
+        public PaginatedCollection<LastArtist> Artists { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<LFArtistExtended> GoToArtistInfoCommand { get; private set; }
+        public DelegateCommand<LastArtist> GoToArtistInfoCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (Artists == null && viewModelState.Count > 0)
             {
-                var items = JsonConvert.DeserializeObject<List<LFArtistExtended>>(
-                    viewModelState[nameof(Artists)].ToString());
+                var items = JsonConvert.DeserializeObject<List<LastArtist>>(
+                    viewModelState[nameof(Artists)].ToString(), _lastImageSetConverter);
 
                 if (items.Count == 0)
-                    Artists = new PaginatedCollection<LFArtistExtended>(LoadMoreArtists);
+                    Artists = new PaginatedCollection<LastArtist>(LoadMoreArtists);
                 else
-                    Artists = new PaginatedCollection<LFArtistExtended>(items, LoadMoreArtists) { Page = 1 };
+                    Artists = new PaginatedCollection<LastArtist>(items, LoadMoreArtists) { Page = 1 };
             }
             else if (Artists == null)
             {
-                Artists = new PaginatedCollection<LFArtistExtended>(LoadMoreArtists);
+                Artists = new PaginatedCollection<LastArtist>(LoadMoreArtists);
             }
 
             base.OnNavigatedTo(e, viewModelState);
@@ -61,34 +63,28 @@ namespace VKSaver.Core.ViewModels
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.New)
-                viewModelState[nameof(Artists)] = JsonConvert.SerializeObject(Artists.Take(50));
+                viewModelState[nameof(Artists)] = JsonConvert.SerializeObject(Artists.Take(50), _lastImageSetConverter);
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
-        private async Task<IEnumerable<LFArtistExtended>> LoadMoreArtists(uint page)
+        private async Task<IEnumerable<LastArtist>> LoadMoreArtists(uint page)
         {
-            var parameters = new Dictionary<string, string>
-            {
-                { "page", (page + 1).ToString() },
-                { "limit", "50" }
-            };
-
-            var request = new Request<LFChartArtistsResponse>("chart.getTopArtists", parameters);
-            var response = await _lfService.ExecuteRequestAsync(request);
-
-            if (response.IsValid())
-                return response.Data.Artists;
+            var response = await _lfClient.Chart.GetTopArtistsAsync((int)(page + 1), 50);
+            if (response.Success)
+                return response;
             else
                 throw new Exception();
         }
 
-        private void OnGoToArtistInfoCommand(LFArtistExtended artist)
+        private void OnGoToArtistInfoCommand(LastArtist artist)
         {
-            _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist));
+            _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist, new LastImageSetConverter()));
         }
-
-        private readonly ILFService _lfService;
+        
+        private readonly LastfmClient _lfClient;
         private readonly INavigationService _navigationService;
+
+        private static readonly LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();
     }
 }

@@ -45,13 +45,13 @@
                                FontSize="28"
                                ContinuumNavigationTransitionInfo.IsExitElement="True" 
                                Pivot.SlideInAnimationGroup="GroupTwo"/>
-                    <TextBlock Text="{Binding Artist.Name}"
+                    <TextBlock Text="{Binding ArtistName}"
                                Style="{StaticResource BaseItemStyle}"
                                FontSize="18"
                                Margin="0,10,0,0" 
                                Pivot.SlideInAnimationGroup="GroupThree"/>
                 </StackPanel>
-                <controls:ImagePlaceholder Source="{Binding LargeImage.URL}"
+                <controls:ImagePlaceholder Source="{Binding Images.Large}"
                                            Text="{Binding Name}"
                                            Width="80"
                                            Height="80"
@@ -109,7 +109,7 @@
                                                            Width="120"
                                                            Margin="0,0,10,0"
                                                            Pivot.SlideInAnimationGroup="GroupTwo" />
-                                <controls:ListViewCommandItem Content="{Binding AlbumBase.Artist.Name}"
+                                <controls:ListViewCommandItem Content="{Binding AlbumBase.ArtistName}"
                                                               Grid.Column="1"
                                                               Command="{Binding FindArtistInVKCommand}"
                                                               VerticalAlignment="Top" />
@@ -136,7 +136,7 @@
                        x:Uid="ArtistAlbumView_PivotSection_Tracks"
                        Margin="19,23,0,0"
                        Style="{StaticResource PivotItemStyle}">
-                <ListView ItemsSource="{Binding Album.Tracks.Tracks}"
+                <ListView ItemsSource="{Binding Album.Tracks}"
                           ItemTemplate="{StaticResource AlbumTrackTemplate}"
                           Grid.Row="1"
                           IsItemClickEnabled="True"

@@ -23,6 +23,10 @@ using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Navigation;
+using IF.Lastfm.Core;
+using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Objects;
+using VKSaver.Core.Services.Json;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -31,6 +35,7 @@ namespace VKSaver.Core.ViewModels
     {
         public MainViewModel(
             InTouch inTouch, 
+            LastfmClient lfClient,
             IInTouchWrapper inTouchWrapper, 
             ILFService lfService,
             ISettingsService settingsService, 
@@ -42,6 +47,7 @@ namespace VKSaver.Core.ViewModels
             IAdsService adsService)
         {
             _inTouch = inTouch;
+            _lfClient = lfClient;
             _inTouchWrapper = inTouchWrapper;
             _lfService = lfService;
             _settingsService = settingsService;
@@ -53,7 +59,7 @@ namespace VKSaver.Core.ViewModels
             _adsService = adsService;
 
             GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
-            GoToArtistInfoCommand = new DelegateCommand<LFArtistExtended>(OnGoToArtistInfoCommand);
+            GoToArtistInfoCommand = new DelegateCommand<LastArtist>(OnGoToArtistInfoCommand);
             GoToTopTracksCommand = new DelegateCommand(OnGoToTopTracksCommand);
             GoToTopArtistsCommand = new DelegateCommand(OnGoTopArtistsCommand);
             GoToUserContentCommand = new DelegateCommand<string>(OnGoToUserContentCommand);
@@ -76,7 +82,7 @@ namespace VKSaver.Core.ViewModels
 
         public SimpleStateSupportCollection<Audio> UserTracks { get; private set; }
 
-        public SimpleStateSupportCollection<LFArtistExtended> TopArtistsLF { get; private set; }
+        public SimpleStateSupportCollection<LastArtist> TopArtistsLF { get; private set; }
 
         public SimpleStateSupportCollection<Audio> RecommendedTracksVK { get; private set; }
 
@@ -84,7 +90,7 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand<LFAudioBase> GoToTrackInfoCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<LFArtistExtended> GoToArtistInfoCommand { get; private set; }
+        public DelegateCommand<LastArtist> GoToArtistInfoCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand GoToBlankPageCommand { get; private set; }
@@ -157,9 +163,9 @@ namespace VKSaver.Core.ViewModels
 #endif
 
                 UserTracks = JsonConvert.DeserializeObject<SimpleStateSupportCollection<Audio>>(
-                    viewModelState[nameof(UserTracks)].ToString());                
-                TopArtistsLF = JsonConvert.DeserializeObject<SimpleStateSupportCollection<LFArtistExtended>>(
-                    viewModelState[nameof(TopArtistsLF)].ToString());
+                    viewModelState[nameof(UserTracks)].ToString());
+                TopArtistsLF = JsonConvert.DeserializeObject<SimpleStateSupportCollection<LastArtist>>(
+                    viewModelState[nameof(TopArtistsLF)].ToString(), _lastImageSetConverter);
                 RecommendedTracksVK = JsonConvert.DeserializeObject<SimpleStateSupportCollection<Audio>>(
                     viewModelState[nameof(RecommendedTracksVK)].ToString());
 
@@ -170,7 +176,7 @@ namespace VKSaver.Core.ViewModels
             else
             {
                 UserTracks = new SimpleStateSupportCollection<Audio>(LoadUserTracks);
-                TopArtistsLF = new SimpleStateSupportCollection<LFArtistExtended>(LoadTopArtists);
+                TopArtistsLF = new SimpleStateSupportCollection<LastArtist>(LoadTopArtists);
                 RecommendedTracksVK = new SimpleStateSupportCollection<Audio>(LoadRecommendedTracks);
             }
 
@@ -196,7 +202,7 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(FirstTrack)] = JsonConvert.SerializeObject(FirstTrack);
 #endif
                 viewModelState[nameof(UserTracks)] = JsonConvert.SerializeObject(UserTracks.ToList());
-                viewModelState[nameof(TopArtistsLF)] = JsonConvert.SerializeObject(TopArtistsLF.ToList());
+                viewModelState[nameof(TopArtistsLF)] = JsonConvert.SerializeObject(TopArtistsLF.ToList(), _lastImageSetConverter);
                 viewModelState[nameof(RecommendedTracksVK)] = JsonConvert.SerializeObject(RecommendedTracksVK.ToList());
             }
 
@@ -231,21 +237,18 @@ namespace VKSaver.Core.ViewModels
             }
         }
 
-        private async Task<IEnumerable<LFArtistExtended>> LoadTopArtists()
+        private async Task<IEnumerable<LastArtist>> LoadTopArtists()
         {
             if (TopArtistsLF.Any())
-                return new List<LFArtistExtended>();
+                return new List<LastArtist>();
 
-            var request = new Request<LFChartArtistsResponse>("chart.getTopArtists",
-                new Dictionary<string, string> { { "limit", "8" } });
-            var response = await _lfService.ExecuteRequestAsync(request);
-
-            if (response.IsValid())
+            var response = await _lfClient.Chart.GetTopArtistsAsync(itemsPerPage: 8);
+            if (response.Success)
             {
 #if !WINDOWS_UWP
-                TryLoadTopArtistBackground(response.Data.Artists[0]);
+                TryLoadTopArtistBackground(response.First());
 #endif
-                return response.Data.Artists;
+                return response;
             }
             else
                 throw new Exception("LFChartArtistsResponse isn't valid.");
@@ -289,7 +292,7 @@ namespace VKSaver.Core.ViewModels
                 _backgroundLoaded = false;
         }
 
-        private async void TryLoadTopArtistBackground(LFArtistExtended artist)
+        private async void TryLoadTopArtistBackground(LastArtist artist)
         {
             if (_backgroundLoaded)
                 return;
@@ -331,9 +334,9 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("TrackInfoView", JsonConvert.SerializeObject(audio));
         }
 
-        private void OnGoToArtistInfoCommand(LFArtistExtended artist)
+        private void OnGoToArtistInfoCommand(LastArtist artist)
         {
-            _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist));
+            _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist, _lastImageSetConverter));
         }
 
         private void OnGoToNewsViewCommand()
@@ -457,6 +460,7 @@ namespace VKSaver.Core.ViewModels
         private bool _backgroundLoaded;
 
         private readonly InTouch _inTouch;
+        private readonly LastfmClient _lfClient;
         private readonly IInTouchWrapper _inTouchWrapper;
         private readonly ILFService _lfService;
         private readonly ISettingsService _settingsService;
@@ -466,6 +470,8 @@ namespace VKSaver.Core.ViewModels
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
         private readonly IImagesCacheService _imagesCacheService;
         private readonly IAdsService _adsService;
+
+        private static readonly LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();
 
         private const string HUB_BACKGROUND_DEFAULT = "ms-appx:///Assets/HubBackground.jpg";        
     }

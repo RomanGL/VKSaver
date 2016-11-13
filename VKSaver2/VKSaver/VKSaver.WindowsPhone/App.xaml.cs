@@ -28,6 +28,7 @@ using VKSaver.Core.Services.Database;
 using Yandex.Metrica;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VKSaver.Core;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -172,6 +173,9 @@ namespace VKSaver
             _container.RegisterType<ILibraryDatabaseService, LibraryDatabaseService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IVksmExtractionService, VksmExtractionService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IAdsService, AdsService>(new ContainerControlledLifetimeManager());
+
+            _container.RegisterType<LastfmClient>(new ContainerControlledLifetimeManager(), 
+                new InjectionFactory(c => InstanceFactories.ResolveLastfmClient(c)));
 
             var playerService = _container.Resolve<PlayerService>();
             var downloadsService = _container.Resolve<DownloadsService>();

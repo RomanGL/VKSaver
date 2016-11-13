@@ -71,6 +71,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVKLoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVksmExtractionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Json\LastImageSetConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LastFmLoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LibraryDatabaseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LocService.cs" />

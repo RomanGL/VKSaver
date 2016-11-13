@@ -60,7 +60,7 @@
                                     Width="{Binding Converter={StaticResource TwoItemsListSizeConverter}}">
                             <controls:ImagePlaceholder Height="{Binding Converter={StaticResource TwoItemsListSizeConverter}}"
                                                        Text="{Binding Name}"
-                                                       Source="{Binding LargeImage.URL}"/>
+                                                       Source="{Binding MainImage.Large}"/>
                             <TextBlock Text="{Binding Name}"
                                        Style="{StaticResource BaseItemStyle}"
                                        FontWeight="Bold"
@@ -70,9 +70,9 @@
                             <TextBlock Style="{StaticResource BaseItemStyle}"
                                        FontWeight="Normal"
                                        FontSize="18">
-                                <Run Text="{Binding ListenersCount}" />
-                                <Run Text="слушателей"
-                                     x:Uid="TopArtistItem_ListenersCount"/>
+                                <Run Text="{Binding PlayCount}" />
+                                <Run Text="воспроизведений"
+                                     x:Uid="TopTracksView_TrackPlaybacksCount"/>
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>

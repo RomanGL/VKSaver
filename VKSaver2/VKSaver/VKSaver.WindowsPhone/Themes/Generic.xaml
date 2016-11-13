@@ -105,7 +105,7 @@
                        FontSize="28"
                        ContinuumNavigationTransitionInfo.IsExitElement="True"
                        Pivot.SlideInAnimationGroup="GroupOne" />
-            <TextBlock Text="{Binding Artist.Name}"
+            <TextBlock Text="{Binding ArtistName}"
                        Style="{StaticResource BaseItemStyle}"
                        FontSize="18"
                        Margin="0,5,0,0"
@@ -243,7 +243,7 @@
     <DataTemplate x:Key="TopArtistItem">
         <StackPanel Margin="0,0,15,20"
                     Width="150">
-            <controls:ImagePlaceholder Source="{Binding LargeImage.URL}"
+            <controls:ImagePlaceholder Source="{Binding MainImage.Large}"
                                        Text="{Binding Name}"
                                        HorizontalAlignment="Left"
                                        Height="150"
@@ -257,9 +257,9 @@
             <TextBlock Style="{StaticResource BaseItemStyle}"
                        FontWeight="Normal"
                        FontSize="18">
-                    <Run Text="{Binding ListenersCount}" />
-                    <Run Text="слушателей"
-                         x:Uid="TopArtistItem_ListenersCount" />
+                    <Run Text="{Binding PlayCount}" />
+                    <Run Text="воспроизведений"
+                         x:Uid="TopTracksView_TrackPlaybacksCount" />
             </TextBlock>
         </StackPanel>
     </DataTemplate>

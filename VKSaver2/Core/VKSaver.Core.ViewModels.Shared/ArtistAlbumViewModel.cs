@@ -3,6 +3,9 @@ using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
 #else
+using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Api.Helpers;
+using IF.Lastfm.Core.Objects;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #endif
@@ -16,11 +19,13 @@ using OneTeam.SDK.LastFm.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Extensions;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Search;
 using Windows.UI.Xaml.Navigation;
 
@@ -30,30 +35,30 @@ namespace VKSaver.Core.ViewModels
     public sealed class ArtistAlbumViewModel : ViewModelBase
     {
         public ArtistAlbumViewModel(
-            ILFService lfService, 
+            LastfmClient lfClient,
             INavigationService navigationService,
             ISettingsService settingsService,
             IImagesCacheService imagesCacheService,
             ILocService locService)
         {
-            _lfService = lfService;
+            _lfClient = lfClient;
             _navigationService = navigationService;
             _settingsService = settingsService;
             _imagesCacheService = imagesCacheService;
             _locService = locService;
 
-            GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
+            GoToTrackInfoCommand = new DelegateCommand<LastTrack>(OnGoToTrackInfoCommand);
             FindArtistInVKCommand = new DelegateCommand(OnFindArtistInVKCommand);
             ReloadAlbumCommand = new DelegateCommand(OnReloadAlbumCommand);
         }
 
         public string ArtistImage { get; private set; }
 
-        public string AlbumImage { get; private set; }
+        public Uri AlbumImage { get; private set; }
 
-        public LFAlbumBase AlbumBase { get; private set; }
+        public LastAlbum AlbumBase { get; private set; }
 
-        public LFAlbumExtended Album { get; private set; }
+        public LastAlbum Album { get; private set; }
 
         public int LastPivotIndex { get; set; }
 
@@ -62,7 +67,7 @@ namespace VKSaver.Core.ViewModels
         public ContentState WikiState { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<LFAudioBase> GoToTrackInfoCommand { get; private set; }
+        public DelegateCommand<LastTrack> GoToTrackInfoCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand FindArtistInVKCommand { get; private set; }
@@ -77,9 +82,9 @@ namespace VKSaver.Core.ViewModels
 
             if (viewModelState.Count > 0)
             {
-                AlbumBase = JsonConvert.DeserializeObject<LFAlbumBase>(
-                    viewModelState[nameof(AlbumBase)].ToString());
-                AlbumImage = AlbumBase.LargeImage.URL;
+                AlbumBase = JsonConvert.DeserializeObject<LastAlbum>(
+                    viewModelState[nameof(AlbumBase)].ToString(), _lastImageSetConverter);
+                AlbumImage = AlbumBase.Images.Large;
 
                 if (e.NavigationMode != NavigationMode.New)
                     LastPivotIndex = (int)viewModelState[nameof(LastPivotIndex)];
@@ -87,24 +92,24 @@ namespace VKSaver.Core.ViewModels
                 object albumJson = null;
                 if (viewModelState.TryGetValue(nameof(Album), out albumJson))
                 {
-                    Album = JsonConvert.DeserializeObject<LFAlbumExtended>(albumJson.ToString());
+                    Album = JsonConvert.DeserializeObject<LastAlbum>(albumJson.ToString(), _lastImageSetConverter);
                     TracksState = Album.Tracks != null &&
-                        Album.Tracks.Tracks != null &&
-                        Album.Tracks.Tracks.Count > 0
+                        Album.Tracks != null &&
+                        Album.Tracks.Any()
                         ? ContentState.Normal : ContentState.NoData;
-                    WikiState = Album.Wiki != null ? ContentState.Normal : ContentState.NoData;
+                    //WikiState = Album.Wiki != null ? ContentState.Normal : ContentState.NoData;
                 }
             }
             else
             {
-                AlbumBase = JsonConvert.DeserializeObject<LFAlbumBase>(e.Parameter.ToString());
-                AlbumImage = AlbumBase.LargeImage.URL;
+                AlbumBase = JsonConvert.DeserializeObject<LastAlbum>(e.Parameter.ToString(), _lastImageSetConverter);
+                AlbumImage = AlbumBase.Images.Large;
             }
 
             if (Album == null)
                 await LoadAlbumInfo();
 
-            LoadArtistImage(AlbumBase.Artist.Name);
+            LoadArtistImage(AlbumBase.ArtistName);
             base.OnNavigatedTo(e, viewModelState);
         }
 
@@ -113,11 +118,11 @@ namespace VKSaver.Core.ViewModels
             if (e.NavigationMode == NavigationMode.New)
             {
                 viewModelState[nameof(ArtistImage)] = ArtistImage;
-                viewModelState[nameof(AlbumBase)] = JsonConvert.SerializeObject(AlbumBase);
+                viewModelState[nameof(AlbumBase)] = JsonConvert.SerializeObject(AlbumBase, _lastImageSetConverter);
                 viewModelState[nameof(LastPivotIndex)] = LastPivotIndex;
 
                 if (Album != null)
-                    viewModelState[nameof(Album)] = JsonConvert.SerializeObject(Album);
+                    viewModelState[nameof(Album)] = JsonConvert.SerializeObject(Album, _lastImageSetConverter);
             }
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
@@ -127,34 +132,20 @@ namespace VKSaver.Core.ViewModels
         {
             TracksState = ContentState.Loading;
             WikiState = ContentState.Loading;
-            
-            var parameters = new Dictionary<string, string>
-            {
-                { "lang", _locService.CurrentLanguage.ToLastFmLang() }
-            };
-            if (String.IsNullOrEmpty(AlbumBase.MBID))
-            {
-                parameters["album"] = AlbumBase.Name;
-                parameters["artist"] = AlbumBase.Artist.Name;
-            }
+
+            LastResponse<LastAlbum> response = null;
+            if (String.IsNullOrEmpty(AlbumBase.Mbid))
+                response = await _lfClient.Album.GetInfoAsync(AlbumBase.ArtistName, AlbumBase.Name, true);
             else
-                parameters["mbid"] = AlbumBase.MBID;
+                response = await _lfClient.Album.GetInfoByMbidAsync(AlbumBase.Mbid, true);
 
-            var request = new Request<LFAlbumInfoResponse>("album.getInfo", parameters);
-            var response = await _lfService.ExecuteRequestAsync(request);
-
-            if (response.IsValid())
+            if (response.Success)
             {
-                Album = response.Album;
-
-                if (Album.Tracks != null && Album.Tracks.IsValid() && Album.Tracks.Tracks.Count > 0)
+                if (response.Content.Tracks != null && response.Content.Tracks.Any())
                 {
-                    foreach (var track in Album.Tracks.Tracks)
+                    foreach (var track in response.Content.Tracks)
                     {
-                        track.Images = new List<LFImage>(1)
-                        {
-                            new LFImage { URL = AlbumImage, Size = LFImageSize.Large }
-                        };
+                        track.Images = response.Content.Images;
                     }
 
                     TracksState = ContentState.Normal;
@@ -162,15 +153,17 @@ namespace VKSaver.Core.ViewModels
                 else
                     TracksState = ContentState.NoData;
 
-                if (Album.Wiki != null)
-                {
-                    Album.Wiki.Content = Album.Wiki.Content.Split(
-                        new string[] { "<a href" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                Album = response.Content;
 
-                    WikiState = ContentState.Normal;
-                }
-                else
-                    WikiState = ContentState.NoData;
+                //if (Album.Wiki != null)
+                //{
+                //    Album.Wiki.Content = Album.Wiki.Content.Split(
+                //        new string[] { "<a href" }, StringSplitOptions.RemoveEmptyEntries)[0];
+
+                //    WikiState = ContentState.Normal;
+                //}
+                //else
+                //    WikiState = ContentState.NoData;
             }
             else
             {
@@ -184,9 +177,9 @@ namespace VKSaver.Core.ViewModels
             await LoadAlbumInfo();
         }
 
-        private void OnGoToTrackInfoCommand(LFAudioBase audio)
+        private void OnGoToTrackInfoCommand(LastTrack audio)
         {
-            _navigationService.Navigate("TrackInfoView", JsonConvert.SerializeObject(audio));
+            _navigationService.Navigate("TrackInfoView", JsonConvert.SerializeObject(audio, _lastImageSetConverter));
         }
 
         private void OnFindArtistInVKCommand()
@@ -195,7 +188,7 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("AudioSearchView", JsonConvert.SerializeObject(
                 new SearchNavigationParameter
                 {
-                    Query = AlbumBase.Artist.Name
+                    Query = AlbumBase.ArtistName
                 }));
         }
 
@@ -207,19 +200,21 @@ namespace VKSaver.Core.ViewModels
                 ArtistImage = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
                 img = await _imagesCacheService.CacheAndGetArtistImage(artist);
 
-                if (img != null && artist == AlbumBase?.Artist?.Name)
+                if (img != null && artist == AlbumBase?.ArtistName)
                     ArtistImage = img;
             }
-            else if (artist == AlbumBase?.Artist?.Name)
+            else if (artist == AlbumBase?.ArtistName)
             {
                 ArtistImage = img;
             }
         }
 
-        private readonly ILFService _lfService;
+        private readonly LastfmClient _lfClient;
         private readonly INavigationService _navigationService;
         private readonly ISettingsService _settingsService;
         private readonly IImagesCacheService _imagesCacheService;
         private readonly ILocService _locService;
+
+        private static readonly LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();        
     }
 }

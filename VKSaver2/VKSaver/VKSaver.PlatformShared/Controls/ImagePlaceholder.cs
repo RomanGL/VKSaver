@@ -90,6 +90,8 @@ namespace VKSaver.Controls
                     imgSource = new BitmapImage(new Uri((string)Source));
                 else if (Source is ImageSource)
                     imgSource = (ImageSource)Source;
+                else if (Source is Uri)
+                    imgSource = new BitmapImage((Uri)Source);
                 else
                     return;
 
