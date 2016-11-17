@@ -77,14 +77,14 @@
                            Pivot.SlideInAnimationGroup="GroupOne"
                            ContinuumNavigationTransitionInfo.IsExitElement="True"
                            Foreground="White" />
-                <!--<TextBlock Style="{StaticResource BaseItemStyle}"
+                <TextBlock Style="{StaticResource BaseItemStyle}"
                            FontSize="36"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
                            Margin="0,0,10,10"
-                           Text="{Binding Match, Converter={StaticResource PercentageConverter}}"
+                           Text="{Binding MatchSimilar, Converter={StaticResource PercentageConverter}}"
                            Pivot.SlideInAnimationGroup="GroupTwo"
-                           Foreground="White" />-->
+                           Foreground="White" />
             </Grid>
         </DataTemplate>
     </Page.Resources>

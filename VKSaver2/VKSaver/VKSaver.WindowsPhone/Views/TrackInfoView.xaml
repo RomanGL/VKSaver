@@ -94,7 +94,7 @@
                                    FontSize="55"
                                    CharacterSpacing="-5"
                                    TextWrapping="NoWrap" />
-                        <TextBlock Text="{Binding Track.Artist.Name}"
+                        <TextBlock Text="{Binding Track.ArtistName}"
                                    Style="{StaticResource BodyTextBlockStyle}"
                                    TextWrapping="NoWrap"
                                    FontWeight="Black"
@@ -103,7 +103,7 @@
                                    CharacterSpacing="-5"
                                    Margin="0,15,0,0" />
                     </StackPanel>
-                    <controls:ImagePlaceholder Source="{Binding Track.LargeImage.URL}"
+                    <controls:ImagePlaceholder Source="{Binding Track.Images.Large}"
                                                Text="{Binding Track.Name}"
                                                HorizontalAlignment="Left"
                                                Height="120"

@@ -97,7 +97,7 @@ namespace VKSaver.Core.ViewModels
                         Album.Tracks != null &&
                         Album.Tracks.Any()
                         ? ContentState.Normal : ContentState.NoData;
-                    //WikiState = Album.Wiki != null ? ContentState.Normal : ContentState.NoData;
+                    WikiState = Album.Wiki != null ? ContentState.Normal : ContentState.NoData;
                 }
             }
             else
@@ -135,18 +135,20 @@ namespace VKSaver.Core.ViewModels
 
             LastResponse<LastAlbum> response = null;
             if (String.IsNullOrEmpty(AlbumBase.Mbid))
-                response = await _lfClient.Album.GetInfoAsync(AlbumBase.ArtistName, AlbumBase.Name, true);
+                response = await _lfClient.Album.GetInfoAsync(AlbumBase.ArtistName, AlbumBase.Name, true, _locService.CurrentLanguage.ToLastFmLang());
             else
-                response = await _lfClient.Album.GetInfoByMbidAsync(AlbumBase.Mbid, true);
+                response = await _lfClient.Album.GetInfoByMbidAsync(AlbumBase.Mbid, true, _locService.CurrentLanguage.ToLastFmLang());
 
             if (response.Success)
             {
                 if (response.Content.Tracks != null && response.Content.Tracks.Any())
                 {
-                    foreach (var track in response.Content.Tracks)
+                    var tracksList = response.Content.Tracks.ToList();
+                    foreach (var track in tracksList)
                     {
                         track.Images = response.Content.Images;
                     }
+                    response.Content.Tracks = tracksList;
 
                     TracksState = ContentState.Normal;
                 }
@@ -155,15 +157,15 @@ namespace VKSaver.Core.ViewModels
 
                 Album = response.Content;
 
-                //if (Album.Wiki != null)
-                //{
-                //    Album.Wiki.Content = Album.Wiki.Content.Split(
-                //        new string[] { "<a href" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                if (Album.Wiki != null)
+                {
+                    Album.Wiki.Content = Album.Wiki.Content.Split(
+                        new string[] { "<a href" }, StringSplitOptions.RemoveEmptyEntries)[0];
 
-                //    WikiState = ContentState.Normal;
-                //}
-                //else
-                //    WikiState = ContentState.NoData;
+                    WikiState = ContentState.Normal;
+                }
+                else
+                    WikiState = ContentState.NoData;
             }
             else
             {

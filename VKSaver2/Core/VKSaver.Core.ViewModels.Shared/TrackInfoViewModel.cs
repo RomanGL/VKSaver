@@ -3,6 +3,7 @@ using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
 #else
+using IF.Lastfm.Core.Objects;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #endif
@@ -19,6 +20,7 @@ using System.Threading.Tasks;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Navigation;
@@ -57,7 +59,7 @@ namespace VKSaver.Core.ViewModels
 
         public string ArtistImage { get; private set; }
 
-        public LFAudioBase Track { get; private set; }
+        public LastTrack Track { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand ShowOtherTracksCommand { get; private set; }
@@ -76,7 +78,7 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            Track = JsonConvert.DeserializeObject<LFAudioBase>(e.Parameter.ToString());
+            Track = JsonConvert.DeserializeObject<LastTrack>(e.Parameter.ToString(), _lastImageSetConverter);
 
             if (viewModelState.Count == 0)
             {
@@ -89,7 +91,7 @@ namespace VKSaver.Core.ViewModels
                     viewModelState[nameof(VKTracks)].ToString());
             }
 
-            LoadArtistImage(Track.Artist.Name);
+            LoadArtistImage(Track.ArtistName);
             base.OnNavigatedTo(e, viewModelState);
         }
 
@@ -106,14 +108,14 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<Audio>> LoadVKTracks()
         {
-            if (Track == null || Track.Artist == null)
+            if (Track == null || Track.ArtistName == null)
                 return new List<Audio>(0);
 
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Search(new AudioSearchParams
             {
                 AutoComplete = true,
                 Count = 10,
-                Query = $"{Track.Artist.Name} - {Track.Name}"
+                Query = $"{Track.ArtistName} - {Track.Name}"
             }));
 
             if (response.IsError)
@@ -177,10 +179,10 @@ namespace VKSaver.Core.ViewModels
                 ArtistImage = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
                 img = await _imagesCacheService.CacheAndGetArtistImage(artist);
 
-                if (img != null && artist == Track?.Artist?.Name)
+                if (img != null && artist == Track?.ArtistName)
                     ArtistImage = img;
             }
-            else if (artist == Track?.Artist?.Name)
+            else if (artist == Track?.ArtistName)
             {
                 ArtistImage = img;
             }
@@ -195,5 +197,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
         private readonly IImagesCacheService _imagesCacheService;
+
+        private static readonly LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();
     }
 }

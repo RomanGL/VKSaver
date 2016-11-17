@@ -119,7 +119,7 @@ namespace VKSaver.Core.ViewModels
             if (e.NavigationMode == NavigationMode.New)
             {
                 viewModelState[nameof(Tracks)] = JsonConvert.SerializeObject(Tracks.ToList(), _lastImageSetConverter);
-                viewModelState[nameof(Albums)] = JsonConvert.SerializeObject(Albums.ToList());
+                viewModelState[nameof(Albums)] = JsonConvert.SerializeObject(Albums.ToList(), _lastImageSetConverter);
                 viewModelState[nameof(Similar)] = JsonConvert.SerializeObject(Similar.ToList(), _lastImageSetConverter);
                 viewModelState[nameof(Artist)] = JsonConvert.SerializeObject(Artist, _lastImageSetConverter);
                 viewModelState[nameof(LastPivotIndex)] = LastPivotIndex;
@@ -156,9 +156,9 @@ namespace VKSaver.Core.ViewModels
 
             PageResponse<LastArtist> response = null;
             if (String.IsNullOrEmpty(Artist.Mbid))
-                response = await _lfClient.Artist.GetSimilarByMbidAsync(Artist.Name, true, 10);
+                response = await _lfClient.Artist.GetSimilarAsync(Artist.Name, true, 10);
             else
-                response = await _lfClient.Artist.GetSimilarAsync(Artist.Mbid, true, 10);
+                response = await _lfClient.Artist.GetSimilarByMbidAsync(Artist.Mbid, true, 10);
 
             if (response.Success)
                 return response;
