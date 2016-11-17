@@ -543,6 +543,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\thirdparty\lastfm\src\IF.Lastfm.Core\IF.Lastfm.Core.csproj">
+      <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
+      <Name>IF.Lastfm.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\thirdparty\lastfm\src\IF.Lastfm.SQLite\IF.Lastfm.SQLite.csproj">
+      <Project>{09d7d389-7d67-45b7-90ec-b1d20693dbc5}</Project>
+      <Name>IF.Lastfm.SQLite</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
       <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
       <Name>VKSaver.Core.Models</Name>
@@ -583,14 +591,6 @@
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib.Portable, Version=0.86.0.51803, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SharpZipLib.Portable.0.86.0.0003\lib\portable-net45+netcore45+wp8+win8+wpa81+MonoTouch+MonoAndroid+Xamarin.iOS10\ICSharpCode.SharpZipLib.Portable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IF.Lastfm.Core, Version=0.2.4.274, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Inflatable.Lastfm.0.2.4.274\lib\portable-win8+net45+wp8+wpa81\IF.Lastfm.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IF.Lastfm.SQLite, Version=0.2.0.211, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Inflatable.Lastfm.SQLite.0.2.0.211\lib\portable-win8+net45+wp8+wpa81\IF.Lastfm.SQLite.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.PubSubEvents">
