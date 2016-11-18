@@ -19,7 +19,6 @@ using VKSaver.Core.Services.Database;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Media.Playback;
 using Windows.Storage;
-using Windows.Storage.Streams;
 using static VKSaver.Core.Services.PlayerConstants;
 
 namespace VKSaver.PlayerTask

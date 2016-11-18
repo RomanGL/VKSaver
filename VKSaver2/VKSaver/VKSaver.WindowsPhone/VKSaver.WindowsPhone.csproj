@@ -617,13 +617,6 @@
       <HintPath>..\..\packages\NotificationsExtensions.1.0.0\lib\portable-wpa81+win81\NotificationsExtensions.winmd</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OneTeam.SDK.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\OneTeam.SDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="OneTeam.SDK.LastFm">
-      <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
-    </Reference>
     <Reference Include="PropertyChanged, Version=1.51.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PropertyChanged.Fody.1.51.3\lib\dotnet\PropertyChanged.dll</HintPath>
       <Private>False</Private>

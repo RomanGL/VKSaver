@@ -11,11 +11,6 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #endif
 
 using Newtonsoft.Json;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.LastFm.Models.Audio;
-using OneTeam.SDK.LastFm.Models.Common;
-using OneTeam.SDK.LastFm.Models.Response;
-using OneTeam.SDK.LastFm.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;

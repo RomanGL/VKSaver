@@ -1615,4 +1615,10 @@ Eng: upload</comment>
   <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
     <value>Станут доступны все видео ВКонтакте!</value>
   </data>
+  <data name="AboutView_IF_LastFm_Text.Text" xml:space="preserve">
+    <value>Inflatable Last.fm .NET SDK</value>
+  </data>
+  <data name="AboutView_IF_LastFm_Title.Text" xml:space="preserve">
+    <value>Inflatable Last.fm</value>
+  </data>
 </root>

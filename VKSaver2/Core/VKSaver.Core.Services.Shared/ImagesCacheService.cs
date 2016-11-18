@@ -1,7 +1,4 @@
-﻿using OneTeam.SDK.Core;
-using OneTeam.SDK.LastFm.Models.Response;
-using OneTeam.SDK.LastFm.Services.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +8,7 @@ using VKSaver.Core.Services.Interfaces;
 using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.Web.Http;
+using IF.Lastfm.Core.Api;
 
 namespace VKSaver.Core.Services
 {
@@ -21,11 +19,11 @@ namespace VKSaver.Core.Services
     {    
         public ImagesCacheService(
             IGrooveMusicService grooveMusicService, 
-            ILFService lfService,
+            LastfmClient lfClient,
             INetworkInfoService networkInfoService)
         {
             _grooveMusicService = grooveMusicService;
-            _lfService = lfService;
+            _lfClient = lfClient;
             _networkInfoService = networkInfoService;
 
             _artistsQueue = new TaskQueue();
@@ -149,29 +147,14 @@ namespace VKSaver.Core.Services
             string imageUrl = await _grooveMusicService.GetArtistImageURL(artistName);
             if (imageUrl == null)
             {
-                var parameters = new Dictionary<string, string>
+                var response = await _lfClient.Artist.GetInfoAsync(artistName, autocorrect: true);
+                if (response.Success)
                 {
-                    { "artist", artistName },
-                    { "autocorrect", "1" }
-                };
-
-                var request = new Request<LFArtistInfoResponse>("artist.getInfo", parameters);
-                var response = await _lfService.ExecuteRequestAsync(request);
-
-                if (response.IsValid())
-                {
-                    imageUrl = response.Artist?.MegaImage?.URL;
-                    if (!String.IsNullOrEmpty(imageUrl))
+                    try
                     {
-                        try
-                        {
-                            result = await CacheAndGet(
-                                artistName,
-                                imageUrl,
-                                await GetCreateFolder(ALBUMS_FOLDER_NAME));
-                        }
-                        catch (Exception) { }
+                        imageUrl = response.Content.MainImage.Largest.ToString();
                     }
+                    catch (Exception) { }
                 }
             }
 
@@ -205,30 +188,17 @@ namespace VKSaver.Core.Services
             if (!_networkInfoService.CanAppUseInternet)
                 return null;
 
-            var parameters = new Dictionary<string, string>
+            var response = await _lfClient.Track.GetInfoAsync(trackTitle, artistName);
+            if (response.Success)
             {
-                { "track", trackTitle },
-                { "artist", artistName },
-                { "autocorrect", "1" }
-            };
-
-            var request = new Request<LFTrackInfoResponse>("track.getInfo", parameters);
-            var response = await _lfService.ExecuteRequestAsync(request);
-
-            if (response.IsValid() && response.Track.Album != null)
-            {
-                string imageUrl = response.Track.Album.MaxImage.URL;
-                if (!String.IsNullOrEmpty(imageUrl))
+                try
                 {
-                    try
-                    {
-                        result = await CacheAndGet(
-                            trackTitle,
-                            imageUrl,
-                            await GetCreateFolder(ALBUMS_FOLDER_NAME));
-                    }
-                    catch (Exception) { }
+                    result = await CacheAndGet(
+                        trackTitle,
+                        response.Content.Images.Largest.ToString(),
+                        await GetCreateFolder(ALBUMS_FOLDER_NAME));
                 }
+                catch (Exception) { }
             }
 
             return result;
@@ -271,8 +241,8 @@ namespace VKSaver.Core.Services
 
         private readonly TaskQueue _artistsQueue;
         private readonly TaskQueue _albumsQueue;
+        private readonly LastfmClient _lfClient;
         private readonly IGrooveMusicService _grooveMusicService;
-        private readonly ILFService _lfService;
         private readonly INetworkInfoService _networkInfoService;
 
         private const string ALBUMS_FOLDER_NAME = "VKSaver Albums";

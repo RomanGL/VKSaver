@@ -2,26 +2,19 @@
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.ViewManagement;
 using Windows.ApplicationModel.Store;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Unity;
 using System.Globalization;
-using OneTeam.SDK.LastFm.Services.Interfaces;
-using OneTeam.SDK.LastFm.Services;
 using VKSaver.Core.Services;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using Windows.UI.Xaml;
-using Windows.UI.Popups;
 using VKSaver.Core.Models.Player;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Microsoft.Practices.ServiceLocation;
 using VKSaver.Core.LinksExtractor;
 using ModernDev.InTouch;
-using ICSharpCode.SharpZipLib.Zip;
 using Windows.Storage;
-using System.IO;
 using Windows.UI.Core;
 using IF.Lastfm.Core.Api;
 using VKSaver.Core.Services.Database;
@@ -147,8 +140,7 @@ namespace VKSaver
             _container.RegisterInstance<ISettingsService>(settingsService);
             _container.RegisterInstance(this.NavigationService);
             _container.RegisterInstance(this.SessionStateService);
-            _container.RegisterInstance<IDispatcherWrapper>(this);       
-            _container.RegisterInstance<ILFService>(new LFService(LAST_FM_API_KEY));
+            _container.RegisterInstance<IDispatcherWrapper>(this);
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);            
             _container.RegisterInstance<IVKLoginService>(vkLoginService);
             _container.RegisterInstance<InTouch>(inTouch);
@@ -260,14 +252,7 @@ namespace VKSaver
                 {
                     if (await TryOpenFirstStartView() == false)
                     {
-                        NavigationService.Navigate("MainView", null);
-                        try
-                        {
-                            var state = playerService.CurrentState;
-                            if (state == PlayerState.Playing)
-                                NavigationService.Navigate("PlayerView", null);
-                        }
-                        catch (Exception) { }
+                        NavigationService.Navigate("MainView", null);                        
                     }
                 }
                 else
@@ -276,6 +261,13 @@ namespace VKSaver
 
             if (vkLoginService.IsAuthorized)
             {
+                try
+                {
+                    var state = playerService.CurrentState;
+                    if (state == PlayerState.Playing)
+                        NavigationService.Navigate("PlayerView", null);
+                }
+                catch (Exception) { }
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif

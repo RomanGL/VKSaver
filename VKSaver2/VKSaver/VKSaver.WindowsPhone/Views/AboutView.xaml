@@ -57,7 +57,7 @@
 
         <ScrollViewer Grid.Row="1"
                       x:Name="ContentRoot"
-                      Margin="19,0">
+                      Margin="19,0,0,0">
             <StackPanel>
                 <StackPanel.ChildrenTransitions>
                     <TransitionCollection>
@@ -83,7 +83,7 @@
                                 <EntranceThemeTransition />
                             </TransitionCollection>
                         </StackPanel.ChildrenTransitions>
-                        <TextBlock Text="ВКачай 2 Beta"
+                        <TextBlock Text="ВКачай 2"
                                    x:Uid="AboutView_AppName"
                                    TextWrapping="WrapWholeWords"
                                    Style="{StaticResource ListLine2TextStyle}" />
@@ -118,6 +118,33 @@
                                    Style="{StaticResource ListLine1TextStyle}" />
                         <TextBlock Text="C# wrapper for VK API"
                                    x:Uid="AboutView_InTouch_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="https://github.com/RomanGL/lastfm">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <Image Source="ms-appx:///Assets/lf-logo.png"
+                               Style="{StaticResource PoweredByImageStyle}" 
+                               Grid.RowSpan="2"/>
+                        <TextBlock Text="Inflatable Last.fm"
+                                   x:Uid="AboutView_IF_LastFm_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="Inflatable Last.fm .NET SDK"
+                                   x:Uid="AboutView_IF_LastFm_Text"
                                    Grid.Column="1"
                                    Grid.Row="2"
                                    Foreground="{ThemeResource PhoneMidBrush}"

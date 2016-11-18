@@ -9,10 +9,6 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 
 using ModernDev.InTouch;
 using Newtonsoft.Json;
-using OneTeam.SDK.Core;
-using OneTeam.SDK.LastFm.Models.Audio;
-using OneTeam.SDK.LastFm.Models.Response;
-using OneTeam.SDK.LastFm.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
@@ -23,7 +19,6 @@ using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Navigation;
-using IF.Lastfm.Core;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
 using VKSaver.Core.Services.Json;
@@ -36,8 +31,7 @@ namespace VKSaver.Core.ViewModels
         public MainViewModel(
             InTouch inTouch, 
             LastfmClient lfClient,
-            IInTouchWrapper inTouchWrapper, 
-            ILFService lfService,
+            IInTouchWrapper inTouchWrapper,
             ISettingsService settingsService, 
             INavigationService navigationService,
             IPurchaseService purchaseService, 
@@ -49,7 +43,6 @@ namespace VKSaver.Core.ViewModels
             _inTouch = inTouch;
             _lfClient = lfClient;
             _inTouchWrapper = inTouchWrapper;
-            _lfService = lfService;
             _settingsService = settingsService;
             _navigationService = navigationService;
             _purchaseService = purchaseService;
@@ -58,7 +51,7 @@ namespace VKSaver.Core.ViewModels
             _imagesCacheService = imagesCacheService;
             _adsService = adsService;
 
-            GoToTrackInfoCommand = new DelegateCommand<LFAudioBase>(OnGoToTrackInfoCommand);
+            GoToTrackInfoCommand = new DelegateCommand<LastTrack>(OnGoToTrackInfoCommand);
             GoToArtistInfoCommand = new DelegateCommand<LastArtist>(OnGoToArtistInfoCommand);
             GoToTopTracksCommand = new DelegateCommand(OnGoToTopTracksCommand);
             GoToTopArtistsCommand = new DelegateCommand(OnGoTopArtistsCommand);
@@ -87,7 +80,7 @@ namespace VKSaver.Core.ViewModels
         public SimpleStateSupportCollection<Audio> RecommendedTracksVK { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<LFAudioBase> GoToTrackInfoCommand { get; private set; }
+        public DelegateCommand<LastTrack> GoToTrackInfoCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand<LastArtist> GoToArtistInfoCommand { get; private set; }
@@ -329,9 +322,9 @@ namespace VKSaver.Core.ViewModels
 
 #endif
 
-        private void OnGoToTrackInfoCommand(LFAudioBase audio)
+        private void OnGoToTrackInfoCommand(LastTrack audio)
         {
-            _navigationService.Navigate("TrackInfoView", JsonConvert.SerializeObject(audio));
+            _navigationService.Navigate("TrackInfoView", JsonConvert.SerializeObject(audio, _lastImageSetConverter));
         }
 
         private void OnGoToArtistInfoCommand(LastArtist artist)
@@ -462,7 +455,6 @@ namespace VKSaver.Core.ViewModels
         private readonly InTouch _inTouch;
         private readonly LastfmClient _lfClient;
         private readonly IInTouchWrapper _inTouchWrapper;
-        private readonly ILFService _lfService;
         private readonly ISettingsService _settingsService;
         private readonly INavigationService _navigationService;
         private readonly IPurchaseService _purchaseService;

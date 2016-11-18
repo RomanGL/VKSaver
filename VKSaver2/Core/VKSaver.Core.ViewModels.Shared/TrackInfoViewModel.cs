@@ -10,15 +10,11 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 
 using ModernDev.InTouch;
 using Newtonsoft.Json;
-using OneTeam.SDK.LastFm.Models.Audio;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Services;
-using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Collections;

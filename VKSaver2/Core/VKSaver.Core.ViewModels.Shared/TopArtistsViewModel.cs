@@ -10,7 +10,6 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #endif
 
 using Newtonsoft.Json;
-using OneTeam.SDK.LastFm.Services.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;

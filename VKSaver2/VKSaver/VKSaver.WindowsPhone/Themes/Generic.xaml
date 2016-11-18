@@ -120,7 +120,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <controls:ImagePlaceholder Source="{Binding LargeImage.URL}"
+            <controls:ImagePlaceholder Source="{Binding Images.Large}"
                                        Text="{Binding Name}"
                                        Width="80"
                                        Height="80"
@@ -130,7 +130,7 @@
                            Style="{StaticResource BaseItemStyle}"
                            FontSize="28"
                            ContinuumNavigationTransitionInfo.IsExitElement="True" />
-                <TextBlock Text="{Binding Artist.Name}"
+                <TextBlock Text="{Binding ArtistName}"
                            Style="{StaticResource BaseItemStyle}"
                            FontSize="18"
                            Margin="0,10,0,0" />

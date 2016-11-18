@@ -2007,6 +2007,14 @@ Do you really want to login through the browser?</target>
           <source>Станут доступны все видео ВКонтакте!</source>
           <target state="translated">All VK videos will be available!</target>
         </trans-unit>
+        <trans-unit id="AboutView_IF_LastFm_Text.Text" translate="yes" xml:space="preserve">
+          <source>Inflatable Last.fm .NET SDK</source>
+          <target state="new">Inflatable Last.fm .NET SDK</target>
+        </trans-unit>
+        <trans-unit id="AboutView_IF_LastFm_Title.Text" translate="yes" xml:space="preserve">
+          <source>Inflatable Last.fm</source>
+          <target state="new">Inflatable Last.fm</target>
+        </trans-unit>
       </group>
     </body>
   </file>

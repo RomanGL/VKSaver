@@ -14,6 +14,7 @@ namespace VKSaver.Views
         public MainView()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
