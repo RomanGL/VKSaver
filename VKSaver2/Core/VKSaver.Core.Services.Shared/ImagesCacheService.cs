@@ -188,15 +188,18 @@ namespace VKSaver.Core.Services
             if (!_networkInfoService.CanAppUseInternet)
                 return null;
 
-            var response = await _lfClient.Track.GetInfoAsync(trackTitle, artistName);
+            var response = await _lfClient.Track.GetInfoAsync(trackTitle, artistName, autocorrect: true);
             if (response.Success)
             {
                 try
                 {
-                    result = await CacheAndGet(
-                        trackTitle,
-                        response.Content.Images.Largest.ToString(),
-                        await GetCreateFolder(ALBUMS_FOLDER_NAME));
+                    if (response.Content.Images != null)
+                    {
+                        result = await CacheAndGet(
+                            trackTitle,
+                            response.Content.Images.Largest.ToString(),
+                            await GetCreateFolder(ALBUMS_FOLDER_NAME));
+                    }
                 }
                 catch (Exception) { }
             }
