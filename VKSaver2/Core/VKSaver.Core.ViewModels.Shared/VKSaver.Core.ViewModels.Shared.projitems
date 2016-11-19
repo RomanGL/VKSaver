@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DirectAuth\IValidationSupport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DownloadableAudioViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FirstStart\FirstInternetSettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FirstStart\FirstSelectLaunchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FirstStart\FirstStartRetryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FirstStart\FirstStartViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LastFmLoginViewModel.cs" />

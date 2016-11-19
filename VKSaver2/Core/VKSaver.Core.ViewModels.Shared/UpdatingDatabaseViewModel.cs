@@ -23,12 +23,15 @@ namespace VKSaver.Core.ViewModels
         public UpdatingDatabaseViewModel(
             INavigationService navigationService,
             ILibraryDatabaseService musicDatabaseService, 
-            ISettingsService settingsService, ILocService locService)
+            ISettingsService settingsService, 
+            ILocService locService,
+            ILaunchViewResolver launchViewResolver)
         {
             _navigationService = navigationService;
             _libraryDatabaseService = musicDatabaseService;
             _settingsService = settingsService;
             _locService = locService;
+            _launchViewResolver = launchViewResolver;
         }
         
         public int Current { get; private set; }
@@ -53,7 +56,6 @@ namespace VKSaver.Core.ViewModels
             if (!suspending)
             {
                 _libraryDatabaseService.UpdateProgressChanged -= LibraryDatabaseService_UpdateProgressChanged;
-                _settingsService.Set(AppConstants.CURRENT_FIRST_START_INDEX_PARAMETER, AppConstants.CURRENT_FIRST_START_INDEX);
                 _settingsService.Set(AppConstants.CURRENT_LIBRARY_INDEX_PARAMETER, AppConstants.CURRENT_LIBRARY_INDEX);
             }
 
@@ -116,9 +118,15 @@ namespace VKSaver.Core.ViewModels
                     }
                     break;
                 case DatabaseUpdateStepType.Completed:
-                    _settingsService.Set<string>(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER, null);
                     _navigationService.ClearHistory();
-                    _navigationService.Navigate("MainView", null);                    
+
+                    if (_settingsService.Get(AppConstants.CURRENT_FIRST_START_INDEX_PARAMETER, 0) == AppConstants.CURRENT_FIRST_START_INDEX)
+                    {
+                        _settingsService.Set<string>(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER, null);
+                        _launchViewResolver.OpenDefaultView();
+                    }
+                    else
+                        _navigationService.Navigate("FirstSelectLaunchView", null);
                     break;
             }
         }
@@ -136,5 +144,6 @@ namespace VKSaver.Core.ViewModels
         private readonly ILibraryDatabaseService _libraryDatabaseService;
         private readonly ISettingsService _settingsService;
         private readonly ILocService _locService;
+        private readonly ILaunchViewResolver _launchViewResolver;
     }
 }

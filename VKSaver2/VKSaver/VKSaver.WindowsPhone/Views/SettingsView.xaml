@@ -6,11 +6,16 @@
                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
                            xmlns:c="using:VKSaver.Controls"
+                           xmlns:converters="using:VKSaver.Converters"
                            mc:Ignorable="d"
                            DataContext="{Binding RelativeSource={RelativeSource Self}}"
                            Style="{StaticResource DefaultPageStyle}"
                            mvvm:ViewModelLocator.AutoWireViewModel="True">
 
+    <mvvm:VisualStateAwarePage.Resources>
+        <converters:LaunchViewNameConverter x:Key="LaunchViewNameConverter" />
+    </mvvm:VisualStateAwarePage.Resources>
+    
     <Grid x:Name="LayoutRoot">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -70,6 +75,26 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+
+                <TextBlock Text="Начальная страница"
+                           x:Uid="SettingsView_LaunchView_Title"
+                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                           Margin="0,25,0,0"
+                           Foreground="{ThemeResource TitleBrush}" />
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                           x:Uid="SetingsView_LaunchView_Text"
+                           Margin="0,5,0,0">
+                    Вы можете выбрать начальную страницу, которая будет открываться при запуске приложения.
+                </TextBlock>
+                <ComboBox ItemsSource="{Binding AvailableLaunchViews}" 
+                          BorderBrush="{StaticResource TitleBrush}"
+                          SelectedIndex="{Binding SelectedLaunchViewIndex, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource LaunchViewNameConverter}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
                 <TextBlock Text="Локальная библиотека"
                            x:Uid="SettingsView_LocalLibrary_Title"

@@ -93,10 +93,17 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\About\ava-be.jpg" />
+    <Content Include="Assets\About\ava-de.jpg" />
+    <Content Include="Assets\About\ava-dev.jpg" />
+    <Content Include="Assets\About\ava-en.jpg" />
+    <Content Include="Assets\About\ava-ua.jpg" />
+    <Content Include="Assets\About\email-logo.png" />
+    <Content Include="Assets\About\site-logo.png" />
     <Content Include="Assets\Ads\BuyonLumia650.jpg" />
     <Content Include="Assets\Album.jpg" />
     <Content Include="Assets\Background\PlayerBackground.png" />
-    <Content Include="Assets\groove-logo.png" />
+    <Content Include="Assets\About\groove-logo.png" />
     <Content Include="Assets\HubBackground.jpg" />
     <Content Include="Assets\Background\Background.dark.jpg" />
     <Content Include="Assets\Background\Background.light.jpg" />
@@ -111,8 +118,8 @@
     <Content Include="Assets\Images\PlayerLogo4.png" />
     <Content Include="Assets\Images\SearchType.png" />
     <Content Include="Assets\Images\VideoPlayerPoster.png" />
-    <Content Include="Assets\it-logo.png" />
-    <Content Include="Assets\lf-logo.png" />
+    <Content Include="Assets\About\it-logo.png" />
+    <Content Include="Assets\About\lf-logo.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\LogoPlay.scale-240.png" />
     <Content Include="Assets\Promo\1.png" />
@@ -212,6 +219,9 @@
     </Compile>
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirstStart\FirstSelectLaunchView.xaml.cs">
+      <DependentUpon>FirstSelectLaunchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstStart\FirstInternetSettingsView.xaml.cs">
       <DependentUpon>FirstInternetSettingsView.xaml</DependentUpon>
@@ -358,6 +368,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DirectAuth\DirectAuth2FaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FirstStart\FirstSelectLaunchView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

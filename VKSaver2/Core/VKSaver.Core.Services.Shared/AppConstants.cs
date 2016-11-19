@@ -14,6 +14,9 @@
 
         #endregion
 
+        public const string DEFAULT_MAIN_VIEW_PARAMETER = "DefaultMainView";
+        public const string DEFAULT_MAIN_VIEW = "MainView";
+
         public const int CONNECTION_ERROR_CODE = -1;
 
         public const string CURRENT_LIBRARY_INDEX_PARAMETER = "CurrentLibraryIndex";
@@ -22,7 +25,7 @@
         public const string LAST_MUSIC_CHANGING_DATE = "LastMusicChangingDate";
 
         public const string CURRENT_FIRST_START_INDEX_PARAMETER = "CurrentFirstStartIndex";
-        public const int CURRENT_FIRST_START_INDEX = 1;
+        public const int CURRENT_FIRST_START_INDEX = 2;
 
         public const string CURRENT_FIRST_START_VIEW_PARAMETER = "CurrentFirstStartView";
 

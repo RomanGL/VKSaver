@@ -1621,4 +1621,78 @@ Eng: upload</comment>
   <data name="AboutView_IF_LastFm_Title.Text" xml:space="preserve">
     <value>Inflatable Last.fm</value>
   </data>
+  <data name="AppBarButton_Home_Text" xml:space="preserve">
+    <value>на главную</value>
+  </data>
+  <data name="FirstSelectLaunchView_ContentText.Text" xml:space="preserve">
+    <value>Выберите начальную страницу, которая будет открываться при запуске ВКачай.
+
+Рекомендуем использовать главную страницу. Вы всегда можете изменить этот параметр в настройках приложения.</value>
+  </data>
+  <data name="FirstSelectLaunchView_Title.Text" xml:space="preserve">
+    <value>Начальная страница</value>
+  </data>
+  <data name="LaunchView_MainView_Name" xml:space="preserve">
+    <value>главная (рекомендуем)</value>
+  </data>
+  <data name="LaunchView_UserContentView_Name" xml:space="preserve">
+    <value>страница пользователя</value>
+  </data>
+  <data name="SettingsView_LaunchView_Text.Text" xml:space="preserve">
+    <value>Вы можете выбрать начальную страницу, которая будет открываться при запуске приложения.</value>
+  </data>
+  <data name="SettingsView_LaunchView_Title.Text" xml:space="preserve">
+    <value>Начальная страница</value>
+  </data>
+  <data name="AboutView_Email_Text.Text" xml:space="preserve">
+    <value>Обратитесь к нам через Email</value>
+  </data>
+  <data name="AboutView_Email_Title.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="AboutView_Other_Title.Text" xml:space="preserve">
+    <value>Прочее</value>
+  </data>
+  <data name="AboutView_SpecialThanks_Block.Text" xml:space="preserve">
+    <value>Выражаем благодарность</value>
+  </data>
+  <data name="AboutView_Support_Block.Text" xml:space="preserve">
+    <value>Поддержка</value>
+  </data>
+  <data name="AboutView_TranslateBe_Text.Text" xml:space="preserve">
+    <value>Перевод на белорусский</value>
+  </data>
+  <data name="AboutView_TranslateBe_Title.Text" xml:space="preserve">
+    <value>Максим Романюк</value>
+  </data>
+  <data name="AboutView_TranslateDe_Text.Text" xml:space="preserve">
+    <value>Перевод на немецкий</value>
+  </data>
+  <data name="AboutView_TranslateDe_Title.Text" xml:space="preserve">
+    <value>Алексей Дейкун</value>
+  </data>
+  <data name="AboutView_TranslateEn_Text.Text" xml:space="preserve">
+    <value>Перевод на английский</value>
+  </data>
+  <data name="AboutView_TranslateEn_Title.Text" xml:space="preserve">
+    <value>Григорий Лобода</value>
+  </data>
+  <data name="AboutView_TranslateUA_Text.Text" xml:space="preserve">
+    <value>Перевод на украинский</value>
+  </data>
+  <data name="AboutView_TranslateUA_Title.Text" xml:space="preserve">
+    <value>Максим Денисенко</value>
+  </data>
+  <data name="AboutView_VKSaverGroup_Text.Text" xml:space="preserve">
+    <value>Сообщество во ВКонтакте</value>
+  </data>
+  <data name="AboutView_VKSaverGroup_Title.Text" xml:space="preserve">
+    <value>ВКачай</value>
+  </data>
+  <data name="AboutView_Developer_Text.Text" xml:space="preserve">
+    <value>Разработчик приложения</value>
+  </data>
+  <data name="AboutView_Developer_Title.Text" xml:space="preserve">
+    <value>Роман Гладких</value>
+  </data>
 </root>

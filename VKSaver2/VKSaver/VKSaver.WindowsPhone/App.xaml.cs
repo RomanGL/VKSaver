@@ -165,6 +165,7 @@ namespace VKSaver
             _container.RegisterType<ILibraryDatabaseService, LibraryDatabaseService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IVksmExtractionService, VksmExtractionService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IAdsService, AdsService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<ILaunchViewResolver, LaunchViewResolver>(new ContainerControlledLifetimeManager());
 
             _container.RegisterType<LastfmClient>(new ContainerControlledLifetimeManager(), 
                 new InjectionFactory(c => InstanceFactories.ResolveLastfmClient(c)));
@@ -191,10 +192,11 @@ namespace VKSaver
 
             vkLoginService.UserLogin += async (s, e) =>
             {
+                var launchViewResolver = _container.Resolve<ILaunchViewResolver>();
                 NavigationService.ClearHistory();
 
-                if (await TryOpenFirstStartView() == false)
-                    NavigationService.Navigate("MainView", null);                
+                if (!launchViewResolver.TryOpenSpecialViews() && await launchViewResolver.EnsureDatabaseUpdated() == false)
+                    launchViewResolver.OpenDefaultView();
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
@@ -239,33 +241,37 @@ namespace VKSaver
             var playerService = _container.Resolve<IPlayerService>();
             var vkLoginService = _container.Resolve<IVKLoginService>();
             var downloadsService = _container.Resolve<IDownloadsService>();
-            var settingsService = _container.Resolve<ISettingsService>();
+            var launchViewResolver = _container.Resolve<ILaunchViewResolver>();
 
             StartSuspendingServices();
 
             if (args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser ||
                 args.PreviousExecutionState == ApplicationExecutionState.NotRunning)
             {
-                if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, AppConstants.DEFAULT_PROMO_INDEX) < AppConstants.CURRENT_PROMO_INDEX)
-                    NavigationService.Navigate("PromoView", null);
-                else if (vkLoginService.IsAuthorized)
+                if (!launchViewResolver.TryOpenPromoView())
                 {
-                    if (await TryOpenFirstStartView() == false)
+                    if (vkLoginService.IsAuthorized)
                     {
-                        NavigationService.Navigate("MainView", null);                        
+                        if (!launchViewResolver.TryOpenSpecialViews() && await launchViewResolver.EnsureDatabaseUpdated() == false)
+                        {
+                            launchViewResolver.OpenDefaultView();
+                        }
                     }
+                    else
+                        NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
                 }
-                else
-                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
             }
 
             if (vkLoginService.IsAuthorized)
             {
                 try
                 {
-                    var state = playerService.CurrentState;
-                    if (state == PlayerState.Playing)
-                        NavigationService.Navigate("PlayerView", null);
+                    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var state = playerService.CurrentState;
+                        if (state == PlayerState.Playing)
+                            NavigationService.Navigate("PlayerView", null);
+                    });                    
                 }
                 catch (Exception) { }
 #if FULL
@@ -280,7 +286,7 @@ namespace VKSaver
 
             var mediaFilesProcessService = _container.Resolve<IMediaFilesProcessService>();
             var downloadsService = _container.Resolve<IDownloadsService>();
-            var settingsService = _container.Resolve<ISettingsService>();
+            var launchViewResolver = _container.Resolve<ILaunchViewResolver>();
 
             StartSuspendingServices();
 
@@ -290,15 +296,18 @@ namespace VKSaver
                 var playerService = _container.Resolve<IPlayerService>();
                 var vkLoginService = _container.Resolve<IVKLoginService>();
 
-                if (settingsService.Get(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, AppConstants.DEFAULT_PROMO_INDEX) < AppConstants.CURRENT_PROMO_INDEX)
-                    NavigationService.Navigate("PromoView", null);
-                else if (vkLoginService.IsAuthorized)
+                if (!launchViewResolver.TryOpenPromoView())
                 {
-                    if (await TryOpenFirstStartView() == false)
-                        NavigationService.Navigate("MainView", null);
+                    if (vkLoginService.IsAuthorized)
+                    {
+                        if (!launchViewResolver.TryOpenSpecialViews() && await launchViewResolver.EnsureDatabaseUpdated() == false)
+                        {
+                            launchViewResolver.OpenDefaultView();
+                        }
+                    }
+                    else
+                        NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
                 }
-                else
-                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
 
                 if (vkLoginService.IsAuthorized)
                 {
@@ -308,7 +317,7 @@ namespace VKSaver
                 }
             }
 
-            await mediaFilesProcessService.ProcessFiles(args.Files);            
+            await mediaFilesProcessService.ProcessFiles(args.Files);
         }
 
         protected override void OnActivated(IActivatedEventArgs args)
@@ -326,46 +335,6 @@ namespace VKSaver
                     continuationManager.Continue(continuationEventArgs, rootFrame);
                 }
             }
-        }
-
-        private async Task<bool> TryOpenFirstStartView()
-        {
-            var settingsService = _container.Resolve<ISettingsService>();
-            string currentFirstView = settingsService.Get<string>(AppConstants.CURRENT_FIRST_START_VIEW_PARAMETER, null);
-
-            if (settingsService.Get(AppConstants.CURRENT_FIRST_START_INDEX_PARAMETER, 0) < AppConstants.CURRENT_FIRST_START_INDEX)
-            {
-                if (currentFirstView == null)
-                    NavigationService.Navigate("FirstStartView", null);
-                else
-                    NavigationService.Navigate("FirstStartRetryView", null);
-
-                return true;
-            }
-            else if (currentFirstView != null && currentFirstView != "Completed")
-            {
-                NavigationService.Navigate("FirstStartRetryView", null);
-                return true;
-            }
-            else if (settingsService.Get(AppConstants.CURRENT_LIBRARY_INDEX_PARAMETER, 0) < AppConstants.CURRENT_LIBRARY_INDEX)
-            {
-                NavigationService.Navigate("UpdatingDatabaseView", null);
-                return true;
-            }
-            else
-            {
-                try
-                {
-                    var libraryDb = await ApplicationData.Current.LocalFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);
-                }
-                catch (Exception)
-                {
-                    NavigationService.Navigate("UpdatingDatabaseView", null);
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         private void StartSuspendingServices()

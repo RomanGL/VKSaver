@@ -36,7 +36,8 @@ namespace VKSaver.Core.ViewModels
             ILocService locService,
             IDialogsService dialogsService,
             IInTouchWrapper inTouchWrapper, 
-            InTouch inTouch)
+            InTouch inTouch,
+            ILaunchViewResolver launchViewResolver)
         {
             _navigationService = navigationService;
             _vkLoginService = vkLoginService;
@@ -47,6 +48,7 @@ namespace VKSaver.Core.ViewModels
             _inTouch = inTouch;
             _locService = locService;
             _dialogsService = dialogsService;
+            _launchViewResolver = launchViewResolver;
 
             Authorizations = new ObservableCollection<IServiceAuthorization>();
             UpdateDatabaseCommand = new DelegateCommand(OnUpdateDatabaseCommand);
@@ -57,6 +59,8 @@ namespace VKSaver.Core.ViewModels
         public ObservableCollection<IServiceAuthorization> Authorizations { get; private set; }
 
         public List<LanguageItem> AvailableLanguages { get; private set; }
+
+        public List<string> AvailableLaunchViews { get { return _launchViewResolver.AvailableLaunchViews; } }
 
         [AlsoNotifyFor(nameof(AvailableLanguages))]
         public int LanguageIndex
@@ -80,6 +84,17 @@ namespace VKSaver.Core.ViewModels
                 //_navigationService.ClearHistory();
                 //_navigationService.Navigate("MainView", null);
                 //_navigationService.Navigate("SettingsView", null);
+            }
+        }
+
+        [AlsoNotifyFor(nameof(AvailableLaunchViews))]
+        public int SelectedLaunchViewIndex
+        {
+            get { return AvailableLaunchViews.IndexOf(_launchViewResolver.LaunchViewName); }
+            set
+            {
+                _launchViewResolver.LaunchViewName = AvailableLaunchViews[value];
+                OnLaunchViewChanged();
             }
         }
 
@@ -176,6 +191,13 @@ namespace VKSaver.Core.ViewModels
                 _locService["Message_RestartRequired_Title"]);
         }
 
+        private void OnLaunchViewChanged()
+        {
+            _dialogsService.Show(_locService["Message_RestartRequired_Text"],
+                _locService["Message_RestartRequired_Title"]);
+        }
+
+        private readonly InTouch _inTouch;
         private readonly INavigationService _navigationService;
         private readonly IVKLoginService _vkLoginService;
         private readonly ISettingsService _settingsService;
@@ -183,7 +205,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IPurchaseService _purchaseService;
         private readonly IInTouchWrapper _inTouchWrapper;
         private readonly ILocService _locService;
-        private readonly IDialogsService _dialogsService;
-        private readonly InTouch _inTouch;
+        private readonly IDialogsService _dialogsService;        
+        private readonly ILaunchViewResolver _launchViewResolver;
     }
 }

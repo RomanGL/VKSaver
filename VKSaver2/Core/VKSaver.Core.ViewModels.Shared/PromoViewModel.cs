@@ -18,13 +18,18 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class PromoViewModel : ViewModelBase
     {
-        public PromoViewModel(INavigationService navigationService, ILocService locService, 
-            IVKLoginService vkLoginService, ISettingsService settingsService)
+        public PromoViewModel(
+            INavigationService navigationService, 
+            ILocService locService, 
+            IVKLoginService vkLoginService, 
+            ISettingsService settingsService,
+            ILaunchViewResolver launchViewResolver)
         {
             _navigationService = navigationService;
             _locService = locService;
             _vkLoginService = vkLoginService;
             _settingsService = settingsService;
+            _launchViewResolver = launchViewResolver;
 
             FillScreenItems();
         }
@@ -64,14 +69,20 @@ namespace VKSaver.Core.ViewModels
                 });
         }
 
-        private void OnLetsGoCommand()
+        private async void OnLetsGoCommand()
         {
+            _navigationService.ClearHistory();
+
             if (_vkLoginService.IsAuthorized)
-                _navigationService.Navigate("MainView", null);
+            {
+                if (!_launchViewResolver.TryOpenSpecialViews() && await _launchViewResolver.EnsureDatabaseUpdated() == false)
+                {
+                    _launchViewResolver.OpenDefaultView();
+                }
+            }
             else
                 _navigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
-
-            _navigationService.ClearHistory();
+            
             _settingsService.Set(AppConstants.CURRENT_PROMO_INDEX_PARAMETER, AppConstants.CURRENT_PROMO_INDEX);
         }
         
@@ -90,6 +101,7 @@ namespace VKSaver.Core.ViewModels
         private readonly ILocService _locService;
         private readonly IVKLoginService _vkLoginService;
         private readonly ISettingsService _settingsService;
+        private readonly ILaunchViewResolver _launchViewResolver;
 
         public sealed class ScreenItem
         {

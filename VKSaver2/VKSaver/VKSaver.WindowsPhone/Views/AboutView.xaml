@@ -58,7 +58,7 @@
         <ScrollViewer Grid.Row="1"
                       x:Name="ContentRoot"
                       Margin="19,0,0,0">
-            <StackPanel>
+            <StackPanel Margin="0,0,0,60">
                 <StackPanel.ChildrenTransitions>
                     <TransitionCollection>
                         <EntranceThemeTransition />
@@ -97,6 +97,217 @@
                     </StackPanel>
                 </Grid>
 
+                <TextBlock Text="Поддержка"
+                           x:Uid="AboutView_Support_Block"
+                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                           Foreground="{ThemeResource PhoneForegroundBrush}"
+                           Margin="0,10,0,0" />
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="https://vk.com/roman.gladkikh">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="ms-appx:///Assets/About/ava-dev.jpg"
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2"
+                               Stretch="UniformToFill" />
+                        <TextBlock Text="Роман Гладких"
+                                   x:Uid="AboutView_Developer_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="Разработчик приложения"
+                                   x:Uid="AboutView_Developer_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="https://vk.com/vkmediadown">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="ms-appx:///Assets/About/site-logo.png"
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2" />
+                        <TextBlock Text="ВКачай"
+                                   x:Uid="AboutView_VKSaverGroup_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="Сообщество во ВКонтакте"
+                                   x:Uid="AboutView_VKSaverGroup_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 Click="EmailButton_Click">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="ms-appx:///Assets/About/email-logo.png"
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2" />
+                        <TextBlock Text="Email"
+                                   x:Uid="AboutView_Email_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="Обратитесь к нам через Email"
+                                   x:Uid="AboutView_Email_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+
+                <TextBlock Text="Выражаем благодарность"
+                           x:Uid="AboutView_SpecialThanks_Block"
+                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                           Foreground="{ThemeResource PhoneForegroundBrush}"
+                           Margin="0,25,0,0" />
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="https://vk.com/hwghz_adm">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="ms-appx:///Assets/About/ava-en.jpg"
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2"
+                               Stretch="UniformToFill" />
+                        <TextBlock Text="Григорий Лобода"
+                                   x:Uid="AboutView_TranslateEn_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="Перевод на английский"
+                                   x:Uid="AboutView_TranslateEn_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="https://vk.com/zarubit">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="ms-appx:///Assets/About/ava-ua.jpg"
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2"
+                               Stretch="UniformToFill" />
+                        <TextBlock Text="Максим Денисенко"
+                                   x:Uid="AboutView_TranslateUA_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="Перевод на украинский"
+                                   x:Uid="AboutView_TranslateUA_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="https://vk.com/wolf_god">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="ms-appx:///Assets/About/ava-be.jpg"
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2" 
+                               Stretch="UniformToFill"/>
+                        <TextBlock Text="Максим Романюк"
+                                   x:Uid="AboutView_TranslateBe_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="Перевод на белорусский"
+                                   x:Uid="AboutView_TranslateBe_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                 NavigateUri="https://vk.com/alex_deykun">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Source="ms-appx:///Assets/About/ava-de.jpg"
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2"
+                               Stretch="UniformToFill" />
+                        <TextBlock Text="Алексей Дейкун"
+                                   x:Uid="AboutView_TranslateDe_Title"
+                                   Grid.Column="1"
+                                   Style="{StaticResource ListLine1TextStyle}" />
+                        <TextBlock Text="Перевод на немецкий"
+                                   x:Uid="AboutView_TranslateDe_Text"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   Foreground="{ThemeResource PhoneMidBrush}"
+                                   Style="{StaticResource BaseItemStyle}" />
+                    </Grid>
+                </HyperlinkButton>
+
+                <TextBlock Text="Прочее"
+                           x:Uid="AboutView_Other_Title"
+                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                           Foreground="{ThemeResource PhoneForegroundBrush}"
+                           Margin="0,25,0,0"/>                
                 <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
                                  NavigateUri="https://github.com/virtyaluk/InTouch">
                     <Grid>
@@ -109,7 +320,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         
-                        <Image Source="ms-appx:///Assets/it-logo.png"
+                        <Image Source="ms-appx:///Assets/About/it-logo.png"
                                Style="{StaticResource PoweredByImageStyle}" 
                                Grid.RowSpan="2"/>
                         <TextBlock Text="InTouch"
@@ -136,7 +347,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         
-                        <Image Source="ms-appx:///Assets/lf-logo.png"
+                        <Image Source="ms-appx:///Assets/About/lf-logo.png"
                                Style="{StaticResource PoweredByImageStyle}" 
                                Grid.RowSpan="2"/>
                         <TextBlock Text="Inflatable Last.fm"
@@ -163,7 +374,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         
-                        <Image Source="ms-appx:///Assets/groove-logo.png"
+                        <Image Source="ms-appx:///Assets/About/groove-logo.png"
                                Style="{StaticResource PoweredByImageStyle}" 
                                Grid.RowSpan="2"/>
                         <TextBlock Text="Groove Music"
@@ -185,7 +396,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image Source="ms-appx:///Assets/lf-logo.png"
+                        <Image Source="ms-appx:///Assets/About/lf-logo.png"
                                Style="{StaticResource PoweredByImageStyle}" />
                         <TextBlock Text="Last.fm"
                                    x:Uid="AboutView_LastFm_Title"

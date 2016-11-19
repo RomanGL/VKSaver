@@ -25,17 +25,24 @@ using VKSaver.Core.Models.Transfer;
 using ModernDev.InTouch;
 using VKSaver.Core.Services.Common;
 using Windows.System;
+using VKSaver.Core.Services;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public sealed class UserContentViewModel : ViewModelBase
     {
-        public UserContentViewModel(InTouch inTouch, INavigationService navigationService,
-            IPlayerService playerService, IDownloadsServiceHelper downloadsServiceHelper,
-            IAppLoaderService appLoaderService, IVKLoginService vkLoginService,
-            IDialogsService dialogsService, ILocService locService, 
-            IInTouchWrapper inTouchWrapper)
+        public UserContentViewModel(
+            InTouch inTouch, 
+            INavigationService navigationService,
+            IPlayerService playerService, 
+            IDownloadsServiceHelper downloadsServiceHelper,
+            IAppLoaderService appLoaderService, 
+            IVKLoginService vkLoginService,
+            IDialogsService dialogsService, 
+            ILocService locService, 
+            IInTouchWrapper inTouchWrapper,
+            ILaunchViewResolver launchViewResolver)
         {
             _inTouch = inTouch;
             _navigationService = navigationService;
@@ -46,6 +53,7 @@ namespace VKSaver.Core.ViewModels
             _dialogsService = dialogsService;
             _locService = locService;
             _inTouchWrapper = inTouchWrapper;
+            _launchViewResolver = launchViewResolver;
 
             SelectedItems = new List<object>();
             PrimaryItems = new ObservableCollection<ICommandBarElement>();
@@ -68,6 +76,7 @@ namespace VKSaver.Core.ViewModels
             DeleteSelectedCommand = new DelegateCommand(OnDeleteSelectedCommand, CanDeleteSelected);
 
             OpenTransferManagerCommand = new DelegateCommand(OnOpenTransferManagerCommand);
+            OpenMainViewCommand = new DelegateCommand(OnOpenMainViewCommand);
         }
 
         public string PageTitle { get; private set; }
@@ -142,6 +151,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand OpenTransferManagerCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand OpenMainViewCommand { get; private set; }
 
         #endregion
 
@@ -451,6 +463,16 @@ namespace VKSaver.Core.ViewModels
                 Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionMode
             });
+            
+            if (_launchViewResolver.LaunchViewName != AppConstants.DEFAULT_MAIN_VIEW)
+            {
+                PrimaryItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_Home_Text"],
+                    Icon = new FontIcon { Glyph = "\uE10F" },
+                    Command = OpenMainViewCommand
+                });
+            }
 
             SecondaryItems.Add(new AppBarButton
             {
@@ -541,6 +563,11 @@ namespace VKSaver.Core.ViewModels
         private void OnOpenTransferManagerCommand()
         {
             _navigationService.Navigate("TransferView", "downloads");
+        }
+
+        private void OnOpenMainViewCommand()
+        {
+            _navigationService.Navigate("MainView", null);
         }
 
         private void OnReloadContentCommand()
@@ -1097,5 +1124,6 @@ namespace VKSaver.Core.ViewModels
         private readonly ILocService _locService;
         private readonly InTouch _inTouch;
         private readonly IInTouchWrapper _inTouchWrapper;
+        private readonly ILaunchViewResolver _launchViewResolver;
     }
 }

@@ -2015,6 +2015,106 @@ Eng: upload</note>
           <source>Inflatable Last.fm</source>
           <target state="new">Inflatable Last.fm</target>
         </trans-unit>
+        <trans-unit id="AppBarButton_Home_Text" translate="yes" xml:space="preserve">
+          <source>на главную</source>
+          <target state="new">на главную</target>
+        </trans-unit>
+        <trans-unit id="LaunchView_MainView_Name" translate="yes" xml:space="preserve">
+          <source>главная (рекомендуем)</source>
+          <target state="new">главная (рекомендуем)</target>
+        </trans-unit>
+        <trans-unit id="LaunchView_UserContentView_Name" translate="yes" xml:space="preserve">
+          <source>страница пользователя</source>
+          <target state="new">страница пользователя</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_LaunchView_Text.Text" translate="yes" xml:space="preserve">
+          <source>Вы можете выбрать начальную страницу, которая будет открываться при запуске приложения.</source>
+          <target state="new">Вы можете выбрать начальную страницу, которая будет открываться при запуске приложения.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_LaunchView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Начальная страница</source>
+          <target state="new">Начальная страница</target>
+        </trans-unit>
+        <trans-unit id="FirstSelectLaunchView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Начальная страница</source>
+          <target state="new">Начальная страница</target>
+        </trans-unit>
+        <trans-unit id="AboutView_Email_Text.Text" translate="yes" xml:space="preserve">
+          <source>Обратитесь к нам через Email</source>
+          <target state="new">Обратитесь к нам через Email</target>
+        </trans-unit>
+        <trans-unit id="AboutView_Email_Title.Text" translate="yes" xml:space="preserve">
+          <source>Email</source>
+          <target state="new">Email</target>
+        </trans-unit>
+        <trans-unit id="AboutView_Support_Block.Text" translate="yes" xml:space="preserve">
+          <source>Поддержка</source>
+          <target state="new">Поддержка</target>
+        </trans-unit>
+        <trans-unit id="AboutView_VKSaverGroup_Text.Text" translate="yes" xml:space="preserve">
+          <source>Сообщество во ВКонтакте</source>
+          <target state="new">Сообщество во ВКонтакте</target>
+        </trans-unit>
+        <trans-unit id="AboutView_VKSaverGroup_Title.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай</source>
+          <target state="new">ВКачай</target>
+        </trans-unit>
+        <trans-unit id="AboutView_Other_Title.Text" translate="yes" xml:space="preserve">
+          <source>Прочее</source>
+          <target state="new">Прочее</target>
+        </trans-unit>
+        <trans-unit id="AboutView_SpecialThanks_Block.Text" translate="yes" xml:space="preserve">
+          <source>Выражаем благодарность</source>
+          <target state="new">Выражаем благодарность</target>
+        </trans-unit>
+        <trans-unit id="AboutView_TranslateBe_Text.Text" translate="yes" xml:space="preserve">
+          <source>Перевод на белорусский</source>
+          <target state="new">Перевод на белорусский</target>
+        </trans-unit>
+        <trans-unit id="AboutView_TranslateBe_Title.Text" translate="yes" xml:space="preserve">
+          <source>Максим Романюк</source>
+          <target state="new">Максим Романюк</target>
+        </trans-unit>
+        <trans-unit id="AboutView_TranslateDe_Text.Text" translate="yes" xml:space="preserve">
+          <source>Перевод на немецкий</source>
+          <target state="new">Перевод на немецкий</target>
+        </trans-unit>
+        <trans-unit id="AboutView_TranslateDe_Title.Text" translate="yes" xml:space="preserve">
+          <source>Алексей Дейкун</source>
+          <target state="new">Алексей Дейкун</target>
+        </trans-unit>
+        <trans-unit id="AboutView_TranslateEn_Text.Text" translate="yes" xml:space="preserve">
+          <source>Перевод на английский</source>
+          <target state="new">Перевод на английский</target>
+        </trans-unit>
+        <trans-unit id="AboutView_TranslateEn_Title.Text" translate="yes" xml:space="preserve">
+          <source>Григорий Лобода</source>
+          <target state="new">Григорий Лобода</target>
+        </trans-unit>
+        <trans-unit id="AboutView_TranslateUA_Text.Text" translate="yes" xml:space="preserve">
+          <source>Перевод на украинский</source>
+          <target state="new">Перевод на украинский</target>
+        </trans-unit>
+        <trans-unit id="AboutView_TranslateUA_Title.Text" translate="yes" xml:space="preserve">
+          <source>Максим Денисенко</source>
+          <target state="new">Максим Денисенко</target>
+        </trans-unit>
+        <trans-unit id="AboutView_Developer_Text.Text" translate="yes" xml:space="preserve">
+          <source>Разработчик приложения</source>
+          <target state="new">Разработчик приложения</target>
+        </trans-unit>
+        <trans-unit id="AboutView_Developer_Title.Text" translate="yes" xml:space="preserve">
+          <source>Роман Гладких</source>
+          <target state="new">Роман Гладких</target>
+        </trans-unit>
+        <trans-unit id="FirstSelectLaunchView_ContentText.Text" translate="yes" xml:space="preserve">
+          <source>Выберите начальную страницу, которая будет открываться при запуске ВКачай.
+
+Рекомендуем использовать главную страницу. Вы всегда можете изменить этот параметр в настройках приложения.</source>
+          <target state="new">Выберите начальную страницу, которая будет открываться при запуске ВКачай.
+
+Рекомендуем использовать главную страницу. Вы всегда можете изменить этот параметр в настройках приложения.</target>
+        </trans-unit>
       </group>
     </body>
   </file>
