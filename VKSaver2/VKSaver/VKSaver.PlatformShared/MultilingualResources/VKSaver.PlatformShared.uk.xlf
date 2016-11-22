@@ -2115,6 +2115,10 @@ Eng: upload</note>
 
 Рекомендуем использовать главную страницу. Вы всегда можете изменить этот параметр в настройках приложения.</target>
         </trans-unit>
+        <trans-unit id="Email_SupportTitle_Text" translate="yes" xml:space="preserve">
+          <source>Сообщение из приложения</source>
+          <target state="new">Сообщение из приложения</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -14,10 +14,8 @@ using VKSaver.Core.Models.Player;
 using Microsoft.Practices.ServiceLocation;
 using VKSaver.Core.LinksExtractor;
 using ModernDev.InTouch;
-using Windows.Storage;
 using Windows.UI.Core;
 using IF.Lastfm.Core.Api;
-using VKSaver.Core.Services.Database;
 using Yandex.Metrica;
 using System.Collections.Generic;
 using Newtonsoft.Json;
@@ -166,6 +164,8 @@ namespace VKSaver
             _container.RegisterType<IVksmExtractionService, VksmExtractionService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IAdsService, AdsService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILaunchViewResolver, LaunchViewResolver>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IEmailService, EmailService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IFeedbackService, FeedbackService>(new ContainerControlledLifetimeManager());
 
             _container.RegisterType<LastfmClient>(new ContainerControlledLifetimeManager(), 
                 new InjectionFactory(c => InstanceFactories.ResolveLastfmClient(c)));
@@ -277,6 +277,8 @@ namespace VKSaver
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
+
+                _container.Resolve<IFeedbackService>().ActivateFeedbackNotifier();
             }            
         }
 

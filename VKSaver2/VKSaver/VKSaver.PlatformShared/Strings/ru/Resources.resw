@@ -1695,4 +1695,7 @@ Eng: upload</comment>
   <data name="AboutView_Developer_Title.Text" xml:space="preserve">
     <value>Роман Гладких</value>
   </data>
+  <data name="Email_SupportTitle_Text" xml:space="preserve">
+    <value>Сообщение из приложения</value>
+  </data>
 </root>

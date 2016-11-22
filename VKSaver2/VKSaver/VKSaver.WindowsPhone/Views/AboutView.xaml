@@ -1,13 +1,15 @@
-﻿<Page x:Class="VKSaver.Views.AboutView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VKSaver.Views"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      mc:Ignorable="d"
-      Style="{StaticResource DefaultPageStyle}">
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.AboutView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:local="using:VKSaver.Views"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           Style="{StaticResource DefaultPageStyle}">
 
-    <Page.Resources>
+    <mvvm:VisualStateAwarePage.Resources>
         <Style x:Key="PoweredByImageStyle"
                TargetType="Image">
             <Setter Property="Width"
@@ -28,8 +30,8 @@
             <Setter Property="Margin"
                     Value="0,10,0,0" />
         </Style>
-    </Page.Resources>
-    
+    </mvvm:VisualStateAwarePage.Resources>
+
     <Grid x:Name="LayoutRoot">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -64,8 +66,8 @@
                         <EntranceThemeTransition />
                     </TransitionCollection>
                 </StackPanel.ChildrenTransitions>
-                
-                <Grid>                    
+
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
@@ -91,7 +93,7 @@
                                    TextWrapping="WrapWholeWords"
                                    Margin="0,2,0,0">
                             <Run Text="Версия:"
-                                 x:Uid="AboutView_Version"/>
+                                 x:Uid="AboutView_Version" />
                             <Run Text="{Binding Version}" />
                         </TextBlock>
                     </StackPanel>
@@ -158,7 +160,7 @@
                     </Grid>
                 </HyperlinkButton>
                 <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
-                                 Click="EmailButton_Click">
+                                 Command="{Binding SendEmailCommand, Mode=OneTime}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -260,8 +262,8 @@
 
                         <Image Source="ms-appx:///Assets/About/ava-be.jpg"
                                Style="{StaticResource PoweredByImageStyle}"
-                               Grid.RowSpan="2" 
-                               Stretch="UniformToFill"/>
+                               Grid.RowSpan="2"
+                               Stretch="UniformToFill" />
                         <TextBlock Text="Максим Романюк"
                                    x:Uid="AboutView_TranslateBe_Title"
                                    Grid.Column="1"
@@ -307,7 +309,7 @@
                            x:Uid="AboutView_Other_Title"
                            Style="{StaticResource GroupHeaderTextBlockStyle}"
                            Foreground="{ThemeResource PhoneForegroundBrush}"
-                           Margin="0,25,0,0"/>                
+                           Margin="0,25,0,0" />
                 <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
                                  NavigateUri="https://github.com/virtyaluk/InTouch">
                     <Grid>
@@ -317,12 +319,12 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
+
                         <Image Source="ms-appx:///Assets/About/it-logo.png"
-                               Style="{StaticResource PoweredByImageStyle}" 
-                               Grid.RowSpan="2"/>
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2" />
                         <TextBlock Text="InTouch"
                                    x:Uid="AboutView_InTouch_Title"
                                    Grid.Column="1"
@@ -346,10 +348,10 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
+
                         <Image Source="ms-appx:///Assets/About/lf-logo.png"
-                               Style="{StaticResource PoweredByImageStyle}" 
-                               Grid.RowSpan="2"/>
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2" />
                         <TextBlock Text="Inflatable Last.fm"
                                    x:Uid="AboutView_IF_LastFm_Title"
                                    Grid.Column="1"
@@ -373,10 +375,10 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
+
                         <Image Source="ms-appx:///Assets/About/groove-logo.png"
-                               Style="{StaticResource PoweredByImageStyle}" 
-                               Grid.RowSpan="2"/>
+                               Style="{StaticResource PoweredByImageStyle}"
+                               Grid.RowSpan="2" />
                         <TextBlock Text="Groove Music"
                                    x:Uid="AboutView_Groove_Title"
                                    Grid.Column="1"
@@ -407,4 +409,4 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
-</Page>
+</mvvm:VisualStateAwarePage>

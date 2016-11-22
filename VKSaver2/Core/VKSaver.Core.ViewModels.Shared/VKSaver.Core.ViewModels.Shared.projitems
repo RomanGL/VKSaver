@@ -9,6 +9,7 @@
     <Import_RootNamespace>VKSaver.Core.ViewModels</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AdInfoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ArtistAlbumViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ArtistInfoViewModel.cs" />
