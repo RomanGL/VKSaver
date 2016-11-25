@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AdsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppLoaderService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppNotificationsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AudioEncryptedStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DownloadsExtensions.cs" />
@@ -41,8 +42,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)ImagesCacheService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAdsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAppLoaderService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAppNotificationsPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAppNotificationsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IBetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICultureProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDeviceVibrationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDialogsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDispatcherWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDownloadsService.cs" />
@@ -68,6 +72,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPurchaseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IServiceResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISoundService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISuspendingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITracksShuffleService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsPostprocessor.cs" />
@@ -96,6 +101,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceRelease.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\StoreConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoundService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferOperationErrorEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferStatusComparer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferStatusExtensions.cs" />

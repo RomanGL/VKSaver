@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\DataContextProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\PurchaseViewTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\PromoViewTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\AppNotificationControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\StoryboardServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagePlaceholder.cs" />
@@ -82,5 +83,11 @@
     <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.PlatformShared.de.xlf" />
     <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.PlatformShared.en.xlf" />
     <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.PlatformShared.uk.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Default.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Error.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Info.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Warning.png" />
   </ItemGroup>
 </Project>

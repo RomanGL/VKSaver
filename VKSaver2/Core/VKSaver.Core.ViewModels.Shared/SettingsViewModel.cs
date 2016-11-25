@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
@@ -37,7 +38,8 @@ namespace VKSaver.Core.ViewModels
             IDialogsService dialogsService,
             IInTouchWrapper inTouchWrapper, 
             InTouch inTouch,
-            ILaunchViewResolver launchViewResolver)
+            ILaunchViewResolver launchViewResolver,
+            IAppNotificationsService appNotificationsService)
         {
             _navigationService = navigationService;
             _vkLoginService = vkLoginService;
@@ -49,6 +51,7 @@ namespace VKSaver.Core.ViewModels
             _locService = locService;
             _dialogsService = dialogsService;
             _launchViewResolver = launchViewResolver;
+            _appNotificationsService = appNotificationsService;
 
             Authorizations = new ObservableCollection<IServiceAuthorization>();
             UpdateDatabaseCommand = new DelegateCommand(OnUpdateDatabaseCommand);
@@ -133,6 +136,13 @@ namespace VKSaver.Core.ViewModels
 
             AvailableLanguages = _locService.GetAvailableLanguages();
             base.OnNavigatedTo(e, viewModelState);
+
+            _appNotificationsService.SendNotification(new AppNotification
+            {
+                Title = "Настройки",
+                Content = "Добро пожаловать в настройки!",
+                Type = AppNotificationType.Warning
+            });
         }
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
@@ -207,5 +217,6 @@ namespace VKSaver.Core.ViewModels
         private readonly ILocService _locService;
         private readonly IDialogsService _dialogsService;        
         private readonly ILaunchViewResolver _launchViewResolver;
+        private readonly IAppNotificationsService _appNotificationsService;
     }
 }

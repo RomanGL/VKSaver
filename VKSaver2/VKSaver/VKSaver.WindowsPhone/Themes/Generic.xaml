@@ -16,6 +16,8 @@
             <SolidColorBrush x:Key="MainViewAppBarBackground"
                              Color="#D8000000" />
             <controls:PlayerTheme x:Key="PagePlayerTheme">Black</controls:PlayerTheme>
+            <SolidColorBrush x:Key="PopupBorderBrush"
+                             Color="#FF232323" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
             <ImageBrush x:Key="HubBackgroundBrush"
@@ -28,8 +30,14 @@
             <SolidColorBrush x:Key="MainViewAppBarBackground"
                              Color="#D8FFFFFF" />
             <controls:PlayerTheme x:Key="PagePlayerTheme">Gray</controls:PlayerTheme>
+            <SolidColorBrush x:Key="PopupBorderBrush"
+                             Color="#FF3278BE" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
+
+    <Color x:Key="ErrorPopupBackground">#FFB40000</Color>
+    <Color x:Key="WarningPopupBackground">#FFFFAF00</Color>
+    <Color x:Key="InfoPopupBackground">#FF32A000</Color>
 
     <converters:OneItemsListSizeConverter x:Key="OneItemsListSizeConverter" />
 

@@ -9,6 +9,8 @@
     <Import_RootNamespace>VKSaver.Core.Models</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppNotification.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppNotificationType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AppLanguage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AudioEncryptedStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AudioEncryptionMethod.cs" />

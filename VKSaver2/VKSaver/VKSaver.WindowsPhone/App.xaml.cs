@@ -40,7 +40,7 @@ namespace VKSaver
             {
                 _appLoaderService = new AppLoaderService(this);
 #if WINDOWS_PHONE_APP
-                _frame = new WithLoaderFrame(_appLoaderService);
+                _frame = new WithLoaderFrame(_appLoaderService, this);
 
                 HardwareButtons.BackPressed += (s, e) =>
                 {
@@ -143,6 +143,7 @@ namespace VKSaver
             _container.RegisterInstance<IVKLoginService>(vkLoginService);
             _container.RegisterInstance<InTouch>(inTouch);
             _container.RegisterInstance<ILastAuth>(lastAuth);
+            _container.RegisterInstance<IAppNotificationsPresenter>(_frame);
 
             _container.RegisterType<ILocService, LocService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IInTouchWrapper, InTouchWrapper>(new ContainerControlledLifetimeManager());
@@ -166,6 +167,9 @@ namespace VKSaver
             _container.RegisterType<ILaunchViewResolver, LaunchViewResolver>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IEmailService, EmailService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IFeedbackService, FeedbackService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IDeviceVibrationService, DeviceVibrationService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<ISoundService, SoundService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IAppNotificationsService, AppNotificationsService>(new ContainerControlledLifetimeManager());
 
             _container.RegisterType<LastfmClient>(new ContainerControlledLifetimeManager(), 
                 new InjectionFactory(c => InstanceFactories.ResolveLastfmClient(c)));
@@ -432,7 +436,7 @@ namespace VKSaver
         private IAppLoaderService _appLoaderService;
         private IMetricaService _metricaService;
         private UnityServiceLocator _unityServiceLocator;
-        private Frame _frame;
+        private WithLoaderFrame _frame;
 
         private const string LAST_FM_API_KEY = "***REMOVED***";
         private const string LAST_FM_API_SECRET = "***REMOVED***";

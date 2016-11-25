@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using System;
+using System.Collections.Generic;
+using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 using Windows.UI.Core;
@@ -8,17 +11,22 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace VKSaver.Controls
 {
-    public sealed class WithLoaderFrame : Frame, ILoader
+    public sealed class WithLoaderFrame : Frame, ILoader, IAppNotificationsPresenter
     {
         public WithLoaderFrame()
         {
             this.DefaultStyleKey = typeof(WithLoaderFrame);
         }
 
-        public WithLoaderFrame(IAppLoaderService appLoaderService)
+        public WithLoaderFrame(
+            IAppLoaderService appLoaderService, 
+            IServiceResolver serviceResolver)
         {
             this.DefaultStyleKey = typeof(WithLoaderFrame);
             AppLoaderService = appLoaderService;
+
+            _serviceResolver = serviceResolver;
+            _navigationService = new Lazy<INavigationService>(() => _serviceResolver.Resolve<INavigationService>());
         }
 
         public IAppLoaderService AppLoaderService { get; private set; }
@@ -78,6 +86,30 @@ namespace VKSaver.Controls
             });
         }
 
+        public async void ShowNotification(AppNotification notification)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (_notificationsPanel == null)
+                {
+                    _waitingNotifications.Add(notification);
+                    return;
+                }
+
+                var anc = new AppNotificationControl() { Message = notification };
+                anc.Loaded += (s, e) => anc.Show();
+                anc.Tapped += (s, e) =>
+                {
+                    anc.Hide();
+                    if (!String.IsNullOrWhiteSpace(anc.Message.DestinationView))
+                        _navigationService.Value.Navigate(anc.Message.DestinationView, anc.Message.NavigationParameter);
+
+                    anc.Message.ActionToDo?.Invoke();
+                };
+                _notificationsPanel.Children.Insert(0, anc);
+            });
+        }
+
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -90,10 +122,19 @@ namespace VKSaver.Controls
                 };
             }
 
+            _notificationsPanel = GetTemplateChild("NotificationsPanel") as Panel;
+
             this.Loaded += WithLoaderFrame_Loaded;
             this.Unloaded += WithLoaderFrame_Unloaded;
 
             VisualStateManager.GoToState(this, "Normal", true);
+
+            if (_waitingNotifications.Count > 0)
+            {
+                foreach (var notification in _waitingNotifications)
+                    ShowNotification(notification);
+                _waitingNotifications.Clear();
+            }
         }
 
         private void WithLoaderFrame_Loaded(object sender, RoutedEventArgs e)
@@ -107,5 +148,9 @@ namespace VKSaver.Controls
         }
 
         private bool _appBarHided;
+        private Panel _notificationsPanel;
+        private readonly List<AppNotification> _waitingNotifications = new List<AppNotification>();
+        private readonly Lazy<INavigationService> _navigationService;
+        private readonly IServiceResolver _serviceResolver;
     }
 }

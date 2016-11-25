@@ -39,6 +39,10 @@
         public const string SETTINGS_VERSION_PARAMETER = "SettingsVer";
         public const int SETTINGS_VERSION = 1;
 
+        public const string ENABLE_IN_APP_SOUND = "EnableInAppSound";
+        public const string ENABLE_IN_APP_VIBRATION = "EnableInAppVibration";
+        public const string ENABLE_IN_APP_POPUPS = "EnableInAppPopup";
+
 #if WINDOWS_UWP
         public const string YANDEX_METRICA_API_KEY = "***REMOVED***";
 #else
