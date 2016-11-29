@@ -4,6 +4,7 @@ using NotificationsExtensions.ToastContent;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Common;
@@ -19,13 +20,15 @@ namespace VKSaver.Core.Services
             IInTouchWrapper inTouchWrapper, 
             ILogService logService,
             IDialogsService dialogsService,
-            ILocService locService)
+            ILocService locService,
+            IAppNotificationsService appNotificationsService)
         {
             _inTouch = inTouch;
             _inTouchWrapper = inTouchWrapper;
             _logService = logService;
             _dialogsService = dialogsService;
             _locService = locService;
+            _appNotificationsService = appNotificationsService;
         }
 
         public async Task<UploadsPostprocessorResultType> ProcessUploadAsync(ICompletedUpload upload)
@@ -58,16 +61,23 @@ namespace VKSaver.Core.Services
 
             if (result.Result == UploadsPostprocessorResultType.Success)
             {
-                var successToast = ToastContentFactory.CreateToastText02();
-                successToast.Audio.Content = ToastAudioContent.IM;
-                successToast.TextHeading.Text = _locService["Toast_PostUploads_Success_Text"];
-                successToast.TextBodyWrap.Text = upload.Name;
+                _appNotificationsService.SendNotification(new AppNotification
+                {
+                    Title = _locService["Toast_PostUploads_Success_Text"],
+                    Content = upload.Name,
+                    Type = AppNotificationType.Info
+                });
 
-                var successXml = successToast.GetXml();
-                ToastAudioHelper.SetSuccessAudio(successXml);
-                var toast = new ToastNotification(successXml);
+                //var successToast = ToastContentFactory.CreateToastText02();
+                //successToast.Audio.Content = ToastAudioContent.IM;
+                //successToast.TextHeading.Text = _locService["Toast_PostUploads_Success_Text"];
+                //successToast.TextBodyWrap.Text = upload.Name;
 
-                ToastNotificationManager.CreateToastNotifier().Show(toast);
+                //var successXml = successToast.GetXml();
+                //ToastAudioHelper.SetSuccessAudio(successXml);
+                //var toast = new ToastNotification(successXml);
+
+                //ToastNotificationManager.CreateToastNotifier().Show(toast);
             }
             else
                 ShowError(upload, result);
@@ -154,37 +164,46 @@ namespace VKSaver.Core.Services
 
         private void ShowError(ICompletedUpload upload, PostprocessionResult result)
         {
-            var fail = ToastContentFactory.CreateToastText02();
-            fail.Audio.Content = ToastAudioContent.IM;
-            fail.TextHeading.Text = _locService["Toast_PostUploads_Fail_Text"];
-            fail.TextBodyWrap.Text = upload.Name;
+            //var fail = ToastContentFactory.CreateToastText02();
+            //fail.Audio.Content = ToastAudioContent.IM;
+            //fail.TextHeading.Text = _locService["Toast_PostUploads_Fail_Text"];
+            //fail.TextBodyWrap.Text = upload.Name;
 
-            var failXml = fail.GetXml();
-            ToastAudioHelper.SetFailAudio(failXml);
+            //var failXml = fail.GetXml();
+            //ToastAudioHelper.SetFailAudio(failXml);
 
-            ToastNotificationManager.CreateToastNotifier().Show(new ToastNotification(failXml));
+            //ToastNotificationManager.CreateToastNotifier().Show(new ToastNotification(failXml));
 
-            string text = null;
-
-            if (result.Result == UploadsPostprocessorResultType.ServerError)
+            _appNotificationsService.SendNotification(new AppNotification
             {
-                text = String.Format(_locService["Message_PostUploads_ServerError_Text"],
-                    upload.Name, 
-                    result.ErrorCode, 
-                    GetServerErrorDescription(result.ErrorCode, result.UploadErrorText));
-            }
-            else if (result.Result == UploadsPostprocessorResultType.ConnectionError)
-            {
-                text = String.Format(_locService["Message_PostUploads_ConnectionError_Text"],
-                    upload.Name);
-            }
-            else
-            {
-                text = String.Format(_locService["Message_PostUploads_UnknownAppError_Text"],
-                    upload.Name);
-            }
+                Title = $"{_locService["Toast_PostUploads_Fail_Text"]} - {upload.Name}",
+                Content = "Коснитесь для подробностей",
+                Type = AppNotificationType.Error,
+                Duration = TimeSpan.FromSeconds(15),
+                ActionToDo = () =>
+                {
+                    string text = null;
+                    if (result.Result == UploadsPostprocessorResultType.ServerError)
+                    {
+                        text = String.Format(_locService["Message_PostUploads_ServerError_Text"],
+                            upload.Name,
+                            result.ErrorCode,
+                            GetServerErrorDescription(result.ErrorCode, result.UploadErrorText));
+                    }
+                    else if (result.Result == UploadsPostprocessorResultType.ConnectionError)
+                    {
+                        text = String.Format(_locService["Message_PostUploads_ConnectionError_Text"],
+                            upload.Name);
+                    }
+                    else
+                    {
+                        text = String.Format(_locService["Message_PostUploads_UnknownAppError_Text"],
+                            upload.Name);
+                    }
 
-            _dialogsService.Show(text, _locService["Message_PostUploads_Error_Title"]);
+                    _dialogsService.Show(text, _locService["Message_PostUploads_Error_Title"]);
+                }
+            });
         }
 
         private string GetServerErrorDescription(int errorCode, string errorText = null)
@@ -213,6 +232,7 @@ namespace VKSaver.Core.Services
         private readonly IInTouchWrapper _inTouchWrapper;
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
+        private readonly IAppNotificationsService _appNotificationsService;
 
         private sealed class PostprocessionResult
         {

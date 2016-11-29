@@ -20,6 +20,7 @@ using Yandex.Metrica;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VKSaver.Core;
+using VKSaver.Core.Models;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -39,7 +40,6 @@ namespace VKSaver
             this.FrameFactory = () =>
             {
                 _appLoaderService = new AppLoaderService(this);
-#if WINDOWS_PHONE_APP
                 _frame = new WithLoaderFrame(_appLoaderService, this);
 
                 HardwareButtons.BackPressed += (s, e) =>
@@ -58,12 +58,7 @@ namespace VKSaver
 
                     _metricaService?.LogEvent(MetricaConstants.NAVIGATION_EVENT, JsonConvert.SerializeObject(dict));
                 };
-
                 return _frame;
-#else
-                _frame = new CustomFrame();
-                return _frame;
-#endif
             };
             
             this.UnhandledException += App_UnhandledException;
@@ -94,7 +89,15 @@ namespace VKSaver
                 logService.LogException(e.Exception);
 
                 YandexMetrica.ReportUnhandledException(e.Exception);
-                NavigationService.Navigate("ErrorView", null);
+                var notificationsService = _container.Resolve<IAppNotificationsService>();
+                notificationsService.SendNotification(new AppNotification
+                {
+                    Title = "Произошла ошибка",
+                    Content = "Приносим свои извинения за неудобства",
+                    Type = AppNotificationType.Error
+                });
+
+                //NavigationService.Navigate("ErrorView", null);
             }
             catch { }
 
@@ -205,15 +208,21 @@ namespace VKSaver
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
             };
-            vkLoginService.UserLogout += (s, e) =>
+            vkLoginService.UserLogout += async (s, e) =>
             {
-                NavigationService.ClearHistory();
-                NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);                
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
+                    NavigationService.ClearHistory();
+                });
             };
-            inTouch.AuthorizationFailed += (s, e) =>
+            inTouch.AuthorizationFailed += async (s, e) =>
             {
-                NavigationService.ClearHistory();
-                NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);                
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
+                    NavigationService.ClearHistory();
+                });
             };
             
 #if DEBUG

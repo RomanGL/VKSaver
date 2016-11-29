@@ -44,7 +44,7 @@ namespace VKSaver.Core.ViewModels
             GoToTrackInfoCommand = new DelegateCommand<LastTrack>(OnGoToTrackInfoCommand);
             GoToSimilarArtistInfoCommand = new DelegateCommand<LastArtist>(OnGoToSimilarArtistInfoCommand);
             GoToAlbumInfoCommand = new DelegateCommand<LastAlbum>(OnGoToAlbumInfoCommand);
-            FindArtistInVKCommand = new DelegateCommand(OnFindArtistInVKCommand);
+            FindArtistInVKCommand = new DelegateCommand(OnFindArtistInVKCommand);            
         }
         
         public SimpleStateSupportCollection<LastTrack> Tracks { get; private set; }
@@ -110,7 +110,7 @@ namespace VKSaver.Core.ViewModels
             Tracks.Load();
             Similar.Load();
             LoadArtistImage(Artist.Name);
-
+            
             base.OnNavigatedTo(e, viewModelState);
         }
 

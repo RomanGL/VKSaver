@@ -136,13 +136,6 @@ namespace VKSaver.Core.ViewModels
 
             AvailableLanguages = _locService.GetAvailableLanguages();
             base.OnNavigatedTo(e, viewModelState);
-
-            _appNotificationsService.SendNotification(new AppNotification
-            {
-                Title = "Настройки",
-                Content = "Добро пожаловать в настройки!",
-                Type = AppNotificationType.Warning
-            });
         }
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
