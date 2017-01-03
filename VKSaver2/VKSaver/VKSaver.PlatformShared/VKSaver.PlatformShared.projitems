@@ -86,8 +86,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Default.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Download.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Error.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Info.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Upload.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Warning.png" />
   </ItemGroup>
 </Project>

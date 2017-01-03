@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\AudioEncryptedStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DownloadsExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\EncryptionHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\FileSizeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\InTouchExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\LFAuthorization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\MediaStreamSourceWorker.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\StoreConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoundService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TransferNotificationsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferOperationErrorEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferStatusComparer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferStatusExtensions.cs" />

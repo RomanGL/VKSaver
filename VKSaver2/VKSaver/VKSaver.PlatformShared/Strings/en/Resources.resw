@@ -1510,4 +1510,50 @@ Do you really want to login through the browser?</value>
   <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
     <value>All VK videos will be available!</value>
   </data>
+  <data name="SettingsView_LaunchView_Title.Text" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="FirstSelectLaunchView_Title.Text" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="AboutView_Email_Title.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="AboutView_Support_Block.Text" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="AboutView_VKSaverGroup_Title.Text" xml:space="preserve">
+    <value>VK Saver</value>
+  </data>
+  <data name="AboutView_Other_Title.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="TransferView_Downloading_Notification_Text" xml:space="preserve">
+    <value>Downloading {0}</value>
+  </data>
+  <data name="TransferView_SizeMask_Text" xml:space="preserve">
+    <value>{0} of {1}</value>
+    <comment>Например, "20 ГБ из 300 ТБ".</comment>
+  </data>
+  <data name="TransferView_Uploading_Notification_Text" xml:space="preserve">
+    <value>Uploading {0}</value>
+  </data>
+  <data name="AppNotifications_VibrationNotWorking_Title" xml:space="preserve">
+    <value>Vibration service not working</value>
+  </data>
+  <data name="AppNotifications_CantStartDownload_Title" xml:space="preserve">
+    <value>Failed to add to the list of downloads</value>
+  </data>
+  <data name="AppNotifications_DownloadStartedNotAll_Title" xml:space="preserve">
+    <value>Were added not all elements in the downloads list</value>
+  </data>
+  <data name="AppNotifications_DownloadStarted_Title" xml:space="preserve">
+    <value>Added to the downloads list</value>
+  </data>
+  <data name="AppNotifications_TouchToInfo_Content" xml:space="preserve">
+    <value>Touch for details</value>
+  </data>
+  <data name="AppNotifications_TouchToTransferManager_Content" xml:space="preserve">
+    <value>Touch to go to the transfer manager</value>
+  </data>
 </root>

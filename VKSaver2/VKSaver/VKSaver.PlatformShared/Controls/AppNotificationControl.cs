@@ -26,14 +26,14 @@ namespace VKSaver.Controls
         private FrameworkElement contentGrid;
         private FrameworkElement rootGrid;
         private FrameworkElement visualBorder;
+        private ProgressBar progress;
         private CompositeTransform rootGridTransform;
         private Storyboard visibleStoryboard;
         private Storyboard collapsedStoryboard;
         private Storyboard manipulationResetStoryboard;
         private Storyboard manipulationCompletedStoryboard;
         private DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        private double resultWidth;
-        private byte number;
+        private int number;
         private bool isTitleState;
         private bool hasTitle;
 
@@ -60,6 +60,8 @@ namespace VKSaver.Controls
             collapsedStoryboard = GetTemplateChild("CollapsedStoryboard") as Storyboard;
             manipulationResetStoryboard = GetTemplateChild("ManipulationResetStoryboard") as Storyboard;
             manipulationCompletedStoryboard = GetTemplateChild("ManipulationCompletedStoryboard") as Storyboard;
+            progress = GetTemplateChild("Progress") as ProgressBar;
+            progress.Value = Message.ProgressPercent;
 
             parent = this.Parent as FrameworkElement;
             rootGridTransform = rootGrid.RenderTransform as CompositeTransform;
@@ -73,6 +75,12 @@ namespace VKSaver.Controls
             else VisualStateManager.GoToState(this, "ContentState", true);
 
             VisualStateManager.GoToState(this, Message.Type.ToString(), true);
+
+            Message.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "ProgressPercent")
+                    progress.Value = Message.ProgressPercent;
+            };
         }
 
         /// <summary>
@@ -152,7 +160,7 @@ namespace VKSaver.Controls
         {
             number++;
 
-            if (number == (byte)Message.Duration.TotalSeconds)
+            if (number >= Message.Duration.TotalSeconds)
             {
                 Hide();
             }

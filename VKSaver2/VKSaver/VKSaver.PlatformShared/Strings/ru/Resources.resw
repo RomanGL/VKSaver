@@ -1698,4 +1698,41 @@ Eng: upload</comment>
   <data name="Email_SupportTitle_Text" xml:space="preserve">
     <value>Сообщение из приложения</value>
   </data>
+  <data name="TransferView_Downloading_Notification_Text" xml:space="preserve">
+    <value>Выполняется загрузка {0}</value>
+  </data>
+  <data name="TransferView_SizeMask_Text" xml:space="preserve">
+    <value>{0} из {1}</value>
+    <comment>Например, "20 ГБ из 300 ТБ".</comment>
+  </data>
+  <data name="TransferView_Uploading_Notification_Text" xml:space="preserve">
+    <value>Выполняется отправка {0}</value>
+  </data>
+  <data name="AppNotifications_SoundNotWorking_Content" xml:space="preserve">
+    <value>Звуки уведомлений отключены</value>
+  </data>
+  <data name="AppNotifications_SoundNotWorking_Title" xml:space="preserve">
+    <value>Сервис воспроизведения звуков не работает</value>
+  </data>
+  <data name="AppNotifications_VibrationNotWorking_Content" xml:space="preserve">
+    <value>Вибрация уведомлений отключена</value>
+  </data>
+  <data name="AppNotifications_VibrationNotWorking_Title" xml:space="preserve">
+    <value>Сервис вибрации не работает</value>
+  </data>
+  <data name="AppNotifications_CantStartDownload_Title" xml:space="preserve">
+    <value>Не удалось добавить в список загрузок</value>
+  </data>
+  <data name="AppNotifications_DownloadStartedNotAll_Title" xml:space="preserve">
+    <value>В список загрузок добавлены не все элементы</value>
+  </data>
+  <data name="AppNotifications_DownloadStarted_Title" xml:space="preserve">
+    <value>Добавлено в список загрузок</value>
+  </data>
+  <data name="AppNotifications_TouchToInfo_Content" xml:space="preserve">
+    <value>Коснитесь для подробностей</value>
+  </data>
+  <data name="AppNotifications_TouchToTransferManager_Content" xml:space="preserve">
+    <value>Коснитесь для перехода в менеджер загрузок</value>
+  </data>
 </root>

@@ -2033,11 +2033,11 @@ Do you really want to login through the browser?</target>
         </trans-unit>
         <trans-unit id="SettingsView_LaunchView_Title.Text" translate="yes" xml:space="preserve">
           <source>Начальная страница</source>
-          <target state="new">Начальная страница</target>
+          <target state="translated">Home page</target>
         </trans-unit>
         <trans-unit id="FirstSelectLaunchView_Title.Text" translate="yes" xml:space="preserve">
           <source>Начальная страница</source>
-          <target state="new">Начальная страница</target>
+          <target state="translated">Home page</target>
         </trans-unit>
         <trans-unit id="AboutView_Email_Text.Text" translate="yes" xml:space="preserve">
           <source>Обратитесь к нам через Email</source>
@@ -2045,11 +2045,11 @@ Do you really want to login through the browser?</target>
         </trans-unit>
         <trans-unit id="AboutView_Email_Title.Text" translate="yes" xml:space="preserve">
           <source>Email</source>
-          <target state="new">Email</target>
+          <target state="translated">Email</target>
         </trans-unit>
         <trans-unit id="AboutView_Support_Block.Text" translate="yes" xml:space="preserve">
           <source>Поддержка</source>
-          <target state="new">Поддержка</target>
+          <target state="translated">Support</target>
         </trans-unit>
         <trans-unit id="AboutView_VKSaverGroup_Text.Text" translate="yes" xml:space="preserve">
           <source>Сообщество во ВКонтакте</source>
@@ -2057,11 +2057,11 @@ Do you really want to login through the browser?</target>
         </trans-unit>
         <trans-unit id="AboutView_VKSaverGroup_Title.Text" translate="yes" xml:space="preserve">
           <source>ВКачай</source>
-          <target state="new">ВКачай</target>
+          <target state="translated">VK Saver</target>
         </trans-unit>
         <trans-unit id="AboutView_Other_Title.Text" translate="yes" xml:space="preserve">
           <source>Прочее</source>
-          <target state="new">Прочее</target>
+          <target state="translated">Other</target>
         </trans-unit>
         <trans-unit id="AboutView_SpecialThanks_Block.Text" translate="yes" xml:space="preserve">
           <source>Выражаем благодарность</source>
@@ -2118,6 +2118,55 @@ Do you really want to login through the browser?</target>
         <trans-unit id="Email_SupportTitle_Text" translate="yes" xml:space="preserve">
           <source>Сообщение из приложения</source>
           <target state="new">Сообщение из приложения</target>
+        </trans-unit>
+        <trans-unit id="TransferView_Downloading_Notification_Text" translate="yes" xml:space="preserve">
+          <source>Выполняется загрузка {0}</source>
+          <target state="translated">Downloading {0}</target>
+        </trans-unit>
+        <trans-unit id="TransferView_SizeMask_Text" translate="yes" xml:space="preserve">
+          <source>{0} из {1}</source>
+          <target state="translated">{0} of {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например, "20 ГБ из 300 ТБ".</note>
+        </trans-unit>
+        <trans-unit id="TransferView_Uploading_Notification_Text" translate="yes" xml:space="preserve">
+          <source>Выполняется отправка {0}</source>
+          <target state="translated">Uploading {0}</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_SoundNotWorking_Content" translate="yes" xml:space="preserve">
+          <source>Звуки уведомлений отключены</source>
+          <target state="new">Звуки уведомлений отключены</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_SoundNotWorking_Title" translate="yes" xml:space="preserve">
+          <source>Сервис воспроизведения звуков не работает</source>
+          <target state="new">Сервис воспроизведения звуков не работает</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_VibrationNotWorking_Content" translate="yes" xml:space="preserve">
+          <source>Вибрация уведомлений отключена</source>
+          <target state="new">Вибрация уведомлений отключена</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_VibrationNotWorking_Title" translate="yes" xml:space="preserve">
+          <source>Сервис вибрации не работает</source>
+          <target state="translated">Vibration service not working</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_CantStartDownload_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось добавить в список загрузок</source>
+          <target state="translated">Failed to add to the list of downloads</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_DownloadStartedNotAll_Title" translate="yes" xml:space="preserve">
+          <source>В список загрузок добавлены не все элементы</source>
+          <target state="translated">Were added not all elements in the downloads list</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_DownloadStarted_Title" translate="yes" xml:space="preserve">
+          <source>Добавлено в список загрузок</source>
+          <target state="translated">Added to the downloads list</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_TouchToInfo_Content" translate="yes" xml:space="preserve">
+          <source>Коснитесь для подробностей</source>
+          <target state="translated">Touch for details</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_TouchToTransferManager_Content" translate="yes" xml:space="preserve">
+          <source>Коснитесь для перехода в менеджер загрузок</source>
+          <target state="translated">Touch to go to the transfer manager</target>
         </trans-unit>
       </group>
     </body>

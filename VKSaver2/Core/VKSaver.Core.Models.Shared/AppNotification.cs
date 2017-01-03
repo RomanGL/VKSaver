@@ -1,22 +1,66 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace VKSaver.Core.Models
 {
     /// <summary>
     /// Представляет внутреннее уведомление в приложении.
     /// </summary>
-    public sealed class AppNotification
+    public sealed class AppNotification : INotifyPropertyChanged
     {
-        private string imageUrl;
+        public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler HideRequested;
+
+        public bool IsHided { get; private set; }
 
         /// <summary>
         /// Заголовок сообщения.
         /// </summary>
-        public string Title { get; set; }
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                if (value == _title)
+                    return;
+
+                _title = value;
+                OnPropertyChanged(nameof(Title));
+            }
+        }
+
         /// <summary>
         /// Текст сообщения.
         /// </summary>
-        public string Content { get; set; }
+        public string Content
+        {
+            get { return _content; }
+            set
+            {
+                if (value == _content)
+                    return;
+
+                _content = value;
+                OnPropertyChanged(nameof(Content));
+            }
+        }
+
+        /// <summary>
+        /// Процент выполнения операции (от 0 до 100).
+        /// </summary>
+        public double ProgressPercent
+        {
+            get { return _progressPercent; }
+            set
+            {
+                if (value == _progressPercent)
+                    return;
+
+                _progressPercent = value;
+                OnPropertyChanged(nameof(ProgressPercent));
+            }
+        }
+
         /// <summary>
         /// Ссылка на картинку.
         /// </summary>
@@ -24,28 +68,32 @@ namespace VKSaver.Core.Models
         {
             get
             {
-                if (String.IsNullOrEmpty(imageUrl))
+                if (String.IsNullOrEmpty(_imageUrl))
                 {
                     switch (Type)
                     {
                         case AppNotificationType.Error:
-                            imageUrl = "ms-appx:///Assets/Popups/Error.png";
+                            _imageUrl = "ms-appx:///Assets/Popups/Error.png";
                             break;
                         case AppNotificationType.Warning:
-                            imageUrl = "ms-appx:///Assets/Popups/Warning.png";
+                            _imageUrl = "ms-appx:///Assets/Popups/Warning.png";
                             break;
                         case AppNotificationType.Info:
-                            imageUrl = "ms-appx:///Assets/Popups/Info.png";
+                            _imageUrl = "ms-appx:///Assets/Popups/Info.png";
                             break;
                         default:
-                            imageUrl = "ms-appx:///Assets/Popups/Default.png";
+                            _imageUrl = "ms-appx:///Assets/Popups/Default.png";
                             break;
                     }
                 }
 
-                return imageUrl;
+                return _imageUrl;
             }
-            set { imageUrl = value; }
+            set
+            {
+                _imageUrl = value;
+                OnPropertyChanged(nameof(ImageUrl));
+            }
         }
 
         /// <summary>
@@ -76,5 +124,21 @@ namespace VKSaver.Core.Models
         /// Отключить вибрацию для этого уведомления.
         /// </summary>
         public bool NoVibration { get; set; }
+
+        public void Hide()
+        {
+            IsHided = true;
+            HideRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string _title;
+        private string _content;
+        private string _imageUrl;
+        private double _progressPercent;
     }
 }

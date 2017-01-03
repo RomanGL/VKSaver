@@ -184,6 +184,7 @@ namespace VKSaver
             _container.RegisterInstance<ISuspendingService>("s1", playerService);
             _container.RegisterInstance<ISuspendingService>("s2", downloadsService);
             _container.RegisterInstance<ISuspendingService>("s3", uploadsService);
+            _container.RegisterType<ISuspendingService, TransferNotificationsService>("s4", new ContainerControlledLifetimeManager());
 
             _container.RegisterInstance<IPlayerService>(playerService);
             _container.RegisterInstance<IDownloadsService>(downloadsService);

@@ -61,5 +61,12 @@
                         Margin="0,20,0,0" />
             </StackPanel>
         </Grid>
+        <controls:AppNotificationControl>
+            <controls:AppNotificationControl.Message>
+                <models:AppNotification xmlns:models="using:VKSaver.Core.Models" 
+                                        Title="This is title"
+                                        Content="This is content"/>
+            </controls:AppNotificationControl.Message>
+        </controls:AppNotificationControl>
     </Grid>
 </prism:VisualStateAwarePage>

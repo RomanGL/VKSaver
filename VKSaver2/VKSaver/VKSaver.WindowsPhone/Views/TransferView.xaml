@@ -15,7 +15,7 @@
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            Style="{StaticResource DefaultPageStyle}">
 
-    <Page.Resources>
+    <mvvm:VisualStateAwarePage.Resources>
         <common:DataContextProxy x:Key="DataContextProxy" />
         <converters:FileSizeConverter x:Key="FileSizeConverter" />
         <converters:TransferStatusConverter x:Key="TransferStatusConverter" />
@@ -67,11 +67,8 @@
                     <TextBlock Style="{StaticResource BaseItemStyle}"
                                FontSize="18"
                                Pivot.SlideInAnimationGroup="GroupThree"
-                               Foreground="{ThemeResource PhoneDisabledBrush}">
-                        <Run Text="{Binding ProcessedSize, Converter={StaticResource FileSizeConverter}}" />
-                        <Run Text="из" />
-                        <Run Text="{Binding TotalSize, Converter={StaticResource FileSizeConverter}}" />
-                    </TextBlock>
+                               Foreground="{ThemeResource PhoneDisabledBrush}"
+                               Text="{Binding SizeProgressText}"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -119,7 +116,7 @@
             <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
                     Value="True" />
         </Style>
-    </Page.Resources>
+    </mvvm:VisualStateAwarePage.Resources>
 
     <mvvm:VisualStateAwarePage.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal">

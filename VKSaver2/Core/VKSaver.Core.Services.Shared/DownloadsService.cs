@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Common;
@@ -464,7 +465,7 @@ namespace VKSaver.Core.Services
         private readonly BackgroundTransferGroup _transferGroup;
         private readonly List<DownloadOperation> _downloads;
         private readonly Dictionary<Guid, CancellationTokenSource> _cts;
-        private readonly Dictionary<string, VKSaverAudio> _musicDownloads;
+        private readonly Dictionary<string, VKSaverAudio> _musicDownloads;        
 
         private readonly IMusicCacheService _musicCacheService;
         private readonly ISettingsService _settingsService;

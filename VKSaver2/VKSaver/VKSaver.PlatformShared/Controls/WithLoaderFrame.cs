@@ -90,6 +90,9 @@ namespace VKSaver.Controls
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                if (notification.IsHided)
+                    return;
+
                 if (_notificationsPanel == null)
                 {
                     _waitingNotifications.Add(notification);
@@ -106,6 +109,7 @@ namespace VKSaver.Controls
 
                     anc.Message.ActionToDo?.Invoke();
                 };
+                notification.HideRequested += (s, e) => anc.Hide();
                 _notificationsPanel.Children.Insert(0, anc);
             });
         }

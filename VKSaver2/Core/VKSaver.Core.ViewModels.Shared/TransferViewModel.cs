@@ -148,7 +148,7 @@ namespace VKSaver.Core.ViewModels
                         e.Status != BackgroundTransferStatus.Canceled)
                         return;
 
-                    Downloads.Add(new TransferItemViewModel(e));
+                    Downloads.Add(new TransferItemViewModel(e, _locService));
                     item = Downloads.FirstOrDefault(d => d.OperationGuid == e.OperationGuid);
                     if (item == null)
                         return;
@@ -184,7 +184,7 @@ namespace VKSaver.Core.ViewModels
                         e.Status != BackgroundTransferStatus.Canceled)
                         return;
 
-                    Uploads.Add(new TransferItemViewModel(e));
+                    Uploads.Add(new TransferItemViewModel(e, _locService));
                     item = Uploads.FirstOrDefault(d => d.OperationGuid == e.OperationGuid);
                     if (item == null)
                         return;
@@ -224,7 +224,7 @@ namespace VKSaver.Core.ViewModels
             }
 
             for (int i = 0; i < downloads.Length; i++)
-                Downloads.Add(new TransferItemViewModel(downloads[i]));
+                Downloads.Add(new TransferItemViewModel(downloads[i], _locService));
 
             DownloadsState = ContentState.Normal;
         }
@@ -246,7 +246,7 @@ namespace VKSaver.Core.ViewModels
 
             foreach (var upload in uploads)
             {
-                Uploads.Add(new TransferItemViewModel(upload));
+                Uploads.Add(new TransferItemViewModel(upload, _locService));
             }
 
             UploadsState = ContentState.Normal;

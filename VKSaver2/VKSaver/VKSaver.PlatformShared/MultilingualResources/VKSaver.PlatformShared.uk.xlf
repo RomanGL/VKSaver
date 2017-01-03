@@ -2119,6 +2119,55 @@ Eng: upload</note>
           <source>Сообщение из приложения</source>
           <target state="new">Сообщение из приложения</target>
         </trans-unit>
+        <trans-unit id="TransferView_Downloading_Notification_Text" translate="yes" xml:space="preserve">
+          <source>Выполняется загрузка {0}</source>
+          <target state="new">Выполняется загрузка {0}</target>
+        </trans-unit>
+        <trans-unit id="TransferView_SizeMask_Text" translate="yes" xml:space="preserve">
+          <source>{0} из {1}</source>
+          <target state="new">{0} из {1}</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Например, "20 ГБ из 300 ТБ".</note>
+        </trans-unit>
+        <trans-unit id="TransferView_Uploading_Notification_Text" translate="yes" xml:space="preserve">
+          <source>Выполняется отправка {0}</source>
+          <target state="new">Выполняется отправка {0}</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_SoundNotWorking_Content" translate="yes" xml:space="preserve">
+          <source>Звуки уведомлений отключены</source>
+          <target state="new">Звуки уведомлений отключены</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_SoundNotWorking_Title" translate="yes" xml:space="preserve">
+          <source>Сервис воспроизведения звуков не работает</source>
+          <target state="new">Сервис воспроизведения звуков не работает</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_VibrationNotWorking_Content" translate="yes" xml:space="preserve">
+          <source>Вибрация уведомлений отключена</source>
+          <target state="new">Вибрация уведомлений отключена</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_VibrationNotWorking_Title" translate="yes" xml:space="preserve">
+          <source>Сервис вибрации не работает</source>
+          <target state="new">Сервис вибрации не работает</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_CantStartDownload_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось добавить в список загрузок</source>
+          <target state="new">Не удалось добавить в список загрузок</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_DownloadStartedNotAll_Title" translate="yes" xml:space="preserve">
+          <source>В список загрузок добавлены не все элементы</source>
+          <target state="new">В список загрузок добавлены не все элементы</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_DownloadStarted_Title" translate="yes" xml:space="preserve">
+          <source>Добавлено в список загрузок</source>
+          <target state="new">Добавлено в список загрузок</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_TouchToInfo_Content" translate="yes" xml:space="preserve">
+          <source>Коснитесь для подробностей</source>
+          <target state="new">Коснитесь для подробностей</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_TouchToTransferManager_Content" translate="yes" xml:space="preserve">
+          <source>Коснитесь для перехода в менеджер загрузок</source>
+          <target state="new">Коснитесь для перехода в менеджер загрузок</target>
+        </trans-unit>
       </group>
     </body>
   </file>

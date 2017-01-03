@@ -42,9 +42,10 @@ namespace VKSaver.Core.Services
                     ShowFailNotification(results);
                     _appNotificationsService.SendNotification(new AppNotification
                     {
-                        Title = "Загрузка началась, но не все элементы будут загружены",
-                        Content = "Коснитесь для перехода в менеджер загрузок",
-                        Type = AppNotificationType.Warning
+                        Title = _locService["AppNotifications_DownloadStartedNotAll_Title"],
+                        Content = _locService["AppNotifications_TouchToTransferManager_Content"],
+                        Type = AppNotificationType.Warning,
+                        DestinationView = "TransferView"
                     });
                 }
 
@@ -61,9 +62,10 @@ namespace VKSaver.Core.Services
         {
             _appNotificationsService.SendNotification(new AppNotification
             {
-                Title = "Загрузка началась",
-                Content = "Коснитесь для перехода в менеджер загрузок",
-                Type = AppNotificationType.Info
+                Title = _locService["AppNotifications_DownloadStarted_Title"],
+                Content = _locService["AppNotifications_TouchToTransferManager_Content"],
+                Type = AppNotificationType.Info,
+                DestinationView = "TransferView"
             });
         }
 
@@ -71,8 +73,8 @@ namespace VKSaver.Core.Services
         {
             _appNotificationsService.SendNotification(new AppNotification
             {
-                Title = "Не удалось начать загрузку",
-                Content = "Коснитесь для подробностей",
+                Title = _locService["AppNotifications_CantStartDownload_Title"],
+                Content = _locService["AppNotifications_TouchToInfo_Content"],
                 Type = AppNotificationType.Error,
                 ActionToDo = () => ShowError(errors)
             });
