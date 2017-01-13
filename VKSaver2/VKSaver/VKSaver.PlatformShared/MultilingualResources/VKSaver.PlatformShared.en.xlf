@@ -2168,6 +2168,24 @@ Do you really want to login through the browser?</target>
           <source>Коснитесь для перехода в менеджер загрузок</source>
           <target state="translated">Touch to go to the transfer manager</target>
         </trans-unit>
+        <trans-unit id="ErrorView_ErrorDetails.Text" translate="yes" xml:space="preserve">
+          <source>Подробности об ошибке</source>
+          <target state="new">Подробности об ошибке</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_FatalError_Title" translate="yes" xml:space="preserve">
+          <source>Произошла ошибка, приносим свои извинения за неудобства</source>
+          <target state="new">Произошла ошибка, приносим свои извинения за неудобства</target>
+        </trans-unit>
+        <trans-unit id="FeedbackService_LeaveFeedback_Content" translate="yes" xml:space="preserve">
+          <source>Спасибо, что пользуетесь ВКачай! Пожалуйста, оставьте свой отзыв о работе приложения.
+Вы хотите оставить свой отзыв?</source>
+          <target state="new">Спасибо, что пользуетесь ВКачай! Пожалуйста, оставьте свой отзыв о работе приложения.
+Вы хотите оставить свой отзыв?</target>
+        </trans-unit>
+        <trans-unit id="FeedbackService_LeaveFeedback_Title" translate="yes" xml:space="preserve">
+          <source>Вам нравится ВКачай?</source>
+          <target state="new">Вам нравится ВКачай?</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -1,7 +1,6 @@
 ﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Store;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Unity;
@@ -89,15 +88,17 @@ namespace VKSaver
                 logService.LogException(e.Exception);
 
                 YandexMetrica.ReportUnhandledException(e.Exception);
+
+                var locService = _container.Resolve<ILocService>();
                 var notificationsService = _container.Resolve<IAppNotificationsService>();
                 notificationsService.SendNotification(new AppNotification
                 {
-                    Title = "Произошла ошибка",
-                    Content = "Приносим свои извинения за неудобства",
-                    Type = AppNotificationType.Error
+                    Title = locService["AppNotifications_FatalError_Title"],
+                    Content = locService["AppNotifications_TouchToInfo_Content"],
+                    Type = AppNotificationType.Error,
+                    DestinationView = "ErrorView",
+                    NavigationParameter = e.Exception.ToString()
                 });
-
-                //NavigationService.Navigate("ErrorView", null);
             }
             catch { }
 
@@ -437,9 +438,7 @@ namespace VKSaver
             else
                 res = _container.Resolve(typeof(T), name);
 
-            if (res == null)
-                return null;
-            return (T)res;
+            return (T) res;
         }
 
         private IUnityContainer _container;

@@ -1,7 +1,6 @@
 ﻿using ModernDev.InTouch;
 using System;
 using Windows.Web.Http;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;

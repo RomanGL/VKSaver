@@ -1735,4 +1735,17 @@ Eng: upload</comment>
   <data name="AppNotifications_TouchToTransferManager_Content" xml:space="preserve">
     <value>Коснитесь для перехода в менеджер загрузок</value>
   </data>
+  <data name="AppNotifications_FatalError_Title" xml:space="preserve">
+    <value>Произошла ошибка, приносим свои извинения за неудобства</value>
+  </data>
+  <data name="ErrorView_ErrorDetails.Text" xml:space="preserve">
+    <value>Подробности об ошибке</value>
+  </data>
+  <data name="FeedbackService_LeaveFeedback_Content" xml:space="preserve">
+    <value>Спасибо, что пользуетесь ВКачай! Пожалуйста, оставьте свой отзыв о работе приложения.
+Вы хотите оставить свой отзыв?</value>
+  </data>
+  <data name="FeedbackService_LeaveFeedback_Title" xml:space="preserve">
+    <value>Вам нравится ВКачай?</value>
+  </data>
 </root>

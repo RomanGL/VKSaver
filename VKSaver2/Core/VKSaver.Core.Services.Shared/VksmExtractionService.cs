@@ -123,10 +123,9 @@ namespace VKSaver.Core.Services
                 long completedBytes = 0;
                 long totalBytes = sourceStream.Length;
 
-                int readedBytes = 0;
                 do
                 {
-                    readedBytes = sourceStream.Read(buffer, 0, BUFFER_SIZE);
+                    var readedBytes = sourceStream.Read(buffer, 0, BUFFER_SIZE);
                     destinationStream.Write(buffer, 0, readedBytes);
 
                     completedBytes += readedBytes;

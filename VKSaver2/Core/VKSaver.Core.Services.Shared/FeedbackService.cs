@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using Windows.ApplicationModel.Store;
@@ -13,14 +11,14 @@ namespace VKSaver.Core.Services
     {
         public FeedbackService(
             ISettingsService settingsService,
-            IEmailService emailService,
             IDialogsService dialogsService,
-            IDispatcherWrapper dispatcherWrapper)
+            IDispatcherWrapper dispatcherWrapper,
+            ILocService locService)
         {
             _settingsService = settingsService;
-            _emailService = emailService;
             _dialogsService = dialogsService;
             _dispatcherWrapper = dispatcherWrapper;
+            _locService = locService;
         }
 
         public async void ActivateFeedbackNotifier()
@@ -43,8 +41,9 @@ namespace VKSaver.Core.Services
             {
                 await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    bool result = await _dialogsService.ShowYesNoAsync("Спасибо, что пользуетесь ВКачай! Пожалуйста, оставьте свой отзыв о работе приложения.\nВы хотите оставить свой отзыв?",
-                    "Оцените нас");
+                    bool result = await _dialogsService.ShowYesNoAsync(
+                        _locService["FeedbackService_LeaveFeedback_Content"], 
+                        _locService["FeedbackService_LeaveFeedback_Title"]);
 
                     _settingsService.Set(FEEDBACK_PARAMETER_NAME, -1);
 
@@ -55,9 +54,9 @@ namespace VKSaver.Core.Services
         }
 
         private readonly ISettingsService _settingsService;
-        private readonly IEmailService _emailService;
         private readonly IDialogsService _dialogsService;
         private readonly IDispatcherWrapper _dispatcherWrapper;
+        private readonly ILocService _locService;
 
         private const string FEEDBACK_PARAMETER_NAME = "FeedbackTask";
     }
