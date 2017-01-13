@@ -20,6 +20,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using VKSaver.Core;
 using VKSaver.Core.Models;
+using VKSaver.Core.Models.Common;
+using VKSaver.Core.ViewModels.Common;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -87,8 +89,9 @@ namespace VKSaver
                 var logService = _container.Resolve<ILogService>();
                 logService.LogException(e.Exception);
 
+#if !DEBUG
                 YandexMetrica.ReportUnhandledException(e.Exception);
-
+#endif
                 var locService = _container.Resolve<ILocService>();
                 var notificationsService = _container.Resolve<IAppNotificationsService>();
                 notificationsService.SendNotification(new AppNotification
@@ -97,7 +100,7 @@ namespace VKSaver
                     Content = locService["AppNotifications_TouchToInfo_Content"],
                     Type = AppNotificationType.Error,
                     DestinationView = "ErrorView",
-                    NavigationParameter = e.Exception.ToString()
+                    NavigationParameter = e.Message
                 });
             }
             catch { }

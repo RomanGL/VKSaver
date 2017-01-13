@@ -17,7 +17,7 @@ namespace VKSaver.Core.Services
 
         public void LogException(Exception ex)
         {
-            _metricaService?.LogException( ex);
+            _metricaService?.LogException(ex);
         }
 
         public void LogText(string text)

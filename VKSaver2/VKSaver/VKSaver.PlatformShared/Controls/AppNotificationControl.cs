@@ -110,7 +110,7 @@ namespace VKSaver.Controls
                 parent.SizeChanged -= Parent_SizeChanged;
                 this.ManipulationDelta -= RootGrid_ManipulationDelta;
                 this.ManipulationCompleted -= RootGrid_ManipulationCompleted;
-                timer.Stop();
+                timer?.Stop();
                 timer = null;
 
                 manipulationCompletedStoryboard.Completed += delegate

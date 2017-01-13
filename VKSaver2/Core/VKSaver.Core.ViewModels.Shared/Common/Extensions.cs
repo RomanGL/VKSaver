@@ -1,4 +1,5 @@
-﻿using ModernDev.InTouch;
+﻿using System;
+using ModernDev.InTouch;
 using System.Collections.Generic;
 using System.Linq;
 using VKSaver.Core.LinksExtractor;
@@ -11,6 +12,11 @@ namespace VKSaver.Core.ViewModels.Common
 {
     public static class Extensions
     {
+        public static string ToDetailsString(this Exception ex)
+        {
+            return $"{ex.Message}\n\n{ex.StackTrace}";
+        }
+
         public static IEnumerable<T> GetFromCentre<T>(this IList<T> source, int sourceIndex, int count, out int newIndex)
         {
             var newItems = new T[count];
