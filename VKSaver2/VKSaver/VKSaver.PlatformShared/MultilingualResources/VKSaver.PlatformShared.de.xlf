@@ -1351,8 +1351,9 @@ Bitte warten Sie...</target>
           <target state="final">Wenn die Bibliothek nicht alle Musik zeigt an, versuchen Sie die Database zu aktualisieren.</target>
         </trans-unit>
         <trans-unit id="SetingsView_Notifications_Text.Text" translate="yes" xml:space="preserve">
-          <source>ВКачай может уведомлять вас о завершении загрузок.</source>
-          <target state="final">VK Saver können Sie benachrichtigen, wann der Download abgeschlossen ist.</target>
+          <source>ВКачай может уведомлять вас о завершении загрузок системными всплывающими уведомлениями.</source>
+          <target state="needs-review-translation">VK Saver können Sie benachrichtigen, wann der Download abgeschlossen ist.</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="SettingsView_AppLanguage_Title.Text" translate="yes" xml:space="preserve">
           <source>Язык приложения</source>
@@ -1367,8 +1368,9 @@ Bitte warten Sie...</target>
           <target state="final">Lokale Bibliothek</target>
         </trans-unit>
         <trans-unit id="SettingsView_Notifications_Title.Text" translate="yes" xml:space="preserve">
-          <source>Уведомления</source>
-          <target state="final">Benachrichtigungen</target>
+          <source>Системные уведомления</source>
+          <target state="needs-review-translation">Benachrichtigungen</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="SettingsView_ServicesAuthorizations_Title.Text" translate="yes" xml:space="preserve">
           <source>Авторизация в сервисах</source>
@@ -2190,6 +2192,48 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
         <trans-unit id="FeedbackService_LeaveFeedback_Title" translate="yes" xml:space="preserve">
           <source>Вам нравится ВКачай?</source>
           <target state="new">Вам нравится ВКачай?</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Title.Text" translate="yes" xml:space="preserve">
+          <source>Внутренние уведомления</source>
+          <target state="new">Внутренние уведомления</target>
+        </trans-unit>
+        <trans-unit id="SetingsView_InAppNotifications_Text.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай может сообщать вам о важных событиях всплывающими уведомлениями внутри приложения.
+Этот параметр не коснется важных уведомлений.</source>
+          <target state="new">ВКачай может сообщать вам о важных событиях всплывающими уведомлениями внутри приложения.
+Этот параметр не коснется важных уведомлений.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_LibrarySection.Header" translate="yes" xml:space="preserve">
+          <source>библиотека</source>
+          <target state="new">библиотека</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_MainSection.Header" translate="yes" xml:space="preserve">
+          <source>общие</source>
+          <target state="new">общие</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_NotificationsSection.Header" translate="yes" xml:space="preserve">
+          <source>уведомления</source>
+          <target state="new">уведомления</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_Pivot.Title" translate="yes" xml:space="preserve">
+          <source>НАСТРОЙКИ</source>
+          <target state="new">НАСТРОЙКИ</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Sound_Text.Text" translate="yes" xml:space="preserve">
+          <source>В зависимости от типа уведомления, воспроизводится соответствующий звук. Вы можете отключить звуки уведомлений.</source>
+          <target state="new">В зависимости от типа уведомления, воспроизводится соответствующий звук. Вы можете отключить звуки уведомлений.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Sound_Title.Text" translate="yes" xml:space="preserve">
+          <source>Звук уведомлений</source>
+          <target state="new">Звук уведомлений</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Vibration_Text.Text" translate="yes" xml:space="preserve">
+          <source>В зависимости от типа уведомления, смартфон вибрирует соответствующим образом. Вы можете отключить вибрацию уведомлений.</source>
+          <target state="new">В зависимости от типа уведомления, смартфон вибрирует соответствующим образом. Вы можете отключить вибрацию уведомлений.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Vibration_Title.Text" translate="yes" xml:space="preserve">
+          <source>Вибрация уведомлений</source>
+          <target state="new">Вибрация уведомлений</target>
         </trans-unit>
       </group>
     </body>

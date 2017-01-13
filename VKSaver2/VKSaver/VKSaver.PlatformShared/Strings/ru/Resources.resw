@@ -1142,7 +1142,7 @@ Eng: TB</comment>
     <value>Если в вашей библиотеке отображаются не все треки, попробуйте выполнить обновление базы данных.</value>
   </data>
   <data name="SetingsView_Notifications_Text.Text" xml:space="preserve">
-    <value>ВКачай может уведомлять вас о завершении загрузок.</value>
+    <value>ВКачай может уведомлять вас о завершении загрузок системными всплывающими уведомлениями.</value>
   </data>
   <data name="SettingsView_AppLanguage_Title.Text" xml:space="preserve">
     <value>Язык приложения</value>
@@ -1154,7 +1154,7 @@ Eng: TB</comment>
     <value>Локальная библиотека</value>
   </data>
   <data name="SettingsView_Notifications_Title.Text" xml:space="preserve">
-    <value>Уведомления</value>
+    <value>Системные уведомления</value>
   </data>
   <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
     <value>Авторизация в сервисах</value>
@@ -1747,5 +1747,36 @@ Eng: upload</comment>
   </data>
   <data name="FeedbackService_LeaveFeedback_Title" xml:space="preserve">
     <value>Вам нравится ВКачай?</value>
+  </data>
+  <data name="SetingsView_InAppNotifications_Text.Text" xml:space="preserve">
+    <value>ВКачай может сообщать вам о важных событиях всплывающими уведомлениями внутри приложения.
+Этот параметр не коснется важных уведомлений.</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Sound_Text.Text" xml:space="preserve">
+    <value>В зависимости от типа уведомления, воспроизводится соответствующий звук. Вы можете отключить звуки уведомлений.</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Sound_Title.Text" xml:space="preserve">
+    <value>Звук уведомлений</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Title.Text" xml:space="preserve">
+    <value>Внутренние уведомления</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Vibration_Text.Text" xml:space="preserve">
+    <value>В зависимости от типа уведомления, смартфон вибрирует соответствующим образом. Вы можете отключить вибрацию уведомлений.</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Vibration_Title.Text" xml:space="preserve">
+    <value>Вибрация уведомлений</value>
+  </data>
+  <data name="SettingsView_LibrarySection.Header" xml:space="preserve">
+    <value>библиотека</value>
+  </data>
+  <data name="SettingsView_MainSection.Header" xml:space="preserve">
+    <value>общие</value>
+  </data>
+  <data name="SettingsView_NotificationsSection.Header" xml:space="preserve">
+    <value>уведомления</value>
+  </data>
+  <data name="SettingsView_Pivot.Title" xml:space="preserve">
+    <value>НАСТРОЙКИ</value>
   </data>
 </root>

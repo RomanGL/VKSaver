@@ -13,15 +13,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -101,11 +96,23 @@ namespace VKSaver.Core.ViewModels
             }
         }
 
-        [DoNotNotify]
-        public DelegateCommand UpdateDatabaseCommand { get; private set; }
+        public bool EnableInAppSound
+        {
+            get { return _settingsService.Get(AppConstants.ENABLE_IN_APP_SOUND, true); }
+            set { _settingsService.Set(AppConstants.ENABLE_IN_APP_SOUND, value); }
+        }
 
-        [DoNotNotify]
-        public DelegateCommand ExtractMp3FromVksmCommand { get; private set; }
+        public bool EnableInAppVibration
+        {
+            get { return _settingsService.Get(AppConstants.ENABLE_IN_APP_VIBRATION, true); }
+            set { _settingsService.Set(AppConstants.ENABLE_IN_APP_VIBRATION, value); }
+        }
+
+        public bool EnableInAppPopups
+        {
+            get { return _settingsService.Get(AppConstants.ENABLE_IN_APP_POPUPS, true); }
+            set { _settingsService.Set(AppConstants.ENABLE_IN_APP_POPUPS, value); }
+        }
 
         public int SelectedInternetAccessIndex
         {
@@ -122,6 +129,12 @@ namespace VKSaver.Core.ViewModels
                 OnDownloadsNotificationsChanged();
             }
         }
+
+        [DoNotNotify]
+        public DelegateCommand UpdateDatabaseCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand ExtractMp3FromVksmCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {

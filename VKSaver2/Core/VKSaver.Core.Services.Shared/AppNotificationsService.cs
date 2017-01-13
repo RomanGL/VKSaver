@@ -45,7 +45,10 @@ namespace VKSaver.Core.Services
         public void SendNotification(AppNotification notification)
         {
             if (notification == null)
-                throw new ArgumentNullException("notification");
+                throw new ArgumentNullException(nameof(notification));
+
+            if (!_settingsService.GetNoCache(ENABLE_IN_APP_POPUPS, true) && !notification.IsImportant)
+                return;
 
             Task.Run(async () =>
             {
@@ -62,7 +65,8 @@ namespace VKSaver.Core.Services
                         Type = AppNotificationType.Error,
                         NoSound = true,
                         Title = _locService["AppNotifications_SoundNotWorking_Title"],
-                        Content = _locService["AppNotifications_SoundNotWorking_Content"]
+                        Content = _locService["AppNotifications_SoundNotWorking_Content"],
+                        IsImportant = true
                     };
                     SendNotification(error);
                 }
@@ -85,7 +89,8 @@ namespace VKSaver.Core.Services
                         Type = AppNotificationType.Error,
                         NoVibration = true,
                         Title = _locService["AppNotifications_VibrationNotWorking_Title"],
-                        Content = _locService["AppNotifications_VibrationNotWorking_Content"]
+                        Content = _locService["AppNotifications_VibrationNotWorking_Content"],
+                        IsImportant = true
                     };
                     SendNotification(error);
                 }

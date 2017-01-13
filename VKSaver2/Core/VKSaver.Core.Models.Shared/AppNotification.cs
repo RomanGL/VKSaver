@@ -124,6 +124,11 @@ namespace VKSaver.Core.Models
         /// Отключить вибрацию для этого уведомления.
         /// </summary>
         public bool NoVibration { get; set; }
+        /// <summary>
+        /// Указывает на важность этого уведомления. 
+        /// Отображается даже при отключенных внутренних уведомлениях.
+        /// </summary>
+        public bool IsImportant { get; set; }
 
         public void Hide()
         {

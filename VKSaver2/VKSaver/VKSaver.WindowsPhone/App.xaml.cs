@@ -100,7 +100,8 @@ namespace VKSaver
                     Content = locService["AppNotifications_TouchToInfo_Content"],
                     Type = AppNotificationType.Error,
                     DestinationView = "ErrorView",
-                    NavigationParameter = e.Message
+                    NavigationParameter = e.Message,
+                    IsImportant = true
                 });
             }
             catch { }
@@ -423,7 +424,7 @@ namespace VKSaver
             }
             catch (Exception)
             {
-                NavigationService.Navigate("ErrorView", null);
+                NavigationService.Navigate("ErrorView", $"Resolution failed: {type.Name}");
                 return null;
             }
         }
