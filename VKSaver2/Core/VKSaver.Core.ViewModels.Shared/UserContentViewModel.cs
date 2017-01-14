@@ -71,6 +71,7 @@ namespace VKSaver.Core.ViewModels
             AddToMyCollectionCommand = new DelegateCommand<object>(OnAddToMyCollection, CanAddToMyCollection);
             AddSelectedToMyCollectionCommand = new DelegateCommand(OnAddSelectedToMyCollection, CanAddSelected);
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedAudios);
+            PlayShuffleCommand = new DelegateCommand(OnPlayShuffleCommand);
 
             DeleteCommand = new DelegateCommand<object>(OnDeleteCommand, CanDelete);
             DeleteSelectedCommand = new DelegateCommand(OnDeleteSelectedCommand, CanDeleteSelected);
@@ -144,6 +145,9 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand PlaySelectedCommand { get; private set; }
 
         [DoNotNotify]
+        public DelegateCommand PlayShuffleCommand { get; private set; }
+
+        [DoNotNotify]
         public DelegateCommand DeleteSelectedCommand { get; private set; }
 
         [DoNotNotify]
@@ -163,7 +167,8 @@ namespace VKSaver.Core.ViewModels
             set
             {
                 _lastPivotIndex = value;
-                ActivateSelectionMode.RaiseCanExecuteChanged();
+                SetDefaultMode();
+                //ActivateSelectionMode.RaiseCanExecuteChanged();
             }
         }
 
@@ -454,18 +459,32 @@ namespace VKSaver.Core.ViewModels
             PrimaryItems.Clear();
             SecondaryItems.Clear();
 
+            if (LastPivotIndex == 0)
+            {
+                PrimaryItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_Shuffle_Text"],
+                    Icon = new FontIcon { Glyph = "\uE14B" },
+                    Command = PlayShuffleCommand
+                });
+            }
+
             PrimaryItems.Add(new AppBarButton
             {
                 Label = _locService["AppBarButton_Refresh_Text"],
                 Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
                 Command = ReloadContentCommand
             });
-            PrimaryItems.Add(new AppBarButton
+
+            if (LastPivotIndex != 1)
             {
-                Label = _locService["AppBarButton_Select_Text"],
-                Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
-                Command = ActivateSelectionMode
-            });
+                PrimaryItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_Select_Text"],
+                    Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
+                    Command = ActivateSelectionMode
+                });
+            }
             
             if (_launchViewResolver.LaunchViewName != AppConstants.DEFAULT_MAIN_VIEW)
             {
@@ -658,6 +677,20 @@ namespace VKSaver.Core.ViewModels
             DeleteSelectedCommand.RaiseCanExecuteChanged();
         }
 
+        private async void OnPlayShuffleCommand()
+        {
+            _appLoaderService.Show();
+            var audios = AudioGroup.FirstOrDefault(g => (string)g.Key == "audios");
+            if (audios == null)
+                throw new Exception("Не найдена группа аудиозаписей.");
+
+            _playerService.IsShuffleMode = true;
+            await _playerService.PlayNewTracks(audios.Cast<Audio>().ToPlayerTracks(), 0);
+
+            _navigationService.Navigate("PlayerView", null);
+            _appLoaderService.Hide();
+        }
+
         private async void OnExecuteTracksListItemCommand(object item)
         {     
             if (item is AudioAlbum)
@@ -671,6 +704,7 @@ namespace VKSaver.Core.ViewModels
                 if (audios == null)
                     throw new Exception("Не найдена группа аудиозаписей.");
 
+                _playerService.IsShuffleMode = false;
                 await _playerService.PlayNewTracks(audios.Cast<Audio>().ToPlayerTracks(),
                     audios.IndexOf(item));
 
