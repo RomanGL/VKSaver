@@ -312,9 +312,12 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(_docsOffset)] = _docsOffset;           
             }
 
-            PrimaryItems.Clear();
-            SecondaryItems.Clear();
-            SelectedItems.Clear();
+            if (!suspending)
+            {
+                PrimaryItems.Clear();
+                SecondaryItems.Clear();
+                SelectedItems.Clear();
+            }
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }

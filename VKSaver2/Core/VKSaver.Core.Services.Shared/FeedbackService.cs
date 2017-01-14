@@ -32,7 +32,7 @@ namespace VKSaver.Core.Services
 
             if (startNumber == -1)
                 return;
-            else if (startNumber < 10)
+            if (startNumber < 10)
             {
                 startNumber++;
                 _settingsService.Set(FEEDBACK_PARAMETER_NAME, startNumber);
@@ -48,7 +48,7 @@ namespace VKSaver.Core.Services
                     _settingsService.Set(FEEDBACK_PARAMETER_NAME, -1);
 
                     if (result)
-                        await Launcher.LaunchUriAsync(new Uri("ms-windows-store://reviewapp/?AppId=" + CurrentApp.AppId));
+                        await Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=***REMOVED***"));
                 });
             }
         }
