@@ -62,11 +62,11 @@ namespace VKSaver.Core.ViewModels
                     case "friends":
                         LastPivotIndex = 0;
                         break;
-                    case "fr_lists":
-                        LastPivotIndex = 1;
-                        break;
+                    //case "fr_lists":
+                    //    LastPivotIndex = 1;
+                    //    break;
                     case "groups":
-                        LastPivotIndex = 2;
+                        LastPivotIndex = 1;
                         break;
                     default:
                         LastPivotIndex = 0;

@@ -12,19 +12,20 @@ using ModernDev.InTouch;
 using Newtonsoft.Json;
 using PropertyChanged;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Collections;
-using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class TrackInfoViewModel : ViewModelBase
+    public sealed class TrackInfoViewModel : VKAudioViewModel
     {
         public TrackInfoViewModel(
             INavigationService navigationService, 
@@ -36,21 +37,12 @@ namespace VKSaver.Core.ViewModels
             IDialogsService dialogsService, 
             ILocService locService,
             IImagesCacheService imagesCacheService)
+            : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper,
+                  playerService, locService, navigationService)
         {
-            _navigationService = navigationService;
-            _inTouch = inTouch;
-            _inTouchWrapper = inTouchWrapper;
-            _playerService = playerService;
-            _downloadsServiceHelper = downloadsServiceHelper;
-            _appLoaderService = appLoaderService;
-            _dialogsService = dialogsService;
-            _locService = locService;
             _imagesCacheService = imagesCacheService;
 
             ShowOtherTracksCommand = new DelegateCommand(OnShowOtherTracksCommand);
-            PlayTracksCommand = new DelegateCommand<Audio>(OnPlayTracksCommand);
-            DownloadTrackCommand = new DelegateCommand<Audio>(OnDownloadTrackCommand);
-            AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand);
         }
 
         public string ArtistImage { get; private set; }
@@ -58,19 +50,10 @@ namespace VKSaver.Core.ViewModels
         public LastTrack Track { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand ShowOtherTracksCommand { get; private set; }
-
-        [DoNotNotify]
         public SimpleStateSupportCollection<Audio> VKTracks { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<Audio> PlayTracksCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<Audio> DownloadTrackCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<Audio> AddToMyAudiosCommand { get; private set; }
+        public DelegateCommand ShowOtherTracksCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -102,6 +85,17 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
+        protected override IList GetSelectionList() => VKTracks;
+
+        protected override IList<Audio> GetAudiosList() => VKTracks;
+
+        protected override void OnReloadContentCommand()
+        {
+            AppBarItems.Clear();
+            SecondaryItems.Clear();
+            VKTracks.Refresh();
+        }
+
         private async Task<IEnumerable<Audio>> LoadVKTracks()
         {
             if (Track == null || Track.ArtistName == null)
@@ -117,54 +111,15 @@ namespace VKSaver.Core.ViewModels
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
 
+            if (!VKTracks.Any() && response.Data.Items.Any())
+                SetDefaultMode();
+
             return response.Data.Items;
-        }
-
-        private async void OnPlayTracksCommand(Audio track)
-        {
-            _appLoaderService.Show();
-
-            await _playerService.PlayNewTracks(VKTracks.ToPlayerTracks(), VKTracks.IndexOf(track));
-            _navigationService.Navigate("PlayerView", null);
-
-            _appLoaderService.Hide();
         }
 
         private void OnShowOtherTracksCommand()
         {
             _navigationService.Navigate("AccessDeniedView", null);
-        }
-
-        private async void OnDownloadTrackCommand(Audio track)
-        {
-            await _downloadsServiceHelper.StartDownloadingAsync(track.ToDownloadable());
-        }
-
-        private async void OnAddToMyAudiosCommand(Audio track)
-        {
-            _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
-
-            bool isSuccess = false;
-            try
-            {
-                isSuccess = await AddToMyAudios(track);
-            }
-            catch (Exception) { }
-
-            if (!isSuccess)
-            {
-                _dialogsService.Show(_locService["Message_AudioAddError_Text"],
-                    _locService["Message_AudioAddError_Title"]);
-            }
-            _appLoaderService.Hide();
-        }
-
-        private async Task<bool> AddToMyAudios(Audio audio)
-        {
-            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Add(
-                audio.Id, audio.OwnerId));
-
-            return !response.IsError;
         }
 
         private async void LoadArtistImage(string artist)
@@ -183,15 +138,7 @@ namespace VKSaver.Core.ViewModels
                 ArtistImage = img;
             }
         }
-
-        private readonly INavigationService _navigationService;
-        private readonly InTouch _inTouch;
-        private readonly IInTouchWrapper _inTouchWrapper;
-        private readonly IPlayerService _playerService;
-        private readonly IDownloadsServiceHelper _downloadsServiceHelper;
-        private readonly IAppLoaderService _appLoaderService;
-        private readonly IDialogsService _dialogsService;
-        private readonly ILocService _locService;
+        
         private readonly IImagesCacheService _imagesCacheService;
 
         private static readonly LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();

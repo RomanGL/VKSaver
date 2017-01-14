@@ -636,7 +636,7 @@ namespace VKSaver.Core.ViewModels
                         return true;
                     break;
                 case 2:
-                    return Documents.Any();
+                    return Documents != null && Documents.Any();
             }
 
             return false;

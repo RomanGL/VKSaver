@@ -9,9 +9,11 @@
                            xmlns:common="using:VKSaver.Common"
                            xmlns:i="using:Microsoft.Xaml.Interactivity"
                            xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:viewModels="using:VKSaver.Core.ViewModels"
+                           xmlns:b="using:VKSaver.Behaviors"
                            mc:Ignorable="d"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
-                           Style="{StaticResource DefaultPageStyle}">
+                           Style="{StaticResource DefaultPageStyle}" d:DataContext="{d:DesignInstance viewModels:TrackInfoViewModel}">
 
     <mvvm:VisualStateAwarePage.Transitions>
         <TransitionCollection>
@@ -48,6 +50,15 @@
         </Style>
     </mvvm:VisualStateAwarePage.Resources>
 
+    <mvvm:VisualStateAwarePage.BottomAppBar>
+        <CommandBar Visibility="Collapsed">
+            <i:Interaction.Behaviors>
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}"
+                                                    SecondaryCommands="{Binding SecondaryItems}" />
+            </i:Interaction.Behaviors>
+        </CommandBar>
+    </mvvm:VisualStateAwarePage.BottomAppBar>
+
     <Grid x:Name="LayoutRoot">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -73,8 +84,7 @@
             <TextBlock Text="подробнее"
                        x:Uid="TrackInfoView_Title"
                        Margin="-3,-6.5,0,0"
-                       Style="{ThemeResource HeaderTextBlockStyle}"
-                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+                       Style="{ThemeResource HeaderTextBlockStyle}" />
         </StackPanel>
 
         <ScrollViewer Grid.Row="1">
@@ -115,6 +125,8 @@
                           ItemsSource="{Binding VKTracks}"
                           ItemTemplate="{StaticResource WithDurationAudioTemplate}"
                           ItemContainerStyle="{StaticResource VKAudioItem}"
+                          IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                          SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
                           Grid.Row="1">
                     <ListView.FooterTemplate>
                         <DataTemplate>
@@ -129,6 +141,9 @@
                             <c:InvokeCommandAction Command="{Binding PlayTracksCommand}"
                                                    InputConverter="{StaticResource ItemClickEventArgsConverter}" />
                         </c:EventTriggerBehavior>
+                        <b:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                        SelectAll="{Binding SelectAll}"
+                                                        Command="{Binding SelectionChangedCommand}" />
                     </i:Interaction.Behaviors>
                 </ListView>
             </Grid>
