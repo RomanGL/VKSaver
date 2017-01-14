@@ -42,8 +42,8 @@ namespace VKSaver.Core.ViewModels
             _dialogsService = dialogsService;
             _inTouchWrapper = inTouchWraper;
 
-            AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand);
-            AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, HasSelectedItems);
+            AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand, CanAddToMyAudios);
+            AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, () => CanAddSelectedAudios() && HasSelectedItems());
         }
 
         [DoNotNotify]
@@ -77,11 +77,14 @@ namespace VKSaver.Core.ViewModels
 
         protected override void CreateSelectionAppBarButtons()
         {
-            SecondaryItems.Add(new AppBarButton
+            if (CanAddSelectedAudios())
             {
-                Label = _locService["AppBarButton_AddToMyAudios_Text"],
-                Command = AddSelectedToMyAudiosCommand
-            });
+                SecondaryItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_AddToMyAudios_Text"],
+                    Command = AddSelectedToMyAudiosCommand
+                });
+            }
 
             base.CreateSelectionAppBarButtons();
         }
@@ -90,6 +93,16 @@ namespace VKSaver.Core.ViewModels
         {
             AddSelectedToMyAudiosCommand.RaiseCanExecuteChanged();
             base.OnSelectionChangedCommand();
+        }
+
+        protected virtual bool CanAddToMyAudios(Audio audio)
+        {
+            return true;
+        }
+
+        protected virtual bool CanAddSelectedAudios()
+        {
+            return true;
         }
 
         private async void OnAddToMyAudiosCommand(Audio track)
@@ -178,7 +191,7 @@ namespace VKSaver.Core.ViewModels
             _dialogsService.Show(sb.ToString(), _locService["Message_AddSelectedError_Title"]);
         }
 
-        private bool _cancelOperations = false;
+        protected bool _cancelOperations = false;
 
         protected readonly IDialogsService _dialogsService;
         protected readonly InTouch _inTouch;

@@ -49,7 +49,7 @@
     <mvvm:VisualStateAwarePage.BottomAppBar>
         <CommandBar Visibility="Collapsed">
             <i:Interaction.Behaviors>
-                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding PrimaryItems}"
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}"
                                                     SecondaryCommands="{Binding SecondaryItems}"/>
             </i:Interaction.Behaviors>
         </CommandBar>
