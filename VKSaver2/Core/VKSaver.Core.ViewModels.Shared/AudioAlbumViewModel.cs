@@ -171,6 +171,7 @@ namespace VKSaver.Core.ViewModels
             PrimaryItems.Clear();
             SecondaryItems.Clear();
             SelectedItems.Clear();
+
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 

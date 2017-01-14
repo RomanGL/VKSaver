@@ -10,10 +10,12 @@
                            xmlns:b="using:VKSaver.Behaviors"
                            xmlns:common="using:VKSaver.Common"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           xmlns:viewModels="using:VKSaver.Core.ViewModels"
                            x:Class="VKSaver.Views.RecommendedView"
                            mc:Ignorable="d"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
-                           Style="{StaticResource DefaultPageStyle}">
+                           Style="{StaticResource DefaultPageStyle}"
+                           d:DataContext="{d:DesignInstance viewModels:RecommendedViewModel}">
 
     <mvvm:VisualStateAwarePage.Resources>
         <common:DataContextProxy x:Key="DataContextProxy" />

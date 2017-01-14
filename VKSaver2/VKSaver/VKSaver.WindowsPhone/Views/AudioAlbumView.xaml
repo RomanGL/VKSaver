@@ -11,9 +11,11 @@
                            xmlns:b="using:VKSaver.Behaviors"
                            xmlns:common="using:VKSaver.Common"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           xmlns:viewModels="using:VKSaver.Core.ViewModels"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            mc:Ignorable="d"
-                           Style="{StaticResource DefaultPageStyle}">
+                           Style="{StaticResource DefaultPageStyle}" 
+                           d:DataContext="{d:DesignInstance viewModels:AudioAlbumViewModel}">
 
     <mvvm:VisualStateAwarePage.Resources>
         <common:DataContextProxy x:Key="DataContextProxy" />

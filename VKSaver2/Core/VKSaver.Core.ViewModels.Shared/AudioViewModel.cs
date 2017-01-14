@@ -36,6 +36,7 @@ namespace VKSaver.Core.ViewModels
 
             PlayTracksCommand = new DelegateCommand<T>(OnPlayTracksCommand); 
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
+            PlayShuffleCommand = new DelegateCommand(OnPlayShuffleCommand);
 
             _maxPlayingTracks = maxPlayingTracks;
         }
@@ -46,11 +47,26 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand PlaySelectedCommand { get; private set; } 
 
+        [DoNotNotify]
+        public DelegateCommand PlayShuffleCommand { get; private set; }
+
         protected abstract IList<T> GetAudiosList();
 
         protected abstract IPlayerTrack ConvertToPlayerTrack(T track);
 
         protected virtual void PrepareTracksBeforePlay(IEnumerable<T> tracks) { }
+
+        protected override void CreateDefaultAppBarButtons()
+        {
+            AppBarItems.Add(new AppBarButton
+            {
+                Label = _locService["AppBarButton_Shuffle_Text"],
+                Icon = new FontIcon { Glyph = "\uE14B" },
+                Command = PlayShuffleCommand
+            });
+
+            base.CreateDefaultAppBarButtons();
+        }
 
         protected override void CreateSelectionAppBarButtons()
         {      
@@ -75,8 +91,9 @@ namespace VKSaver.Core.ViewModels
                 {
                     _appLoaderService.Hide();
                     return;
-                }               
+                }
 
+                _playerService.IsShuffleMode = false;
                 int trackIndex = audiosList.IndexOf(track);
                 if (_maxPlayingTracks != -1 && audiosList.Count > _maxPlayingTracks)
                 {
@@ -84,13 +101,35 @@ namespace VKSaver.Core.ViewModels
                     var newTracks = audiosList.GetFromCentre(trackIndex, _maxPlayingTracks, out newIndex);
 
                     PrepareTracksBeforePlay(newTracks);
-                    await _playerService.PlayNewTracks(newTracks.Select(t => ConvertToPlayerTrack(t)), newIndex);
+                    await _playerService.PlayNewTracks(newTracks.Select(ConvertToPlayerTrack), newIndex);
                 }
                 else
                 {
                     PrepareTracksBeforePlay(audiosList);
-                    await _playerService.PlayNewTracks(audiosList.Select(t => ConvertToPlayerTrack(t)), trackIndex);
+                    await _playerService.PlayNewTracks(audiosList.Select(ConvertToPlayerTrack), trackIndex);
                 }
+            });
+
+            _navigationService.Navigate("PlayerView", null);
+            _appLoaderService.Hide();
+        }
+
+        private async void OnPlayShuffleCommand()
+        {
+            _appLoaderService.Show();
+
+            await Task.Run(async () =>
+            {
+                var audiosList = GetAudiosList();
+                if (audiosList == null)
+                {
+                    _appLoaderService.Hide();
+                    return;
+                }
+
+                _playerService.IsShuffleMode = true;
+                PrepareTracksBeforePlay(audiosList);
+                await _playerService.PlayNewTracks(audiosList.Select(ConvertToPlayerTrack), 0);
             });
 
             _navigationService.Navigate("PlayerView", null);
@@ -106,6 +145,7 @@ namespace VKSaver.Core.ViewModels
                 var tracks = SelectedItems.Cast<T>().ToList();
                 PrepareTracksBeforePlay(tracks);
 
+                _playerService.IsShuffleMode = false;
                 if (_maxPlayingTracks != -1 && tracks.Count > _maxPlayingTracks)
                 {
                     int newIndex = 0;

@@ -1779,4 +1779,7 @@ Eng: upload</comment>
   <data name="SettingsView_Pivot.Title" xml:space="preserve">
     <value>НАСТРОЙКИ</value>
   </data>
+  <data name="AppBarButton_Shuffle_Text" xml:space="preserve">
+    <value>перемешать</value>
+  </data>
 </root>

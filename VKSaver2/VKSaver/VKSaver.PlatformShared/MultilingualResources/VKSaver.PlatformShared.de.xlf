@@ -2235,6 +2235,10 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
           <source>Вибрация уведомлений</source>
           <target state="new">Вибрация уведомлений</target>
         </trans-unit>
+        <trans-unit id="AppBarButton_Shuffle_Text" translate="yes" xml:space="preserve">
+          <source>перемешать</source>
+          <target state="new">перемешать</target>
+        </trans-unit>
       </group>
     </body>
   </file>
