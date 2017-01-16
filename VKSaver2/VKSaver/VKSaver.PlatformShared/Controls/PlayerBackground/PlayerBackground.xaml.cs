@@ -144,6 +144,7 @@ namespace VKSaver.Controls
             this.SizeChanged += (s, e) =>
             {
                 CancelAlbumsGridState();
+                CalculateObjectsSize();
             };            
         }
 #endregion
@@ -430,8 +431,8 @@ namespace VKSaver.Controls
             if (ElementsOnScreenCount > 6)
                 return;
 
-            bool isInvertedY = RandomFactory.Next(0, 2) == 0 ? false : true;
-            bool isInvertedX = RandomFactory.Next(0, 2) == 0 ? false : true;
+            bool isInvertedY = RandomFactory.Next(0, 2) != 0;
+            bool isInvertedX = RandomFactory.Next(0, 2) != 0;
 
             Color fillColor = Colors.White;
 
@@ -855,6 +856,33 @@ namespace VKSaver.Controls
             }
 
             storyboard.Begin();
+        }
+
+        private void CalculateObjectsSize()
+        {
+            double screenHeight = Window.Current.Bounds.Height;
+            double screenWidth = Window.Current.Bounds.Width;
+
+            OldImage.Height = screenHeight;
+            OldImage.Width = screenWidth;
+
+            NewImage.Height = screenHeight;
+            NewImage.Width = screenWidth;
+
+            AlbumsPanel.Height = screenHeight;
+            AlbumsPanel.Width = screenWidth;
+
+            BlackSubstrate.Height = screenHeight;
+            BlackSubstrate.Width = screenWidth;
+
+            ColorSubstrate.Height = screenHeight;
+            ColorSubstrate.Width = screenWidth;
+
+            RootPanel.Height = screenHeight;
+            RootPanel.Width = screenWidth;
+
+            SubRootPanel.Height = screenHeight;
+            SubRootPanel.Width = screenWidth;
         }
 
         #endregion

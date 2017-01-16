@@ -174,15 +174,17 @@
     </Page.Resources>
 
     <mvvm:VisualStateAwarePage.BottomAppBar>
-        <CommandBar Visibility="Collapsed">
+        <CommandBar Background="{ThemeResource MainViewAppBarBackground}"
+                    Visibility="Collapsed">
             <i:Interaction.Behaviors>
                 <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems}"
                                                     SecondaryCommands="{Binding SecondaryItems}" />
             </i:Interaction.Behaviors>
+            <AppBarButton></AppBarButton>
         </CommandBar>
     </mvvm:VisualStateAwarePage.BottomAppBar>
 
-    <Grid>
+    <Grid Margin="0,0,0,-60">
         <controls:PlayerBackground x:Name="PlBackground" 
                                    ArtistImage="{Binding ArtistImage}"/>
         <Pivot x:Name="MainPivot"
@@ -194,7 +196,7 @@
             <PivotItem Header="сейчас играет"
                        x:Uid="PlayerView_PivotSection_NowPlaying"
                        Style="{StaticResource PivotItemStyle}">
-                <Grid Margin="0">
+                <Grid Margin="0,0,0,60">
                     <Grid.ChildrenTransitions>
                         <TransitionCollection>
                             <RepositionThemeTransition />
@@ -320,6 +322,7 @@
                               Style="{StaticResource NoSelectionListViewStyle}"
                               ItemsSource="{Binding Tracks}"
                               ItemTemplate="{StaticResource PlayerItemTemplate}"
+                              FooterTemplate="{StaticResource ListFooterTemplate}"
                               IsItemClickEnabled="{Binding IsItemClickEnabled}"
                               SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
                         <i:Interaction.Behaviors>

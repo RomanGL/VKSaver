@@ -96,7 +96,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid>
+    <Canvas>
         <Rectangle x:Name="OldImage"
                    Opacity="0"
                    RenderTransformOrigin="0.5,0.5">
@@ -120,5 +120,5 @@
                    Fill="Transparent" />
         <Canvas x:Name="RootPanel" />
         <Canvas x:Name="SubRootPanel" />
-    </Grid>
+    </Canvas>
 </UserControl>
