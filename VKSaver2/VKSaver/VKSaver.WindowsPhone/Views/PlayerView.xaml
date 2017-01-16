@@ -192,6 +192,7 @@
                x:Uid="AppNamePivot"
                Style="{StaticResource PivotStyle}"
                SelectionChanged="MainPivot_SelectionChanged"
+               IsLocked="{Binding IsLockedPivot}"
                SelectedIndex="{Binding CurrentPivotIndex, Mode=TwoWay}">
             <PivotItem Header="сейчас играет"
                        x:Uid="PlayerView_PivotSection_NowPlaying"

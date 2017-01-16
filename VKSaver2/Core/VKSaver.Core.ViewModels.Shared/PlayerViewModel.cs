@@ -77,6 +77,8 @@ namespace VKSaver.Core.ViewModels
 
         public ObservableCollection<PlayerItem> Tracks { get; private set; }
 
+        public bool IsLockedPivot { get; private set; }
+
         public bool IsScrobbleMode
         {
             get { return _isScrobbleMode; }
@@ -234,6 +236,18 @@ namespace VKSaver.Core.ViewModels
                 return null;
 
             return new VKAudioInfo(track.Track.VKInfo.ID, track.Track.VKInfo.OwnerID);
+        }
+
+        protected override void CreateDefaultAppBarButtons()
+        {
+            base.CreateDefaultAppBarButtons();
+            IsLockedPivot = false;
+        }
+
+        protected override void CreateSelectionAppBarButtons()
+        {
+            base.CreateSelectionAppBarButtons();
+            IsLockedPivot = true;
         }
 
         private async void LoadPlayerState()
