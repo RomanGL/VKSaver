@@ -22,7 +22,7 @@ using Windows.UI.Xaml.Navigation;
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class NewsMediaViewModel : VKAudioViewModel
+    public sealed class NewsMediaViewModel : VKAudioImplementedViewModel
     {
         public NewsMediaViewModel(
             InTouch inTouch, 
@@ -32,8 +32,8 @@ namespace VKSaver.Core.ViewModels
             IAppLoaderService appLoaderService, 
             IDialogsService dialogsService,
             ILocService locService, 
-            IInTouchWrapper inTouchWraper)
-            : base(inTouch, appLoaderService, dialogsService, inTouchWraper, downloadsServiceHelper,
+            IInTouchWrapper inTouchWrapper)
+            : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper,
                   playerService, locService, navigationService)
         {
             IsReloadButtonSupported = true;

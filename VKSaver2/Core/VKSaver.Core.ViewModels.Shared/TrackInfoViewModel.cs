@@ -25,7 +25,7 @@ using Windows.UI.Xaml.Navigation;
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class TrackInfoViewModel : VKAudioViewModel
+    public sealed class TrackInfoViewModel : VKAudioImplementedViewModel
     {
         public TrackInfoViewModel(
             INavigationService navigationService, 

@@ -10,6 +10,7 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Newtonsoft.Json;
 using PropertyChanged;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -23,15 +24,18 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using ModernDev.InTouch;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class PlayerViewModel : ViewModelBase
+    public sealed class PlayerViewModel : VKAudioViewModel<PlayerViewModel.PlayerItem>
     {
         public event TypedEventHandler<PlayerViewModel, PlayerItem> TrackChanged;
 
         public PlayerViewModel(
+            InTouch inTouch,
+            IInTouchWrapper inTouchWrapper,
             INavigationService navigationService, 
             IPlayerService playerService,
             IPlayerPlaylistService playerPlaylistService, 
@@ -40,15 +44,18 @@ namespace VKSaver.Core.ViewModels
             IDownloadsServiceHelper downloadsServiceHelper,
             IAppLoaderService appLoaderService, 
             ILastFmLoginService lastFmLoginService,
-            IPurchaseService purchaseService)
+            IPurchaseService purchaseService,
+            ILocService locService,
+            IDialogsService dialogsService)
+            : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, playerService, locService, navigationService)
         {
-            _navigationService = navigationService;
-            _playerService = playerService;
+            IsReloadButtonSupported = false;
+            IsShuffleButtonSupported = false;
+            IsPlayButtonSupported = false;
+
             _playerPlaylistService = playerPlaylistService;
             _imagesCacheService = imagesCacheService;
             _tracksShuffleSevice = tracksShuffleService;
-            _downloadsServiceHelper = downloadsServiceHelper;
-            _appLoaderService = appLoaderService;
             _lastFmLoginService = lastFmLoginService;
             _purchaseService = purchaseService;
 
@@ -59,8 +66,7 @@ namespace VKSaver.Core.ViewModels
             PlayPauseCommand = new DelegateCommand(OnPlayPauseCommand);
             PlayTrackCommand = new DelegateCommand<PlayerItem>(OnPlayTrackCommand);
             ShowLyricsCommand = new DelegateCommand(OnShowLyricsCommand,
-                () => CurrentTrack != null && CurrentTrack.Track.VKInfo != null && CurrentTrack.Track.VKInfo.LyricsID != 0);
-            DownloadTrackCommand = new DelegateCommand<PlayerItem>(OnDownloadTrackCommand, CanExecuteDownloadTrackCommand);
+                () => CurrentTrack?.Track.VKInfo != null && CurrentTrack.Track.VKInfo.LyricsID != 0);
         }
 
         public PlayerItem CurrentTrack { get; private set; }
@@ -129,6 +135,18 @@ namespace VKSaver.Core.ViewModels
 
         public bool IsPlaying { get; set; }
 
+        public int CurrentPivotIndex
+        {
+            get { return _currentPivotIndex; }
+            set
+            {
+                _currentPivotIndex = value;
+                OnPropertyChanged(nameof(CurrentPivotIndex));
+
+                UpdateAppBarState(value);
+            }
+        }
+
         [DoNotNotify]
         public DelegateCommand NextTrackCommand { get; private set; }
 
@@ -143,9 +161,6 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand ShowLyricsCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<PlayerItem> DownloadTrackCommand { get; private set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -175,9 +190,50 @@ namespace VKSaver.Core.ViewModels
 
                 _timer.Stop();
                 _isSubscribed = false;
+
+                AppBarItems.Clear();
+                SecondaryItems.Clear();
             }
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
+        }
+
+        protected override IList GetSelectionList() => Tracks;
+        protected override IList<PlayerItem> GetAudiosList() => Tracks;
+        protected override IPlayerTrack ConvertToPlayerTrack(PlayerItem track) => track.Track;
+        protected override IDownloadable ConvertToDownloadable(PlayerItem track) => track.Track as IDownloadable;
+        
+        protected override string TrackToFriendlyNameString(PlayerItem track)
+        {
+            return $"{track.Track.Artist} - {track.Track.Title}";
+        }
+
+        protected override bool CanDownloadTrack(PlayerItem track)
+        {
+            return track?.Track != null && track.Track.Source.StartsWith("http");
+        }
+
+        protected override bool CanAddToMyAudios(PlayerItem audio)
+        {
+            return audio?.Track?.VKInfo != null;
+        }
+
+        protected override bool CanAddSelectedAudios()
+        {
+            return SelectedItems.Cast<PlayerItem>().FirstOrDefault(CanAddToMyAudios) != null;
+        }
+
+        protected override bool CanDownloadSelected()
+        {
+            return SelectedItems.Cast<PlayerItem>().FirstOrDefault(CanDownloadTrack) != null;
+        }
+
+        protected override VKAudioInfo GetAudioInfo(PlayerItem track)
+        {
+            if (track.Track.VKInfo == null)
+                return null;
+
+            return new VKAudioInfo(track.Track.VKInfo.ID, track.Track.VKInfo.OwnerID);
         }
 
         private async void LoadPlayerState()
@@ -191,7 +247,7 @@ namespace VKSaver.Core.ViewModels
             OnPropertyChanged(nameof(IsScrobbleMode));
                 
             IsPlaying = _playerService.CurrentState == PlayerState.Playing;
-            _currentTrackID = _playerService.CurrentTrackID;
+            _currentTrackId = _playerService.CurrentTrackID;
 
             Duration = _playerService.Duration;
 
@@ -217,18 +273,20 @@ namespace VKSaver.Core.ViewModels
 
             Tracks = new ObservableCollection<PlayerItem>(_tracks.Select(t => new PlayerItem { Track = t }));
                 
-            if (_currentTrackID >= 0)
+            if (_currentTrackId >= 0)
             {
-                CurrentTrack = Tracks[_currentTrackID];
+                CurrentTrack = Tracks[_currentTrackId];
                 CurrentTrack.IsCurrent = true;
 
                 LoadArtistImage(CurrentTrack.Track);
                 LoadTrackImage(CurrentTrack.Track);
                 ShowLyricsCommand.RaiseCanExecuteChanged();
+                DownloadTrackCommand.RaiseCanExecuteChanged();
             }
-
+            
             CanShuffle = true;
             _appLoaderService.Hide();
+            UpdateAppBarState(CurrentPivotIndex);
         }
 
         private void Timer_Tick(object sender, object e)
@@ -261,18 +319,18 @@ namespace VKSaver.Core.ViewModels
 
         private async void PlayerService_TrackChanged(IPlayerService sender, TrackChangedEventArgs e)
         {
-            _currentTrackID = e.TrackID;
+            _currentTrackId = e.TrackID;
             if (Tracks == null)
                 return;
 
-            if (_currentTrackID >= 0)
+            if (_currentTrackId >= 0)
             {
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     if (CurrentTrack != null)
                         CurrentTrack.IsCurrent = false;
 
-                    CurrentTrack = Tracks[_currentTrackID];
+                    CurrentTrack = Tracks[_currentTrackId];
                     CurrentTrack.IsCurrent = true;
 
                     _position = TimeSpan.Zero;
@@ -282,6 +340,7 @@ namespace VKSaver.Core.ViewModels
 
                     TrackChanged?.Invoke(this, CurrentTrack);
                     ShowLyricsCommand.RaiseCanExecuteChanged();
+                    DownloadTrackCommand.RaiseCanExecuteChanged();
                 });
 
                 LoadArtistImage(CurrentTrack.Track);
@@ -340,12 +399,12 @@ namespace VKSaver.Core.ViewModels
 
             if (isOn)
             {
-                await _tracksShuffleSevice.ShuffleTracksAsync(_tracks, _currentTrackID);
+                await _tracksShuffleSevice.ShuffleTracksAsync(_tracks, _currentTrackId);
                 await _playerPlaylistService.WriteShuffledPlaylist(_tracks);
                 Tracks = new ObservableCollection<PlayerItem>(_tracks.Select(t => new PlayerItem { Track = t }));
                 _playerService.IsShuffleMode = true;
 
-                _currentTrackID = _tracks.IndexOf(currentTrack);
+                _currentTrackId = _tracks.IndexOf(currentTrack);
             }
             else
             {
@@ -353,12 +412,12 @@ namespace VKSaver.Core.ViewModels
                 Tracks = new ObservableCollection<PlayerItem>(_tracks.Select(t => new PlayerItem { Track = t }));
                 _playerService.IsShuffleMode = false;
 
-                _currentTrackID = _tracks.IndexOf(currentTrack);
+                _currentTrackId = _tracks.IndexOf(currentTrack);
             }
 
-            if (_currentTrackID >= 0)
+            if (_currentTrackId >= 0)
             {
-                CurrentTrack = Tracks[_currentTrackID];
+                CurrentTrack = Tracks[_currentTrackId];
                 CurrentTrack.IsCurrent = true;
             }
 
@@ -401,14 +460,15 @@ namespace VKSaver.Core.ViewModels
                     _artistImageUrl)));
         }
 
-        private async void OnDownloadTrackCommand(PlayerItem item)
+        private void UpdateAppBarState(int pivotIndex)
         {
-            var res = await _downloadsServiceHelper.StartDownloadingAsync(item.Track as IDownloadable);
-        }
-
-        private bool CanExecuteDownloadTrackCommand(PlayerItem item)
-        {
-            return item != null && item.Track != null && item.Track.Source.StartsWith("http");
+            if (pivotIndex == 1)
+                SetDefaultMode();
+            else
+            {
+                AppBarItems.Clear();
+                SecondaryItems.Clear();
+            }
         }
 
         private void TryEnableScrobbleMode()
@@ -444,20 +504,17 @@ namespace VKSaver.Core.ViewModels
         private bool _isSubscribed;
         private bool _isShuffleMode;        
         private PlayerRepeatMode _repeatMode;
-        private int _currentTrackID;
+        private int _currentTrackId;
         private TimeSpan _position;
         private List<IPlayerTrack> _tracks;
         private string _artistImageUrl;
+        private int _currentPivotIndex;
         private bool _noPositionUpdates;    // Позволяет убрать заикание при переходе на страницу с работающим плеером.
 
         private readonly DispatcherTimer _timer;
-        private readonly INavigationService _navigationService;
-        private readonly IPlayerService _playerService;
         private readonly IPlayerPlaylistService _playerPlaylistService;
         private readonly IImagesCacheService _imagesCacheService;
         private readonly ITracksShuffleService _tracksShuffleSevice;
-        private readonly IDownloadsServiceHelper _downloadsServiceHelper;
-        private readonly IAppLoaderService _appLoaderService;
         private readonly ILastFmLoginService _lastFmLoginService;
         private readonly IPurchaseService _purchaseService;
 

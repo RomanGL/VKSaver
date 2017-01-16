@@ -25,7 +25,7 @@ using Windows.UI.Xaml.Navigation;
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class AudioAlbumViewModel : VKAudioViewModel
+    public sealed class AudioAlbumViewModel : VKAudioImplementedViewModel
     {
         public AudioAlbumViewModel(
             INavigationService navigationService, 
@@ -101,7 +101,7 @@ namespace VKSaver.Core.ViewModels
             return audio != null && audio.OwnerId != _inTouch.Session.UserId;
         }
 
-        protected override bool CanAddSelectedAudios()
+        protected override bool AddSelectedToMyAudiosSupported()
         {
             return Album.OwnerId != _inTouch.Session.UserId;
         }
@@ -118,7 +118,7 @@ namespace VKSaver.Core.ViewModels
 
         protected override void CreateSelectionAppBarButtons()
         {
-            if (!CanAddSelectedAudios())
+            if (!AddSelectedToMyAudiosSupported())
             {
                 SecondaryItems.Add(new AppBarButton
                 {

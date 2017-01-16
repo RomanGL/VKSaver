@@ -29,8 +29,8 @@ namespace VKSaver.Core.ViewModels
         {
             _downloadsServiceHelper = downloadsServiceHelper;            
 
-            DownloadTrackCommand = new DelegateCommand<T>(OnDownloadTrackCommand);
-            DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, HasSelectedItems);
+            DownloadTrackCommand = new DelegateCommand<T>(OnDownloadTrackCommand, CanDownloadTrack);
+            DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, () => HasSelectedItems() & CanDownloadSelected());
             OpenTransferManagerCommand = new DelegateCommand(OnOpenTransferManagerCommand);
         }
 
@@ -43,6 +43,8 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand DownloadSelectedCommand { get; private set; }
 
+        protected virtual bool CanDownloadTrack(T track) => true;
+        protected virtual bool CanDownloadSelected() => true;
         protected abstract IDownloadable ConvertToDownloadable(T track);
 
         protected override void OnSelectionChangedCommand()
@@ -90,7 +92,7 @@ namespace VKSaver.Core.ViewModels
             var items = SelectedItems.ToList();
             SetDefaultMode();
 
-            var toDownload = items.Cast<T>().Select(t => ConvertToDownloadable(t)).ToList();
+            var toDownload = items.Cast<T>().Where(CanDownloadTrack).Select(ConvertToDownloadable).ToList();
             await _downloadsServiceHelper.StartDownloadingAsync(toDownload);
             _appLoaderService.Hide();
         }

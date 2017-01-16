@@ -28,18 +28,36 @@ namespace VKSaver.Core.ViewModels
             INavigationService navigationService, 
             IAppLoaderService appLoaderService,
             int maxPlayingTracks = -1)
+            : this(locService, navigationService, playerService, appLoaderService, true, true, maxPlayingTracks)
+        { }
+
+        protected AudioViewModel(ILocService locService,
+            INavigationService navigationService, 
+            IPlayerService playerService, 
+            IAppLoaderService appLoaderService, 
+            bool isShuffleButtonSupported, 
+            bool isPlayButtonSupported,
+            int maxPlayingTracks) 
             : base(locService)
-        {            
+        {
             _navigationService = navigationService;
             _playerService = playerService;
             _appLoaderService = appLoaderService;
 
-            PlayTracksCommand = new DelegateCommand<T>(OnPlayTracksCommand); 
+            PlayTracksCommand = new DelegateCommand<T>(OnPlayTracksCommand);
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
             PlayShuffleCommand = new DelegateCommand(OnPlayShuffleCommand);
 
             _maxPlayingTracks = maxPlayingTracks;
+            IsShuffleButtonSupported = isShuffleButtonSupported;
+            IsPlayButtonSupported = isPlayButtonSupported;
         }
+
+        [DoNotNotify]
+        protected bool IsShuffleButtonSupported { get; set; }
+
+        [DoNotNotify]
+        protected bool IsPlayButtonSupported { get; set; }
 
         [DoNotNotify]
         public DelegateCommand<T> PlayTracksCommand { get; private set; }
@@ -58,24 +76,30 @@ namespace VKSaver.Core.ViewModels
 
         protected override void CreateDefaultAppBarButtons()
         {
-            AppBarItems.Add(new AppBarButton
+            if (IsShuffleButtonSupported)
             {
-                Label = _locService["AppBarButton_Shuffle_Text"],
-                Icon = new FontIcon { Glyph = "\uE14B" },
-                Command = PlayShuffleCommand
-            });
+                AppBarItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_Shuffle_Text"],
+                    Icon = new FontIcon { Glyph = "\uE14B" },
+                    Command = PlayShuffleCommand
+                });
+            }
 
             base.CreateDefaultAppBarButtons();
         }
 
         protected override void CreateSelectionAppBarButtons()
-        {      
-            AppBarItems.Add(new AppBarButton
+        {
+            if (IsPlayButtonSupported)
             {
-                Label = _locService["AppBarButton_Play_Text"],
-                Icon = new FontIcon { Glyph = "\uE102" },
-                Command = PlaySelectedCommand
-            });
+                AppBarItems.Add(new AppBarButton
+                {
+                    Label = _locService["AppBarButton_Play_Text"],
+                    Icon = new FontIcon { Glyph = "\uE102" },
+                    Command = PlaySelectedCommand
+                });
+            }
 
             base.CreateSelectionAppBarButtons();
         }

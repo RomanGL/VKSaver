@@ -1,56 +1,46 @@
-﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
-using Prism.Commands;
-using Prism.Windows.Navigation;
-#else
-using Microsoft.Practices.Prism.StoreApps;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
-#endif
-
-using ModernDev.InTouch;
-using PropertyChanged;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VKSaver.Core.Services.Common;
-using VKSaver.Core.Services.Interfaces;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VKSaver.Core.Models.Player;
-using VKSaver.Core.ViewModels.Common;
-using VKSaver.Core.Models.Transfer;
+using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using ModernDev.InTouch;
+using PropertyChanged;
+using VKSaver.Core.Services.Common;
+using VKSaver.Core.Services.Interfaces;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class VKAudioViewModel : DownloadableAudioViewModel<Audio>
+    public abstract class VKAudioViewModel<T> : DownloadableAudioViewModel<T>
     {
         protected VKAudioViewModel(
-            InTouch inTouch, 
-            IAppLoaderService appLoaderService, 
-            IDialogsService dialogsService, 
-            IInTouchWrapper inTouchWraper, 
-            IDownloadsServiceHelper downloadsServiceHelper, 
+            InTouch inTouch,
+            IAppLoaderService appLoaderService,
+            IDialogsService dialogsService,
+            IInTouchWrapper inTouchWrapper,
+            IDownloadsServiceHelper downloadsServiceHelper,
             IPlayerService playerService,
-            ILocService locService, 
+            ILocService locService,
             INavigationService navigationService)
             : base(downloadsServiceHelper, appLoaderService, playerService, locService, navigationService)
         {
             _inTouch = inTouch;
             _dialogsService = dialogsService;
-            _inTouchWrapper = inTouchWraper;
+            _inTouchWrapper = inTouchWrapper;
 
-            AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand, CanAddToMyAudios);
-            AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, () => CanAddSelectedAudios() && HasSelectedItems());
+            AddToMyAudiosCommand = new DelegateCommand<T>(OnAddToMyAudiosCommand, CanAddToMyAudios);
+            AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, () => HasSelectedItems() & CanAddSelectedAudios());
         }
 
         [DoNotNotify]
         public DelegateCommand AddSelectedToMyAudiosCommand { get; private set; }
 
         [DoNotNotify]
-        public DelegateCommand<Audio> AddToMyAudiosCommand { get; private set; }
+        public DelegateCommand<T> AddToMyAudiosCommand { get; private set; }
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
@@ -65,19 +55,9 @@ namespace VKSaver.Core.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
-        protected override IPlayerTrack ConvertToPlayerTrack(Audio track)
-        {
-            return track.ToPlayerTrack();
-        }
-
-        protected override IDownloadable ConvertToDownloadable(Audio track)
-        {
-            return track.ToDownloadable();
-        }
-
         protected override void CreateSelectionAppBarButtons()
         {
-            if (CanAddSelectedAudios())
+            if (AddSelectedToMyAudiosSupported())
             {
                 SecondaryItems.Add(new AppBarButton
                 {
@@ -95,19 +75,16 @@ namespace VKSaver.Core.ViewModels
             base.OnSelectionChangedCommand();
         }
 
-        protected virtual bool CanAddToMyAudios(Audio audio)
-        {
-            return true;
-        }
+        protected virtual bool CanAddToMyAudios(T audio) => true;
+        protected virtual bool CanAddSelectedAudios() => true;
+        protected virtual bool AddSelectedToMyAudiosSupported() => true;
+        protected virtual string TrackToFriendlyNameString(T track) => track.ToString();
 
-        protected virtual bool CanAddSelectedAudios()
-        {
-            return true;
-        }
+        protected abstract VKAudioInfo GetAudioInfo(T track);
 
-        private async void OnAddToMyAudiosCommand(Audio track)
+        private async void OnAddToMyAudiosCommand(T track)
         {
-            _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
+            _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], TrackToFriendlyNameString(track)));
 
             bool isSuccess = false;
             try
@@ -129,8 +106,8 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService.Show(_locService["AppLoader_Preparing"]);
             _cancelOperations = false;
 
-            var items = SelectedItems.Cast<Audio>().ToList();
-            var errors = new List<Audio>();
+            var items = SelectedItems.Cast<T>().ToList();
+            var errors = new List<T>();
 
             foreach (var track in items)
             {
@@ -140,7 +117,7 @@ namespace VKSaver.Core.ViewModels
                     continue;
                 }
 
-                _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], track.ToString()));
+                _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], TrackToFriendlyNameString(track)));
 
                 bool isSuccess = false;
                 try
@@ -167,17 +144,21 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService.Hide();
         }
 
-        private async Task<bool> AddToMyAudios(Audio audio)
+        private async Task<bool> AddToMyAudios(T audio)
         {
+            var info = GetAudioInfo(audio);
+            if (info == null)
+                return false;
+
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Add(
-                audio.Id, audio.OwnerId));
+                info.Id, info.OwnerId));
 
             if (response.IsCaptchaError())
                 throw new Exception("Captcha error: cancel");
             return !response.IsError;
         }
 
-        private void ShowAddingError(List<Audio> errorTracks)
+        private void ShowAddingError(List<T> errorTracks)
         {
             var sb = new StringBuilder();
             sb.AppendLine(_locService["Message_AddSelectedError_Text"]);
@@ -185,7 +166,7 @@ namespace VKSaver.Core.ViewModels
 
             foreach (var track in errorTracks)
             {
-                sb.AppendLine(track.ToString());
+                sb.AppendLine(TrackToFriendlyNameString(track));
             }
 
             _dialogsService.Show(sb.ToString(), _locService["Message_AddSelectedError_Title"]);
@@ -196,5 +177,18 @@ namespace VKSaver.Core.ViewModels
         protected readonly IDialogsService _dialogsService;
         protected readonly InTouch _inTouch;
         protected readonly IInTouchWrapper _inTouchWrapper;
+
+        protected sealed class VKAudioInfo
+        {
+            public VKAudioInfo(int id, int ownerId)
+            {
+                Id = id;
+                OwnerId = ownerId;
+            }
+
+            public int Id { get; }
+
+            public int OwnerId { get; }
+        }
     }
 }

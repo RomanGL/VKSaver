@@ -75,6 +75,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)VideoInfoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VideoPlayerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VideoSearchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VKAudioImplementedViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKAudioViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VksmExtractionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WithAppBarViewModel.cs" />

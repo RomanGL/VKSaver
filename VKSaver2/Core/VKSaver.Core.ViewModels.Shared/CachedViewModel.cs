@@ -35,7 +35,7 @@ namespace VKSaver.Core.ViewModels
             IAppLoaderService appLoaderService,
             IMusicCacheService musicCacheService,
             IDialogsService dialogsService)
-            : base(playerService, locService, navigationService, appLoaderService, 999)
+            : base(playerService, locService, navigationService, appLoaderService)
         {
             _musicCacheService = musicCacheService;
             _dialogsService = dialogsService;
@@ -64,11 +64,6 @@ namespace VKSaver.Core.ViewModels
             }
 
             base.OnNavigatedTo(e, viewModelState);
-        }
-
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
-        {
-            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected override IList<CachedTrack> GetAudiosList()

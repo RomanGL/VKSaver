@@ -50,6 +50,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand ReloadContentCommand { get; private set; }
 
+        [DoNotNotify]
         protected bool IsReloadButtonSupported { get; set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
