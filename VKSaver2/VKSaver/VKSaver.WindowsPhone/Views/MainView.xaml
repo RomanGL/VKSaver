@@ -454,6 +454,15 @@
                                 </c:EventTriggerBehavior>
                             </i:Interaction.Behaviors>
                         </ListViewItem>
+                        <ListViewItem Content="популярные"
+                                      x:Uid="MainView_PopularVKItem"
+                                      Style="{StaticResource ListViewMenuItemStyle}">
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="Tapped">
+                                    <c:InvokeCommandAction Command="{Binding GoToPopularVKViewCommand}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </ListViewItem>
 
                         <ListViewItem Content="менеджер загрузок"
                                       x:Uid="MainView_TransferManagerItem"

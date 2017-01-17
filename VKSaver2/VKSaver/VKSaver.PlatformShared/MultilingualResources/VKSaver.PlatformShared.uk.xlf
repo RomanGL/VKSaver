@@ -2238,6 +2238,135 @@ Eng: upload</note>
           <source>исполнители</source>
           <target state="new">исполнители</target>
         </trans-unit>
+        <trans-unit id="PopularVKAudioView_Title.Text" translate="yes" xml:space="preserve">
+          <source>популярные</source>
+          <target state="new">популярные</target>
+        </trans-unit>
+        <trans-unit id="MainView_PopularVKItem.Content" translate="yes" xml:space="preserve">
+          <source>популярные</source>
+          <target state="new">популярные</target>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_AcousticAndVocal" translate="yes" xml:space="preserve">
+          <source>acoustic &amp; vocal</source>
+          <target state="new">acoustic &amp; vocal</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_AllGenres" translate="yes" xml:space="preserve">
+          <source>все жанры</source>
+          <target state="new">все жанры</target>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Alternative" translate="yes" xml:space="preserve">
+          <source>alternative</source>
+          <target state="new">alternative</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Chanson" translate="yes" xml:space="preserve">
+          <source>chanson</source>
+          <target state="new">chanson</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Classical" translate="yes" xml:space="preserve">
+          <source>classical</source>
+          <target state="new">classical</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_DanceAndHouse" translate="yes" xml:space="preserve">
+          <source>house &amp; dance</source>
+          <target state="new">house &amp; dance</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Dubstep" translate="yes" xml:space="preserve">
+          <source>dubstep &amp; trap</source>
+          <target state="new">dubstep &amp; trap</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_EasyListening" translate="yes" xml:space="preserve">
+          <source>easy listening</source>
+          <target state="new">easy listening</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_ElectropopAndDisco" translate="yes" xml:space="preserve">
+          <source>electropop &amp; disco</source>
+          <target state="new">electropop &amp; disco</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Ethnic" translate="yes" xml:space="preserve">
+          <source>ethnic</source>
+          <target state="new">ethnic</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_IndiePop" translate="yes" xml:space="preserve">
+          <source>indie Pop</source>
+          <target state="new">indie Pop</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Instrumental" translate="yes" xml:space="preserve">
+          <source>instrumental</source>
+          <target state="new">instrumental</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_JazzAndBlues" translate="yes" xml:space="preserve">
+          <source>jazz &amp; blues</source>
+          <target state="new">jazz &amp; blues</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Metal" translate="yes" xml:space="preserve">
+          <source>metal</source>
+          <target state="new">metal</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Other" translate="yes" xml:space="preserve">
+          <source>other</source>
+          <target state="new">other</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Pop" translate="yes" xml:space="preserve">
+          <source>pop</source>
+          <target state="new">pop</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_RapAndHipHop" translate="yes" xml:space="preserve">
+          <source>rap &amp; hip-hop</source>
+          <target state="new">rap &amp; hip-hop</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Reggae" translate="yes" xml:space="preserve">
+          <source>reggae</source>
+          <target state="new">reggae</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Rock" translate="yes" xml:space="preserve">
+          <source>rock</source>
+          <target state="new">rock</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Speech" translate="yes" xml:space="preserve">
+          <source>speech</source>
+          <target state="new">speech</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_Trance" translate="yes" xml:space="preserve">
+          <source>trance</source>
+          <target state="new">trance</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_DrumAndBass" translate="yes" xml:space="preserve">
+          <source>drum &amp; bass</source>
+          <target state="new">drum &amp; bass</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_FilterFlyout_Title.Text" translate="yes" xml:space="preserve">
+          <source>Фильтр аудио</source>
+          <target state="new">Фильтр аудио</target>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genres_ComboBox.Header" translate="yes" xml:space="preserve">
+          <source>Жанр</source>
+          <target state="new">Жанр</target>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_OnlyEng_Switch.Header" translate="yes" xml:space="preserve">
+          <source>Только зарубежные</source>
+          <target state="new">Только зарубежные</target>
+        </trans-unit>
       </group>
     </body>
   </file>

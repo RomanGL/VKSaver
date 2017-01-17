@@ -101,9 +101,7 @@ namespace VKSaver.Core.ViewModels
         public List<VideoFilterItem> VideoDurations { get; private set; }
         [DoNotNotify]
         public List<VideoSortMethodItem> VideoSortMethods { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<Video> DownloadCommand { get; private set; }
+        
         [DoNotNotify]
         public DelegateCommand<Video> DeleteCommand { get; private set; }
         [DoNotNotify]
@@ -187,11 +185,6 @@ namespace VKSaver.Core.ViewModels
 
             _inCollectionOffset += 50;
             return response.Data.Items.Where(v => v.OwnerId == UserId);
-        }
-
-        protected override void OnLastPivotIndexChanged()
-        {
-            base.OnLastPivotIndexChanged();
         }
 
         protected override void OnSelectionChangedCommand()

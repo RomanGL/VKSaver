@@ -32,7 +32,6 @@ namespace VKSaver.Core.ViewModels
             InTouch inTouch, 
             LastfmClient lfClient,
             IInTouchWrapper inTouchWrapper,
-            ISettingsService settingsService, 
             INavigationService navigationService,
             IPurchaseService purchaseService, 
             IPlayerService playerService,
@@ -43,7 +42,6 @@ namespace VKSaver.Core.ViewModels
             _inTouch = inTouch;
             _lfClient = lfClient;
             _inTouchWrapper = inTouchWrapper;
-            _settingsService = settingsService;
             _navigationService = navigationService;
             _purchaseService = purchaseService;
             _playerService = playerService;
@@ -69,6 +67,7 @@ namespace VKSaver.Core.ViewModels
             GoToNewsViewCommand = new DelegateCommand(OnGoToNewsViewCommand);
             GoToLibraryViewCommand = new DelegateCommand<string>(OnGoToLibraryViewCommand);
             GoToUploadFileViewCommand = new DelegateCommand(OnGoToUploadFileViewCommand);
+            GoToPopularVKViewCommand = new DelegateCommand(OnGoToPopularVKViewCommand);
 
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
@@ -138,6 +137,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand GoToUploadFileViewCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand GoToPopularVKViewCommand { get; private set; }
 
 #if !WINDOWS_UWP
         public VKAudioWithImage FirstTrack { get; private set; }
@@ -322,97 +324,37 @@ namespace VKSaver.Core.ViewModels
 
 #endif
 
-        private void OnGoToTrackInfoCommand(LastTrack audio)
-        {
-            _navigationService.Navigate("TrackInfoView", JsonConvert.SerializeObject(audio, _lastImageSetConverter));
-        }
+        private void OnGoToTrackInfoCommand(LastTrack audio) => _navigationService.Navigate("TrackInfoView",
+            JsonConvert.SerializeObject(audio, _lastImageSetConverter));
+        private void OnGoToArtistInfoCommand(LastArtist artist) => _navigationService.Navigate("ArtistInfoView",
+            JsonConvert.SerializeObject(artist, _lastImageSetConverter));
 
-        private void OnGoToArtistInfoCommand(LastArtist artist)
-        {
-            _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist, _lastImageSetConverter));
-        }
-
-        private void OnGoToNewsViewCommand()
-        {
-            if (_purchaseService.IsFullVersionPurchased)
-                _navigationService.Navigate("NewsMediaView", null);
-            else
-                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
-                    new KeyValuePair<string, string>("NewsMediaView", null)));
-        }
-
-        private void OnGoToTopTracksCommand()
-        {
-            if (_purchaseService.IsFullVersionPurchased)
-                _navigationService.Navigate("TopTracksView", null);
-            else
-                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
-                    new KeyValuePair<string, string>("TopTracksView", null)));
-        }
-
-        private void OnGoTopArtistsCommand()
-        {
-            if (_purchaseService.IsFullVersionPurchased)
-                _navigationService.Navigate("TopArtistsView", null);
-            else
-                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
-                    new KeyValuePair<string, string>("TopArtistsView", null)));
-        }
-
-        private void OnGoToLibraryViewCommand(string view)
-        {
-            _navigationService.Navigate("LibraryView", view);
-        }
-
-        private void OnGoToUploadFileViewCommand()
-        {
-            _navigationService.Navigate("UploadFileView", null);
-        }
-
-        private void OnGoToUserContentCommand(string view)
-        {
-            _navigationService.Navigate("UserContentView", JsonConvert.SerializeObject(
+        private void OnGoToUserContentCommand(string view) => _navigationService.Navigate("UserContentView", JsonConvert.SerializeObject(
                 new KeyValuePair<string, string>(view, "0")));
-        }
-
-        private void OnGoToUserCommCommand(string view)
-        {
-            _navigationService.Navigate("UserCommView", JsonConvert.SerializeObject(
+        private void OnGoToUserCommCommand(string view) => _navigationService.Navigate("UserCommView", JsonConvert.SerializeObject(
                 new KeyValuePair<string, string>(view, "0")));
-        }
 
-        private void OnGoToTransferViewCommand(string view)
-        {
-            _navigationService.Navigate("TransferView", view);
-        }
+        private void OnGoToLibraryViewCommand(string view) => _navigationService.Navigate("LibraryView", view);
+        private void OnGoToUploadFileViewCommand() => _navigationService.Navigate("UploadFileView", null);
+        private void OnGoToTransferViewCommand(string view) => _navigationService.Navigate("TransferView", view);
+        private void OnGoToAboutViewCommand() => _navigationService.Navigate("AboutView", null);
+        private void OnGoToSearchCommand() => _navigationService.Navigate("SelectSearchTypeView", null);
+        private void OnGoToPlayerViewCommand() => _navigationService.Navigate("PlayerView", null);
+        private void OnGoToSettingsViewCommand() => _navigationService.Navigate("SettingsView", null);
 
-        private void OnGoToAboutViewCommand()
-        {
-            _navigationService.Navigate("AboutView", null);
-        }
+        private void OnGoToNewsViewCommand() => NavigateToPaidView("NewsMediaView");
+        private void OnGoToTopTracksCommand() => NavigateToPaidView("TopTracksView");
+        private void OnGoTopArtistsCommand() => NavigateToPaidView("TopArtistsView");
+        private void OnGoToRecommendedViewCommand() => NavigateToPaidView("RecommendedView", "0");
+        private void OnGoToPopularVKViewCommand() => NavigateToPaidView("PopularVKAudioView");
 
-        private void OnGoToSearchCommand()
-        {
-            _navigationService.Navigate("SelectSearchTypeView", null);
-        }
-
-        private void OnGoToRecommendedViewCommand()
+        private void NavigateToPaidView(string viewName, string parameter = null)
         {
             if (_purchaseService.IsFullVersionPurchased)
-                _navigationService.Navigate("RecommendedView", "0");
+                _navigationService.Navigate(viewName, parameter);
             else
                 _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
-                    new KeyValuePair<string, string>("RecommendedView", "0")));
-        }
-
-        private void OnGoToPlayerViewCommand()
-        {
-            _navigationService.Navigate("PlayerView", null);
-        }
-
-        private void OnGoToSettingsViewCommand()
-        {
-            _navigationService.Navigate("SettingsView", null);
+                    new KeyValuePair<string, string>(viewName, parameter)));
         }
 
         private async void OnPlayRecommendedTracksCommand(Audio track)
@@ -455,7 +397,6 @@ namespace VKSaver.Core.ViewModels
         private readonly InTouch _inTouch;
         private readonly LastfmClient _lfClient;
         private readonly IInTouchWrapper _inTouchWrapper;
-        private readonly ISettingsService _settingsService;
         private readonly INavigationService _navigationService;
         private readonly IPurchaseService _purchaseService;
         private readonly IPlayerService _playerService;

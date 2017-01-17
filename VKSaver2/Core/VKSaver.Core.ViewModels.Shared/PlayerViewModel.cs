@@ -192,8 +192,6 @@ namespace VKSaver.Core.ViewModels
 
                 _timer.Stop();
                 _isSubscribed = false;
-
-                HideCommandBar();
             }
 
             base.OnNavigatingFrom(e, viewModelState, suspending);

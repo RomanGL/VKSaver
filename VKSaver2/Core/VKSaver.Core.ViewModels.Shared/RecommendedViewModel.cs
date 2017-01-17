@@ -86,8 +86,8 @@ namespace VKSaver.Core.ViewModels
 
         protected override void OnReloadContentCommand()
         {
-            Audios?.Refresh();
             _audiosOffset = 0;
+            Audios?.Refresh();
         }
 
         private async Task<IEnumerable<Audio>> LoadMoreAudios(uint page)

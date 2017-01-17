@@ -53,6 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)NewsMediaViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PackagingFilesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlayerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PopularVKAudioViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PromoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RecommendedViewModel.cs" />
