@@ -1,0 +1,113 @@
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.ArtistsSearchView"
+                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:i="using:Microsoft.Xaml.Interactivity"
+                           xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                           xmlns:b="using:VKSaver.Behaviors"
+                           xmlns:controls="using:VKSaver.Controls"
+                           xmlns:common="using:VKSaver.Common"
+                           xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
+                           xmlns:converters="using:VKSaver.Converters"
+                           xmlns:viewModels="using:VKSaver.Core.ViewModels"
+                           mvvm:ViewModelLocator.AutoWireViewModel="True"
+                           mc:Ignorable="d"
+                           Style="{StaticResource DefaultPageStyle}"
+                           d:DataContext="{d:DesignInstance viewModels:ArtistsSearchViewModel}">
+
+    <mvvm:VisualStateAwarePage.Resources>
+        <common:DataContextProxy x:Key="DataContextProxy" />
+        <converters:TwoItemsListSizeConverter x:Key="TwoItemsListSizeConverter" />
+    </mvvm:VisualStateAwarePage.Resources>
+
+    <mvvm:VisualStateAwarePage.BottomAppBar>
+        <CommandBar>
+            <i:Interaction.Behaviors>
+                <b:CommandBarButtonsBindingBehavior PrimaryCommands="{Binding AppBarItems, Mode=OneTime}"
+                                                    SecondaryCommands="{Binding SecondaryItems, Mode=OneTime}" />
+            </i:Interaction.Behaviors>
+        </CommandBar>
+    </mvvm:VisualStateAwarePage.BottomAppBar>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <GridView ItemsSource="{Binding Artists, Mode=OneWay}"
+                  SelectionMode="None"
+                  IsItemClickEnabled="True"
+                  IsSwipeEnabled="False"
+                  IncrementalLoadingThreshold="4"
+                  ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                  Grid.Row="2"
+                  Margin="19,19,0,0">
+
+            <GridView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition />
+                </TransitionCollection>
+            </GridView.ItemContainerTransitions>
+
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0,0,15,20"
+                                Width="{Binding Converter={StaticResource TwoItemsListSizeConverter}}">
+                        <controls:ImagePlaceholder Height="{Binding Converter={StaticResource TwoItemsListSizeConverter}}"
+                                                   Text="{Binding Name}"
+                                                   Source="{Binding MainImage.Large}" />
+                        <TextBlock Text="{Binding Name}"
+                                   Style="{StaticResource BaseItemStyle}"
+                                   FontWeight="Bold"
+                                   FontSize="18"
+                                   Margin="0,8,0,0"
+                                   ContinuumNavigationTransitionInfo.IsExitElement="True" />
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+            <GridView.FooterTemplate>
+                <DataTemplate>
+                    <Border MinHeight="50">
+                        <controls:StateBlock State="{Binding Artists.ContentState}"
+                                             ReloadCommand="{Binding Artists.LoadCommand}"
+                                             x:Uid="SearchView_Loader"
+                                             Margin="0,0,0,60" />
+                    </Border>
+                </DataTemplate>
+            </GridView.FooterTemplate>
+
+            <i:Interaction.Behaviors>
+                <c:EventTriggerBehavior EventName="ItemClick">
+                    <c:InvokeCommandAction Command="{Binding GoToArtistInfoCommand}"
+                                           InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                </c:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+        </GridView>
+
+        <TextBox Margin="19,12,19,0"
+                 x:Uid="SearchView_SearchBox"
+                 x:Name="SearchBox"
+                 Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 PlaceholderText="введите запрос и нажмите Enter"
+                 InputScope="Search"
+                 Grid.Row="0">
+            <i:Interaction.Behaviors>
+                <c:EventTriggerBehavior EventName="KeyDown">
+                    <c:InvokeCommandAction Command="{Binding QueryBoxKeyDownCommand}" />
+                </c:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+        </TextBox>
+
+        <TextBlock Text="исполнители"
+                   Margin="19,-6.5,0,0"
+                   Style="{ThemeResource HeaderTextBlockStyle}"
+                   CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"
+                   ContinuumNavigationTransitionInfo.IsEntranceElement="True"
+                   Grid.Row="1"
+                   x:Uid="SearchView_ArtistsTitle" />
+    </Grid>
+</mvvm:VisualStateAwarePage>

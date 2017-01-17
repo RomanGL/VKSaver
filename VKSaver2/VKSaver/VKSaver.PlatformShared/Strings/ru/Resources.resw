@@ -1782,4 +1782,7 @@ Eng: upload</comment>
   <data name="AppBarButton_Shuffle_Text" xml:space="preserve">
     <value>перемешать</value>
   </data>
+  <data name="SearchView_ArtistsTitle.Text" xml:space="preserve">
+    <value>исполнители</value>
+  </data>
 </root>

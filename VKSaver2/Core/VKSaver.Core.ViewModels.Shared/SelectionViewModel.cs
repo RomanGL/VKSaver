@@ -17,15 +17,13 @@ using Windows.UI.Xaml.Navigation;
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class SelectionViewModel : ViewModelBase
+    public abstract class SelectionViewModel : WithAppBarViewModel
     {
         protected SelectionViewModel(ILocService locService)
         {
             _locService = locService;
 
             IsItemClickEnabled = true;
-            AppBarItems = new ObservableCollection<ICommandBarElement>();
-            SecondaryItems = new ObservableCollection<ICommandBarElement>();
             SelectedItems = new List<object>();
 
             SelectionChangedCommand = new DelegateCommand(OnSelectionChangedCommand);
@@ -39,12 +37,6 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotCheckEquality]
         public bool SelectAll { get; private set; }
-
-        [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> AppBarItems { get; private set; }
-
-        [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> SecondaryItems { get; private set; }
 
         [DoNotNotify]
         public List<object> SelectedItems { get; private set; }
@@ -83,7 +75,7 @@ namespace VKSaver.Core.ViewModels
 
         protected abstract IList GetSelectionList();
 
-        protected virtual void CreateDefaultAppBarButtons()
+        protected override void CreateDefaultAppBarButtons()
         {
             if (IsReloadButtonSupported)
             {
@@ -101,9 +93,11 @@ namespace VKSaver.Core.ViewModels
                 Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionMode
             });
+
+            base.CreateDefaultAppBarButtons();
         }
 
-        protected virtual void CreateSelectionAppBarButtons()
+        protected override void CreateSelectionAppBarButtons()
         {            
             AppBarItems.Add(new AppBarButton
             {
@@ -111,41 +105,36 @@ namespace VKSaver.Core.ViewModels
                 Icon = new FontIcon { Glyph = "\uE0E7" },
                 Command = new DelegateCommand(() => SelectAll = !SelectAll)
             });
+
+            base.CreateSelectionAppBarButtons();
         }
 
         protected virtual void OnSelectionChangedCommand() { }
 
         protected virtual void OnReloadContentCommand() { }
 
-        protected void SetSelectionMode()
+        protected override void SetSelectionMode()
         {
             IsSelectionMode = true;
             IsItemClickEnabled = false;
 
-            AppBarItems.Clear();
-            SecondaryItems.Clear();
-
-            CreateSelectionAppBarButtons();
+            base.SetSelectionMode();
         }
 
-        protected void SetDefaultMode()
+        protected override void SetDefaultMode()
         {
             IsSelectionMode = false;
             IsItemClickEnabled = true;
 
-            AppBarItems.Clear();
-            SecondaryItems.Clear();
-
-            CreateDefaultAppBarButtons();
+            base.SetDefaultMode();
         }
 
-        protected void HideCommandBar()
+        protected override void HideCommandBar()
         {
             IsSelectionMode = false;
             IsItemClickEnabled = true;
 
-            AppBarItems.Clear();
-            SecondaryItems.Clear();
+            base.HideCommandBar();
         }
 
         protected bool HasSelectedItems()

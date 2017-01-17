@@ -2234,6 +2234,10 @@ Do you really want to login through the browser?</target>
           <source>перемешать</source>
           <target state="new">перемешать</target>
         </trans-unit>
+        <trans-unit id="SearchView_ArtistsTitle.Text" translate="yes" xml:space="preserve">
+          <source>исполнители</source>
+          <target state="new">исполнители</target>
+        </trans-unit>
       </group>
     </body>
   </file>

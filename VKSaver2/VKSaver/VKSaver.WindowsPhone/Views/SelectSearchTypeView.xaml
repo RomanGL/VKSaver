@@ -80,6 +80,11 @@
                         Content="&#xE29B;"
                         Command="{Binding GoToSearchCommand}"
                         CommandParameter="Video"/>
+                <Button Style="{StaticResource TypeButtonStyle}"
+                        Content="&#xE13D;"
+                        Command="{Binding GoToSearchCommand}"
+                        CommandParameter="Artists"
+                        FontSize="27" />
                 <!--<Button Style="{StaticResource TypeButtonStyle}"
                         Content="&#xE132;"
                         Command="{Binding GoToSearchCommand}"

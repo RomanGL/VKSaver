@@ -78,7 +78,7 @@ namespace VKSaver.Core.ViewModels
 
         private void OnGoToArtistInfoCommand(LastArtist artist)
         {
-            _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist, new LastImageSetConverter()));
+            _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist, _lastImageSetConverter));
         }
         
         private readonly LastfmClient _lfClient;

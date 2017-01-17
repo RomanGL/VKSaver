@@ -206,6 +206,9 @@
     <Compile Include="Views\AudioAlbumView.xaml.cs">
       <DependentUpon>AudioAlbumView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ArtistsSearchView.xaml.cs">
+      <DependentUpon>ArtistsSearchView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AudioSearchView.xaml.cs">
       <DependentUpon>AudioSearchView.xaml</DependentUpon>
     </Compile>
@@ -364,6 +367,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ArtistsSearchView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
