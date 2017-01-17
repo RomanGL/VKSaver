@@ -193,8 +193,7 @@ namespace VKSaver.Core.ViewModels
                 _timer.Stop();
                 _isSubscribed = false;
 
-                AppBarItems.Clear();
-                SecondaryItems.Clear();
+                HideCommandBar();
             }
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
@@ -479,10 +478,7 @@ namespace VKSaver.Core.ViewModels
             if (pivotIndex == 1)
                 SetDefaultMode();
             else
-            {
-                AppBarItems.Clear();
-                SecondaryItems.Clear();
-            }
+                HideCommandBar();
         }
 
         private void TryEnableScrobbleMode()
