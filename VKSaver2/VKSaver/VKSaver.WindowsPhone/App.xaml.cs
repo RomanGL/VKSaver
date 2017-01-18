@@ -180,6 +180,7 @@ namespace VKSaver
             _container.RegisterType<IDeviceVibrationService, DeviceVibrationService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ISoundService, SoundService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IAppNotificationsService, AppNotificationsService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IProtocolHandler, ProtocolHandler>(new TransientLifetimeManager());
             _container.RegisterType<IHttpFileService, HttpFileService>(new ContainerControlledLifetimeManager());
 
             _container.RegisterType<LastfmClient>(new ContainerControlledLifetimeManager(), 
@@ -203,7 +204,7 @@ namespace VKSaver
             _container.RegisterType<IUploadsServiceHelper, UploadsServiceHelper>(new ContainerControlledLifetimeManager());
 
 #if FULL
-            _container.RegisterType<IBetaService, BetaService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IBetaService, BetaService>(new TransientLifetimeManager());
 #endif
 
             vkLoginService.UserLogin += async (s, e) =>
@@ -303,7 +304,11 @@ namespace VKSaver
 
                 _container.Resolve<IFeedbackService>().ActivateFeedbackNotifier();
                 ActivatePush(args);
-            }            
+            } 
+            
+            _container.Resolve<IProtocolHandler>().ProcessProtocol("?yamp_l=vksaver%3A%2F%2Fplayer%2Ftrack=0&yamp_i=m%3D49874%26cor%3Dddd8ae32-0322-4881-b526-c96c1a708ccc");
+            if (args.Kind == ActivationKind.Protocol || (args.Kind == ActivationKind.Launch && !String.IsNullOrEmpty(args.Arguments)))
+                _container.Resolve<IProtocolHandler>().ProcessProtocol(args.Arguments);    
         }
 
         protected override async Task OnFileActivatedAsync(FileActivatedEventArgs args)

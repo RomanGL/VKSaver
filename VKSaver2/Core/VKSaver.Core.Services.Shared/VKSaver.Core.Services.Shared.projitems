@@ -72,6 +72,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\INetworkInfoService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlayerPlaylistService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlayerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IProtocolHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPurchaseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IServiceResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettingsService.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PlayerService\PlayerStateChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlayerService\TrackChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlayerService\TracksShuffleService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ProtocolHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceDebug.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceFull.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceRelease.cs" />
