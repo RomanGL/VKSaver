@@ -180,9 +180,10 @@ namespace VKSaver
             _container.RegisterType<IDeviceVibrationService, DeviceVibrationService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ISoundService, SoundService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IAppNotificationsService, AppNotificationsService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IHttpFileService, HttpFileService>(new ContainerControlledLifetimeManager());
 
             _container.RegisterType<LastfmClient>(new ContainerControlledLifetimeManager(), 
-                new InjectionFactory(c => InstanceFactories.ResolveLastfmClient(c)));
+                new InjectionFactory(InstanceFactories.ResolveLastfmClient));
 
             var playerService = _container.Resolve<PlayerService>();
             var downloadsService = _container.Resolve<DownloadsService>();

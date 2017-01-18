@@ -35,9 +35,10 @@ namespace VKSaver.Core.ViewModels
             IAppLoaderService appLoaderService, 
             IDialogsService dialogsService, 
             ILocService locService,
-            IInTouchWrapper inTouchWrapper) 
+            IInTouchWrapper inTouchWrapper,
+            IPurchaseService purchaseService) 
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, 
-                  downloadsServiceHelper, playerService, locService, navigationService)
+                  downloadsServiceHelper, playerService, locService, navigationService, purchaseService)
         {
             IsReloadButtonSupported = true;
 

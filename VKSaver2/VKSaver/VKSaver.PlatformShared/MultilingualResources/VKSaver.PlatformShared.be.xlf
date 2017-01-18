@@ -2371,6 +2371,30 @@ Eng: upload</note>
           <source>Только зарубежные</source>
           <target state="new">Только зарубежные</target>
         </trans-unit>
+        <trans-unit id="ShowTrackInfoFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>информация о треке</source>
+          <target state="new">информация о треке</target>
+        </trans-unit>
+        <trans-unit id="AudioBitrate_Kbits.Text" translate="yes" xml:space="preserve">
+          <source>кбит/с</source>
+          <target state="new">кбит/с</target>
+        </trans-unit>
+        <trans-unit id="AudioBitrate_Name.Text" translate="yes" xml:space="preserve">
+          <source>Битрейт:</source>
+          <target state="new">Битрейт:</target>
+        </trans-unit>
+        <trans-unit id="VKAudioInfoView_Container.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось получить дополнительную информацию о треке.</source>
+          <target state="new">Не удалось получить дополнительную информацию о треке.</target>
+        </trans-unit>
+        <trans-unit id="VKAudioInfoView_Container.LoadingText" translate="yes" xml:space="preserve">
+          <source>Выполняется получение дополнительной информации...</source>
+          <target state="new">Выполняется получение дополнительной информации...</target>
+        </trans-unit>
+        <trans-unit id="VKAudioInfoView_Container.NoDataText" translate="yes" xml:space="preserve">
+          <source>Нет никакой дополнительной информации об этом треке.</source>
+          <target state="new">Нет никакой дополнительной информации об этом треке.</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -20,21 +20,31 @@ using VKSaver.Core.Services.Common;
 using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Newtonsoft.Json;
+using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public sealed class AudioSearchViewModel : SearchViewModelBase<Audio>
     {
-        public AudioSearchViewModel(InTouch inTouch, INavigationService navigationService,
-            ILocService locService, ISettingsService settingsService, IDialogsService dialogsService,
-            IPlayerService playerService, IAppLoaderService appLoaderService, 
-            IDownloadsServiceHelper downloadsServiceHelper, IInTouchWrapper inTouchWrapper)
+        public AudioSearchViewModel(
+            InTouch inTouch, 
+            INavigationService navigationService,
+            ILocService locService, 
+            ISettingsService settingsService, 
+            IDialogsService dialogsService,
+            IPlayerService playerService, 
+            IAppLoaderService appLoaderService, 
+            IDownloadsServiceHelper downloadsServiceHelper, 
+            IInTouchWrapper inTouchWrapper,
+            IPurchaseService purchaseService)
             : base(inTouch, navigationService, locService, settingsService, dialogsService, inTouchWrapper)
         {
             _playerService = playerService;
             _appLoaderService = appLoaderService;
             _downloadsServiceHelper = downloadsServiceHelper;
+            _purchaseService = purchaseService;
             
             DownloadCommand = new DelegateCommand<Audio>(OnDownloadCommand);
             DownloadSelectedCommand = new DelegateCommand(OnDownloadSelectedCommand, HasSelectedItems);
@@ -47,6 +57,7 @@ namespace VKSaver.Core.ViewModels
 
             PlaySelectedCommand = new DelegateCommand(OnPlaySelectedCommand, HasSelectedItems);
             ShowPerformerFlyoutCommand = new DelegateCommand(OnShowPerformerFlyoutCommand);
+            ShowTrackInfoCommand = new DelegateCommand<Audio>(OnShowTrackInfoCommand);
         }
 
         [DoNotCheckEquality]
@@ -88,6 +99,8 @@ namespace VKSaver.Core.ViewModels
         public DelegateCommand PlaySelectedCommand { get; private set; }
         [DoNotNotify]
         public DelegateCommand ShowPerformerFlyoutCommand { get; private set; }
+        [DoNotNotify]
+        public DelegateCommand<Audio> ShowTrackInfoCommand { get; private set; }
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
@@ -236,6 +249,18 @@ namespace VKSaver.Core.ViewModels
 
             _navigationService.Navigate("PlayerView", null);
             _appLoaderService.Hide();
+        }
+
+        private void OnShowTrackInfoCommand(Audio track)
+        {
+            var info = new VKAudioInfo(track.Id, track.OwnerId, track.Title, track.Artist, track.Url, track.Duration);
+            string parameter = JsonConvert.SerializeObject(info);
+
+            if (_purchaseService.IsFullVersionPurchased)
+                _navigationService.Navigate("VKAudioInfoView", parameter);
+            else
+                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
+                    new KeyValuePair<string, string>("VKAudioInfoView", parameter)));
         }
 
         private bool CanDeleteAudio(Audio audio)
@@ -480,6 +505,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IPlayerService _playerService;
         private readonly IAppLoaderService _appLoaderService;
         private readonly IDownloadsServiceHelper _downloadsServiceHelper;
+        private readonly IPurchaseService _purchaseService;
 
         internal const string PERFORMER_ONLY_PARAMETER_NAME = "AudioSearchPerformerOnly";
         internal const string LYRICS_ONLY_PARAMETER_NAME = "AudioSearchLyricsOnly";

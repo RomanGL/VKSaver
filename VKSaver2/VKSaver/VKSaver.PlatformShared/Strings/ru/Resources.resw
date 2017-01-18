@@ -1887,4 +1887,22 @@ Eng: upload</comment>
   <data name="PopularVKAudioView_OnlyEng_Switch.Header" xml:space="preserve">
     <value>Только зарубежные</value>
   </data>
+  <data name="AudioBitrate_Kbits.Text" xml:space="preserve">
+    <value>кбит/с</value>
+  </data>
+  <data name="AudioBitrate_Name.Text" xml:space="preserve">
+    <value>Битрейт:</value>
+  </data>
+  <data name="ShowTrackInfoFlyoutItem.Text" xml:space="preserve">
+    <value>информация о треке</value>
+  </data>
+  <data name="VKAudioInfoView_Container.ErrorText" xml:space="preserve">
+    <value>Не удалось получить дополнительную информацию о треке.</value>
+  </data>
+  <data name="VKAudioInfoView_Container.LoadingText" xml:space="preserve">
+    <value>Выполняется получение дополнительной информации...</value>
+  </data>
+  <data name="VKAudioInfoView_Container.NoDataText" xml:space="preserve">
+    <value>Нет никакой дополнительной информации об этом треке.</value>
+  </data>
 </root>

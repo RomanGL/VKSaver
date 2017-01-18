@@ -107,6 +107,10 @@
                                         x:Uid="AddToMyAudiosFlyoutItem"
                                         Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
                                         CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="информация о треке"
+                                        x:Uid="ShowTrackInfoFlyoutItem"
+                                        Command="{Binding DataSource.ShowTrackInfoCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
                         <MenuFlyoutItem Text="удалить"
                                         x:Uid="DeleteFlyoutItem"
                                         Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"

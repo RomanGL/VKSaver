@@ -25,6 +25,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using ModernDev.InTouch;
+using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -47,7 +48,8 @@ namespace VKSaver.Core.ViewModels
             IPurchaseService purchaseService,
             ILocService locService,
             IDialogsService dialogsService)
-            : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, playerService, locService, navigationService)
+            : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, 
+                  playerService, locService, navigationService, purchaseService)
         {
             IsReloadButtonSupported = false;
             IsShuffleButtonSupported = false;
@@ -232,7 +234,13 @@ namespace VKSaver.Core.ViewModels
             if (track.Track.VKInfo == null)
                 return null;
 
-            return new VKAudioInfo(track.Track.VKInfo.ID, track.Track.VKInfo.OwnerID);
+            return new VKAudioInfo(track.Track.VKInfo.ID, track.Track.VKInfo.OwnerID, 
+                track.Track.Title, track.Track.Artist, track.Track.Source, track.IsCurrent ? (int)Duration.TotalSeconds : -1);
+        }
+
+        protected override bool CanShowTrackInfo(PlayerItem track)
+        {
+            return track?.Track != null && track.Track.Source.StartsWith("http");
         }
 
         protected override void CreateDefaultAppBarButtons()

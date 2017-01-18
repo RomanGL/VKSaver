@@ -8,6 +8,7 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 
 using ModernDev.InTouch;
 using PropertyChanged;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.ViewModels.Common;
@@ -26,8 +27,10 @@ namespace VKSaver.Core.ViewModels
             IDownloadsServiceHelper downloadsServiceHelper, 
             IPlayerService playerService,
             ILocService locService, 
-            INavigationService navigationService)
-            : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, playerService, locService, navigationService)
+            INavigationService navigationService, 
+            IPurchaseService purchaseService)
+            : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, 
+                  playerService, locService, navigationService, purchaseService)
         {
 
         }
@@ -44,7 +47,7 @@ namespace VKSaver.Core.ViewModels
 
         protected override VKAudioInfo GetAudioInfo(Audio track)
         {
-            return new VKAudioInfo(track.Id, track.OwnerId);
+            return new VKAudioInfo(track.Id, track.OwnerId, track.Title, track.Artist, track.Url, track.Duration);
         }
     }
 }

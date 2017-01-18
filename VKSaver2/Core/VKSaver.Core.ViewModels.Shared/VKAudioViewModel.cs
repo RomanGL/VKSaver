@@ -8,7 +8,9 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using ModernDev.InTouch;
+using Newtonsoft.Json;
 using PropertyChanged;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 
@@ -25,15 +27,18 @@ namespace VKSaver.Core.ViewModels
             IDownloadsServiceHelper downloadsServiceHelper,
             IPlayerService playerService,
             ILocService locService,
-            INavigationService navigationService)
+            INavigationService navigationService,
+            IPurchaseService purchaseService)
             : base(downloadsServiceHelper, appLoaderService, playerService, locService, navigationService)
         {
             _inTouch = inTouch;
             _dialogsService = dialogsService;
             _inTouchWrapper = inTouchWrapper;
+            _purchaseService = purchaseService;
 
             AddToMyAudiosCommand = new DelegateCommand<T>(OnAddToMyAudiosCommand, CanAddToMyAudios);
             AddSelectedToMyAudiosCommand = new DelegateCommand(OnAddSelectedToMyAudiosCommand, () => HasSelectedItems() & CanAddSelectedAudios());
+            ShowTrackInfoCommand = new DelegateCommand<T>(OnShowTrackInfoCommand, CanShowTrackInfo);
         }
 
         [DoNotNotify]
@@ -41,6 +46,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand<T> AddToMyAudiosCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<T> ShowTrackInfoCommand { get; private set; }
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
@@ -75,12 +83,25 @@ namespace VKSaver.Core.ViewModels
             base.OnSelectionChangedCommand();
         }
 
+        protected virtual bool CanShowTrackInfo(T audio) => true;
         protected virtual bool CanAddToMyAudios(T audio) => true;
         protected virtual bool CanAddSelectedAudios() => true;
         protected virtual bool AddSelectedToMyAudiosSupported() => true;
         protected virtual string TrackToFriendlyNameString(T track) => track.ToString();
 
         protected abstract VKAudioInfo GetAudioInfo(T track);
+
+        private void OnShowTrackInfoCommand(T track)
+        {
+            var info = GetAudioInfo(track);
+            string parameter = JsonConvert.SerializeObject(info);
+
+            if (_purchaseService.IsFullVersionPurchased)
+                _navigationService.Navigate("VKAudioInfoView", parameter);
+            else
+                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
+                    new KeyValuePair<string, string>("VKAudioInfoView", parameter)));
+        }
 
         private async void OnAddToMyAudiosCommand(T track)
         {
@@ -177,18 +198,6 @@ namespace VKSaver.Core.ViewModels
         protected readonly IDialogsService _dialogsService;
         protected readonly InTouch _inTouch;
         protected readonly IInTouchWrapper _inTouchWrapper;
-
-        protected sealed class VKAudioInfo
-        {
-            public VKAudioInfo(int id, int ownerId)
-            {
-                Id = id;
-                OwnerId = ownerId;
-            }
-
-            public int Id { get; }
-
-            public int OwnerId { get; }
-        }
+        protected readonly IPurchaseService _purchaseService;
     }
 }

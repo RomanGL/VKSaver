@@ -36,9 +36,10 @@ namespace VKSaver.Core.ViewModels
             IAppLoaderService appLoaderService,
             IDialogsService dialogsService, 
             ILocService locService,
-            IImagesCacheService imagesCacheService)
+            IImagesCacheService imagesCacheService,
+            IPurchaseService purchaseService)
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper,
-                  playerService, locService, navigationService)
+                  playerService, locService, navigationService, purchaseService)
         {
             _imagesCacheService = imagesCacheService;
 

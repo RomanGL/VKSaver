@@ -40,6 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)EmailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FeedbackService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GrooveMusicService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpFileService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImagesCacheService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAdsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAppLoaderService.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IEmailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFeedbackService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGrooveMusicService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHttpFileService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IImagesCacheService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IInTouchWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILastFmLoginService.cs" />

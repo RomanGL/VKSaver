@@ -28,9 +28,10 @@ namespace VKSaver.Core.ViewModels
             IPlayerService playerService,
             ILocService locService,
             INavigationService navigationService,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            IPurchaseService purchaseService)
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper,
-                  downloadsServiceHelper, playerService, locService, navigationService)
+                  downloadsServiceHelper, playerService, locService, navigationService, purchaseService)
         {
             _settingsService = settingsService;
 

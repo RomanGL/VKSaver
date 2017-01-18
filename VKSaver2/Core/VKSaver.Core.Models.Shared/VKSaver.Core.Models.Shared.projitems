@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\LanguageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NewsMediaItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\StorageFileSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VKAudioInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKDirectAuthResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudio.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudioFile.cs" />

@@ -188,6 +188,9 @@
       <DependentUpon>TransferProgressIndicator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\VKAudioInfoView.xaml.cs">
+      <DependentUpon>VKAudioInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PopularVKAudioView.xaml.cs">
       <DependentUpon>PopularVKAudioView.xaml</DependentUpon>
     </Compile>
@@ -370,6 +373,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VKAudioInfoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

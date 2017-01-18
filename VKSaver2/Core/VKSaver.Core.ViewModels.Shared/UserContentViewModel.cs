@@ -25,6 +25,7 @@ using VKSaver.Core.Models.Transfer;
 using ModernDev.InTouch;
 using VKSaver.Core.Services.Common;
 using Windows.System;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services;
 
 namespace VKSaver.Core.ViewModels
@@ -42,7 +43,8 @@ namespace VKSaver.Core.ViewModels
             IDialogsService dialogsService, 
             ILocService locService, 
             IInTouchWrapper inTouchWrapper,
-            ILaunchViewResolver launchViewResolver)
+            ILaunchViewResolver launchViewResolver,
+            IPurchaseService purchaseService)
         {
             _inTouch = inTouch;
             _navigationService = navigationService;
@@ -54,6 +56,7 @@ namespace VKSaver.Core.ViewModels
             _locService = locService;
             _inTouchWrapper = inTouchWrapper;
             _launchViewResolver = launchViewResolver;
+            _purchaseService = purchaseService;
 
             SelectedItems = new List<object>();
             PrimaryItems = new ObservableCollection<ICommandBarElement>();
@@ -78,6 +81,8 @@ namespace VKSaver.Core.ViewModels
 
             OpenTransferManagerCommand = new DelegateCommand(OnOpenTransferManagerCommand);
             OpenMainViewCommand = new DelegateCommand(OnOpenMainViewCommand);
+
+            ShowTrackInfoCommand = new DelegateCommand<Audio>(OnShowTrackInfoCommand);
         }
 
         public string PageTitle { get; private set; }
@@ -158,6 +163,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand OpenMainViewCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<Audio> ShowTrackInfoCommand { get; private set; }
 
         #endregion
 
@@ -580,6 +588,18 @@ namespace VKSaver.Core.ViewModels
             IsLockedPivot = false;
 
             CreateDefaultAppBarButtons();
+        }
+
+        private void OnShowTrackInfoCommand(Audio track)
+        {
+            var info = new VKAudioInfo(track.Id, track.OwnerId, track.Title, track.Artist, track.Url, track.Duration);
+            string parameter = JsonConvert.SerializeObject(info);
+
+            if (_purchaseService.IsFullVersionPurchased)
+                _navigationService.Navigate("VKAudioInfoView", parameter);
+            else
+                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
+                    new KeyValuePair<string, string>("VKAudioInfoView", parameter)));
         }
 
         private void OnOpenTransferManagerCommand()
@@ -1162,5 +1182,6 @@ namespace VKSaver.Core.ViewModels
         private readonly InTouch _inTouch;
         private readonly IInTouchWrapper _inTouchWrapper;
         private readonly ILaunchViewResolver _launchViewResolver;
+        private readonly IPurchaseService _purchaseService;
     }
 }
