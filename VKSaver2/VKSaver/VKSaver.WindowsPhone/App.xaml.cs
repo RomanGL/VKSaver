@@ -215,6 +215,7 @@ namespace VKSaver
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
+                ActivatePush(null);
             };
             vkLoginService.UserLogout += async (s, e) =>
             {
@@ -300,7 +301,6 @@ namespace VKSaver
 #endif
 
                 _container.Resolve<IFeedbackService>().ActivateFeedbackNotifier();
-
                 ActivatePush(args);
             }            
         }
@@ -387,12 +387,11 @@ namespace VKSaver
 
         private async void ActivatePush(LaunchActivatedEventArgs e)
         {
-            await Task.Run(async () =>
+            await Task.Run(() =>
             {
-                var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-                YandexMetricaPush.Activate(channel.Uri);
-
-                YandexMetricaPush.ProcessApplicationLaunch(e);
+                YandexMetricaPush.Activate("***REMOVED***");
+                if (e != null)
+                    YandexMetricaPush.ProcessApplicationLaunch(e);
             });
         }
 
