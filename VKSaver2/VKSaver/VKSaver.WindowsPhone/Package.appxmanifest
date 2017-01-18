@@ -28,8 +28,10 @@
         </m3:InitialRotationPreference>
       </m3:VisualElements>
       <Extensions>
-        <Extension Category="windows.protocol">
-          <Protocol Name="vksaver" />
+        <Extension Category="windows.protocol" EntryPoint="VKSaver.WindowsPhone.App">
+          <Protocol Name="vksaver">
+            <DisplayName>ms-resource:AppNameText</DisplayName>
+          </Protocol>
         </Extension>
         <Extension Category="windows.backgroundTasks" EntryPoint="VKSaver.PlayerTask.AudioTask">
           <BackgroundTasks>

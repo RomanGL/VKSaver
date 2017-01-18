@@ -17,11 +17,13 @@ using Windows.UI.Core;
 using IF.Lastfm.Core.Api;
 using Yandex.Metrica;
 using System.Collections.Generic;
+using Windows.Networking.PushNotifications;
 using Newtonsoft.Json;
 using VKSaver.Core;
 using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.ViewModels.Common;
+using Yandex.Metrica.Push;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using VKSaver.Controls;
@@ -298,6 +300,8 @@ namespace VKSaver
 #endif
 
                 _container.Resolve<IFeedbackService>().ActivateFeedbackNotifier();
+
+                ActivatePush(args);
             }            
         }
 
@@ -379,6 +383,17 @@ namespace VKSaver
         private async void ActivateMetrica()
         {
             await Task.Run(() => YandexMetrica.Activate(AppConstants.YANDEX_METRICA_API_KEY));
+        }
+
+        private async void ActivatePush(LaunchActivatedEventArgs e)
+        {
+            await Task.Run(async () =>
+            {
+                var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+                YandexMetricaPush.Activate(channel.Uri);
+
+                YandexMetricaPush.ProcessApplicationLaunch(e);
+            });
         }
 
 #if DEBUG
