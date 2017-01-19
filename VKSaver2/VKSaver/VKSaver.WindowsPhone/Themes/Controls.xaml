@@ -3,12 +3,61 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:controls="using:VKSaver.Controls"
-                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                     xmlns:common="using:VKSaver.Common"
                     mc:Ignorable="d">
 
     <common:LocalizationXamlWrapper x:Key="LocWrapper" />
+
+    <Style TargetType="controls:DoubleTapLikeControl">
+        <Setter Property="IsDoubleTapEnabled"
+                Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:DoubleTapLikeControl">
+                    <Border Background="Transparent">
+                        <Border.Resources>
+                            <Storyboard x:Name="LikeStoryboard">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                               Storyboard.TargetName="likeTextBlock">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                          Value="1" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                          Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetZ)"
+                                                               Storyboard.TargetName="likeTextBlock">
+                                    <EasingDoubleKeyFrame KeyTime="0"
+                                                          Value="-1000">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BackEase EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                          Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BackEase EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Border.Resources>
+                        <TextBlock x:Name="likeTextBlock"
+                                   Text="&#xE0A5;"
+                                   FontSize="96"
+                                   FontFamily="Segoe UI Symbol"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Opacity="0"
+                                   RenderTransformOrigin="0.5,0.5">
+                            <TextBlock.Projection>
+                                <PlaneProjection />
+                            </TextBlock.Projection>
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="controls:AppNotificationControl">
         <Setter Property="HorizontalAlignment"

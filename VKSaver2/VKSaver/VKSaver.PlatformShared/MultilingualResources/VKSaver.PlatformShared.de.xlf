@@ -2396,6 +2396,14 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
           <source>Нет никакой дополнительной информации об этом треке.</source>
           <target state="new">Нет никакой дополнительной информации об этом треке.</target>
         </trans-unit>
+        <trans-unit id="AppNotifications_AddAudioFail_Title" translate="yes" xml:space="preserve">
+          <source>Не удалось добавить в вашу коллекцию</source>
+          <target state="new">Не удалось добавить в вашу коллекцию</target>
+        </trans-unit>
+        <trans-unit id="AppNotifications_AddAudioSuccess_Title" translate="yes" xml:space="preserve">
+          <source>Аудиозапись добавлена в вашу коллекцию</source>
+          <target state="new">Аудиозапись добавлена в вашу коллекцию</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -25,6 +25,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using ModernDev.InTouch;
+using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.ViewModels
@@ -47,7 +48,8 @@ namespace VKSaver.Core.ViewModels
             ILastFmLoginService lastFmLoginService,
             IPurchaseService purchaseService,
             ILocService locService,
-            IDialogsService dialogsService)
+            IDialogsService dialogsService,
+            IAppNotificationsService appNotificationsService)
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, 
                   playerService, locService, navigationService, purchaseService)
         {
@@ -59,7 +61,7 @@ namespace VKSaver.Core.ViewModels
             _imagesCacheService = imagesCacheService;
             _tracksShuffleSevice = tracksShuffleService;
             _lastFmLoginService = lastFmLoginService;
-            _purchaseService = purchaseService;
+            _appNotificationsService = appNotificationsService;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
 
@@ -253,6 +255,34 @@ namespace VKSaver.Core.ViewModels
         {
             base.CreateSelectionAppBarButtons();
             IsLockedPivot = true;
+        }
+
+        protected override void OnAddAudioSuccess(PlayerItem track)
+        {
+            _appNotificationsService.SendNotification(new AppNotification
+            {
+                Title = _locService["AppNotifications_AddAudioSuccess_Title"],
+                Content = TrackToFriendlyNameString(track),
+                Type = AppNotificationType.Info
+            });
+        }
+
+        protected override void OnAddAudioFail(PlayerItem track)
+        {
+            _appNotificationsService.SendNotification(new AppNotification
+            {
+                Title = _locService["AppNotifications_AddAudioFail_Title"],
+                Content = TrackToFriendlyNameString(track),
+                Type = AppNotificationType.Error
+            });
+        }
+
+        protected override void OnAddAudioStarted(PlayerItem track)
+        {
+        }
+
+        protected override void OnAddAudioFinished(PlayerItem track)
+        {
         }
 
         private async void LoadPlayerState()
@@ -532,7 +562,7 @@ namespace VKSaver.Core.ViewModels
         private readonly IImagesCacheService _imagesCacheService;
         private readonly ITracksShuffleService _tracksShuffleSevice;
         private readonly ILastFmLoginService _lastFmLoginService;
-        private readonly IPurchaseService _purchaseService;
+        private readonly IAppNotificationsService _appNotificationsService;
 
         [ImplementPropertyChanged]
         public sealed class PlayerItem : IEquatable<PlayerItem>

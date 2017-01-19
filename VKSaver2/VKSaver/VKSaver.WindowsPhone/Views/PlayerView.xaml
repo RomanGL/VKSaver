@@ -226,13 +226,16 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <controls:ImagePlaceholder Text="{Binding CurrentTrack.Track.Title}" 
-                                                   Source="{Binding TrackImage}"
-                                                   Background="Red"
-                                                   VerticalAlignment="Bottom"
-                                                   HorizontalAlignment="Left"
-                                                   Width="220"
-                                                   Height="220" />
+                        <Grid VerticalAlignment="Bottom"
+                              HorizontalAlignment="Left">
+                            <controls:ImagePlaceholder Text="{Binding CurrentTrack.Track.Title}"
+                                                       Source="{Binding TrackImage}"
+                                                       Background="Red"
+                                                       Width="220"
+                                                       Height="220" />
+                            <controls:DoubleTapLikeControl Command="{Binding AddToMyAudiosCommand}"
+                                                           CommandParameter="{Binding CurrentTrack}"/>
+                        </Grid>
                         <StackPanel x:Name="OptionsButtonsPanel"
                                     Grid.Column="1"
                                     Orientation="Vertical"

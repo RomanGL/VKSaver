@@ -173,6 +173,7 @@
     <Compile Include="Common\VisualTreeHelperExtensions.cs" />
     <Compile Include="Controls\BusyControl.cs" />
     <Compile Include="Controls\ContinuationManager.cs" />
+    <Compile Include="Controls\DoubleTapLikeControl.cs" />
     <Compile Include="Controls\EnterCaptcha.xaml.cs">
       <DependentUpon>EnterCaptcha.xaml</DependentUpon>
     </Compile>

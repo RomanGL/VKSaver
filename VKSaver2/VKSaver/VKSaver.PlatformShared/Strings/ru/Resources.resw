@@ -1905,4 +1905,10 @@ Eng: upload</comment>
   <data name="VKAudioInfoView_Container.NoDataText" xml:space="preserve">
     <value>Нет никакой дополнительной информации об этом треке.</value>
   </data>
+  <data name="AppNotifications_AddAudioFail_Title" xml:space="preserve">
+    <value>Не удалось добавить в вашу коллекцию</value>
+  </data>
+  <data name="AppNotifications_AddAudioSuccess_Title" xml:space="preserve">
+    <value>Аудиозапись добавлена в вашу коллекцию</value>
+  </data>
 </root>

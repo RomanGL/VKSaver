@@ -83,13 +83,33 @@ namespace VKSaver.Core.ViewModels
             base.OnSelectionChangedCommand();
         }
 
+        protected abstract VKAudioInfo GetAudioInfo(T track);
+
         protected virtual bool CanShowTrackInfo(T audio) => true;
         protected virtual bool CanAddToMyAudios(T audio) => true;
         protected virtual bool CanAddSelectedAudios() => true;
         protected virtual bool AddSelectedToMyAudiosSupported() => true;
         protected virtual string TrackToFriendlyNameString(T track) => track.ToString();
 
-        protected abstract VKAudioInfo GetAudioInfo(T track);
+        protected virtual void OnAddAudioSuccess(T track)
+        {
+        }
+
+        protected virtual void OnAddAudioFail(T track)
+        {
+            _dialogsService.Show(_locService["Message_AudioAddError_Text"],
+                    _locService["Message_AudioAddError_Title"]);
+        }
+
+        protected virtual void OnAddAudioStarted(T track)
+        {
+            _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], TrackToFriendlyNameString(track)));
+        }
+
+        protected virtual void OnAddAudioFinished(T track)
+        {
+            _appLoaderService.Hide();
+        }
 
         private void OnShowTrackInfoCommand(T track)
         {
@@ -105,7 +125,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnAddToMyAudiosCommand(T track)
         {
-            _appLoaderService.Show(String.Format(_locService["AppLoader_AddingItem"], TrackToFriendlyNameString(track)));
+            OnAddAudioStarted(track);
 
             bool isSuccess = false;
             try
@@ -114,12 +134,12 @@ namespace VKSaver.Core.ViewModels
             }
             catch (Exception) { }
 
-            if (!isSuccess)
-            {
-                _dialogsService.Show(_locService["Message_AudioAddError_Text"],
-                    _locService["Message_AudioAddError_Title"]);
-            }
-            _appLoaderService.Hide();
+            if (isSuccess)
+                OnAddAudioSuccess(track);
+            else
+                OnAddAudioFail(track);
+
+            OnAddAudioFinished(track);
         }
 
         private async void OnAddSelectedToMyAudiosCommand()
