@@ -16,6 +16,7 @@ using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.UI.Notifications;
 using Windows.Web;
+using VKSaver.Core.Services.Database;
 using static VKSaver.Core.Models.Common.FileContentTypeExtensions;
 using static VKSaver.Core.Services.Common.DownloadsExtensions;
 
@@ -54,7 +55,6 @@ namespace VKSaver.Core.Services
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
             _downloads = new List<DownloadOperation>(INIT_DOWNLOADS_LIST_CAPACITY);
             _cts = new Dictionary<Guid, CancellationTokenSource>(INIT_DOWNLOADS_LIST_CAPACITY);
-            _musicDownloads = new Dictionary<string, VKSaverAudio>();
         }
 
         /// <summary>
@@ -168,25 +168,8 @@ namespace VKSaver.Core.Services
                 _isRunning = true;
             }
 
-            if (!_downloadsAttached)
-            {
-                var stream = await GetMetadataFileAsync(false);
-                var reader = new StreamReader(stream);
-                using (var jsonReader = new JsonTextReader(reader))
-                {
-
-                    var serializer = new JsonSerializer();
-                    var mDownloads = serializer.Deserialize<Dictionary<string, VKSaverAudio>>(jsonReader);
-
-                    if (mDownloads != null)
-                    {
-                        foreach (var item in mDownloads)
-                        {
-                            _musicDownloads[item.Key] = item.Value;
-                        }
-                    }
-                }
-            }
+            if (_audiosDownloadsDatabase == null)
+                _audiosDownloadsDatabase = await AudiosDownloadsDatabase.CreateDatabaseAsync();
 
             DiscoverActiveDownloads();
         }
@@ -269,7 +252,7 @@ namespace VKSaver.Core.Services
                     var download = downloader.CreateDownload(new Uri(item.Source), resultFile);
 
                     if (item.ContentType == FileContentType.Music)
-                        _musicDownloads[item.FileName] = (VKSaverAudio)item.Metadata;
+                        await _audiosDownloadsDatabase.InsertOrReplaceAsync((VKSaverAudio) item.Metadata, download.Guid);
 
                     HandleDownloadAsync(download);
                 }
@@ -282,8 +265,7 @@ namespace VKSaver.Core.Services
                     continue;
                 }
             }
-
-            await SaveDownloadsMetadataAsync();
+            
             return errors;
         }
 
@@ -354,9 +336,7 @@ namespace VKSaver.Core.Services
                     var type = GetContentTypeFromExtension(operation.ResultFile.FileType);
                     if (type == FileContentType.Music)
                     {
-                        VKSaverAudio metadata = null;
-                        _musicDownloads.TryGetValue(fileName, out metadata);
-
+                        VKSaverAudio metadata = await _audiosDownloadsDatabase.GetAsync(operation.Guid);
                         await _musicCacheService.PostprocessAudioAsync((StorageFile)operation.ResultFile, metadata);
                     }
                 }
@@ -370,23 +350,12 @@ namespace VKSaver.Core.Services
 
             _cts.Remove(operation.Guid);
             _downloads.Remove(operation);
-            _musicDownloads.Remove(fileName);
+            await _audiosDownloadsDatabase.RemoveAsync(operation.Guid);
 
             if (_downloads.Count == 0)
             {
                 DownloadsCompleted?.Invoke(this, EventArgs.Empty);
-                await GetMetadataFileAsync(true);
             }
-        }
-
-        private async Task SaveDownloadsMetadataAsync()
-        {
-            string json = JsonConvert.SerializeObject(_musicDownloads);
-            var stream = await GetMetadataFileAsync(true);
-            var writter = new StreamWriter(stream);
-
-            writter.Write(json);
-            writter.Dispose();
         }
 
         /// <summary>
@@ -417,7 +386,7 @@ namespace VKSaver.Core.Services
             {
                 case FileContentType.Music:
                     VKSaverAudio metadata = null;
-                    _musicDownloads.TryGetValue(fileName, out metadata);
+                    //_musicDownloads.TryGetValue(fileName, out metadata);
 
                     if (metadata != null)
                         return metadata.Track.Title;
@@ -442,30 +411,13 @@ namespace VKSaver.Core.Services
             catch (Exception) { return null; }
         }
 
-        private async Task<Stream> GetMetadataFileAsync(bool clear)
-        {
-            try
-            {
-                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(
-                    DOWNLOADS_METADATA_FILE_NAME, 
-                    clear ? CreationCollisionOption.ReplaceExisting : CreationCollisionOption.OpenIfExists);
-                var stream = await file.OpenAsync(FileAccessMode.ReadWrite);
-                return stream.AsStream();
-            }
-            catch (Exception ex)
-            {
-                _logService.LogException(ex);
-                return null;
-            }
-        }
-
         private bool _isRunning;
         private bool _downloadsAttached;
+        private AudiosDownloadsDatabase _audiosDownloadsDatabase;
 
         private readonly BackgroundTransferGroup _transferGroup;
         private readonly List<DownloadOperation> _downloads;
         private readonly Dictionary<Guid, CancellationTokenSource> _cts;
-        private readonly Dictionary<string, VKSaverAudio> _musicDownloads;        
 
         private readonly IMusicCacheService _musicCacheService;
         private readonly ISettingsService _settingsService;
@@ -479,6 +431,11 @@ namespace VKSaver.Core.Services
         private const string DOWNLOADS_OTHER_FOLDER_NAME = "VKSaver Other";
         private const string MUSIC_DOWNLOADS_PARAMETER = "MusicDownloads";
         private const string DOWNLOADS_METADATA_FILE_NAME = "DownloadsMetadata.txt";
-        private const int INIT_DOWNLOADS_LIST_CAPACITY = 60;        
+        private const int INIT_DOWNLOADS_LIST_CAPACITY = 60;
+
+        public Task<TransferItem[]> GetAllDownloadsAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

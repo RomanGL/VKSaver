@@ -1,9 +1,14 @@
 ﻿using Newtonsoft.Json;
+using SQLite.Net.Attributes;
 
 namespace VKSaver.Core.Models.Common
 {
     public class VKSaverAudioTrackInfo
     {
+        [JsonIgnore]
+        [PrimaryKey]
+        public string DbKey { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
 

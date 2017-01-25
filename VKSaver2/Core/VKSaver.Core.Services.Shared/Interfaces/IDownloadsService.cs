@@ -18,6 +18,7 @@ namespace VKSaver.Core.Services.Interfaces
         void PauseResume(Guid operationGuid);
 
         TransferItem[] GetAllDownloads();
+        Task<TransferItem[]> GetAllDownloadsAsync();
         int GetDownloadsCount();
         Task<List<DownloadInitError>> StartDownloadingAsync(IList<IDownloadable> items);
         Task CancelAllAsync();    

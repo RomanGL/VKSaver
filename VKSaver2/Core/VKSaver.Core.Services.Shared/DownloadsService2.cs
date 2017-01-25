@@ -35,7 +35,12 @@ namespace VKSaver.Core.Services
         }
         
         public bool IsLoading { get; private set; }
-        
+
+        public Task<TransferItem[]> GetAllDownloadsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public TransferItem[] GetAllDownloads()
         {
             if (_downloads.Count == 0) return null;
@@ -66,7 +71,7 @@ namespace VKSaver.Core.Services
             }
             catch (Exception ex)
             {
-                WebErrorStatus error = BackgroundTransferError.GetStatus(ex.HResult);
+                //WebErrorStatus error = BackgroundTransferError.GetStatus(ex.HResult);
             }
 
             if (downloads != null && downloads.Count > 0)
