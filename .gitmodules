@@ -1,3 +1,6 @@
 [submodule "thirdparty/lastfm"]
 	path = thirdparty/lastfm
 	url = https://github.com/RomanGL/lastfm.git
+[submodule "thirdparty/InTouch"]
+	path = thirdparty/InTouch
+	url = https://github.com/RomanGL/InTouch.git

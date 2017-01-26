@@ -68,9 +68,6 @@
     <Reference Include="Microsoft.Practices.Prism.StoreApps">
       <HintPath>..\..\Libs\Microsoft.Practices.Prism.StoreApps.dll</HintPath>
     </Reference>
-    <Reference Include="ModernDev.InTouch">
-      <HintPath>..\..\Libs\ModernDev.InTouch.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -125,6 +122,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\thirdparty\InTouch\ModernDev.InTouch.Portable\ModernDev.InTouch.Portable.csproj">
+      <Project>{7887ebdb-a6b2-400e-9017-c47b606aa8d9}</Project>
+      <Name>ModernDev.InTouch.Portable</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\thirdparty\lastfm\src\IF.Lastfm.Core\IF.Lastfm.Core.csproj">
       <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
       <Name>IF.Lastfm.Core</Name>
