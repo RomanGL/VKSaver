@@ -182,6 +182,7 @@ namespace VKSaver
             _container.RegisterType<IAppNotificationsService, AppNotificationsService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IProtocolHandler, ProtocolHandler>(new TransientLifetimeManager());
             _container.RegisterType<IHttpFileService, HttpFileService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IVKAdService, VKAdService>(new TransientLifetimeManager());
 
             _container.RegisterType<LastfmClient>(new ContainerControlledLifetimeManager(), 
                 new InjectionFactory(InstanceFactories.ResolveLastfmClient));

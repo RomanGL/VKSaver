@@ -64,5 +64,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\UploadInitErrorType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\UploadsPostprocessorResultType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\UploadsPreprocessorResultType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VKAdData.cs" />
   </ItemGroup>
 </Project>

@@ -116,6 +116,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UploadsPreprocessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadsServiceHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VKAdService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKLoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VksmExtractionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VksmExtraction\ExtractingProgressChangedEventArgs.cs" />
