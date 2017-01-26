@@ -150,7 +150,7 @@ namespace VKSaver.Controls
         {
             AppLoaderService?.RemoveLoader(this);
         }
-
+        
         private bool _appBarHided;
         private Panel _notificationsPanel;
         private readonly List<AppNotification> _waitingNotifications = new List<AppNotification>();

@@ -6,6 +6,6 @@ namespace VKSaver.Core.Services
     public interface IVKAdService
     {
         Task<VKAdData> GetAdDataAsync(string adId);
-        Task ReportAdAsync(bool isSuccess);
+        Task ReportAdAsync(string adName, bool isSuccess);
     }
 }

@@ -1911,4 +1911,13 @@ Eng: upload</comment>
   <data name="AppNotifications_AddAudioSuccess_Title" xml:space="preserve">
     <value>Аудиозапись добавлена в вашу коллекцию</value>
   </data>
+  <data name="VKAdInfoView_Loader.ErrorText" xml:space="preserve">
+    <value>Не удалось загрузить информацию об акции.</value>
+  </data>
+  <data name="VKAdInfoView_Loader.LoadingText" xml:space="preserve">
+    <value>Выполняется загрузка информации об акции...</value>
+  </data>
+  <data name="VKAdInfoView_Loader.NoDataText" xml:space="preserve">
+    <value>Нет никакой информации об акции.</value>
+  </data>
 </root>

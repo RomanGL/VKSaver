@@ -28,55 +28,60 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <controls:PlayerBackground ArtistImage="ms-appx:///Assets/Background/Background.dark.jpg"
+        <controls:PlayerBackground ArtistImage="{x:Null}"
                                    DefaultTheme="{ThemeResource PagePlayerTheme}"
                                    DefaultShapesType="VerticalTriangles"
                                    x:Name="background" />
 
-        <ScrollViewer Margin="0,-27,0,0">
-            <StackPanel Margin="0,0,0,60">
-                <Grid>
-                    <Image Source="{Binding Data.Photo}"
-                           Stretch="UniformToFill"
-                           MinHeight="220" />
-                    <Border Padding="19,40,19,20"
-                            Margin="0,0,0,-1">
-                        <Border.Background>
-                            <LinearGradientBrush EndPoint="0.5,1"
-                                                 StartPoint="0.5,0">
-                                <GradientStop Color="Black"
-                                              Offset="1" />
-                                <GradientStop Color="#33000000" />
-                            </LinearGradientBrush>
-                        </Border.Background>
+        <controls:ContentContainer State="{Binding DataState}"
+                                   ReloadCommand="{Binding ReloadDataCommand}"
+                                   x:Uid="VKAdInfoView_Loader"
+                                   Margin="19,40,19,0">
+            <ScrollViewer Margin="-19,-67,-19,0">
+                <StackPanel Margin="0,0,0,60">
+                    <Grid>
+                        <Image Source="{Binding Data.Photo}"
+                               Stretch="UniformToFill"
+                               MinHeight="220" />
+                        <Border Padding="19,40,19,20"
+                                Margin="0,0,0,-1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1"
+                                                     StartPoint="0.5,0">
+                                    <GradientStop Color="Black"
+                                                  Offset="1" />
+                                    <GradientStop Color="#33000000" />
+                                </LinearGradientBrush>
+                            </Border.Background>
 
-                        <StackPanel VerticalAlignment="Bottom">
-                            <TextBlock Text="{Binding Data.Title}"
-                                       TextAlignment="Left"
-                                       Style="{StaticResource ListLine2TextStyle}"
-                                       TextWrapping="WrapWholeWords"
-                                       TextTrimming="CharacterEllipsis"
-                                       MaxLines="3"
-                                       Margin="0,0,0,3" />
-                            <TextBlock Text="{Binding Data.Subtitle}"
-                                       TextAlignment="Left"
-                                       Style="{StaticResource ListLine1TextStyle}"
-                                       TextWrapping="WrapWholeWords"
-                                       TextTrimming="CharacterEllipsis"
-                                       MaxLines="3"
-                                       FontSize="22" />
-                        </StackPanel>
-                    </Border>
-                </Grid>
-                
-                <TextBlock Text="{Binding Data.Text}"
-                           Style="{StaticResource BodyTextBlockStyle}"
-                           Margin="20,5,20,0" />
-                <Button Content="{Binding Data.ExternalName}"
-                        Style="{StaticResource ButtonStyle}"
-                        Margin="20,20,0,0"
-                        Command="{Binding ActionCommand}" />
-            </StackPanel>
-        </ScrollViewer>
+                            <StackPanel VerticalAlignment="Bottom">
+                                <TextBlock Text="{Binding Data.Title}"
+                                           TextAlignment="Left"
+                                           Style="{StaticResource ListLine2TextStyle}"
+                                           TextWrapping="WrapWholeWords"
+                                           TextTrimming="CharacterEllipsis"
+                                           MaxLines="3"
+                                           Margin="0,0,0,3" />
+                                <TextBlock Text="{Binding Data.Subtitle}"
+                                           TextAlignment="Left"
+                                           Style="{StaticResource ListLine1TextStyle}"
+                                           TextWrapping="WrapWholeWords"
+                                           TextTrimming="CharacterEllipsis"
+                                           MaxLines="3"
+                                           FontSize="22" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <TextBlock Text="{Binding Data.Text}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Margin="20,5,20,0" />
+                    <Button Content="{Binding Data.ExternalName}"
+                            Style="{StaticResource ButtonStyle}"
+                            Margin="20,20,0,0"
+                            Command="{Binding ActionCommand}" />
+                </StackPanel>
+            </ScrollViewer>
+        </controls:ContentContainer>
     </Grid>
 </mvvm:VisualStateAwarePage>

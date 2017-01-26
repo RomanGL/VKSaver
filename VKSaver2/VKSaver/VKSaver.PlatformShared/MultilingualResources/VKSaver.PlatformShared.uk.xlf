@@ -2399,6 +2399,18 @@ Eng: upload</note>
           <source>Аудиозапись добавлена в вашу коллекцию</source>
           <target state="new">Аудиозапись добавлена в вашу коллекцию</target>
         </trans-unit>
+        <trans-unit id="VKAdInfoView_Loader.ErrorText" translate="yes" xml:space="preserve">
+          <source>Не удалось загрузить информацию об акции.</source>
+          <target state="new">Не удалось загрузить информацию об акции.</target>
+        </trans-unit>
+        <trans-unit id="VKAdInfoView_Loader.LoadingText" translate="yes" xml:space="preserve">
+          <source>Выполняется загрузка информации об акции...</source>
+          <target state="new">Выполняется загрузка информации об акции...</target>
+        </trans-unit>
+        <trans-unit id="VKAdInfoView_Loader.NoDataText" translate="yes" xml:space="preserve">
+          <source>Нет никакой информации об акции.</source>
+          <target state="new">Нет никакой информации об акции.</target>
+        </trans-unit>
       </group>
     </body>
   </file>
