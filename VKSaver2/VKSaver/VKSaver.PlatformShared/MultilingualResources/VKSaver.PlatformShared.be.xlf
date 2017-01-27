@@ -69,11 +69,11 @@
         </trans-unit>
         <trans-unit id="Ads_BuyonLumia650_Action_Link" translate="yes" xml:space="preserve">
           <source>https://vk.com/buyon?w=wall-50073493_40903</source>
-          <target state="needs-review-translation">https://vk.com/buyon?w=wall-50073493_40903</target>
+          <target state="final">https://vk.com/buyon?w=wall-50073493_40903</target>
         </trans-unit>
         <trans-unit id="Ads_BuyonLumia650_Action_Text" translate="yes" xml:space="preserve">
           <source>участвовать</source>
-          <target state="needs-review-translation">участвовать</target>
+          <target state="final">участвовать</target>
         </trans-unit>
         <trans-unit id="Ads_BuyonLumia650_Text" translate="yes" xml:space="preserve">
           <source>ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
@@ -86,7 +86,7 @@
 
 * только для жителей РФ
 * победитель должен быть старше 16-ти лет</source>
-          <target state="needs-review-translation">ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
+          <target state="final">ВКачай 2 празднует релиз! В честь данного события мы вместе с интернет-магазином Байон подготовили для вас ценный приз Lumia 650.
 
 Чтобы выиграть смартфон вам нужно:
 - Вступить в группу Байон и в группу ВКачай
@@ -99,17 +99,17 @@
         </trans-unit>
         <trans-unit id="Ads_BuyonLumia650_Title" translate="yes" xml:space="preserve">
           <source>Выиграй Microsoft Lumia 650 от ВКачай и Байон!</source>
-          <target state="needs-review-translation">Выиграй Microsoft Lumia 650 от ВКачай и Байон!</target>
+          <target state="final">Выиграй Microsoft Lumia 650 от ВКачай и Байон!</target>
         </trans-unit>
         <trans-unit id="Ads_Message_BuyonLumia650_Text" translate="yes" xml:space="preserve">
           <source>ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
 Хотите узнать, как выиграть смартфон?</source>
-          <target state="needs-review-translation">ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
+          <target state="final">ВКачай 2 празднует релиз! В честь данного события мы вместе с Байон подготовили для вас замечательный приз - Microsoft Lumia 650!
 Хотите узнать, как выиграть смартфон?</target>
         </trans-unit>
         <trans-unit id="Ads_Message_BuyonLumia650_Title" translate="yes" xml:space="preserve">
           <source>Выиграй Microsoft Lumia 650!</source>
-          <target state="needs-review-translation">Выиграй Microsoft Lumia 650!</target>
+          <target state="final">Выиграй Microsoft Lumia 650!</target>
         </trans-unit>
         <trans-unit id="AlbumTracksLoader.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось загрузить содержимое альбома</source>
@@ -1353,8 +1353,7 @@ Eng: TB</note>
         </trans-unit>
         <trans-unit id="SetingsView_Notifications_Text.Text" translate="yes" xml:space="preserve">
           <source>ВКачай может уведомлять вас о завершении загрузок системными всплывающими уведомлениями.</source>
-          <target state="needs-review-translation">ВКачай можа паведамляць вас аб завяршэнні загрузак.</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="new">ВКачай может уведомлять вас о завершении загрузок системными всплывающими уведомлениями.</target>
         </trans-unit>
         <trans-unit id="SettingsView_AppLanguage_Title.Text" translate="yes" xml:space="preserve">
           <source>Язык приложения</source>
@@ -1370,8 +1369,7 @@ Eng: TB</note>
         </trans-unit>
         <trans-unit id="SettingsView_Notifications_Title.Text" translate="yes" xml:space="preserve">
           <source>Системные уведомления</source>
-          <target state="needs-review-translation">Паведамленні</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="new">Системные уведомления</target>
         </trans-unit>
         <trans-unit id="SettingsView_ServicesAuthorizations_Title.Text" translate="yes" xml:space="preserve">
           <source>Авторизация в сервисах</source>
@@ -1926,22 +1924,22 @@ Eng: upload</note>
         <trans-unit id="Ads_Message_JoinBuyon_Text" translate="yes" xml:space="preserve">
           <source>Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
 Подписаться?</source>
-          <target state="needs-review-translation">Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
+          <target state="final">Узнайте все о гаджетах, получите советы и отзывы о смартфонах и аксессуарах! В сообществе постоянно проходят конкурсы с ценными призами. 
 Подписаться?</target>
         </trans-unit>
         <trans-unit id="Ads_Message_JoinBuyon_Title" translate="yes" xml:space="preserve">
           <source>Подпишись на Байон!</source>
-          <target state="needs-review-translation">Подпишись на Байон!</target>
+          <target state="final">Подпишись на Байон!</target>
         </trans-unit>
         <trans-unit id="Ads_Message_JoinNStore_Text" translate="yes" xml:space="preserve">
           <source>В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
 Подписаться?</source>
-          <target state="needs-review-translation">В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
+          <target state="final">В сообществе фирменного интернет-магазина Microsoft вы узнаете о всех новых устройствах, интересных новостях, а так же вы сможете принять участие в многочисленных конкурсах с ценными призами!
 Подписаться?</target>
         </trans-unit>
         <trans-unit id="Ads_Message_JoinNStore_Title" translate="yes" xml:space="preserve">
           <source>Подпишись на Microsoft Store Russia!</source>
-          <target state="needs-review-translation">Подпишись на Microsoft Store Russia!</target>
+          <target state="final">Подпишись на Microsoft Store Russia!</target>
         </trans-unit>
         <trans-unit id="LoginView_DirectAuth.Text" translate="yes" xml:space="preserve">
           <source>Прямая авторизация</source>
@@ -2252,7 +2250,7 @@ Eng: upload</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_AcousticAndVocal" translate="yes" xml:space="preserve">
           <source>acoustic &amp; vocal</source>
-          <target state="new">acoustic &amp; vocal</target>
+          <target state="final">acoustic &amp; vocal</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_AllGenres" translate="yes" xml:space="preserve">
@@ -2261,102 +2259,102 @@ Eng: upload</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Alternative" translate="yes" xml:space="preserve">
           <source>alternative</source>
-          <target state="new">alternative</target>
+          <target state="final">alternative</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Chanson" translate="yes" xml:space="preserve">
           <source>chanson</source>
-          <target state="new">chanson</target>
+          <target state="final">chanson</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Classical" translate="yes" xml:space="preserve">
           <source>classical</source>
-          <target state="new">classical</target>
+          <target state="final">classical</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_DanceAndHouse" translate="yes" xml:space="preserve">
           <source>house &amp; dance</source>
-          <target state="new">house &amp; dance</target>
+          <target state="final">house &amp; dance</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Dubstep" translate="yes" xml:space="preserve">
           <source>dubstep &amp; trap</source>
-          <target state="new">dubstep &amp; trap</target>
+          <target state="final">dubstep &amp; trap</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_EasyListening" translate="yes" xml:space="preserve">
           <source>easy listening</source>
-          <target state="new">easy listening</target>
+          <target state="final">easy listening</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_ElectropopAndDisco" translate="yes" xml:space="preserve">
           <source>electropop &amp; disco</source>
-          <target state="new">electropop &amp; disco</target>
+          <target state="final">electropop &amp; disco</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Ethnic" translate="yes" xml:space="preserve">
           <source>ethnic</source>
-          <target state="new">ethnic</target>
+          <target state="final">ethnic</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_IndiePop" translate="yes" xml:space="preserve">
           <source>indie Pop</source>
-          <target state="new">indie Pop</target>
+          <target state="final">indie Pop</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Instrumental" translate="yes" xml:space="preserve">
           <source>instrumental</source>
-          <target state="new">instrumental</target>
+          <target state="final">instrumental</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_JazzAndBlues" translate="yes" xml:space="preserve">
           <source>jazz &amp; blues</source>
-          <target state="new">jazz &amp; blues</target>
+          <target state="final">jazz &amp; blues</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Metal" translate="yes" xml:space="preserve">
           <source>metal</source>
-          <target state="new">metal</target>
+          <target state="final">metal</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Other" translate="yes" xml:space="preserve">
           <source>other</source>
-          <target state="new">other</target>
+          <target state="final">other</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Pop" translate="yes" xml:space="preserve">
           <source>pop</source>
-          <target state="new">pop</target>
+          <target state="final">pop</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_RapAndHipHop" translate="yes" xml:space="preserve">
           <source>rap &amp; hip-hop</source>
-          <target state="new">rap &amp; hip-hop</target>
+          <target state="final">rap &amp; hip-hop</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Reggae" translate="yes" xml:space="preserve">
           <source>reggae</source>
-          <target state="new">reggae</target>
+          <target state="final">reggae</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Rock" translate="yes" xml:space="preserve">
           <source>rock</source>
-          <target state="new">rock</target>
+          <target state="final">rock</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Speech" translate="yes" xml:space="preserve">
           <source>speech</source>
-          <target state="new">speech</target>
+          <target state="final">speech</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Trance" translate="yes" xml:space="preserve">
           <source>trance</source>
-          <target state="new">trance</target>
+          <target state="final">trance</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_DrumAndBass" translate="yes" xml:space="preserve">
           <source>drum &amp; bass</source>
-          <target state="new">drum &amp; bass</target>
+          <target state="final">drum &amp; bass</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_FilterFlyout_Title.Text" translate="yes" xml:space="preserve">
@@ -2414,6 +2412,16 @@ Eng: upload</note>
         <trans-unit id="VKAdInfoView_Loader.NoDataText" translate="yes" xml:space="preserve">
           <source>Нет никакой информации об акции.</source>
           <target state="new">Нет никакой информации об акции.</target>
+        </trans-unit>
+        <trans-unit id="Ads_Message_JoinWPLumia_Text" translate="yes" xml:space="preserve">
+          <source>В этом сообществе вы найдете свежие новости, обзоры игр и приложений, живое общение, а также помощь по всем интересующим вас вопросам! 
+Подписаться?</source>
+          <target state="new">В этом сообществе вы найдете свежие новости, обзоры игр и приложений, живое общение, а также помощь по всем интересующим вас вопросам! 
+Подписаться?</target>
+        </trans-unit>
+        <trans-unit id="Ads_Message_JoinWPLumia_Title" translate="yes" xml:space="preserve">
+          <source>Подпишись на Lumia | Microsoft Windows Mobile | Nokia</source>
+          <target state="new">Подпишись на Lumia | Microsoft Windows Mobile | Nokia</target>
         </trans-unit>
       </group>
     </body>

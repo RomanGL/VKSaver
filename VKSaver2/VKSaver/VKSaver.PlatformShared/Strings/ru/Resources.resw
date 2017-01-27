@@ -1920,4 +1920,11 @@ Eng: upload</comment>
   <data name="VKAdInfoView_Loader.NoDataText" xml:space="preserve">
     <value>Нет никакой информации об акции.</value>
   </data>
+  <data name="Ads_Message_JoinWPLumia_Text" xml:space="preserve">
+    <value>В этом сообществе вы найдете свежие новости, обзоры игр и приложений, живое общение, а также помощь по всем интересующим вас вопросам! 
+Подписаться?</value>
+  </data>
+  <data name="Ads_Message_JoinWPLumia_Title" xml:space="preserve">
+    <value>Подпишись на Lumia | Microsoft Windows Mobile | Nokia</value>
+  </data>
 </root>

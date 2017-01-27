@@ -122,39 +122,27 @@ namespace VKSaver
             _container = new UnityContainer();
             _unityServiceLocator = new UnityServiceLocator(_container);
             ServiceLocator.SetLocatorProvider(() => _unityServiceLocator);
-
             ViewModelLocator.SetDefaultViewTypeToViewModelTypeResolver(GetViewModelType);
-
-            var settingsService = new SettingsService();
-
-            int settingsVersion = settingsService.Get(AppConstants.SETTINGS_VERSION_PARAMETER, 0);
-            if (settingsVersion < AppConstants.SETTINGS_VERSION)
-            {
-                settingsService.Clear();
-                settingsService.Set(AppConstants.SETTINGS_VERSION_PARAMETER, AppConstants.SETTINGS_VERSION);
-            }
-
-            _metricaService = new MetricaService();
-
-            var inTouch = new InTouch();
-            var lastAuth = new LastAuth(LAST_FM_API_KEY, LAST_FM_API_SECRET);
-
-            var vkLoginService = new VKLoginService(settingsService, inTouch);
-            if (vkLoginService.IsAuthorized)
-                vkLoginService.InitializeInTouch();
-
-            _container.RegisterInstance<IMetricaService>(_metricaService);
+            
             _container.RegisterInstance<IServiceResolver>(this);
-            _container.RegisterInstance<ISettingsService>(settingsService);
             _container.RegisterInstance(this.NavigationService);
             _container.RegisterInstance(this.SessionStateService);
             _container.RegisterInstance<IDispatcherWrapper>(this);
-            _container.RegisterInstance<IAppLoaderService>(_appLoaderService);            
-            _container.RegisterInstance<IVKLoginService>(vkLoginService);
-            _container.RegisterInstance<InTouch>(inTouch);
-            _container.RegisterInstance<ILastAuth>(lastAuth);
+            _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
             _container.RegisterInstance<IAppNotificationsPresenter>(_frame);
 
+            _container.RegisterType<ISettingsService, SettingsService>(new ContainerControlledLifetimeManager(),
+                new InjectionFactory(InstanceFactories.ResolveSettingsService));
+            _container.RegisterType<InTouch>(new ContainerControlledLifetimeManager(),
+                new InjectionFactory(InstanceFactories.ResolveInTouch));
+            _container.RegisterType<ILastAuth, LastAuth>(new ContainerControlledLifetimeManager(),
+                new InjectionFactory(InstanceFactories.ResolveLastAuth));
+            _container.RegisterType<LastfmClient>(new ContainerControlledLifetimeManager(),
+                new InjectionFactory(InstanceFactories.ResolveLastfmClient));
+            _container.RegisterType<IVKLoginService, VKLoginService>(new ContainerControlledLifetimeManager(),
+                new InjectionFactory(InstanceFactories.ResolveVKLoginService));
+
+            _container.RegisterType<IMetricaService, MetricaService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILocService, LocService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IInTouchWrapper, InTouchWrapper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
@@ -183,31 +171,36 @@ namespace VKSaver
             _container.RegisterType<IProtocolHandler, ProtocolHandler>(new TransientLifetimeManager());
             _container.RegisterType<IHttpFileService, HttpFileService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IVKAdService, VKAdService>(new TransientLifetimeManager());
+            _container.RegisterType<IPlayerService, PlayerService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IDownloadsService, DownloadsService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IUploadsService, UploadsService>(new ContainerControlledLifetimeManager());
 
-            _container.RegisterType<LastfmClient>(new ContainerControlledLifetimeManager(), 
-                new InjectionFactory(InstanceFactories.ResolveLastfmClient));
-
-            var playerService = _container.Resolve<PlayerService>();
-            var downloadsService = _container.Resolve<DownloadsService>();
-            var uploadsService = _container.Resolve<UploadsService>();
-            
-            _container.RegisterInstance<ISuspendingService>("s1", playerService);
-            _container.RegisterInstance<ISuspendingService>("s2", downloadsService);
-            _container.RegisterInstance<ISuspendingService>("s3", uploadsService);
-            _container.RegisterType<ISuspendingService, TransferNotificationsService>("s4", new ContainerControlledLifetimeManager());
-
-            _container.RegisterInstance<IPlayerService>(playerService);
-            _container.RegisterInstance<IDownloadsService>(downloadsService);
-            _container.RegisterInstance<IUploadsService>(uploadsService);
+            _container.RegisterType<ISuspendingService, TransferNotificationsService>("s1",
+                new ContainerControlledLifetimeManager());
+            _container.RegisterType<ISuspendingService>("s2",
+                new InjectionFactory(c => c.Resolve<PlayerService>()));
+            _container.RegisterType<ISuspendingService>("s3",
+                new InjectionFactory(c => c.Resolve<DownloadsService>()));
+            _container.RegisterType<ISuspendingService>("s4",
+                new InjectionFactory(c => c.Resolve<UploadsService>()));
 
             _container.RegisterType<IDownloadsServiceHelper, DownloadsServiceHelper>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IMediaFilesProcessService, MediaFilesProcessService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IUploadsServiceHelper, UploadsServiceHelper>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<ISuspendingService, SuspendingServicesManager>(new TransientLifetimeManager(),
+                new InjectionConstructor(
+                    new ResolvedArrayParameter<ISuspendingService>(
+                        new ResolvedParameter<ISuspendingService>("s1"),
+                        new ResolvedParameter<ISuspendingService>("s2"),
+                        new ResolvedParameter<ISuspendingService>("s3"),
+                        new ResolvedParameter<ISuspendingService>("s4"))));
 
 #if FULL
             _container.RegisterType<IBetaService, BetaService>(new TransientLifetimeManager());
 #endif
 
+            _metricaService = _container.Resolve<IMetricaService>();
+            var vkLoginService = _container.Resolve<IVKLoginService>();
             vkLoginService.UserLogin += async (s, e) =>
             {
                 var launchViewResolver = _container.Resolve<ILaunchViewResolver>();
@@ -228,7 +221,7 @@ namespace VKSaver
                     NavigationService.ClearHistory();
                 });
             };
-            inTouch.AuthorizationFailed += async (s, e) =>
+            _container.Resolve<InTouch>().AuthorizationFailed += async (s, e) =>
             {
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -244,7 +237,7 @@ namespace VKSaver
             var purchaseService = _container.Resolve<PurchaseService>();
             if (!purchaseService.IsFullVersionPurchased)
             {
-                settingsService.Remove(PlayerConstants.PLAYER_SCROBBLE_MODE);
+                _container.Resolve<ISettingsService>().Remove(PlayerConstants.PLAYER_SCROBBLE_MODE);
             }
             
             var lastFmLoginService = _container.Resolve<ILastFmLoginService>();
@@ -262,10 +255,8 @@ namespace VKSaver
         protected override async Task OnLaunchApplication(LaunchActivatedEventArgs args)
         {
             ActivateMetrica();
-
-            var playerService = _container.Resolve<IPlayerService>();
+            
             var vkLoginService = _container.Resolve<IVKLoginService>();
-            var downloadsService = _container.Resolve<IDownloadsService>();
             var launchViewResolver = _container.Resolve<ILaunchViewResolver>();
 
             StartSuspendingServices();
@@ -293,7 +284,7 @@ namespace VKSaver
                 {
                     await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        var state = playerService.CurrentState;
+                        var state = _container.Resolve<IPlayerService>().CurrentState;
                         if (state == PlayerState.Playing)
                             NavigationService.Navigate("PlayerView", null);
                     });                    
@@ -317,7 +308,6 @@ namespace VKSaver
             ActivateMetrica();
 
             var mediaFilesProcessService = _container.Resolve<IMediaFilesProcessService>();
-            var downloadsService = _container.Resolve<IDownloadsService>();
             var launchViewResolver = _container.Resolve<ILaunchViewResolver>();
 
             StartSuspendingServices();
@@ -325,7 +315,6 @@ namespace VKSaver
             if (args.PreviousExecutionState == ApplicationExecutionState.NotRunning ||
                 args.PreviousExecutionState == ApplicationExecutionState.ClosedByUser)
             {
-                var playerService = _container.Resolve<IPlayerService>();
                 var vkLoginService = _container.Resolve<IVKLoginService>();
 
                 if (!launchViewResolver.TryOpenPromoView())
@@ -371,20 +360,12 @@ namespace VKSaver
 
         private void StartSuspendingServices()
         {
-            var suspendingServices = _container.ResolveAll<ISuspendingService>();
-            foreach (var service in suspendingServices)
-            {
-                service.StartService();
-            }
+            _container.Resolve<ISuspendingService>().StartService();
         }
 
         private void StopSuspendingServices()
         {
-            var suspendingServices = _container.ResolveAll<ISuspendingService>();
-            foreach (var service in suspendingServices)
-            {
-                service.StopService();
-            }
+            _container.Resolve<ISuspendingService>().StopService();
         }
 
         private async void ActivateMetrica()
@@ -472,12 +453,8 @@ namespace VKSaver
         private UnityServiceLocator _unityServiceLocator;
         private WithLoaderFrame _frame;
 
-        private const string LAST_FM_API_KEY = "***REMOVED***";
-        private const string LAST_FM_API_SECRET = "***REMOVED***";
-
         private const string VIEW_MODEL_FORMAT = "VKSaver.Core.ViewModels.{0}Model, VKSaver.Core.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string VIEW_MODEL_CONTROLS_FORMAT = "VKSaver.Core.ViewModels.{0}ViewModel, VKSaver.Core.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string VIEW_FORMAT = "VKSaver.Views.{0}";
-        private const int VKSAVER_APP_ID = ***REMOVED***;
     }
 }

@@ -107,6 +107,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\StoreConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoundService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SuspendingServicesManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransferNotificationsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferOperationErrorEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferStatusComparer.cs" />

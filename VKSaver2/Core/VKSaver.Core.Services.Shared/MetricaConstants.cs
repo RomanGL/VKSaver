@@ -20,7 +20,7 @@ namespace VKSaver.Core.Services
         public const string SUBSCRIBE_DENIED = "Denied";
         public const string SUBSCRIBE_BUYON = "Buyon";
         public const string SUBSCRIBE_NSTORE = "NStore";
-        public const string SUBSCRIBE_WPLUMIA = "wp_lumia";
+        public const string SUBSCRIBE_WPLUMIA = "WP_Lumia";
 
         public const string NAVIGATION_EVENT = "Navigation";
         public const string NAVIGATION_PAGE = "Page";

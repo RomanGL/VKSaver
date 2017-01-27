@@ -48,6 +48,9 @@ namespace VKSaver.Core.Services
                 else if (await ShowAdAsync(JOIN_NSTORE_AD_NAME, JOIN_NSTORE_DELAY, () => Subscribe(NSTORE_ID), 
                     () => LogDeniedSubscribe(NSTORE_ID), () => IsSubscriber(NSTORE_ID)))
                     return;
+                else if (await ShowAdAsync(JOIB_WPLUMIA_AD_NAME, JOIN_WPLUMIA_DELAY, () => Subscribe(WPLUMIA_ID),
+                    () => LogDeniedSubscribe(WPLUMIA_ID), () => IsSubscriber(WPLUMIA_ID)))
+                    return;
             }
             catch (Exception)
             {
@@ -74,15 +77,10 @@ namespace VKSaver.Core.Services
             int startNumer = _settingsService.Get(adName, 0);
             if (startNumer == -1)
                 return false;
-            else if (startNumer > 0 && startNumer < startupsDelay)
+            else if (startNumer < startupsDelay)
             {
                 _settingsService.Set(adName, startNumer + 1);
                 return false;
-            }
-            else if (startNumer >= startupsDelay)
-            {
-                _settingsService.Set(adName, 0);
-                startNumer = 0;
             }
 
             if (precondition != null && await precondition())
@@ -102,7 +100,7 @@ namespace VKSaver.Core.Services
             else
             {
                 actionFail?.Invoke();
-                _settingsService.Set(adName, startNumer + 1);
+                _settingsService.Set(adName, 0);
             }
 
             return result;
@@ -124,6 +122,9 @@ namespace VKSaver.Core.Services
                         break;
                     case NSTORE_ID:
                         dict[SUBSCRIBE_SUCCESS] = SUBSCRIBE_NSTORE;
+                        break;
+                    case WPLUMIA_ID:
+                        dict[SUBSCRIBE_SUCCESS] = SUBSCRIBE_WPLUMIA;
                         break;
                     default:
                         return true;
@@ -151,6 +152,9 @@ namespace VKSaver.Core.Services
                     case NSTORE_ID:
                         dict[SUBSCRIBE_ALREADY] = SUBSCRIBE_NSTORE;
                         break;
+                    case WPLUMIA_ID:
+                        dict[SUBSCRIBE_ALREADY] = SUBSCRIBE_WPLUMIA;
+                        break;
                     default:
                         return true;
                 }
@@ -171,6 +175,9 @@ namespace VKSaver.Core.Services
                 case NSTORE_ID:
                     dict[SUBSCRIBE_DENIED] = SUBSCRIBE_NSTORE;
                     break;
+                case WPLUMIA_ID:
+                    dict[SUBSCRIBE_DENIED] = SUBSCRIBE_WPLUMIA;
+                    break;
                 default:
                     return;
             }
@@ -187,14 +194,17 @@ namespace VKSaver.Core.Services
 
         private const int DEFAULT_STARTUPS_DELAY = 10;
         private const int JOIN_BUYON_DELAY = 12;
-        private const int JOIN_NSTORE_DELAY = 15;
+        private const int JOIN_NSTORE_DELAY = 16;
+        private const int JOIN_WPLUMIA_DELAY = 20;
 
         private const string BUYON_LUMIA_650_AD_NAME = "BuyonLumia650";
         private const string JOIN_BUYON_AD_NAME = "JoinBuyon";
         private const string JOIN_NSTORE_AD_NAME = "JoinNStore";
+        private const string JOIB_WPLUMIA_AD_NAME = "JoinWPLumia";
 
         private const int NSTORE_ID = 55671937;
         private const int BUYON_ID = 50073493;
+        private const int WPLUMIA_ID = 31900243;
 
         private static readonly DateTime BuyonLumia650AdDate = new DateTime(2016, 10, 24);
     }

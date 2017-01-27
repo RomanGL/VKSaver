@@ -1015,9 +1015,6 @@ Eng: TB</comment>
   <data name="SetingsView_LocalLibrary_Text.Text" xml:space="preserve">
     <value>Калі ў вашай бібліятэцы адлюстроўваюцца не ўсе трэкі, паспрабуйце выканаць абнаўленне базы дадзеных.</value>
   </data>
-  <data name="SetingsView_Notifications_Text.Text" xml:space="preserve">
-    <value>ВКачай можа паведамляць вас аб завяршэнні загрузак.</value>
-  </data>
   <data name="SettingsView_AppLanguage_Title.Text" xml:space="preserve">
     <value>Мова праграмы</value>
   </data>
@@ -1026,9 +1023,6 @@ Eng: TB</comment>
   </data>
   <data name="SettingsView_LocalLibrary_Title.Text" xml:space="preserve">
     <value>Лакальная бібліятэка</value>
-  </data>
-  <data name="SettingsView_Notifications_Title.Text" xml:space="preserve">
-    <value>Паведамленні</value>
   </data>
   <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
     <value>Аўтарызацыя ў сэрвісах</value>
@@ -1513,5 +1507,89 @@ Eng: upload</comment>
   </data>
   <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
     <value>Стануць даступныя ўсе відэа Укантакце!</value>
+  </data>
+  <data name="PopularVKAudioView_Genre_AcousticAndVocal" xml:space="preserve">
+    <value>acoustic &amp; vocal</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Alternative" xml:space="preserve">
+    <value>alternative</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Chanson" xml:space="preserve">
+    <value>chanson</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Classical" xml:space="preserve">
+    <value>classical</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_DanceAndHouse" xml:space="preserve">
+    <value>house &amp; dance</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Dubstep" xml:space="preserve">
+    <value>dubstep &amp; trap</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_EasyListening" xml:space="preserve">
+    <value>easy listening</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_ElectropopAndDisco" xml:space="preserve">
+    <value>electropop &amp; disco</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Ethnic" xml:space="preserve">
+    <value>ethnic</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_IndiePop" xml:space="preserve">
+    <value>indie Pop</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Instrumental" xml:space="preserve">
+    <value>instrumental</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_JazzAndBlues" xml:space="preserve">
+    <value>jazz &amp; blues</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Metal" xml:space="preserve">
+    <value>metal</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Other" xml:space="preserve">
+    <value>other</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Pop" xml:space="preserve">
+    <value>pop</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_RapAndHipHop" xml:space="preserve">
+    <value>rap &amp; hip-hop</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Reggae" xml:space="preserve">
+    <value>reggae</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Rock" xml:space="preserve">
+    <value>rock</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Speech" xml:space="preserve">
+    <value>speech</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_Trance" xml:space="preserve">
+    <value>trance</value>
+    <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_DrumAndBass" xml:space="preserve">
+    <value>drum &amp; bass</value>
+    <comment>Не переводить</comment>
   </data>
 </root>

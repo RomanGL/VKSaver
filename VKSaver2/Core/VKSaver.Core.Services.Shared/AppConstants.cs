@@ -43,6 +43,9 @@
         public const string ENABLE_IN_APP_VIBRATION = "EnableInAppVibration";
         public const string ENABLE_IN_APP_POPUPS = "EnableInAppPopup";
 
+        public const string LAST_FM_API_KEY = "***REMOVED***";
+        public const string LAST_FM_API_SECRET = "***REMOVED***";
+
 #if WINDOWS_UWP
         public const string YANDEX_METRICA_API_KEY = "***REMOVED***";
 #else

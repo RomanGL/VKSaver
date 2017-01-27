@@ -10,7 +10,7 @@ using static VKSaver.Core.Services.PlayerConstants;
 
 namespace VKSaver.Core.Services
 {
-    public sealed class PlayerService : IPlayerService
+    public sealed class PlayerService : IPlayerService, ISuspendingService
     {
         public event TypedEventHandler<IPlayerService, PlayerStateChangedEventArgs> PlayerStateChanged;
         public event TypedEventHandler<IPlayerService, TrackChangedEventArgs> TrackChanged;
