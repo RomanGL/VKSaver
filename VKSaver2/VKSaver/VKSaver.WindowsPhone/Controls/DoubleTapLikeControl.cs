@@ -40,6 +40,11 @@ namespace VKSaver.Controls
         public static readonly DependencyProperty CommandParameterProperty =
             DependencyProperty.Register("CommandParameter", typeof(object), typeof(DoubleTapLikeControl), new PropertyMetadata(null));
 
+        public void PlayLikeAnimation()
+        {
+            _likeStoryboard.Begin();
+        }
+
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -50,7 +55,7 @@ namespace VKSaver.Controls
 
         private void DoubleTapLikeControl_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            _likeStoryboard.Begin();
+            PlayLikeAnimation();
             if (Command != null && Command.CanExecute(CommandParameter))
                 Command.Execute(CommandParameter);
         }

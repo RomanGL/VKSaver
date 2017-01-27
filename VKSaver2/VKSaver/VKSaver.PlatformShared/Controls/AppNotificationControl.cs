@@ -175,9 +175,15 @@ namespace VKSaver.Controls
 
         private void CollapsedStoryboard_Completed(object sender, object e)
         {
-            collapsedStoryboard.Completed -= CollapsedStoryboard_Completed;
-            var panel = this.GetFirstAncestorOfType<Panel>();
-            panel.Children.Remove(this);
+            try
+            {
+                collapsedStoryboard.Completed -= CollapsedStoryboard_Completed;
+                var panel = this.GetFirstAncestorOfType<Panel>();
+                panel.Children.Remove(this);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

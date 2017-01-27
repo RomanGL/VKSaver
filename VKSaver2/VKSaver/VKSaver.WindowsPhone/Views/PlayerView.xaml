@@ -11,6 +11,8 @@
                            xmlns:common="using:VKSaver.Common"
                            xmlns:b="using:VKSaver.Behaviors"
                            xmlns:viewModels="using:VKSaver.Core.ViewModels"
+                           xmlns:models="using:VKSaver.Core.Models"
+                           xmlns:foundation="using:Windows.Foundation"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            mc:Ignorable="d"
                            IsTextScaleFactorEnabled="False"
@@ -234,8 +236,10 @@
                                                        Width="220"
                                                        Height="220" />
                             <controls:DoubleTapLikeControl Command="{Binding AddToMyAudiosCommand}"
-                                                           CommandParameter="{Binding CurrentTrack}"/>
+                                                           CommandParameter="{Binding CurrentTrack}"
+                                                           x:Name="LikeControl"/>
                         </Grid>
+
                         <StackPanel x:Name="OptionsButtonsPanel"
                                     Grid.Column="1"
                                     Orientation="Vertical"
@@ -370,5 +374,16 @@
                 </Grid>
             </PivotItem>
         </Pivot>
+
+        <controls:AppNotificationControl x:Name="LikeInfoNotification"
+                                         Visibility="Collapsed"
+                                         VerticalAlignment="Bottom"
+                                         Margin="0,0,0,90"
+                                         HorizontalAlignment="Center">
+            <controls:AppNotificationControl.Message>
+                <models:AppNotification Title="Дважды коснитесь изображения альбома"
+                                        Content="Чтобы добавить трек в вашу коллекцию" />
+            </controls:AppNotificationControl.Message>
+        </controls:AppNotificationControl>
     </Grid>
 </mvvm:VisualStateAwarePage>

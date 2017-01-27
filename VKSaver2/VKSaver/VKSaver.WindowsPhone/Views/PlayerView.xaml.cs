@@ -1,8 +1,11 @@
 ﻿using Microsoft.Practices.Prism.StoreApps;
 using System;
+using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using VKSaver.Core.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.Models;
 
 namespace VKSaver.Views
 {
@@ -23,6 +26,7 @@ namespace VKSaver.Views
             TracksList.Loaded += TracksList_Loaded;
 
             base.OnNavigatedTo(e);
+            TryShowLikeInfo();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -31,6 +35,23 @@ namespace VKSaver.Views
             vm = null;
 
             base.OnNavigatedFrom(e);
+        }
+
+        private void TryShowLikeInfo()
+        {
+            LikeInfoNotification.Message.Duration = TimeSpan.FromSeconds(6);
+            LikeInfoNotification.Message.Type = AppNotificationType.Info;
+            LikeInfoNotification.Visibility = Visibility.Visible;
+
+            LikeInfoNotification.Loaded += async (s, e) =>
+            {
+                LikeInfoNotification.Show();
+                await Task.Delay(2000);
+
+                LikeControl.PlayLikeAnimation();
+                await Task.Delay(200);
+                LikeControl.PlayLikeAnimation();
+            };
         }
 
         private void TracksList_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
