@@ -837,11 +837,11 @@ Eng: TB</comment>
     <value>Не атрымалася выдаліць відэазапіс</value>
   </data>
   <data name="Message_VideoInfo_GetLinksFailed_Text" xml:space="preserve">
-    <value>Не атрымалася атрымаць спасылкі для гэтага відэазапісу.
+    <value>Не атрымалася набыць спасылкі для гэтага відэазапісу.
 Адсутнічае злучэнне або доступ да відэазапісу зачынены.</value>
   </data>
   <data name="Message_VideoInfo_GetLinksFailed_Title" xml:space="preserve">
-    <value>Не атрымалася атрымаць спасылкі</value>
+    <value>Не атрымалася набыць спасылкі</value>
   </data>
   <data name="Message_VideoPlayer_Failed_Text" xml:space="preserve">
     <value>Немагчыма прайграць гэты відэазапіс. Адсутнічае злучэнне або дадзены фармат відэазапісаў не падтрымліваецца.</value>
@@ -1015,6 +1015,9 @@ Eng: TB</comment>
   <data name="SetingsView_LocalLibrary_Text.Text" xml:space="preserve">
     <value>Калі ў вашай бібліятэцы адлюстроўваюцца не ўсе трэкі, паспрабуйце выканаць абнаўленне базы дадзеных.</value>
   </data>
+  <data name="SetingsView_Notifications_Text.Text" xml:space="preserve">
+    <value>ВКачай можа паведамляць вас аб завяршэнні загрузак пры дапамозе сістэмных усплывальных паведамленняў.</value>
+  </data>
   <data name="SettingsView_AppLanguage_Title.Text" xml:space="preserve">
     <value>Мова праграмы</value>
   </data>
@@ -1023,6 +1026,9 @@ Eng: TB</comment>
   </data>
   <data name="SettingsView_LocalLibrary_Title.Text" xml:space="preserve">
     <value>Лакальная бібліятэка</value>
+  </data>
+  <data name="SettingsView_Notifications_Title.Text" xml:space="preserve">
+    <value>Сістэмныя паведамленні</value>
   </data>
   <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
     <value>Аўтарызацыя ў сэрвісах</value>
@@ -1133,7 +1139,7 @@ Eng: TB</comment>
     <value>адмяніць</value>
   </data>
   <data name="TransferView_DownloadsLoader.ErrorText" xml:space="preserve">
-    <value>Не атрымалася атрымаць спіс бягучых загрузак</value>
+    <value>Не атрымалася набыць спіс бягучых загрузак</value>
   </data>
   <data name="TransferView_DownloadsLoader.LoadingText" xml:space="preserve">
     <value>Атрыманне спісу бягучых загрузак...</value>
@@ -1142,7 +1148,7 @@ Eng: TB</comment>
     <value>Зараз не выконваецца ніякіх загрузак</value>
   </data>
   <data name="TransferView_HistoryLoader.ErrorText" xml:space="preserve">
-    <value>Не атрымалася атрымаць журнал загрузак</value>
+    <value>Не атрымалася набыць журнал загрузак</value>
   </data>
   <data name="TransferView_HistoryLoader.LoadingText" xml:space="preserve">
     <value>Атрыманне журнала загрузак...</value>
@@ -1166,7 +1172,7 @@ Eng: TB</comment>
     <value>узнавіць</value>
   </data>
   <data name="TransferView_UploadsLoader.ErrorText" xml:space="preserve">
-    <value>Не атрымалася атрымаць спіс бягучых адправак</value>
+    <value>Не атрымалася набыць спіс бягучых адправак</value>
   </data>
   <data name="TransferView_UploadsLoader.LoadingText" xml:space="preserve">
     <value>Атрыманне спісу бягучых адправак...</value>
@@ -1508,9 +1514,188 @@ Eng: upload</comment>
   <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
     <value>Стануць даступныя ўсе відэа Укантакце!</value>
   </data>
+  <data name="AboutView_IF_LastFm_Text.Text" xml:space="preserve">
+    <value>Inflatable Last.fm .NET SDK</value>
+  </data>
+  <data name="AboutView_IF_LastFm_Title.Text" xml:space="preserve">
+    <value>Inflatable Last.fm</value>
+  </data>
+  <data name="AppBarButton_Home_Text" xml:space="preserve">
+    <value>на галоўную</value>
+  </data>
+  <data name="LaunchView_MainView_Name" xml:space="preserve">
+    <value>галоўная (рэкамендуем)</value>
+  </data>
+  <data name="LaunchView_UserContentView_Name" xml:space="preserve">
+    <value>старонка карыстальніка</value>
+  </data>
+  <data name="SettingsView_LaunchView_Text.Text" xml:space="preserve">
+    <value>Вы можаце выбраць пачатковую старонку, якая будзе адкрывацца пры запуску праграмы.</value>
+  </data>
+  <data name="SettingsView_LaunchView_Title.Text" xml:space="preserve">
+    <value>Пачатковая старонка</value>
+  </data>
+  <data name="FirstSelectLaunchView_Title.Text" xml:space="preserve">
+    <value>Пачатковая старонка</value>
+  </data>
+  <data name="AboutView_Email_Text.Text" xml:space="preserve">
+    <value>Звярніцеся да нас праз Email</value>
+  </data>
+  <data name="AboutView_Email_Title.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="AboutView_Support_Block.Text" xml:space="preserve">
+    <value>Падтрымка</value>
+  </data>
+  <data name="AboutView_VKSaverGroup_Text.Text" xml:space="preserve">
+    <value>Суполка ва Укантакце</value>
+  </data>
+  <data name="AboutView_VKSaverGroup_Title.Text" xml:space="preserve">
+    <value>ВКачай</value>
+  </data>
+  <data name="AboutView_Other_Title.Text" xml:space="preserve">
+    <value>Іншае</value>
+  </data>
+  <data name="AboutView_SpecialThanks_Block.Text" xml:space="preserve">
+    <value>Выказваем падзяку</value>
+  </data>
+  <data name="AboutView_TranslateBe_Text.Text" xml:space="preserve">
+    <value>Пераклад на беларускую мову</value>
+  </data>
+  <data name="AboutView_TranslateBe_Title.Text" xml:space="preserve">
+    <value>Максім Раманюк</value>
+  </data>
+  <data name="AboutView_TranslateDe_Text.Text" xml:space="preserve">
+    <value>Пераклад на нямецкую мову</value>
+  </data>
+  <data name="AboutView_TranslateDe_Title.Text" xml:space="preserve">
+    <value>Аляксей Дзейкун </value>
+  </data>
+  <data name="AboutView_TranslateEn_Text.Text" xml:space="preserve">
+    <value>Пераклад на англійскую мову</value>
+  </data>
+  <data name="AboutView_TranslateEn_Title.Text" xml:space="preserve">
+    <value>Рыгор Лабада</value>
+  </data>
+  <data name="AboutView_TranslateUA_Text.Text" xml:space="preserve">
+    <value>Пераклад на ўкраінскую мову</value>
+  </data>
+  <data name="AboutView_TranslateUA_Title.Text" xml:space="preserve">
+    <value>Максім Дзенісенка</value>
+  </data>
+  <data name="AboutView_Developer_Text.Text" xml:space="preserve">
+    <value>Распрацоўшчык праграмы</value>
+  </data>
+  <data name="AboutView_Developer_Title.Text" xml:space="preserve">
+    <value>Раман Гладкіх</value>
+  </data>
+  <data name="FirstSelectLaunchView_ContentText.Text" xml:space="preserve">
+    <value>Выберыце пачатковую старонку, якая будзе адкрывацца пры запуску ВКачай.
+
+Рэкамендуем выкарыстоўваць галоўную старонку. Вы заўсёды можаце змяніць гэты параметр у наладах праграмы. </value>
+  </data>
+  <data name="Email_SupportTitle_Text" xml:space="preserve">
+    <value>Паведамленне з праграмы</value>
+  </data>
+  <data name="TransferView_Downloading_Notification_Text" xml:space="preserve">
+    <value>Выконваецца загрузка {0}</value>
+  </data>
+  <data name="TransferView_SizeMask_Text" xml:space="preserve">
+    <value>{0} з {1}</value>
+    <comment>Например, "20 ГБ из 300 ТБ".</comment>
+  </data>
+  <data name="TransferView_Uploading_Notification_Text" xml:space="preserve">
+    <value>Выконваецца адпраўка {0}</value>
+  </data>
+  <data name="AppNotifications_SoundNotWorking_Content" xml:space="preserve">
+    <value>Гукі паведамленняў адключаны</value>
+  </data>
+  <data name="AppNotifications_SoundNotWorking_Title" xml:space="preserve">
+    <value>Сэрвіс прайгравання гукаў не працуе</value>
+  </data>
+  <data name="AppNotifications_VibrationNotWorking_Content" xml:space="preserve">
+    <value>Вібрацыя паведамленняў адключана</value>
+  </data>
+  <data name="AppNotifications_VibrationNotWorking_Title" xml:space="preserve">
+    <value>Сэрвіс вібрацыі не працуе</value>
+  </data>
+  <data name="AppNotifications_CantStartDownload_Title" xml:space="preserve">
+    <value>Не атрымалася дадаць у спіс загрузак</value>
+  </data>
+  <data name="AppNotifications_DownloadStartedNotAll_Title" xml:space="preserve">
+    <value>У спіс загрузак дададзены не ўсе элементы</value>
+  </data>
+  <data name="AppNotifications_DownloadStarted_Title" xml:space="preserve">
+    <value>Дададзена ў спіс загрузак</value>
+  </data>
+  <data name="AppNotifications_TouchToInfo_Content" xml:space="preserve">
+    <value>Націсніце для падрабязнасцяў</value>
+  </data>
+  <data name="AppNotifications_TouchToTransferManager_Content" xml:space="preserve">
+    <value>Націсніце для пераходу ў менеджар загрузак</value>
+  </data>
+  <data name="ErrorView_ErrorDetails.Text" xml:space="preserve">
+    <value>Падрабязнасці пра памылку</value>
+  </data>
+  <data name="AppNotifications_FatalError_Title" xml:space="preserve">
+    <value>Адбылася памылка, прыносім свае прабачэнні за нязручнасці</value>
+  </data>
+  <data name="FeedbackService_LeaveFeedback_Content" xml:space="preserve">
+    <value>Дзякуй, што карыстаецеся ВКачай! Калі ласка, пакіньце свой водгук аб працы праграмы.
+Вы хочаце пакінуць свой водгук?</value>
+  </data>
+  <data name="FeedbackService_LeaveFeedback_Title" xml:space="preserve">
+    <value>Вам падабаецца ВКачай?</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Title.Text" xml:space="preserve">
+    <value>Унутраныя паведамленні</value>
+  </data>
+  <data name="SetingsView_InAppNotifications_Text.Text" xml:space="preserve">
+    <value>ВКачай можа паведамляць вам аб важных падзеях пры дапамозе усплывальных паведамленняў унутры праграмы.
+Гэты параметр не закране важных паведамленняў.</value>
+  </data>
+  <data name="SettingsView_LibrarySection.Header" xml:space="preserve">
+    <value>бібліятэка</value>
+  </data>
+  <data name="SettingsView_MainSection.Header" xml:space="preserve">
+    <value>агульныя</value>
+  </data>
+  <data name="SettingsView_NotificationsSection.Header" xml:space="preserve">
+    <value>паведамленні</value>
+  </data>
+  <data name="SettingsView_Pivot.Title" xml:space="preserve">
+    <value>НАЛАДЫ</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Sound_Text.Text" xml:space="preserve">
+    <value>У залежнасці ад тыпу паведамлення, прайграваецца адпаведны гук. Вы можаце адключыць гукі паведамленняў.</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Sound_Title.Text" xml:space="preserve">
+    <value>Гук паведамленняў</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Vibration_Text.Text" xml:space="preserve">
+    <value>У залежнасці ад тыпу паведамлення, смартфон вібруе адпаведным чынам. Вы можаце адключыць вібрацыю паведамленняў.</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Vibration_Title.Text" xml:space="preserve">
+    <value>Вібрацыя паведамленняў</value>
+  </data>
+  <data name="AppBarButton_Shuffle_Text" xml:space="preserve">
+    <value>перамяшаць</value>
+  </data>
+  <data name="SearchView_ArtistsTitle.Text" xml:space="preserve">
+    <value>выканаўцы</value>
+  </data>
+  <data name="PopularVKAudioView_Title.Text" xml:space="preserve">
+    <value>папулярныя</value>
+  </data>
+  <data name="MainView_PopularVKItem.Content" xml:space="preserve">
+    <value>папулярныя</value>
+  </data>
   <data name="PopularVKAudioView_Genre_AcousticAndVocal" xml:space="preserve">
     <value>acoustic &amp; vocal</value>
     <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_AllGenres" xml:space="preserve">
+    <value>усе жанры</value>
   </data>
   <data name="PopularVKAudioView_Genre_Alternative" xml:space="preserve">
     <value>alternative</value>
@@ -1591,5 +1776,47 @@ Eng: upload</comment>
   <data name="PopularVKAudioView_Genre_DrumAndBass" xml:space="preserve">
     <value>drum &amp; bass</value>
     <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_FilterFlyout_Title.Text" xml:space="preserve">
+    <value>Фільтр аўдыё</value>
+  </data>
+  <data name="PopularVKAudioView_Genres_ComboBox.Header" xml:space="preserve">
+    <value>Жанр</value>
+  </data>
+  <data name="PopularVKAudioView_OnlyEng_Switch.Header" xml:space="preserve">
+    <value>Толькі замежныя</value>
+  </data>
+  <data name="ShowTrackInfoFlyoutItem.Text" xml:space="preserve">
+    <value>інфармацыя пра трэк</value>
+  </data>
+  <data name="AudioBitrate_Kbits.Text" xml:space="preserve">
+    <value>кбіт/с</value>
+  </data>
+  <data name="AudioBitrate_Name.Text" xml:space="preserve">
+    <value>Бітрэйт:</value>
+  </data>
+  <data name="VKAudioInfoView_Container.ErrorText" xml:space="preserve">
+    <value>Не атрымалася набыць дадатковую інфармацыю пра трэк.</value>
+  </data>
+  <data name="VKAudioInfoView_Container.LoadingText" xml:space="preserve">
+    <value>Выконваецца атрыманне дадатковай інфармацыі...</value>
+  </data>
+  <data name="VKAudioInfoView_Container.NoDataText" xml:space="preserve">
+    <value>Няма ніякай дадатковай інфармацыі пра гэтыы трэк.</value>
+  </data>
+  <data name="AppNotifications_AddAudioFail_Title" xml:space="preserve">
+    <value>Не атрымалася дадаць у вашу калекцыю</value>
+  </data>
+  <data name="AppNotifications_AddAudioSuccess_Title" xml:space="preserve">
+    <value>Аўдыязапіс дададзены ў вашу калекцыю</value>
+  </data>
+  <data name="VKAdInfoView_Loader.ErrorText" xml:space="preserve">
+    <value>Не атрымалася загрузіць інфармацыю пра акцыю.</value>
+  </data>
+  <data name="VKAdInfoView_Loader.LoadingText" xml:space="preserve">
+    <value>Выконваецца загрузка інфармацыі пра акцыю...</value>
+  </data>
+  <data name="VKAdInfoView_Loader.NoDataText" xml:space="preserve">
+    <value>Няма ніякай інфармацыі пра акцыю.</value>
   </data>
 </root>
