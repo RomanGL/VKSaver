@@ -205,9 +205,10 @@
     <EmbeddedResource Include="Properties\VKSaver.Core.Models.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ModernDev.InTouch">
-      <HintPath>..\..\Libs\ModernDev.InTouch.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\..\thirdparty\InTouch\ModernDev.InTouch.Portable\ModernDev.InTouch.Portable.csproj">
+      <Project>{7887ebdb-a6b2-400e-9017-c47b606aa8d9}</Project>
+      <Name>ModernDev.InTouch.Portable</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

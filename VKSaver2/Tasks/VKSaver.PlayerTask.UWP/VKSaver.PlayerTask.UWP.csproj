@@ -206,6 +206,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\thirdparty\lastfm\src\IF.Lastfm.Core\IF.Lastfm.Core.csproj">
+      <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
+      <Name>IF.Lastfm.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\thirdparty\lastfm\src\IF.Lastfm.SQLite\IF.Lastfm.SQLite.csproj">
+      <Project>{09d7d389-7d67-45b7-90ec-b1d20693dbc5}</Project>
+      <Name>IF.Lastfm.SQLite</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\VKSaver.Core.Models.UWP\VKSaver.Core.Models.UWP.csproj">
       <Project>{65fe87d2-65b8-4643-a538-4e33a2d815de}</Project>
       <Name>VKSaver.Core.Models.UWP</Name>
@@ -214,11 +222,6 @@
       <Project>{536fcc50-09b3-4a4b-b4f9-3f3ec845d09f}</Project>
       <Name>VKSaver.Core.Services.UWP</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="OneTeam.SDK.LastFm">
-      <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="..\VKSaver.PlayerTask.Shared\VKSaver.PlayerTask.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

@@ -14,9 +14,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\DataContextProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\PurchaseViewTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\PromoViewTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VisualTreeHelperExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AppNotificationControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\StoryboardServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ContentContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DoubleTapLikeControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagePlaceholder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MoreStatesOptionButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerBackground.xaml.cs">

@@ -1,4 +1,12 @@
-﻿using System;
+﻿#if WINDOWS_UWP
+using Prism.Commands;
+using Prism.Windows.Navigation;
+#else
+using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#endif
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +18,6 @@ using Windows.UI.Xaml.Navigation;
 using IF.Lastfm.Core;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
-using Microsoft.Practices.Prism.StoreApps;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Newtonsoft.Json;
 using PropertyChanged;
 using VKSaver.Core.Models.Common;

@@ -9,10 +9,10 @@ namespace VKSaver.Core.ViewModels
     {
         private async void LoginUwp()
         {
-#if DEBUG
-            LoginToken(69396347, "942c58d27b3c05c4ecc8b382b89a16eb25d6a49693eddb600707bd59251c4e60d71546709bde36fbf787f");
-            return;
-#endif
+//#if DEBUG
+//            LoginToken(69396347, "942c58d27b3c05c4ecc8b382b89a16eb25d6a49693eddb600707bd59251c4e60d71546709bde36fbf787f");
+//            return;
+//#endif
 
             try
             {

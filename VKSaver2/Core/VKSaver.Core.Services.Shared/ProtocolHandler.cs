@@ -1,9 +1,14 @@
-﻿using System;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Navigation;
+#else
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#endif
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using VKSaver.Core.Services.Interfaces;
 
 namespace VKSaver.Core.Services

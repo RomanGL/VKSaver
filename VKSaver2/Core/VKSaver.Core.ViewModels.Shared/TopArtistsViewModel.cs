@@ -3,8 +3,6 @@ using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
 #else
-using IF.Lastfm.Core.Api;
-using IF.Lastfm.Core.Objects;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #endif
@@ -18,6 +16,8 @@ using System.Threading.Tasks;
 using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Collections;
 using Windows.UI.Xaml.Navigation;
+using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Objects;
 
 namespace VKSaver.Core.ViewModels
 {

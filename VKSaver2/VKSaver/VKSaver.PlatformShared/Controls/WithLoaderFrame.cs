@@ -1,4 +1,9 @@
-﻿using Microsoft.Practices.Prism.StoreApps.Interfaces;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Navigation;
+#else
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#endif
+
 using System;
 using System.Collections.Generic;
 using VKSaver.Core.Models;

@@ -2,8 +2,6 @@
 using Prism.Windows.Navigation;
 #else
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using ModernDev.InTouch;
-using Newtonsoft.Json;
 #endif
 
 using System;
@@ -11,6 +9,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
+using ModernDev.InTouch;
+using Newtonsoft.Json;
 using static VKSaver.Core.Services.MetricaConstants;
 
 namespace VKSaver.Core.Services

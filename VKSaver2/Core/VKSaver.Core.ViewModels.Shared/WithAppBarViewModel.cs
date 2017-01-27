@@ -1,6 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using Windows.UI.Xaml.Controls;
+﻿#if WINDOWS_UWP
+using Prism.Windows.Mvvm;
+#else
 using Microsoft.Practices.Prism.StoreApps;
+#endif
+using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Controls;
 using PropertyChanged;
 
 namespace VKSaver.Core.ViewModels

@@ -2,6 +2,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Color x:Key="ErrorPopupBackground">#FFB40000</Color>
+    <Color x:Key="WarningPopupBackground">#FFFFAF00</Color>
+    <Color x:Key="InfoPopupBackground">#FF32A000</Color>
+
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">            
             <SolidColorBrush x:Key="MenuPanelBackgroundThemeBrush"
@@ -46,6 +50,9 @@
             <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush" 
                              Color="{StaticResource AccentColor}"
                              Opacity="0.7"/>
+
+            <SolidColorBrush x:Key="PopupBorderBrush"
+                             Color="#FF232323" />
         </ResourceDictionary>
 
         <ResourceDictionary x:Key="Light">
@@ -91,6 +98,9 @@
             <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush"
                              Color="{StaticResource AccentColor}" 
                              Opacity="0.7"/>
+
+            <SolidColorBrush x:Key="PopupBorderBrush"
+                             Color="#FF3278BE" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

@@ -1,5 +1,4 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
 #else

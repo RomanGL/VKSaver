@@ -207,17 +207,14 @@
     <EmbeddedResource Include="Properties\VKSaver.Core.ViewModels.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ModernDev.InTouch">
-      <HintPath>..\..\Libs\ModernDev.InTouch.dll</HintPath>
-    </Reference>
-    <Reference Include="OneTeam.SDK.Core">
-      <HintPath>..\..\Libs\OneTeam.SDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="OneTeam.SDK.LastFm">
-      <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\thirdparty\InTouch\ModernDev.InTouch.Portable\ModernDev.InTouch.Portable.csproj">
+      <Project>{7887ebdb-a6b2-400e-9017-c47b606aa8d9}</Project>
+      <Name>ModernDev.InTouch.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\thirdparty\lastfm\src\IF.Lastfm.Core\IF.Lastfm.Core.csproj">
+      <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
+      <Name>IF.Lastfm.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VKSaver.Core.LinksExtractor.UWP\VKSaver.Core.LinksExtractor.UWP.csproj">
       <Project>{df4da91e-2448-4e8a-a62c-28a9f3aa779d}</Project>
       <Name>VKSaver.Core.LinksExtractor.UWP</Name>

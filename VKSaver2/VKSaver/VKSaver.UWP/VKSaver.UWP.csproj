@@ -221,6 +221,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Background\Background.dark.jpg" />
+    <Content Include="Assets\ImagePlaceholder.png" />
+    <Content Include="Assets\Promo\0.png" />
+    <Content Include="Assets\Promo\1.png" />
+    <Content Include="Assets\Promo\21.png" />
+    <Content Include="Assets\Promo\22.png" />
+    <Content Include="Assets\Promo\23.png" />
+    <Content Include="Assets\Promo\24.png" />
+    <Content Include="Assets\Sounds\Default.wav" />
+    <Content Include="Assets\Sounds\Error.wav" />
+    <Content Include="Assets\Sounds\Fail.wav" />
+    <Content Include="Assets\Sounds\Info.wav" />
+    <Content Include="Assets\Sounds\Success.wav" />
+    <Content Include="Assets\Sounds\Warning.wav" />
     <Content Include="Assets\Square44x44.scale-200.png" />
     <Content Include="Assets\Square44x44.scale-400.png" />
     <Content Include="Assets\Square310x310.scale-200.png" />
@@ -243,12 +256,6 @@
     <Content Include="Assets\Images\PlayerLogo4.png" />
     <Content Include="Assets\Images\SearchType.png" />
     <Content Include="Assets\Images\VideoPlayerPoster.png" />
-    <Content Include="Assets\Promo\0.png" />
-    <Content Include="Assets\Promo\1.png" />
-    <Content Include="Assets\Promo\2.png" />
-    <Content Include="Assets\Promo\3.png" />
-    <Content Include="Assets\Promo\4.png" />
-    <Content Include="Assets\Promo\5.png" />
     <Content Include="Assets\SplashScreen.scale-400.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
@@ -266,25 +273,8 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ModernDev.InTouch, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\ModernDev.InTouch.dll</HintPath>
-    </Reference>
-    <Reference Include="OneTeam.SDK.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\OneTeam.SDK.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="OneTeam.SDK.LastFm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\OneTeam.SDK.LastFm.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
-    </SDKReference>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.14.2">
-      <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.14393.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
@@ -294,6 +284,18 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\thirdparty\InTouch\ModernDev.InTouch.Portable\ModernDev.InTouch.Portable.csproj">
+      <Project>{7887ebdb-a6b2-400e-9017-c47b606aa8d9}</Project>
+      <Name>ModernDev.InTouch.Portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\thirdparty\lastfm\src\IF.Lastfm.Core\IF.Lastfm.Core.csproj">
+      <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
+      <Name>IF.Lastfm.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\thirdparty\lastfm\src\IF.Lastfm.SQLite\IF.Lastfm.SQLite.csproj">
+      <Project>{09d7d389-7d67-45b7-90ec-b1d20693dbc5}</Project>
+      <Name>IF.Lastfm.SQLite</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\VKSaver.Core.Models.UWP\VKSaver.Core.Models.UWP.csproj">
       <Project>{65fe87d2-65b8-4643-a538-4e33a2d815de}</Project>
       <Name>VKSaver.Core.Models.UWP</Name>

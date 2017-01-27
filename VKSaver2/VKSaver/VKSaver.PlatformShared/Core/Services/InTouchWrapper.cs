@@ -28,6 +28,14 @@ namespace VKSaver.Core.Services
                 return response;
         }
 
+#if WINDOWS_UWP
+        private Task<Response<T>> ProcessCaptcha<T>(Response<T> errorResponse)
+        {
+            return Task.FromResult(errorResponse);
+        }
+#endif
+
+#if WINDOWS_PHONE_APP
         private async Task<Response<T>> ProcessCaptcha<T>(Response<T> errorResponse)
         {
             var response = errorResponse;
@@ -48,7 +56,8 @@ namespace VKSaver.Core.Services
                 else
                     return response;
             }
-        }
+        } 
+#endif
 
         private readonly TaskQueue _queue;
         private readonly InTouch _inTouch;

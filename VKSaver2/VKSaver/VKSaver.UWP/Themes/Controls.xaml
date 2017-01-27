@@ -9,6 +9,390 @@
 
     <converters:HamburgerItemClickConverter x:Key="HamburgerItemClickConverter" />
 
+    <Style TargetType="controls:DoubleTapLikeControl">
+        <Setter Property="IsDoubleTapEnabled"
+                Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:DoubleTapLikeControl">
+                    <Border Background="Transparent">
+                        <Border.Resources>
+                            <Storyboard x:Name="LikeStoryboard">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                               Storyboard.TargetName="likeTextBlock">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                          Value="1" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                          Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetZ)"
+                                                               Storyboard.TargetName="likeTextBlock">
+                                    <EasingDoubleKeyFrame KeyTime="0"
+                                                          Value="-1000">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BackEase EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                          Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <BackEase EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Border.Resources>
+                        <TextBlock x:Name="likeTextBlock"
+                                   Text="&#xE0A5;"
+                                   FontSize="96"
+                                   FontFamily="Segoe UI Symbol"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Opacity="0"
+                                   RenderTransformOrigin="0.5,0.5">
+                            <TextBlock.Projection>
+                                <PlaneProjection />
+                            </TextBlock.Projection>
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:AppNotificationControl">
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:AppNotificationControl">
+                    <Grid x:Name="RootGrid"
+                          Margin="20,10,20,0"
+                          RenderTransformOrigin="0.5,0.5"
+                          ManipulationMode="TranslateX">
+                        <Grid.Resources>
+                            <Storyboard x:Name="VisibleStoryboard">
+                                <DoubleAnimation Storyboard.TargetName="VisualBorder"
+                                                 Storyboard.TargetProperty="Width"
+                                                 From="50"
+                                                 To="340"
+                                                 Duration="0:0:0.5"
+                                                 EnableDependentAnimation="True">
+                                    <DoubleAnimation.EasingFunction>
+                                        <ExponentialEase EasingMode="EaseInOut"
+                                                         Exponent="3" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                               Storyboard.TargetName="ContentGrid">
+                                    <EasingDoubleKeyFrame KeyTime="0"
+                                                          Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2"
+                                                          Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                          Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                               Storyboard.TargetName="RootGrid">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                               Storyboard.TargetName="VisualBorder">
+                                    <EasingDoubleKeyFrame KeyTime="0"
+                                                          Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.2"
+                                                          Value="1" />
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+
+                            <Storyboard x:Name="CollapsedStoryboard">
+                                <DoubleAnimation Storyboard.TargetName="VisualBorder"
+                                                 Storyboard.TargetProperty="Width"
+                                                 To="50"
+                                                 Duration="0:0:0.5"
+                                                 EnableDependentAnimation="True">
+                                    <DoubleAnimation.EasingFunction>
+                                        <ExponentialEase EasingMode="EaseInOut"
+                                                         Exponent="3" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Duration="0:0:0.2"
+                                                 To="0"
+                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                 Storyboard.TargetName="ContentGrid" />
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                               Storyboard.TargetName="VisualBorder">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                          Value="1" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.6"
+                                                          Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                               Storyboard.TargetName="RootGrid">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.6">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Visible</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.617">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <Visibility>Collapsed</Visibility>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+
+                            <Storyboard x:Name="ManipulationResetStoryboard">
+                                <DoubleAnimation Duration="0:0:0.3"
+                                                 To="0"
+                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+                                                 Storyboard.TargetName="RootGrid">
+                                    <DoubleAnimation.EasingFunction>
+                                        <ExponentialEase EasingMode="EaseInOut"
+                                                         Exponent="4" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Duration="0:0:0.4"
+                                                 To="1"
+                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                 Storyboard.TargetName="RootGrid" />
+                            </Storyboard>
+                            <Storyboard x:Name="ManipulationCompletedStoryboard">
+                                <DoubleAnimation Duration="0:0:0.3"
+                                                 To="350"
+                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+                                                 Storyboard.TargetName="RootGrid">
+                                    <DoubleAnimation.EasingFunction>
+                                        <ExponentialEase EasingMode="EaseOut"
+                                                         Exponent="4" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Duration="0:0:0.2"
+                                                 To="0"
+                                                 Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                 Storyboard.TargetName="RootGrid" />
+                            </Storyboard>
+                        </Grid.Resources>
+                        <Grid.RenderTransform>
+                            <CompositeTransform />
+                        </Grid.RenderTransform>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="TypeStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.3"
+                                                      To="Default" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Default" />
+                                <VisualState x:Name="Error">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="VisualBorder"
+                                                        To="{StaticResource ErrorPopupBackground}" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Warning">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="VisualBorder"
+                                                        To="{StaticResource WarningPopupBackground}" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Info">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                        Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="VisualBorder"
+                                                        To="{StaticResource InfoPopupBackground}" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="TitleState">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                                                                       Storyboard.TargetName="ContentTextBlock">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                                  Value="18">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseIn"
+                                                                     Exponent="5" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="ContentTextBlock">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                                                  Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                                                                       Storyboard.TargetName="TitleTextBlock">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="-18" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="-18" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                                                  Value="0">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseOut"
+                                                                     Exponent="5" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="TitleTextBlock">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="ContentState">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="TitleTextBlock">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="1" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                                                  Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                                                                       Storyboard.TargetName="TitleTextBlock">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                                  Value="-18">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseIn"
+                                                                     Exponent="5" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                                       Storyboard.TargetName="ContentTextBlock">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="0" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.7"
+                                                                  Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                                                                       Storyboard.TargetName="ContentTextBlock">
+                                            <EasingDoubleKeyFrame KeyTime="0"
+                                                                  Value="18" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="18" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.8"
+                                                                  Value="0">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <ExponentialEase EasingMode="EaseOut"
+                                                                     Exponent="5" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="VisualBorder"
+                              RenderTransformOrigin="0,0.5"
+                              Background="{ThemeResource PopupBorderBrush}"
+                              Height="50"
+                              Width="190">
+                            <ProgressBar x:Name="Progress"
+                                         VerticalAlignment="Stretch"
+                                         Foreground="{StaticResource TitleBrush}"
+                                         Background="{x:Null}"
+                                         Value="{Binding Message.ProgressPercent, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                         Maximum="100"
+                                         Opacity="0.5" />
+                            <Border x:Name="ImagePlaceholder"
+                                    Width="50"
+                                    CornerRadius="0"
+                                    Height="50"
+                                    HorizontalAlignment="Left"
+                                    Background="{ThemeResource ButtonBackgroundBrush}">
+                                <Ellipse Width="50"
+                                         Height="50">
+                                    <Ellipse.Fill>
+                                        <ImageBrush Stretch="UniformToFill"
+                                                    ImageSource="{Binding Message.ImageUrl, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="ContentGrid"
+                              Margin="60,0,15,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="TitleTextBlock"
+                                       Text="{Binding Message.Title, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Stretch"
+                                       TextTrimming="CharacterEllipsis"
+                                       MaxLines="2"
+                                       TextWrapping="WrapWholeWords"
+                                       Grid.Column="1"
+                                       Margin="0,0,0,2"
+                                       FontWeight="SemiBold"
+                                       TextAlignment="Center"
+                                       Visibility="{Binding Message.Title, Converter={StaticResource NotNullToVisibilityConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                       RenderTransformOrigin="0.5,0.5"
+                                       Opacity="0">
+                                <TextBlock.RenderTransform>
+                                    <CompositeTransform />
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                            <TextBlock x:Name="ContentTextBlock"
+                                       Text="{Binding Message.Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Stretch"
+                                       TextWrapping="WrapWholeWords"
+                                       TextTrimming="CharacterEllipsis"
+                                       Grid.Column="2"
+                                       Margin="0,0,0,2"
+                                       RenderTransformOrigin="0.5,0.5"
+                                       MaxLines="2"
+                                       Opacity="0"
+                                       TextAlignment="Center">
+                                <TextBlock.RenderTransform>
+                                    <CompositeTransform TranslateY="18" />
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style TargetType="controls:WithLoaderFrame">
         <Setter Property="ContentTransitions">
             <Setter.Value>
@@ -167,6 +551,18 @@
                                            x:Name="LoaderText" />
                             </StackPanel>
                         </Grid>
+
+                        <StackPanel x:Name="NotificationsPanel"
+                                    Background="{x:Null}"
+                                    Margin="0,20,0,0"
+                                    VerticalAlignment="Top"
+                                    MaxHeight="180">
+                            <StackPanel.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <RepositionThemeTransition />
+                                </TransitionCollection>
+                            </StackPanel.ChildrenTransitions>
+                        </StackPanel>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

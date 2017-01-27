@@ -1,8 +1,15 @@
-﻿using System;
+﻿#if WINDOWS_UWP
+using Prism.Commands;
+using Prism.Windows.Mvvm;
+using Prism.Windows.Navigation;
+#else
+using Microsoft.Practices.Prism.StoreApps;
+#endif
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml;
-using Microsoft.Practices.Prism.StoreApps;
 using Newtonsoft.Json;
 using PropertyChanged;
 using VKSaver.Core.Models.Common;

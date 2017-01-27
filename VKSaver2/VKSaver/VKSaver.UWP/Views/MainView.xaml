@@ -21,8 +21,8 @@
                                        d:IsDataSource="True" />
 
         <DataTemplate x:Key="TopArtistTemplate"
-                      xmlns:lf="using:OneTeam.SDK.LastFm.Models.Audio"
-                      x:DataType="lf:LFArtistExtended">
+                      xmlns:lf="using:IF.Lastfm.Core.Objects"
+                      x:DataType="lf:LastArtist">
             <UserControl>
                 <Grid>
                     <VisualStateManager.VisualStateGroups>
@@ -84,7 +84,7 @@
                     </VisualStateManager.VisualStateGroups>
 
                     <controls:ImagePlaceholder Text="{x:Bind Name}"
-                                               Source="{x:Bind MegaImage.URL}">
+                                               Source="{x:Bind MainImage.Largest}">
                         <interactivity:Interaction.Behaviors>
                             <tbeh:Blur AutomaticallyStart="True"
                                        Duration="0"
@@ -110,7 +110,7 @@
                                  Height="120"
                                  HorizontalAlignment="Center">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{x:Bind MegaImage.URL}"
+                                <ImageBrush ImageSource="{Binding MainImage.Large}"
                                             Stretch="UniformToFill" />
                             </Ellipse.Fill>
                         </Ellipse>
