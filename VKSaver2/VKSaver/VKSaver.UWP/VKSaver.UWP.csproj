@@ -190,6 +190,9 @@
     <Compile Include="Views\FirstStart\FirstInternetSettingsView.xaml.cs">
       <DependentUpon>FirstInternetSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FirstStart\FirstSelectLaunchView.xaml.cs">
+      <DependentUpon>FirstSelectLaunchView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FirstStart\FirstStartRetryView.xaml.cs">
       <DependentUpon>FirstStartRetryView.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,9 @@
     </Compile>
     <Compile Include="Views\PromoView.xaml.cs">
       <DependentUpon>PromoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdatingDatabaseView.xaml.cs">
       <DependentUpon>UpdatingDatabaseView.xaml</DependentUpon>
@@ -350,6 +356,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\FirstStart\FirstSelectLaunchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\FirstStart\FirstStartRetryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -373,6 +383,10 @@
     <Page Include="Views\PromoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UpdatingDatabaseView.xaml">
       <Generator>MSBuild:Compile</Generator>
