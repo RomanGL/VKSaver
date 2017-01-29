@@ -132,7 +132,7 @@
                                Margin="0,5,0,0">
                         ВКачай может уведомлять вас о завершении загрузок системными всплывающими уведомлениями.
                     </TextBlock>
-                    <ToggleSwitch IsOn="{Binding DownloadsNotifications, Mode=TwoWay}" />
+                    <ToggleSwitch IsOn="{Binding PushNotifications, Mode=TwoWay}" />
 
                     <TextBlock Text="Внутренние уведомления"
                                x:Uid="SettingsView_InAppNotifications_Title"

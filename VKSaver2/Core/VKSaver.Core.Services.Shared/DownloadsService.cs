@@ -289,7 +289,7 @@ namespace VKSaver.Core.Services
 
         private void AttachNotifications(BackgroundDownloader downloader, IDownloadable download)
         {
-            if (!_settingsService.Get(AppConstants.DOWNLOADS_NOTIFICATIONS_PARAMETER, true))
+            if (!_settingsService.Get(AppConstants.PUSH_NOTIFICATIONS_PARAMETER, true))
                 return;
 
             string name = null;

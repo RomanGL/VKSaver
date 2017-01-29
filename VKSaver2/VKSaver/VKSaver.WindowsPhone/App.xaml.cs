@@ -174,6 +174,7 @@ namespace VKSaver
             _container.RegisterType<IPlayerService, PlayerService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IDownloadsService, DownloadsService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IUploadsService, UploadsService>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<INotificationsService, NotificationsService>(new ContainerControlledLifetimeManager());
 
             _container.RegisterType<ISuspendingService, TransferNotificationsService>("s1",
                 new ContainerControlledLifetimeManager());
@@ -211,17 +212,8 @@ namespace VKSaver
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
-                ActivatePush(null);
             };
             vkLoginService.UserLogout += async (s, e) =>
-            {
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
-                    NavigationService.ClearHistory();
-                });
-            };
-            _container.Resolve<InTouch>().AuthorizationFailed += async (s, e) =>
             {
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -293,11 +285,13 @@ namespace VKSaver
 #if FULL
                 _container.Resolve<IBetaService>().ExecuteAppLaunch();
 #endif
-
+                await _container.Resolve<INotificationsService>().ActivateYandexPushAsync();
                 _container.Resolve<IFeedbackService>().ActivateFeedbackNotifier();
-                ActivatePush(args);
             } 
             
+            if (_container.Resolve<INotificationsService>().IsYandexPushActivated)
+                YandexMetricaPush.ProcessApplicationLaunch(args);
+
             //_container.Resolve<IProtocolHandler>().ProcessProtocol("?yamp_l=vksaver%3A%2F%2Fvkad%2F-138475410_3&yamp_i=m%3D49874%26cor%3Dddd8ae32-0322-4881-b526-c96c1a708ccc");
             if (args.Kind == ActivationKind.Protocol || (args.Kind == ActivationKind.Launch && !String.IsNullOrEmpty(args.Arguments)))
                 _container.Resolve<IProtocolHandler>().ProcessProtocol(args.Arguments);    
@@ -371,16 +365,6 @@ namespace VKSaver
         private async void ActivateMetrica()
         {
             await Task.Run(() => YandexMetrica.Activate(AppConstants.YANDEX_METRICA_API_KEY));
-        }
-
-        private async void ActivatePush(LaunchActivatedEventArgs e)
-        {
-            await Task.Run(() =>
-            {
-                YandexMetricaPush.Activate("***REMOVED***");
-                if (e != null)
-                    YandexMetricaPush.ProcessApplicationLaunch(e);
-            });
         }
 
 #if DEBUG

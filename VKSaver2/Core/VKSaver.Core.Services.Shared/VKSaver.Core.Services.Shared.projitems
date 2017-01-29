@@ -70,6 +70,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMetricaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMusicCacheService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\INetworkInfoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\INotificationsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlayerPlaylistService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlayerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IProtocolHandler.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MetricaConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MusicCacheService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkInfoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NotificationsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlayerService\PlayerConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlayerService\PlayerPlaylistService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlayerService\PlayerStateChangedEventArgs.cs" />

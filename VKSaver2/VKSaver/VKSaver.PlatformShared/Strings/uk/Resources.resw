@@ -1012,6 +1012,9 @@ Eng: TB</comment>
   <data name="SetingsView_LocalLibrary_Text.Text" xml:space="preserve">
     <value>Якщо у вашій бібліотеці відображаються не всі треки, спробуйте виконати оновлення бази даних.</value>
   </data>
+  <data name="SetingsView_Notifications_Text.Text" xml:space="preserve">
+    <value>Вкачай може повідомляти вас про завершення завантажень системними вигульковими повідомленнями.</value>
+  </data>
   <data name="SettingsView_AppLanguage_Title.Text" xml:space="preserve">
     <value>Мова застосунку</value>
   </data>
@@ -1020,6 +1023,9 @@ Eng: TB</comment>
   </data>
   <data name="SettingsView_LocalLibrary_Title.Text" xml:space="preserve">
     <value>Локальна бібліотека</value>
+  </data>
+  <data name="SettingsView_Notifications_Title.Text" xml:space="preserve">
+    <value>Системні сповіщення</value>
   </data>
   <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
     <value>Авторизація в сервісах</value>
@@ -1493,7 +1499,7 @@ Eng: upload</comment>
     <value>Відтворення треків улюблених виконавців</value>
   </data>
   <data name="PromoView_Screen24_Line1_Text" xml:space="preserve">
-    <value>Скробблінг Last.fm</value>
+    <value>Скроблінґ Last.fm</value>
   </data>
   <data name="PromoView_Screen24_Line2_Text" xml:space="preserve">
     <value>Завжди актуальний профіль Last.fm!</value>
@@ -1504,9 +1510,173 @@ Eng: upload</comment>
   <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
     <value>Стануть доступні всі відео ВКонтакті!</value>
   </data>
+  <data name="AboutView_IF_LastFm_Text.Text" xml:space="preserve">
+    <value>Inflatable Last.fm .NET SDK</value>
+  </data>
+  <data name="AboutView_IF_LastFm_Title.Text" xml:space="preserve">
+    <value>Inflatable Last.fm</value>
+  </data>
+  <data name="AppBarButton_Home_Text" xml:space="preserve">
+    <value>до головної</value>
+  </data>
+  <data name="LaunchView_MainView_Name" xml:space="preserve">
+    <value>головна (радимо)</value>
+  </data>
+  <data name="LaunchView_UserContentView_Name" xml:space="preserve">
+    <value>сторінка користувача</value>
+  </data>
+  <data name="SettingsView_LaunchView_Text.Text" xml:space="preserve">
+    <value>Ви можете вибрати початкову сторінку, яка буде відкриватися під час запуску програми.</value>
+  </data>
+  <data name="SettingsView_LaunchView_Title.Text" xml:space="preserve">
+    <value>Початкова сторінка</value>
+  </data>
+  <data name="FirstSelectLaunchView_Title.Text" xml:space="preserve">
+    <value>Початкова сторінка</value>
+  </data>
+  <data name="AboutView_Email_Text.Text" xml:space="preserve">
+    <value>Напишіть нам на Email</value>
+  </data>
+  <data name="AboutView_Support_Block.Text" xml:space="preserve">
+    <value>Підтримка</value>
+  </data>
+  <data name="AboutView_VKSaverGroup_Text.Text" xml:space="preserve">
+    <value>Спільнота у ВК</value>
+  </data>
+  <data name="AboutView_VKSaverGroup_Title.Text" xml:space="preserve">
+    <value>ВКачай</value>
+  </data>
+  <data name="AboutView_Other_Title.Text" xml:space="preserve">
+    <value>Та інше</value>
+  </data>
+  <data name="AboutView_SpecialThanks_Block.Text" xml:space="preserve">
+    <value>Щира подяка</value>
+  </data>
+  <data name="AboutView_TranslateBe_Text.Text" xml:space="preserve">
+    <value>Переклад білоруською</value>
+  </data>
+  <data name="AboutView_TranslateDe_Text.Text" xml:space="preserve">
+    <value>Переклад німецькою</value>
+  </data>
+  <data name="AboutView_TranslateDe_Title.Text" xml:space="preserve">
+    <value>Олексій Дейкун</value>
+  </data>
+  <data name="AboutView_TranslateEn_Text.Text" xml:space="preserve">
+    <value>Переклад англійською</value>
+  </data>
+  <data name="AboutView_TranslateEn_Title.Text" xml:space="preserve">
+    <value>Григорій Лобода</value>
+  </data>
+  <data name="AboutView_TranslateUA_Text.Text" xml:space="preserve">
+    <value>Переклад українською</value>
+  </data>
+  <data name="AboutView_Developer_Text.Text" xml:space="preserve">
+    <value>Розробник застосунку</value>
+  </data>
+  <data name="FirstSelectLaunchView_ContentText.Text" xml:space="preserve">
+    <value>Виберіть початкову сторінку, яка буде відкриватися під час запуску Вкачай.
+
+Рекомендуємо використовувати головну сторінку. Ви завжди можете змінити цей параметр в налаштуваннях програми.</value>
+  </data>
+  <data name="Email_SupportTitle_Text" xml:space="preserve">
+    <value>Сповіщення із застосунку</value>
+  </data>
+  <data name="TransferView_Downloading_Notification_Text" xml:space="preserve">
+    <value>Триває завантаження {0}</value>
+  </data>
+  <data name="TransferView_SizeMask_Text" xml:space="preserve">
+    <value>{0} із {1}</value>
+    <comment>Например, "20 ГБ из 300 ТБ".</comment>
+  </data>
+  <data name="TransferView_Uploading_Notification_Text" xml:space="preserve">
+    <value>Надсилання {0}</value>
+  </data>
+  <data name="AppNotifications_SoundNotWorking_Content" xml:space="preserve">
+    <value>Звуки сповіщень вимкнено </value>
+  </data>
+  <data name="AppNotifications_SoundNotWorking_Title" xml:space="preserve">
+    <value>Сервіс відтворення звуків не працює</value>
+  </data>
+  <data name="AppNotifications_VibrationNotWorking_Content" xml:space="preserve">
+    <value>Вібрацію сповіщень вимкнено</value>
+  </data>
+  <data name="AppNotifications_VibrationNotWorking_Title" xml:space="preserve">
+    <value>Сервіс вібрації не працює</value>
+  </data>
+  <data name="AppNotifications_CantStartDownload_Title" xml:space="preserve">
+    <value>Не вдалося додати в список завантажень</value>
+  </data>
+  <data name="AppNotifications_DownloadStartedNotAll_Title" xml:space="preserve">
+    <value>У список завантажень додані не всі елементи</value>
+  </data>
+  <data name="AppNotifications_DownloadStarted_Title" xml:space="preserve">
+    <value>Додано в список завантажень</value>
+  </data>
+  <data name="AppNotifications_TouchToInfo_Content" xml:space="preserve">
+    <value>Торкніться для деталей</value>
+  </data>
+  <data name="AppNotifications_TouchToTransferManager_Content" xml:space="preserve">
+    <value>Торкніться для переходу в менеджер завантажень</value>
+  </data>
+  <data name="ErrorView_ErrorDetails.Text" xml:space="preserve">
+    <value>Деталі помилки</value>
+  </data>
+  <data name="FeedbackService_LeaveFeedback_Content" xml:space="preserve">
+    <value>Щиро дякуємо, що користуєтеся Вкачай! Будь ласка, залиште свій відгук про роботу застосунка.
+Ви хочете залишити свій відгук?</value>
+  </data>
+  <data name="FeedbackService_LeaveFeedback_Title" xml:space="preserve">
+    <value>Вам подобається ВКачай?</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Title.Text" xml:space="preserve">
+    <value>Внутрішні сповіщення</value>
+  </data>
+  <data name="SetingsView_InAppNotifications_Text.Text" xml:space="preserve">
+    <value>Вкачає може повідомляти вам про важливі події вигульковими сповіщеннями всередині програми.
+Цей параметр не стосується до важливих повідомлень.</value>
+  </data>
+  <data name="SettingsView_LibrarySection.Header" xml:space="preserve">
+    <value>бібліотека</value>
+  </data>
+  <data name="SettingsView_MainSection.Header" xml:space="preserve">
+    <value>загальні</value>
+  </data>
+  <data name="SettingsView_NotificationsSection.Header" xml:space="preserve">
+    <value>сповіщення</value>
+  </data>
+  <data name="SettingsView_Pivot.Title" xml:space="preserve">
+    <value>НАЛАШТУВАННЯ</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Sound_Text.Text" xml:space="preserve">
+    <value>Залежно від типу повідомлення, відтворюється відповідний звук. Ви можете вимкнути звуки повідомлень.</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Sound_Title.Text" xml:space="preserve">
+    <value>Звук сповіщень</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Vibration_Text.Text" xml:space="preserve">
+    <value>Залежно від типу повідомлення, смартфон вібрує відповідним чином. Ви можете вимкнути вібрацію повідомлень.</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Vibration_Title.Text" xml:space="preserve">
+    <value>Вібрація сповіщень</value>
+  </data>
+  <data name="AppBarButton_Shuffle_Text" xml:space="preserve">
+    <value>тасувати</value>
+  </data>
+  <data name="SearchView_ArtistsTitle.Text" xml:space="preserve">
+    <value>виконавці</value>
+  </data>
+  <data name="PopularVKAudioView_Title.Text" xml:space="preserve">
+    <value>популярні</value>
+  </data>
+  <data name="MainView_PopularVKItem.Content" xml:space="preserve">
+    <value>популярні</value>
+  </data>
   <data name="PopularVKAudioView_Genre_AcousticAndVocal" xml:space="preserve">
     <value>acoustic &amp; vocal</value>
     <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_AllGenres" xml:space="preserve">
+    <value>усі напрями</value>
   </data>
   <data name="PopularVKAudioView_Genre_Alternative" xml:space="preserve">
     <value>alternative</value>
@@ -1587,5 +1757,48 @@ Eng: upload</comment>
   <data name="PopularVKAudioView_Genre_DrumAndBass" xml:space="preserve">
     <value>drum &amp; bass</value>
     <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_FilterFlyout_Title.Text" xml:space="preserve">
+    <value>Фільтр аудіо</value>
+  </data>
+  <data name="PopularVKAudioView_OnlyEng_Switch.Header" xml:space="preserve">
+    <value>Лише закордонні</value>
+  </data>
+  <data name="ShowTrackInfoFlyoutItem.Text" xml:space="preserve">
+    <value>інфо про пісню</value>
+  </data>
+  <data name="AudioBitrate_Kbits.Text" xml:space="preserve">
+    <value>кбіт/с</value>
+  </data>
+  <data name="AudioBitrate_Name.Text" xml:space="preserve">
+    <value>Бітрейт:</value>
+  </data>
+  <data name="VKAudioInfoView_Container.ErrorText" xml:space="preserve">
+    <value>Не вдалося одержати додаткової інформації про трек.</value>
+  </data>
+  <data name="VKAudioInfoView_Container.LoadingText" xml:space="preserve">
+    <value>Триває отримання додаткової інформації...</value>
+  </data>
+  <data name="VKAudioInfoView_Container.NoDataText" xml:space="preserve">
+    <value>Немає жодної додаткової інформації про цей трек.</value>
+  </data>
+  <data name="AppNotifications_AddAudioFail_Title" xml:space="preserve">
+    <value>Не вдалося додати у Вашу колекцію</value>
+  </data>
+  <data name="AppNotifications_AddAudioSuccess_Title" xml:space="preserve">
+    <value>Аудіозапис додано до Вашої колекції</value>
+  </data>
+  <data name="VKAdInfoView_Loader.ErrorText" xml:space="preserve">
+    <value>Не вдалося завантажити інформацію про акцію.</value>
+  </data>
+  <data name="VKAdInfoView_Loader.LoadingText" xml:space="preserve">
+    <value>Завантаження інформації про акцію...</value>
+  </data>
+  <data name="VKAdInfoView_Loader.NoDataText" xml:space="preserve">
+    <value>Немає жодної інформації про акцію.</value>
+  </data>
+  <data name="Ads_Message_JoinWPLumia_Text" xml:space="preserve">
+    <value>В этом сообществе вы найдете свежие новости, обзоры игр и приложений, живое общение, а также помощь по всем интересующим вас вопросам! 
+Подписаться?</value>
   </data>
 </root>

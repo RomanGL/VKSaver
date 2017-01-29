@@ -30,6 +30,13 @@ namespace VKSaver.Core
                 settingsService.Set(AppConstants.SETTINGS_VERSION_PARAMETER, AppConstants.SETTINGS_VERSION);
             }
 
+            if (settingsService.ContainsSetting(AppConstants.DEPRECATED_PUSH_NOTIFICATIONS_PARAMETER))
+            {
+                bool isEnabled = settingsService.Get(AppConstants.DEPRECATED_PUSH_NOTIFICATIONS_PARAMETER, true);
+                settingsService.Remove(AppConstants.DEPRECATED_PUSH_NOTIFICATIONS_PARAMETER);
+                settingsService.Set(AppConstants.PUSH_NOTIFICATIONS_PARAMETER, isEnabled);
+            }
+
             return settingsService;
         }
 
@@ -38,11 +45,7 @@ namespace VKSaver.Core
             var settingsService = container.Resolve<ISettingsService>();
             var inTouch = container.Resolve<InTouch>();
 
-            var vkLoginService = new VKLoginService(settingsService, inTouch);
-            if (vkLoginService.IsAuthorized)
-                vkLoginService.InitializeInTouch();
-
-            return vkLoginService;
+            return new VKLoginService(settingsService, inTouch);
         }
 
         public static InTouch ResolveInTouch(IUnityContainer container)

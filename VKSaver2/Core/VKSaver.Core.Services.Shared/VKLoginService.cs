@@ -17,6 +17,7 @@ namespace VKSaver.Core.Services
     {
         public const string ACCESS_TOKEN_PARAMETER = "AccessToken";
         public const string REDIRECT_URL = "https://oauth.vk.com/blank.html";
+
         private const string AUTHORIZATION_URL = "https://oauth.vk.com/authorize";        
         private const string PARAMETERS_MASK = "{0}?client_id={1}&scope={2}&redirect_uri={3}&display=popup&v={4}&response_type=token";
         private const string SCOPE = "audio,friends,docs,groups,offline,status,video,wall";
@@ -49,6 +50,8 @@ namespace VKSaver.Core.Services
         {
             _settingsService = settingsService;
             _inTouch = inTouch;
+
+            InitializeInTouch();
         }
 
         /// <summary>
@@ -178,11 +181,17 @@ namespace VKSaver.Core.Services
 
         public void InitializeInTouch()
         {
-            if (!IsAuthorized)
-                throw new InvalidOperationException("Авторизация не выполнена.");
+            _inTouch.AuthorizationFailed += InTouch_AuthorizationFailed;
+            if (IsAuthorized)
+            {
+                var token = AccessToken;
+                _inTouch.SetSessionData(new APISession(token.AccessToken, (int) token.UserID));
+            }
+        }
 
-            var token = AccessToken;
-            _inTouch.SetSessionData(new APISession(token.AccessToken, (int)token.UserID));
+        private void InTouch_AuthorizationFailed(object sender, ResponseError e)
+        {
+            Logout();
         }
 
         private readonly ISettingsService _settingsService;

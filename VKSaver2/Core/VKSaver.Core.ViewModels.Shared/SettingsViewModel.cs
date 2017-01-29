@@ -120,12 +120,12 @@ namespace VKSaver.Core.ViewModels
             set { _settingsService.Set(AppConstants.INTERNET_ACCESS_TYPE, (InternetAccessType)value); }
         }
 
-        public bool DownloadsNotifications
+        public bool PushNotifications
         {
-            get { return _settingsService.Get(AppConstants.DOWNLOADS_NOTIFICATIONS_PARAMETER, true); }
+            get { return _settingsService.Get(AppConstants.PUSH_NOTIFICATIONS_PARAMETER, true); }
             set
             {
-                _settingsService.Set(AppConstants.DOWNLOADS_NOTIFICATIONS_PARAMETER, value);
+                _settingsService.Set(AppConstants.PUSH_NOTIFICATIONS_PARAMETER, value);
                 OnDownloadsNotificationsChanged();
             }
         }
