@@ -13,10 +13,9 @@ namespace VKSaver.Core.Services
             IVKLoginService vkLoginService)
         {
             _settingsService = settingsService;
-            _vkLoginService = vkLoginService;
 
-            _vkLoginService.UserLogin += vkLoginService_UserLogin;
-            _vkLoginService.UserLogout += vkLoginService_UserLogout;
+            vkLoginService.UserLogin += vkLoginService_UserLogin;
+            vkLoginService.UserLogout += vkLoginService_UserLogout;
         }
 
         public bool IsYandexPushActivated { get; private set; }
@@ -34,6 +33,7 @@ namespace VKSaver.Core.Services
 
         public async Task DeactivateYandexPushAsync()
         {
+            IsYandexPushActivated = false;
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
             channel.Close();
         }
@@ -49,6 +49,5 @@ namespace VKSaver.Core.Services
         }
 
         private readonly ISettingsService _settingsService;
-        private readonly IVKLoginService _vkLoginService;
     }
 }

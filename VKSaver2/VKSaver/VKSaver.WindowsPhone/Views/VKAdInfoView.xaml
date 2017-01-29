@@ -31,6 +31,7 @@
         <controls:PlayerBackground ArtistImage="{x:Null}"
                                    DefaultTheme="{ThemeResource PagePlayerTheme}"
                                    DefaultShapesType="VerticalTriangles"
+                                   NoAlbums="True"
                                    x:Name="background" />
 
         <controls:ContentContainer State="{Binding DataState}"

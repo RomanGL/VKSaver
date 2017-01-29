@@ -27,26 +27,24 @@ namespace VKSaver.Core.ViewModels
             INavigationService navigationService,
             IVKLoginService vkLoginService, 
             ISettingsService settingsService,
-            ILastFmLoginService lastFmLoginSevice, 
-            IPurchaseService purchaseService,
+            ILastFmLoginService lastFmLoginSevice,
             ILocService locService,
             IDialogsService dialogsService,
             IInTouchWrapper inTouchWrapper, 
             InTouch inTouch,
             ILaunchViewResolver launchViewResolver,
-            IAppNotificationsService appNotificationsService)
+            INotificationsService notificationsService)
         {
             _navigationService = navigationService;
             _vkLoginService = vkLoginService;
             _settingsService = settingsService;
             _lastFmLoginService = lastFmLoginSevice;
-            _purchaseService = purchaseService;
             _inTouchWrapper = inTouchWrapper;
             _inTouch = inTouch;
             _locService = locService;
             _dialogsService = dialogsService;
             _launchViewResolver = launchViewResolver;
-            _appNotificationsService = appNotificationsService;
+            _notificationsService = notificationsService;
 
             Authorizations = new ObservableCollection<IServiceAuthorization>();
             UpdateDatabaseCommand = new DelegateCommand(OnUpdateDatabaseCommand);
@@ -126,7 +124,7 @@ namespace VKSaver.Core.ViewModels
             set
             {
                 _settingsService.Set(AppConstants.PUSH_NOTIFICATIONS_PARAMETER, value);
-                OnDownloadsNotificationsChanged();
+                OnPushNotificationsChanged();
             }
         }
 
@@ -195,8 +193,9 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("VksmExtractionView", null);
         }
 
-        private void OnDownloadsNotificationsChanged()
+        private void OnPushNotificationsChanged()
         {
+            _notificationsService.DeactivateYandexPushAsync();
             _dialogsService.Show(_locService["Message_DownloadsNotificationsChanged_Text"],
                 _locService["Message_DownloadsNotificationsChanged_Title"]);
         }
@@ -218,11 +217,10 @@ namespace VKSaver.Core.ViewModels
         private readonly IVKLoginService _vkLoginService;
         private readonly ISettingsService _settingsService;
         private readonly ILastFmLoginService _lastFmLoginService;
-        private readonly IPurchaseService _purchaseService;
         private readonly IInTouchWrapper _inTouchWrapper;
         private readonly ILocService _locService;
         private readonly IDialogsService _dialogsService;        
         private readonly ILaunchViewResolver _launchViewResolver;
-        private readonly IAppNotificationsService _appNotificationsService;
+        private readonly INotificationsService _notificationsService;
     }
 }

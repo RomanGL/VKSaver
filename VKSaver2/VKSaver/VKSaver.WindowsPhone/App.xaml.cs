@@ -18,6 +18,7 @@ using IF.Lastfm.Core.Api;
 using Yandex.Metrica;
 using System.Collections.Generic;
 using Windows.Networking.PushNotifications;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Newtonsoft.Json;
 using VKSaver.Core;
 using VKSaver.Core.Models;
@@ -44,23 +45,6 @@ namespace VKSaver
             {
                 _appLoaderService = new AppLoaderService(this);
                 _frame = new WithLoaderFrame(_appLoaderService, this);
-
-                HardwareButtons.BackPressed += (s, e) =>
-                {
-                    if (NavigationService.CanGoBack())
-                    {
-                        NavigationService.GoBack();
-                        e.Handled = true;
-                    }
-                };
-
-                _frame.Navigated += (s, e) =>
-                {
-                    var dict = new Dictionary<string, string>(1);
-                    dict[MetricaConstants.NAVIGATION_PAGE] = e.SourcePageType.Name;
-
-                    _metricaService?.LogEvent(MetricaConstants.NAVIGATION_EVENT, JsonConvert.SerializeObject(dict));
-                };
                 return _frame;
             };
             
@@ -111,10 +95,8 @@ namespace VKSaver
             e.Handled = true;
         }
 
-        public IUnityContainer Container { get { return _container; } }
-
         public CoreDispatcher Dispatcher { get; private set; }
-
+        
         protected override void OnInitialize(IActivatedEventArgs args)
         {
             Dispatcher = Window.Current.Dispatcher;
@@ -125,11 +107,20 @@ namespace VKSaver
             ViewModelLocator.SetDefaultViewTypeToViewModelTypeResolver(GetViewModelType);
             
             _container.RegisterInstance<IServiceResolver>(this);
-            _container.RegisterInstance(this.NavigationService);
-            _container.RegisterInstance(this.SessionStateService);
+            _container.RegisterInstance<INavigationService>("PrismNavigationService", NavigationService);
+            _container.RegisterInstance<ISessionStateService>(SessionStateService);
             _container.RegisterInstance<IDispatcherWrapper>(this);
             _container.RegisterInstance<IAppLoaderService>(_appLoaderService);
             _container.RegisterInstance<IAppNotificationsPresenter>(_frame);
+
+            _container.RegisterType<INavigationService, VKSaverNavigationService>(
+                new ContainerControlledLifetimeManager(),
+                new InjectionConstructor(
+                    new ResolvedParameter<INavigationService>("PrismNavigationService"),
+                    new ResolvedParameter<IVKLoginService>(),
+                    new ResolvedParameter<IMetricaService>(),
+                    new ResolvedParameter<IDispatcherWrapper>(),
+                    new ResolvedParameter<IServiceResolver>()));
 
             _container.RegisterType<ISettingsService, SettingsService>(new ContainerControlledLifetimeManager(),
                 new InjectionFactory(InstanceFactories.ResolveSettingsService));
@@ -199,29 +190,6 @@ namespace VKSaver
 #if FULL
             _container.RegisterType<IBetaService, BetaService>(new TransientLifetimeManager());
 #endif
-
-            _metricaService = _container.Resolve<IMetricaService>();
-            var vkLoginService = _container.Resolve<IVKLoginService>();
-            vkLoginService.UserLogin += async (s, e) =>
-            {
-                var launchViewResolver = _container.Resolve<ILaunchViewResolver>();
-                NavigationService.ClearHistory();
-
-                if (!launchViewResolver.TryOpenSpecialViews() && await launchViewResolver.EnsureDatabaseUpdated() == false)
-                    launchViewResolver.OpenDefaultView();
-#if FULL
-                _container.Resolve<IBetaService>().ExecuteAppLaunch();
-#endif
-            };
-            vkLoginService.UserLogout += async (s, e) =>
-            {
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
-                    NavigationService.ClearHistory();
-                });
-            };
-            
 #if DEBUG
             LoadPurchaseFile();
 #endif
@@ -433,7 +401,6 @@ namespace VKSaver
 
         private IUnityContainer _container;
         private IAppLoaderService _appLoaderService;
-        private IMetricaService _metricaService;
         private UnityServiceLocator _unityServiceLocator;
         private WithLoaderFrame _frame;
 
