@@ -1014,6 +1014,9 @@ Bitte warten Sie...</value>
   <data name="SetingsView_LocalLibrary_Text.Text" xml:space="preserve">
     <value>Wenn die Bibliothek nicht alle Musik zeigt an, versuchen Sie die Database zu aktualisieren.</value>
   </data>
+  <data name="SetingsView_Notifications_Text.Text" xml:space="preserve">
+    <value>VK Saver können Sie bei wöchentlichen System toast benachrichtigen.</value>
+  </data>
   <data name="SettingsView_AppLanguage_Title.Text" xml:space="preserve">
     <value>Sprache der Anwendung</value>
   </data>
@@ -1022,6 +1025,9 @@ Bitte warten Sie...</value>
   </data>
   <data name="SettingsView_LocalLibrary_Title.Text" xml:space="preserve">
     <value>Lokale Bibliothek</value>
+  </data>
+  <data name="SettingsView_Notifications_Title.Text" xml:space="preserve">
+    <value>Systembenachrichtigungen</value>
   </data>
   <data name="SettingsView_ServicesAuthorizations_Title.Text" xml:space="preserve">
     <value>Authorisierung in den Diensten</value>
@@ -1509,9 +1515,188 @@ Wollen Sie wirklich über den Browser zu gehen?</value>
   <data name="PromoView_Screen31_Line2_Text" xml:space="preserve">
     <value>Wird an alle Video VK verfügbar sein!</value>
   </data>
+  <data name="AboutView_IF_LastFm_Text.Text" xml:space="preserve">
+    <value>Inflatable Last.fm .NET SDK</value>
+  </data>
+  <data name="AboutView_IF_LastFm_Title.Text" xml:space="preserve">
+    <value>Inflatable Last.fm</value>
+  </data>
+  <data name="AppBarButton_Home_Text" xml:space="preserve">
+    <value>Haus</value>
+  </data>
+  <data name="LaunchView_MainView_Name" xml:space="preserve">
+    <value>Nach Hause (empfohlen)</value>
+  </data>
+  <data name="LaunchView_UserContentView_Name" xml:space="preserve">
+    <value>Benutzerseite</value>
+  </data>
+  <data name="SettingsView_LaunchView_Text.Text" xml:space="preserve">
+    <value>Sie können auswählen, dass die Startseite zu öffnen, wenn die Anwendung gestartet wird.</value>
+  </data>
+  <data name="SettingsView_LaunchView_Title.Text" xml:space="preserve">
+    <value>Startseite</value>
+  </data>
+  <data name="FirstSelectLaunchView_Title.Text" xml:space="preserve">
+    <value>Startseite</value>
+  </data>
+  <data name="AboutView_Email_Text.Text" xml:space="preserve">
+    <value>Kontaktieren Sie uns per E-Mail</value>
+  </data>
+  <data name="AboutView_Email_Title.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="AboutView_Support_Block.Text" xml:space="preserve">
+    <value>Unterstützung</value>
+  </data>
+  <data name="AboutView_VKSaverGroup_Text.Text" xml:space="preserve">
+    <value>Gemeinschaft VK</value>
+  </data>
+  <data name="AboutView_VKSaverGroup_Title.Text" xml:space="preserve">
+    <value>VK Saver</value>
+  </data>
+  <data name="AboutView_Other_Title.Text" xml:space="preserve">
+    <value>Diverses</value>
+  </data>
+  <data name="AboutView_SpecialThanks_Block.Text" xml:space="preserve">
+    <value>Dankbarkeit</value>
+  </data>
+  <data name="AboutView_TranslateBe_Text.Text" xml:space="preserve">
+    <value>Weißrussisch Übersetzung</value>
+  </data>
+  <data name="AboutView_TranslateBe_Title.Text" xml:space="preserve">
+    <value>Maxim Romaniuk</value>
+  </data>
+  <data name="AboutView_TranslateDe_Text.Text" xml:space="preserve">
+    <value>Übersetzung in Deutsch</value>
+  </data>
+  <data name="AboutView_TranslateDe_Title.Text" xml:space="preserve">
+    <value>Alexei Deykun</value>
+  </data>
+  <data name="AboutView_TranslateEn_Text.Text" xml:space="preserve">
+    <value>Übersetzung ins Englische</value>
+  </data>
+  <data name="AboutView_TranslateEn_Title.Text" xml:space="preserve">
+    <value>Hryhorii Lovoda</value>
+  </data>
+  <data name="AboutView_TranslateUA_Text.Text" xml:space="preserve">
+    <value>Übersetzung ins Ukrainische</value>
+  </data>
+  <data name="AboutView_TranslateUA_Title.Text" xml:space="preserve">
+    <value>Maxim Denisenko</value>
+  </data>
+  <data name="AboutView_Developer_Text.Text" xml:space="preserve">
+    <value>Der Anwendungsentwickler</value>
+  </data>
+  <data name="AboutView_Developer_Title.Text" xml:space="preserve">
+    <value>Roman Gladkikh</value>
+  </data>
+  <data name="FirstSelectLaunchView_ContentText.Text" xml:space="preserve">
+    <value>Wählen Sie die Startseite zu öffnen, wenn Sie VK Saver starten. 
+ 
+Empfehlen Ihnen Haupt Seite. Sie können diese Option in den Einstellungen jederzeit ändern.</value>
+  </data>
+  <data name="Email_SupportTitle_Text" xml:space="preserve">
+    <value>Eine Nachricht aus der Anwendung</value>
+  </data>
+  <data name="TransferView_Downloading_Notification_Text" xml:space="preserve">
+    <value>Laden von {0}</value>
+  </data>
+  <data name="TransferView_SizeMask_Text" xml:space="preserve">
+    <value>{0} von {1}</value>
+    <comment>Например, "20 ГБ из 300 ТБ".</comment>
+  </data>
+  <data name="TransferView_Uploading_Notification_Text" xml:space="preserve">
+    <value>Senden Sie {0}</value>
+  </data>
+  <data name="AppNotifications_SoundNotWorking_Content" xml:space="preserve">
+    <value>Sound Benachrichtigungen deaktiviert sind</value>
+  </data>
+  <data name="AppNotifications_SoundNotWorking_Title" xml:space="preserve">
+    <value>Instrumente spielen klingt nicht funktioniert</value>
+  </data>
+  <data name="AppNotifications_VibrationNotWorking_Content" xml:space="preserve">
+    <value>Vibration-Benachrichtigungen deaktiviert</value>
+  </data>
+  <data name="AppNotifications_VibrationNotWorking_Title" xml:space="preserve">
+    <value>Vibration-Dienst funktioniert nicht</value>
+  </data>
+  <data name="AppNotifications_CantStartDownload_Title" xml:space="preserve">
+    <value>Konnte nicht auf der Liste der Downloads hinzugefügt werden</value>
+  </data>
+  <data name="AppNotifications_DownloadStartedNotAll_Title" xml:space="preserve">
+    <value>Download-Liste hinzugefügt nicht alle Elemente</value>
+  </data>
+  <data name="AppNotifications_DownloadStarted_Title" xml:space="preserve">
+    <value>Hinzu kommt die Liste der downloads</value>
+  </data>
+  <data name="AppNotifications_TouchToInfo_Content" xml:space="preserve">
+    <value>Tippen Sie auf Details</value>
+  </data>
+  <data name="AppNotifications_TouchToTransferManager_Content" xml:space="preserve">
+    <value>Tippen Sie auf den Download-Manager gehen</value>
+  </data>
+  <data name="ErrorView_ErrorDetails.Text" xml:space="preserve">
+    <value>Fehlerdetails</value>
+  </data>
+  <data name="AppNotifications_FatalError_Title" xml:space="preserve">
+    <value>Es ist ein Fehler aufgetreten, bitte entschuldigen Sie die Unannehmlichkeiten</value>
+  </data>
+  <data name="FeedbackService_LeaveFeedback_Content" xml:space="preserve">
+    <value>Vielen Dank für die Verwendung von VK Saver! Bitte hinterlassen Sie Ihr Feedback zur Anwendung. 
+Wollen Ihren Erfahrungsbericht schreiben?</value>
+  </data>
+  <data name="FeedbackService_LeaveFeedback_Title" xml:space="preserve">
+    <value>Magst du VK Saver?</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Title.Text" xml:space="preserve">
+    <value>Interne Benachrichtigungen</value>
+  </data>
+  <data name="SetingsView_InAppNotifications_Text.Text" xml:space="preserve">
+    <value>VK Saver können Sie wichtige Ereignisse Toast innerhalb einer Anwendung mitteilen. 
+Diese Option hat keine Auswirkungen auf wichtige Benachrichtigungen.</value>
+  </data>
+  <data name="SettingsView_LibrarySection.Header" xml:space="preserve">
+    <value>Bibliothek</value>
+  </data>
+  <data name="SettingsView_MainSection.Header" xml:space="preserve">
+    <value>Freigegeben</value>
+  </data>
+  <data name="SettingsView_NotificationsSection.Header" xml:space="preserve">
+    <value>Benachrichtigungen</value>
+  </data>
+  <data name="SettingsView_Pivot.Title" xml:space="preserve">
+    <value>EINSTELLUNGEN</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Sound_Text.Text" xml:space="preserve">
+    <value>Je nach Art der Benachrichtigung erscheint der entsprechende Ton. Sie können die Sounds Benachrichtigungen deaktivieren.</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Sound_Title.Text" xml:space="preserve">
+    <value>Sound-Benachrichtigungen</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Vibration_Text.Text" xml:space="preserve">
+    <value>Je nach Art der Benachrichtigung vibriert das Smartphone entsprechend. Sie können Vibrationen Benachrichtigungen deaktivieren.</value>
+  </data>
+  <data name="SettingsView_InAppNotifications_Vibration_Title.Text" xml:space="preserve">
+    <value>Vibration-Benachrichtigung</value>
+  </data>
+  <data name="AppBarButton_Shuffle_Text" xml:space="preserve">
+    <value>Durcheinander</value>
+  </data>
+  <data name="SearchView_ArtistsTitle.Text" xml:space="preserve">
+    <value>Künstler</value>
+  </data>
+  <data name="PopularVKAudioView_Title.Text" xml:space="preserve">
+    <value>beliebt</value>
+  </data>
+  <data name="MainView_PopularVKItem.Content" xml:space="preserve">
+    <value>beliebt</value>
+  </data>
   <data name="PopularVKAudioView_Genre_AcousticAndVocal" xml:space="preserve">
     <value>acoustic &amp; vocal</value>
     <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_Genre_AllGenres" xml:space="preserve">
+    <value>alle genres</value>
   </data>
   <data name="PopularVKAudioView_Genre_Alternative" xml:space="preserve">
     <value>alternative</value>
@@ -1592,5 +1777,57 @@ Wollen Sie wirklich über den Browser zu gehen?</value>
   <data name="PopularVKAudioView_Genre_DrumAndBass" xml:space="preserve">
     <value>drum &amp; bass</value>
     <comment>Не переводить</comment>
+  </data>
+  <data name="PopularVKAudioView_FilterFlyout_Title.Text" xml:space="preserve">
+    <value>Audio-filter</value>
+  </data>
+  <data name="PopularVKAudioView_Genres_ComboBox.Header" xml:space="preserve">
+    <value>Genre</value>
+  </data>
+  <data name="PopularVKAudioView_OnlyEng_Switch.Header" xml:space="preserve">
+    <value>Nur ausländische</value>
+  </data>
+  <data name="ShowTrackInfoFlyoutItem.Text" xml:space="preserve">
+    <value>Informationen über den track</value>
+  </data>
+  <data name="AudioBitrate_Kbits.Text" xml:space="preserve">
+    <value>Kbit/s</value>
+  </data>
+  <data name="AudioBitrate_Name.Text" xml:space="preserve">
+    <value>Bitrate:</value>
+  </data>
+  <data name="VKAudioInfoView_Container.ErrorText" xml:space="preserve">
+    <value>Fehler beim Abrufen von weitere Informationen über die Strecke.</value>
+  </data>
+  <data name="VKAudioInfoView_Container.LoadingText" xml:space="preserve">
+    <value>Zusätzliche Informationen werden abgerufen...</value>
+  </data>
+  <data name="VKAudioInfoView_Container.NoDataText" xml:space="preserve">
+    <value>Es gibt keine weiteren Informationen auf dieser Strecke.</value>
+  </data>
+  <data name="AppNotifications_AddAudioFail_Title" xml:space="preserve">
+    <value>Fehler beim Hinzufügen zu Ihrer Sammlung</value>
+  </data>
+  <data name="AppNotifications_AddAudioSuccess_Title" xml:space="preserve">
+    <value>Aufnahme zu Ihrer Sammlung hinzugefügt</value>
+  </data>
+  <data name="VKAdInfoView_Loader.ErrorText" xml:space="preserve">
+    <value>Nicht in der Lage, Informationen über die Kampagne zu laden.</value>
+  </data>
+  <data name="VKAdInfoView_Loader.LoadingText" xml:space="preserve">
+    <value>Laden Informationen über die Kampagne.</value>
+  </data>
+  <data name="VKAdInfoView_Loader.NoDataText" xml:space="preserve">
+    <value>Es gibt keine Informationen über die Kampagne.</value>
+  </data>
+  <data name="Ads_Message_JoinWPLumia_Text" xml:space="preserve">
+    <value>В этом сообществе вы найдете свежие новости, обзоры игр и приложений, живое общение, а также помощь по всем интересующим вас вопросам! 
+Подписаться?</value>
+  </data>
+  <data name="PlayerView_LikeTrackInfo_Content" xml:space="preserve">
+    <value>Zu Ihrer Sammlung hinzuzufügen</value>
+  </data>
+  <data name="PlayerView_LikeTrackInfo_Title" xml:space="preserve">
+    <value>Tippen Sie zweimal aufs Albumbild um einen Lied</value>
   </data>
 </root>

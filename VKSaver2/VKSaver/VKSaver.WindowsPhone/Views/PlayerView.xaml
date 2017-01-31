@@ -379,11 +379,6 @@
                                          Visibility="Collapsed"
                                          VerticalAlignment="Bottom"
                                          Margin="0,0,0,90"
-                                         HorizontalAlignment="Center">
-            <controls:AppNotificationControl.Message>
-                <models:AppNotification Title="Дважды коснитесь изображения альбома"
-                                        Content="Чтобы добавить трек в вашу коллекцию" />
-            </controls:AppNotificationControl.Message>
-        </controls:AppNotificationControl>
+                                         HorizontalAlignment="Center"/>
     </Grid>
 </mvvm:VisualStateAwarePage>

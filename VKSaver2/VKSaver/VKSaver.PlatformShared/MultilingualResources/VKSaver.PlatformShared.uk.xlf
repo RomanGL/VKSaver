@@ -2045,7 +2045,7 @@ Eng: upload</note>
         </trans-unit>
         <trans-unit id="AboutView_Email_Title.Text" translate="yes" xml:space="preserve">
           <source>Email</source>
-          <target state="new">Email</target>
+          <target state="final">Email</target>
         </trans-unit>
         <trans-unit id="AboutView_Support_Block.Text" translate="yes" xml:space="preserve">
           <source>Поддержка</source>
@@ -2073,7 +2073,7 @@ Eng: upload</note>
         </trans-unit>
         <trans-unit id="AboutView_TranslateBe_Title.Text" translate="yes" xml:space="preserve">
           <source>Максим Романюк</source>
-          <target state="new">Максим Романюк</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Максим Романюк</target>
         </trans-unit>
         <trans-unit id="AboutView_TranslateDe_Text.Text" translate="yes" xml:space="preserve">
           <source>Перевод на немецкий</source>
@@ -2097,7 +2097,7 @@ Eng: upload</note>
         </trans-unit>
         <trans-unit id="AboutView_TranslateUA_Title.Text" translate="yes" xml:space="preserve">
           <source>Максим Денисенко</source>
-          <target state="new">Максим Денисенко</target>
+          <target state="needs-review-translation">Максим Денисенко</target>
         </trans-unit>
         <trans-unit id="AboutView_Developer_Text.Text" translate="yes" xml:space="preserve">
           <source>Разработчик приложения</source>
@@ -2105,7 +2105,7 @@ Eng: upload</note>
         </trans-unit>
         <trans-unit id="AboutView_Developer_Title.Text" translate="yes" xml:space="preserve">
           <source>Роман Гладких</source>
-          <target state="new">Роман Гладких</target>
+          <target state="needs-review-translation">Роман Гладких</target>
         </trans-unit>
         <trans-unit id="FirstSelectLaunchView_ContentText.Text" translate="yes" xml:space="preserve">
           <source>Выберите начальную страницу, которая будет открываться при запуске ВКачай.
@@ -2174,7 +2174,7 @@ Eng: upload</note>
         </trans-unit>
         <trans-unit id="AppNotifications_FatalError_Title" translate="yes" xml:space="preserve">
           <source>Произошла ошибка, приносим свои извинения за неудобства</source>
-          <target state="new">Произошла ошибка, приносим свои извинения за неудобства</target>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Сталася помилка, ми приносимо вибачення за незручності</target>
         </trans-unit>
         <trans-unit id="FeedbackService_LeaveFeedback_Content" translate="yes" xml:space="preserve">
           <source>Спасибо, что пользуетесь ВКачай! Пожалуйста, оставьте свой отзыв о работе приложения.
@@ -2359,7 +2359,7 @@ Eng: upload</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genres_ComboBox.Header" translate="yes" xml:space="preserve">
           <source>Жанр</source>
-          <target state="new">Жанр</target>
+          <target state="translated" state-qualifier="mt-suggestion">Жанр</target>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_OnlyEng_Switch.Header" translate="yes" xml:space="preserve">
           <source>Только зарубежные</source>
@@ -2418,6 +2418,14 @@ Eng: upload</note>
         <trans-unit id="Ads_Message_JoinWPLumia_Title" translate="yes" xml:space="preserve">
           <source>Подпишись на Lumia | Microsoft Windows Mobile | Nokia</source>
           <target state="new">Подпишись на Lumia | Microsoft Windows Mobile | Nokia</target>
+        </trans-unit>
+        <trans-unit id="PlayerView_LikeTrackInfo_Content" translate="yes" xml:space="preserve">
+          <source>Чтобы добавить трек в вашу коллекцию</source>
+          <target state="translated">Аби додати трек до Вашої колекції</target>
+        </trans-unit>
+        <trans-unit id="PlayerView_LikeTrackInfo_Title" translate="yes" xml:space="preserve">
+          <source>Дважды коснитесь изображения альбома</source>
+          <target state="translated">Двічі торкніться до зображення альбома</target>
         </trans-unit>
       </group>
     </body>

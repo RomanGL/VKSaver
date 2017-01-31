@@ -49,7 +49,8 @@ namespace VKSaver.Core.ViewModels
             IPurchaseService purchaseService,
             ILocService locService,
             IDialogsService dialogsService,
-            IAppNotificationsService appNotificationsService)
+            IAppNotificationsService appNotificationsService,
+            ISettingsService settingsService)
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, 
                   playerService, locService, navigationService, purchaseService)
         {
@@ -62,6 +63,7 @@ namespace VKSaver.Core.ViewModels
             _tracksShuffleSevice = tracksShuffleService;
             _lastFmLoginService = lastFmLoginService;
             _appNotificationsService = appNotificationsService;
+            _settingsService = settingsService;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
 
@@ -167,6 +169,9 @@ namespace VKSaver.Core.ViewModels
 
         [DoNotNotify]
         public DelegateCommand ShowLyricsCommand { get; private set; }
+
+        [DoNotNotify]
+        public DelegateCommand<AppNotification> ShowLikeTrackInfoCommand { get; set; }
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -336,6 +341,23 @@ namespace VKSaver.Core.ViewModels
             CanShuffle = true;
             _appLoaderService.Hide();
             UpdateAppBarState(CurrentPivotIndex);
+
+            TryShowLikeInfo();
+        }
+
+        private async void TryShowLikeInfo()
+        {
+            if (!_settingsService.Get(LIKE_INFO_SHOWED_PARAMETER_NAME, false))
+            {
+                await ShowLikeTrackInfoCommand?.Execute(new AppNotification()
+                {
+                    Type = AppNotificationType.Info,
+                    Title = _locService["PlayerView_LikeTrackInfo_Title"],
+                    Content = _locService["PlayerView_LikeTrackInfo_Content"],
+                    Duration = TimeSpan.FromSeconds(12)
+                });
+                _settingsService.Set(LIKE_INFO_SHOWED_PARAMETER_NAME, true);
+            }
         }
 
         private void Timer_Tick(object sender, object e)
@@ -563,6 +585,9 @@ namespace VKSaver.Core.ViewModels
         private readonly ITracksShuffleService _tracksShuffleSevice;
         private readonly ILastFmLoginService _lastFmLoginService;
         private readonly IAppNotificationsService _appNotificationsService;
+        private readonly ISettingsService _settingsService;
+
+        private const string LIKE_INFO_SHOWED_PARAMETER_NAME = "LikeInfo";
 
         [ImplementPropertyChanged]
         public sealed class PlayerItem : IEquatable<PlayerItem>

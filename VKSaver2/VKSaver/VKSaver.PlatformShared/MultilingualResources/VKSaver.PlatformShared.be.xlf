@@ -2423,6 +2423,14 @@ Eng: upload</note>
           <source>Подпишись на Lumia | Microsoft Windows Mobile | Nokia</source>
           <target state="new">Подпишись на Lumia | Microsoft Windows Mobile | Nokia</target>
         </trans-unit>
+        <trans-unit id="PlayerView_LikeTrackInfo_Content" translate="yes" xml:space="preserve">
+          <source>Чтобы добавить трек в вашу коллекцию</source>
+          <target state="translated">Каб дадаць трэк у вашу калекцыю</target>
+        </trans-unit>
+        <trans-unit id="PlayerView_LikeTrackInfo_Title" translate="yes" xml:space="preserve">
+          <source>Дважды коснитесь изображения альбома</source>
+          <target state="translated">Двойчы краніце малюнак альбома</target>
+        </trans-unit>
       </group>
     </body>
   </file>

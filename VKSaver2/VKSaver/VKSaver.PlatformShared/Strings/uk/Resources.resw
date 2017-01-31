@@ -1537,6 +1537,9 @@ Eng: upload</comment>
   <data name="AboutView_Email_Text.Text" xml:space="preserve">
     <value>Напишіть нам на Email</value>
   </data>
+  <data name="AboutView_Email_Title.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
   <data name="AboutView_Support_Block.Text" xml:space="preserve">
     <value>Підтримка</value>
   </data>
@@ -1555,6 +1558,9 @@ Eng: upload</comment>
   <data name="AboutView_TranslateBe_Text.Text" xml:space="preserve">
     <value>Переклад білоруською</value>
   </data>
+  <data name="AboutView_TranslateBe_Title.Text" xml:space="preserve">
+    <value>Максим Романюк</value>
+  </data>
   <data name="AboutView_TranslateDe_Text.Text" xml:space="preserve">
     <value>Переклад німецькою</value>
   </data>
@@ -1570,8 +1576,14 @@ Eng: upload</comment>
   <data name="AboutView_TranslateUA_Text.Text" xml:space="preserve">
     <value>Переклад українською</value>
   </data>
+  <data name="AboutView_TranslateUA_Title.Text" xml:space="preserve">
+    <value>Максим Денисенко</value>
+  </data>
   <data name="AboutView_Developer_Text.Text" xml:space="preserve">
     <value>Розробник застосунку</value>
+  </data>
+  <data name="AboutView_Developer_Title.Text" xml:space="preserve">
+    <value>Роман Гладких</value>
   </data>
   <data name="FirstSelectLaunchView_ContentText.Text" xml:space="preserve">
     <value>Виберіть початкову сторінку, яка буде відкриватися під час запуску Вкачай.
@@ -1620,6 +1632,9 @@ Eng: upload</comment>
   </data>
   <data name="ErrorView_ErrorDetails.Text" xml:space="preserve">
     <value>Деталі помилки</value>
+  </data>
+  <data name="AppNotifications_FatalError_Title" xml:space="preserve">
+    <value>Сталася помилка, ми приносимо вибачення за незручності</value>
   </data>
   <data name="FeedbackService_LeaveFeedback_Content" xml:space="preserve">
     <value>Щиро дякуємо, що користуєтеся Вкачай! Будь ласка, залиште свій відгук про роботу застосунка.
@@ -1761,6 +1776,9 @@ Eng: upload</comment>
   <data name="PopularVKAudioView_FilterFlyout_Title.Text" xml:space="preserve">
     <value>Фільтр аудіо</value>
   </data>
+  <data name="PopularVKAudioView_Genres_ComboBox.Header" xml:space="preserve">
+    <value>Жанр</value>
+  </data>
   <data name="PopularVKAudioView_OnlyEng_Switch.Header" xml:space="preserve">
     <value>Лише закордонні</value>
   </data>
@@ -1800,5 +1818,11 @@ Eng: upload</comment>
   <data name="Ads_Message_JoinWPLumia_Text" xml:space="preserve">
     <value>В этом сообществе вы найдете свежие новости, обзоры игр и приложений, живое общение, а также помощь по всем интересующим вас вопросам! 
 Подписаться?</value>
+  </data>
+  <data name="PlayerView_LikeTrackInfo_Content" xml:space="preserve">
+    <value>Аби додати трек до Вашої колекції</value>
+  </data>
+  <data name="PlayerView_LikeTrackInfo_Title" xml:space="preserve">
+    <value>Двічі торкніться до зображення альбома</value>
   </data>
 </root>

@@ -1927,4 +1927,10 @@ Eng: upload</comment>
   <data name="Ads_Message_JoinWPLumia_Title" xml:space="preserve">
     <value>Подпишись на Lumia | Microsoft Windows Mobile | Nokia</value>
   </data>
+  <data name="PlayerView_LikeTrackInfo_Content" xml:space="preserve">
+    <value>Чтобы добавить трек в вашу коллекцию</value>
+  </data>
+  <data name="PlayerView_LikeTrackInfo_Title" xml:space="preserve">
+    <value>Дважды коснитесь изображения альбома</value>
+  </data>
 </root>

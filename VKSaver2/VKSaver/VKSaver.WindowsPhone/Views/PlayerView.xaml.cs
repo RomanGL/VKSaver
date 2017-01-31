@@ -23,10 +23,10 @@ namespace VKSaver.Views
         {
             PlBackground.Start();
             vm = DataContext as PlayerViewModel;
+            vm.ShowLikeTrackInfoCommand = new DelegateCommand<AppNotification>(TryShowLikeInfo);
             TracksList.Loaded += TracksList_Loaded;
 
             base.OnNavigatedTo(e);
-            TryShowLikeInfo();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -37,10 +37,9 @@ namespace VKSaver.Views
             base.OnNavigatedFrom(e);
         }
 
-        private void TryShowLikeInfo()
+        private void TryShowLikeInfo(AppNotification notification)
         {
-            LikeInfoNotification.Message.Duration = TimeSpan.FromSeconds(6);
-            LikeInfoNotification.Message.Type = AppNotificationType.Info;
+            LikeInfoNotification.Message = notification;
             LikeInfoNotification.Visibility = Visibility.Visible;
 
             LikeInfoNotification.Loaded += async (s, e) =>

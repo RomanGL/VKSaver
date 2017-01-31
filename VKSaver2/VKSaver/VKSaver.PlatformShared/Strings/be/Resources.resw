@@ -1819,4 +1819,10 @@ Eng: upload</comment>
   <data name="VKAdInfoView_Loader.NoDataText" xml:space="preserve">
     <value>Няма ніякай інфармацыі пра акцыю.</value>
   </data>
+  <data name="PlayerView_LikeTrackInfo_Content" xml:space="preserve">
+    <value>Каб дадаць трэк у вашу калекцыю</value>
+  </data>
+  <data name="PlayerView_LikeTrackInfo_Title" xml:space="preserve">
+    <value>Двойчы краніце малюнак альбома</value>
+  </data>
 </root>
