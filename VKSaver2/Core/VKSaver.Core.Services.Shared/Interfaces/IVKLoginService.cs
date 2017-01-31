@@ -49,7 +49,7 @@ namespace VKSaver.Core.Services.Interfaces
         /// </summary>
         /// <param name="userName">Имя пользователя.</param>
         /// <param name="password">Пароль.</param>
-        Task<VKDirectAuthResponse> Login(string userName, string password, string code = null, bool forseSms = false);
+        Task<VKDirectAuthResponse> Login(string userName, string password, string captchaSid = null, string captchaKey = null, string code = null, bool forseSms = false);
 
         /// <summary>
         /// Возвращает ключ доступа к ВКонтакте из redireted-пути oAuth.

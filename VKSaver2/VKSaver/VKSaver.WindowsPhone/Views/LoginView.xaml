@@ -15,9 +15,9 @@
         <CommandBar ClosedDisplayMode="Minimal"
                     Background="{ThemeResource ContentDialogDimmingThemeBrush}">
             <CommandBar.SecondaryCommands>
-                <!--<AppBarButton Label="прямая авторизация"
+                <AppBarButton Label="прямая авторизация"
                               Command="{Binding GoToDirectAuthCommand, Mode=OneWay}"
-                              x:Uid="LoginView_DirectAuthButton" />-->
+                              x:Uid="LoginView_DirectAuthButton" />
                 <AppBarButton Label="зарегистрироваться"
                               Command="{Binding JoinCommand, Mode=OneWay}"
                               x:Uid="LoginView_JoinButton"/>

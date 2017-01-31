@@ -24,18 +24,30 @@ namespace VKSaver.Core.Services
         {
             return Task.Run(() =>
             {
-                if (!_settingsService.Get(AppConstants.PUSH_NOTIFICATIONS_PARAMETER, true))
-                    return;
-                YandexMetricaPush.Activate("***REMOVED***");
-                IsYandexPushActivated = true;
+                try
+                {
+                    if (!_settingsService.Get(AppConstants.PUSH_NOTIFICATIONS_PARAMETER, true))
+                        return;
+                    YandexMetricaPush.Activate("***REMOVED***");
+                    IsYandexPushActivated = true;
+                }
+                catch (Exception)
+                {
+                }
             });
         }
 
         public async Task DeactivateYandexPushAsync()
         {
-            IsYandexPushActivated = false;
-            var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-            channel.Close();
+            try
+            {
+                IsYandexPushActivated = false;
+                var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+                channel.Close();
+            }
+            catch (Exception)
+            {
+            }
         }
         
         private async void vkLoginService_UserLogin(IVKLoginService sender, EventArgs e)

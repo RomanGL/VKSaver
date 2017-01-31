@@ -143,7 +143,7 @@ namespace VKSaver.Core.Services
             UserLogin?.Invoke(this, EventArgs.Empty);
         }
 
-        public async Task<VKDirectAuthResponse> Login(string userName, string password, string code = null, bool forseSms = false)
+        public async Task<VKDirectAuthResponse> Login(string userName, string password, string captchaSid = null, string captchaKey = null, string code = null, bool forseSms = false)
         {
             try
             {
@@ -154,6 +154,10 @@ namespace VKSaver.Core.Services
 
                     if (!String.IsNullOrWhiteSpace(code))
                         sb.AppendFormat("&code={0}", code);
+                    if (!String.IsNullOrEmpty(captchaSid))
+                        sb.AppendFormat("captcha_sid={0}", captchaSid);
+                    if (!String.IsNullOrEmpty(captchaKey))
+                        sb.AppendFormat("captcha_key={0}", captchaKey);
                     if (forseSms)
                         sb.Append("&force_sms=1");
 

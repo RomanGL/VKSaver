@@ -56,6 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\InTouchWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\MetricaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\PlayerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Services\VKCaptchaHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\be\Resources.resw" />

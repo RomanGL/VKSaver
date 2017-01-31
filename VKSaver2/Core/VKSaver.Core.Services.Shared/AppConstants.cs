@@ -2,7 +2,8 @@
 {
     public static class AppConstants
     {
-        public const string DEFAULT_LOGIN_VIEW = "LoginView";
+        //public const string DEFAULT_LOGIN_VIEW = "LoginView";
+        public const string DEFAULT_LOGIN_VIEW = "DirectAuthView";
 
         public const string CURRENT_PROMO_INDEX_PARAMETER = "CurrentPromoIndex";
         public const int CURRENT_PROMO_INDEX = 2;   // Текущий (последний) индекс промо-элементов.

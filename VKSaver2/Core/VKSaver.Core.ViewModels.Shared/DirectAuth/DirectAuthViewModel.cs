@@ -26,13 +26,15 @@ namespace VKSaver.Core.ViewModels
             IAppLoaderService appLoaderService, 
             IDialogsService dialogsService,
             ILocService locService,
-            INavigationService navigationService)
+            INavigationService navigationService,
+            IVKCaptchaHandler vkCaptchaHandler)
         {
             _vkLoginService = vkLoginService;
             _appLoaderService = appLoaderService;
             _dialogsService = dialogsService;
             _locService = locService;
             _navigationService = navigationService;
+            _vkCaptchaHandler = vkCaptchaHandler;
 
             JoinCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/join")));
             RestoreCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/restore")));
@@ -58,11 +60,11 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public IValidationSupport ValidationView { get; set; }
 
-        public async Task<bool> Login()
+        public async Task<bool> Login(string captchaSid = null, string captchaKey = null)
         {
             _appLoaderService.Show(_locService["AppLoader_PleaseWait"]);
 
-            var result = await _vkLoginService.Login(LoginText, PasswordText);
+            var result = await _vkLoginService.Login(LoginText, PasswordText, captchaSid, captchaKey);
             DirectAuthErrors error = result != null ? result.Error : DirectAuthErrors.unknown_error;
 
             switch (error)
@@ -73,6 +75,15 @@ namespace VKSaver.Core.ViewModels
                     _navigationService.Navigate("MainView", null);                    
                     break;
                 case DirectAuthErrors.need_captcha:
+                    try
+                    {
+                        string key = await _vkCaptchaHandler.GetCaptchaUserInput(result.CaptchaImg);
+                        if (key != null)
+                            return await Login(result.CaptchaSid, key);
+                    }
+                    catch (Exception)
+                    {
+                    }
                     break;
                 case DirectAuthErrors.need_validation:
                     ValidationView?.StartValidation(result.RedirectUri);
@@ -138,5 +149,6 @@ namespace VKSaver.Core.ViewModels
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
         private readonly INavigationService _navigationService;
+        private readonly IVKCaptchaHandler _vkCaptchaHandler;
     }
 }

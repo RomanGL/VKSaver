@@ -84,6 +84,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsPreprocessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsServiceHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVKCaptchaHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVKLoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVksmExtractionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Json\LastImageSetConverter.cs" />
