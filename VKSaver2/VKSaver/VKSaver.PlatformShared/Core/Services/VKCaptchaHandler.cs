@@ -10,6 +10,9 @@ namespace VKSaver.Core.Services
     {
         public async Task<string> GetCaptchaUserInput(string captchaImg)
         {
+#if WINDOWS_UWP
+            return null;
+#else
             var enterCaptcha = new EnterCaptcha(captchaImg);
             if (await enterCaptcha.ShowAsync() == ContentDialogResult.Primary)
             {
@@ -18,6 +21,7 @@ namespace VKSaver.Core.Services
             }
             else
                 return null;
+#endif
         }
     }
 }

@@ -178,6 +178,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\AlternateListView.cs" />
+    <Compile Include="Controls\BackDrop.cs" />
+    <Compile Include="Controls\SurfaceLoader.cs" />
     <Compile Include="Converters\HamburgerItemClickConverter.cs" />
     <Compile Include="Core\Services\JsonSessionStateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,6 +230,7 @@
   <ItemGroup>
     <Content Include="Assets\Background\Background.dark.jpg" />
     <Content Include="Assets\ImagePlaceholder.png" />
+    <Content Include="Assets\Noise.jpg" />
     <Content Include="Assets\Promo\0.png" />
     <Content Include="Assets\Promo\1.png" />
     <Content Include="Assets\Promo\21.png" />
