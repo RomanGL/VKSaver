@@ -11,11 +11,9 @@
                            xmlns:b="using:VKSaver.Behaviors"
                            xmlns:common="using:VKSaver.Common"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
-                           xmlns:design="using:VKSaver.Design"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            mc:Ignorable="d"
-                           Style="{StaticResource DefaultPageStyle}"
-                           d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=design:VideoInfoViewModelDesign}">
+                           Style="{StaticResource DefaultPageStyle}">
 
     <mvvm:VisualStateAwarePage.Resources>
     </mvvm:VisualStateAwarePage.Resources>

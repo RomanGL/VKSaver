@@ -1672,7 +1672,7 @@ This option will not affect important notifications.</value>
     <value>Depending on the type of notification, the smartphone will vibrate in appropriate way. You can disable vibration notifications.</value>
   </data>
   <data name="SettingsView_InAppNotifications_Vibration_Title.Text" xml:space="preserve">
-    <value> Notifications vibration</value>
+    <value>Notifications vibration</value>
   </data>
   <data name="AppBarButton_Shuffle_Text" xml:space="preserve">
     <value>shuffle</value>

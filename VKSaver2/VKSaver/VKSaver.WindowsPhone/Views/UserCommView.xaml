@@ -6,13 +6,11 @@
                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
                            xmlns:controls="using:VKSaver.Controls"
-                           xmlns:design="using:VKSaver.Design"
                            xmlns:i="using:Microsoft.Xaml.Interactivity"
                            xmlns:c="using:Microsoft.Xaml.Interactions.Core"
                            mc:Ignorable="d"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
-                           Style="{StaticResource DefaultPageStyle}"
-                           d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=design:UserCommViewModelDesign}">
+                           Style="{StaticResource DefaultPageStyle}">
 
     <mvvm:VisualStateAwarePage.Resources>
         <DataTemplate x:Key="UserTemplate">

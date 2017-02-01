@@ -8,11 +8,9 @@
                            xmlns:c="using:Microsoft.Xaml.Interactions.Core"
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
                            xmlns:controls="using:VKSaver.Controls"
-                           xmlns:design="using:VKSaver.Design"
                            mc:Ignorable="d"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
-                           Style="{StaticResource DefaultPageStyle}"
-                           d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=design:TopTracksViewModelDesign}">
+                           Style="{StaticResource DefaultPageStyle}">
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>

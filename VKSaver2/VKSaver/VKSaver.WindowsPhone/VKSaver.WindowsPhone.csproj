@@ -622,10 +622,6 @@
       <Project>{8a78fe74-730a-4d36-8c44-32df960ad957}</Project>
       <Name>VKSaver.Core.LinksExtractor</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\VKSaver.Design\VKSaver.Design.csproj">
-      <Project>{8ef80bf9-99ee-4565-aa0d-69fd2b47169d}</Project>
-      <Name>VKSaver.Design</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">

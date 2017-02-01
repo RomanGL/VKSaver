@@ -2226,7 +2226,7 @@ This option will not affect important notifications.</target>
         </trans-unit>
         <trans-unit id="SettingsView_InAppNotifications_Vibration_Title.Text" translate="yes" xml:space="preserve">
           <source>Вибрация уведомлений</source>
-          <target state="final"> Notifications vibration</target>
+          <target state="translated">Notifications vibration</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Shuffle_Text" translate="yes" xml:space="preserve">
           <source>перемешать</source>

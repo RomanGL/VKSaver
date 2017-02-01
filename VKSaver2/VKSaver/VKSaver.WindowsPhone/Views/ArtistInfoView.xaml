@@ -9,11 +9,9 @@
                            xmlns:mvvm="using:Microsoft.Practices.Prism.StoreApps"
                            xmlns:i="using:Microsoft.Xaml.Interactivity"
                            xmlns:c="using:Microsoft.Xaml.Interactions.Core"
-                           xmlns:design="using:VKSaver.Design"
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            mc:Ignorable="d"
-                           Style="{StaticResource DefaultPageStyle}"
-                           d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=design:ArtistInfoViewModelDesign}">
+                           Style="{StaticResource DefaultPageStyle}">
 
     <Page.Transitions>
         <TransitionCollection>
