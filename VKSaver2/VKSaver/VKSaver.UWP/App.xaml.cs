@@ -42,22 +42,6 @@ namespace VKSaver
         public App()
         {
             this.InitializeComponent();
-
-            //this.FrameFactory = () =>
-            //{
-            //    _appLoaderService = new AppLoaderService(this);
-            //    _frame = new WithLoaderFrame(_appLoaderService, this);
-
-            //    HardwareButtons.BackPressed += (s, e) =>
-            //    {
-            //        if (NavigationService.CanGoBack())
-            //        {
-            //            NavigationService.GoBack();
-            //            e.Handled = true;
-            //        }
-            //    };
-            //};
-
             this.UnhandledException += App_UnhandledException;
             YandexMetrica.Config.CrashTracking = false;
         }
@@ -65,7 +49,7 @@ namespace VKSaver
         protected override Frame OnCreateRootFrame()
         {
             _appLoaderService = new AppLoaderService(this);
-            _frame = new WithLoaderFrame(_appLoaderService, this);
+            _frame = new Frame();
 
             _frame.Navigated += (s, e) =>
             {
@@ -156,7 +140,7 @@ namespace VKSaver
             Container.RegisterInstance(this.SessionStateService);
             Container.RegisterInstance<IDispatcherWrapper>(this);
             Container.RegisterInstance<IAppLoaderService>(_appLoaderService);
-            Container.RegisterInstance<IAppNotificationsPresenter>(_frame);
+            //Container.RegisterInstance<IAppNotificationsPresenter>(_frame);
 
             Container.RegisterType<ISettingsService, SettingsService>(new ContainerControlledLifetimeManager(),
                 new InjectionFactory(InstanceFactories.ResolveSettingsService));
@@ -189,7 +173,6 @@ namespace VKSaver
             Container.RegisterType<ILibraryDatabaseService, LibraryDatabaseService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IVksmExtractionService, VksmExtractionService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IAdsService, AdsService>(new ContainerControlledLifetimeManager());
-            Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IEmailService, EmailService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IFeedbackService, FeedbackService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDeviceVibrationService, DeviceVibrationService>(new ContainerControlledLifetimeManager());
@@ -201,6 +184,7 @@ namespace VKSaver
             Container.RegisterType<IPlayerService, PlayerService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDownloadsService, DownloadsService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IUploadsService, UploadsService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IVKCaptchaHandler, VKCaptchaHandler>(new TransientLifetimeManager());
 
             Container.RegisterType<ISuspendingService, TransferNotificationsService>("s1",
                 new ContainerControlledLifetimeManager());
@@ -222,40 +206,14 @@ namespace VKSaver
                         new ResolvedParameter<ISuspendingService>("s3"),
                         new ResolvedParameter<ISuspendingService>("s4"))));
 
-#if FULL
-            Container.RegisterType<IBetaService, BetaService>(new TransientLifetimeManager());
+#if DEBUG
+            Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>("l1", new ContainerControlledLifetimeManager());
+            Container.RegisterType<ILaunchViewResolver, DebugLaunchViewResolver>(new ContainerControlledLifetimeManager(),
+                new InjectionConstructor(
+                    new ResolvedParameter<ILaunchViewResolver>("l1")));
+#else
+            Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>(new ContainerControlledLifetimeManager());
 #endif
-
-            _metricaService = Container.Resolve<IMetricaService>();
-            var vkLoginService = Container.Resolve<IVKLoginService>();
-            vkLoginService.UserLogin += async (s, e) =>
-            {
-                var launchViewResolver = Container.Resolve<ILaunchViewResolver>();
-                NavigationService.ClearHistory();
-
-                if (!launchViewResolver.TryOpenSpecialViews() && await launchViewResolver.EnsureDatabaseUpdated() == false)
-                    launchViewResolver.OpenDefaultView();
-#if FULL
-                Container.Resolve<IBetaService>().ExecuteAppLaunch();
-#endif
-                ActivatePush(null);
-            };
-            vkLoginService.UserLogout += async (s, e) =>
-            {
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
-                    NavigationService.ClearHistory();
-                });
-            };
-            Container.Resolve<InTouch>().AuthorizationFailed += async (s, e) =>
-            {
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    NavigationService.Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
-                    NavigationService.ClearHistory();
-                });
-            };
 
 #if DEBUG && !FULL
             LoadPurchaseFile();
@@ -497,7 +455,7 @@ namespace VKSaver
         private IAppLoaderService _appLoaderService;
         private IMetricaService _metricaService;
         private UnityServiceLocator _unityServiceLocator;
-        private WithLoaderFrame _frame;
+        private Frame _frame;
 
         private const string VIEW_MODEL_FORMAT = "VKSaver.Core.ViewModels.{0}Model, VKSaver.Core.ViewModels.UWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string VIEW_MODEL_CONTROLS_FORMAT = "VKSaver.Core.ViewModels.{0}ViewModel, VKSaver.Core.ViewModels.UWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";

@@ -3,9 +3,10 @@
                     xmlns:tc="using:Microsoft.Toolkit.Uwp.UI.Controls"
                     xmlns:mvvm="using:Prism.Windows.Mvvm"
                     xmlns:i="using:Microsoft.Xaml.Interactivity"
-                    xmlns:c="using:Microsoft.Xaml.Interactions.Core">
+                    xmlns:c="using:Microsoft.Xaml.Interactions.Core"
+                    xmlns:controls="using:VKSaver.Controls">
 
-    <tc:HamburgerMenuItemCollection x:Key="MenuItems">
+    <!--<tc:HamburgerMenuItemCollection x:Key="MenuItems">
         <tc:HamburgerMenuGlyphItem Label="Главная"
                                    Glyph="&#xE10F;"
                                    Tag="main" />
@@ -39,16 +40,16 @@
         <tc:HamburgerMenuGlyphItem Label="Менеджер загрузок"
                                    Glyph="&#xE118;"
                                    Tag="transfer_manager" />
-    </tc:HamburgerMenuItemCollection>
+    </tc:HamburgerMenuItemCollection>-->
 
-    <tc:HamburgerMenuItemCollection x:Key="OptionsItems">
+    <!--<tc:HamburgerMenuItemCollection x:Key="OptionsItems">
         <tc:HamburgerMenuGlyphItem Label="Поиск"
                                    Glyph="&#xE11A;"
                                    Tag="search" />
         <tc:HamburgerMenuGlyphItem Label="Настройки"
                                    Glyph="&#xE713;" 
                                    Tag="settings"/>
-    </tc:HamburgerMenuItemCollection>
+    </tc:HamburgerMenuItemCollection>-->
 
     <DataTemplate x:Key="HamburgerMenuItem">
         <Grid Width="240"
@@ -70,20 +71,4 @@
         </Grid>
     </DataTemplate>
 
-    <Style x:Key="HamburgerStyle" TargetType="tc:HamburgerMenu">
-        <Setter Property="ItemsSource"
-                Value="{StaticResource MenuItems}" />
-        <Setter Property="OptionsItemsSource"
-                Value="{StaticResource OptionsItems}" />
-        <Setter Property="ItemTemplate"
-                Value="{StaticResource HamburgerMenuItem}" />
-        <Setter Property="OptionsItemTemplate"
-                Value="{StaticResource HamburgerMenuItem}" />
-        <Setter Property="IsPaneOpen"
-                Value="False" />
-        <Setter Property="DisplayMode"
-                Value="Overlay" />
-        <Setter Property="PaneBackground"
-                Value="{ThemeResource TitleBarBackgroundThemeBrush}" />
-    </Style>
 </ResourceDictionary>

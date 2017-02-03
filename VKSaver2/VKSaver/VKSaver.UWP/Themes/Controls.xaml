@@ -148,7 +148,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style TargetType="controls:AppNotificationControl">
         <Setter Property="HorizontalAlignment"
                 Value="Center" />
@@ -404,6 +404,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        
                         <Grid x:Name="VisualBorder"
                               RenderTransformOrigin="0,0.5"
                               Background="{ThemeResource PopupBorderBrush}"
@@ -481,8 +482,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <Style TargetType="controls:WithLoaderFrame">
+
+    <Style TargetType="controls:WithLoaderUwpFrame">
         <Setter Property="ContentTransitions">
             <Setter.Value>
                 <TransitionCollection>
@@ -492,7 +493,7 @@
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:WithLoaderFrame">
+                <ControlTemplate TargetType="controls:WithLoaderUwpFrame">
                     <Grid Background="{ThemeResource PageBackgroundThemeBrush}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="LoaderStates">
@@ -599,7 +600,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <tc:HamburgerMenu x:Name="Hamburger" 
+                        <!--<tc:HamburgerMenu x:Name="Hamburger"
                                           Style="{StaticResource HamburgerStyle}"
                                           mvvm:ViewModelLocator.AutoWireViewModel="True"
                                           IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay}"
@@ -615,10 +616,16 @@
                                 </c:EventTriggerBehavior>
                             </i:Interaction.Behaviors>
 
-                            <ContentPresenter Content="{TemplateBinding Content}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}" />
-                        </tc:HamburgerMenu>
+                            <Grid>
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}" />
+                                
+                            </Grid>
+                        </tc:HamburgerMenu>-->
 
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}" />
+                        
                         <Grid Background="{ThemeResource ContentDialogDimmingThemeBrush}"
                               Visibility="Collapsed"
                               Opacity="0"

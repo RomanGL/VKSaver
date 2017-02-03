@@ -15,6 +15,7 @@
     "SQLite.UWP.Native": "3.12.3",
     "SQLiteNetExtensions": "1.3.0",
     "VideoExtractor": "1.1.1",
+    "Win2D.uwp": "1.20.0",
     "XboxMusicSDK": "1.7.0",
     "Yandex.Metrica": "3.4.2",
     "Yandex.Metrica.Push": "0.3.0",
