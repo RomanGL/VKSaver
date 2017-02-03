@@ -201,6 +201,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DebugLaunchViewResolver.cs" />
     <Compile Include="DeviceVibrationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\VKSaver.Core.Services.UWP.rd.xml" />

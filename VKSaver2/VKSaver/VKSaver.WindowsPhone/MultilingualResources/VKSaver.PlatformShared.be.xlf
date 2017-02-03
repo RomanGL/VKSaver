@@ -5,7 +5,7 @@
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
     </header>
     <body>
-      <group id="VKSAVER.PLATFORMSHARED/STRINGS/RU/RESOURCES.RESW" datatype="resx">
+      <group id="VKSAVER.WINDOWSPHONE/STRINGS/RU/RESOURCES.RESW">
         <trans-unit id="AboutView_About.Text" translate="yes" xml:space="preserve">
           <source>о приложении</source>
           <target state="final">аб праграме</target>
@@ -1205,6 +1205,38 @@ Eng: TB</note>
           <source>ВКачай обновился, о всех новинках читайте далее</source>
           <target state="final">ВКачай абнавіўся, аб усіх навінках чытайце далей</target>
         </trans-unit>
+        <trans-unit id="PromoView_Screen21_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Кэширование треков</source>
+          <target state="final">Кэшаванне трэкаў</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen21_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Кэшируйте треки для оффлайн воспроизведения!</source>
+          <target state="final">Кэшыруйце трэкі для афлайн прайгравання!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen22_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Локальная библиотека</source>
+          <target state="final">Лакальная бібліятэка</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen22_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Воспроизводите свои локальные аудиозаписи</source>
+          <target state="final">Прайгравайце свае лакальныя аўдыязапісы</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen23_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Мы знаем о музыке все!</source>
+          <target state="final">Мы ведаем аб музыцы ўсё!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen23_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Воспроизводите треки любимых исполнителей</source>
+          <target state="final">Прайгравайце трэкі любімых выканаўцаў</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen24_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Скробблинг Last.fm</source>
+          <target state="final">Скроблінг Last.fm</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen24_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Всегда актуальный профиль Last.fm!</source>
+          <target state="final">Заўсёды актуальны профіль Last.fm!</target>
+        </trans-unit>
         <trans-unit id="PurchaseView_BuyMonthlyButton.Content" translate="yes" xml:space="preserve">
           <source>купить на месяц</source>
           <target state="final">купіць на месяц</target>
@@ -1945,13 +1977,13 @@ Eng: upload</note>
           <source>Прямая авторизация</source>
           <target state="final">Прамая аўтарызацыя</target>
         </trans-unit>
-        <trans-unit id="LoginView_LoginExtendedField.PlaceholderText" translate="yes" xml:space="preserve">
-          <source>логин, номер телефона или email</source>
-          <target state="final">лагін, нумар тэлефона або email</target>
-        </trans-unit>
         <trans-unit id="LoginView_DirectAuthButton.Label" translate="yes" xml:space="preserve">
           <source>прямая авторизация</source>
           <target state="final">прамая аўтарызацыя</target>
+        </trans-unit>
+        <trans-unit id="LoginView_LoginExtendedField.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>логин, номер телефона или email</source>
+          <target state="final">лагін, нумар тэлефона або email</target>
         </trans-unit>
         <trans-unit id="LoginView_OAuth.Text" translate="yes" xml:space="preserve">
           <source>Авторизация через браузер</source>
@@ -1970,38 +2002,6 @@ Eng: upload</note>
         <trans-unit id="Message_OAuth_Attention_Title" translate="yes" xml:space="preserve">
           <source>Вы уверены?</source>
           <target state="final">Вы ўпэўнены?</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen21_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Кэширование треков</source>
-          <target state="final">Кэшаванне трэкаў</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen21_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Кэшируйте треки для оффлайн воспроизведения!</source>
-          <target state="final">Кэшыруйце трэкі для афлайн прайгравання!</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen22_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Локальная библиотека</source>
-          <target state="final">Лакальная бібліятэка</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen22_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Воспроизводите свои локальные аудиозаписи</source>
-          <target state="final">Прайгравайце свае лакальныя аўдыязапісы</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen23_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Мы знаем о музыке все!</source>
-          <target state="final">Мы ведаем аб музыцы ўсё!</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen23_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Воспроизводите треки любимых исполнителей</source>
-          <target state="final">Прайгравайце трэкі любімых выканаўцаў</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen24_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Скробблинг Last.fm</source>
-          <target state="final">Скроблінг Last.fm</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen24_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Всегда актуальный профиль Last.fm!</source>
-          <target state="final">Заўсёды актуальны профіль Last.fm!</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen31_Line1_Text" translate="yes" xml:space="preserve">
           <source>Прямая авторизация</source>
@@ -2023,6 +2023,18 @@ Eng: upload</note>
           <source>на главную</source>
           <target state="final">на галоўную</target>
         </trans-unit>
+        <trans-unit id="FirstSelectLaunchView_ContentText.Text" translate="yes" xml:space="preserve">
+          <source>Выберите начальную страницу, которая будет открываться при запуске ВКачай.
+
+Рекомендуем использовать главную страницу. Вы всегда можете изменить этот параметр в настройках приложения.</source>
+          <target state="final">Выберыце пачатковую старонку, якая будзе адкрывацца пры запуску ВКачай.
+
+Рэкамендуем выкарыстоўваць галоўную старонку. Вы заўсёды можаце змяніць гэты параметр у наладах праграмы. </target>
+        </trans-unit>
+        <trans-unit id="FirstSelectLaunchView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Начальная страница</source>
+          <target state="final">Пачатковая старонка</target>
+        </trans-unit>
         <trans-unit id="LaunchView_MainView_Name" translate="yes" xml:space="preserve">
           <source>главная (рекомендуем)</source>
           <target state="final">галоўная (рэкамендуем)</target>
@@ -2039,10 +2051,6 @@ Eng: upload</note>
           <source>Начальная страница</source>
           <target state="final">Пачатковая старонка</target>
         </trans-unit>
-        <trans-unit id="FirstSelectLaunchView_Title.Text" translate="yes" xml:space="preserve">
-          <source>Начальная страница</source>
-          <target state="final">Пачатковая старонка</target>
-        </trans-unit>
         <trans-unit id="AboutView_Email_Text.Text" translate="yes" xml:space="preserve">
           <source>Обратитесь к нам через Email</source>
           <target state="final">Звярніцеся да нас праз Email</target>
@@ -2051,18 +2059,6 @@ Eng: upload</note>
           <source>Email</source>
           <target state="final">Email</target>
         </trans-unit>
-        <trans-unit id="AboutView_Support_Block.Text" translate="yes" xml:space="preserve">
-          <source>Поддержка</source>
-          <target state="final">Падтрымка</target>
-        </trans-unit>
-        <trans-unit id="AboutView_VKSaverGroup_Text.Text" translate="yes" xml:space="preserve">
-          <source>Сообщество во ВКонтакте</source>
-          <target state="final">Суполка ва Укантакце</target>
-        </trans-unit>
-        <trans-unit id="AboutView_VKSaverGroup_Title.Text" translate="yes" xml:space="preserve">
-          <source>ВКачай</source>
-          <target state="final">ВКачай</target>
-        </trans-unit>
         <trans-unit id="AboutView_Other_Title.Text" translate="yes" xml:space="preserve">
           <source>Прочее</source>
           <target state="final">Іншае</target>
@@ -2070,6 +2066,10 @@ Eng: upload</note>
         <trans-unit id="AboutView_SpecialThanks_Block.Text" translate="yes" xml:space="preserve">
           <source>Выражаем благодарность</source>
           <target state="final">Выказваем падзяку</target>
+        </trans-unit>
+        <trans-unit id="AboutView_Support_Block.Text" translate="yes" xml:space="preserve">
+          <source>Поддержка</source>
+          <target state="final">Падтрымка</target>
         </trans-unit>
         <trans-unit id="AboutView_TranslateBe_Text.Text" translate="yes" xml:space="preserve">
           <source>Перевод на белорусский</source>
@@ -2103,6 +2103,14 @@ Eng: upload</note>
           <source>Максим Денисенко</source>
           <target state="final">Максім Дзенісенка</target>
         </trans-unit>
+        <trans-unit id="AboutView_VKSaverGroup_Text.Text" translate="yes" xml:space="preserve">
+          <source>Сообщество во ВКонтакте</source>
+          <target state="final">Суполка ва Укантакце</target>
+        </trans-unit>
+        <trans-unit id="AboutView_VKSaverGroup_Title.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай</source>
+          <target state="final">ВКачай</target>
+        </trans-unit>
         <trans-unit id="AboutView_Developer_Text.Text" translate="yes" xml:space="preserve">
           <source>Разработчик приложения</source>
           <target state="final">Распрацоўшчык праграмы</target>
@@ -2110,14 +2118,6 @@ Eng: upload</note>
         <trans-unit id="AboutView_Developer_Title.Text" translate="yes" xml:space="preserve">
           <source>Роман Гладких</source>
           <target state="final">Раман Гладкіх</target>
-        </trans-unit>
-        <trans-unit id="FirstSelectLaunchView_ContentText.Text" translate="yes" xml:space="preserve">
-          <source>Выберите начальную страницу, которая будет открываться при запуске ВКачай.
-
-Рекомендуем использовать главную страницу. Вы всегда можете изменить этот параметр в настройках приложения.</source>
-          <target state="final">Выберыце пачатковую старонку, якая будзе адкрывацца пры запуску ВКачай.
-
-Рэкамендуем выкарыстоўваць галоўную старонку. Вы заўсёды можаце змяніць гэты параметр у наладах праграмы. </target>
         </trans-unit>
         <trans-unit id="Email_SupportTitle_Text" translate="yes" xml:space="preserve">
           <source>Сообщение из приложения</source>
@@ -2172,13 +2172,13 @@ Eng: upload</note>
           <source>Коснитесь для перехода в менеджер загрузок</source>
           <target state="final">Націсніце для пераходу ў менеджар загрузак</target>
         </trans-unit>
-        <trans-unit id="ErrorView_ErrorDetails.Text" translate="yes" xml:space="preserve">
-          <source>Подробности об ошибке</source>
-          <target state="final">Падрабязнасці пра памылку</target>
-        </trans-unit>
         <trans-unit id="AppNotifications_FatalError_Title" translate="yes" xml:space="preserve">
           <source>Произошла ошибка, приносим свои извинения за неудобства</source>
           <target state="final">Адбылася памылка, прыносім свае прабачэнні за нязручнасці</target>
+        </trans-unit>
+        <trans-unit id="ErrorView_ErrorDetails.Text" translate="yes" xml:space="preserve">
+          <source>Подробности об ошибке</source>
+          <target state="final">Падрабязнасці пра памылку</target>
         </trans-unit>
         <trans-unit id="FeedbackService_LeaveFeedback_Content" translate="yes" xml:space="preserve">
           <source>Спасибо, что пользуетесь ВКачай! Пожалуйста, оставьте свой отзыв о работе приложения.
@@ -2190,15 +2190,31 @@ Eng: upload</note>
           <source>Вам нравится ВКачай?</source>
           <target state="final">Вам падабаецца ВКачай?</target>
         </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Title.Text" translate="yes" xml:space="preserve">
-          <source>Внутренние уведомления</source>
-          <target state="final">Унутраныя паведамленні</target>
-        </trans-unit>
         <trans-unit id="SetingsView_InAppNotifications_Text.Text" translate="yes" xml:space="preserve">
           <source>ВКачай может сообщать вам о важных событиях всплывающими уведомлениями внутри приложения.
 Этот параметр не коснется важных уведомлений.</source>
           <target state="final">ВКачай можа паведамляць вам аб важных падзеях пры дапамозе усплывальных паведамленняў унутры праграмы.
 Гэты параметр не закране важных паведамленняў.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Sound_Text.Text" translate="yes" xml:space="preserve">
+          <source>В зависимости от типа уведомления, воспроизводится соответствующий звук. Вы можете отключить звуки уведомлений.</source>
+          <target state="final">У залежнасці ад тыпу паведамлення, прайграваецца адпаведны гук. Вы можаце адключыць гукі паведамленняў.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Sound_Title.Text" translate="yes" xml:space="preserve">
+          <source>Звук уведомлений</source>
+          <target state="final">Гук паведамленняў</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Title.Text" translate="yes" xml:space="preserve">
+          <source>Внутренние уведомления</source>
+          <target state="final">Унутраныя паведамленні</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Vibration_Text.Text" translate="yes" xml:space="preserve">
+          <source>В зависимости от типа уведомления, смартфон вибрирует соответствующим образом. Вы можете отключить вибрацию уведомлений.</source>
+          <target state="final">У залежнасці ад тыпу паведамлення, смартфон вібруе адпаведным чынам. Вы можаце адключыць вібрацыю паведамленняў.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Vibration_Title.Text" translate="yes" xml:space="preserve">
+          <source>Вибрация уведомлений</source>
+          <target state="final">Вібрацыя паведамленняў</target>
         </trans-unit>
         <trans-unit id="SettingsView_LibrarySection.Header" translate="yes" xml:space="preserve">
           <source>библиотека</source>
@@ -2215,22 +2231,6 @@ Eng: upload</note>
         <trans-unit id="SettingsView_Pivot.Title" translate="yes" xml:space="preserve">
           <source>НАСТРОЙКИ</source>
           <target state="final">НАЛАДЫ</target>
-        </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Sound_Text.Text" translate="yes" xml:space="preserve">
-          <source>В зависимости от типа уведомления, воспроизводится соответствующий звук. Вы можете отключить звуки уведомлений.</source>
-          <target state="final">У залежнасці ад тыпу паведамлення, прайграваецца адпаведны гук. Вы можаце адключыць гукі паведамленняў.</target>
-        </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Sound_Title.Text" translate="yes" xml:space="preserve">
-          <source>Звук уведомлений</source>
-          <target state="final">Гук паведамленняў</target>
-        </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Vibration_Text.Text" translate="yes" xml:space="preserve">
-          <source>В зависимости от типа уведомления, смартфон вибрирует соответствующим образом. Вы можете отключить вибрацию уведомлений.</source>
-          <target state="final">У залежнасці ад тыпу паведамлення, смартфон вібруе адпаведным чынам. Вы можаце адключыць вібрацыю паведамленняў.</target>
-        </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Vibration_Title.Text" translate="yes" xml:space="preserve">
-          <source>Вибрация уведомлений</source>
-          <target state="final">Вібрацыя паведамленняў</target>
         </trans-unit>
         <trans-unit id="AppBarButton_Shuffle_Text" translate="yes" xml:space="preserve">
           <source>перемешать</source>
@@ -2275,6 +2275,11 @@ Eng: upload</note>
         <trans-unit id="PopularVKAudioView_Genre_DanceAndHouse" translate="yes" xml:space="preserve">
           <source>house &amp; dance</source>
           <target state="final">house &amp; dance</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_DrumAndBass" translate="yes" xml:space="preserve">
+          <source>drum &amp; bass</source>
+          <target state="final">drum &amp; bass</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Dubstep" translate="yes" xml:space="preserve">
@@ -2352,11 +2357,6 @@ Eng: upload</note>
           <target state="final">trance</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
-        <trans-unit id="PopularVKAudioView_Genre_DrumAndBass" translate="yes" xml:space="preserve">
-          <source>drum &amp; bass</source>
-          <target state="final">drum &amp; bass</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
-        </trans-unit>
         <trans-unit id="PopularVKAudioView_FilterFlyout_Title.Text" translate="yes" xml:space="preserve">
           <source>Фильтр аудио</source>
           <target state="final">Фільтр аўдыё</target>
@@ -2369,10 +2369,6 @@ Eng: upload</note>
           <source>Только зарубежные</source>
           <target state="final">Толькі замежныя</target>
         </trans-unit>
-        <trans-unit id="ShowTrackInfoFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>информация о треке</source>
-          <target state="final">інфармацыя пра трэк</target>
-        </trans-unit>
         <trans-unit id="AudioBitrate_Kbits.Text" translate="yes" xml:space="preserve">
           <source>кбит/с</source>
           <target state="final">кбіт/с</target>
@@ -2380,6 +2376,10 @@ Eng: upload</note>
         <trans-unit id="AudioBitrate_Name.Text" translate="yes" xml:space="preserve">
           <source>Битрейт:</source>
           <target state="final">Бітрэйт:</target>
+        </trans-unit>
+        <trans-unit id="ShowTrackInfoFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>информация о треке</source>
+          <target state="final">інфармацыя пра трэк</target>
         </trans-unit>
         <trans-unit id="VKAudioInfoView_Container.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось получить дополнительную информацию о треке.</source>

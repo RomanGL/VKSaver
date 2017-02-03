@@ -28,20 +28,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerTheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ServiceAuthBlock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TextImage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\WithLoaderFrame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ArtistNameLocalizedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AuthServiceNameLocConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolToListViewSelectionModeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrentTrackToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FileSizeConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\HalfSizeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ItemClickEventArgsToClickedItemConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LaunchViewNameConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NegateConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NumberToUploadTypeConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\OneItemsListSizeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PercentageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PlayerRepeatModeToIntConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ReverseBooleanConverter.cs" />
@@ -52,21 +49,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToLowerConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\TwoItemsListSizeConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\UserContentGroupKeyToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\InstanceFactories.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\InTouchWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\MetricaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\PlayerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\VKCaptchaHandler.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\be\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ru\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\uk\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerBackground.xaml">
@@ -77,16 +65,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\Common.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.PlatformShared.be.xlf" />
-    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.PlatformShared.de.xlf" />
-    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.PlatformShared.en.xlf" />
-    <XliffResource Include="$(MSBuildThisFileDirectory)MultilingualResources\VKSaver.PlatformShared.uk.xlf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Default.png" />
@@ -95,5 +73,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Info.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Upload.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Popups\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Themes\" />
   </ItemGroup>
 </Project>

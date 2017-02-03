@@ -5,7 +5,7 @@
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
     </header>
     <body>
-      <group id="VKSAVER.PLATFORMSHARED/STRINGS/RU/RESOURCES.RESW" datatype="resx">
+      <group id="VKSAVER.WINDOWSPHONE/STRINGS/RU/RESOURCES.RESW">
         <trans-unit id="AboutView_About.Text" translate="yes" xml:space="preserve">
           <source>о приложении</source>
           <target state="final">über App</target>
@@ -1205,6 +1205,38 @@ Bitte warten Sie...</target>
           <source>ВКачай обновился, о всех новинках читайте далее</source>
           <target state="final">VK Saver ist jetzt auf dem neusten Stand, lesen weiter um mehr zu erfahren. </target>
         </trans-unit>
+        <trans-unit id="PromoView_Screen21_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Кэширование треков</source>
+          <target state="translated">Musik-Caching</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen21_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Кэшируйте треки для оффлайн воспроизведения!</source>
+          <target state="translated">Cachen Sie die Tracks um оnline abzuspielen!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen22_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Локальная библиотека</source>
+          <target state="final">Lokale Bibliothek</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen22_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Воспроизводите свои локальные аудиозаписи</source>
+          <target state="translated">Geben Ihre lokale Tracks wider</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen23_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Мы знаем о музыке все!</source>
+          <target state="translated">Wir wissen alles über die Musik!</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen23_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Воспроизводите треки любимых исполнителей</source>
+          <target state="translated">Geben Sie Songs Ihrer Lieblings-Künstler wider</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen24_Line1_Text" translate="yes" xml:space="preserve">
+          <source>Скробблинг Last.fm</source>
+          <target state="translated">Skrobbeln von Last.fm</target>
+        </trans-unit>
+        <trans-unit id="PromoView_Screen24_Line2_Text" translate="yes" xml:space="preserve">
+          <source>Всегда актуальный профиль Last.fm!</source>
+          <target state="translated">Zeitloser Last.fm-Profil!</target>
+        </trans-unit>
         <trans-unit id="PurchaseView_BuyMonthlyButton.Content" translate="yes" xml:space="preserve">
           <source>купить на месяц</source>
           <target state="final">kaufen auf Monatsbasis</target>
@@ -1946,13 +1978,13 @@ Eng: upload</note>
           <source>Прямая авторизация</source>
           <target state="translated">Direkte Autorisierung</target>
         </trans-unit>
-        <trans-unit id="LoginView_LoginExtendedField.PlaceholderText" translate="yes" xml:space="preserve">
-          <source>логин, номер телефона или email</source>
-          <target state="translated">Login-Name, Telefonnummer oder E-Mail</target>
-        </trans-unit>
         <trans-unit id="LoginView_DirectAuthButton.Label" translate="yes" xml:space="preserve">
           <source>прямая авторизация</source>
           <target state="translated">direkte Autorisierung</target>
+        </trans-unit>
+        <trans-unit id="LoginView_LoginExtendedField.PlaceholderText" translate="yes" xml:space="preserve">
+          <source>логин, номер телефона или email</source>
+          <target state="translated">Login-Name, Telefonnummer oder E-Mail</target>
         </trans-unit>
         <trans-unit id="LoginView_OAuth.Text" translate="yes" xml:space="preserve">
           <source>Авторизация через браузер</source>
@@ -1971,38 +2003,6 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
         <trans-unit id="Message_OAuth_Attention_Title" translate="yes" xml:space="preserve">
           <source>Вы уверены?</source>
           <target state="translated">Sind Sie sicher?</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen21_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Кэширование треков</source>
-          <target state="translated">Musik-Caching</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen21_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Кэшируйте треки для оффлайн воспроизведения!</source>
-          <target state="translated">Cachen Sie die Tracks um оnline abzuspielen!</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen22_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Локальная библиотека</source>
-          <target state="translated">Lokale Bibliothek</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen22_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Воспроизводите свои локальные аудиозаписи</source>
-          <target state="translated">Geben Ihre lokale Tracks wider</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen23_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Мы знаем о музыке все!</source>
-          <target state="translated">Wir wissen alles über die Musik!</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen23_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Воспроизводите треки любимых исполнителей</source>
-          <target state="translated">Geben Sie Songs Ihrer Lieblings-Künstler wider</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen24_Line1_Text" translate="yes" xml:space="preserve">
-          <source>Скробблинг Last.fm</source>
-          <target state="translated">Skrobbeln von Last.fm</target>
-        </trans-unit>
-        <trans-unit id="PromoView_Screen24_Line2_Text" translate="yes" xml:space="preserve">
-          <source>Всегда актуальный профиль Last.fm!</source>
-          <target state="translated">Zeitloser Last.fm-Profil!</target>
         </trans-unit>
         <trans-unit id="PromoView_Screen31_Line1_Text" translate="yes" xml:space="preserve">
           <source>Прямая авторизация</source>
@@ -2024,6 +2024,18 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
           <source>на главную</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Haus</target>
         </trans-unit>
+        <trans-unit id="FirstSelectLaunchView_ContentText.Text" translate="yes" xml:space="preserve">
+          <source>Выберите начальную страницу, которая будет открываться при запуске ВКачай.
+
+Рекомендуем использовать главную страницу. Вы всегда можете изменить этот параметр в настройках приложения.</source>
+          <target state="needs-review-translation">Wählen Sie die Startseite zu öffnen, wenn Sie VK Saver starten. 
+ 
+Empfehlen Ihnen Haupt Seite. Sie können diese Option in den Einstellungen jederzeit ändern.</target>
+        </trans-unit>
+        <trans-unit id="FirstSelectLaunchView_Title.Text" translate="yes" xml:space="preserve">
+          <source>Начальная страница</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Startseite</target>
+        </trans-unit>
         <trans-unit id="LaunchView_MainView_Name" translate="yes" xml:space="preserve">
           <source>главная (рекомендуем)</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Nach Hause (empfohlen)</target>
@@ -2040,10 +2052,6 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
           <source>Начальная страница</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Startseite</target>
         </trans-unit>
-        <trans-unit id="FirstSelectLaunchView_Title.Text" translate="yes" xml:space="preserve">
-          <source>Начальная страница</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Startseite</target>
-        </trans-unit>
         <trans-unit id="AboutView_Email_Text.Text" translate="yes" xml:space="preserve">
           <source>Обратитесь к нам через Email</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Kontaktieren Sie uns per E-Mail</target>
@@ -2052,18 +2060,6 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
           <source>Email</source>
           <target state="translated">Email</target>
         </trans-unit>
-        <trans-unit id="AboutView_Support_Block.Text" translate="yes" xml:space="preserve">
-          <source>Поддержка</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Unterstützung</target>
-        </trans-unit>
-        <trans-unit id="AboutView_VKSaverGroup_Text.Text" translate="yes" xml:space="preserve">
-          <source>Сообщество во ВКонтакте</source>
-          <target state="needs-review-translation">Gemeinschaft VK</target>
-        </trans-unit>
-        <trans-unit id="AboutView_VKSaverGroup_Title.Text" translate="yes" xml:space="preserve">
-          <source>ВКачай</source>
-          <target state="final">VK Saver</target>
-        </trans-unit>
         <trans-unit id="AboutView_Other_Title.Text" translate="yes" xml:space="preserve">
           <source>Прочее</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Diverses</target>
@@ -2071,6 +2067,10 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
         <trans-unit id="AboutView_SpecialThanks_Block.Text" translate="yes" xml:space="preserve">
           <source>Выражаем благодарность</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Dankbarkeit</target>
+        </trans-unit>
+        <trans-unit id="AboutView_Support_Block.Text" translate="yes" xml:space="preserve">
+          <source>Поддержка</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Unterstützung</target>
         </trans-unit>
         <trans-unit id="AboutView_TranslateBe_Text.Text" translate="yes" xml:space="preserve">
           <source>Перевод на белорусский</source>
@@ -2104,6 +2104,14 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
           <source>Максим Денисенко</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Maxim Denisenko</target>
         </trans-unit>
+        <trans-unit id="AboutView_VKSaverGroup_Text.Text" translate="yes" xml:space="preserve">
+          <source>Сообщество во ВКонтакте</source>
+          <target state="needs-review-translation">Gemeinschaft VK</target>
+        </trans-unit>
+        <trans-unit id="AboutView_VKSaverGroup_Title.Text" translate="yes" xml:space="preserve">
+          <source>ВКачай</source>
+          <target state="final">VK Saver</target>
+        </trans-unit>
         <trans-unit id="AboutView_Developer_Text.Text" translate="yes" xml:space="preserve">
           <source>Разработчик приложения</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Der Anwendungsentwickler</target>
@@ -2111,14 +2119,6 @@ Wollen Sie wirklich über den Browser zu gehen?</target>
         <trans-unit id="AboutView_Developer_Title.Text" translate="yes" xml:space="preserve">
           <source>Роман Гладких</source>
           <target state="translated">Roman Gladkikh</target>
-        </trans-unit>
-        <trans-unit id="FirstSelectLaunchView_ContentText.Text" translate="yes" xml:space="preserve">
-          <source>Выберите начальную страницу, которая будет открываться при запуске ВКачай.
-
-Рекомендуем использовать главную страницу. Вы всегда можете изменить этот параметр в настройках приложения.</source>
-          <target state="needs-review-translation">Wählen Sie die Startseite zu öffnen, wenn Sie VK Saver starten. 
- 
-Empfehlen Ihnen Haupt Seite. Sie können diese Option in den Einstellungen jederzeit ändern.</target>
         </trans-unit>
         <trans-unit id="Email_SupportTitle_Text" translate="yes" xml:space="preserve">
           <source>Сообщение из приложения</source>
@@ -2173,13 +2173,13 @@ Empfehlen Ihnen Haupt Seite. Sie können diese Option in den Einstellungen jeder
           <source>Коснитесь для перехода в менеджер загрузок</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Tippen Sie auf den Download-Manager gehen</target>
         </trans-unit>
-        <trans-unit id="ErrorView_ErrorDetails.Text" translate="yes" xml:space="preserve">
-          <source>Подробности об ошибке</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Fehlerdetails</target>
-        </trans-unit>
         <trans-unit id="AppNotifications_FatalError_Title" translate="yes" xml:space="preserve">
           <source>Произошла ошибка, приносим свои извинения за неудобства</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Es ist ein Fehler aufgetreten, bitte entschuldigen Sie die Unannehmlichkeiten</target>
+        </trans-unit>
+        <trans-unit id="ErrorView_ErrorDetails.Text" translate="yes" xml:space="preserve">
+          <source>Подробности об ошибке</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Fehlerdetails</target>
         </trans-unit>
         <trans-unit id="FeedbackService_LeaveFeedback_Content" translate="yes" xml:space="preserve">
           <source>Спасибо, что пользуетесь ВКачай! Пожалуйста, оставьте свой отзыв о работе приложения.
@@ -2191,15 +2191,31 @@ Wollen Ihren Erfahrungsbericht schreiben?</target>
           <source>Вам нравится ВКачай?</source>
           <target state="needs-review-translation">Magst du VK Saver?</target>
         </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Title.Text" translate="yes" xml:space="preserve">
-          <source>Внутренние уведомления</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Interne Benachrichtigungen</target>
-        </trans-unit>
         <trans-unit id="SetingsView_InAppNotifications_Text.Text" translate="yes" xml:space="preserve">
           <source>ВКачай может сообщать вам о важных событиях всплывающими уведомлениями внутри приложения.
 Этот параметр не коснется важных уведомлений.</source>
           <target state="needs-review-translation">VK Saver können Sie wichtige Ereignisse Toast innerhalb einer Anwendung mitteilen. 
 Diese Option hat keine Auswirkungen auf wichtige Benachrichtigungen.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Sound_Text.Text" translate="yes" xml:space="preserve">
+          <source>В зависимости от типа уведомления, воспроизводится соответствующий звук. Вы можете отключить звуки уведомлений.</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Je nach Art der Benachrichtigung erscheint der entsprechende Ton. Sie können die Sounds Benachrichtigungen deaktivieren.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Sound_Title.Text" translate="yes" xml:space="preserve">
+          <source>Звук уведомлений</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sound-Benachrichtigungen</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Title.Text" translate="yes" xml:space="preserve">
+          <source>Внутренние уведомления</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Interne Benachrichtigungen</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Vibration_Text.Text" translate="yes" xml:space="preserve">
+          <source>В зависимости от типа уведомления, смартфон вибрирует соответствующим образом. Вы можете отключить вибрацию уведомлений.</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Je nach Art der Benachrichtigung vibriert das Smartphone entsprechend. Sie können Vibrationen Benachrichtigungen deaktivieren.</target>
+        </trans-unit>
+        <trans-unit id="SettingsView_InAppNotifications_Vibration_Title.Text" translate="yes" xml:space="preserve">
+          <source>Вибрация уведомлений</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vibration-Benachrichtigung</target>
         </trans-unit>
         <trans-unit id="SettingsView_LibrarySection.Header" translate="yes" xml:space="preserve">
           <source>библиотека</source>
@@ -2217,29 +2233,13 @@ Diese Option hat keine Auswirkungen auf wichtige Benachrichtigungen.</target>
           <source>НАСТРОЙКИ</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">EINSTELLUNGEN</target>
         </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Sound_Text.Text" translate="yes" xml:space="preserve">
-          <source>В зависимости от типа уведомления, воспроизводится соответствующий звук. Вы можете отключить звуки уведомлений.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Je nach Art der Benachrichtigung erscheint der entsprechende Ton. Sie können die Sounds Benachrichtigungen deaktivieren.</target>
-        </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Sound_Title.Text" translate="yes" xml:space="preserve">
-          <source>Звук уведомлений</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Sound-Benachrichtigungen</target>
-        </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Vibration_Text.Text" translate="yes" xml:space="preserve">
-          <source>В зависимости от типа уведомления, смартфон вибрирует соответствующим образом. Вы можете отключить вибрацию уведомлений.</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Je nach Art der Benachrichtigung vibriert das Smartphone entsprechend. Sie können Vibrationen Benachrichtigungen deaktivieren.</target>
-        </trans-unit>
-        <trans-unit id="SettingsView_InAppNotifications_Vibration_Title.Text" translate="yes" xml:space="preserve">
-          <source>Вибрация уведомлений</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Vibration-Benachrichtigung</target>
-        </trans-unit>
         <trans-unit id="AppBarButton_Shuffle_Text" translate="yes" xml:space="preserve">
           <source>перемешать</source>
           <target state="needs-review-translation" state-qualifier="tm-suggestion">Durcheinander</target>
         </trans-unit>
         <trans-unit id="SearchView_ArtistsTitle.Text" translate="yes" xml:space="preserve">
           <source>исполнители</source>
-          <target state="needs-review-translation" state-qualifier="tm-suggestion">Künstler</target>
+          <target state="final">Künstlern</target>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Title.Text" translate="yes" xml:space="preserve">
           <source>популярные</source>
@@ -2276,6 +2276,11 @@ Diese Option hat keine Auswirkungen auf wichtige Benachrichtigungen.</target>
         <trans-unit id="PopularVKAudioView_Genre_DanceAndHouse" translate="yes" xml:space="preserve">
           <source>house &amp; dance</source>
           <target state="final">house &amp; dance</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
+        </trans-unit>
+        <trans-unit id="PopularVKAudioView_Genre_DrumAndBass" translate="yes" xml:space="preserve">
+          <source>drum &amp; bass</source>
+          <target state="final">drum &amp; bass</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
         <trans-unit id="PopularVKAudioView_Genre_Dubstep" translate="yes" xml:space="preserve">
@@ -2353,11 +2358,6 @@ Diese Option hat keine Auswirkungen auf wichtige Benachrichtigungen.</target>
           <target state="final">trance</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
         </trans-unit>
-        <trans-unit id="PopularVKAudioView_Genre_DrumAndBass" translate="yes" xml:space="preserve">
-          <source>drum &amp; bass</source>
-          <target state="final">drum &amp; bass</target>
-          <note from="MultilingualBuild" annotates="source" priority="2">Не переводить</note>
-        </trans-unit>
         <trans-unit id="PopularVKAudioView_FilterFlyout_Title.Text" translate="yes" xml:space="preserve">
           <source>Фильтр аудио</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Audio-filter</target>
@@ -2370,10 +2370,6 @@ Diese Option hat keine Auswirkungen auf wichtige Benachrichtigungen.</target>
           <source>Только зарубежные</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Nur ausländische</target>
         </trans-unit>
-        <trans-unit id="ShowTrackInfoFlyoutItem.Text" translate="yes" xml:space="preserve">
-          <source>информация о треке</source>
-          <target state="needs-review-translation" state-qualifier="mt-suggestion">Informationen über den track</target>
-        </trans-unit>
         <trans-unit id="AudioBitrate_Kbits.Text" translate="yes" xml:space="preserve">
           <source>кбит/с</source>
           <target state="needs-review-translation">Kbit/s</target>
@@ -2381,6 +2377,10 @@ Diese Option hat keine Auswirkungen auf wichtige Benachrichtigungen.</target>
         <trans-unit id="AudioBitrate_Name.Text" translate="yes" xml:space="preserve">
           <source>Битрейт:</source>
           <target state="needs-review-translation" state-qualifier="mt-suggestion">Bitrate:</target>
+        </trans-unit>
+        <trans-unit id="ShowTrackInfoFlyoutItem.Text" translate="yes" xml:space="preserve">
+          <source>информация о треке</source>
+          <target state="needs-review-translation" state-qualifier="mt-suggestion">Informationen über den track</target>
         </trans-unit>
         <trans-unit id="VKAudioInfoView_Container.ErrorText" translate="yes" xml:space="preserve">
           <source>Не удалось получить дополнительную информацию о треке.</source>

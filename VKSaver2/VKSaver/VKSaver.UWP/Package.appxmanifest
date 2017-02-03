@@ -26,11 +26,6 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#E52C2C" />
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="VKSaver.PlayerTask.AudioTask">
-          <BackgroundTasks>
-            <Task Type="audio" />
-          </BackgroundTasks>
-        </Extension>
         <uap:Extension Category="windows.fileTypeAssociation" EntryPoint="VKSaver.App">
           <uap:FileTypeAssociation Name="vksaver_music_file">
             <uap:DisplayName>VKSaver Music File</uap:DisplayName>
@@ -39,6 +34,11 @@
             </uap:SupportedFileTypes>
           </uap:FileTypeAssociation>
         </uap:Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="VKSaver.PlayerTask.AudioTask">
+          <BackgroundTasks>
+            <Task Type="audio" />
+          </BackgroundTasks>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>
@@ -47,5 +47,6 @@
     <uap:Capability Name="musicLibrary" />
     <uap:Capability Name="picturesLibrary" />
     <uap:Capability Name="videosLibrary" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace VKSaver.Controls
 {
-    public sealed class WithLoaderFrame : Frame, ILoader, IAppNotificationsPresenter
+    public class WithLoaderFrame : Frame, ILoader, IAppNotificationsPresenter
     {
         public WithLoaderFrame()
         {
