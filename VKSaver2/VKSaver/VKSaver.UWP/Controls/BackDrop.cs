@@ -22,8 +22,10 @@ namespace VKSaver.Controls
 
         public BackDrop()
         {
+#if DEBUG
             if (DesignMode.DesignModeEnabled)
-                return;
+                return; 
+#endif
 
             m_rootVisual = ElementCompositionPreview.GetElementVisual(this as UIElement);
             Compositor = m_rootVisual.Compositor;
@@ -51,12 +53,21 @@ namespace VKSaver.Controls
         {
             get
             {
+#if DEBUG
+                if (DesignMode.DesignModeEnabled)
+                    return 0f;
+#endif
                 float value = 0;
                 m_rootVisual.Properties.TryGetScalar(BlurAmountProperty, out value);
                 return value;
             }
             set
             {
+#if DEBUG
+                if (DesignMode.DesignModeEnabled)
+                    return;
+#endif
+
                 if (!m_setUpExpressions)
                 {
                     m_blurBrush.Properties.InsertScalar("Blur.BlurAmount", (float)value);
@@ -69,6 +80,11 @@ namespace VKSaver.Controls
         {
             get
             {
+#if DEBUG
+                if (DesignMode.DesignModeEnabled)
+                    return new Color();
+#endif
+
                 Color value;
                 m_rootVisual.Properties.TryGetColor("TintColor", out value);
                 value = ((CompositionColorBrush)m_blurBrush).Color;
@@ -76,6 +92,11 @@ namespace VKSaver.Controls
             }
             set
             {
+#if DEBUG
+                if (DesignMode.DesignModeEnabled)
+                    return;
+#endif
+
                 if (!m_setUpExpressions)
                 {
                     m_blurBrush.Properties.InsertColor("Color.Color", value);
@@ -104,7 +125,6 @@ namespace VKSaver.Controls
             OnSizeChanged(this, null);
             m_noiseBrush.Surface = await SurfaceLoader.LoadFromUri(new Uri("ms-appx:///Assets/Noise.jpg"));
             m_noiseBrush.Stretch = CompositionStretch.None;
-            m_noiseBrush.CenterPoint = new Vector2(0f, 0f);
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)

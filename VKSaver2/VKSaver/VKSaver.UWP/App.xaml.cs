@@ -33,6 +33,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Prism.Mvvm;
+using Prism.Windows.Navigation;
 using VKSaver.Controls;
 
 namespace VKSaver
@@ -71,27 +72,27 @@ namespace VKSaver
 
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
-            var view = ApplicationView.GetForCurrentView();
+            //var view = ApplicationView.GetForCurrentView();
 
-            view.TitleBar.BackgroundColor = ((SolidColorBrush)Resources["TitleBarBackgroundThemeBrush"]).Color;
-            view.TitleBar.InactiveBackgroundColor = ((SolidColorBrush)Resources["TitleBarBackgroundThemeBrush"]).Color;
-            view.TitleBar.ForegroundColor = ((SolidColorBrush)Resources["TitleBarForegroundThemeBrush"]).Color;
-            view.TitleBar.InactiveForegroundColor = ((SolidColorBrush)Resources["TitleBarInactiveForegroundThemeBrush"]).Color;
+            //view.TitleBar.BackgroundColor = ((SolidColorBrush)Resources["TitleBarBackgroundThemeBrush"]).Color;
+            //view.TitleBar.InactiveBackgroundColor = ((SolidColorBrush)Resources["TitleBarBackgroundThemeBrush"]).Color;
+            //view.TitleBar.ForegroundColor = ((SolidColorBrush)Resources["TitleBarForegroundThemeBrush"]).Color;
+            //view.TitleBar.InactiveForegroundColor = ((SolidColorBrush)Resources["TitleBarInactiveForegroundThemeBrush"]).Color;
 
-            view.TitleBar.ButtonBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonBackgroundThemeBrush"]).Color;
-            view.TitleBar.ButtonForegroundColor = ((SolidColorBrush)Resources["TitleBarButtonForegroundThemeBrush"]).Color;
-            view.TitleBar.ButtonHoverBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonHoverBackgroundThemeBrush"]).Color;
-            view.TitleBar.ButtonHoverForegroundColor = ((SolidColorBrush)Resources["TitleBarButtonForegroundThemeBrush"]).Color;
-            view.TitleBar.ButtonPressedBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonPressedBackgroundThemeBrush"]).Color;
-            view.TitleBar.ButtonPressedForegroundColor = ((SolidColorBrush)Resources["TitleBarButtonPressedForegroundThemeBrush"]).Color;
+            //view.TitleBar.ButtonBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonBackgroundThemeBrush"]).Color;
+            //view.TitleBar.ButtonForegroundColor = ((SolidColorBrush)Resources["TitleBarButtonForegroundThemeBrush"]).Color;
+            //view.TitleBar.ButtonHoverBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonHoverBackgroundThemeBrush"]).Color;
+            //view.TitleBar.ButtonHoverForegroundColor = ((SolidColorBrush)Resources["TitleBarButtonForegroundThemeBrush"]).Color;
+            //view.TitleBar.ButtonPressedBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonPressedBackgroundThemeBrush"]).Color;
+            //view.TitleBar.ButtonPressedForegroundColor = ((SolidColorBrush)Resources["TitleBarButtonPressedForegroundThemeBrush"]).Color;
 
-            view.TitleBar.ButtonInactiveBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonBackgroundThemeBrush"]).Color;
-            view.TitleBar.ButtonInactiveForegroundColor = ((SolidColorBrush)Resources["TitleBarInactiveForegroundThemeBrush"]).Color;
+            //view.TitleBar.ButtonInactiveBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonBackgroundThemeBrush"]).Color;
+            //view.TitleBar.ButtonInactiveForegroundColor = ((SolidColorBrush)Resources["TitleBarInactiveForegroundThemeBrush"]).Color;
 
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                StatusBar.GetForCurrentView().HideAsync().AsTask().Wait();
-            }
+            //if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            //{
+            //    StatusBar.GetForCurrentView().HideAsync().AsTask().Wait();
+            //}
 
             base.OnWindowCreated(args);
         }
@@ -140,7 +141,7 @@ namespace VKSaver
             Container.RegisterInstance(this.SessionStateService);
             Container.RegisterInstance<IDispatcherWrapper>(this);
             Container.RegisterInstance<IAppLoaderService>(_appLoaderService);
-            //Container.RegisterInstance<IAppNotificationsPresenter>(_frame);
+            Container.RegisterInstance<IAppNotificationsPresenter>(new ChromeFrame());
 
             Container.RegisterType<ISettingsService, SettingsService>(new ContainerControlledLifetimeManager(),
                 new InjectionFactory(InstanceFactories.ResolveSettingsService));
@@ -210,7 +211,8 @@ namespace VKSaver
             Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>("l1", new ContainerControlledLifetimeManager());
             Container.RegisterType<ILaunchViewResolver, DebugLaunchViewResolver>(new ContainerControlledLifetimeManager(),
                 new InjectionConstructor(
-                    new ResolvedParameter<ILaunchViewResolver>("l1")));
+                    new ResolvedParameter<ILaunchViewResolver>("l1"),
+                    new ResolvedParameter<INavigationService>()));
 #else
             Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>(new ContainerControlledLifetimeManager());
 #endif
@@ -275,9 +277,9 @@ namespace VKSaver
                     });
                 }
                 catch (Exception) { }
-#if FULL
-                Container.Resolve<IBetaService>().ExecuteAppLaunch();
-#endif
+//#if FULL
+//                Container.Resolve<IBetaService>().ExecuteAppLaunch();
+//#endif
 
                 Container.Resolve<IFeedbackService>().ActivateFeedbackNotifier();
                 ActivatePush(args);

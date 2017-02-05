@@ -1,0 +1,44 @@
+﻿<Page x:Class="VKSaver.Views.TestView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VKSaver.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:VKSaver.Controls"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <ControlTemplate x:Key="ChromeFrameControlTemplate1"
+                         TargetType="controls:ChromeFrame">
+            <Grid>
+                <Grid x:Name="TopBar"
+                      Height="80"
+                      VerticalAlignment="Top"
+                      Background="{ThemeResource ChromeHighBrush}">
+                    <Border>
+                        <controls:BackDrop BlurAmount="7"
+                                           TintColor="Transparent" />
+                    </Border>
+                </Grid>
+                <Grid x:Name="MenuBar"
+                      Width="250"
+                      HorizontalAlignment="Left"
+                      Background="{ThemeResource ChromeHighBrush}">
+                    <controls:BackDrop BlurAmount="7"
+                                       TintColor="Transparent" />
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill"
+                        ImageSource="http://feelevent.pl/file/2016/01/background-club-2.jpg" />
+        </Grid.Background>
+
+        <controls:ChromeFrame Template="{StaticResource ChromeFrameControlTemplate1}">
+
+        </controls:ChromeFrame>
+    </Grid>
+</Page>
