@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.PlayerTask.UWP", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.UWP", "VKSaver\VKSaver.UWP\VKSaver.UWP.csproj", "{773A3619-C084-40DA-A5FE-EDB2D26F9212}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VKSaver.PlatformShared", "VKSaver\VKSaver.PlatformShared\VKSaver.PlatformShared.shproj", "{8660FC13-44D7-4838-AE8B-B866E87E4AD2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "thirdparty", "thirdparty", "{C10D0971-0F76-4E7C-A46F-8CD12F162AE3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Core", "..\thirdparty\lastfm\src\IF.Lastfm.Core\IF.Lastfm.Core.csproj", "{3CF4B78F-8B48-49CB-942F-83DB13474A4F}"
@@ -42,6 +40,8 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ModernDev.InTouch.Shared", "..\thirdparty\InTouch\ModernDev.InTouch.Shared\ModernDev.InTouch.Shared.shproj", "{FC97EA26-E93D-4853-AE7F-695D80CD68B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernDev.InTouch.Tests", "..\thirdparty\InTouch\ModernDev.InTouch.Tests\ModernDev.InTouch.Tests.csproj", "{09BFF450-70F2-4F76-AD3B-971883368FDA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VKSaver.PlatformShared", "VKSaver\VKSaver.PlatformShared\VKSaver.PlatformShared.shproj", "{8660FC13-44D7-4838-AE8B-B866E87E4AD2}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -221,8 +221,8 @@ Global
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|ARM.Build.0 = DebugFull|ARM
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x64.ActiveCfg = DebugFull|x64
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x64.Build.0 = DebugFull|x64
-		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x86.ActiveCfg = DebugFull|x86
-		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x86.Build.0 = DebugFull|x86
+		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x86.ActiveCfg = DebugFull|Any CPU
+		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x86.Build.0 = DebugFull|Any CPU
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.Release|ARM.ActiveCfg = Release|ARM

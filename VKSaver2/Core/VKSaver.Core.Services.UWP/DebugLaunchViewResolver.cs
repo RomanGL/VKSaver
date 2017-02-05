@@ -18,12 +18,17 @@ namespace VKSaver.Core.Services
             _navigationService = navigationService;
         }
 
-        public string LaunchViewName { get; set; }
-        public List<string> AvailableLaunchViews { get; }
+        public string LaunchViewName
+        {
+            get { return _launchViewResolver.LaunchViewName; }
+            set { _launchViewResolver.LaunchViewName = value; }
+        }
+
+        public List<string> AvailableLaunchViews => _launchViewResolver.AvailableLaunchViews;
 
         public void OpenDefaultView()
         {
-            throw new NotImplementedException();
+            _navigationService.Navigate("TestView", null);
         }
 
         public bool TryOpenSpecialViews()
