@@ -15,16 +15,28 @@
                       Height="80"
                       VerticalAlignment="Top"
                       Background="{ThemeResource ChromeHighBrush}">
-                    <Border>
-                        <controls:BackDrop BlurAmount="7"
-                                           TintColor="Transparent" />
-                    </Border>
+                    <controls:BackDrop BlurAmount="20"
+                                       TintColor="Transparent" />
+                    
+                    
                 </Grid>
+
+                <Rectangle x:Name="TranslatePanel"
+                           Width="48"
+                           HorizontalAlignment="Left"
+                           ManipulationMode="TranslateX"
+                           Fill="Black" />
+
+                <Rectangle x:Name="DismissLayer"
+                           Fill="Transparent" />
+
                 <Grid x:Name="MenuBar"
                       Width="250"
                       HorizontalAlignment="Left"
-                      Background="{ThemeResource ChromeHighBrush}">
-                    <controls:BackDrop BlurAmount="7"
+                      Background="{ThemeResource ChromeHighBrush}"
+                      Margin="0,79.5,0,0"
+                      ManipulationMode="TranslateX">
+                    <controls:BackDrop BlurAmount="20"
                                        TintColor="Transparent" />
                 </Grid>
             </Grid>
@@ -34,7 +46,14 @@
     <Grid>
         <Grid.Background>
             <ImageBrush Stretch="UniformToFill"
-                        ImageSource="http://feelevent.pl/file/2016/01/background-club-2.jpg" />
+                        ImageSource="ms-appx:///Assets/img1.jpg"
+                        AlignmentX="Right">
+                <ImageBrush.RelativeTransform>
+                    <CompositeTransform CenterY="0.5"
+                                        CenterX="0.5"
+                                        ScaleX="-1" />
+                </ImageBrush.RelativeTransform>
+            </ImageBrush>
         </Grid.Background>
 
         <controls:ChromeFrame Template="{StaticResource ChromeFrameControlTemplate1}">
