@@ -123,7 +123,7 @@ namespace VKSaver.Controls
         {
             this.SizeChanged += OnSizeChanged;
             OnSizeChanged(this, null);
-            m_noiseBrush.Surface = await SurfaceLoader.LoadFromUri(new Uri("ms-appx:///Assets/Noise.jpg"));
+            m_noiseBrush.Surface = await SurfaceLoader.LoadFromUri(new Uri("ms-appx:///Assets/NoiseBlack.jpg"));
             m_noiseBrush.Stretch = CompositionStretch.None;
         }
 
@@ -164,7 +164,7 @@ namespace VKSaver.Controls
                 Name = "Blur",
                 BlurAmount = 0.0f,
                 BorderMode = EffectBorderMode.Hard,
-                Optimization = EffectOptimization.Balanced,
+                Optimization = EffectOptimization.Speed,
                 Source = new CompositionEffectSourceParameter("source"),
             };
 

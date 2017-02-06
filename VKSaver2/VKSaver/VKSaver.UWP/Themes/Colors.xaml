@@ -26,12 +26,12 @@
         <ResourceDictionary x:Key="Dark">
             <SolidColorBrush x:Key="ChromeHighBrush"
                              Color="Black"
-                             Opacity="0.8" />
+                             Opacity="0.1" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
             <SolidColorBrush x:Key="ChromeHighBrush"
                              Color="White"
-                             Opacity="0.4" />
+                             Opacity="0.1" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
