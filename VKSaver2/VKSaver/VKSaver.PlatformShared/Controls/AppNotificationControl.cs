@@ -2,6 +2,7 @@
 using VKSaver.Common;
 using VKSaver.Core.Models;
 using Windows.Foundation;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -86,18 +87,21 @@ namespace VKSaver.Controls
         /// <summary>
         /// Показывает уведомление.
         /// </summary>
-        public void Show()
+        public async void Show()
         {
-            parent.SizeChanged += Parent_SizeChanged;
-            rootGrid.ManipulationDelta += RootGrid_ManipulationDelta;
-            rootGrid.ManipulationCompleted += RootGrid_ManipulationCompleted;
-            timer.Tick += Timer_Tick;
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                parent.SizeChanged += Parent_SizeChanged;
+                rootGrid.ManipulationDelta += RootGrid_ManipulationDelta;
+                rootGrid.ManipulationCompleted += RootGrid_ManipulationCompleted;
+                timer.Tick += Timer_Tick;
 
-            rootGrid.Width = contentGrid.DesiredSize.Width;
-            ((DoubleAnimation)visibleStoryboard.Children[0]).To = contentGrid.DesiredSize.Width;
-            visibleStoryboard.Begin();
+                rootGrid.Width = contentGrid.DesiredSize.Width;
+                ((DoubleAnimation) visibleStoryboard.Children[0]).To = contentGrid.DesiredSize.Width;
+                visibleStoryboard.Begin();
 
-            timer.Start();
+                timer.Start();
+            });
         }
 
         private void RootGrid_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
@@ -143,17 +147,20 @@ namespace VKSaver.Controls
         /// <summary>
         /// Скрывает уведомление.
         /// </summary>
-        public void Hide()
+        public async void Hide()
         {
-            if (timer == null) return;
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (timer == null) return;
 
-            parent.SizeChanged -= Parent_SizeChanged;
-            this.ManipulationDelta -= RootGrid_ManipulationDelta;
-            this.ManipulationCompleted -= RootGrid_ManipulationCompleted;
-            timer.Stop();
-            timer = null;
-            collapsedStoryboard.Completed += CollapsedStoryboard_Completed;            
-            collapsedStoryboard.Begin();
+                parent.SizeChanged -= Parent_SizeChanged;
+                this.ManipulationDelta -= RootGrid_ManipulationDelta;
+                this.ManipulationCompleted -= RootGrid_ManipulationCompleted;
+                timer.Stop();
+                timer = null;
+                collapsedStoryboard.Completed += CollapsedStoryboard_Completed;
+                collapsedStoryboard.Begin();
+            });
         }
 
         private void Timer_Tick(object sender, object e)
