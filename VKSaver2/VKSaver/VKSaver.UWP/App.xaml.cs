@@ -18,9 +18,13 @@ using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
+using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Hosting;
 using Yandex.Metrica;
 using Yandex.Metrica.Push;
 
@@ -54,34 +58,28 @@ namespace VKSaver
         protected override UIElement CreateShell(Frame rootFrame)
         {
             Dispatcher = Window.Current.Dispatcher;
+            SurfaceLoader.Initialize(ElementCompositionPreview.GetElementVisual(rootFrame).Compositor);
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             //ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+            return new Shell(rootFrame);
             return base.CreateShell(rootFrame);
         }
 
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
-            //var view = ApplicationView.GetForCurrentView();
+            var view = ApplicationView.GetForCurrentView();
 
-            //view.TitleBar.BackgroundColor = ((SolidColorBrush)Resources["TitleBarBackgroundThemeBrush"]).Color;
-            //view.TitleBar.InactiveBackgroundColor = ((SolidColorBrush)Resources["TitleBarBackgroundThemeBrush"]).Color;
-            //view.TitleBar.ForegroundColor = ((SolidColorBrush)Resources["TitleBarForegroundThemeBrush"]).Color;
-            //view.TitleBar.InactiveForegroundColor = ((SolidColorBrush)Resources["TitleBarInactiveForegroundThemeBrush"]).Color;
+            view.TitleBar.ForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            view.TitleBar.InactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
-            //view.TitleBar.ButtonBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonBackgroundThemeBrush"]).Color;
-            //view.TitleBar.ButtonForegroundColor = ((SolidColorBrush)Resources["TitleBarButtonForegroundThemeBrush"]).Color;
-            //view.TitleBar.ButtonHoverBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonHoverBackgroundThemeBrush"]).Color;
-            //view.TitleBar.ButtonHoverForegroundColor = ((SolidColorBrush)Resources["TitleBarButtonForegroundThemeBrush"]).Color;
-            //view.TitleBar.ButtonPressedBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonPressedBackgroundThemeBrush"]).Color;
-            //view.TitleBar.ButtonPressedForegroundColor = ((SolidColorBrush)Resources["TitleBarButtonPressedForegroundThemeBrush"]).Color;
+            view.TitleBar.ButtonForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            view.TitleBar.ButtonHoverForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            view.TitleBar.ButtonPressedForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
 
-            //view.TitleBar.ButtonInactiveBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonBackgroundThemeBrush"]).Color;
-            //view.TitleBar.ButtonInactiveForegroundColor = ((SolidColorBrush)Resources["TitleBarInactiveForegroundThemeBrush"]).Color;
+            view.TitleBar.ButtonInactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
-            //if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            //{
-            //    StatusBar.GetForCurrentView().HideAsync().AsTask().Wait();
-            //}
-
+            view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+            view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
             base.OnWindowCreated(args);
         }
 
@@ -125,11 +123,20 @@ namespace VKSaver
         protected override Task OnInitializeAsync(IActivatedEventArgs args)
         {
             Container.RegisterInstance<IServiceResolver>(this);
-            Container.RegisterInstance(this.NavigationService);
+            Container.RegisterInstance<INavigationService>("PrismNavigationService", NavigationService);
             Container.RegisterInstance(this.SessionStateService);
             Container.RegisterInstance<IDispatcherWrapper>(this);
             Container.RegisterInstance<IAppLoaderService>(_appLoaderService);
             Container.RegisterInstance<IAppNotificationsPresenter>(new ChromeFrame());
+
+            Container.RegisterType<INavigationService, VKSaverNavigationService>(
+                new ContainerControlledLifetimeManager(),
+                new InjectionConstructor(
+                    new ResolvedParameter<INavigationService>("PrismNavigationService"),
+                    new ResolvedParameter<IVKLoginService>(),
+                    new ResolvedParameter<IMetricaService>(),
+                    new ResolvedParameter<IDispatcherWrapper>(),
+                    new ResolvedParameter<IServiceResolver>()));
 
             Container.RegisterType<ISettingsService, SettingsService>(new ContainerControlledLifetimeManager(),
                 new InjectionFactory(InstanceFactories.ResolveSettingsService));
@@ -365,17 +372,17 @@ namespace VKSaver
 
         private async void ActivateMetrica()
         {
-            await Task.Run(() => YandexMetrica.Activate(AppConstants.YANDEX_METRICA_API_KEY));
+            //await Task.Run(() => YandexMetrica.Activate(AppConstants.YANDEX_METRICA_API_KEY));
         }
 
         private async void ActivatePush(LaunchActivatedEventArgs e)
         {
-            await Task.Run(() =>
-            {
-                YandexMetricaPush.Activate("***REMOVED***");
-                if (e != null)
-                    YandexMetricaPush.ProcessApplicationLaunch(e);
-            });
+            //await Task.Run(() =>
+            //{
+            //    YandexMetricaPush.Activate("***REMOVED***");
+            //    if (e != null)
+            //        YandexMetricaPush.ProcessApplicationLaunch(e);
+            //});
         }
 
 #if DEBUG && !FULL
