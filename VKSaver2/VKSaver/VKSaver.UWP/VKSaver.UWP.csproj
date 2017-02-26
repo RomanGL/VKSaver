@@ -179,13 +179,21 @@
     </Compile>
     <Compile Include="Controls\AlternateListView.cs" />
     <Compile Include="Controls\BackDrop.cs" />
+    <Compile Include="Controls\HamburgerButton.cs" />
+    <Compile Include="Controls\Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SurfaceLoader.cs" />
     <Compile Include="Controls\ChromeFrame.cs" />
+    <Compile Include="Controls\SwipeableSplitView.cs" />
     <Compile Include="Converters\HamburgerItemClickConverter.cs" />
     <Compile Include="Core\Services\JsonSessionStateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData\MainViewSampleData\MainViewSampleData.xaml.cs">
       <DependentUpon>MainViewSampleData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DirectAuth\DirectAuthView.xaml.cs">
+      <DependentUpon>DirectAuthView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
@@ -202,7 +210,6 @@
   <ItemGroup>
     <Content Include="Assets\Background\Background.dark.jpg" />
     <Content Include="Assets\ImagePlaceholder.png" />
-    <Content Include="Assets\img1.jpg" />
     <Content Include="Assets\Noise.jpg" />
     <Content Include="Assets\NoiseBlack.jpg" />
     <Content Include="Assets\Promo\0.png" />
@@ -243,6 +250,8 @@
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Assets\img1.light.jpg" />
+    <Content Include="Assets\img1.dark.jpg" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <DesignTimeOnly Include="SampleData\MainViewSampleData\MainViewSampleData_Files\image1.jpg">
@@ -308,10 +317,26 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Controls\Shell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\HamburgerButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SwipeableSplitView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DirectAuth\DirectAuthView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TestView.xaml">
       <SubType>Designer</SubType>

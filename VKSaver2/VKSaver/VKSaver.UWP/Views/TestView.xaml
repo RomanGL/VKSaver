@@ -5,59 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:VKSaver.Controls"
-      mc:Ignorable="d">
+      mc:Ignorable="d"
+      controls:Shell.Title="ВКачай">
 
-    <Page.Resources>
-        <ControlTemplate x:Key="ChromeFrameControlTemplate1"
-                         TargetType="controls:ChromeFrame">
-            <Grid>
-                <Grid x:Name="TopBar"
-                      Height="80"
-                      VerticalAlignment="Top"
-                      Background="{ThemeResource ChromeHighBrush}">
-                    <controls:BackDrop BlurAmount="20"
-                                       TintColor="Transparent" />
-                    
-                    
-                </Grid>
-
-                <Rectangle x:Name="TranslatePanel"
-                           Width="48"
-                           HorizontalAlignment="Left"
-                           ManipulationMode="TranslateX"
-                           Fill="Black" />
-
-                <Rectangle x:Name="DismissLayer"
-                           Fill="Transparent" />
-
-                <Grid x:Name="MenuBar"
-                      Width="250"
-                      HorizontalAlignment="Left"
-                      Background="{ThemeResource ChromeHighBrush}"
-                      Margin="0,79.5,0,0"
-                      ManipulationMode="TranslateX">
-                    <controls:BackDrop BlurAmount="20"
-                                       TintColor="Transparent" />
-                </Grid>
-            </Grid>
-        </ControlTemplate>
-    </Page.Resources>
-
-    <Grid>
-        <Grid.Background>
-            <ImageBrush Stretch="UniformToFill"
-                        ImageSource="ms-appx:///Assets/img1.jpg"
-                        AlignmentX="Right">
-                <ImageBrush.RelativeTransform>
-                    <CompositeTransform CenterY="0.5"
-                                        CenterX="0.5"
-                                        ScaleX="-1" />
-                </ImageBrush.RelativeTransform>
-            </ImageBrush>
-        </Grid.Background>
-
-        <controls:ChromeFrame Template="{StaticResource ChromeFrameControlTemplate1}">
-
-        </controls:ChromeFrame>
+    <Grid Background="{ThemeResource ImageBackgroundBrush}">
     </Grid>
 </Page>
