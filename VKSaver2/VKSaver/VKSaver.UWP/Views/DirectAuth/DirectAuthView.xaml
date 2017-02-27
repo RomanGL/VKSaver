@@ -11,7 +11,7 @@
                             controls:Shell.IsTitleBarVisible="False"
                             controls:Shell.Title="Авторизация">
 
-    <Grid Background="{ThemeResource ImageBackgroundBrush}">
+    <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="States">
                 <VisualState x:Name="Normal">
@@ -214,118 +214,159 @@
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
+
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="860" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LeftPanel.(RelativePanel.LeftOf)"
+                                Value="AuthPanel" />
+                        <Setter Target="LeftPanel.(Visibility)"
+                                Value="Visible" />
+                        <Setter Target="AuthPanel.(Width)"
+                                Value="400" />
+                        <Setter Target="AuthPanel.(RelativePanel.AlignLeftWithPanel)"
+                                Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LeftPanel.(Visibility)"
+                                Value="Collapsed" />
+                        <Setter Target="AuthPanel.(Width)"
+                                Value="Auto" />
+                        <Setter Target="AuthPanel.(RelativePanel.AlignLeftWithPanel)"
+                                Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Center"
-                  Margin="24,0,0,0">
-                <controls:BackDrop BlurAmount="30"/>
-                <TextBlock Text="Вся лучшая музыка в вашем распоряжении!"
-                           Style="{StaticResource HeaderTextBlockStyle}"
-                           Margin="24,6,24,12" 
-                           Foreground="Black"/>
+        <RelativePanel>
+            <Grid x:Name="LeftPanel"
+                  Background="{ThemeResource ImageBackgroundBrush}"
+                  RelativePanel.AlignTopWithPanel="True"
+                  RelativePanel.AlignBottomWithPanel="True"
+                  RelativePanel.AlignLeftWithPanel="True">
+                
+                <Grid HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Margin="24,0,24,0">
+                    <controls:BackDrop BlurAmount="30"
+                                       TintColor="#7F000000" />
+                    <TextBlock Text="Вся лучшая музыка в вашем распоряжении!"
+                               Style="{StaticResource HeaderTextBlockStyle}"
+                               Margin="24,6,24,12"
+                               Foreground="White" />
+                </Grid>
             </Grid>
-            
-            <Rectangle Grid.Column="1">
-                <Rectangle.Fill>
-                    <SolidColorBrush Color="{StaticResource AccentHighColor}" />
-                </Rectangle.Fill>
-            </Rectangle>
-            <StackPanel VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        x:Name="ContentPanel"
-                        Grid.Column="1"
-                        Margin="24,0">
-                <StackPanel.ChildrenTransitions>
-                    <TransitionCollection>
-                        <RepositionThemeTransition />
-                    </TransitionCollection>
-                </StackPanel.ChildrenTransitions>
-                <Path HorizontalAlignment="Center"
-                      VerticalAlignment="Bottom"
-                      Margin="0,0,0,15"
-                      Stretch="Fill"
-                      Opacity="1"
-                      StrokeThickness="0"
-                      x:Name="logoPath"
-                      Fill="White"
-                      Data="M 20.90 11.74 C 43.97 7.98 66.99 3.88 90.09 0.34 C 90.21 50.22 90.03 100.11 90.17 150.00 L 89.38 150.00 C 59.60 144.96 29.79 140.07 0.00 135.06 L 0.00 15.37 C 6.91 13.84 13.95 13.01 20.90 11.74 M 23.11 43.29 C 23.09 64.56 23.10 85.84 23.06 107.11 C 29.71 107.62 36.34 108.46 43.01 108.59 C 48.11 108.81 52.99 105.91 55.56 101.56 C 59.16 95.50 59.45 87.87 57.72 81.17 C 56.63 76.83 53.10 73.77 49.29 71.76 C 55.57 66.17 56.92 56.67 54.15 49.01 C 52.51 44.50 47.80 41.65 43.07 41.84 C 36.40 41.99 29.76 42.78 23.11 43.29 Z
+
+            <Grid Background="{ThemeResource AccentHighBrush}"
+                  x:Name="AuthPanel"
+                  RelativePanel.AlignTopWithPanel="True"
+                  RelativePanel.AlignBottomWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True">
+                <StackPanel VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch"
+                            x:Name="ContentPanel"
+                            Margin="24,0">
+                    <StackPanel.ChildrenTransitions>
+                        <TransitionCollection>
+                            <RepositionThemeTransition />
+                        </TransitionCollection>
+                    </StackPanel.ChildrenTransitions>
+
+                    <Path HorizontalAlignment="Center"
+                          VerticalAlignment="Bottom"
+                          Margin="0,0,0,15"
+                          Stretch="Fill"
+                          Opacity="1"
+                          StrokeThickness="0"
+                          x:Name="logoPath"
+                          Fill="White"
+                          Data="M 20.90 11.74 C 43.97 7.98 66.99 3.88 90.09 0.34 C 90.21 50.22 90.03 100.11 90.17 150.00 L 89.38 150.00 C 59.60 144.96 29.79 140.07 0.00 135.06 L 0.00 15.37 C 6.91 13.84 13.95 13.01 20.90 11.74 M 23.11 43.29 C 23.09 64.56 23.10 85.84 23.06 107.11 C 29.71 107.62 36.34 108.46 43.01 108.59 C 48.11 108.81 52.99 105.91 55.56 101.56 C 59.16 95.50 59.45 87.87 57.72 81.17 C 56.63 76.83 53.10 73.77 49.29 71.76 C 55.57 66.17 56.92 56.67 54.15 49.01 C 52.51 44.50 47.80 41.65 43.07 41.84 C 36.40 41.99 29.76 42.78 23.11 43.29 Z
                     M 93.12 22.59 C 101.88 22.85 110.62 25.86 117.13 31.85 C 124.86 38.60 129.30 48.75 129.30 59.00 C 129.40 72.43 129.23 85.87 129.35 99.31 C 136.34 92.53 143.29 85.69 150.00 78.64 L 150.00 99.17 C 140.58 108.62 131.13 118.04 121.69 127.47 C 113.86 120.25 106.62 112.43 98.95 105.05 C 97.00 103.04 94.71 101.24 93.37 98.75 C 92.73 92.15 93.31 85.49 93.14 78.86 C 100.14 85.58 106.74 92.70 113.84 99.30 C 113.85 86.18 113.82 73.06 113.87 59.94 C 113.99 55.09 112.73 50.15 109.70 46.30 C 105.92 40.91 99.41 38.58 93.14 37.70 C 93.15 32.66 93.11 27.63 93.12 22.59 Z
                     M 33.42 54.33 C 36.46 54.65 40.81 53.14 42.63 56.43 C 43.97 59.47 43.98 63.33 42.24 66.21 C 40.19 69.00 36.37 68.16 33.39 68.20 C 33.52 63.58 33.53 58.96 33.42 54.33 Z
                     M 33.58 79.67 C 37.49 80.00 42.92 78.58 45.32 82.67 C 46.98 86.11 46.99 90.65 44.90 93.91 C 42.21 97.36 37.37 96.11 33.61 96.14 C 33.46 90.65 33.48 85.16 33.58 79.67 Z"
-                      Width="100"
-                      Height="100" />
-                <TextBlock Text="Авторизация"
-                           x:Uid="LoginView_Auth"
-                           x:Name="authText"
-                           HorizontalAlignment="Center"
-                           FontSize="44"
-                           Opacity="1"
-                           Style="{StaticResource BodyTextBlockStyle}"
-                           TextWrapping="NoWrap"
-                           TextLineBounds="Tight"
-                           FontWeight="Light"
-                           Foreground="White" />
-                <TextBox x:Name="userNameBox"
-                         Margin="20,30,20,0"
-                         TextWrapping="Wrap"
-                         VerticalAlignment="Stretch"
-                         PlaceholderText="логин, номер телефона или email"
-                         x:Uid="LoginView_LoginExtendedField"
-                         Visibility="Collapsed"
-                         Opacity="0"
-                         Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         KeyDown="userNameBox_KeyDown" />
-                <PasswordBox x:Name="passwordBox"
-                             Margin="20,10,20,-25"
+                          Width="100"
+                          Height="100" />
+                    <TextBlock Text="Авторизация"
+                               x:Uid="LoginView_Auth"
+                               x:Name="authText"
+                               HorizontalAlignment="Center"
+                               FontSize="44"
+                               Opacity="1"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               TextWrapping="NoWrap"
+                               TextLineBounds="Tight"
+                               FontWeight="Light"
+                               Foreground="White" />
+                    <TextBox x:Name="userNameBox"
+                             Margin="20,30,20,0"
+                             TextWrapping="Wrap"
                              VerticalAlignment="Stretch"
-                             PlaceholderText="пароль"
+                             PlaceholderText="логин, номер телефона или email"
+                             x:Uid="LoginView_LoginExtendedField"
                              Visibility="Collapsed"
-                             x:Uid="LoginView_PasswordField"
                              Opacity="0"
-                             Password="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             KeyDown="passwordBox_KeyDown" />
-                <Button Content="войти"
-                        x:Name="loginButton"
-                        x:Uid="LoginView_LoginButton"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Stretch"
-                        Command="{Binding LoginCommand, ElementName=page}"
-                        Margin="0,50,0,0"
-                        MinWidth="150"
-                        Foreground="White" />
-            </StackPanel>
-            <CommandBar ClosedDisplayMode="Minimal"
-                        Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
-                        VerticalAlignment="Bottom"
-                        Grid.Column="1">
-                <CommandBar.SecondaryCommands>
-                    <AppBarButton Label="войти через браузер"
-                                  Command="{Binding GoToOAuthCommand, Mode=OneWay}"
-                                  x:Uid="LoginView_OAuthButton" />
-                    <AppBarButton Label="зарегистрироваться"
-                                  Command="{Binding JoinCommand, Mode=OneWay}"
-                                  x:Uid="LoginView_JoinButton" />
-                    <AppBarButton Label="восстановить пароль"
-                                  Command="{Binding RestoreCommand, Mode=OneWay}"
-                                  x:Uid="LoginView_RestorePasswordButton" />
-                </CommandBar.SecondaryCommands>
-            </CommandBar>
-        </Grid>
+                             Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             KeyDown="userNameBox_KeyDown"
+                             BorderBrush="White"
+                             BorderThickness="1,1,1,1"
+                             Foreground="White" />
+                    <PasswordBox x:Name="passwordBox"
+                                 Margin="20,10,20,-25"
+                                 VerticalAlignment="Stretch"
+                                 PlaceholderText="пароль"
+                                 Visibility="Collapsed"
+                                 x:Uid="LoginView_PasswordField"
+                                 Opacity="0"
+                                 Password="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 KeyDown="passwordBox_KeyDown"
+                                 Foreground="White"
+                                 BorderBrush="White"
+                                 BorderThickness="1" />
+                    <Button Content="войти"
+                            x:Name="loginButton"
+                            x:Uid="LoginView_LoginButton"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Stretch"
+                            Command="{Binding LoginCommand, ElementName=page}"
+                            Margin="0,50,0,0"
+                            MinWidth="150"
+                            Foreground="White"
+                            Background="#33FFFFFF" />
+                </StackPanel>
+                <CommandBar ClosedDisplayMode="Minimal"
+                            Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                            VerticalAlignment="Bottom"
+                            Grid.Column="1">
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton Label="войти через браузер"
+                                      Command="{Binding GoToOAuthCommand, Mode=OneWay}"
+                                      x:Uid="LoginView_OAuthButton" />
+                        <AppBarButton Label="зарегистрироваться"
+                                      Command="{Binding JoinCommand, Mode=OneWay}"
+                                      x:Uid="LoginView_JoinButton" />
+                        <AppBarButton Label="восстановить пароль"
+                                      Command="{Binding RestoreCommand, Mode=OneWay}"
+                                      x:Uid="LoginView_RestorePasswordButton" />
+                    </CommandBar.SecondaryCommands>
+                </CommandBar>
+            </Grid>
+        </RelativePanel>
 
         <ProgressRing x:Name="progressRing"
                       Visibility="Collapsed"
                       Opacity="0"
                       IsActive="True"
-                      Width="50"
-                      Height="50"
+                      Width="70"
+                      Height="70"
                       Background="{x:Null}"
                       Foreground="{ThemeResource AccentHighBrush}"
                       HorizontalAlignment="Center"

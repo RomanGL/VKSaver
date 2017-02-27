@@ -96,7 +96,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Canvas>
+    <Canvas x:Name="RootCanvas">
         <Rectangle x:Name="OldImage"
                    Opacity="0"
                    RenderTransformOrigin="0.5,0.5">

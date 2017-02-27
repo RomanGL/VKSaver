@@ -180,6 +180,7 @@
     <Compile Include="Controls\AlternateListView.cs" />
     <Compile Include="Controls\BackDrop.cs" />
     <Compile Include="Controls\HamburgerButton.cs" />
+    <Compile Include="Controls\PlayerBackground.cs" />
     <Compile Include="Controls\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -194,6 +195,9 @@
     </Compile>
     <Compile Include="Views\DirectAuth\DirectAuthView.xaml.cs">
       <DependentUpon>DirectAuthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
@@ -210,6 +214,8 @@
   <ItemGroup>
     <Content Include="Assets\Background\Background.dark.jpg" />
     <Content Include="Assets\ImagePlaceholder.png" />
+    <Content Include="Assets\img2.dark.jpg" />
+    <Content Include="Assets\img2.light.jpg" />
     <Content Include="Assets\Noise.jpg" />
     <Content Include="Assets\NoiseBlack.jpg" />
     <Content Include="Assets\Promo\0.png" />
@@ -228,6 +234,7 @@
     <Content Include="Assets\Square44x44.scale-400.png" />
     <Content Include="Assets\Square310x310.scale-200.png" />
     <Content Include="Assets\Square310x310.scale-400.png" />
+    <Content Include="Assets\VKSaverCat.png" />
     <Content Include="Assets\Wide310x150.scale-200.png" />
     <Content Include="Assets\Wide310x150.scale-400.png" />
     <Content Include="Assets\Square150x150.scale-200.png" />
@@ -337,6 +344,10 @@
     <Page Include="Views\DirectAuth\DirectAuthView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TestView.xaml">
       <SubType>Designer</SubType>

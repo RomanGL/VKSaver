@@ -45,6 +45,8 @@ namespace VKSaver.Views
             passwordBox.PasswordChanged += TextBox_TextChanged;
 
             ViewModel.ValidationView = this;
+
+            //plBackground.Loaded += (sender, args) => plBackground.Start();
             base.OnNavigatedTo(e);
         }
 
@@ -76,6 +78,7 @@ namespace VKSaver.Views
             userNameBox.TextChanged -= TextBox_TextChanged;
             passwordBox.PasswordChanged -= TextBox_TextChanged;
 
+            //plBackground.Unloaded += (sender, args) => plBackground.Stop();
             base.OnNavigatingFrom(e);
         }
 
@@ -160,6 +163,7 @@ namespace VKSaver.Views
                 ViewModel.ProcessError(errorName);
                 _isCompleted = true;
                 VisualStateManager.GoToState(this, "Normal", true);
+                _isEnterDataState = false;
             }
             else if (args.Uri.AbsoluteUri.EndsWith("blank.html?success=1"))
             {
@@ -179,6 +183,7 @@ namespace VKSaver.Views
                 _isWorking = false;
                 LoginCommand.RaiseCanExecuteChanged();
                 VisualStateManager.GoToState(this, "Normal", true);
+                _isEnterDataState = false;
             }
             else
             {
@@ -193,6 +198,7 @@ namespace VKSaver.Views
             _isWorking = false;
             LoginCommand.RaiseCanExecuteChanged();
             VisualStateManager.GoToState(this, "Normal", true);
+            _isEnterDataState = false;
         }
 
         private void ClearCookies()

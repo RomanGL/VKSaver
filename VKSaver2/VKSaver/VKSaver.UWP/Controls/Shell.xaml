@@ -58,8 +58,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <SplitView x:Name="SplitView"
-                   DisplayMode="Overlay">
+        <SplitView x:Name="ShellSplitView">
             <SplitView.Pane>
                 <ListBox Background="{x:Null}">
                     <ListBoxItem Content="Menu item" />
@@ -77,14 +76,8 @@
                             <CompositeTransform />
                         </Grid.RenderTransform>
 
-                        <local:BackDrop BlurAmount="10"/>
-
-                        <Rectangle x:Name="GrabRect">
-                            <Rectangle.Fill>
-                                <SolidColorBrush Opacity="0.7"
-                                                 Color="{ThemeResource TitleBarBackgroundThemeColor}" />
-                            </Rectangle.Fill>
-                        </Rectangle>
+                        <Rectangle x:Name="GrabRect"
+                                   Fill="{ThemeResource SystemControlBackgroundChromeMediumBrush}"/>
 
                         <Grid x:Name="TitleContent"
                               RenderTransformOrigin="0.5,0.5">
@@ -110,6 +103,7 @@
                                        Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                        Style="{StaticResource BodyTextBlockStyle}"
                                        FontSize="17"
+                                       FontWeight="Bold"
                                        OpticalMarginAlignment="TrimSideBearings"
                                        TextWrapping="NoWrap"
                                        TextTrimming="CharacterEllipsis"
