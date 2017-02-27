@@ -18,10 +18,11 @@ namespace VKSaver.Controls
         {
             this.InitializeComponent();
 
-            MenuButton.Click += (s, e) => SplitView.IsPaneOpen = !SplitView.IsPaneOpen;
+            MenuButton.Click += (s, e) => ShellSplitView.IsPaneOpen = !ShellSplitView.IsPaneOpen;
+            this.SizeChanged += Shell_SizeChanged;
             Window.Current.SetTitleBar(GrabRect);
         }
-        
+
         public Frame CurrentFrame
         {
             get { return ContentBorder.Child as Frame; }
@@ -87,6 +88,12 @@ namespace VKSaver.Controls
             UpdatePageTitle();
             UpdateMenuButton();
             UpdateTitleBar();
+            UpdateSplitViewState();
+        }
+
+        private void Shell_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            UpdateSplitViewState();
         }
 
         private void UpdatePageTitle()
@@ -121,6 +128,26 @@ namespace VKSaver.Controls
                 ShowTitleBarStoryboard.Begin();
             else
                 HideTitleBarStoryboard.Begin();
+        }
+
+        private void UpdateSplitViewState()
+        {
+            if (CurrentFrame.Content == null)
+                return;
+
+            bool flag = GetIsMenuButtonVisible(CurrentFrame.Content as DependencyObject) &
+                GetIsTitleBarVisible(CurrentFrame.Content as DependencyObject);
+
+            if (flag && this.ActualWidth > 840)
+            {
+                ShellSplitView.IsPaneOpen = true;
+                ShellSplitView.DisplayMode = SplitViewDisplayMode.Inline;
+            }
+            else
+            {
+                ShellSplitView.IsPaneOpen = false;
+                ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
+            }
         }
 
         private static Shell GetCurrentShell()

@@ -28,7 +28,7 @@ namespace VKSaver.Core.Services
 
         public void OpenDefaultView()
         {
-            _navigationService.Navigate("TestView", null);
+            _navigationService.Navigate(AppConstants.DEFAULT_MAIN_VIEW, null);
         }
 
         public bool TryOpenSpecialViews()
