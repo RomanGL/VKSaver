@@ -177,8 +177,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\WindowThemeHelper.cs" />
     <Compile Include="Controls\AlternateListView.cs" />
     <Compile Include="Controls\BackDrop.cs" />
+    <Compile Include="Controls\EasyCarousel.cs" />
     <Compile Include="Controls\HamburgerButton.cs" />
     <Compile Include="Controls\PlayerBackground.cs" />
     <Compile Include="Controls\Shell.xaml.cs">
@@ -195,6 +197,9 @@
     </Compile>
     <Compile Include="Views\DirectAuth\DirectAuthView.xaml.cs">
       <DependentUpon>DirectAuthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayerView.xaml.cs">
+      <DependentUpon>PlayerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -213,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Background\Background.dark.jpg" />
+    <Content Include="Assets\Background\PlayerBackground.png" />
     <Content Include="Assets\ImagePlaceholder.png" />
     <Content Include="Assets\img2.dark.jpg" />
     <Content Include="Assets\img2.light.jpg" />
@@ -333,6 +339,11 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Themes\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Themes\HamburgerButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -342,6 +353,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DirectAuth\DirectAuthView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PlayerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

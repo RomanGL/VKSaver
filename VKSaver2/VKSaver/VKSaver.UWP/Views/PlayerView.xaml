@@ -1,0 +1,201 @@
+﻿<mvvm:SessionStateAwarePage x:Class="VKSaver.Views.PlayerView"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:controls="using:VKSaver.Controls"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:mvvm="using:Prism.Windows.Mvvm"
+                            xmlns:viewModels="using:VKSaver.Core.ViewModels"
+                            xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                            xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                            xmlns:player="using:VKSaver.Core.ViewModels"
+                            xmlns:converters="using:VKSaver.Converters"
+                            mc:Ignorable="d"
+                            controls:Shell.IsTitleBarVisible="False"
+                            controls:Shell.IsMenuButtonVisible="False"
+                            controls:Shell.Title="ВКачай"
+                            mvvm:ViewModelLocator.AutoWireViewModel="True"
+                            d:DataContext="{d:DesignInstance viewModels:PlayerViewModel }"
+                            RequestedTheme="Dark">
+    
+    <mvvm:SessionStateAwarePage.Resources>
+        <converters:TimeSpanToSecondsConverter x:Key="TimespanToSecondsConverter" />
+        <converters:CurrentTrackToStyleConverter x:Key="CurrentTrackToStyleConverter"
+                                                 NormalBrush="White"
+                                                 CurrentBrush="{StaticResource AccentHighBrush}" />
+
+        <Storyboard x:Name="HideTracksStoryboard">
+            <DoubleAnimation Duration="0:0:0.3"
+                             To="0"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                             Storyboard.TargetName="TracksGrid"
+                             d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="4" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.3"
+                             To="0"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                             Storyboard.TargetName="TracksGrid"
+                             d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="4" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="ShowTracksStoryboard">
+            <DoubleAnimation Duration="0:0:0.5"
+                             To="1"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                             Storyboard.TargetName="TracksGrid"
+                             d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="6" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.5"
+                             To="1"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                             Storyboard.TargetName="TracksGrid"
+                             d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="6" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </mvvm:SessionStateAwarePage.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls:PlayerBackground x:Name="plBackground"
+                                   ArtistImage="{Binding ArtistImage}" />
+
+        <Grid x:Name="TracksGrid"
+              HorizontalAlignment="Right"
+              Margin="0,120,12,60"
+              RenderTransformOrigin="0.9,1"
+              VerticalAlignment="Bottom">
+            <Grid.RenderTransform>
+                <CompositeTransform />
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border Width="400"
+                    BorderThickness="1"
+                    Background="#CC171717">
+                <Grid>
+                    <ListView ItemsSource="{Binding Tracks}">
+                        <ListView.HeaderTemplate>
+                            <DataTemplate>
+                                <Rectangle Height="0"
+                                           Margin="0,6,0,0"/>
+                            </DataTemplate>
+                        </ListView.HeaderTemplate>
+                        <ListView.FooterTemplate>
+                            <DataTemplate>
+                                <Rectangle Height="0"
+                                           Margin="0,0,0,6" />
+                            </DataTemplate>
+                        </ListView.FooterTemplate>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="12,6">
+                                    <TextBlock Text="{Binding Track.Title}"
+                                               Style="{StaticResource TitleTextBlockStyle}"
+                                               Foreground="{Binding IsCurrent, Converter={StaticResource CurrentTrackToStyleConverter}}"
+                                               TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Text="{Binding Track.Artist}"
+                                               Style="{StaticResource SubtitleTextBlockStyle}"
+                                               Foreground="{Binding IsCurrent, Converter={StaticResource CurrentTrackToStyleConverter}}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Opacity="0.5"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Border>
+            <Polygon Points="0,0 100,0, 65,35"
+                     Fill="#CC171717"
+                     VerticalAlignment="Bottom"
+                     HorizontalAlignment="Right"
+                     Grid.Row="1"
+                     Margin="0,-1,0,0" />
+        </Grid>
+
+        <RelativePanel x:Name="AlbumBlock"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Left"
+                       Margin="48,0,0,100">
+            <controls:ImagePlaceholder Source="{Binding TrackImage}"
+                                       Text="{Binding CurrentTrack.Track.Title}"
+                                       Height="160"
+                                       Width="160"
+                                       x:Name="AlbumImage"/>
+            <TextBlock Text="{Binding CurrentTrack.Track.Title}"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       RelativePanel.RightOf="AlbumImage"
+                       x:Name="TrackTitleBlock"
+                       FontSize="28"
+                       FontWeight="Normal"
+                       Margin="12,0,0,0" />
+            <TextBlock Text="{Binding CurrentTrack.Track.Artist}"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       FontWeight="Black"
+                       FontSize="28"
+                       RelativePanel.RightOf="AlbumImage"
+                       RelativePanel.Below="TrackTitleBlock"
+                       Margin="12,0,0,0" />
+        </RelativePanel>
+        
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    x:Name="SliderBlock"
+                    Margin="0,0,0,12">
+            <Slider Width="350"
+                    Value="{Binding Position, Converter={StaticResource TimespanToSecondsConverter}, Mode=TwoWay}"
+                    Maximum="{Binding Duration, Converter={StaticResource TimespanToSecondsConverter}}" />
+        </StackPanel>
+        
+        <StackPanel HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal"
+                    Margin="0,0,12,12"
+                    x:Name="ControlsBlock">
+            <AppBarButton Icon="Previous"
+                          LabelPosition="Collapsed" 
+                          Command="{Binding PreviousTrackCommand}"/>
+            <AppBarButton Icon="Play"
+                          LabelPosition="Collapsed" 
+                          Command="{Binding PlayPauseCommand}"/>
+            <AppBarButton Icon="Next"
+                          LabelPosition="Collapsed"
+                          Command="{Binding NextTrackCommand}"/>
+            <AppBarButton Icon="List"
+                          LabelPosition="Collapsed"
+                          x:Name="ShowTrackButton"
+                          Click="ShowTrackButton_OnClick" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="12,12,0,0">
+            <AppBarButton Icon="Back"
+                          LabelPosition="Collapsed" />
+            <TextBlock Text="Сейчас играет"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="12,0,0,4" />
+        </StackPanel>
+    </Grid>
+</mvvm:SessionStateAwarePage>
+

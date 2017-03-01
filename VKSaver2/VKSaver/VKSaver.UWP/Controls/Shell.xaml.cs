@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
@@ -20,7 +21,8 @@ namespace VKSaver.Controls
 
             MenuButton.Click += (s, e) => ShellSplitView.IsPaneOpen = !ShellSplitView.IsPaneOpen;
             this.SizeChanged += Shell_SizeChanged;
-            Window.Current.SetTitleBar(GrabRect);
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
+            //Window.Current.SetTitleBar(GrabRect);
         }
 
         public Frame CurrentFrame
@@ -140,12 +142,10 @@ namespace VKSaver.Controls
 
             if (flag && this.ActualWidth > 840)
             {
-                ShellSplitView.IsPaneOpen = true;
-                ShellSplitView.DisplayMode = SplitViewDisplayMode.Inline;
+                ShellSplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
             }
             else
             {
-                ShellSplitView.IsPaneOpen = false;
                 ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
             }
         }

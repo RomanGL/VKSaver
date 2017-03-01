@@ -347,9 +347,9 @@ namespace VKSaver.Core.ViewModels
 
         private async void TryShowLikeInfo()
         {
-            if (!_settingsService.Get(LIKE_INFO_SHOWED_PARAMETER_NAME, false))
+            if (!_settingsService.Get(LIKE_INFO_SHOWED_PARAMETER_NAME, false) && ShowLikeTrackInfoCommand != null)
             {
-                await ShowLikeTrackInfoCommand?.Execute(new AppNotification()
+                await ShowLikeTrackInfoCommand.Execute(new AppNotification()
                 {
                     Type = AppNotificationType.Info,
                     Title = _locService["PlayerView_LikeTrackInfo_Title"],

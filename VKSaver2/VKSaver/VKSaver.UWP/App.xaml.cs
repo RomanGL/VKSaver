@@ -59,7 +59,6 @@ namespace VKSaver
         {
             Dispatcher = Window.Current.Dispatcher;
             SurfaceLoader.Initialize(ElementCompositionPreview.GetElementVisual(rootFrame).Compositor);
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             //ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             return new Shell(rootFrame);
             return base.CreateShell(rootFrame);
@@ -78,8 +77,8 @@ namespace VKSaver
 
             view.TitleBar.ButtonInactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
-            view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-            view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            //view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
+            //view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
             base.OnWindowCreated(args);
         }
 
