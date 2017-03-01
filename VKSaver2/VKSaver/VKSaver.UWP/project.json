@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
-    "CompositionProToolkit": "0.5.1",
+    "AdaptiveTriggerLibrary": "1.2.1",
+    "CompositionProToolkit": "0.5.1.1",
     "HtmlAgilityPack": "1.4.9.5",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Microsoft.Toolkit.Uwp.UI.Controls": "1.1.0",

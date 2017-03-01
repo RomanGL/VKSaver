@@ -554,7 +554,7 @@ namespace VKSaver.Controls
                 Type = type;
             }
             else
-                Type = DefaultShapesType;      
+                Type = DefaultShapesType;
 
             ThemeTimer.Start();
         }
