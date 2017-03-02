@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using ModernDev.InTouch;
 using Prism.Windows.Mvvm;
+using VKSaver.Common;
 using VKSaver.Core.ViewModels;
 
 namespace VKSaver.Views
@@ -34,6 +35,11 @@ namespace VKSaver.Views
             //    new Vector2(0.41f, 0.52f),
             //    new Vector2(0.00f, 0.94f)
             //    );
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs navigationEventArgs)
+        {
+            base.OnNavigatedTo(navigationEventArgs);
         }
 
         private void PlayerTracksList_Loaded(object sender, RoutedEventArgs e)

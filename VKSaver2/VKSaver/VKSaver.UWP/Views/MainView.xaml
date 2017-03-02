@@ -11,14 +11,36 @@
                             xmlns:proToolkit="using:CompositionProToolkit.Controls"
                             xmlns:objects="using:IF.Lastfm.Core.Objects"
                             xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+                            xmlns:inTouch="using:ModernDev.InTouch"
                             mc:Ignorable="d"
-                            controls:Shell.IsTitleBarVisible="True"
-                            controls:Shell.IsMenuButtonVisible="True"
+                            controls:Shell.IsTitleBarVisible="False"
+                            controls:Shell.IsMenuButtonVisible="False"
                             controls:Shell.Title="ВКачай"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             d:DataContext="{d:DesignInstance viewModels:MainViewModel }">
 
-    <ScrollViewer Padding="0,48,0,0">
+    <mvvm:SessionStateAwarePage.Resources>
+        <DataTemplate x:Key="TrackTemplate"
+                      x:DataType="inTouch:Audio">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{x:Bind Title}" />
+                <TextBlock Text="{x:Bind Artist}"
+                           Opacity="0.7"
+                           Grid.Column="1" />
+                <TextBlock Text="{x:Bind Duration, Converter={StaticResource TimeConverter}}"
+                           Foreground="{ThemeResource AccentMediumBrush}"
+                           Grid.Column="2" />
+            </Grid>
+        </DataTemplate>
+    </mvvm:SessionStateAwarePage.Resources>
+
+    <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
                 <VisualState x:Name="WideState">
@@ -37,23 +59,47 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
-        <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            
 
-            <ListView x:Name="PlayerTracksList"
-                      ItemsSource="{Binding UserTracks}"
-                      IsItemClickEnabled="True"
-                      RelativePanel.AlignLeftWithPanel="True"
-                      RelativePanel.AlignRightWithPanel="True">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="ItemClick">
-                        <core:InvokeCommandAction Command="{Binding PlayUserTracksCommand}"
-                                                  InputConverter="{StaticResource ItemClickEventArgsConverter}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
-            </ListView>
-        </RelativePanel>
-    </ScrollViewer>
+        <Pivot>
+            <Pivot.LeftHeaderTemplate>
+                <DataTemplate>
+                    <AppBarButton Icon="Back"
+                                  LabelPosition="Collapsed"
+                                  Margin="12,12,0,0" />
+                </DataTemplate>
+            </Pivot.LeftHeaderTemplate>
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               Margin="12,18,0,0" />
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+            <PivotItem Header="Главная">
+                <controls:AlternateListView x:Name="PlayerTracksList"
+                                            ItemsSource="{Binding UserTracks}"
+                                            ItemTemplate="{StaticResource TrackTemplate}"
+                                            IsItemClickEnabled="True"
+                                            RelativePanel.AlignLeftWithPanel="True"
+                                            RelativePanel.AlignRightWithPanel="True"
+                                            FirstItemBackground="Transparent"
+                                            SecondItemBackground="{ThemeResource SystemControlBackgroundListLowBrush}">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="ItemClick">
+                            <core:InvokeCommandAction Command="{Binding PlayUserTracksCommand}"
+                                                      InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </controls:AlternateListView>
+            </PivotItem>
+            <PivotItem Header="Коллекция" />
+        </Pivot>
+    </Grid>
 </mvvm:SessionStateAwarePage>
 
