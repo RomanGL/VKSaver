@@ -31,21 +31,16 @@ namespace VKSaver.Views
             _isTracksVisible = true;
 
             base.OnNavigatedTo(navigationEventArgs);
-            
-            //var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("Track");
-            //if (animation != null)
-            //{
-            //    animation.TryStart(this.TrackItem);
-            //}
+
+            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("TrackBlock");
+            animation?.TryStart(TrackBlock);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            WindowThemeHelper.ShowTitleBar();
             plBackground.Stop();
 
-            //if (e.NavigationMode == NavigationMode.Back)
-            //    ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("Track", TrackItem);
+            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("TrackBlock", TrackBlock);
 
             base.OnNavigatingFrom(e);
         }

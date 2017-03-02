@@ -13,6 +13,14 @@
     <SolidColorBrush x:Key="AccentLowBrush"
                      Color="{StaticResource AccentLowColor}" />
 
+    <LinearGradientBrush x:Key="AppGradientBrush"
+                         EndPoint="1,1"
+                         StartPoint="0,0">
+        <GradientStop Color="Orange" />
+        <GradientStop Color="#FFFF006F"
+                      Offset="1" />
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="ListAccentHighBrush"
                      Color="{StaticResource AccentHighColor}"
                      Opacity="0.9" />
@@ -42,7 +50,15 @@
                         ImageSource="../Assets/img1.dark.jpg"
                         Stretch="UniformToFill"
                         AlignmentX="Left" />
+            <ImageBrush x:Key="KoiBackground"
+                        ImageSource="../Assets/Background/Koi.dark.png"
+                        Stretch="UniformToFill"
+                        AlignmentX="Right"
+                        AlignmentY="Top"
+                        Opacity="0.04"/>
+
             <x:String x:Key="WithoutCatBackgroundString">ms-appx:///Assets/img2.dark.jpg</x:String>
+            
             <controls:PlayerTheme x:Key="PagePlayerTheme">Black</controls:PlayerTheme>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
@@ -62,7 +78,15 @@
                         ImageSource="../Assets/img1.light.jpg"
                         Stretch="UniformToFill" 
                         AlignmentX="Left"/>
+            <ImageBrush x:Key="KoiBackground"
+                        ImageSource="../Assets/Background/Koi.light.png"
+                        Stretch="UniformToFill"
+                        AlignmentX="Right"
+                        AlignmentY="Top"
+                        Opacity="0.04"/>
+            
             <x:String x:Key="WithoutCatBackgroundString">ms-appx:///Assets/img2.light.jpg</x:String>
+            
             <controls:PlayerTheme x:Key="PagePlayerTheme">Gray</controls:PlayerTheme>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>

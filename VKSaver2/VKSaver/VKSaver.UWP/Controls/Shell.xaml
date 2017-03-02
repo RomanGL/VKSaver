@@ -65,7 +65,8 @@
                 </ListBox>
             </SplitView.Pane>
             <SplitView.Content>
-                <Grid>
+                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                    <Rectangle Fill="{ThemeResource KoiBackground}" />
                     <Border x:Name="ContentBorder" />
                     
                     <Grid x:Name="TitleBar"

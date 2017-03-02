@@ -6,20 +6,14 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:mvvm="using:Prism.Windows.Mvvm"
                             xmlns:viewModels="using:VKSaver.Core.ViewModels"
-                            xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                            xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                            xmlns:player="using:VKSaver.Core.ViewModels"
                             xmlns:converters="using:VKSaver.Converters"
                             mc:Ignorable="d"
-                            controls:Shell.IsTitleBarVisible="False"
-                            controls:Shell.IsMenuButtonVisible="False"
-                            controls:Shell.Title="ВКачай"
+                            controls:SimpleShell.IsPlayerBlockVisible="False"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
-                            d:DataContext="{d:DesignInstance viewModels:PlayerViewModel }"
+                            d:DataContext="{d:DesignInstance viewModels:PlayerViewModel}"
                             RequestedTheme="Dark">
     
     <mvvm:SessionStateAwarePage.Resources>
-        <converters:TimeSpanToSecondsConverter x:Key="TimespanToSecondsConverter" />
         <converters:CurrentTrackToStyleConverter x:Key="CurrentTrackToStyleConverter"
                                                  NormalBrush="White"
                                                  CurrentBrush="{StaticResource AccentHighBrush}" />
@@ -76,7 +70,7 @@
 
         <Grid x:Name="TracksGrid"
               HorizontalAlignment="Right"
-              Margin="0,120,12,60"
+              Margin="0,120,12,82"
               RenderTransformOrigin="0.9,1"
               VerticalAlignment="Bottom">
             <Grid.RenderTransform>
@@ -130,59 +124,96 @@
                      Margin="0,-1,0,0" />
         </Grid>
 
-        <RelativePanel x:Name="AlbumBlock"
+        <RelativePanel x:Name="TrackBlock"
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Left"
-                       Margin="48,0,0,100">
+                       Margin="48,0,0,118">
             <controls:ImagePlaceholder Source="{Binding TrackImage}"
                                        Text="{Binding CurrentTrack.Track.Title}"
                                        Height="160"
                                        Width="160"
-                                       x:Name="AlbumImage"/>
+                                       x:Name="TrackImage"/>
             <TextBlock Text="{Binding CurrentTrack.Track.Title}"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       RelativePanel.RightOf="AlbumImage"
+                       RelativePanel.RightOf="TrackImage"
                        x:Name="TrackTitleBlock"
-                       FontSize="28"
-                       FontWeight="Normal"
+                       FontSize="32"
+                       FontWeight="Bold"
                        Margin="12,0,0,0" />
             <TextBlock Text="{Binding CurrentTrack.Track.Artist}"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       FontWeight="Black"
-                       FontSize="28"
-                       RelativePanel.RightOf="AlbumImage"
+                       x:Name="ArtistNameBlock"
+                       FontWeight="Normal"
+                       RelativePanel.RightOf="TrackImage"
                        RelativePanel.Below="TrackTitleBlock"
-                       Margin="12,0,0,0" />
+                       Margin="12,-4,0,0" />
+            <AppBarButton LabelPosition="Collapsed"
+                          RelativePanel.Below="ArtistNameBlock"
+                          RelativePanel.RightOf="TrackImage"
+                          Command="{Binding AddToMyAudiosCommand}"
+                          CommandParameter="{Binding CurrentTrack}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE006;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
         </RelativePanel>
-        
-        <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    x:Name="SliderBlock"
-                    Margin="0,0,0,12">
-            <Slider Width="350"
+
+        <Grid VerticalAlignment="Bottom"
+              Height="70"
+              x:Name="PlayerBlock"
+              d:DataContext="{d:DesignInstance viewModels:PlayerViewModel }">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock Text="{Binding Position, Converter={StaticResource TimeConverter}}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center" />
+                    <AppBarButton Icon="Previous"
+                                  LabelPosition="Collapsed"
+                                  Command="{Binding PreviousTrackCommand}" />
+                    <AppBarButton Icon="Play"
+                                  LabelPosition="Collapsed"
+                                  Command="{Binding PlayPauseCommand}" />
+                    <AppBarButton Icon="Next"
+                                  LabelPosition="Collapsed"
+                                  Command="{Binding NextTrackCommand}" />
+                    <TextBlock Text="{Binding TimeLeft, Converter={StaticResource TimeConverter}}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Grid.Column="2"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal"
+                            Margin="0,0,12,0">
+                    <AppBarToggleButton Icon="Shuffle"
+                                        LabelPosition="Collapsed"
+                                        IsChecked="{Binding IsShuffleMode, Mode=TwoWay}" />
+                    <AppBarButton Icon="Refresh"
+                                  LabelPosition="Collapsed"
+                                  Command="{Binding NextTrackCommand}" />
+                    <AppBarButton Icon="List"
+                                  LabelPosition="Collapsed"
+                                  Click="ShowTrackButton_OnClick"/>
+                </StackPanel>
+            </Grid>
+
+            <Slider VerticalAlignment="Top"
+                    Margin="0,-20,0,0"
                     Value="{Binding Position, Converter={StaticResource TimespanToSecondsConverter}, Mode=TwoWay}"
-                    Maximum="{Binding Duration, Converter={StaticResource TimespanToSecondsConverter}}" />
-        </StackPanel>
-        
-        <StackPanel HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Orientation="Horizontal"
-                    Margin="0,0,12,12"
-                    x:Name="ControlsBlock">
-            <AppBarButton Icon="Previous"
-                          LabelPosition="Collapsed" 
-                          Command="{Binding PreviousTrackCommand}"/>
-            <AppBarButton Icon="Play"
-                          LabelPosition="Collapsed" 
-                          Command="{Binding PlayPauseCommand}"/>
-            <AppBarButton Icon="Next"
-                          LabelPosition="Collapsed"
-                          Command="{Binding NextTrackCommand}"/>
-            <AppBarButton Icon="List"
-                          LabelPosition="Collapsed"
-                          x:Name="ShowTrackButton"
-                          Click="ShowTrackButton_OnClick" />
-        </StackPanel>
+                    Maximum="{Binding Duration, Converter={StaticResource TimespanToSecondsConverter}}"
+                    Style="{StaticResource PlayerSliderStyle}"
+                    ThumbToolTipValueConverter="{StaticResource SecondsToTimeStringConverter}" />
+        </Grid>
 
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Left"

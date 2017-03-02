@@ -186,10 +186,14 @@
     <Compile Include="Controls\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SimpleShell.xaml.cs">
+      <DependentUpon>SimpleShell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SurfaceLoader.cs" />
     <Compile Include="Controls\ChromeFrame.cs" />
     <Compile Include="Controls\SwipeableSplitView.cs" />
     <Compile Include="Converters\HamburgerItemClickConverter.cs" />
+    <Compile Include="Converters\SecondsToTimeString.cs" />
     <Compile Include="Core\Services\JsonSessionStateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData\MainViewSampleData\MainViewSampleData.xaml.cs">
@@ -218,6 +222,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Background\Background.dark.jpg" />
+    <Content Include="Assets\Background\Koi.dark.png" />
+    <Content Include="Assets\Background\Koi.light.png" />
     <Content Include="Assets\Background\PlayerBackground.png" />
     <Content Include="Assets\ImagePlaceholder.png" />
     <Content Include="Assets\img2.dark.jpg" />
@@ -328,11 +334,22 @@
       <SubType>Designer</SubType>
     </DesignTimeOnly>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Design\" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SimpleShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Converters\ConvertersUwp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\Colors.xaml">
       <SubType>Designer</SubType>
@@ -347,6 +364,16 @@
     <Page Include="Themes\HamburgerButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PivotHeaderItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\Slider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\SwipeableSplitView.xaml">
       <Generator>MSBuild:Compile</Generator>

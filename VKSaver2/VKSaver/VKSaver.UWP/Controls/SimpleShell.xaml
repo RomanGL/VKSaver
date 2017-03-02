@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="VKSaver.Controls.SimpleShell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:VKSaver.Controls"
+             xmlns:viewModels="using:VKSaver.Core.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="480"
+             d:DesignWidth="600">
+    
+    <UserControl.Resources>
+        <Storyboard x:Name="HidePlayerBlockStoryboard">
+            <DoubleAnimation Duration="0:0:0.2"
+                             To="80"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                             Storyboard.TargetName="PlayerBlock"
+                             d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseIn"
+                                     Exponent="4" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="ShowPlayerBlockStoryboard">
+            <DoubleAnimation Duration="0:0:0.2"
+                             To="0"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+                             Storyboard.TargetName="PlayerBlock"
+                             d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="4" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Border x:Name="ContentBorder"
+                Background="{ThemeResource KoiBackground}" />
+
+        <Grid VerticalAlignment="Bottom"
+              Height="70"
+              x:Name="PlayerBlock"
+              d:DataContext="{d:DesignInstance viewModels:PlayerViewModel }"
+              RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <CompositeTransform />
+            </Grid.RenderTransform>
+            <controls:BackDrop BlurAmount="10" />
+            <Rectangle Fill="{ThemeResource AppGradientBrush}"
+                       Opacity="0.1" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            x:Name="TrackBlock"
+                            Tapped="TrackBlock_OnTapped">
+                    <controls:ImagePlaceholder Text="{Binding CurrentTrack.Track.Title}"
+                                               Source="{Binding TrackImage}"
+                                               Width="70"
+                                               x:Name="TrackImage" />
+                    
+                    <StackPanel VerticalAlignment="Center"
+                                Margin="12,-5,0,0">
+                        <TextBlock Text="{Binding CurrentTrack.Track.Title}"
+                                   Style="{StaticResource SubtitleTextBlockStyle}"
+                                   FontWeight="Bold"
+                                   TextTrimming="CharacterEllipsis" />
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                                   Text="{Binding CurrentTrack.Track.Artist}"
+                                   TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock Text="{Binding Position, Converter={StaticResource TimeConverter}}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center" />
+                    <AppBarButton Icon="Previous"
+                                  LabelPosition="Collapsed"
+                                  Command="{Binding PreviousTrackCommand}" />
+                    <AppBarButton Icon="Play"
+                                  LabelPosition="Collapsed"
+                                  Command="{Binding PlayPauseCommand}" />
+                    <AppBarButton Icon="Next"
+                                  LabelPosition="Collapsed"
+                                  Command="{Binding NextTrackCommand}" />
+                    <TextBlock Text="{Binding TimeLeft, Converter={StaticResource TimeConverter}}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Grid.Column="2"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <AppBarToggleButton Icon="Shuffle"
+                                        LabelPosition="Collapsed"
+                                        IsChecked="{Binding IsShuffleMode, Mode=TwoWay}" />
+                    <AppBarButton Icon="Refresh"
+                                  LabelPosition="Collapsed"
+                                  Command="{Binding NextTrackCommand}" />
+                </StackPanel>
+            </Grid>
+
+            <Slider VerticalAlignment="Top"
+                    Margin="0,-20,0,0"
+                    Value="{Binding Position, Converter={StaticResource TimespanToSecondsConverter}, Mode=TwoWay}"
+                    Maximum="{Binding Duration, Converter={StaticResource TimespanToSecondsConverter}}"
+                    Style="{StaticResource PlayerSliderStyle}"
+                    ThumbToolTipValueConverter="{StaticResource SecondsToTimeStringConverter}" />
+        </Grid>
+    </Grid>
+</UserControl>

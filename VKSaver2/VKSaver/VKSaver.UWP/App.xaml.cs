@@ -25,6 +25,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
+using VKSaver.Core.ViewModels;
 using Yandex.Metrica;
 using Yandex.Metrica.Push;
 
@@ -59,23 +60,24 @@ namespace VKSaver
         {
             Dispatcher = Window.Current.Dispatcher;
             SurfaceLoader.Initialize(ElementCompositionPreview.GetElementVisual(rootFrame).Compositor);
-            //ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-            return new Shell(rootFrame);
-            return base.CreateShell(rootFrame);
+
+            var shell = Container.Resolve<SimpleShell>();
+            shell.CurrentFrame = rootFrame;
+            return shell;
         }
 
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             var view = ApplicationView.GetForCurrentView();
 
-            view.TitleBar.ForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
-            view.TitleBar.InactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
+            //view.TitleBar.ForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            //view.TitleBar.InactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
-            view.TitleBar.ButtonForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
-            view.TitleBar.ButtonHoverForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
-            view.TitleBar.ButtonPressedForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            //view.TitleBar.ButtonForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            //view.TitleBar.ButtonHoverForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            //view.TitleBar.ButtonPressedForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
 
-            view.TitleBar.ButtonInactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
+            //view.TitleBar.ButtonInactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
             //view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             //view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;

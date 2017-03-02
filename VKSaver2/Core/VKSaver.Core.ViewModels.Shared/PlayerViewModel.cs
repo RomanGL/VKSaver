@@ -141,6 +141,8 @@ namespace VKSaver.Core.ViewModels
             }
         }
 
+        public TimeSpan TimeLeft { get; set; }
+
         public bool IsPlaying { get; set; }
 
         public int CurrentPivotIndex
@@ -193,6 +195,7 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
+#if !WINDOWS_UWP
             if (!suspending && _isSubscribed)
             {
                 _playerService.TrackChanged -= PlayerService_TrackChanged;
@@ -202,6 +205,7 @@ namespace VKSaver.Core.ViewModels
                 _timer.Stop();
                 _isSubscribed = false;
             }
+#endif
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
@@ -366,6 +370,12 @@ namespace VKSaver.Core.ViewModels
             OnPropertyChanged(nameof(Position));
 
             Duration = _playerService.Duration;
+
+            var timeLeft = Duration - _position;
+            if ((int) timeLeft.TotalSeconds == 1)
+                TimeLeft = TimeSpan.Zero;
+            else
+                TimeLeft = timeLeft;
 
             if (_noPositionUpdates)
                 _noPositionUpdates = false;
