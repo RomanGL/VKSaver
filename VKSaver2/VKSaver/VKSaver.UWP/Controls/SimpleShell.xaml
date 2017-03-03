@@ -6,9 +6,9 @@
              xmlns:controls="using:VKSaver.Controls"
              xmlns:viewModels="using:VKSaver.Core.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="480"
-             d:DesignWidth="600">
-    
+             d:DesignHeight="640"
+             d:DesignWidth="640">
+
     <UserControl.Resources>
         <Storyboard x:Name="HidePlayerBlockStoryboard">
             <DoubleAnimation Duration="0:0:0.2"
@@ -34,15 +34,76 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
+
+        <Style x:Key="PlayerButtonStyle"
+               TargetType="AppBarButton">
+            <Setter Property="LabelPosition"
+                    Value="Collapsed" />
+            <Setter Property="Width"
+                    Value="48" />
+        </Style>
     </UserControl.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="WindowSizeText"/>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="Size1">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Size0">
+                    <VisualState.Setters>
+                        <Setter Target="PlayerRightBlock.(UIElement.Visibility)"
+                                Value="Collapsed" />
+                        <Setter Target="TrackImage.(UIElement.Visibility)"
+                                Value="Collapsed" />
+                        <Setter Target="CurrentTime.(UIElement.Visibility)"
+                                Value="Collapsed" />
+                        <Setter Target="LeftTime.(UIElement.Visibility)"
+                                Value="Collapsed" />
+                        <Setter Target="PlayerCenterBlock.(Grid.Column)"
+                                Value="2" />
+                        <Setter Target="PlayerCenterBlock.(FrameworkElement.HorizontalAlignment)"
+                                Value="Right" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <TextBlock x:Name="WindowSizeText" />
+
+        <Rectangle Fill="{ThemeResource KoiBackground}" />
+
+        <Border x:Name="HeaderBlock"
+                VerticalAlignment="Top"
+                Margin="24,24,0,0">
+            <ListView ItemContainerStyle="{StaticResource HeaderListViewItemStyle}"
+                      x:Name="HeadersList"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      IsMultiSelectCheckBoxEnabled="False">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                                   Style="{StaticResource TitleTextBlockStyle}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+
         <Border x:Name="ContentBorder"
-                Background="{ThemeResource KoiBackground}" />
+                Margin="0,82,0,0" />
 
         <Grid VerticalAlignment="Bottom"
-              Height="70"
+              Height="60"
               x:Name="PlayerBlock"
               d:DataContext="{d:DesignInstance viewModels:PlayerViewModel }"
               RenderTransformOrigin="0.5,0.5">
@@ -53,11 +114,11 @@
             <Rectangle Fill="{ThemeResource AppGradientBrush}"
                        Opacity="0.1" />
 
-            <Grid>
+            <Grid x:Name="PlayerContentGrid">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal"
@@ -65,42 +126,49 @@
                             Tapped="TrackBlock_OnTapped">
                     <controls:ImagePlaceholder Text="{Binding CurrentTrack.Track.Title}"
                                                Source="{Binding TrackImage}"
-                                               Width="70"
-                                               x:Name="TrackImage" />
-                    
+                                               Width="60"
+                                               x:Name="TrackImage"/>
+
                     <StackPanel VerticalAlignment="Center"
-                                Margin="12,-5,0,0">
+                                Margin="12,-3,0,0">
                         <TextBlock Text="{Binding CurrentTrack.Track.Title}"
-                                   Style="{StaticResource SubtitleTextBlockStyle}"
-                                   FontWeight="Bold"
+                                   Style="{StaticResource BaseTextBlockStyle}"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="NoWrap"
                                    TextTrimming="CharacterEllipsis" />
-                        <TextBlock Style="{StaticResource BodyTextBlockStyle}"
+                        <TextBlock Style="{StaticResource BaseTextBlockStyle}"
                                    Text="{Binding CurrentTrack.Track.Artist}"
-                                   TextTrimming="CharacterEllipsis" />
+                                   TextTrimming="CharacterEllipsis" 
+                                   FontWeight="Normal"
+                                   TextWrapping="NoWrap"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Grid.Column="1"
+                <StackPanel x:Name="PlayerCenterBlock"
+                            Grid.Column="1"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
-                    <TextBlock Text="{Binding Position, Converter={StaticResource TimeConverter}}"
+                    <TextBlock x:Name="CurrentTime"
+                               Text="{Binding Position, Converter={StaticResource TimeConverter}}"
                                Style="{StaticResource BodyTextBlockStyle}"
                                FontWeight="Bold"
                                VerticalAlignment="Center" />
                     <AppBarButton Icon="Previous"
-                                  LabelPosition="Collapsed"
+                                  Style="{StaticResource PlayerButtonStyle}"
                                   Command="{Binding PreviousTrackCommand}" />
                     <AppBarButton Icon="Play"
-                                  LabelPosition="Collapsed"
+                                  Style="{StaticResource PlayerButtonStyle}"
                                   Command="{Binding PlayPauseCommand}" />
                     <AppBarButton Icon="Next"
-                                  LabelPosition="Collapsed"
+                                  Style="{StaticResource PlayerButtonStyle}"
                                   Command="{Binding NextTrackCommand}" />
-                    <TextBlock Text="{Binding TimeLeft, Converter={StaticResource TimeConverter}}"
+                    <TextBlock x:Name="LeftTime"
+                               Text="{Binding TimeLeft, Converter={StaticResource TimeConverter}}"
                                Style="{StaticResource BodyTextBlockStyle}"
                                FontWeight="Bold"
                                VerticalAlignment="Center" />
                 </StackPanel>
-                <StackPanel Grid.Column="2"
+                <StackPanel x:Name="PlayerRightBlock"
+                            Grid.Column="2"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">

@@ -11,6 +11,7 @@ using Microsoft.Practices.Unity;
 using Prism.Windows.Navigation;
 using VKSaver.Common;
 using VKSaver.Core.ViewModels;
+using System.Collections.Generic;
 
 namespace VKSaver.Controls
 {
@@ -31,6 +32,11 @@ namespace VKSaver.Controls
                 );
 
             this.SizeChanged += SimpleShell_SizeChanged;
+
+            HeadersList.ItemsSource = new List<string>
+            {
+                "Заголовок 1", "Заголовок 2", "Заголовок 3"
+            };
         }
 
         private void SimpleShell_SizeChanged(object sender, SizeChangedEventArgs e)
