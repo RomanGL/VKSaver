@@ -17,7 +17,7 @@
                             controls:Shell.IsMenuButtonVisible="False"
                             controls:Shell.Title="ВКачай"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
-                            d:DataContext="{d:DesignInstance viewModels:MainViewModel }">
+                            d:DataContext="{d:DesignData /SampleData/MainViewSampleData/MainViewSampleData.xaml}">
 
     <mvvm:SessionStateAwarePage.Resources>
         <Style x:Key="NarrowListViewItemStyle"
@@ -186,7 +186,7 @@
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="Size2">
+                <VisualState x:Name="Size1040">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="1040" />
                     </VisualState.StateTriggers>
@@ -197,7 +197,7 @@
                                 Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState x:Name="Size1">
+                <VisualState x:Name="Size940">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="940" />
                     </VisualState.StateTriggers>
@@ -220,8 +220,8 @@
 
                         <Setter Target="UserTracksBlock.(RelativePanel.AlignRightWithPanel)"
                                 Value="True" />
-                        <Setter Target="UserTracksBlock.(RelativePanel.AlignTopWithPanel)"
-                                Value="True" />
+                        <Setter Target="UserTracksBlock.(RelativePanel.Below)"
+                                Value="ArtistsFlipView" />
                         <Setter Target="UserTracksBlock.(FrameworkElement.Width)"
                                 Value="Auto" />
                         <Setter Target="ArtistsBlock.(RelativePanel.LeftOf)"
@@ -240,16 +240,6 @@
                                 Value="ArtistsBlock" />
                         <Setter Target="MenuList.(FrameworkElement.Width)"
                                 Value="Auto" />
-                        <Setter Target="RootPivot.(FrameworkElement.Margin)">
-                            <Setter.Value>
-                                <Thickness>0,12,0,0</Thickness>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="MainPivotItem.(FrameworkElement.Margin)">
-                            <Setter.Value>
-                                <Thickness>12,24,0,0</Thickness>
-                            </Setter.Value>
-                        </Setter>
                         <Setter Target="ArtistsBlock.(FrameworkElement.Margin)">
                             <Setter.Value>
                                 <Thickness>0,24,0,0</Thickness>
@@ -260,133 +250,187 @@
                                 <Thickness>0,24,0,0</Thickness>
                             </Setter.Value>
                         </Setter>
+                        <Setter Target="UserTracksBlock.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0,6,0,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="ArtistsFlipView.(UIElement.Visibility)"
+                                Value="Visible" />
+                        <Setter Target="ArtistsBlock.(UIElement.Visibility)"
+                                Value="Collapsed" />
+                        <Setter Target="RootScrollViewer.(Control.Padding)">
+                            <Setter.Value>
+                                <Thickness>0</Thickness>
+                            </Setter.Value>
+                        </Setter>
                     </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Size600">
+                    <VisualState.Setters>
+                        <Setter Target="MenuList.(RelativePanel.AlignLeftWithPanel)"
+                                Value="True" />
+                        <Setter Target="MenuList.(RelativePanel.Below)"
+                                Value="UserTracksBlock" />
+                        <Setter Target="ArtistsBlock.(RelativePanel.RightOf)"
+                                Value="UserTracksBlock" />
+                        <Setter Target="ArtistsBlock.(RelativePanel.AlignRightWithPanel)"
+                                Value="True" />
+                        <Setter Target="ArtistsBlock.(RelativePanel.LeftOf)"
+                                Value="" />
+                        <Setter Target="MenuList.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0,24,0,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="MenuList.(RelativePanel.AlignRightWithPanel)"
+                                Value="False" />
+                        <Setter Target="ArtistsGrid.(UIElement.Visibility)"
+                                Value="Collapsed" />
+                        <Setter Target="ArtistsList.(UIElement.Visibility)"
+                                Value="Visible" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Pivot x:Name="RootPivot"
-               Margin="18,12,0,0">
-            <Pivot.LeftHeaderTemplate>
-                <DataTemplate>
-                    <AppBarButton Icon="Back"
-                                  LabelPosition="Collapsed"
-                                  Margin="12,12,0,-12"
-                                  x:Name="BackButton"
-                                  Click="BackButton_OnClick"
-                                  Loaded="BackButton_OnLoaded" />
-                </DataTemplate>
-            </Pivot.LeftHeaderTemplate>
-            <Pivot.HeaderTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}"
-                               Margin="12,18,0,0" />
-                </DataTemplate>
-            </Pivot.HeaderTemplate>
-            <PivotItem x:Name="MainPivotItem"
-                       Header="Главная"
-                       Margin="12,24,30,0">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <RelativePanel>
-                            <StackPanel x:Name="UserTracksBlock"
-                                        Width="280"
-                                        RelativePanel.AlignLeftWithPanel="True">
-                                <StackPanel Orientation="Horizontal"
-                                            Margin="12,0,0,12">
-                                    <TextBlock Text="Ваши треки"
-                                               Style="{StaticResource BaseTextBlockStyle}"
-                                               FontWeight="Bold" />
-                                    <TextBlock Text="{Binding TotalTracksCount}"
-                                               Style="{StaticResource BaseTextBlockStyle}"
-                                               Foreground="{ThemeResource AccentHighBrush}"
-                                               Margin="12,0,0,0" />
-                                </StackPanel>
-                                <ListView x:Name="TracksList"
-                                          ItemsSource="{Binding UserTracks}"
-                                          ItemTemplate="{StaticResource TrackTemplate}"
-                                          ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
-                                          IsItemClickEnabled="True">
-                                    <interactivity:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="ItemClick">
-                                            <core:InvokeCommandAction Command="{Binding PlayUserTracksCommand}"
-                                                                      InputConverter="{StaticResource ItemClickEventArgsConverter}" />
-                                        </core:EventTriggerBehavior>
-                                    </interactivity:Interaction.Behaviors>
-                                </ListView>
-                            </StackPanel>
-
-                            <StackPanel x:Name="ArtistsBlock"
-                                        RelativePanel.RightOf="UserTracksBlock"
-                                        RelativePanel.LeftOf="MenuList">
-                                <StackPanel Orientation="Horizontal"
-                                            Margin="12,0,0,12">
-                                    <TextBlock Text="Лучшие исполнители"
-                                               Style="{StaticResource BaseTextBlockStyle}"
-                                               FontWeight="Bold" />
-                                </StackPanel>
-                                <GridView ItemsSource="{Binding TopArtistsLF}"
-                                          IsItemClickEnabled="True"
-                                          Margin="12,0,0,0"
-                                          x:Name="ArtistsGrid"
-                                          ItemTemplate="{StaticResource ArtistGridTemplate}">
-                                    <GridView.ItemContainerStyle>
-                                        <Style TargetType="GridViewItem">
-                                            <Setter Property="Padding"
-                                                    Value="6,6,6,6" />
-                                        </Style>
-                                    </GridView.ItemContainerStyle>
-                                </GridView>
-                                <ListView x:Name="ArtistsList"
-                                          Visibility="Collapsed"
-                                          ItemsSource="{Binding TopArtistsLF}"
-                                          ItemTemplate="{StaticResource ArtistListTemplate}"
-                                          IsItemClickEnabled="True"
-                                          ItemContainerStyle="{StaticResource NarrowListViewItemStyle}" />
-                            </StackPanel>
-
-                            <ListView x:Name="MenuList"
-                                      Width="280"
-                                      RelativePanel.AlignRightWithPanel="True">
-                                <ListViewItem Content="Музыка"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                                <ListViewItem Content="Видео"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                                <ListViewItem Content="Документы"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                                <ListViewItem Content="Сообщества"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                                <ListViewItem Content="Друзья"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                                <ListViewItem Content="Новости"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                                <ListViewItem Content="Поиск"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-
-                                <ListViewItem Content="Топ треков"
-                                              Style="{StaticResource MenuListViewItemStyle}"
-                                              Margin="0,32,0,0" />
-                                <ListViewItem Content="Топ исполнителей"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                                <ListViewItem Content="Рекомендации"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                                <ListViewItem Content="Популярные"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-
-                                <ListViewItem Content="Менеджер загрузок"
-                                              Style="{StaticResource MenuListViewItemStyle}"
-                                              Margin="0,32,0,0" />
-                                <ListViewItem Content="Настройки"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                                <ListViewItem Content="О программе"
-                                              Style="{StaticResource MenuListViewItemStyle}" />
-                            </ListView>
-                        </RelativePanel>
-                        <Rectangle Height="82"/>
+        <ScrollViewer x:Name="RootScrollViewer"
+                      VerticalScrollBarVisibility="Auto"
+                      Padding="24,0">
+            <StackPanel>
+                <RelativePanel>
+                    <FlipView x:Name="ArtistsFlipView"
+                              ItemsSource="{Binding TopArtistsLF}"
+                              RelativePanel.AlignLeftWithPanel="True"
+                              RelativePanel.AlignRightWithPanel="True"
+                              RelativePanel.AlignTopWithPanel="True"
+                              Height="200"
+                              Visibility="Collapsed">
+                        <FlipView.ItemTemplate>
+                            <DataTemplate x:DataType="objects:LastArtist">
+                                <Grid>
+                                    <controls:ImagePlaceholder Text="{x:Bind Name}"
+                                                               Source="{x:Bind MainImage.Mega}" />
+                                    <StackPanel VerticalAlignment="Bottom"
+                                                Padding="12,0,12,12">
+                                        <TextBlock Text="{x:Bind Name}"
+                                                   Style="{StaticResource TitleTextBlockStyle}"
+                                                   TextAlignment="Center"
+                                                   TextWrapping="NoWrap"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Foreground="White" />
+                                        <TextBlock TextAlignment="Center"
+                                                   Style="{StaticResource BaseTextBlockStyle}"
+                                                   TextWrapping="NoWrap"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Foreground="White">
+                                                    <Run Text="{x:Bind PlayCount}" />
+                                                    <Run Text="воспроизведений" />
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </FlipView.ItemTemplate>
+                    </FlipView>
+                    <StackPanel x:Name="UserTracksBlock"
+                                Width="280"
+                                RelativePanel.AlignLeftWithPanel="True">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="12,0,0,12">
+                            <TextBlock Text="Ваши треки"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       FontWeight="Bold" />
+                            <TextBlock Text="{Binding TotalTracksCount}"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource AccentHighBrush}"
+                                       Margin="12,0,0,0" />
+                        </StackPanel>
+                        <ListView x:Name="TracksList"
+                                  ItemsSource="{Binding UserTracks}"
+                                  ItemTemplate="{StaticResource TrackTemplate}"
+                                  ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
+                                  IsItemClickEnabled="True">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding PlayUserTracksCommand}"
+                                                              InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </ListView>
                     </StackPanel>
-                </ScrollViewer>
-            </PivotItem>
-        </Pivot>
+
+                    <StackPanel x:Name="ArtistsBlock"
+                                RelativePanel.RightOf="UserTracksBlock"
+                                RelativePanel.LeftOf="MenuList">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="12,0,0,12">
+                            <TextBlock Text="Лучшие исполнители"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       FontWeight="Bold" />
+                        </StackPanel>
+                        <GridView ItemsSource="{Binding TopArtistsLF}"
+                                  IsItemClickEnabled="True"
+                                  Margin="12,0,0,0"
+                                  x:Name="ArtistsGrid"
+                                  ItemTemplate="{StaticResource ArtistGridTemplate}">
+                            <GridView.ItemContainerStyle>
+                                <Style TargetType="GridViewItem">
+                                    <Setter Property="Padding"
+                                            Value="6,6,6,6" />
+                                </Style>
+                            </GridView.ItemContainerStyle>
+                        </GridView>
+                        <ListView x:Name="ArtistsList"
+                                  Visibility="Collapsed"
+                                  ItemsSource="{Binding TopArtistsLF}"
+                                  ItemTemplate="{StaticResource ArtistListTemplate}"
+                                  IsItemClickEnabled="True"
+                                  ItemContainerStyle="{StaticResource NarrowListViewItemStyle}" />
+                    </StackPanel>
+
+                    <ListView x:Name="MenuList"
+                              Width="280"
+                              RelativePanel.AlignRightWithPanel="True">
+                        <ListViewItem Content="Музыка"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                        <ListViewItem Content="Видео"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                        <ListViewItem Content="Документы"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                        <ListViewItem Content="Сообщества"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                        <ListViewItem Content="Друзья"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                        <ListViewItem Content="Новости"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                        <ListViewItem Content="Поиск"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+
+                        <ListViewItem Content="Топ треков"
+                                      Style="{StaticResource MenuListViewItemStyle}"
+                                      Margin="0,32,0,0" />
+                        <ListViewItem Content="Топ исполнителей"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                        <ListViewItem Content="Рекомендации"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                        <ListViewItem Content="Популярные"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+
+                        <ListViewItem Content="Менеджер загрузок"
+                                      Style="{StaticResource MenuListViewItemStyle}"
+                                      Margin="0,32,0,0" />
+                        <ListViewItem Content="Настройки"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                        <ListViewItem Content="О программе"
+                                      Style="{StaticResource MenuListViewItemStyle}" />
+                    </ListView>
+                </RelativePanel>
+                <Rectangle Height="82" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </mvvm:SessionStateAwarePage>
 
