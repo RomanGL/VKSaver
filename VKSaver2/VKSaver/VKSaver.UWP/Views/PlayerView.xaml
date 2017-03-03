@@ -209,6 +209,7 @@
 
             <Slider VerticalAlignment="Top"
                     Margin="0,-20,0,0"
+                    x:Name="PlayerPositionSlider"
                     Value="{Binding Position, Converter={StaticResource TimespanToSecondsConverter}, Mode=TwoWay}"
                     Maximum="{Binding Duration, Converter={StaticResource TimespanToSecondsConverter}}"
                     Style="{StaticResource PlayerSliderStyle}"
@@ -220,12 +221,15 @@
                     VerticalAlignment="Top"
                     Margin="12,12,0,0">
             <AppBarButton Icon="Back"
-                          LabelPosition="Collapsed" />
+                          LabelPosition="Collapsed" 
+                          x:Name="BackButton"
+                          Margin="0,0,12,0"
+                          Click="BackButton_OnClick"/>
             <TextBlock Text="Сейчас играет"
                        Style="{StaticResource TitleTextBlockStyle}"
                        FontWeight="Bold"
                        VerticalAlignment="Center"
-                       Margin="12,0,0,4" />
+                       Margin="0,0,0,4" />
         </StackPanel>
     </Grid>
 </mvvm:SessionStateAwarePage>

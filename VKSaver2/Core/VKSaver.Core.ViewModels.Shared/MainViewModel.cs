@@ -78,6 +78,11 @@ namespace VKSaver.Core.ViewModels
 
         public SimpleStateSupportCollection<Audio> RecommendedTracksVK { get; private set; }
 
+
+#if WINDOWS_UWP
+        public int TotalTracksCount { get; private set; }
+#endif
+
         [DoNotNotify]
         public DelegateCommand<LastTrack> GoToTrackInfoCommand { get; private set; }
 
@@ -218,6 +223,7 @@ namespace VKSaver.Core.ViewModels
                     return new List<Audio>();
 
 #if WINDOWS_UWP
+                TotalTracksCount = response.Data.Count;
                 return response.Data.Items;
 #else
                 FirstTrack = new VKAudioWithImage

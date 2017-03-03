@@ -29,6 +29,13 @@ namespace VKSaver.Controls
                 new Vector2(0.41f, 0.52f),
                 new Vector2(0.00f, 0.94f)
                 );
+
+            this.SizeChanged += SimpleShell_SizeChanged;
+        }
+
+        private void SimpleShell_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            WindowSizeText.Text = $"{e.NewSize.Width}x{e.NewSize.Height}";
         }
 
         [InjectionConstructor]
@@ -61,7 +68,7 @@ namespace VKSaver.Controls
 
         public static readonly DependencyProperty IsPlayerBlockVisibleProperty = DependencyProperty.RegisterAttached(
             "IsPlayerBlockVisible", typeof(bool), typeof(SimpleShell), new PropertyMetadata(true, 
-                (s, e) => GetCurrentShell().UpdatePlayerBlock()));
+                (s, e) => GetCurrentShell()?.UpdatePlayerBlock()));
 
         public static void SetIsPlayerBlockVisible(DependencyObject element, bool value)
         {
@@ -81,6 +88,7 @@ namespace VKSaver.Controls
         private void TrackBlock_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("TrackBlock", TrackBlock);
+
             _navigationService.Navigate("PlayerView", null);
         }
 

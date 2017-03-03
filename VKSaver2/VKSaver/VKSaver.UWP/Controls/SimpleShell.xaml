@@ -37,6 +37,7 @@
     </UserControl.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="WindowSizeText"/>
         <Border x:Name="ContentBorder"
                 Background="{ThemeResource KoiBackground}" />
 
@@ -114,6 +115,7 @@
 
             <Slider VerticalAlignment="Top"
                     Margin="0,-20,0,0"
+                    x:Name="PlayerPositionSlider"
                     Value="{Binding Position, Converter={StaticResource TimespanToSecondsConverter}, Mode=TwoWay}"
                     Maximum="{Binding Duration, Converter={StaticResource TimespanToSecondsConverter}}"
                     Style="{StaticResource PlayerSliderStyle}"
