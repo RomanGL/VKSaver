@@ -8,8 +8,7 @@
                             xmlns:mvvm="using:Prism.Windows.Mvvm"
                             mc:Ignorable="d"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
-                            controls:Shell.IsTitleBarVisible="False"
-                            controls:Shell.Title="Авторизация">
+                            controls:SimpleShell.IsPlayerBlockVisible="False">
 
     <Grid>
         <VisualStateManager.VisualStateGroups>

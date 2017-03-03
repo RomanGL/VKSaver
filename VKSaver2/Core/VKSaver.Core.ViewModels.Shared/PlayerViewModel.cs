@@ -27,6 +27,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using ModernDev.InTouch;
 using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
+using System.Diagnostics;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -54,6 +55,10 @@ namespace VKSaver.Core.ViewModels
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, 
                   playerService, locService, navigationService, purchaseService)
         {
+#if DEBUG
+            Debug.WriteLine("Вызван конструктор PlayerViewModel.");
+#endif
+
             IsReloadButtonSupported = false;
             IsShuffleButtonSupported = false;
             IsPlayButtonSupported = false;

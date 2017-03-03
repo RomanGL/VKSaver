@@ -19,6 +19,7 @@ using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
+using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -69,7 +70,7 @@ namespace VKSaver
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             var view = ApplicationView.GetForCurrentView();
-
+            view.SetPreferredMinSize(new Size(320, 500));
             //view.TitleBar.ForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
             //view.TitleBar.InactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
@@ -202,6 +203,8 @@ namespace VKSaver
                         new ResolvedParameter<ISuspendingService>("s2"),
                         new ResolvedParameter<ISuspendingService>("s3"),
                         new ResolvedParameter<ISuspendingService>("s4"))));
+
+            Container.RegisterType<PlayerViewModel>(new ContainerControlledLifetimeManager());
 
 #if DEBUG
             Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>("l1", new ContainerControlledLifetimeManager());

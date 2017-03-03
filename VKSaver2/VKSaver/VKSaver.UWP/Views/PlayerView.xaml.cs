@@ -30,10 +30,12 @@ namespace VKSaver.Views
             WindowThemeHelper.HideTitleBar();
             _isTracksVisible = true;
 
+            UpdateBackButton();
             base.OnNavigatedTo(navigationEventArgs);
 
-            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("TrackBlock");
-            animation?.TryStart(TrackBlock);
+            var animationService = ConnectedAnimationService.GetForCurrentView();
+
+            animationService.GetAnimation("TrackBlock")?.TryStart(TrackBlock);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -54,6 +56,17 @@ namespace VKSaver.Views
                 ShowTracksStoryboard.Begin();
 
             _isTracksVisible = !_isTracksVisible;
+        }
+
+        private void UpdateBackButton()
+        {
+            if (!Frame.CanGoBack)
+                BackButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void BackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
         }
     }
 }

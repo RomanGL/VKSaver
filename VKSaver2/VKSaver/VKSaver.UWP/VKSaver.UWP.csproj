@@ -379,6 +379,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\DeviceFamily-Mobile\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\DirectAuth\DirectAuthView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
