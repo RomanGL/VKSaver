@@ -73,26 +73,31 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <TextBlock x:Name="WindowSizeText" />
 
-        <Rectangle Fill="{ThemeResource KoiBackground}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Rectangle Fill="{ThemeResource KoiBackground}" 
+                   Grid.RowSpan="2"/>
 
         <Border x:Name="HeaderBlock"
                 VerticalAlignment="Top"
-                Margin="24,24,0,0">
+                Margin="24,24,0,24">
             <ListView ItemContainerStyle="{StaticResource HeaderListViewItemStyle}"
                       x:Name="HeadersList"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                      IsMultiSelectCheckBoxEnabled="False">
+                      SelectionMode="Single">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsStackPanel Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"
+                    <DataTemplate x:DataType="controls:ShellNavigationItem">
+                        <TextBlock Text="{x:Bind Name}"
                                    Style="{StaticResource TitleTextBlockStyle}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -100,13 +105,19 @@
         </Border>
 
         <Border x:Name="ContentBorder"
-                Margin="0,82,0,0" />
+                Grid.Row="1"/>
+
+        <TextBlock x:Name="WindowSizeText"
+                   Grid.RowSpan="2"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top" />
 
         <Grid VerticalAlignment="Bottom"
               Height="60"
               x:Name="PlayerBlock"
               d:DataContext="{d:DesignInstance viewModels:PlayerViewModel }"
-              RenderTransformOrigin="0.5,0.5">
+              RenderTransformOrigin="0.5,0.5"
+              Grid.Row="1">
             <Grid.RenderTransform>
                 <CompositeTransform />
             </Grid.RenderTransform>

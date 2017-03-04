@@ -9,6 +9,7 @@
                             xmlns:converters="using:VKSaver.Converters"
                             mc:Ignorable="d"
                             controls:SimpleShell.IsPlayerBlockVisible="False"
+                            controls:SimpleShell.IsMenuVisible="False"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             d:DataContext="{d:DesignInstance viewModels:PlayerViewModel}"
                             RequestedTheme="Dark">
@@ -216,21 +217,21 @@
                     ThumbToolTipValueConverter="{StaticResource SecondsToTimeStringConverter}" />
         </Grid>
 
-        <StackPanel Orientation="Horizontal"
+        <!--<StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Margin="12,12,0,0">
-            <AppBarButton Icon="Back"
+                    Margin="24,32,0,0">
+            --><!--<AppBarButton Icon="Back"
                           LabelPosition="Collapsed" 
                           x:Name="BackButton"
                           Margin="0,0,12,0"
-                          Click="BackButton_OnClick"/>
+                          Click="BackButton_OnClick"/>--><!--
             <TextBlock Text="Сейчас играет"
                        Style="{StaticResource TitleTextBlockStyle}"
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="0,0,0,4" />
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </mvvm:SessionStateAwarePage>
 

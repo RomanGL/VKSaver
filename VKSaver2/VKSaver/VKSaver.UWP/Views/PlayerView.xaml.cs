@@ -21,20 +21,16 @@ namespace VKSaver.Views
         private void PlayerView_Loaded(object sender, RoutedEventArgs e)
         {
             this.Loaded -= PlayerView_Loaded;
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             plBackground.Start();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs navigationEventArgs)
         {
-            WindowThemeHelper.HideTitleBar();
             _isTracksVisible = true;
 
-            UpdateBackButton();
             base.OnNavigatedTo(navigationEventArgs);
 
             var animationService = ConnectedAnimationService.GetForCurrentView();
-
             animationService.GetAnimation("TrackBlock")?.TryStart(TrackBlock);
         }
 
@@ -56,17 +52,6 @@ namespace VKSaver.Views
                 ShowTracksStoryboard.Begin();
 
             _isTracksVisible = !_isTracksVisible;
-        }
-
-        private void UpdateBackButton()
-        {
-            if (!Frame.CanGoBack)
-                BackButton.Visibility = Visibility.Collapsed;
-        }
-
-        private void BackButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            Frame.GoBack();
         }
     }
 }

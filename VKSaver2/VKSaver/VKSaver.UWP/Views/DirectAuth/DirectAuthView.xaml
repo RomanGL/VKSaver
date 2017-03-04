@@ -248,7 +248,7 @@
 
         <RelativePanel>
             <Grid x:Name="LeftPanel"
-                  Background="{ThemeResource ImageBackgroundBrush}"
+                  Background="{ThemeResource CatImageBrush}"
                   RelativePanel.AlignTopWithPanel="True"
                   RelativePanel.AlignBottomWithPanel="True"
                   RelativePanel.AlignLeftWithPanel="True">

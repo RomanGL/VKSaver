@@ -7,6 +7,13 @@
         <ResourceDictionary Source="Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <Style TargetType="Button">
+        <Setter Property="Background"
+                Value="{ThemeResource AccentHighBrush}"/>
+        <Setter Property="Foreground"
+                Value="White"/>
+    </Style>
+    
     <Style TargetType="controls:TextImage">
         <Setter Property="Width"
                 Value="Auto" />

@@ -452,7 +452,7 @@ Eng: TB</comment>
 Этот параметр всегда можно изменить в настройках.</value>
   </data>
   <data name="FirstInternetSettingsView_Title.Text" xml:space="preserve">
-    <value>Доступ к интернету</value>
+    <value>ДОСТУП К ИНТЕРНЕТУ</value>
   </data>
   <data name="FirstStartRetryView_ContentText.Text" xml:space="preserve">
     <value>Рады видеть вас снова!
@@ -460,32 +460,32 @@ Eng: TB</comment>
 В прошлый раз мы не завершили несколько моментов. Давайте продолжим!</value>
   </data>
   <data name="FirstStartRetryView_ContinueButton.Content" xml:space="preserve">
-    <value>продолжить</value>
+    <value>Продолжить</value>
   </data>
   <data name="FirstStartRetryView_Title.Text" xml:space="preserve">
-    <value>С возвращением!</value>
+    <value>С ВОЗВРАЩЕНИЕМ</value>
   </data>
   <data name="FirstStartView_ContentText.Text" xml:space="preserve">
-    <value>ВКачай необходимо выполнить поиск аудиофайлов на вашем смартфоне, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
+    <value>ВКачай необходимо выполнить поиск аудиофайлов на вашем устройстве, прежде чем вы сможете их воспроизвести (это необходимо выполнить лишь однажды).
 
-Обратите внимание, что ВКачай сможет найти аудиофайлы только в папке Музыка в памяти смартфона или на SD-карте.
+Обратите внимание, что ВКачай сможет найти аудиофайлы только в библиотеке Музыка или на SD-карте.
 
 Далее мы поможем настроить несколько основных параметров приложения. Нажмите кнопку ниже, когда будете готовы.</value>
   </data>
   <data name="FirstStartView_LetsGoButton.Content" xml:space="preserve">
-    <value>приступить</value>
+    <value>Приступить</value>
   </data>
-  <data name="FirstStartView_NoButton.Content" xml:space="preserve">
-    <value>нет</value>
+  <data name="FirstInternetSettingsView_NoButton.Content" xml:space="preserve">
+    <value>Нет</value>
   </data>
   <data name="FirstStartView_Title.Text" xml:space="preserve">
-    <value>Давайте начнем!</value>
+    <value>ДАВАЙТЕ НАЧНЕМ</value>
   </data>
-  <data name="FirstStartView_WiFiButton.Content" xml:space="preserve">
-    <value>только через Wi-Fi</value>
+  <data name="FirstInternetSettingsView_WiFiButton.Content" xml:space="preserve">
+    <value>Только через Wi-Fi</value>
   </data>
-  <data name="FirstStartView_YesButton.Content" xml:space="preserve">
-    <value>да</value>
+  <data name="FirstInternetSettingsView_YesButton.Content" xml:space="preserve">
+    <value>Да</value>
   </data>
   <data name="Language_SystemLanguage_Text" xml:space="preserve">
     <value>из настроек системы</value>
@@ -1334,7 +1334,7 @@ Eng: TB</comment>
 Например, "Шаг 1 из 5".</comment>
   </data>
   <data name="UpdatingDatabaseView_Title.Text" xml:space="preserve">
-    <value>Обновление базы данных</value>
+    <value>ОБНОВЛЕНИЕ БАЗЫ ДАННЫХ</value>
   </data>
   <data name="UpdatingDatabseView_PreparingDatabaseStep_Text" xml:space="preserve">
     <value>Переписываем манускрипты... {0} из {1}</value>
@@ -1630,13 +1630,13 @@ Eng: upload</comment>
 Рекомендуем использовать главную страницу. Вы всегда можете изменить этот параметр в настройках приложения.</value>
   </data>
   <data name="FirstSelectLaunchView_Title.Text" xml:space="preserve">
-    <value>Начальная страница</value>
+    <value>НАЧАЛЬНАЯ СТРАНИЦА</value>
   </data>
   <data name="LaunchView_MainView_Name" xml:space="preserve">
-    <value>главная (рекомендуем)</value>
+    <value>Главная (рекомендуем)</value>
   </data>
   <data name="LaunchView_UserContentView_Name" xml:space="preserve">
-    <value>страница пользователя</value>
+    <value>Страница пользователя</value>
   </data>
   <data name="SettingsView_LaunchView_Text.Text" xml:space="preserve">
     <value>Вы можете выбрать начальную страницу, которая будет открываться при запуске приложения.</value>

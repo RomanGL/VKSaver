@@ -26,6 +26,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
+using VKSaver.Common;
 using VKSaver.Core.ViewModels;
 using Yandex.Metrica;
 using Yandex.Metrica.Push;
@@ -71,6 +72,7 @@ namespace VKSaver
         {
             var view = ApplicationView.GetForCurrentView();
             view.SetPreferredMinSize(new Size(320, 500));
+
             //view.TitleBar.ForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
             //view.TitleBar.InactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
@@ -206,15 +208,15 @@ namespace VKSaver
 
             Container.RegisterType<PlayerViewModel>(new ContainerControlledLifetimeManager());
 
-#if DEBUG
-            Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>("l1", new ContainerControlledLifetimeManager());
-            Container.RegisterType<ILaunchViewResolver, DebugLaunchViewResolver>(new ContainerControlledLifetimeManager(),
-                new InjectionConstructor(
-                    new ResolvedParameter<ILaunchViewResolver>("l1"),
-                    new ResolvedParameter<INavigationService>()));
-#else
+//#if DEBUG
+//            Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>("l1", new ContainerControlledLifetimeManager());
+//            Container.RegisterType<ILaunchViewResolver, DebugLaunchViewResolver>(new ContainerControlledLifetimeManager(),
+//                new InjectionConstructor(
+//                    new ResolvedParameter<ILaunchViewResolver>("l1"),
+//                    new ResolvedParameter<INavigationService>()));
+//#else
             Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>(new ContainerControlledLifetimeManager());
-#endif
+//#endif
 
 #if DEBUG && !FULL
             LoadPurchaseFile();
