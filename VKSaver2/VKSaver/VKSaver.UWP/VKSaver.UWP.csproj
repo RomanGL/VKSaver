@@ -186,7 +186,8 @@
     <Compile Include="Controls\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SimpleShell.xaml.cs">
+    <Compile Include="Controls\SimpleShell\ShellNavigationItem.cs" />
+    <Compile Include="Controls\SimpleShell\SimpleShell.xaml.cs">
       <DependentUpon>SimpleShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SurfaceLoader.cs" />
@@ -202,11 +203,32 @@
     <Compile Include="Views\DirectAuth\DirectAuthView.xaml.cs">
       <DependentUpon>DirectAuthView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FirstStart\FirstSelectLaunchView.xaml.cs">
+      <DependentUpon>FirstSelectLaunchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LibraryView.xaml.cs">
+      <DependentUpon>LibraryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdatingDatabaseView.xaml.cs">
+      <DependentUpon>UpdatingDatabaseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirstStart\FirstInternetSettingsView.xaml.cs">
+      <DependentUpon>FirstInternetSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirstStart\FirstStartRetryView.xaml.cs">
+      <DependentUpon>FirstStartRetryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirstStart\FirstStartView.xaml.cs">
+      <DependentUpon>FirstStartView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlayerView.xaml.cs">
       <DependentUpon>PlayerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PromoView.xaml.cs">
+      <DependentUpon>PromoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
@@ -226,8 +248,6 @@
     <Content Include="Assets\Background\Koi.light.png" />
     <Content Include="Assets\Background\PlayerBackground.png" />
     <Content Include="Assets\ImagePlaceholder.png" />
-    <Content Include="Assets\img2.dark.jpg" />
-    <Content Include="Assets\img2.light.jpg" />
     <Content Include="Assets\Noise.jpg" />
     <Content Include="Assets\NoiseBlack.jpg" />
     <Content Include="Assets\Promo\0.png" />
@@ -269,8 +289,8 @@
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="Assets\img1.light.jpg" />
-    <Content Include="Assets\img1.dark.jpg" />
+    <Content Include="Assets\cat.light.jpg" />
+    <Content Include="Assets\cat.dark.jpg" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <DesignTimeOnly Include="SampleData\MainViewSampleData\MainViewSampleData_Files\image1.jpg">
@@ -342,7 +362,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SimpleShell.xaml">
+    <Page Include="Controls\SimpleShell\SimpleShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -393,6 +413,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\FirstStart\FirstSelectLaunchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LibraryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdatingDatabaseView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FirstStart\FirstInternetSettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FirstStart\FirstStartRetryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FirstStart\FirstStartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\PlayerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -400,6 +444,10 @@
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PromoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TestView.xaml">
       <SubType>Designer</SubType>

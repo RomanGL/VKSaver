@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 
 namespace VKSaver.Common
@@ -18,6 +19,7 @@ namespace VKSaver.Common
             var view = ApplicationView.GetForCurrentView();
             view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
         public static void ShowTitleBar()
