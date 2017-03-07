@@ -1,6 +1,7 @@
 ﻿<mvvm:PrismUnityApplication xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:mvvm="using:Prism.Unity.Windows"
+                            xmlns:themes="using:VKSaver.Themes"
                             x:Class="VKSaver.App">
 
     <mvvm:PrismUnityApplication.Resources>
@@ -17,6 +18,8 @@
                 <ResourceDictionary Source="Themes/Slider.xaml"/>
                 <ResourceDictionary Source="Themes/ShellHeader.xaml" />
                 <ResourceDictionary Source="Themes/Controls.xaml"/>
+                
+                <themes:CommonDictionary/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </mvvm:PrismUnityApplication.Resources>

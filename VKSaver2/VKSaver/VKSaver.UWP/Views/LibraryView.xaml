@@ -1,23 +1,203 @@
 ﻿<mvvm:SessionStateAwarePage x:Class="VKSaver.Views.LibraryView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:VKSaver.Controls"
-      xmlns:mvvm="using:Prism.Windows.Mvvm"
-      xmlns:viewModels="using:VKSaver.Core.ViewModels"
-      mc:Ignorable="d"
-      mvvm:ViewModelLocator.AutoWireViewModel="True"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:controls="using:VKSaver.Controls"
+                            xmlns:mvvm="using:Prism.Windows.Mvvm"
+                            xmlns:viewModels="using:VKSaver.Core.ViewModels"
+                            xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                            xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                            xmlns:behaviors="using:VKSaver.Behaviors"
+                            xmlns:database="using:VKSaver.Core.Models.Database"
+                            xmlns:common="using:VKSaver.Core.ViewModels.Common"
+                            mc:Ignorable="d"
+                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                             d:DataContext="{d:DesignInstance viewModels:LibraryViewModel}">
 
+    <mvvm:SessionStateAwarePage.Resources>
+
+        <CollectionViewSource x:Key="TracksSource"
+                              Source="{Binding Tracks}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Tracks}" />
+        <CollectionViewSource x:Key="ArtistsSource"
+                              Source="{Binding Artists}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Artists}" />
+        <CollectionViewSource x:Key="AlbumsSource"
+                              Source="{Binding Albums}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Albums}" />
+        <CollectionViewSource x:Key="GenresSource"
+                              Source="{Binding Genres}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Genres}" />
+        <CollectionViewSource x:Key="CachedSource"
+                              Source="{Binding Cached}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding Cached}" />
+    </mvvm:SessionStateAwarePage.Resources>
+
     <Grid>
-        <Pivot Style="{StaticResource PivotRightHeadersStyle}">
-            <PivotItem Header="Композиции"/>
-            <PivotItem Header="Исполнители"/>
-            <PivotItem Header="Альбомы"/>
-            <PivotItem Header="Жанры"/>
-            <PivotItem Header="Папки"/>
+        <Pivot Style="{StaticResource PivotRightHeadersStyle}"
+               SelectedIndex="{Binding CurrentPivotIndex, Mode=TwoWay}">
+
+            <!-- Композиции -->
+
+            <PivotItem Header="Композиции"
+                       Margin="24,0,0,0">
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource TracksSource}}"
+                                  IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                                  ItemTemplate="{StaticResource VKSaverTrackWideTemplate}"
+                                  ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
+                                  FooterTemplate="{StaticResource DefaultFooterTemplate}"
+                                  SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
+                            <ListView.GroupStyle>
+                                <GroupStyle HidesIfEmpty="True"
+                                            HeaderTemplate="{StaticResource GroupHeaderAlphaItemTemplate}" />
+                            </ListView.GroupStyle>
+
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding PlayTracksCommand, Mode=OneTime}"
+                                                              InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </core:EventTriggerBehavior>
+                                <behaviors:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                                        SelectAll="{Binding SelectAll}"
+                                                                        Command="{Binding SelectionChangedCommand}" />
+                            </interactivity:Interaction.Behaviors>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource TracksSource}}"
+                                  ItemTemplate="{StaticResource JumpListAlphaItemTemplate}"
+                                  ItemsPanel="{StaticResource JumpListPanelTemplate}"
+                                  FooterTemplate="{StaticResource DefaultFooterTemplate}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </PivotItem>
+
+            <!-- Исполнители -->
+
+            <PivotItem Header="Исполнители"
+                       Margin="24,0,0,0">
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <GridView ItemsSource="{Binding Source={StaticResource ArtistsSource}}"
+                                  ItemTemplate="{StaticResource VKSaverArtistTemplate}"
+                                  ItemContainerStyle="{StaticResource DefaultGridViewItemStyle}"
+                                  FooterTemplate="{StaticResource DefaultFooterTemplate}"
+                                  ItemContainerTransitions="{StaticResource DefaultGridViewTransitions}"
+                                  IsItemClickEnabled="True">
+                            <GridView.GroupStyle>
+                                <GroupStyle HidesIfEmpty="True"
+                                            HeaderTemplate="{StaticResource GroupHeaderAlphaItemTemplate}" />
+                            </GridView.GroupStyle>
+
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding ExecuteItemCommand, Mode=OneTime}"
+                                                              InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </GridView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource ArtistsSource}}"
+                                  ItemTemplate="{StaticResource JumpListAlphaItemTemplate}"
+                                  ItemsPanel="{StaticResource JumpListPanelTemplate}"
+                                  FooterTemplate="{StaticResource DefaultFooterTemplate}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </PivotItem>
+
+            <!-- Альбомы -->
+
+            <PivotItem Header="Альбомы"
+                       Margin="24,0,0,0">
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <GridView ItemsSource="{Binding Source={StaticResource AlbumsSource}}"
+                                  ItemTemplate="{StaticResource VKSaverAlbumTemplate}"
+                                  ItemContainerStyle="{StaticResource DefaultGridViewItemStyle}"
+                                  FooterTemplate="{StaticResource DefaultFooterTemplate}"
+                                  ItemContainerTransitions="{StaticResource DefaultGridViewTransitions}"
+                                  IsItemClickEnabled="True">
+                            <GridView.GroupStyle>
+                                <GroupStyle HidesIfEmpty="True"
+                                            HeaderTemplate="{StaticResource GroupHeaderAlphaItemTemplate}" />
+                            </GridView.GroupStyle>
+
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding ExecuteItemCommand, Mode=OneTime}"
+                                                              InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </GridView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource AlbumsSource}}"
+                                  ItemTemplate="{StaticResource JumpListAlphaItemTemplate}"
+                                  ItemsPanel="{StaticResource JumpListPanelTemplate}"
+                                  FooterTemplate="{StaticResource DefaultFooterTemplate}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </PivotItem>
+
+            <!-- Жанры -->
+            
+            <PivotItem Header="Жанры"
+                       Margin="24,0,0,0">
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <ListView ItemsSource="{Binding Source={StaticResource GenresSource}}"
+                                  ItemTemplate="{StaticResource VKSaverGenreTemplate}"
+                                  ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
+                                  FooterTemplate="{StaticResource DefaultFooterTemplate}"
+                                  IsItemClickEnabled="True">
+                            <ListView.GroupStyle>
+                                <GroupStyle HidesIfEmpty="True"
+                                            HeaderTemplate="{StaticResource GroupHeaderAlphaItemTemplate}" />
+                            </ListView.GroupStyle>
+
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding ExecuteItemCommand, Mode=OneTime}"
+                                                              InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource GenresSource}}"
+                                  ItemTemplate="{StaticResource JumpListAlphaItemTemplate}"
+                                  ItemsPanel="{StaticResource JumpListPanelTemplate}"
+                                  FooterTemplate="{StaticResource DefaultFooterTemplate}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </PivotItem>
+            
+            <!-- Папки -->
+
+            <PivotItem Header="Папки"
+                       Margin="24,0,0,0">
+                <ListView ItemsSource="{Binding Folders}"
+                          ItemTemplate="{StaticResource VKSaverFolderTemplate}"
+                          ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
+                          FooterTemplate="{StaticResource DefaultFooterTemplate}"
+                          IsItemClickEnabled="True">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="ItemClick">
+                            <core:InvokeCommandAction Command="{Binding ExecuteItemCommand, Mode=OneTime}"
+                                                      InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </ListView>
+            </PivotItem>
         </Pivot>
     </Grid>
 </mvvm:SessionStateAwarePage>
-

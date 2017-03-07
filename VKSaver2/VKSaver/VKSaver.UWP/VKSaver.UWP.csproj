@@ -177,6 +177,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\SelectedItemsBindingBehavior.cs" />
+    <Compile Include="Behaviors\WithCommandDependencyObject.cs" />
     <Compile Include="Common\WindowThemeHelper.cs" />
     <Compile Include="Controls\AlternateListView.cs" />
     <Compile Include="Controls\BackDrop.cs" />
@@ -199,6 +201,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData\MainViewSampleData\MainViewSampleData.xaml.cs">
       <DependentUpon>MainViewSampleData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\Common.xaml.cs">
+      <DependentUpon>Common.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DirectAuth\DirectAuthView.xaml.cs">
       <DependentUpon>DirectAuthView.xaml</DependentUpon>
@@ -377,6 +382,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\Common.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -15,10 +15,14 @@ namespace VKSaver.Core.Services.Common
         /// </summary>
         public static string GetCapatibleSource(string originalSource)
         {
+#if WINDOWS_UWP
+            return originalSource;
+#else
             int index = originalSource.IndexOf(STORAGE_MUSIC_FOLDER);
             string newPath = originalSource.Remove(0, index + 6);
 
             return CAPATIBLE_MUSIC_FOLDER_NAME + newPath;
+#endif
         }
 
         public static async Task<StorageFile> GetFileFromCapatibleName(string path)
@@ -30,6 +34,9 @@ namespace VKSaver.Core.Services.Common
                 else if (path.StartsWith("vks-token:"))
                     return await StorageApplicationPermissions.FutureAccessList.GetFileAsync(path.Substring(10));
 
+#if WINDOWS_UWP
+                return await StorageFile.GetFileFromPathAsync(path);
+#else
                 var blocks = path.Split(new char[] { '\\' });
 
                 StorageFolder currentFolder = null;
@@ -49,6 +56,7 @@ namespace VKSaver.Core.Services.Common
                 }
 
                 return file;
+#endif
             }
             catch (Exception)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Windows.Globalization.Collation;
 
@@ -80,6 +81,7 @@ namespace VKSaver.Core.ViewModels.Common
             var keys = characterGroupings.Where(x => x.Label.Count() >= 1)
                 .Select(x => x.Label)
                 .ToDictionary(x => x);
+
             keys["..."] = "\uD83C\uDF10";
 
             // Create groups for each letters
@@ -93,8 +95,21 @@ namespace VKSaver.Core.ViewModels.Common
 
             foreach (var item in query)
             {
-                var sortValue = selector(item);
-                groupDictionary[keys[characterGroupings.Lookup(sortValue)]].Add(item);
+                try
+                {
+                    var sortValue = selector(item);
+                    string lookup = characterGroupings.Lookup(sortValue);
+
+                    string key;
+                    if (!keys.TryGetValue(lookup, out key))
+                        key = "\uD83C\uDF10";
+
+                    groupDictionary[key].Add(item);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
             }
 
             return groupDictionary;
