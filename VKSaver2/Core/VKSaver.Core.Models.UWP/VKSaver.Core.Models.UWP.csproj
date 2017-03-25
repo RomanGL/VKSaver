@@ -209,8 +209,13 @@
       <Project>{7887ebdb-a6b2-400e-9017-c47b606aa8d9}</Project>
       <Name>ModernDev.InTouch.Portable</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileSystem\VKSaver.Core.FileSystem.UWP\VKSaver.Core.FileSystem.UWP.csproj">
+      <Project>{AD1C2053-7582-49B7-902E-43890B5C4D51}</Project>
+      <Name>VKSaver.Core.FileSystem.UWP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems" Label="Shared" />
+  <Import Project="..\VKSaver.Core.Models.Windows\VKSaver.Core.Models.Windows.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

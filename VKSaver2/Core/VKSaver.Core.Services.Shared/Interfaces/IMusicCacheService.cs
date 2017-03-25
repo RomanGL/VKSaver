@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using VKSaver.Core.FileSystem;
 using VKSaver.Core.Models.Common;
-using Windows.Storage;
 
 namespace VKSaver.Core.Services.Interfaces
 {
@@ -13,8 +13,8 @@ namespace VKSaver.Core.Services.Interfaces
 
         Task<IEnumerable<VKSaverAudioFile>> GetCachedFiles();
 
-        Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata);
-        Task PostprocessAudioAsync(StorageFile file, VKSaverAudio metadata);
+        Task<bool> ConvertAudioToVKSaverFormat(IFile file, VKSaverAudio metadata);
+        Task PostprocessAudioAsync(IFile file, VKSaverAudio metadata);
 
         Task<bool> ClearMusicCache();
     }

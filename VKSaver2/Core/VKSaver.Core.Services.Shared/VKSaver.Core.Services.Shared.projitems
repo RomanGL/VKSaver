@@ -15,12 +15,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)AppNotificationsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AudioEncryptedStream.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\DownloadsExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\EncryptionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\FileSizeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\InTouchExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\LFAuthorization.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\MediaStreamSourceWorker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\MusicFilesPathHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\TaskQueue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ToastAudioHelper.cs" />
@@ -34,8 +32,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\UploadsDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DialogsService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DownloadsService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DownloadsService2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DownloadsServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EmailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FeedbackService.cs" />
@@ -119,12 +115,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)TypedEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadsPostprocessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadsPreprocessor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UploadsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadsServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKAdService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKLoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKSaverNavigationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VksmExtractionService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VksmExtraction\ExtractingProgressChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VksmExtraction\SearchingProgressChangedEventArgs.cs" />
   </ItemGroup>

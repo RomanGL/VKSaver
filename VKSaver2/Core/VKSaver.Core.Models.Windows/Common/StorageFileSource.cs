@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using VKSaver.Core.FileSystem;
 using Windows.Storage;
 
 namespace VKSaver.Core.Models.Common
@@ -17,9 +18,11 @@ namespace VKSaver.Core.Models.Common
 
         public void Dispose() { }
 
-        public StorageFile GetFile()
+        public IFile GetFile()
         {
-            return _file;
+            // TODO: IFile
+            throw new NotImplementedException("IFile");
+            //return _file;
         }
 
         public Stream GetDataStream()

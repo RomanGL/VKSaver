@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8c46f496-c865-41e9-9fb6-65ff5f7ba257</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VKSaver.Core.Services</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DownloadsExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\MediaStreamSourceWorker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DownloadsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DownloadsService2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UploadsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VksmExtractionService.cs" />
+  </ItemGroup>
+</Project>

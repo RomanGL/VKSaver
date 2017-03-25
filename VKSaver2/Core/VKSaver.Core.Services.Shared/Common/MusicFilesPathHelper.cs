@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using VKSaver.Core.FileSystem;
+
+#if !ANDROID
 using Windows.Storage;
 using Windows.Storage.AccessCache;
+#endif
 
 namespace VKSaver.Core.Services.Common
 {
@@ -25,27 +26,30 @@ namespace VKSaver.Core.Services.Common
 #endif
         }
 
-        public static async Task<StorageFile> GetFileFromCapatibleName(string path)
+        public static async Task<IFile> GetFileFromCapatibleName(string path)
         {
+#if ANDROID
+            throw new NotImplementedException("IFile");
+#else
             try
             {
                 if (path.StartsWith("http"))
                     return null;
                 else if (path.StartsWith("vks-token:"))
-                    return await StorageApplicationPermissions.FutureAccessList.GetFileAsync(path.Substring(10));
+                    return new File(await StorageApplicationPermissions.FutureAccessList.GetFileAsync(path.Substring(10)));
 
 #if WINDOWS_UWP
-                return await StorageFile.GetFileFromPathAsync(path);
+                return new File(await StorageFile.GetFileFromPathAsync(path));
 #else
                 var blocks = path.Split(new char[] { '\\' });
 
-                StorageFolder currentFolder = null;
-                StorageFile file = null;
+                IFolder currentFolder = null;
+                IFile file = null;
 
                 for (int i = 0; i < blocks.Length; i++)
                 {
                     if (i == 0 && blocks[0] == CAPATIBLE_MUSIC_FOLDER_NAME)
-                        currentFolder = KnownFolders.MusicLibrary;
+                        currentFolder = new Folder(KnownFolders.MusicLibrary);
                     else if (i == blocks.Length - 1)
                     {
                         file = await currentFolder.GetFileAsync(blocks[i]);
@@ -62,6 +66,7 @@ namespace VKSaver.Core.Services.Common
             {
                 return null;
             }
+#endif
         }
 
         public const string CAPATIBLE_MUSIC_FOLDER_NAME = "RootMusic";

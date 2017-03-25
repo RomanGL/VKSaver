@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#if !ANDROID
 using VideoExtractor.Models;
 using VideoExtractor.Vimeo;
+#endif
 
 namespace VKSaver.Core.LinksExtractor
 {
@@ -24,6 +27,9 @@ namespace VKSaver.Core.LinksExtractor
 
         private async Task<List<IVideoLink>> GetVimeoLinks(string videoUrl)
         {
+#if ANDROID
+            throw new NotImplementedException("Vimeo. Android.");
+#else
             try
             {
                 int index = videoUrl.IndexOf("/video/");
@@ -48,6 +54,7 @@ namespace VKSaver.Core.LinksExtractor
             {
                 throw new LinksExtractionFailedException("Vimeo", videoUrl);
             }
+#endif
         }
 
         private async Task<List<IVideoLink>> GetYouTubeLinks(string videoUrl)

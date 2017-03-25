@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Windows.Storage;
+using VKSaver.Core.FileSystem;
 
 namespace VKSaver.Core.Models.Common
 {
@@ -17,15 +17,15 @@ namespace VKSaver.Core.Models.Common
         /// </summary>
         /// <param name="file">Файл с данными.</param>
         /// <exception cref="ArgumentNullException"/>
-        public VKSaverAudioFile(StorageFile file)
+        public VKSaverAudioFile(IFile file)
         {
             if (file == null)
                 throw new ArgumentNullException(nameof(file));
 
             _file = file;
         }
-         
-        public StorageFile File { get { return _file; } }
+        
+        public IFile File { get { return _file; } }
 
         public async Task<Stream> GetContentStreamAsync()
         {
@@ -86,7 +86,7 @@ namespace VKSaver.Core.Models.Common
         private ZipFile _zip;
         private Stream _fileStream;
 
-        private readonly StorageFile _file;
+        private readonly IFile _file;
         private readonly object _lockObject = new object();
 
         private const string CONTENT_ENTRY_NAME = "content.vks";

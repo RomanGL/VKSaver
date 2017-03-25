@@ -1,14 +1,14 @@
-﻿using System;
+﻿#if WINDOWS_UWP || WINDOWS_PHONE_APP
+using Windows.Storage.AccessCache;
+#endif
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using VKSaver.Core.FileSystem;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Player;
-using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
-using Windows.Storage;
-using Windows.Storage.AccessCache;
 
 namespace VKSaver.Core.Services
 {
@@ -19,18 +19,19 @@ namespace VKSaver.Core.Services
             _playerService = playerService;
         }
 
-        public Task ProcessFiles(IEnumerable<IStorageItem> filesToOpen)
+        public Task ProcessFiles(IEnumerable<IFile> filesToOpen)
         {
             return Task.Run(async () => await ProcessFilesInternal(filesToOpen));
         }
 
-        private async Task ProcessFilesInternal(IEnumerable<IStorageItem> filesToOpen)
+        private async Task ProcessFilesInternal(IEnumerable<IFile> filesToOpen)
         {
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
             StorageApplicationPermissions.FutureAccessList.Clear();
 
             var tracks = new List<PlayerTrack>(filesToOpen.Count());
 
-            foreach (StorageFile item in filesToOpen)
+            foreach (var item in filesToOpen.Cast<IWindowsFile>())
             {
                 var cachedData = new VKSaverAudioFile(item);
                 var info = await cachedData.GetMetadataAsync();
@@ -42,13 +43,16 @@ namespace VKSaver.Core.Services
                     VKInfo = info.VK
                 };
 
-                string token = StorageApplicationPermissions.FutureAccessList.Add(item);
+                string token = StorageApplicationPermissions.FutureAccessList.Add(item.StorageFile);
                 track.Source = $"vks-token:{token}";
 
                 tracks.Add(track);
             }
 
             await _playerService.PlayNewTracks(tracks, 0);
+#else
+            throw new NotImplementedException();
+#endif
         }
 
         private readonly IPlayerService _playerService;

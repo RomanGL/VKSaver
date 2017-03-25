@@ -137,12 +137,17 @@
       <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
       <Name>IF.Lastfm.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileSystem\VKSaver.Core.FileSystem.WP\VKSaver.Core.FileSystem.WP.csproj">
+      <Project>{40a1882e-0394-4517-a908-265a2b943e41}</Project>
+      <Name>VKSaver.Core.FileSystem.WP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
       <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
       <Name>VKSaver.Core.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems" Label="Shared" />
+  <Import Project="..\VKSaver.Core.Services.Windows\VKSaver.Core.Services.Windows.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

@@ -8,9 +8,13 @@ using VKSaver.Core.Models.Database;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Database;
 using VKSaver.Core.Services.Interfaces;
-using Windows.Storage;
-using Windows.Storage.Search;
 using System.IO;
+using VKSaver.Core.Models;
+using VKSaver.Core.FileSystem;
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+using Windows.Storage;
+#endif
 
 namespace VKSaver.Core.Services
 {
@@ -55,10 +59,17 @@ namespace VKSaver.Core.Services
             catch (Exception ex)
             {
                 _logService.LogException(ex);
-
                 _database.CloseConnection();
-                var dbFile = await ApplicationData.Current.LocalFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);
-                await dbFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+
+                IFolder localFolder = null;
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+                localFolder = new Folder(ApplicationData.Current.LocalFolder);
+#else
+                // TODO: Folder.
+#endif
+                var dbFile = await localFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);
+                await dbFile.DeleteAsync(true);
 
                 UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Completed });
             }
@@ -327,10 +338,19 @@ namespace VKSaver.Core.Services
         {
             _current = 0;
             _total = 0;
-            await RecursiveScanFolder(KnownFolders.MusicLibrary);
+
+            Folder baseFolder;
+
+#if ANDROID
+            throw new NotImplementedException("IFolder");
+#else
+            baseFolder = new Folder(KnownFolders.MusicLibrary);
+#endif
+
+            await RecursiveScanFolder(baseFolder);
         }
 
-        private async Task RecursiveScanFolder(StorageFolder folder)
+        private async Task RecursiveScanFolder(IFolder folder)
         {
             var folders = await folder.GetFoldersAsync();
             foreach (var childFolder in folders)
@@ -352,7 +372,7 @@ namespace VKSaver.Core.Services
                 _folders[zFolder.Path] = zFolder;
             }
 
-            var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery);
+            var files = await folder.GetFilesAsync();
             _total += files.Count;
 
             OnSearchingFilesProgressChanged();
@@ -374,7 +394,7 @@ namespace VKSaver.Core.Services
             await _database.InsertItems(tracks);
         }
 
-        private async Task<VKSaverTrack> GetTrackInfo(StorageFile file)
+        private async Task<VKSaverTrack> GetTrackInfo(IFile file)
         {
             VKSaverTrack track = null;
 
@@ -393,7 +413,7 @@ namespace VKSaver.Core.Services
             return track;
         }
 
-        private async Task<VKSaverTrack> ProcessMp3File(StorageFile file)
+        private async Task<VKSaverTrack> ProcessMp3File(IFile file)
         {
             var properties = await file.Properties.GetMusicPropertiesAsync();
 
@@ -426,7 +446,7 @@ namespace VKSaver.Core.Services
             return track;
         }
 
-        private async Task<VKSaverTrack> ProcessVKSaverAudioFile(StorageFile file)
+        private async Task<VKSaverTrack> ProcessVKSaverAudioFile(IFile file)
         {
             using (var audioFile = new VKSaverAudioFile(file))
             {
@@ -537,15 +557,12 @@ namespace VKSaver.Core.Services
 
         private void OnPreparingDatabaseProgressChanged()
         {
-            if (UpdateProgressChanged != null)
+            UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs
             {
-                UpdateProgressChanged(this, new DBUpdateProgressChangedEventArgs
-                {
-                    Step = DatabaseUpdateStepType.PreparingDatabase,
-                    TotalItems = _total,
-                    CurrentItem = _current
-                });
-            }
+                Step = DatabaseUpdateStepType.PreparingDatabase,
+                TotalItems = _total,
+                CurrentItem = _current
+            });
         }
 
         private int _current;

@@ -1,6 +1,6 @@
 ﻿#if WINDOWS_UWP
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #endif
 

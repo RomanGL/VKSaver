@@ -16,6 +16,7 @@ using NotificationsExtensions.ToastContent;
 using Windows.UI.Notifications;
 using VKSaver.Core.Services.Common;
 using Windows.Data.Xml.Dom;
+using VKSaver.Core.FileSystem;
 
 namespace VKSaver.Core.Services
 {
@@ -139,7 +140,7 @@ namespace VKSaver.Core.Services
                 OperationGuid = e.Key.Guid,
                 Name = e.Value.Name,
                 ContentType = e.Value.ContentType,
-                Status = e.Key.Progress.Status,
+                Status = (VKSaverTransferStatus)(int)e.Key.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Key.Progress.TotalBytesToReceive),
                 ProcessedSize = FileSize.FromBytes(e.Key.Progress.BytesReceived)
             });
@@ -188,7 +189,7 @@ namespace VKSaver.Core.Services
         {
             var part = new BackgroundTransferContentPart(fieldName, $"{upload.Uploadable.Name}{upload.Uploadable.Extension}");
             part.SetHeader("Content-Type", upload.Uploadable.Source.GetContentType());
-            part.SetFile(upload.Uploadable.Source.GetFile());
+            part.SetFile(((IWindowsFile)upload.Uploadable.Source).StorageFile);
             return part;
         }
         
@@ -333,7 +334,7 @@ namespace VKSaver.Core.Services
                 OperationGuid = e.Guid,
                 Name = upload.Name,
                 ContentType = upload.ContentType,
-                Status = e.Progress.Status,
+                Status = (VKSaverTransferStatus)(int)e.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToSend),
                 ProcessedSize = FileSize.FromBytes(e.Progress.BytesSent)
             });

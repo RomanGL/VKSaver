@@ -1,0 +1,113 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.Android", "VKSaver\VKSaver.Android\VKSaver.Android.csproj", "{B2A493A2-D5D5-48B3-8991-E3F2D8E6006C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5B770740-889D-4A1A-A0EF-33BBB61C91A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.Core.ViewModels.Android", "Core\VKSaver.Core.ViewModels.Android\VKSaver.Core.ViewModels.Android.csproj", "{B1952994-5280-446C-BBAE-B72FCA7287BC}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VKSaver.Core.ViewModels.Shared", "Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.shproj", "{EE806675-BC95-4321-8EA0-50FFCD9CA647}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.Core.Services.Android", "Core\VKSaver.Core.Services.Android\VKSaver.Core.Services.Android.csproj", "{070418B9-4FE7-46D3-AF36-62F974D2E88A}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VKSaver.Core.Services.Shared", "Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.shproj", "{6BC8895B-5D84-4BD5-B053-413B8DEB763E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.Core.Models.Android", "Core\VKSaver.Core.Models.Android\VKSaver.Core.Models.Android.csproj", "{7E565A6D-145C-4A31-84B2-2FCA02F8423E}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VKSaver.Core.Models.Shared", "Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.shproj", "{469617F5-AEBB-4030-9011-B7B7658C32EE}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VKSaver.Core.LinksExtractor.Shared", "Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.shproj", "{79A9DC02-D964-4DEE-A7F8-857C2DC08E03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.Core.LinksExtractor.Android", "Core\VKSaver.Core.LinksExtractor.Android\VKSaver.Core.LinksExtractor.Android.csproj", "{35D55AD7-BE4B-47D4-B53B-8FDC223720E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "thirdparty", "thirdparty", "{4C9D4451-B1B6-449D-A712-A365C3146F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernDev.InTouch.Portable", "..\thirdparty\InTouch\ModernDev.InTouch.Portable\ModernDev.InTouch.Portable.csproj", "{7887EBDB-A6B2-400E-9017-C47B606AA8D9}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ModernDev.InTouch.Shared", "..\thirdparty\InTouch\ModernDev.InTouch.Shared\ModernDev.InTouch.Shared.shproj", "{FC97EA26-E93D-4853-AE7F-695D80CD68B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Core", "..\thirdparty\lastfm\src\IF.Lastfm.Core\IF.Lastfm.Core.csproj", "{3CF4B78F-8B48-49CB-942F-83DB13474A4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.SQLite", "..\thirdparty\lastfm\src\IF.Lastfm.SQLite\IF.Lastfm.SQLite.csproj", "{09D7D389-7D67-45B7-90EC-B1D20693DBC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernDev.InTouch.Tests", "..\thirdparty\InTouch\ModernDev.InTouch.Tests\ModernDev.InTouch.Tests.csproj", "{09BFF450-70F2-4F76-AD3B-971883368FDA}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems*{070418b9-4fe7-46d3-af36-62f974d2e88a}*SharedItemsImports = 4
+		Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems*{35d55ad7-be4b-47d4-b53b-8fdc223720e1}*SharedItemsImports = 4
+		Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems*{469617f5-aebb-4030-9011-b7b7658c32ee}*SharedItemsImports = 13
+		Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems*{6bc8895b-5d84-4bd5-b053-413b8deb763e}*SharedItemsImports = 13
+		..\thirdparty\InTouch\ModernDev.InTouch.Shared\ModernDev.InTouch.Shared.projitems*{7887ebdb-a6b2-400e-9017-c47b606aa8d9}*SharedItemsImports = 4
+		Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems*{79a9dc02-d964-4dee-a7f8-857c2dc08e03}*SharedItemsImports = 13
+		Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems*{7e565a6d-145c-4a31-84b2-2fca02f8423e}*SharedItemsImports = 4
+		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{b1952994-5280-446c-bbae-b72fca7287bc}*SharedItemsImports = 4
+		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{ee806675-bc95-4321-8ea0-50ffcd9ca647}*SharedItemsImports = 13
+		..\thirdparty\InTouch\ModernDev.InTouch.Shared\ModernDev.InTouch.Shared.projitems*{fc97ea26-e93d-4853-ae7f-695d80cd68b8}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2A493A2-D5D5-48B3-8991-E3F2D8E6006C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A493A2-D5D5-48B3-8991-E3F2D8E6006C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A493A2-D5D5-48B3-8991-E3F2D8E6006C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B2A493A2-D5D5-48B3-8991-E3F2D8E6006C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A493A2-D5D5-48B3-8991-E3F2D8E6006C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A493A2-D5D5-48B3-8991-E3F2D8E6006C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B1952994-5280-446C-BBAE-B72FCA7287BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1952994-5280-446C-BBAE-B72FCA7287BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1952994-5280-446C-BBAE-B72FCA7287BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1952994-5280-446C-BBAE-B72FCA7287BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{070418B9-4FE7-46D3-AF36-62F974D2E88A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{070418B9-4FE7-46D3-AF36-62F974D2E88A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{070418B9-4FE7-46D3-AF36-62F974D2E88A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{070418B9-4FE7-46D3-AF36-62F974D2E88A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E565A6D-145C-4A31-84B2-2FCA02F8423E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E565A6D-145C-4A31-84B2-2FCA02F8423E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E565A6D-145C-4A31-84B2-2FCA02F8423E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E565A6D-145C-4A31-84B2-2FCA02F8423E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35D55AD7-BE4B-47D4-B53B-8FDC223720E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D55AD7-BE4B-47D4-B53B-8FDC223720E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D55AD7-BE4B-47D4-B53B-8FDC223720E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D55AD7-BE4B-47D4-B53B-8FDC223720E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7887EBDB-A6B2-400E-9017-C47B606AA8D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7887EBDB-A6B2-400E-9017-C47B606AA8D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7887EBDB-A6B2-400E-9017-C47B606AA8D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7887EBDB-A6B2-400E-9017-C47B606AA8D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF4B78F-8B48-49CB-942F-83DB13474A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF4B78F-8B48-49CB-942F-83DB13474A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF4B78F-8B48-49CB-942F-83DB13474A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF4B78F-8B48-49CB-942F-83DB13474A4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D7D389-7D67-45B7-90EC-B1D20693DBC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D7D389-7D67-45B7-90EC-B1D20693DBC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D7D389-7D67-45B7-90EC-B1D20693DBC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D7D389-7D67-45B7-90EC-B1D20693DBC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09BFF450-70F2-4F76-AD3B-971883368FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09BFF450-70F2-4F76-AD3B-971883368FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09BFF450-70F2-4F76-AD3B-971883368FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09BFF450-70F2-4F76-AD3B-971883368FDA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1952994-5280-446C-BBAE-B72FCA7287BC} = {5B770740-889D-4A1A-A0EF-33BBB61C91A3}
+		{EE806675-BC95-4321-8EA0-50FFCD9CA647} = {5B770740-889D-4A1A-A0EF-33BBB61C91A3}
+		{070418B9-4FE7-46D3-AF36-62F974D2E88A} = {5B770740-889D-4A1A-A0EF-33BBB61C91A3}
+		{6BC8895B-5D84-4BD5-B053-413B8DEB763E} = {5B770740-889D-4A1A-A0EF-33BBB61C91A3}
+		{7E565A6D-145C-4A31-84B2-2FCA02F8423E} = {5B770740-889D-4A1A-A0EF-33BBB61C91A3}
+		{469617F5-AEBB-4030-9011-B7B7658C32EE} = {5B770740-889D-4A1A-A0EF-33BBB61C91A3}
+		{79A9DC02-D964-4DEE-A7F8-857C2DC08E03} = {5B770740-889D-4A1A-A0EF-33BBB61C91A3}
+		{35D55AD7-BE4B-47D4-B53B-8FDC223720E1} = {5B770740-889D-4A1A-A0EF-33BBB61C91A3}
+		{7887EBDB-A6B2-400E-9017-C47B606AA8D9} = {4C9D4451-B1B6-449D-A712-A365C3146F89}
+		{FC97EA26-E93D-4853-AE7F-695D80CD68B8} = {4C9D4451-B1B6-449D-A712-A365C3146F89}
+		{3CF4B78F-8B48-49CB-942F-83DB13474A4F} = {4C9D4451-B1B6-449D-A712-A365C3146F89}
+		{09D7D389-7D67-45B7-90EC-B1D20693DBC5} = {4C9D4451-B1B6-449D-A712-A365C3146F89}
+		{09BFF450-70F2-4F76-AD3B-971883368FDA} = {4C9D4451-B1B6-449D-A712-A365C3146F89}
+	EndGlobalSection
+EndGlobal

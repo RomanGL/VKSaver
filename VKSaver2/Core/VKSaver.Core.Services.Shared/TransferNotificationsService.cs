@@ -5,7 +5,6 @@ using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
-using Windows.Networking.BackgroundTransfer;
 
 namespace VKSaver.Core.Services
 {
@@ -65,10 +64,10 @@ namespace VKSaver.Core.Services
         {
             AppNotification notification = null;
             _notifications.TryGetValue(e.OperationGuid, out notification);
-
+            
             if (notification == null)
             {
-                if (e.Status == BackgroundTransferStatus.Running)
+                if (e.Status == VKSaverTransferStatus.Running)
                 {
                     notification = new AppNotification
                     {
@@ -99,7 +98,7 @@ namespace VKSaver.Core.Services
             }
             else
             {
-                if (e.Status == BackgroundTransferStatus.Running)
+                if (e.Status == VKSaverTransferStatus.Running)
                 {
                     notification.ProgressPercent = e.TotalSize.Bytes == 0 ? 0 : e.ProcessedSize.Bytes / (e.TotalSize.Bytes / 100);
                     notification.Content = String.Format(_locService["TransferView_SizeMask_Text"],
@@ -112,7 +111,7 @@ namespace VKSaver.Core.Services
                 }
             }
 
-            if (e.Status == BackgroundTransferStatus.Error)
+            if (e.Status == VKSaverTransferStatus.Error)
             {
                 _appNotificationsService.SendNotification(new AppNotification
                 {
@@ -124,7 +123,7 @@ namespace VKSaver.Core.Services
                 });
                 _notifications.Remove(e.OperationGuid);
             }
-            else if (e.Status == BackgroundTransferStatus.Completed)
+            else if (e.Status == VKSaverTransferStatus.Completed)
             {
                 if (type == TransferType.Download)
                 {

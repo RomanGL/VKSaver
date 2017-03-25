@@ -29,14 +29,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\IVKSaverFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\LanguageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NewsMediaItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\StorageFileSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKAudioInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKDirectAuthResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudio.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudioFile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudioFileSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudioTrackInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudioVKInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverTransferStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverAlbum.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverArtist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverFolder.cs" />

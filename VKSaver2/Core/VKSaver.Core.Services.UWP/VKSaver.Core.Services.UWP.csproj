@@ -215,12 +215,20 @@
       <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
       <Name>IF.Lastfm.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileSystem\VKSaver.Core.FileSystem.UWP\VKSaver.Core.FileSystem.UWP.csproj">
+      <Project>{ad1c2053-7582-49b7-902e-43890b5c4d51}</Project>
+      <Name>VKSaver.Core.FileSystem.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VKSaver.Core.Models.UWP\VKSaver.Core.Models.UWP.csproj">
       <Project>{65fe87d2-65b8-4643-a538-4e33a2d815de}</Project>
       <Name>VKSaver.Core.Models.UWP</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
   <Import Project="..\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems" Label="Shared" />
+  <Import Project="..\VKSaver.Core.Services.Windows\VKSaver.Core.Services.Windows.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

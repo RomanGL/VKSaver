@@ -1,12 +1,18 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Threading.Tasks;
+
+#if ANDROID
+using System.Net.Http;
+#else
 using Windows.Web.Http;
+#endif
 
 namespace VKSaver.Core.LinksExtractor
 {
     internal static class HtmlHelper
     {
+        private const string USER_AGENT = "Mozilla/5.0 (compatible; MSIE 11.0; Windows Phone 8.1; Trident/6.0; IEMobile/11.0; ARM; Touch; NOKIA; Lumia 930)";
         private static HttpClient client;
 
         /// <summary>
@@ -15,7 +21,12 @@ namespace VKSaver.Core.LinksExtractor
         static HtmlHelper()
         {
             client = new HttpClient();
-            client.DefaultRequestHeaders["User-Agent"] = "Mozilla/5.0 (compatible; MSIE 11.0; Windows Phone 8.1; Trident/6.0; IEMobile/11.0; ARM; Touch; NOKIA; Lumia 930)";
+
+#if ANDROID
+            client.DefaultRequestHeaders.Add("User-Agent", USER_AGENT);
+#else
+            client.DefaultRequestHeaders["User-Agent"] = USER_AGENT;
+#endif
         }
 
         /// <summary>

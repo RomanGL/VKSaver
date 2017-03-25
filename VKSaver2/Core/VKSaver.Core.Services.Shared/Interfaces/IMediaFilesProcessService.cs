@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Windows.Storage;
+using VKSaver.Core.FileSystem;
 
 namespace VKSaver.Core.Services.Interfaces
 {
     public interface IMediaFilesProcessService
     {
-        Task ProcessFiles(IEnumerable<IStorageItem> filesToOpen);
+        Task ProcessFiles(IEnumerable<IFile> filesToOpen);
     }
 }

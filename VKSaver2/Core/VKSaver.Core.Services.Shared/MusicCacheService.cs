@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
-using Windows.Storage;
-using Windows.Storage.Search;
+using VKSaver.Core.FileSystem;
 
 namespace VKSaver.Core.Services
 {
@@ -24,12 +23,12 @@ namespace VKSaver.Core.Services
             _converterQueue = new TaskQueue();
         }
 
-        public Task PostprocessAudioAsync(StorageFile file, VKSaverAudio metadata)
+        public Task PostprocessAudioAsync(IFile file, VKSaverAudio metadata)
         {
             return _converterQueue.Enqueue(() => PostprocessAudioInternal(file, metadata));
         }
 
-        public Task<bool> ConvertAudioToVKSaverFormat(StorageFile file, VKSaverAudio metadata)
+        public Task<bool> ConvertAudioToVKSaverFormat(IFile file, VKSaverAudio metadata)
         {
             if (metadata == null)
                 return Task.FromResult(false);
@@ -56,7 +55,7 @@ namespace VKSaver.Core.Services
             try
             {
                 var folder = await GetCacheFolder();
-                var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery, offset, count);
+                var files = await folder.GetFilesAsync(offset, count);
                 
                 return files.Select(f => new VKSaverAudioFile(f));
             }
@@ -72,7 +71,7 @@ namespace VKSaver.Core.Services
             try
             {
                 var folder = await GetCacheFolder();
-                var files = await folder.GetFilesAsync(CommonFileQuery.DefaultQuery);
+                var files = await folder.GetFilesAsync();
 
                 return files.Where(f => f.FileType == FILES_EXTENSION)
                     .Select(f => new VKSaverAudioFile(f));
@@ -89,7 +88,7 @@ namespace VKSaver.Core.Services
             try
             {
                 var folder = await GetCacheFolder();
-                await folder.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                await folder.DeleteAsync(true);
                 return true;
             }
             catch (Exception ex)
@@ -99,7 +98,7 @@ namespace VKSaver.Core.Services
             }
         }
 
-        private async Task PostprocessAudioInternal(StorageFile file, VKSaverAudio metadata)
+        private async Task PostprocessAudioInternal(IFile file, VKSaverAudio metadata)
         {
             if (metadata == null)
                 return;
@@ -110,9 +109,9 @@ namespace VKSaver.Core.Services
             await _libraryDatabseService.InsertDownloadedTrack(metadata, Path.GetDirectoryName(file.Path), file.Path);
         }
 
-        private async Task<bool> ConvertAudioToVKSaverFormatInternal(StorageFile file, VKSaverAudio metadata)
+        private async Task<bool> ConvertAudioToVKSaverFormatInternal(IFile file, VKSaverAudio metadata)
         {
-            StorageFile zipFile = null;
+            IFile zipFile = null;
             Stream zipFileStream = null;
             Stream fileStream = null;
 
@@ -121,8 +120,9 @@ namespace VKSaver.Core.Services
                 var cacheFolder = await GetCacheFolder();
                 zipFile = await cacheFolder.CreateFileAsync(file.Name.Split(new char[] { '.' })[0] + FILES_EXTENSION,
                     CreationCollisionOption.ReplaceExisting);
-                zipFileStream = (await zipFile.OpenAsync(FileAccessMode.ReadWrite)).AsStream();
-                fileStream = (await file.OpenAsync(FileAccessMode.Read)).AsStreamForRead();
+
+                zipFileStream = await zipFile.OpenAsync(FileAccessMode.ReadWrite);
+                fileStream = await file.OpenAsync(FileAccessMode.Read);
 
                 var propertiesToRetrieve = new List<string>();
 
@@ -164,7 +164,7 @@ namespace VKSaver.Core.Services
 
                 zipFileStream?.Dispose();
                 zipFileStream = null;
-                await zipFile?.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                await zipFile?.DeleteAsync(true);
                 return false;
             }
             finally
@@ -188,16 +188,22 @@ namespace VKSaver.Core.Services
             zipStream.CloseEntry();
         }
 
-        private static async Task<StorageFile> GetCachedFile(string fileName)
+        private static async Task<IFile> GetCachedFile(string fileName)
         {
             var cacheFolder = await GetCacheFolder();
             return await cacheFolder.GetFileAsync(fileName);
         }
 
-        private static async Task<StorageFolder> GetCacheFolder()
+        private static async Task<IFolder> GetCacheFolder()
         {
-            return await KnownFolders.MusicLibrary.CreateFolderAsync(
-                MUSIC_CACHE_FOLDER_NAME, CreationCollisionOption.OpenIfExists);
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+            var folder = await Windows.Storage.KnownFolders.MusicLibrary.CreateFolderAsync(
+                    MUSIC_CACHE_FOLDER_NAME, Windows.Storage.CreationCollisionOption.OpenIfExists);
+            return new Folder(folder);
+#else
+            // TODO;
+            throw new NotImplementedException();
+#endif
         }
 
         private readonly TaskQueue _converterQueue;

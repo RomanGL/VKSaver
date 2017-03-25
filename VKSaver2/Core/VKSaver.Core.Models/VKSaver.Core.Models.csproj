@@ -89,8 +89,13 @@
       <Project>{7887ebdb-a6b2-400e-9017-c47b606aa8d9}</Project>
       <Name>ModernDev.InTouch.Portable</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileSystem\VKSaver.Core.FileSystem.WP\VKSaver.Core.FileSystem.WP.csproj">
+      <Project>{40A1882E-0394-4517-A908-265A2B943E41}</Project>
+      <Name>VKSaver.Core.FileSystem.WP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems" Label="Shared" />
+  <Import Project="..\VKSaver.Core.Models.Windows\VKSaver.Core.Models.Windows.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
