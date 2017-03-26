@@ -13,6 +13,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileAccessMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IFileProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MusicProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NameCollisionOption.cs" />
   </ItemGroup>
 </Project>

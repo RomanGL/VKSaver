@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Store;
 using ModernDev.InTouch;
 using Newtonsoft.Json;
 using VKSaver.Core.Models;

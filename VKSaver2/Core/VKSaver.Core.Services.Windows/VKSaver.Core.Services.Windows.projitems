@@ -11,9 +11,18 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Common\DownloadsExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\MediaStreamSourceWorker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ToastAudioHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\SQLitePlatformZ.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DialogsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DownloadsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DownloadsService2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EmailService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FeedbackService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GrooveMusicService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImagesCacheService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoundService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VKSaverNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VksmExtractionService.cs" />
   </ItemGroup>
 </Project>

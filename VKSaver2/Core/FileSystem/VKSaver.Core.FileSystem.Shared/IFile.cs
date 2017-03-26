@@ -9,8 +9,10 @@ namespace VKSaver.Core.FileSystem
         string DisplayName { get; }
         string FileType { get; }
         string Path { get; }
+        IFileProperties Properties { get; }
 
         Task<Stream> OpenAsync(FileAccessMode accessMode);
         Task DeleteAsync(bool isPermanent);
+        Task RenameAsync(string desiredName, NameCollisionOption option);
     }
 }

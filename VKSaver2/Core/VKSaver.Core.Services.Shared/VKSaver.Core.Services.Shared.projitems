@@ -21,23 +21,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\LFAuthorization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\MusicFilesPathHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\TaskQueue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ToastAudioHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKAuthorization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\DatabaseUpdateStepType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\DBUpdateProgressChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\LibraryDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\LibraryDatabaseCleaner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\SQLiteApiZ.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\SQLitePlatformZ.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\UploadsDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\VKSaverDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DialogsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DownloadsServiceHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EmailService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FeedbackService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GrooveMusicService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpFileService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ImagesCacheService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAdsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAppLoaderService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAppNotificationsPresenter.cs" />
@@ -106,7 +99,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceRelease.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\StoreConstants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SoundService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SuspendingServicesManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransferNotificationsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferOperationErrorEventArgs.cs" />
@@ -118,7 +110,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)UploadsServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKAdService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKLoginService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VKSaverNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VksmExtraction\ExtractingProgressChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VksmExtraction\SearchingProgressChangedEventArgs.cs" />
   </ItemGroup>

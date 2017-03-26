@@ -339,14 +339,12 @@ namespace VKSaver.Core.Services
             _current = 0;
             _total = 0;
 
-            Folder baseFolder;
-
+            IFolder baseFolder;
 #if ANDROID
             throw new NotImplementedException("IFolder");
 #else
             baseFolder = new Folder(KnownFolders.MusicLibrary);
 #endif
-
             await RecursiveScanFolder(baseFolder);
         }
 

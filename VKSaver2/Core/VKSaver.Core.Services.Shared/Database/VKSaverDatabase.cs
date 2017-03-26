@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
+using VKSaver.Core.FileSystem;
 
 namespace VKSaver.Core.Services.Database
 {
@@ -27,8 +27,13 @@ namespace VKSaver.Core.Services.Database
         {
             try
             {
-                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(
-                    databaseName, CreationCollisionOption.OpenIfExists);
+                IFolder folder = null;
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+                folder = new Folder(Windows.Storage.ApplicationData.Current.LocalFolder);
+#else
+                throw new NotImplementedException();
+#endif
+                var file = await folder.CreateFileAsync(databaseName, CreationCollisionOption.OpenIfExists);
                 return file.Path;
             }
             catch (Exception)

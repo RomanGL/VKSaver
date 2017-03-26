@@ -44,7 +44,7 @@ namespace VKSaver.Core.Services
                 OperationGuid = e.Guid,
                 Name = GetOperationNameFromFileName(e.ResultFile.Name),
                 ContentType = GetContentTypeFromExtension(e.ResultFile.FileType),
-                Status = e.Progress.Status,
+                Status = (VKSaverTransferStatus)(int)e.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
                 ProcessedSize = FileSize.FromBytes(e.Progress.BytesReceived)
             }).ToArray();
@@ -227,7 +227,7 @@ namespace VKSaver.Core.Services
                 OperationGuid = e.Guid,
                 Name = GetOperationNameFromFileName(e.ResultFile.Name),
                 ContentType = GetContentTypeFromExtension(e.ResultFile.FileType),
-                Status = e.Progress.Status,
+                Status = (VKSaverTransferStatus)(int)e.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
                 ProcessedSize = FileSize.FromBytes(e.Progress.BytesReceived)
             });

@@ -56,6 +56,14 @@ namespace VKSaver.Core.FileSystem
             }
         }
 
+        public IFileProperties Properties
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public Task DeleteAsync(bool isPermanent)
         {
             throw new NotImplementedException();
@@ -73,6 +81,11 @@ namespace VKSaver.Core.FileSystem
                 var stream = await _storageFile.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite);
                 return stream.AsStream();
             }
+        }
+
+        public Task RenameAsync(string desiredName, NameCollisionOption option)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -60,7 +60,7 @@ namespace VKSaver.Core.Services.Common
                 }
                 else
                 {
-                    _fileData = new VKSaverAudioFile(_file);
+                    _fileData = new VKSaverAudioFile(new FileSystem.File(_file));
                 }
                                 
                 _fileStream = await _fileData.GetContentStreamAsync();

@@ -73,7 +73,7 @@ namespace VKSaver.Core.Services
                 OperationGuid = e.Guid,
                 Name = GetOperationNameFromFile(e.ResultFile),
                 ContentType = GetContentTypeFromExtension(e.ResultFile.FileType),
-                Status = e.Progress.Status,
+                Status = (VKSaverTransferStatus)(int)e.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
                 ProcessedSize = FileSize.FromBytes(e.Progress.BytesReceived)
             }).ToArray();
@@ -357,7 +357,7 @@ namespace VKSaver.Core.Services
                         VKSaverAudio metadata = null;
                         _musicDownloads.TryGetValue(fileName, out metadata);
 
-                        await _musicCacheService.PostprocessAudioAsync((StorageFile)operation.ResultFile, metadata);
+                        await _musicCacheService.PostprocessAudioAsync(new FileSystem.File((StorageFile)operation.ResultFile), metadata);
                     }
                 }
             }
@@ -399,7 +399,7 @@ namespace VKSaver.Core.Services
                 OperationGuid = e.Guid,
                 Name = GetOperationNameFromFile(e.ResultFile),
                 ContentType = GetContentTypeFromExtension(e.ResultFile.FileType),
-                Status = e.Progress.Status,
+                Status = (VKSaverTransferStatus)(int)e.Progress.Status,
                 TotalSize = FileSize.FromBytes(e.Progress.TotalBytesToReceive),
                 ProcessedSize = FileSize.FromBytes(e.Progress.BytesReceived)
             });

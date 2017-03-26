@@ -87,7 +87,7 @@ namespace VKSaver.Core.Services
             try
             {
                 VKSaverAudio metadata = null;
-                using (var audioFile = new VKSaverAudioFile(file))
+                using (var audioFile = new VKSaverAudioFile(new FileSystem.File(file)))
                 {
                     metadata = await audioFile.GetMetadataAsync();
                     using (var sourceStream = await audioFile.GetContentStreamAsync())
