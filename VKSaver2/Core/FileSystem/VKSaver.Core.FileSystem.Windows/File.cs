@@ -10,63 +10,30 @@ namespace VKSaver.Core.FileSystem
     public sealed class File : IWindowsFile, IFile
     {
         private readonly StorageFile _storageFile;
+        private readonly IFileProperties _fileProperties;
 
         public File(StorageFile storageFile)
         {
+            if (storageFile == null)
+                throw new ArgumentNullException(nameof(storageFile));
+
             _storageFile = storageFile;
+            _fileProperties = new FileProperties(storageFile);
         }
 
-        public StorageFile StorageFile
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public StorageFile StorageFile => _storageFile;
+        public string DisplayName => _storageFile.DisplayName;
+        public string FileType => _storageFile.FileType;
+        public string Name => _storageFile.Name;
+        public string Path => _storageFile.Path;
+        public IFileProperties Properties => _fileProperties;
 
-        public string DisplayName
+        public Task DeleteAsync(bool isPermanent = true)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string FileType
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string Path
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public IFileProperties Properties
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Task DeleteAsync(bool isPermanent)
-        {
-            throw new NotImplementedException();
+            return _storageFile.DeleteAsync(isPermanent ? 
+                StorageDeleteOption.PermanentDelete : 
+                StorageDeleteOption.Default)
+                .AsTask();
         }
 
         public async Task<Stream> OpenAsync(FileAccessMode accessMode)
@@ -85,7 +52,8 @@ namespace VKSaver.Core.FileSystem
 
         public Task RenameAsync(string desiredName, NameCollisionOption option)
         {
-            throw new NotImplementedException();
+            var winOption = (Windows.Storage.NameCollisionOption)(int)option;
+            return _storageFile.RenameAsync(desiredName, winOption).AsTask();
         }
     }
 }

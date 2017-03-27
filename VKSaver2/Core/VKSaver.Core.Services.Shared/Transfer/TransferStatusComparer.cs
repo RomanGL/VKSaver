@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
-using Windows.Networking.BackgroundTransfer;
+using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.Services
 {
     /// <summary>
     /// Используется для сравнения статуса загрузки.
     /// </summary>
-    public class TransferStatusComparer : IComparer<BackgroundTransferStatus>
+    public class TransferStatusComparer : IComparer<VKSaverTransferStatus>
     {
         /// <summary>
         /// Сравнивает два элемента статуса передачи данных.
         /// </summary>
         /// <param name="x">Первый сравниваемый элемент.</param>
         /// <param name="y">Второй сравниваемый элемент.</param>
-        public int Compare(BackgroundTransferStatus x, BackgroundTransferStatus y)
+        public int Compare(VKSaverTransferStatus x, VKSaverTransferStatus y)
         {
             if (x == y) return 0;
-            if (x == BackgroundTransferStatus.Running)
+            if (x == VKSaverTransferStatus.Running)
                 return -1;
-            else if (y == BackgroundTransferStatus.Running)
+            else if (y == VKSaverTransferStatus.Running)
                 return 1;
             else
             {

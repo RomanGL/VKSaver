@@ -215,6 +215,10 @@
       <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
       <Name>IF.Lastfm.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileSystem\VKSaver.Core.FileSystem.UWP\VKSaver.Core.FileSystem.UWP.csproj">
+      <Project>{ad1c2053-7582-49b7-902e-43890b5c4d51}</Project>
+      <Name>VKSaver.Core.FileSystem.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VKSaver.Core.LinksExtractor.UWP\VKSaver.Core.LinksExtractor.UWP.csproj">
       <Project>{df4da91e-2448-4e8a-a62c-28a9f3aa779d}</Project>
       <Name>VKSaver.Core.LinksExtractor.UWP</Name>

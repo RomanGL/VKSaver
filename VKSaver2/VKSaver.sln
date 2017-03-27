@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VKSaver", "VKSaver", "{5E94328A-054A-4920-A2E8-39FB09AC4B97}"
 EndProject
@@ -581,6 +581,8 @@ Global
 		{8A78FE74-730A-4D36-8C44-32DF960AD957}.ReleaseWP8.1|x86.ActiveCfg = Release|Any CPU
 		{8A78FE74-730A-4D36-8C44-32DF960AD957}.ReleaseWP8.1|x86.Build.0 = Release|Any CPU
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.Debug|Any CPU.Build.0 = Debug|x86
+		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.Debug|ARM.ActiveCfg = Debug|ARM
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.Debug|ARM.Build.0 = Debug|ARM
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -591,6 +593,8 @@ Global
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.Debug|x86.Build.0 = Debug|x86
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.Debug|x86.Deploy.0 = Debug|x86
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.DebugFull|Any CPU.ActiveCfg = DebugFull|x86
+		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.DebugFull|Any CPU.Build.0 = DebugFull|x86
+		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.DebugFull|Any CPU.Deploy.0 = DebugFull|x86
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.DebugFull|ARM.ActiveCfg = DebugFull|ARM
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.DebugFull|ARM.Build.0 = DebugFull|ARM
 		{773A3619-C084-40DA-A5FE-EDB2D26F9212}.DebugFull|ARM.Deploy.0 = DebugFull|ARM

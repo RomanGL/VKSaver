@@ -10,7 +10,6 @@ using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Transfer;
-using Windows.Networking.BackgroundTransfer;
 
 namespace VKSaver.Core.ViewModels.Transfer
 {
@@ -41,7 +40,7 @@ namespace VKSaver.Core.ViewModels.Transfer
         public Guid OperationGuid { get { return _operation.OperationGuid; } }
         public string Name { get { return _operation.Name; } }
         public FileContentType ContentType { get { return _operation.ContentType; } }
-        public BackgroundTransferStatus Status { get { return _operation.Status; } }
+        public VKSaverTransferStatus Status { get { return _operation.Status; } }
         public FileSize TotalSize { get { return _operation.TotalSize; } }
         public FileSize ProcessedSize { get { return _operation.ProcessedSize; } }
 
@@ -66,11 +65,11 @@ namespace VKSaver.Core.ViewModels.Transfer
         {
             get
             {
-                return Status == BackgroundTransferStatus.PausedByApplication ||
-                    Status == BackgroundTransferStatus.PausedCostedNetwork ||
-                    Status == BackgroundTransferStatus.PausedNoNetwork ||
-                    Status == BackgroundTransferStatus.Error ||
-                    Status == BackgroundTransferStatus.Idle;
+                return Status == VKSaverTransferStatus.PausedByApplication ||
+                    Status == VKSaverTransferStatus.PausedCostedNetwork ||
+                    Status == VKSaverTransferStatus.PausedNoNetwork ||
+                    Status == VKSaverTransferStatus.Error ||
+                    Status == VKSaverTransferStatus.Idle;
             }
         }
 

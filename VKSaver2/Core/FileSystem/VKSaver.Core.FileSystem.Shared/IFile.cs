@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace VKSaver.Core.FileSystem
@@ -12,7 +13,7 @@ namespace VKSaver.Core.FileSystem
         IFileProperties Properties { get; }
 
         Task<Stream> OpenAsync(FileAccessMode accessMode);
-        Task DeleteAsync(bool isPermanent);
+        Task DeleteAsync(bool isPermanent = true);
         Task RenameAsync(string desiredName, NameCollisionOption option);
     }
 }

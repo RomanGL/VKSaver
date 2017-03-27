@@ -30,6 +30,11 @@ using VKSaver.Common;
 using VKSaver.Core.ViewModels;
 using Yandex.Metrica;
 using Yandex.Metrica.Push;
+using System.Linq;
+using VKSaver.Core.FileSystem;
+using Windows.Storage;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Store;
 
 namespace VKSaver
 {
@@ -332,7 +337,8 @@ namespace VKSaver
                 }
             }
 
-            await mediaFilesProcessService.ProcessFiles(args.Files);
+            var files = args.Files.Select(f => new File((StorageFile)f));
+            await mediaFilesProcessService.ProcessFiles(files);
         }
 
         protected override Task OnSuspendingApplicationAsync()

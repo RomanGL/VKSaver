@@ -12,7 +12,7 @@ namespace VKSaver.Core.FileSystem
         public string Album { get; internal set; }
         public string AlbumArtist { get; internal set; }
         public string Artist { get; internal set; }
-        public string Bitrate { get; internal set; }
+        public uint Bitrate { get; internal set; }
         public IList<string> Composers { get; internal set; }
         public IList<string> Conductors { get; internal set; }
         public TimeSpan Duration { get; internal set; }

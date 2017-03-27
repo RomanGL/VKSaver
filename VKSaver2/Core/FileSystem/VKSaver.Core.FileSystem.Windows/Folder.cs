@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Search;
 
 namespace VKSaver.Core.FileSystem
 {
@@ -11,63 +14,67 @@ namespace VKSaver.Core.FileSystem
 
         public Folder(StorageFolder folder)
         {
+            if (folder == null)
+                throw new ArgumentNullException(nameof(folder));
+
             _folder = folder;
         }
 
-        public string DisplayName
+        public string DisplayName => _folder.DisplayName;
+        public string Path => _folder.Path;
+
+        public async Task<IFile> CreateFileAsync(string desiredName)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            var file = await _folder.CreateFileAsync(desiredName);
+            return new File(file);
         }
 
-        public string Path
+        public async Task<IFile> CreateFileAsync(string desiredName, CreationCollisionOption options)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            var winOptions = (Windows.Storage.CreationCollisionOption)(int)options;
+            var file = await _folder.CreateFileAsync(desiredName, winOptions);
+            return new File(file);
         }
 
-        public Task<IFile> CreateFileAsync(string desiredName)
+        public Task DeleteAsync(bool isPermanent = true)
         {
-            throw new NotImplementedException();
+            return _folder.DeleteAsync(isPermanent ?
+                StorageDeleteOption.PermanentDelete :
+                StorageDeleteOption.Default)
+                .AsTask();
         }
 
-        public Task<IFile> CreateFileAsync(string desiredName, CreationCollisionOption options)
+        public async Task<IFile> GetFileAsync(string name)
         {
-            throw new NotImplementedException();
+            var file = await _folder.GetFileAsync(name);
+            return new File(file);
         }
 
-        public Task DeleteAsync(bool isPermanent)
+        public async Task<IReadOnlyList<IFile>> GetFilesAsync()
         {
-            throw new NotImplementedException();
+            var files = await _folder.GetFilesAsync();
+            var fsFiles = files.Select(f => new File(f)).ToList();
+            return new ReadOnlyCollection<File>(fsFiles);
         }
 
-        public Task<IFile> GetFileAsync(string name)
+        public async Task<IReadOnlyList<IFile>> GetFilesAsync(uint startIndex, uint maxItemsToRetrieve)
         {
-            throw new NotImplementedException();
+            var files = await _folder.GetFilesAsync(CommonFileQuery.DefaultQuery, startIndex, maxItemsToRetrieve);
+            var fsFiles = files.Select(f => new File(f)).ToList();
+            return new ReadOnlyCollection<File>(fsFiles);
         }
 
-        public Task<IReadOnlyList<IFile>> GetFilesAsync()
+        public async Task<IFolder> GetFolderAsync(string name)
         {
-            throw new NotImplementedException();
+            var folder = await _folder.GetFolderAsync(name);
+            return new Folder(folder);
         }
 
-        public Task<IReadOnlyList<IFile>> GetFilesAsync(uint startIndex, uint maxItemsToRetrieve)
+        public async Task<IReadOnlyList<IFolder>> GetFoldersAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IFolder> GetFolderAsync(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IReadOnlyList<IFolder>> GetFoldersAsync()
-        {
-            throw new NotImplementedException();
+            var folders = await _folder.GetFoldersAsync(CommonFolderQuery.DefaultQuery);
+            var fsFolders = folders.Select(f => new Folder(f)).ToList();
+            return new ReadOnlyCollection<Folder>(fsFolders);
         }
     }
 }

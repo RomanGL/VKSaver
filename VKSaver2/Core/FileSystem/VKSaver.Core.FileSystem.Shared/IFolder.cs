@@ -20,6 +20,6 @@ namespace VKSaver.Core.FileSystem
         Task<IFile> CreateFileAsync(string desiredName);
         Task<IFile> CreateFileAsync(string desiredName, CreationCollisionOption options);
 
-        Task DeleteAsync(bool isPermanent);
+        Task DeleteAsync(bool isPermanent = true);
     }
 }

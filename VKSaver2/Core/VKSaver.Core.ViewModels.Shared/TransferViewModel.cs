@@ -16,9 +16,7 @@ using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
-using VKSaver.Core.Services.Transfer;
 using VKSaver.Core.ViewModels.Transfer;
-using Windows.Networking.BackgroundTransfer;
 using Windows.UI.Core;
 
 namespace VKSaver.Core.ViewModels
@@ -144,8 +142,8 @@ namespace VKSaver.Core.ViewModels
                 var item = Downloads.FirstOrDefault(d => d.OperationGuid == e.OperationGuid);
                 if (item == null)
                 {
-                    if (e.Status != BackgroundTransferStatus.Completed &&
-                        e.Status != BackgroundTransferStatus.Canceled)
+                    if (e.Status != VKSaverTransferStatus.Completed &&
+                        e.Status != VKSaverTransferStatus.Canceled)
                         return;
 
                     Downloads.Add(new TransferItemViewModel(e, _locService));
@@ -156,8 +154,8 @@ namespace VKSaver.Core.ViewModels
                 else
                     item.Operation = e;
 
-                if (item.Status == BackgroundTransferStatus.Completed ||
-                    item.Status == BackgroundTransferStatus.Canceled)
+                if (item.Status == VKSaverTransferStatus.Completed ||
+                    item.Status == VKSaverTransferStatus.Canceled)
                     Downloads.Remove(item);
 
                 if (Downloads.Count == 0)
@@ -180,8 +178,8 @@ namespace VKSaver.Core.ViewModels
                 var item = Uploads.FirstOrDefault(d => d.OperationGuid == e.OperationGuid);
                 if (item == null)
                 {
-                    if (e.Status != BackgroundTransferStatus.Completed &&
-                        e.Status != BackgroundTransferStatus.Canceled)
+                    if (e.Status != VKSaverTransferStatus.Completed &&
+                        e.Status != VKSaverTransferStatus.Canceled)
                         return;
 
                     Uploads.Add(new TransferItemViewModel(e, _locService));
@@ -192,8 +190,8 @@ namespace VKSaver.Core.ViewModels
                 else
                     item.Operation = e;
 
-                if (item.Status == BackgroundTransferStatus.Completed ||
-                    item.Status == BackgroundTransferStatus.Canceled)
+                if (item.Status == VKSaverTransferStatus.Completed ||
+                    item.Status == VKSaverTransferStatus.Canceled)
                     Uploads.Remove(item);
 
                 if (Uploads.Count == 0)
@@ -254,10 +252,10 @@ namespace VKSaver.Core.ViewModels
 
         private void OnShowInfoCommand(TransferItemViewModel item)
         {
-            if (item.Status == BackgroundTransferStatus.Error ||
-                item.Status == BackgroundTransferStatus.Idle ||
-                item.Status == BackgroundTransferStatus.PausedCostedNetwork ||
-                item.Status == BackgroundTransferStatus.PausedNoNetwork)
+            if (item.Status == VKSaverTransferStatus.Error ||
+                item.Status == VKSaverTransferStatus.Idle ||
+                item.Status == VKSaverTransferStatus.PausedCostedNetwork ||
+                item.Status == VKSaverTransferStatus.PausedNoNetwork)
             {
                 _dialogsService.Show(GetMessageTextFromStatus(item.Status),
                     GetMessageTitleFromStatus(item.Status));
@@ -307,33 +305,33 @@ namespace VKSaver.Core.ViewModels
             return Uploads.Count > 0;
         }
         
-        private string GetMessageTitleFromStatus(BackgroundTransferStatus status)
+        private string GetMessageTitleFromStatus(VKSaverTransferStatus status)
         {
             switch (status)
             {
-                case BackgroundTransferStatus.Idle:
+                case VKSaverTransferStatus.Idle:
                     return _locService["Message_Transfer_Idle_Title"];
-                case BackgroundTransferStatus.PausedCostedNetwork:
+                case VKSaverTransferStatus.PausedCostedNetwork:
                     return _locService["Message_Transfer_PausedCostedNetwork_Title"];
-                case BackgroundTransferStatus.PausedNoNetwork:
+                case VKSaverTransferStatus.PausedNoNetwork:
                     return _locService["Message_Transfer_PausedNoNetwork_Title"];
-                case BackgroundTransferStatus.Error:
+                case VKSaverTransferStatus.Error:
                     return _locService["Message_Transfer_Error_Title"];
             }
             return String.Empty;
         }
         
-        private string GetMessageTextFromStatus(BackgroundTransferStatus status)
+        private string GetMessageTextFromStatus(VKSaverTransferStatus status)
         {
             switch (status)
             {
-                case BackgroundTransferStatus.Idle:
+                case VKSaverTransferStatus.Idle:
                     return _locService["Message_Transfer_Idle_Text"];
-                case BackgroundTransferStatus.PausedCostedNetwork:
+                case VKSaverTransferStatus.PausedCostedNetwork:
                     return _locService["Message_Transfer_PausedCostedNetwork_Text"];
-                case BackgroundTransferStatus.PausedNoNetwork:
+                case VKSaverTransferStatus.PausedNoNetwork:
                     return _locService["Message_Transfer_PausedNoNetwork_Text"];
-                case BackgroundTransferStatus.Error:
+                case VKSaverTransferStatus.Error:
                     return _locService["Message_Transfer_Error_Text"];
             }
             return String.Empty;

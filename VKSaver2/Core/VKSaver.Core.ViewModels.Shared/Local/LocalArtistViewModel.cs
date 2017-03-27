@@ -132,7 +132,7 @@ namespace VKSaver.Core.ViewModels
                     Tracks.Remove((VKSaverTrack)item);
 
                     var file = await MusicFilesPathHelper.GetFileFromCapatibleName(track.Source);
-                    await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                    await file.DeleteAsync();
                 }
                 else if (item is VKSaverArtist)
                 {

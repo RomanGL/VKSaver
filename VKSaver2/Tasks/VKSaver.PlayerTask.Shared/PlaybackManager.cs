@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using VKSaver.Core.FileSystem;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Database;
 using VKSaver.Core.Models.Player;
@@ -209,7 +210,8 @@ namespace VKSaver.PlayerTask
             Debug.WriteLine($"Next track is: {track.Title}");
             TrackChanged?.Invoke(this, new ManagerTrackChangedEventArgs(CurrentTrack, CurrentTrackID));
 
-            StorageFile file = await MusicFilesPathHelper.GetFileFromCapatibleName(track.Source);
+            var fsFile = await MusicFilesPathHelper.GetFileFromCapatibleName(track.Source) as IWindowsFile;
+            StorageFile file = fsFile.StorageFile;
             bool skipMss = false;
 
             if (file == null)
@@ -219,7 +221,8 @@ namespace VKSaver.PlayerTask
 
                 if (dbTrack != null)
                 {
-                    file = await MusicFilesPathHelper.GetFileFromCapatibleName(dbTrack.Source);
+                    fsFile = await MusicFilesPathHelper.GetFileFromCapatibleName(dbTrack.Source) as IWindowsFile;
+                    file = fsFile.StorageFile;
                     if (file != null)
                         skipMss = true;
                 }

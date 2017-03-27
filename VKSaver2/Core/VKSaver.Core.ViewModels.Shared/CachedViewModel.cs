@@ -22,6 +22,7 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Xaml.Controls;
 using Windows.Storage;
 using VKSaver.Core.Models.Common;
+using VKSaver.Core.FileSystem;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -105,14 +106,16 @@ namespace VKSaver.Core.ViewModels
 
         protected override void PrepareTracksBeforePlay(IEnumerable<CachedTrack> tracks)
         {
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
             StorageApplicationPermissions.FutureAccessList.Clear();
 
             foreach (var track in tracks)
             {
-                string token = StorageApplicationPermissions.FutureAccessList.Add(track.File.File);
+                var file = (IWindowsFile)track.File.File;
+                string token = StorageApplicationPermissions.FutureAccessList.Add(file.StorageFile);
                 track.Source = $"vks-token:{token}";
             }
-
+#endif
             base.PrepareTracksBeforePlay(tracks);
         }
 
@@ -156,7 +159,7 @@ namespace VKSaver.Core.ViewModels
 
             try
             {
-                await track.File.File.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                await track.File.File.DeleteAsync();
                 CachedTracks.Remove(track);
             }
             catch (Exception)
@@ -184,7 +187,7 @@ namespace VKSaver.Core.ViewModels
                 try
                 {
                     _appLoaderService.Show(String.Format(_locService["AppLoader_DeletingItem"], item.ToString()));
-                    await item.File.File.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                    await item.File.File.DeleteAsync();
                 }
                 catch (Exception)
                 {

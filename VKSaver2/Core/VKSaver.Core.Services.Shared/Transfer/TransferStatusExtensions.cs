@@ -1,24 +1,24 @@
-﻿using Windows.Networking.BackgroundTransfer;
+﻿using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.Services.Transfer
 {
     public static class TransferStatusExtensions
     {
-        public static bool IsPaused(this BackgroundTransferStatus status)
+        public static bool IsPaused(this VKSaverTransferStatus status)
         {
             switch (status)
             {
-                case BackgroundTransferStatus.PausedByApplication:
-                case BackgroundTransferStatus.Error:
+                case VKSaverTransferStatus.PausedByApplication:
+                case VKSaverTransferStatus.Error:
                     return true;
                 default:
                     return false;
             }
         }
 
-        public static bool IsRunning(this BackgroundTransferStatus status)
+        public static bool IsRunning(this VKSaverTransferStatus status)
         {
-            return status == BackgroundTransferStatus.Running;
+            return status == VKSaverTransferStatus.Running;
         }
     }
 }

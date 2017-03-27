@@ -214,6 +214,10 @@
       <Project>{09d7d389-7d67-45b7-90ec-b1d20693dbc5}</Project>
       <Name>IF.Lastfm.SQLite</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\FileSystem\VKSaver.Core.FileSystem.UWP\VKSaver.Core.FileSystem.UWP.csproj">
+      <Project>{ad1c2053-7582-49b7-902e-43890b5c4d51}</Project>
+      <Name>VKSaver.Core.FileSystem.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\VKSaver.Core.Models.UWP\VKSaver.Core.Models.UWP.csproj">
       <Project>{65fe87d2-65b8-4643-a538-4e33a2d815de}</Project>
       <Name>VKSaver.Core.Models.UWP</Name>

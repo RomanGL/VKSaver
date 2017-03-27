@@ -97,9 +97,10 @@ namespace VKSaver.Core.Services
 
             try
             {
-                if (download.Progress.Status.IsPaused())
+                var status = (VKSaverTransferStatus)(int)download.Progress.Status;
+                if (status.IsPaused())
                     download.Resume();
-                else if (download.Progress.Status.IsRunning())
+                else if (status.IsRunning())
                     download.Pause();
             }
             catch (Exception) { }
