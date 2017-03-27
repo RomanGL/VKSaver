@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Database;
 using VKSaver.Core.Services.Database;
-using Windows.Storage;
 
 namespace VKSaver.Core.Services.Interfaces
 {

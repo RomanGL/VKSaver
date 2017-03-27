@@ -2,8 +2,9 @@
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
+#else
 #endif
 using PropertyChanged;
 using System;

@@ -1,7 +1,9 @@
 ﻿#if WINDOWS_UWP
 using Prism.Windows.Navigation;
-#else
+using Windows.Storage;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.Storage;
 #endif
 
 using Newtonsoft.Json;
@@ -10,7 +12,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Database;
 using VKSaver.Core.Services.Interfaces;
-using Windows.Storage;
 
 namespace VKSaver.Core.Services
 {

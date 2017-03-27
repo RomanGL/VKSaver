@@ -1,4 +1,8 @@
-﻿using System;
+﻿#if ANDROID
+using SQLite.Net.Platform.XamarinAndroid;
+#endif
+
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -6,6 +10,7 @@ using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 using SQLite.Net.Attributes;
 using SQLite.Net;
+using SQLite.Net.Interop;
 
 namespace VKSaver.Core.Services.Database
 {
@@ -126,7 +131,12 @@ namespace VKSaver.Core.Services.Database
             return new UploadsDatabase(path);
         }
 
-        private readonly SQLitePlatformZ _platform = new SQLitePlatformZ();
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+        private readonly ISQLitePlatform _platform = new SQLitePlatformZ();
+#else
+        private readonly ISQLitePlatform _platform = new SQLitePlatformAndroid();
+#endif
+
         private const string DATABASE_NAME = "uploads.db";
 
         private class UploadDatabaseItem

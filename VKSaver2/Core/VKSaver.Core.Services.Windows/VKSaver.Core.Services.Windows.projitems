@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\DownloadsExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\MediaStreamSourceWorker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ToastAudioHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\SQLiteApiZ.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\SQLitePlatformZ.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DialogsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DownloadsService.cs" />
