@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace VKSaver.Core.FileSystem
 {
-    public interface IFile
+    public interface IFile : IDisposable
     {
         string Name { get; }
         string DisplayName { get; }

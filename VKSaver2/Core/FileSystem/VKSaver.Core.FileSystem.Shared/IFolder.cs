@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace VKSaver.Core.FileSystem
 {
-    public interface IFolder
+    public interface IFolder : IDisposable
     {
         string DisplayName { get; }
         string Path { get; }

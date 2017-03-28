@@ -28,6 +28,10 @@ namespace VKSaver.Android
 		{
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::VKSaver.Android.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::VKSaver.Android.Resource.String.Hello;
+			global::SQLite.Net.Platform.XamarinAndroidN.Resource.String.ApplicationName = global::VKSaver.Android.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroidN.Resource.String.Hello = global::VKSaver.Android.Resource.String.Hello;
+			global::VKSaver.Core.FileSystem.Resource.String.ApplicationName = global::VKSaver.Android.Resource.String.ApplicationName;
+			global::VKSaver.Core.FileSystem.Resource.String.Hello = global::VKSaver.Android.Resource.String.Hello;
 		}
 		
 		public partial class Attribute

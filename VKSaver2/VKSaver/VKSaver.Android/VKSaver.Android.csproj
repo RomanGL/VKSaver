@@ -142,21 +142,9 @@
       <Project>{09d7d389-7d67-45b7-90ec-b1d20693dbc5}</Project>
       <Name>IF.Lastfm.SQLite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\VKSaver.Core.LinksExtractor.Android\VKSaver.Core.LinksExtractor.Android.csproj">
-      <Project>{35d55ad7-be4b-47d4-b53b-8fdc223720e1}</Project>
-      <Name>VKSaver.Core.LinksExtractor.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\VKSaver.Core.Models.Android\VKSaver.Core.Models.Android.csproj">
-      <Project>{7e565a6d-145c-4a31-84b2-2fca02f8423e}</Project>
-      <Name>VKSaver.Core.Models.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\VKSaver.Core.Services.Android\VKSaver.Core.Services.Android.csproj">
-      <Project>{070418b9-4fe7-46d3-af36-62f974d2e88a}</Project>
-      <Name>VKSaver.Core.Services.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\VKSaver.Core.ViewModels.Android\VKSaver.Core.ViewModels.Android.csproj">
-      <Project>{b1952994-5280-446c-bbae-b72fca7287bc}</Project>
-      <Name>VKSaver.Core.ViewModels.Android</Name>
+    <ProjectReference Include="..\..\Core\FileSystem\VKSaver.Core.FileSystem.Android\VKSaver.Core.FileSystem.Android.csproj">
+      <Project>{5f6f5a88-0f89-44d0-869e-7b4b880b2fad}</Project>
+      <Name>VKSaver.Core.FileSystem.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
