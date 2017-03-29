@@ -2,15 +2,19 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+using Windows.System;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.System;
+#else
+using GalaSoft.MvvmLight;
+using VKSaver.Core.ViewModels.Common;
 #endif
 
 using System;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;
-using Windows.System;
 using PropertyChanged;
 
 namespace VKSaver.Core.ViewModels

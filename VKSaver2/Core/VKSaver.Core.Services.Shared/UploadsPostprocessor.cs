@@ -1,15 +1,12 @@
 ﻿using ModernDev.InTouch;
 using Newtonsoft.Json.Linq;
-using NotificationsExtensions.ToastContent;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
-using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
-using Windows.UI.Notifications;
 
 namespace VKSaver.Core.Services
 {

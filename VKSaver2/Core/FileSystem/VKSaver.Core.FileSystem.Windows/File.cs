@@ -7,7 +7,7 @@ using Windows.Storage;
 
 namespace VKSaver.Core.FileSystem
 {
-    public sealed class File : IWindowsFile, IFile
+    public sealed class File : IWindowsFile, IFile, IDisposable
     {
         private readonly StorageFile _storageFile;
         private readonly IFileProperties _fileProperties;
@@ -54,6 +54,10 @@ namespace VKSaver.Core.FileSystem
         {
             var winOption = (Windows.Storage.NameCollisionOption)(int)option;
             return _storageFile.RenameAsync(desiredName, winOption).AsTask();
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

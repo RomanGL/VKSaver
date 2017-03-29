@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\IVKSaverFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\LanguageItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NewsMediaItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ProductPurchaseStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKAudioInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKDirectAuthResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverAudio.cs" />

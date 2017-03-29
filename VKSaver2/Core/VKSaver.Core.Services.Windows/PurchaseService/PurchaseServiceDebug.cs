@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VKSaver.Core.Services.Interfaces;
 using Windows.ApplicationModel.Store;
+using VKSaver.Core.Services.Interfaces;
 using static VKSaver.Core.Services.MetricaConstants;
+using ProductPurchaseStatus = VKSaver.Core.Models.Common.ProductPurchaseStatus;
 
 namespace VKSaver.Core.Services
 {
-#if RELEASE && !FULL
+#if DEBUG && !FULL
     public sealed class PurchaseService : IPurchaseService
     {
         public PurchaseService(ILogService logService, IMetricaService metricaService)
@@ -26,9 +27,9 @@ namespace VKSaver.Core.Services
                 ProductPurchaseStatus status;
 
                 if (isPermanent)
-                    status = (await CurrentApp.RequestProductPurchaseAsync(StoreConstants.FullVersionVKSaverPernament)).Status;
+                    status = (ProductPurchaseStatus)(int)(await CurrentAppSimulator.RequestProductPurchaseAsync(StoreConstants.FullVersionVKSaverPernament)).Status;
                 else
-                    status = (await CurrentApp.RequestProductPurchaseAsync(StoreConstants.FullVersionVKSaver)).Status;
+                    status = (ProductPurchaseStatus)(int)(await CurrentAppSimulator.RequestProductPurchaseAsync(StoreConstants.FullVersionVKSaver)).Status;
 
                 var dict = new Dictionary<string, string>(1);
                 if (status == ProductPurchaseStatus.Succeeded)
@@ -53,13 +54,13 @@ namespace VKSaver.Core.Services
 
         private bool GetIsFullVersion()
         {
-            var licenseInformation = CurrentApp.LicenseInformation;
+            var licenseInformation = CurrentAppSimulator.LicenseInformation;
 
-            bool isMonthyActive = licenseInformation.ProductLicenses[StoreConstants.FullVersionVKSaver].IsActive;
-            if (!isMonthyActive)
+            bool isMonthlyActive = licenseInformation.ProductLicenses[StoreConstants.FullVersionVKSaver].IsActive;
+            if (!isMonthlyActive)
                 return licenseInformation.ProductLicenses[StoreConstants.FullVersionVKSaverPernament].IsActive;
 
-            return isMonthyActive;
+            return isMonthlyActive;
         }
         
         private readonly ILogService _logService;

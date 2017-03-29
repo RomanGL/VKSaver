@@ -1,11 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿#if WINDOWS_UWP || WINDOWS_PHONE_APP
+using Windows.Storage;
+#endif
+
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
-using Windows.Storage;
 
 namespace VKSaver.Core.Services
 {
@@ -38,6 +41,7 @@ namespace VKSaver.Core.Services
 
         private async Task<IEnumerable<IPlayerTrack>> GetPlaylistFromFile(string fileName)
         {
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
             try
             {
                 var file = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
@@ -56,10 +60,14 @@ namespace VKSaver.Core.Services
                 _logService?.LogException(ex);
                 return null;
             }
+#else
+            throw new NotImplementedException();
+#endif
         }
 
         private async Task<bool> WritePlaylistToFile(string fileName, IEnumerable<IPlayerTrack> tracks)
         {
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
             try
             {
                 var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
@@ -78,6 +86,9 @@ namespace VKSaver.Core.Services
                 _logService?.LogException(ex);
                 return false;
             }
+#else
+            throw new NotImplementedException();
+#endif
         }
 
         private readonly ILogService _logService;

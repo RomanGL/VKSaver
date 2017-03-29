@@ -1,4 +1,8 @@
-﻿using SQLite.Net;
+﻿#if ANDROID
+using SQLite.Net.Platform.XamarinAndroid;
+#endif
+
+using SQLite.Net;
 using SQLite.Net.Interop;
 using SQLiteNetExtensions.Extensions;
 using System;
@@ -180,7 +184,11 @@ namespace VKSaver.Core.Services.Database
             {
                 if (_connection == null)
                 {
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                     var pl = new SQLitePlatformZ();
+#else
+                    var pl = new SQLitePlatformAndroid();
+#endif
                     _connection = new SQLiteConnection(pl, DATABASE_FILE_NAME, SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite);
                 }
 

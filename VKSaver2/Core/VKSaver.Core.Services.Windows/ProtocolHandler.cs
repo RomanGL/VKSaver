@@ -39,7 +39,7 @@ namespace VKSaver.Core.Services
 
                 if (protocolUri.StartsWith("vksaver://vkad/"))
                 {
-                    await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                    await _dispatcherWrapper.RunOnUIThreadAsync(
                         () => _navigationService.Navigate("VKAdInfoView", protocolUri.Substring(15)));
                 }
             }

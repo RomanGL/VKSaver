@@ -83,7 +83,7 @@ namespace VKSaver.Core.Services
 
         private async void vkLoginService_UserLogout(IVKLoginService sender, EventArgs e)
         {
-            await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await _dispatcherWrapper.RunOnUIThreadAsync(() =>
             {
                 Navigate(AppConstants.DEFAULT_LOGIN_VIEW, null);
                 ClearHistory();

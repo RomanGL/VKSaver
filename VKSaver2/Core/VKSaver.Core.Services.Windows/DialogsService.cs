@@ -26,7 +26,7 @@ namespace VKSaver.Core.Services
         /// <param name="title">Заголовок собщения.</param>
         public async void Show(string message, string title = "")
         {
-            await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await _dispatcherWrapper.RunOnUIThreadAsync(async () =>
             {
                 var msg = new MessageDialog(message, title);
                 await _queue.Enqueue(() => msg.ShowAsync().AsTask());

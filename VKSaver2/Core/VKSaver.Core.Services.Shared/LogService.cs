@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
-using Windows.Storage;
 
 namespace VKSaver.Core.Services
 {
@@ -36,34 +31,34 @@ namespace VKSaver.Core.Services
 //            writter.Flush();
         }
 
-        private Task<StreamWriter> GetWritterAsync()
-        {
-            return Task.Run(() =>
-            {
-                try
-                {
-                    lock (_lockObject)
-                    {
-                        if (_writter != null)
-                            return _writter;
+        //private Task<StreamWriter> GetWritterAsync()
+        //{
+        //    return Task.Run(() =>
+        //    {
+        //        try
+        //        {
+        //            lock (_lockObject)
+        //            {
+        //                if (_writter != null)
+        //                    return _writter;
 
-                        var logFile = ApplicationData.Current.LocalFolder.CreateFileAsync(
-                            LOG_FILE_NAME, CreationCollisionOption.OpenIfExists).GetAwaiter().GetResult();
-                        var stream = logFile.OpenStreamForWriteAsync().GetAwaiter().GetResult();
-                        stream.Seek(0, SeekOrigin.End);
+        //                var logFile = ApplicationData.Current.LocalFolder.CreateFileAsync(
+        //                    LOG_FILE_NAME, CreationCollisionOption.OpenIfExists).GetAwaiter().GetResult();
+        //                var stream = logFile.OpenStreamForWriteAsync().GetAwaiter().GetResult();
+        //                stream.Seek(0, SeekOrigin.End);
 
-                        _writter = new StreamWriter(stream, Encoding.UTF8);
-                        return _writter;
-                    }
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            });
-        }
+        //                _writter = new StreamWriter(stream, Encoding.UTF8);
+        //                return _writter;
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            return null;
+        //        }
+        //    });
+        //}
         
-        private StreamWriter _writter;
+        //private StreamWriter _writter;
 
         private readonly object _lockObject = new object();
         private readonly IMetricaService _metricaService;

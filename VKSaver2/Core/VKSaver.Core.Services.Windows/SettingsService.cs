@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Windows.Storage;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;
-using Windows.Storage;
 
 namespace VKSaver.Core.Services
 {
@@ -9,11 +9,6 @@ namespace VKSaver.Core.Services
     {
         private readonly Dictionary<string, object> cache = new Dictionary<string, object>();
         private readonly object lockObject = new object();
-
-        /// <summary>
-        /// Инициализирует новый экземпляр <see cref="SettingsService"/>.
-        /// </summary>
-        public SettingsService() { }
 
         /// <summary>
         /// Очистить хранилище настроек приложения.

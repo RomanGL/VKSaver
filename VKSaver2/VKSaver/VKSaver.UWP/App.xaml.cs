@@ -65,7 +65,7 @@ namespace VKSaver
 
         protected override UIElement CreateShell(Frame rootFrame)
         {
-            Dispatcher = Window.Current.Dispatcher;
+            _dispatcher = Window.Current.Dispatcher;
             SurfaceLoader.Initialize(ElementCompositionPreview.GetElementVisual(rootFrame).Compositor);
 
             var shell = Container.Resolve<SimpleShell>();
@@ -118,8 +118,6 @@ namespace VKSaver
 
             e.Handled = true;
         }
-        
-        public CoreDispatcher Dispatcher { get; private set; }
 
         protected override void ConfigureViewModelLocator()
         {
@@ -275,7 +273,7 @@ namespace VKSaver
             {
                 try
                 {
-                    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await RunOnUIThread(() =>
                     {
                         var state = Container.Resolve<IPlayerService>().CurrentState;
                         if (state == PlayerState.Playing)
@@ -460,11 +458,17 @@ namespace VKSaver
 
             return (T)res;
         }
-        
+
+        public Task RunOnUIThread(Action action)
+        {
+            return _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
+        }
+
         private IAppLoaderService _appLoaderService;
         private IMetricaService _metricaService;
         private UnityServiceLocator _unityServiceLocator;
         private Frame _frame;
+        private CoreDispatcher _dispatcher;
 
         private const string VIEW_MODEL_FORMAT = "VKSaver.Core.ViewModels.{0}Model, VKSaver.Core.ViewModels.UWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string VIEW_MODEL_CONTROLS_FORMAT = "VKSaver.Core.ViewModels.{0}ViewModel, VKSaver.Core.ViewModels.UWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";

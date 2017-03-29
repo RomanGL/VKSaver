@@ -1,9 +1,10 @@
-﻿using Windows.UI.Core;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace VKSaver.Core.Services.Interfaces
 {
     public interface IDispatcherWrapper
     {
-        CoreDispatcher Dispatcher { get; }
+        Task RunOnUIThreadAsync(Action action);
     }
 }

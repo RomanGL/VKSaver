@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VKSaver.Core.FileSystem;
 using VKSaver.Core.Services.Database;
 using VKSaver.Core.Services.Interfaces;
 
@@ -105,7 +106,13 @@ namespace VKSaver.Core.Services
             {
                 try
                 {
-                    var libraryDb = await ApplicationData.Current.LocalFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);                    
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+                    await ApplicationData.Current.LocalFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);    
+#else
+                    string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                    IFolder folder = new AndroidFolder(appDataPath);
+                    await folder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);
+#endif
                 }
                 catch (Exception)
                 {

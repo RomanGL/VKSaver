@@ -5,22 +5,23 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Collections.ObjectModel;
 using Java.IO;
+using File = Java.IO.File;
 
 namespace VKSaver.Core.FileSystem
 {
     public sealed class AndroidFolder : IFolder, IDisposable
     {
-        private Java.IO.File _currentFolder;
+        private File _currentFolder;
 
         public AndroidFolder(string path)
         {
-            _currentFolder = new Java.IO.File(path);
+            _currentFolder = new File(path);
 
             if (!_currentFolder.IsDirectory)
                 throw new ArgumentException("This is not folder.");
         }
 
-        internal AndroidFolder(Java.IO.File folder)
+        internal AndroidFolder(File folder)
         {
             if (folder == null)
                 throw new ArgumentNullException(nameof(folder));
@@ -44,7 +45,7 @@ namespace VKSaver.Core.FileSystem
             return Task.Run(() =>
             {
                 IFile result = null;
-                var file = new Java.IO.File(_currentFolder, desiredName);
+                var file = new File(_currentFolder, desiredName);
 
                 switch (options)
                 {
@@ -54,7 +55,7 @@ namespace VKSaver.Core.FileSystem
                         string ext = System.IO.Path.GetExtension(desiredName);
 
                         while (file.Exists())
-                            file = new Java.IO.File(_currentFolder, name + i + ext);
+                            file = new File(_currentFolder, name + i + ext);
                         break;
                     case CreationCollisionOption.ReplaceExisting:
                         file.CreateNewFile();
@@ -92,7 +93,7 @@ namespace VKSaver.Core.FileSystem
         {
             return Task.Run(() =>
             {
-                var file = new Java.IO.File(_currentFolder, name);
+                var file = new File(_currentFolder, name);
                 if (file.Exists())
                 {
                     IFile result = new AndroidFile(file);
@@ -107,7 +108,7 @@ namespace VKSaver.Core.FileSystem
         {
             return Task.Run(() =>
             {
-                var files = _currentFolder.ListFiles(new FilesFilter());
+                var files = _currentFolder.ListFiles(new FileFilter(f => f.IsFile));
                 var convFiles = files.Select(f => new AndroidFile(f)).ToList();
                 IReadOnlyList<IFile> result = new ReadOnlyCollection<AndroidFile>(convFiles);
                 return result;
@@ -123,7 +124,7 @@ namespace VKSaver.Core.FileSystem
         {
             return Task.Run(() =>
             {
-                var file = new Java.IO.File(_currentFolder, name);
+                var file = new File(_currentFolder, name);
                 if (file.Exists() && file.IsDirectory)
                 {
                     IFolder result = new AndroidFolder(file);
@@ -138,7 +139,7 @@ namespace VKSaver.Core.FileSystem
         {
             return Task.Run(() =>
             {
-                var folders = _currentFolder.ListFiles(new FoldersFilter());
+                var folders = _currentFolder.ListFiles(new FileFilter(f => f.IsDirectory));
                 var convFiles = folders.Select(f => new AndroidFolder(f)).ToList();
                 IReadOnlyList<IFolder> result = new ReadOnlyCollection<AndroidFolder>(convFiles);
                 return result;
@@ -150,20 +151,16 @@ namespace VKSaver.Core.FileSystem
             _currentFolder.Dispose();
         }
 
-        private sealed class FoldersFilter : Java.Lang.Object, IFileFilter
+        private sealed class FileFilter : Java.Lang.Object, IFileFilter
         {
-            public bool Accept(Java.IO.File pathname)
-            {
-                return pathname.IsDirectory;
-            }
-        }
+            private readonly Func<File, bool> _comparator;
 
-        public sealed class FilesFilter : Java.Lang.Object, IFileFilter
-        {
-            public bool Accept(Java.IO.File pathname)
+            public FileFilter(Func<File, bool> comparator)
             {
-                return pathname.IsFile;
+                _comparator = comparator;
             }
+
+            public bool Accept(File pathname) => _comparator(pathname);
         }
     }
 }

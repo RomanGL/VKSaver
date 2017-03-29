@@ -21,6 +21,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)FeedbackService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GrooveMusicService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImagesCacheService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkInfoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NotificationsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ProtocolHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceDebug.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceFull.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\PurchaseServiceRelease.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PurchaseService\StoreConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SoundService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKSaverNavigationService.cs" />

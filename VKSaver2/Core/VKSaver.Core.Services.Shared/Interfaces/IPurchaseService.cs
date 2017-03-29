@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Windows.ApplicationModel.Store;
+using VKSaver.Core.Models.Common;
 
 namespace VKSaver.Core.Services.Interfaces
 {

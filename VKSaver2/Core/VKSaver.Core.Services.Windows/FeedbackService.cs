@@ -39,7 +39,7 @@ namespace VKSaver.Core.Services
             }
             else
             {
-                await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                await _dispatcherWrapper.RunOnUIThreadAsync(async () =>
                 {
                     bool result = await _dialogsService.ShowYesNoAsync(
                         _locService["FeedbackService_LeaveFeedback_Content"], 

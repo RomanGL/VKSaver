@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("VKSaver.Core.ViewModels.Android.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("VKSaver.Core.ViewModels.Resource", IsApplication=false)]
 
-namespace VKSaver.Core.ViewModels.Android
+namespace VKSaver.Core.ViewModels
 {
 	
 	

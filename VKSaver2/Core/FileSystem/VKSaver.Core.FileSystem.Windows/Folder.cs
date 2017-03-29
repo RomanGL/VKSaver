@@ -8,7 +8,7 @@ using Windows.Storage.Search;
 
 namespace VKSaver.Core.FileSystem
 {
-    public sealed class Folder : IFolder
+    public sealed class Folder : IFolder, IDisposable
     {
         private readonly StorageFolder _folder;
 
@@ -75,6 +75,10 @@ namespace VKSaver.Core.FileSystem
             var folders = await _folder.GetFoldersAsync(CommonFolderQuery.DefaultQuery);
             var fsFolders = folders.Select(f => new Folder(f)).ToList();
             return new ReadOnlyCollection<Folder>(fsFolders);
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

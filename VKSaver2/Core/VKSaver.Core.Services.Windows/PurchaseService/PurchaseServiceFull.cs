@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
-using Windows.ApplicationModel.Store;
 
 namespace VKSaver.Core.Services
 {

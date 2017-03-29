@@ -1,6 +1,11 @@
-﻿using ModernDev.InTouch;
-using System;
+﻿#if WINDOWS_UWP || WINDOWS_PHONE_APP
 using Windows.Web.Http;
+#else
+using System.Net.Http;
+#endif
+
+using ModernDev.InTouch;
+using System;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
