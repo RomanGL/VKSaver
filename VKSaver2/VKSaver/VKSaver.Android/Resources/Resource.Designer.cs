@@ -51,11 +51,30 @@ namespace VKSaver.Android
 			}
 		}
 		
+		public partial class Color
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int vksaver_accent_high = 2131034112;
+			
+			static Color()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Color()
+			{
+			}
+		}
+		
 		public partial class Drawable
 		{
 			
 			// aapt resource value: 0x7f020000
 			public const int Icon = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int Logo = 2130837505;
 			
 			static Drawable()
 			{
@@ -67,11 +86,36 @@ namespace VKSaver.Android
 			}
 		}
 		
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f060001
+			public const int AuthTextView = 2131099649;
+			
+			// aapt resource value: 0x7f060000
+			public const int LogoImageView = 2131099648;
+			
+			// aapt resource value: 0x7f060002
+			public const int SplashImageView = 2131099650;
+			
+			static Id()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Id()
+			{
+			}
+		}
+		
 		public partial class Layout
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int LoginActivity = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int SplashScreenActivity = 2130903041;
 			
 			static Layout()
 			{
