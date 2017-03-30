@@ -2,9 +2,14 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+using Windows.Storage.AccessCache;
+using Windows.UI.Xaml.Controls;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.Storage.AccessCache;
+using Windows.UI.Xaml.Controls;
+#elif ANDROID
 #endif
 
 using PropertyChanged;
@@ -16,13 +21,11 @@ using System.Threading.Tasks;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
-using Windows.UI.Xaml.Navigation;
 using System.Collections;
-using Windows.Storage.AccessCache;
-using Windows.UI.Xaml.Controls;
-using Windows.Storage;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.FileSystem;
+using VKSaver.Core.ViewModels.Common.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -57,14 +60,14 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand DeleteAllCommand { get; private set; }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (e.NavigationMode == NavigationMode.New || e.NavigationMode == NavigationMode.Refresh)
             {
                 CachedTracks = new PaginatedCollection<CachedTrack>(LoadMoreTracks);
             }
 
-            base.OnNavigatedTo(e, viewModelState);
+            base.AppOnNavigatedTo(e, viewModelState);
         }
 
         protected override IList<CachedTrack> GetAudiosList()
@@ -115,6 +118,8 @@ namespace VKSaver.Core.ViewModels
                 string token = StorageApplicationPermissions.FutureAccessList.Add(file.StorageFile);
                 track.Source = $"vks-token:{token}";
             }
+#elif ANDROID
+            throw new NotImplementedException();
 #endif
             base.PrepareTracksBeforePlay(tracks);
         }

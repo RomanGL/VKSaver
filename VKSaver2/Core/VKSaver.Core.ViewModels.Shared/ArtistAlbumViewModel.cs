@@ -2,9 +2,10 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
 #endif
 
 using Newtonsoft.Json;
@@ -19,15 +20,18 @@ using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Search;
-using Windows.UI.Xaml.Navigation;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
+using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.ViewModels.Common.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class ArtistAlbumViewModel : ViewModelBase
+    public sealed class ArtistAlbumViewModel : VKSaverViewModel
     {
         public ArtistAlbumViewModel(
             LastfmClient lfClient,
@@ -70,7 +74,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand ReloadAlbumCommand { get; private set; }
 
-        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override async void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (e.NavigationMode == NavigationMode.New)
                 LastPivotIndex = 0;
@@ -105,10 +109,10 @@ namespace VKSaver.Core.ViewModels
                 await LoadAlbumInfo();
 
             LoadArtistImage(AlbumBase.ArtistName);
-            base.OnNavigatedTo(e, viewModelState);
+            base.AppOnNavigatedTo(e, viewModelState);
         }
 
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.New)
             {
@@ -120,7 +124,7 @@ namespace VKSaver.Core.ViewModels
                     viewModelState[nameof(Album)] = JsonConvert.SerializeObject(Album, _lastImageSetConverter);
             }
 
-            base.OnNavigatingFrom(e, viewModelState, suspending);
+            base.AppOnNavigatingFrom(e, viewModelState, suspending);
         }
 
         private async Task LoadAlbumInfo()

@@ -95,13 +95,17 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VKSaver.Core.FileSystem.Win
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSaver.Core.FileSystem.Android", "Core\FileSystem\VKSaver.Core.FileSystem.Android\VKSaver.Core.FileSystem.Android.csproj", "{5F6F5A88-0F89-44D0-869E-7B4B880B2FAD}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VKSaver.Core.ViewModels.Windows", "Core\VKSaver.Core.ViewModels.Windows\VKSaver.Core.ViewModels.Windows.shproj", "{A4223808-FE26-41D9-AAD3-89B62A1FC6F2}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{000a719a-990e-43f4-81c9-d6bf83d091a0}*SharedItemsImports = 4
+		Core\VKSaver.Core.ViewModels.Windows\VKSaver.Core.ViewModels.Windows.projitems*{000a719a-990e-43f4-81c9-d6bf83d091a0}*SharedItemsImports = 4
 		Core\VKSaver.Core.Services.Shared\VKSaver.Core.Services.Shared.projitems*{070418b9-4fe7-46d3-af36-62f974d2e88a}*SharedItemsImports = 4
 		Core\VKSaver.Core.Models.Shared\VKSaver.Core.Models.Shared.projitems*{0c76fe69-8e32-4222-9fe4-c975a48edbd9}*SharedItemsImports = 4
 		Core\VKSaver.Core.Models.Windows\VKSaver.Core.Models.Windows.projitems*{0c76fe69-8e32-4222-9fe4-c975a48edbd9}*SharedItemsImports = 4
 		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{28af1e71-69eb-4d02-9f07-6eead1f117af}*SharedItemsImports = 4
+		Core\VKSaver.Core.ViewModels.Windows\VKSaver.Core.ViewModels.Windows.projitems*{28af1e71-69eb-4d02-9f07-6eead1f117af}*SharedItemsImports = 4
 		Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems*{35d55ad7-be4b-47d4-b53b-8fdc223720e1}*SharedItemsImports = 4
 		Core\FileSystem\VKSaver.Core.FileSystem.Windows\VKSaver.Core.FileSystem.Windows.projitems*{3e4e9fc6-99df-4168-8533-88d337752195}*SharedItemsImports = 13
 		Core\FileSystem\VKSaver.Core.FileSystem.Shared\VKSaver.Core.FileSystem.Shared.projitems*{40a1882e-0394-4517-a908-265a2b943e41}*SharedItemsImports = 4
@@ -123,6 +127,7 @@ Global
 		VKSaver\VKSaver.PlatformShared\VKSaver.PlatformShared.projitems*{8660fc13-44d7-4838-ae8b-b866e87e4ad2}*SharedItemsImports = 13
 		Core\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems*{8a78fe74-730a-4d36-8c44-32df960ad957}*SharedItemsImports = 4
 		Core\VKSaver.Core.Services.Windows\VKSaver.Core.Services.Windows.projitems*{8c46f496-c865-41e9-9fb6-65ff5f7ba257}*SharedItemsImports = 13
+		Core\VKSaver.Core.ViewModels.Windows\VKSaver.Core.ViewModels.Windows.projitems*{a4223808-fe26-41d9-aad3-89b62a1fc6f2}*SharedItemsImports = 13
 		Core\FileSystem\VKSaver.Core.FileSystem.Shared\VKSaver.Core.FileSystem.Shared.projitems*{ad1c2053-7582-49b7-902e-43890b5c4d51}*SharedItemsImports = 4
 		Core\FileSystem\VKSaver.Core.FileSystem.Windows\VKSaver.Core.FileSystem.Windows.projitems*{ad1c2053-7582-49b7-902e-43890b5c4d51}*SharedItemsImports = 4
 		Core\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems*{b1952994-5280-446c-bbae-b72fca7287bc}*SharedItemsImports = 4
@@ -1826,5 +1831,6 @@ Global
 		{AD1C2053-7582-49B7-902E-43890B5C4D51} = {5FEA6578-3A32-4335-AB4A-EA5A8E84E09F}
 		{3E4E9FC6-99DF-4168-8533-88D337752195} = {5FEA6578-3A32-4335-AB4A-EA5A8E84E09F}
 		{5F6F5A88-0F89-44D0-869E-7B4B880B2FAD} = {5FEA6578-3A32-4335-AB4A-EA5A8E84E09F}
+		{A4223808-FE26-41D9-AAD3-89B62A1FC6F2} = {666A9DEA-BEEF-4468-94A1-D0C6603CC788}
 	EndGlobalSection
 EndGlobal

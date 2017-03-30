@@ -1,17 +1,18 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
-using Prism.Windows.Navigation;
+using Windows.UI.Xaml.Controls;
 #else
 using Microsoft.Practices.Prism.StoreApps;
+using Windows.UI.Xaml.Controls;
 #endif
 
 using PropertyChanged;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using VKSaver.Core.Services.Interfaces;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.ViewModels.Common.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -52,16 +53,16 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         protected bool IsReloadButtonSupported { get; set; }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             var selectionList = GetSelectionList();
             if (selectionList != null && selectionList.Count > 0)
                 SetDefaultMode();
 
-            base.OnNavigatedTo(e, viewModelState);
+            base.AppOnNavigatedTo(e, viewModelState);
         }
 
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.Back && IsSelectionMode)
             {
@@ -70,7 +71,7 @@ namespace VKSaver.Core.ViewModels
                 return;
             }
 
-            base.OnNavigatingFrom(e, viewModelState, suspending);
+            base.AppOnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected abstract IList GetSelectionList();

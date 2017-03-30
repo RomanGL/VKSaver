@@ -1,9 +1,13 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+using Windows.UI.Xaml.Controls;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.UI.Xaml.Controls;
+#elif ANDROID
+using VKSaver.Core.ViewModels.Common;
 #endif
 
 using System;
@@ -11,14 +15,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 using ModernDev.InTouch;
 using Newtonsoft.Json;
 using PropertyChanged;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
+using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
+using VKSaver.Core.ViewModels.Common.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -56,7 +60,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand<T> ShowTrackInfoCommand { get; private set; }
 
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.Back && _appLoaderService.IsShowed)
             {
@@ -66,7 +70,7 @@ namespace VKSaver.Core.ViewModels
                 return;
             }
 
-            base.OnNavigatingFrom(e, viewModelState, suspending);
+            base.AppOnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected override void CreateSelectionAppBarButtons()

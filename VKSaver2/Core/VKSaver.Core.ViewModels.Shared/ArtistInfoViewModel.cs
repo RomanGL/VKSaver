@@ -1,10 +1,10 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
 #endif
 
 using System;
@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 using PropertyChanged;
 using Newtonsoft.Json;
 using VKSaver.Core.ViewModels.Collections;
-using Windows.UI.Xaml.Navigation;
 using VKSaver.Core.ViewModels.Search;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services;
@@ -22,11 +21,15 @@ using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Api;
 using VKSaver.Core.Services.Json;
 using IF.Lastfm.Core.Api.Helpers;
+using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.ViewModels.Common.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class ArtistInfoViewModel : ViewModelBase
+    public sealed class ArtistInfoViewModel : VKSaverViewModel
     {
         public ArtistInfoViewModel(
             LastfmClient lfClient,
@@ -71,7 +74,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand FindArtistInVKCommand { get; private set; }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (e.NavigationMode == NavigationMode.New)
                 LastPivotIndex = 0;
@@ -111,10 +114,10 @@ namespace VKSaver.Core.ViewModels
             Similar.Load();
             LoadArtistImage(Artist.Name);
             
-            base.OnNavigatedTo(e, viewModelState);
+            base.AppOnNavigatedTo(e, viewModelState);
         }
 
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.New)
             {
@@ -125,7 +128,7 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(LastPivotIndex)] = LastPivotIndex;
             }
 
-            base.OnNavigatingFrom(e, viewModelState, suspending);
+            base.AppOnNavigatingFrom(e, viewModelState, suspending);
         }
 
         private async Task<IEnumerable<LastTrack>> LoadTracks()

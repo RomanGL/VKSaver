@@ -116,6 +116,10 @@
       <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
       <Name>IF.Lastfm.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileSystem\VKSaver.Core.FileSystem.WP\VKSaver.Core.FileSystem.WP.csproj">
+      <Project>{40a1882e-0394-4517-a908-265a2b943e41}</Project>
+      <Name>VKSaver.Core.FileSystem.WP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VKSaver.Core.LinksExtractor\VKSaver.Core.LinksExtractor.csproj">
       <Project>{8a78fe74-730a-4d36-8c44-32df960ad957}</Project>
       <Name>VKSaver.Core.LinksExtractor</Name>
@@ -134,6 +138,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems" Label="Shared" />
+  <Import Project="..\VKSaver.Core.ViewModels.Windows\VKSaver.Core.ViewModels.Windows.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

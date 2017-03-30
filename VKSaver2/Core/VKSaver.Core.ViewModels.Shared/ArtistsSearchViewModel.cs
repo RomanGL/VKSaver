@@ -1,21 +1,23 @@
-﻿#if WINDOWS_UWP
+﻿#if WINDOWS_UWP || WINDOWS_PHONE_APP
+using Windows.System;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+#endif
+
+#if WINDOWS_UWP
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.ViewModels.Common;
 #endif
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
-using IF.Lastfm.Core;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
@@ -24,20 +26,24 @@ using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Collections;
+using VKSaver.Core.ViewModels.Common.Navigation;
 using VKSaver.Core.ViewModels.Search;
+using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public sealed class ArtistsSearchViewModel : WithAppBarViewModel
     {
-        public ArtistsSearchViewModel(LastfmClient lastfmClient, ILocService locService,
-            INavigationService navigationService, ISettingsService settingsService)
+        public ArtistsSearchViewModel(
+            LastfmClient lastfmClient, 
+            ILocService locService,
+            INavigationService navigationService)
         {
             _lastfmClient = lastfmClient;
             _locService = locService;
             _navigationService = navigationService;
-            _settingsService = settingsService;
 
             QueryBoxKeyDownCommand = new DelegateCommand<KeyRoutedEventArgs>(OnQueryBoxKeyDownCommand);
             GoToArtistInfoCommand = new DelegateCommand<LastArtist>(OnGoToArtistInfoCommand);
@@ -56,7 +62,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand ReloadCommand { get; private set; }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (viewModelState.Count == 0)
             {
@@ -98,10 +104,10 @@ namespace VKSaver.Core.ViewModels
                     SetDefaultMode();
             }
 
-            base.OnNavigatedTo(e, viewModelState);
+            base.AppOnNavigatedTo(e, viewModelState);
         }
 
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.New)
             {
@@ -112,7 +118,7 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(Artists) + "State"] = (int)Artists.ContentState;
             }
 
-            base.OnNavigatingFrom(e, viewModelState, suspending);
+            base.AppOnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected override void CreateDefaultAppBarButtons()
@@ -163,7 +169,6 @@ namespace VKSaver.Core.ViewModels
         private readonly ILocService _locService;
         private readonly LastfmClient _lastfmClient;
         private readonly INavigationService _navigationService;
-        private readonly ISettingsService _settingsService;
 
         private static readonly LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();
     }

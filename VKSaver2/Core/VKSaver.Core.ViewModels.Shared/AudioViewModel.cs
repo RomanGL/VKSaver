@@ -1,21 +1,21 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+using Windows.UI.Xaml.Controls;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.UI.Xaml.Controls;
+#elif ANDROID
 #endif
 
 using PropertyChanged;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Common;
-using Windows.UI.Xaml.Controls;
 
 namespace VKSaver.Core.ViewModels
 {

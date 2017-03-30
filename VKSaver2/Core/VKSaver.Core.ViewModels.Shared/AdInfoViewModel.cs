@@ -1,26 +1,23 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
-using Prism.Windows.Navigation;
 using Windows.System;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Windows.System;
-#else
-using GalaSoft.MvvmLight;
-using VKSaver.Core.ViewModels.Common;
+#elif ANDROID
 #endif
 
 using System;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;
 using PropertyChanged;
+using VKSaver.Core.ViewModels.Common;
+using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class AdInfoViewModel : ViewModelBase
+    public sealed class AdInfoViewModel : VKSaverViewModel
     {
         public AdInfoViewModel(ILocService locService)
         {
@@ -35,7 +32,7 @@ namespace VKSaver.Core.ViewModels
         public string ActionText { get; private set; }
         public DelegateCommand ActionCommand { get; private set; }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             string adName = e.Parameter.ToString();
 
@@ -47,12 +44,16 @@ namespace VKSaver.Core.ViewModels
 
             _adActionLink = _locService[String.Format(AD_ACTION_LINK_MASK, adName)];
 
-            base.OnNavigatedTo(e, viewModelState);
+            base.AppOnNavigatedTo(e, viewModelState);
         }
 
         private async void OnActionCommand()
         {
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
             await Launcher.LaunchUriAsync(new Uri(_adActionLink));
+#else
+            throw new NotImplementedException();
+#endif
         }
 
         private string _adActionLink;

@@ -236,6 +236,7 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="..\VKSaver.Core.ViewModels.Shared\VKSaver.Core.ViewModels.Shared.projitems" Label="Shared" />
+  <Import Project="..\VKSaver.Core.ViewModels.Windows\VKSaver.Core.ViewModels.Windows.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

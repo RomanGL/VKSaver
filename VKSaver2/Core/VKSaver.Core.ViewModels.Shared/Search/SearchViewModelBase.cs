@@ -1,4 +1,19 @@
-﻿using ModernDev.InTouch;
+﻿#if WINDOWS_UWP || WINDOWS_PHONE_APP
+using Windows.System;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+#endif
+
+#if WINDOWS_UWP
+using Prism.Commands;
+using Prism.Windows.Navigation;
+#elif WINDOWS_PHONE_APP
+using Microsoft.Practices.Prism.StoreApps;
+using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+#endif
+
+using ModernDev.InTouch;
 using Newtonsoft.Json;
 using PropertyChanged;
 using System;
@@ -11,24 +26,15 @@ using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Search;
-using Windows.System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
-
-#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
-using Prism.Commands;
-using Prism.Windows.Navigation;
-#else
-using Microsoft.Practices.Prism.StoreApps;
-using Microsoft.Practices.Prism.StoreApps.Interfaces;
-#endif
+using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.ViewModels.Common.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class SearchViewModelBase<T> : ViewModelBase
+    public abstract class SearchViewModelBase<T> : VKSaverViewModel
     {
         public SearchViewModelBase(InTouch inTouch, INavigationService navigationService,
             ILocService locService, ISettingsService settingsService, IDialogsService dialogsService,
@@ -97,7 +103,7 @@ namespace VKSaver.Core.ViewModels
 
         protected int UserId { get; private set; }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (viewModelState.Count == 0)
             {
@@ -159,10 +165,10 @@ namespace VKSaver.Core.ViewModels
             InCollectionResults.CollectionChanged += Results_CollectionChanged;
 
             SetDefaultMode();
-            base.OnNavigatedTo(e, viewModelState);
+            base.AppOnNavigatedTo(e, viewModelState);
         }
 
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.Back && IsSelectionMode)
             {
@@ -188,7 +194,7 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(InCollectionResults) + "State"] = (int)InCollectionResults.ContentState;
             }
             
-            base.OnNavigatingFrom(e, viewModelState, suspending);
+            base.AppOnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected abstract Task<IEnumerable<T>> LoadMoreEverywhere(uint page);

@@ -1,10 +1,12 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+using Windows.UI.Xaml.Controls;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.UI.Xaml.Controls;
+#elif ANDROID
 #endif
 
 using ModernDev.InTouch;
@@ -18,10 +20,10 @@ using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.ViewModels.Common;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json;
 using VKSaver.Core.Models.Common;
+using VKSaver.Core.ViewModels.Common.Navigation;
+using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -102,7 +104,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand<Audio> ShowTrackInfoCommand { get; private set; }
 
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.Back && _appLoaderService.IsShowed)
             {
@@ -112,7 +114,7 @@ namespace VKSaver.Core.ViewModels
                 return;
             }
 
-            base.OnNavigatingFrom(e, viewModelState, suspending);
+            base.AppOnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected override async Task<IEnumerable<Audio>> LoadMoreEverywhere(uint page)

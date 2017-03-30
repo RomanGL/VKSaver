@@ -1,15 +1,17 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
-#else
-using Microsoft.Practices.Prism.StoreApps;
-#endif
-using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
+#elif WINDOWS_PHONE_APP
+using Windows.UI.Xaml.Controls;
+#elif ANDROID
+#endif
+
+using System.Collections.ObjectModel;
 using PropertyChanged;
+using VKSaver.Core.ViewModels.Common;
 
 namespace VKSaver.Core.ViewModels
 {
-    public abstract class WithAppBarViewModel : ViewModelBase
+    public abstract class WithAppBarViewModel : VKSaverViewModel
     {
         protected WithAppBarViewModel()
         {

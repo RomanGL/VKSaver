@@ -1,9 +1,10 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
-using Prism.Windows.Navigation;
-#else
+using Windows.System;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
+using Windows.System;
+#elif ANDROID
 #endif
 
 using IF.Lastfm.Core.Api.Enums;
@@ -11,12 +12,12 @@ using PropertyChanged;
 using System;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
-using Windows.System;
+using VKSaver.Core.ViewModels.Common;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class LastFmLoginViewModel : ViewModelBase
+    public sealed class LastFmLoginViewModel : VKSaverViewModel
     {
         public LastFmLoginViewModel(ILastFmLoginService lastFmLoginService, 
             IAppLoaderService appLoaderService, IDialogsService dialogsService,
@@ -27,10 +28,15 @@ namespace VKSaver.Core.ViewModels
             _dialogsService = dialogsService;
             _locService = locService;
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
             JoinCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(
                 new Uri("https://www.last.fm/join")));
             RestoreCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(
                 new Uri("https://secure.last.fm/settings/lostpassword")));
+#elif ANDROID
+            JoinCommand = new DelegateCommand(() => { throw new NotImplementedException(); });
+            RestoreCommand = new DelegateCommand(() => { throw new NotImplementedException(); });
+#endif
         }
 
         public string LoginText { get; set; }

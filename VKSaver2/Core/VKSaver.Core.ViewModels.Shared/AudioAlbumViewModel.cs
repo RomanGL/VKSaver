@@ -1,10 +1,13 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+using Windows.UI.Xaml.Controls;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.UI.Xaml.Controls;
+#elif ANDROID
+using VKSaver.Core.ViewModels.Common;
 #endif
 
 using ModernDev.InTouch;
@@ -16,11 +19,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.Services.Common;
-using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.ViewModels.Common.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -56,7 +60,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand<Audio> DeleteAudioCommand { get; private set; }
 
-        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             Album = JsonConvert.DeserializeObject<AudioAlbum>(e.Parameter.ToString());
 
@@ -77,10 +81,10 @@ namespace VKSaver.Core.ViewModels
             if (Tracks.Count > 0)
                 SetDefaultMode();
 
-            base.OnNavigatedTo(e, viewModelState);
+            base.AppOnNavigatedTo(e, viewModelState);
         }
 
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.New)
             {
@@ -88,7 +92,7 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(_offset)] = _offset;
             }
 
-            base.OnNavigatingFrom(e, viewModelState, suspending);
+            base.AppOnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected override void OnReloadContentCommand()
