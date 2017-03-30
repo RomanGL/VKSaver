@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">VKSaver.Android</string>
+    <string name="ApplicationName">ВКачай</string>
+    <string name="LoginActivity_LoginText">Войти</string>
+    <string name="LoginActivity_AuthText">Авторизация</string>
 </resources>

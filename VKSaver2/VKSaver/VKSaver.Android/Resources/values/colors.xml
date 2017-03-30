@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
   <color name="vksaver_accent_high">#e52c2c</color>
+  <color name="vksaver_accent_medium">#b32222</color>
+  <color name="vksaver_accent_low">#801818</color>
 </resources>

@@ -57,6 +57,12 @@ namespace VKSaver.Android
 			// aapt resource value: 0x7f050000
 			public const int vksaver_accent_high = 2131034112;
 			
+			// aapt resource value: 0x7f050002
+			public const int vksaver_accent_low = 2131034114;
+			
+			// aapt resource value: 0x7f050001
+			public const int vksaver_accent_medium = 2131034113;
+			
 			static Color()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -92,11 +98,20 @@ namespace VKSaver.Android
 			// aapt resource value: 0x7f060001
 			public const int AuthTextView = 2131099649;
 			
+			// aapt resource value: 0x7f060004
+			public const int LoginButton = 2131099652;
+			
+			// aapt resource value: 0x7f060002
+			public const int LoginEditText = 2131099650;
+			
 			// aapt resource value: 0x7f060000
 			public const int LogoImageView = 2131099648;
 			
-			// aapt resource value: 0x7f060002
-			public const int SplashImageView = 2131099650;
+			// aapt resource value: 0x7f060003
+			public const int PasswordEditText = 2131099651;
+			
+			// aapt resource value: 0x7f060005
+			public const int SplashImageView = 2131099653;
 			
 			static Id()
 			{
@@ -135,6 +150,12 @@ namespace VKSaver.Android
 			
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
+			
+			// aapt resource value: 0x7f040003
+			public const int LoginActivity_AuthText = 2130968579;
+			
+			// aapt resource value: 0x7f040002
+			public const int LoginActivity_LoginText = 2130968578;
 			
 			static String()
 			{

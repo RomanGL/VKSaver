@@ -1,22 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
-    p1:layout_width="match_parent"
-    p1:layout_height="match_parent"
-    p1:background="@color/vksaver_accent_high">
-    <ImageView
-        p1:src="@drawable/logo"
-        p1:layout_width="250dp"
-        p1:layout_height="250dp"
-        p1:id="@+id/LogoImageView"
-        p1:layout_centerHorizontal="true"
-        p1:layout_centerVertical="true" />
-    <TextView
-        p1:text="Авторизация"
-        p1:textAppearance="?android:attr/textAppearanceLarge"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/AuthTextView"
-        p1:layout_centerHorizontal="true"
-        p1:layout_below="@id/LogoImageView"
-        p1:layout_marginTop="-50dp" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vksaver_accent_high">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="16dp">
+        <ImageView
+            android:src="@drawable/logo"
+            android:id="@+id/LogoImageView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp" />
+        <TextView
+            android:text="@string/LoginActivity_AuthText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/AuthTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-35dp" />
+        <EditText
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/LoginEditText"
+            android:layout_marginTop="16dp" />
+        <EditText
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/PasswordEditText" />
+        <Button
+            android:text="@string/LoginActivity_LoginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/LoginButton"
+            android:background="@color/vksaver_accent_medium"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
 </RelativeLayout>
