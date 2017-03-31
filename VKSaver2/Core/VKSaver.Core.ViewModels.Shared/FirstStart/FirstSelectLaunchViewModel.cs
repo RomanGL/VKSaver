@@ -2,22 +2,24 @@
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using PropertyChanged;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Toolkit;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class FirstSelectLaunchViewModel : ViewModelBase
+    public sealed class FirstSelectLaunchViewModel : VKSaverViewModel
     {
         public FirstSelectLaunchViewModel(
             INavigationService navigationService, 

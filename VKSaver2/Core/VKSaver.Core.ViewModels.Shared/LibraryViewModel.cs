@@ -59,7 +59,12 @@ namespace VKSaver.Core.ViewModels
             {
                 _currentPivotIndex = value;
                 OnPivotIndexChanged(value);
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                 OnPropertyChanged(nameof(CurrentPivotIndex));
+#elif ANDROID
+                RaisePropertyChanged(nameof(CurrentPivotIndex));
+#endif
             }
         }
 

@@ -1,7 +1,9 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using VKSaver.Core.Models.Common;

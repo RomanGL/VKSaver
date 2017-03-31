@@ -5,6 +5,7 @@ using Windows.System;
 using Microsoft.Practices.Prism.StoreApps;
 using Windows.System;
 #elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using System;

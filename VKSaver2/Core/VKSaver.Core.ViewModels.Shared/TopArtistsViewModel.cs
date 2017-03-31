@@ -5,7 +5,7 @@ using Prism.Windows.Navigation;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #elif ANDROID
-using VKSAver.Core.Toolkit.Commands;
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using Newtonsoft.Json;
@@ -18,6 +18,7 @@ using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Collections;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
+using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Toolkit;
 using VKSaver.Core.Toolkit.Navigation;
 using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;

@@ -2,9 +2,13 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+using Windows.System;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.System;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using Newtonsoft.Json;
@@ -15,23 +19,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.ViewModels.Collections;
-using Windows.UI.Xaml.Navigation;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Common;
 using System.Collections.ObjectModel;
-using Windows.UI.Xaml.Controls;
 using System.Collections.Specialized;
 using VKSaver.Core.Models.Transfer;
 using ModernDev.InTouch;
 using VKSaver.Core.Services.Common;
-using Windows.System;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services;
+using VKSaver.Core.Toolkit;
+using VKSaver.Core.Toolkit.Controls;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class UserContentViewModel : ViewModelBase
+    public sealed class UserContentViewModel : VKSaverViewModel
     {
         public UserContentViewModel(
             InTouch inTouch, 
@@ -59,8 +65,8 @@ namespace VKSaver.Core.ViewModels
             _purchaseService = purchaseService;
 
             SelectedItems = new List<object>();
-            PrimaryItems = new ObservableCollection<ICommandBarElement>();
-            SecondaryItems = new ObservableCollection<ICommandBarElement>();
+            PrimaryItems = new ObservableCollection<IButtonElement>();
+            SecondaryItems = new ObservableCollection<IButtonElement>();
 
             ExecuteTracksListItemCommand = new DelegateCommand<object>(OnExecuteTracksListItemCommand);
             NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
@@ -106,10 +112,10 @@ namespace VKSaver.Core.ViewModels
         public bool SelectAllDocuments { get; private set; }
 
         [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> PrimaryItems { get; private set; }
+        public ObservableCollection<IButtonElement> PrimaryItems { get; private set; }
 
         [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> SecondaryItems { get; private set; }
+        public ObservableCollection<IButtonElement> SecondaryItems { get; private set; }
 
         [DoNotNotify]
         public List<object> SelectedItems { get; private set; }
@@ -469,42 +475,42 @@ namespace VKSaver.Core.ViewModels
 
             if (LastPivotIndex == 0)
             {
-                PrimaryItems.Add(new AppBarButton
+                PrimaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Shuffle_Text"],
-                    Icon = new FontIcon { Glyph = "\uE14B" },
+                    Icon = new FontButtonIcon { Glyph = "\uE14B" },
                     Command = PlayShuffleCommand
                 });
             }
 
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Refresh_Text"],
-                Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
+                Icon = new FontButtonIcon { Glyph = "\uE117", FontSize = 14 },
                 Command = ReloadContentCommand
             });
 
             if (LastPivotIndex != 1)
             {
-                PrimaryItems.Add(new AppBarButton
+                PrimaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Select_Text"],
-                    Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
+                    Icon = new FontButtonIcon { Glyph = "\uE133", FontSize = 14 },
                     Command = ActivateSelectionMode
                 });
             }
             
             if (_launchViewResolver.LaunchViewName != AppConstants.DEFAULT_MAIN_VIEW)
             {
-                PrimaryItems.Add(new AppBarButton
+                PrimaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Home_Text"],
-                    Icon = new FontIcon { Glyph = "\uE10F" },
+                    Icon = new FontButtonIcon { Glyph = "\uE10F" },
                     Command = OpenMainViewCommand
                 });
             }
 
-            SecondaryItems.Add(new AppBarButton
+            SecondaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_TransferManager_Text"],
                 Command = OpenTransferManagerCommand
@@ -516,22 +522,22 @@ namespace VKSaver.Core.ViewModels
             PrimaryItems.Clear();
             SecondaryItems.Clear();
 
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Download_Text"],
-                Icon = new FontIcon { Glyph = "\uE118" },
+                Icon = new FontButtonIcon { Glyph = "\uE118" },
                 Command = DownloadSelectedCommand
             });
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Play_Text"],
-                Icon = new FontIcon { Glyph = "\uE102" },
+                Icon = new FontButtonIcon { Glyph = "\uE102" },
                 Command = PlaySelectedCommand
             });
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_SelectAll_Text"],
-                Icon = new FontIcon { Glyph = "\uE0E7" },
+                Icon = new FontButtonIcon { Glyph = "\uE0E7" },
                 Command = SelectAllCommand
             });
 
@@ -540,21 +546,21 @@ namespace VKSaver.Core.ViewModels
                 switch (LastPivotIndex)
                 {
                     case 0:
-                        SecondaryItems.Add(new AppBarButton
+                        SecondaryItems.Add(new ButtonElement
                         {
                             Label = _locService["AppBarButton_AddToMyAudios_Text"],
                             Command = AddSelectedToMyCollectionCommand
                         });
                         break;
                     case 1:
-                        SecondaryItems.Add(new AppBarButton
+                        SecondaryItems.Add(new ButtonElement
                         {
                             Label = _locService["AppBarButton_AddToMyVideos_Text"],
                             Command = AddSelectedToMyCollectionCommand
                         });
                         break;
                     case 2:
-                        SecondaryItems.Add(new AppBarButton
+                        SecondaryItems.Add(new ButtonElement
                         {
                             Label = _locService["AppBarButton_AddToMyDocs_Text"],
                             Command = AddSelectedToMyCollectionCommand
@@ -564,7 +570,7 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-                SecondaryItems.Add(new AppBarButton
+                SecondaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Delete_Text"],
                     Command = DeleteSelectedCommand
@@ -743,7 +749,13 @@ namespace VKSaver.Core.ViewModels
             {
                 var doc = (Doc)item;
                 if (doc.Ext == "gif" || doc.Ext == "png" || doc.Ext == "jpg")
+                {
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                     await Launcher.LaunchUriAsync(new Uri(doc.Url));
+#elif ANDROID
+                    throw new NotImplementedException();
+#endif
+                }
                 else
                     await _downloadsServiceHelper.StartDownloadingAsync(doc.ToDownloadable());
             }

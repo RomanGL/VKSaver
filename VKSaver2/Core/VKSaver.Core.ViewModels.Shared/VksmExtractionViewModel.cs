@@ -2,9 +2,10 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
 #endif
 
 using System;
@@ -12,13 +13,15 @@ using System.Collections.Generic;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.VksmExtraction;
-using Windows.UI.Core;
 using PropertyChanged;
+using VKSaver.Core.Toolkit;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class VksmExtractionViewModel : ViewModelBase
+    public sealed class VksmExtractionViewModel : VKSaverViewModel
     {
         public VksmExtractionViewModel(
             INavigationService navigationService, 
@@ -72,7 +75,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void ExtractingProgressChanged(IVksmExtractionService sender, ExtractingProgressChangedEventArgs e)
         {
-            await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await _dispatcherWrapper.RunOnUIThreadAsync(() =>
             {
                 if ((e.TotalBytes == 0 && e.CompletedBytes == 0) || e.TotalBytes == e.CompletedBytes)
                 {
@@ -89,7 +92,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void SearchingProgressChanged(IVksmExtractionService sender, SearchingProgressChangedEventArgs e)
         {
-            await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await _dispatcherWrapper.RunOnUIThreadAsync(() =>
             {
                 TotalFiles = e.TotalFiles;
                 CurrentFile = e.CurrentFile;

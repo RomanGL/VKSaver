@@ -17,8 +17,6 @@ using System.Collections.Generic;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using VKSaver.Core.Toolkit;
 using VKSaver.Core.Toolkit.Navigation;
 using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
@@ -29,11 +27,13 @@ namespace VKSaver.Core.ViewModels
     [ImplementPropertyChanged]
     public sealed class TrackLyricsViewModel : VKSaverViewModel
     {
-        public TrackLyricsViewModel(InTouch inTouch, INavigationService navigationService,
-            IDialogsService dialogService, ILocService locService, IInTouchWrapper inTouchWrapper)
+        public TrackLyricsViewModel(
+            InTouch inTouch, 
+            IDialogsService dialogService, 
+            ILocService locService, 
+            IInTouchWrapper inTouchWrapper)
         {
             _inTouch = inTouch;
-            _navigationService = navigationService;
             _dialogService = dialogService;
             _locService = locService;
             _inTouchWrapper = inTouchWrapper;
@@ -43,7 +43,7 @@ namespace VKSaver.Core.ViewModels
 
         public string Lyrics { get; private set; }
 
-        public ImageSource ArtistImage { get; private set; }
+        public string ArtistImage { get; private set; }
 
         public ContentState LyricsState { get; private set; }
 
@@ -62,7 +62,7 @@ namespace VKSaver.Core.ViewModels
                 _artistImage = viewModelState[nameof(_artistImage)] as string;
 
                 if (_artistImage != null)
-                    ArtistImage = new BitmapImage(new Uri(_artistImage));
+                    ArtistImage = _artistImage;
             }
             else if (e.Parameter != null)
             {
@@ -71,7 +71,7 @@ namespace VKSaver.Core.ViewModels
 
                 if (data.Value != null)
                 {
-                    ArtistImage = new BitmapImage(new Uri(data.Value));
+                    ArtistImage = data.Value;
                     _artistImage = data.Value;
                 }
             }
@@ -141,7 +141,6 @@ namespace VKSaver.Core.ViewModels
 
         private string _artistImage;
         
-        private readonly INavigationService _navigationService;
         private readonly IDialogsService _dialogService;
         private readonly ILocService _locService;
         private readonly InTouch _inTouch;

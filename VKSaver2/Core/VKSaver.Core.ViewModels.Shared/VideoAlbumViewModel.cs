@@ -2,9 +2,11 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using ModernDev.InTouch;
@@ -17,13 +19,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.Toolkit;
+using VKSaver.Core.Toolkit.Controls;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class VideoAlbumViewModel : ViewModelBase
+    public sealed class VideoAlbumViewModel : VKSaverViewModel
     {
         public VideoAlbumViewModel(INavigationService navigationService, InTouch inTouch,
             IAppLoaderService appLoaderService, IDialogsService dialogsService, ILocService locService,
@@ -36,8 +41,8 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService = appLoaderService;
             _inTouchWrapper = inTouchWrapper;
             
-            PrimaryItems = new ObservableCollection<ICommandBarElement>();
-            SecondaryItems = new ObservableCollection<ICommandBarElement>();
+            PrimaryItems = new ObservableCollection<IButtonElement>();
+            SecondaryItems = new ObservableCollection<IButtonElement>();
             
             ReloadContentCommand = new DelegateCommand(OnReloadContentCommand);
             AddToMyVideosCommand = new DelegateCommand<Video>(OnAddToMyVideosCommand, CanAddToMyVideos);
@@ -57,10 +62,10 @@ namespace VKSaver.Core.ViewModels
         public bool SelectAll { get; private set; }
 
         [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> PrimaryItems { get; private set; }
+        public ObservableCollection<IButtonElement> PrimaryItems { get; private set; }
 
         [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> SecondaryItems { get; private set; }
+        public ObservableCollection<IButtonElement> SecondaryItems { get; private set; }
         
         [DoNotNotify]
         public DelegateCommand<Video> OpenVideoCommand { get; private set; }
@@ -152,14 +157,14 @@ namespace VKSaver.Core.ViewModels
             PrimaryItems.Clear();
             SecondaryItems.Clear();
 
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Refresh_Text"],
-                Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
+                Icon = new FontButtonIcon { Glyph = "\uE117", FontSize = 14 },
                 Command = ReloadContentCommand
             });
 
-            SecondaryItems.Add(new AppBarButton
+            SecondaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_TransferManager_Text"],
                 Command = OpenTransferManagerCommand

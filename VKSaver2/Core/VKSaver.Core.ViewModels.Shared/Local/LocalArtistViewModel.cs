@@ -2,9 +2,11 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using PropertyChanged;
@@ -19,7 +21,7 @@ using VKSaver.Core.Services;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
-using Windows.Storage;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {

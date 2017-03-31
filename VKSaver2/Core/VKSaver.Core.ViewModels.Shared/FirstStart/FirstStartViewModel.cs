@@ -2,14 +2,19 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
+using VKSaver.Core.Services.Interfaces;
 #endif
+
+using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels
 {
-    public sealed class FirstStartViewModel : ViewModelBase
+    public sealed class FirstStartViewModel : VKSaverViewModel
     {
         public FirstStartViewModel(INavigationService navigationService)
         {

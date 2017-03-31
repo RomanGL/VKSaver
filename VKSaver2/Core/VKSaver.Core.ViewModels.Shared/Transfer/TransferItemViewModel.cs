@@ -1,7 +1,8 @@
 ﻿#if WINDOWS_UWP
 using Prism.Windows.Mvvm;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
+#elif ANDROID
 #endif
 
 using System;
@@ -10,10 +11,11 @@ using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Transfer;
+using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels.Transfer
 {
-    public class TransferItemViewModel : ViewModelBase
+    public class TransferItemViewModel : VKSaverViewModel
     {
         public TransferItemViewModel(TransferItem item, ILocService locService)
         {
@@ -27,6 +29,8 @@ namespace VKSaver.Core.ViewModels.Transfer
             set
             {
                 _operation = value;
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                 OnPropertyChanged(nameof(Status));
                 OnPropertyChanged(nameof(TotalSize));
                 OnPropertyChanged(nameof(ProcessedSize));
@@ -34,6 +38,15 @@ namespace VKSaver.Core.ViewModels.Transfer
                 OnPropertyChanged(nameof(IsIndicatorPaused));
                 OnPropertyChanged(nameof(Operation));
                 OnPropertyChanged(nameof(SizeProgressText));
+#elif ANDROID
+                RaisePropertyChanged(nameof(Status));
+                RaisePropertyChanged(nameof(TotalSize));
+                RaisePropertyChanged(nameof(ProcessedSize));
+                RaisePropertyChanged(nameof(Percentage));
+                RaisePropertyChanged(nameof(IsIndicatorPaused));
+                RaisePropertyChanged(nameof(Operation));
+                RaisePropertyChanged(nameof(SizeProgressText));
+#endif
             }
         }
         

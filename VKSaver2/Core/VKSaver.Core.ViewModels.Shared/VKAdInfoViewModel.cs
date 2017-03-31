@@ -2,27 +2,32 @@
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
-#else
+using Windows.System;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
+using Windows.System;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.System;
-using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json;
 using PropertyChanged;
 using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Toolkit;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class VKAdInfoViewModel : ViewModelBase
+    public sealed class VKAdInfoViewModel : VKSaverViewModel
     {
         public VKAdInfoViewModel(
             IVKAdService vkAdService,
@@ -93,7 +98,12 @@ namespace VKSaver.Core.ViewModels
                 _isSuccess = true;
                 await _vkAdService.ReportAdAsync(Data.AdName, true);
                 await Task.Delay(1000);
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                 await Launcher.LaunchUriAsync(new Uri(Data.ExternalLink));
+#elif ANDROID
+                throw new NotImplementedException();
+#endif
             }
             catch (Exception e)
             {

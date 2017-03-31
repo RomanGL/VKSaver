@@ -5,9 +5,9 @@ using Windows.ApplicationModel;
 using Microsoft.Practices.Prism.StoreApps;
 using Windows.ApplicationModel;
 #elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
-using System;
 using PropertyChanged;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;

@@ -2,24 +2,26 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+using Windows.System;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.System;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
-using Windows.System;
 using PropertyChanged;
 using VKSaver.Core.Models.Common;
 using ModernDev.InTouch;
+using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels
 {
-    public class DirectAuthViewModel : ViewModelBase
+    public class DirectAuthViewModel : VKSaverViewModel
     {
         public DirectAuthViewModel(
             IVKLoginService vkLoginService,
@@ -36,8 +38,14 @@ namespace VKSaver.Core.ViewModels
             _navigationService = navigationService;
             _vkCaptchaHandler = vkCaptchaHandler;
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
             JoinCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/join")));
             RestoreCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/restore")));
+#elif ANDROID
+            JoinCommand = new DelegateCommand(() => { throw new NotImplementedException(); });
+            RestoreCommand = new DelegateCommand(() => { throw new NotImplementedException(); });
+#endif
+
             GoToOAuthCommand = new DelegateCommand(OnGoToOAuthCommand);
         }
 

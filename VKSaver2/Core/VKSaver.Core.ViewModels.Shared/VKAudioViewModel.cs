@@ -59,7 +59,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand<T> ShowTrackInfoCommand { get; private set; }
 
-        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.Back && _appLoaderService.IsShowed)
             {
@@ -69,7 +69,7 @@ namespace VKSaver.Core.ViewModels
                 return;
             }
 
-            base.AppOnNavigatingFrom(e, viewModelState, suspending);
+            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected override void CreateSelectionAppBarButtons()

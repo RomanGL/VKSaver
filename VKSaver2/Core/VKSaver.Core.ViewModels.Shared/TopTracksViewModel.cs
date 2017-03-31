@@ -18,6 +18,7 @@ using VKSaver.Core.Services.Json;
 using VKSaver.Core.ViewModels.Collections;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
+using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Toolkit;
 using VKSaver.Core.Toolkit.Navigation;
 using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
@@ -88,6 +89,6 @@ namespace VKSaver.Core.ViewModels
         private readonly INavigationService _navigationService;
         private readonly LastfmClient _lfClient;
 
-        private readonly static LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();
+        private static readonly LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();
     }
 }

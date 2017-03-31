@@ -1,9 +1,13 @@
-﻿using System;
+﻿#if WINDOWS_UWP || WINDOWS_PHONE_APP
+using Windows.Globalization.Collation;
+#elif ANDROID
+#endif
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using Windows.Globalization.Collation;
 
 namespace VKSaver.Core.ViewModels.Common
 {
@@ -71,6 +75,7 @@ namespace VKSaver.Core.ViewModels.Common
             return dict.Select(x => x.Value);
         }
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
         private static Dictionary<string, JumpListGroup<TSource>> ToAlphaGroupsDictionary<TSource>(
             IEnumerable<TSource> source, Func<TSource, string> selector)
         {
@@ -114,5 +119,12 @@ namespace VKSaver.Core.ViewModels.Common
 
             return groupDictionary;
         }
+#elif ANDROID
+        private static Dictionary<string, JumpListGroup<TSource>> ToAlphaGroupsDictionary<TSource>(
+            IEnumerable<TSource> source, Func<TSource, string> selector)
+        {
+            return new Dictionary<string, JumpListGroup<TSource>>();
+        }
+#endif
     }
 }

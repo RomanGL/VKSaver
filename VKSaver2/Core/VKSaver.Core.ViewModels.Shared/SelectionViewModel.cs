@@ -54,16 +54,16 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         protected bool IsReloadButtonSupported { get; set; }
 
-        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             var selectionList = GetSelectionList();
             if (selectionList != null && selectionList.Count > 0)
                 SetDefaultMode();
 
-            base.AppOnNavigatedTo(e, viewModelState);
+            base.OnNavigatedTo(e, viewModelState);
         }
 
-        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.Back && IsSelectionMode)
             {
@@ -72,7 +72,7 @@ namespace VKSaver.Core.ViewModels
                 return;
             }
 
-            base.AppOnNavigatingFrom(e, viewModelState, suspending);
+            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected abstract IList GetSelectionList();

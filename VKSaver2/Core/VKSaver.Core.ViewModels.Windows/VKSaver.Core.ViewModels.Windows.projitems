@@ -9,6 +9,9 @@
     <Import_RootNamespace>VKSaver.Core.ViewModels</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\IncrementalLoadingJumpListCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\IFileOpenPickerSupport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadFileViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserContentViewModel.cs" />
   </ItemGroup>
 </Project>

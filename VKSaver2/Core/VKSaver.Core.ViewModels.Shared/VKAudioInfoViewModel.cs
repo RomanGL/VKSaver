@@ -2,24 +2,26 @@
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Windows.UI.Xaml;
 using Newtonsoft.Json;
 using PropertyChanged;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Toolkit;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class VKAudioInfoViewModel : ViewModelBase
+    public sealed class VKAudioInfoViewModel : VKSaverViewModel
     {
         public VKAudioInfoViewModel(
             IHttpFileService httpFileService, 

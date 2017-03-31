@@ -2,9 +2,11 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using ModernDev.InTouch;
@@ -17,8 +19,10 @@ using System.Text;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.Toolkit.Controls;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -197,16 +201,16 @@ namespace VKSaver.Core.ViewModels
         {
             base.CreateDefaultAppBarButtons();
 
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Select_Text"],
-                Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
+                Icon = new FontButtonIcon { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionModeCommand
             });
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Filter_Text"],
-                Icon = new FontIcon { Glyph = "\uE16E", FontSize = 14 },
+                Icon = new FontButtonIcon { Glyph = "\uE16E", FontSize = 14 },
                 Command = ShowFilterFlyoutCommand
             });
         }
@@ -215,16 +219,16 @@ namespace VKSaver.Core.ViewModels
         {
             base.CreateSelectionAppBarButtons();
 
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_SelectAll_Text"],
-                Icon = new FontIcon { Glyph = "\uE0E7" },
+                Icon = new FontButtonIcon { Glyph = "\uE0E7" },
                 Command = SelectAllCommand
             });
 
             if (LastPivotIndex == 1 && UserId == _inTouch.Session.UserId)
             {
-                SecondaryItems.Add(new AppBarButton
+                SecondaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Delete_Text"],
                     Command = DeleteSelectedCommand
@@ -232,7 +236,7 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-                SecondaryItems.Add(new AppBarButton
+                SecondaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_AddToMyVideos_Text"],
                     Command = AddSelectedToMyVideosCommand

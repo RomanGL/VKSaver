@@ -11,6 +11,8 @@ using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #elif ANDROID
 using VKSaver.Core.Toolkit.Commands;
+using Android.Views.InputMethods;
+using Android.Widget;
 #endif
 
 using ModernDev.InTouch;
@@ -28,9 +30,9 @@ using VKSaver.Core.Toolkit;
 using VKSaver.Core.Toolkit.Controls;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Search;
+using VKSaver.Core.Toolkit.Navigation;
 using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
 using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
-using VKSaver.Core.Toolkit.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -51,16 +53,21 @@ namespace VKSaver.Core.ViewModels
             PrimaryItems = new ObservableCollection<IButtonElement>();
             SecondaryItems = new ObservableCollection<IButtonElement>();
             SelectedItems = new List<object>();
-
-            QueryBoxKeyDownCommand = new DelegateCommand<KeyRoutedEventArgs>(OnQueryBoxKeyDownCommand);
+            
             SelectionChangedCommand = new DelegateCommand(OnSelectionChangedCommand);
             ExecuteItemCommand = new DelegateCommand<T>(OnExecuteItemCommand);
             OpenTransferManagerCommand = new DelegateCommand(OnOpenTransferManagerCommand);
             ReloadCommand = new DelegateCommand(Search);
             ActivateSelectionModeCommand = new DelegateCommand(SetSelectionMode, CanActivateSelectionModeCommand);
             SelectAllCommand = new DelegateCommand(() => SelectAll = !SelectAll);
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+            QueryBoxKeyDownCommand = new DelegateCommand<KeyRoutedEventArgs>(OnQueryBoxKeyDownCommand);
+#elif ANDROID
+            QueryBoxActionCommand = new DelegateCommand<TextView.EditorActionEventArgs>(OnQueryBoxActionCommand);
+#endif
         }
-        
+
         public int LastPivotIndex
         {
             get { return _lastPivotIndex; }
@@ -87,8 +94,14 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public List<object> SelectedItems { get; private set; }
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
         [DoNotNotify]
         public DelegateCommand<KeyRoutedEventArgs> QueryBoxKeyDownCommand { get; private set; }
+#elif ANDROID
+        [DoNotNotify]
+        public DelegateCommand<TextView.EditorActionEventArgs> QueryBoxActionCommand { get; private set; }
+#endif
+
         [DoNotNotify]
         public DelegateCommand SelectionChangedCommand { get; private set; }
         [DoNotNotify]
@@ -104,7 +117,7 @@ namespace VKSaver.Core.ViewModels
 
         protected int UserId { get; private set; }
 
-        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (viewModelState.Count == 0)
             {
@@ -166,10 +179,10 @@ namespace VKSaver.Core.ViewModels
             InCollectionResults.CollectionChanged += Results_CollectionChanged;
 
             SetDefaultMode();
-            base.AppOnNavigatedTo(e, viewModelState);
+            base.OnNavigatedTo(e, viewModelState);
         }
 
-        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.Back && IsSelectionMode)
             {
@@ -195,7 +208,7 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(InCollectionResults) + "State"] = (int)InCollectionResults.ContentState;
             }
             
-            base.AppOnNavigatingFrom(e, viewModelState, suspending);
+            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected abstract Task<IEnumerable<T>> LoadMoreEverywhere(uint page);
@@ -283,11 +296,19 @@ namespace VKSaver.Core.ViewModels
             }
         }
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
         private void OnQueryBoxKeyDownCommand(KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
                 Search();
         }
+#elif ANDROID
+        private void OnQueryBoxActionCommand(TextView.EditorActionEventArgs e)
+        {
+            if (e.ActionId == ImeAction.Search)
+                Search();
+        }
+#endif
 
         private void OnOpenTransferManagerCommand()
         {

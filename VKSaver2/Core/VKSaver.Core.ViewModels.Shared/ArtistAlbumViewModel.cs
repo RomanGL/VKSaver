@@ -6,6 +6,7 @@ using Prism.Windows.Navigation;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using Newtonsoft.Json;

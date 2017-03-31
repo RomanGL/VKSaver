@@ -2,9 +2,11 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using ModernDev.InTouch;
@@ -16,12 +18,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
-using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.Toolkit;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class UserCommViewModel : ViewModelBase
+    public sealed class UserCommViewModel : VKSaverViewModel
     {
         public UserCommViewModel(InTouch inTouch, INavigationService navigationService,
             IInTouchWrapper inTouchWrapper)

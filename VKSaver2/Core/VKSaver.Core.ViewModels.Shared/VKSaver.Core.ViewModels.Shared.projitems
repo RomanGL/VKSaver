@@ -18,8 +18,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)AudioSearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AudioViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CachedViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Collections\IMultiSelectCollectionView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Collections\IncrementalLoadingJumpListCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\IStateSupportCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\ISupportUpDownIncrementalLoading.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\PaginatedCollection.cs" />
@@ -27,9 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Collections\SimpleStateSupportCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\StateChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\StateSupportCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Collections\StateSupportMultiSelectCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\Extensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\IFileOpenPickerSupport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\JumpListGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\JumpListHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\UploadType.cs" />
@@ -70,7 +66,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UpdatingDatabaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserCommViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UserContentViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VideoAlbumViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VideoInfoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VideoPlayerViewModel.cs" />

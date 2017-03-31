@@ -1,16 +1,18 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
-#else
+using Windows.UI.Core;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
+using Windows.UI.Core;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using VKSaver.Core.Models.Common;
-using Windows.UI.Core;
 
 namespace VKSaver.Core.ViewModels.Collections
 {
@@ -101,6 +103,7 @@ namespace VKSaver.Core.ViewModels.Collections
         /// <summary>
         /// Invoked when a state changed.
         /// </summary>
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
         private async void OnStateChanged()
         {
             await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
@@ -110,6 +113,14 @@ namespace VKSaver.Core.ViewModels.Collections
                     this.StateChanged(this, new StateChangedEventArgs(ContentState));
             }));            
         }
+#elif ANDROID
+        private void OnStateChanged()
+        {
+            this.OnPropertyChanged(new PropertyChangedEventArgs("ContentState"));
+            if (this.StateChanged != null)
+                this.StateChanged(this, new StateChangedEventArgs(ContentState));
+        }
+#endif
 
         private ContentState _state = ContentState.Normal;
     }

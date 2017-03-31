@@ -12,12 +12,14 @@ using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #elif ANDROID
 using VKSaver.Core.Toolkit.Commands;
+using Android.Widget;
 #endif
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Android.Views.InputMethods;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
@@ -45,17 +47,27 @@ namespace VKSaver.Core.ViewModels
             _lastfmClient = lastfmClient;
             _locService = locService;
             _navigationService = navigationService;
-
-            QueryBoxKeyDownCommand = new DelegateCommand<KeyRoutedEventArgs>(OnQueryBoxKeyDownCommand);
+            
             GoToArtistInfoCommand = new DelegateCommand<LastArtist>(OnGoToArtistInfoCommand);
             ReloadCommand = new DelegateCommand(Search);
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+            QueryBoxKeyDownCommand = new DelegateCommand<KeyRoutedEventArgs>(OnQueryBoxKeyDownCommand);
+#elif ANDROID
+            QueryBoxActionCommand = new DelegateCommand<TextView.EditorActionEventArgs>(OnQueryBoxActionCommand);
+#endif
         }
         
         public string Query { get; set; }
         public PaginatedCollection<LastArtist> Artists { get; private set; }
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
         [DoNotNotify]
         public DelegateCommand<KeyRoutedEventArgs> QueryBoxKeyDownCommand { get; private set; }
+#elif ANDROID
+        [DoNotNotify]
+        public DelegateCommand<TextView.EditorActionEventArgs> QueryBoxActionCommand { get; private set; }
+#endif
 
         [DoNotNotify]
         public DelegateCommand<LastArtist> GoToArtistInfoCommand { get; private set; }
@@ -152,11 +164,19 @@ namespace VKSaver.Core.ViewModels
             _navigationService.Navigate("ArtistInfoView", JsonConvert.SerializeObject(artist, _lastImageSetConverter));
         }
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
         private void OnQueryBoxKeyDownCommand(KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
                 Search();
         }
+#elif ANDROID
+        private void OnQueryBoxActionCommand(TextView.EditorActionEventArgs e)
+        {
+            if (e.ActionId == ImeAction.Search)
+                Search();
+        }
+#endif
 
         private void Search()
         {

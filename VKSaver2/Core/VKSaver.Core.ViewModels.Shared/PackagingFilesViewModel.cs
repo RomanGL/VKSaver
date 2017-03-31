@@ -10,11 +10,13 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using System;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;
-using Windows.UI.Core;
+using VKSaver.Core.Toolkit;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
-    public sealed class PackagingFilesViewModel : ViewModelBase
+    public sealed class PackagingFilesViewModel : VKSaverViewModel
     {
         public PackagingFilesViewModel(IDownloadsService downloadsService, 
             INavigationService navigationService, IVKLoginService vkLoginService,
@@ -49,7 +51,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void CompletedNavigate()
         {
-            await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await _dispatcherWrapper.RunOnUIThreadAsync(() =>
            {
                _navigationService.ClearHistory();
 
