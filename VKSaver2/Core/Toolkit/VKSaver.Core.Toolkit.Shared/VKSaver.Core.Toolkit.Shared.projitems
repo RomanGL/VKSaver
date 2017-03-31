@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>dde5636e-d407-4594-acf5-df98617348bf</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VKSaver.Core.Toolkit</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ButtonElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FontButtonIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\IButtonElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\IButtonIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButtonIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IVKSaverViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Navigation\NavigatedToEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Navigation\NavigatingFromEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Navigation\NavigationMode.cs" />
+  </ItemGroup>
+</Project>

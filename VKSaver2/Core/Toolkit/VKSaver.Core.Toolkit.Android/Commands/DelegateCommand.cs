@@ -1,7 +1,7 @@
 using System;
 using GalaSoft.MvvmLight.Command;
 
-namespace VKSaver.Core.ViewModels.Common
+namespace VKSaver.Core.Toolkit.Commands
 {
     public sealed class DelegateCommand : RelayCommand
     {

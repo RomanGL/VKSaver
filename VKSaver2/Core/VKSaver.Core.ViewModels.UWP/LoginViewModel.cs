@@ -1,11 +1,11 @@
-﻿using Prism.Windows.Mvvm;
-using System;
+﻿using System;
 using VKSaver.Core.Services;
 using Windows.Security.Authentication.Web;
+using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels
 {
-    public sealed partial class LoginViewModel : ViewModelBase
+    public sealed partial class LoginViewModel : VKSaverViewModel
     {
         private async void LoginUwp()
         {
@@ -13,7 +13,6 @@ namespace VKSaver.Core.ViewModels
 //            LoginToken(69396347, "942c58d27b3c05c4ecc8b382b89a16eb25d6a49693eddb600707bd59251c4e60d71546709bde36fbf787f");
 //            return;
 //#endif
-
             try
             {
                 var authResult = await WebAuthenticationBroker.AuthenticateAsync(WebAuthenticationOptions.None, 

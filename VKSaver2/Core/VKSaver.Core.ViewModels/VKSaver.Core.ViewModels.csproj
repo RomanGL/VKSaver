@@ -120,6 +120,10 @@
       <Project>{40a1882e-0394-4517-a908-265a2b943e41}</Project>
       <Name>VKSaver.Core.FileSystem.WP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Toolkit\VKSaver.Core.Toolkit.WP\VKSaver.Core.Toolkit.WP.csproj">
+      <Project>{0b59c0cd-cc88-4b71-a018-5cf4db130056}</Project>
+      <Name>VKSaver.Core.Toolkit.WP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VKSaver.Core.LinksExtractor\VKSaver.Core.LinksExtractor.csproj">
       <Project>{8a78fe74-730a-4d36-8c44-32df960ad957}</Project>
       <Name>VKSaver.Core.LinksExtractor</Name>

@@ -1,6 +1,5 @@
 ﻿#if WINDOWS_UWP || WINDOWS_PHONE_APP
 using Windows.System;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 #endif
 
@@ -11,6 +10,7 @@ using Prism.Windows.Navigation;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using ModernDev.InTouch;
@@ -24,12 +24,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Toolkit;
+using VKSaver.Core.Toolkit.Controls;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Search;
-using VKSaver.Core.ViewModels.Common;
-using VKSaver.Core.ViewModels.Common.Navigation;
-using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
-using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
+using VKSaver.Core.Toolkit.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -47,8 +48,8 @@ namespace VKSaver.Core.ViewModels
             _dialogsService = dialogsService;
             _inTouchWrapper = inTouchWrapper;
 
-            PrimaryItems = new ObservableCollection<ICommandBarElement>();
-            SecondaryItems = new ObservableCollection<ICommandBarElement>();
+            PrimaryItems = new ObservableCollection<IButtonElement>();
+            SecondaryItems = new ObservableCollection<IButtonElement>();
             SelectedItems = new List<object>();
 
             QueryBoxKeyDownCommand = new DelegateCommand<KeyRoutedEventArgs>(OnQueryBoxKeyDownCommand);
@@ -80,9 +81,9 @@ namespace VKSaver.Core.ViewModels
         public PaginatedCollection<T> InCollectionResults { get; private set; }
 
         [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> PrimaryItems { get; private set; }
+        public ObservableCollection<IButtonElement> PrimaryItems { get; private set; }
         [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> SecondaryItems { get; private set; }
+        public ObservableCollection<IButtonElement> SecondaryItems { get; private set; }
         [DoNotNotify]
         public List<object> SelectedItems { get; private set; }
 
@@ -205,14 +206,14 @@ namespace VKSaver.Core.ViewModels
             PrimaryItems.Clear();
             SecondaryItems.Clear();
 
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Refresh_Text"],
-                Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
+                Icon = new FontButtonIcon { Glyph = "\uE117", FontSize = 14 },
                 Command = ReloadCommand
             });
 
-            SecondaryItems.Add(new AppBarButton
+            SecondaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_TransferManager_Text"],
                 Command = OpenTransferManagerCommand

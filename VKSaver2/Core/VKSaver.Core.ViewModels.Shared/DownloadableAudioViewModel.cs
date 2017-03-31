@@ -5,13 +5,15 @@ using Prism.Windows.Navigation;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using PropertyChanged;
 using System.Linq;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Interfaces;
-using Windows.UI.Xaml.Controls;
+using VKSaver.Core.Toolkit.Controls;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -55,7 +57,7 @@ namespace VKSaver.Core.ViewModels
 
         protected override void CreateDefaultAppBarButtons()
         {
-            SecondaryItems.Add(new AppBarButton
+            SecondaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_TransferManager_Text"],
                 Command = OpenTransferManagerCommand
@@ -66,10 +68,10 @@ namespace VKSaver.Core.ViewModels
 
         protected override void CreateSelectionAppBarButtons()
         {
-            AppBarItems.Add(new AppBarButton
+            AppBarItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Download_Text"],
-                Icon = new FontIcon { Glyph = "\uE118" },
+                Icon = new FontButtonIcon { Glyph = "\uE118" },
                 Command = DownloadSelectedCommand
             });
 

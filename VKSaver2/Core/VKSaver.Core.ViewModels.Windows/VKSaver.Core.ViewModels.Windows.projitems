@@ -9,6 +9,6 @@
     <Import_RootNamespace>VKSaver.Core.ViewModels</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Common\VKSaverViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UploadFileViewModel.cs" />
   </ItemGroup>
 </Project>

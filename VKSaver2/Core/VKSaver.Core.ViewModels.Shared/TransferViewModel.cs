@@ -1,9 +1,9 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
-using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using PropertyChanged;
@@ -17,7 +17,9 @@ using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Transfer;
-using Windows.UI.Core;
+using VKSaver.Core.Toolkit;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -25,7 +27,7 @@ namespace VKSaver.Core.ViewModels
     /// Представляет модель представления страницы передачи данных.
     /// </summary>
     [ImplementPropertyChanged]
-    public class TransferViewModel : ViewModelBase
+    public class TransferViewModel : VKSaverViewModel
     {
         public TransferViewModel(
             IDownloadsService downloadsService, 
@@ -133,7 +135,7 @@ namespace VKSaver.Core.ViewModels
         
         private async void OnDownloadProgressChanged(object sender, TransferItem e)
         {
-            await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await _dispatcherWrapper.RunOnUIThreadAsync(() =>
             {
                 if (DownloadsState == ContentState.Loading)
                     return;
@@ -169,7 +171,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnUploadProgressChanged(object sender, TransferItem e)
         {
-            await _dispatcherWrapper.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await _dispatcherWrapper.RunOnUIThreadAsync(() =>
             {
                 if (UploadsState == ContentState.Loading)
                     return;

@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using GalaSoft.MvvmLight.Helpers;
 
 namespace VKSaver.Android.Views
 {

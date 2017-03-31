@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using GalaSoft.MvvmLight;
-using VKSaver.Core.ViewModels.Common.Navigation;
+using VKSaver.Core.Toolkit.Navigation;
 
-namespace VKSaver.Core.ViewModels.Common
+namespace VKSaver.Core.Toolkit
 {
     public abstract class VKSaverViewModel : ViewModelBase, IVKSaverViewModel
     {
-        public virtual void AppOnNavigatedTo(NavigatedToEventArgs e, 
+        public virtual void OnNavigatedTo(NavigatedToEventArgs e, 
             Dictionary<string, object> viewModelState)
         {
         }
 
-        public virtual void AppOnNavigatingFrom(NavigatingFromEventArgs e, 
+        public virtual void OnNavigatingFrom(NavigatingFromEventArgs e, 
             Dictionary<string, object> viewModelState, bool suspending)
         {
         }

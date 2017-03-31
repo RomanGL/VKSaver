@@ -1,18 +1,19 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
-using Windows.UI.Xaml.Controls;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
-using Windows.UI.Xaml.Controls;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using PropertyChanged;
 using System.Collections;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;
-using VKSaver.Core.ViewModels.Common.Navigation;
-using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
-using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
+using VKSaver.Core.Toolkit.Controls;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -80,18 +81,18 @@ namespace VKSaver.Core.ViewModels
         {
             if (IsReloadButtonSupported)
             {
-                AppBarItems.Add(new AppBarButton
+                AppBarItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Refresh_Text"],
-                    Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
+                    Icon = new FontButtonIcon { Glyph = "\uE117", FontSize = 14 },
                     Command = ReloadContentCommand
                 });
             }
 
-            AppBarItems.Add(new AppBarButton
+            AppBarItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Select_Text"],
-                Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
+                Icon = new FontButtonIcon() { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionMode
             });
 
@@ -100,10 +101,10 @@ namespace VKSaver.Core.ViewModels
 
         protected override void CreateSelectionAppBarButtons()
         {            
-            AppBarItems.Add(new AppBarButton
+            AppBarItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_SelectAll_Text"],
-                Icon = new FontIcon { Glyph = "\uE0E7" },
+                Icon = new FontButtonIcon() { Glyph = "\uE0E7" },
                 Command = new DelegateCommand(() => SelectAll = !SelectAll)
             });
 

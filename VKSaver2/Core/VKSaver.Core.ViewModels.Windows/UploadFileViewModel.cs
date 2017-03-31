@@ -2,7 +2,7 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #endif
@@ -10,9 +10,6 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services.Interfaces;
@@ -21,11 +18,12 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Media.Imaging;
+using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class UploadFileViewModel : ViewModelBase, IFileOpenPickerSupport
+    public sealed class UploadFileViewModel : VKSaverViewModel, IFileOpenPickerSupport
     {
         public UploadFileViewModel(
             IUploadsServiceHelper uploadsServiceHelper,

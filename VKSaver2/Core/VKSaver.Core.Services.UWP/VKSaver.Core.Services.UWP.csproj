@@ -216,7 +216,7 @@
       <Name>IF.Lastfm.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\FileSystem\VKSaver.Core.FileSystem.UWP\VKSaver.Core.FileSystem.UWP.csproj">
-      <Project>{ad1c2053-7582-49b7-902e-43890b5c4d51}</Project>
+      <Project>{dcc82b0e-14c2-4eaf-8822-ba6385460cab}</Project>
       <Name>VKSaver.Core.FileSystem.UWP</Name>
     </ProjectReference>
     <ProjectReference Include="..\VKSaver.Core.Models.UWP\VKSaver.Core.Models.UWP.csproj">

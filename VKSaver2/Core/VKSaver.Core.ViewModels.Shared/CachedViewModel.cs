@@ -3,13 +3,12 @@ using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
 using Windows.Storage.AccessCache;
-using Windows.UI.Xaml.Controls;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using Windows.Storage.AccessCache;
-using Windows.UI.Xaml.Controls;
 #elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using PropertyChanged;
@@ -24,8 +23,9 @@ using VKSaver.Core.ViewModels.Collections;
 using System.Collections;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.FileSystem;
-using VKSaver.Core.ViewModels.Common.Navigation;
-using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
+using VKSaver.Core.Toolkit.Controls;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -60,14 +60,14 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand DeleteAllCommand { get; private set; }
 
-        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (e.NavigationMode == NavigationMode.New || e.NavigationMode == NavigationMode.Refresh)
             {
                 CachedTracks = new PaginatedCollection<CachedTrack>(LoadMoreTracks);
             }
 
-            base.AppOnNavigatedTo(e, viewModelState);
+            base.OnNavigatedTo(e, viewModelState);
         }
 
         protected override IList<CachedTrack> GetAudiosList()
@@ -87,7 +87,7 @@ namespace VKSaver.Core.ViewModels
 
         protected override void CreateDefaultAppBarButtons()
         {
-            SecondaryItems.Add(new AppBarButton
+            SecondaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_DeleteAll_Text"],
                 Command = DeleteAllCommand
@@ -98,7 +98,7 @@ namespace VKSaver.Core.ViewModels
 
         protected override void CreateSelectionAppBarButtons()
         {
-            SecondaryItems.Add(new AppBarButton
+            SecondaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Delete_Text"],
                 Command = DeleteSelectedCommand

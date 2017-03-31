@@ -1,13 +1,12 @@
-﻿#if WINDOWS_UWP
-using Windows.UI.Xaml.Controls;
-#elif WINDOWS_PHONE_APP
+﻿#if WINDOWS_UWP || WINDOWS_PHONE_APP
 using Windows.UI.Xaml.Controls;
 #elif ANDROID
 #endif
 
 using System.Collections.ObjectModel;
 using PropertyChanged;
-using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.Toolkit;
+using VKSaver.Core.Toolkit.Controls;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -15,15 +14,15 @@ namespace VKSaver.Core.ViewModels
     {
         protected WithAppBarViewModel()
         {
-            AppBarItems = new ObservableCollection<ICommandBarElement>();
-            SecondaryItems = new ObservableCollection<ICommandBarElement>();
+            AppBarItems = new ObservableCollection<IButtonElement>();
+            SecondaryItems = new ObservableCollection<IButtonElement>();
         }
 
         [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> AppBarItems { get; private set; }
+        public ObservableCollection<IButtonElement> AppBarItems { get; }
 
         [DoNotNotify]
-        public ObservableCollection<ICommandBarElement> SecondaryItems { get; private set; }
+        public ObservableCollection<IButtonElement> SecondaryItems { get; }
 
         protected virtual void CreateDefaultAppBarButtons()
         {

@@ -1,13 +1,11 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
 using Prism.Windows.Navigation;
-using Windows.UI.Xaml.Controls;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using Windows.UI.Xaml.Controls;
 #elif ANDROID
-using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using System;
@@ -21,8 +19,9 @@ using PropertyChanged;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
-using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
-using VKSaver.Core.ViewModels.Common.Navigation;
+using VKSaver.Core.Toolkit.Controls;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -77,7 +76,7 @@ namespace VKSaver.Core.ViewModels
         {
             if (AddSelectedToMyAudiosSupported())
             {
-                SecondaryItems.Add(new AppBarButton
+                SecondaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_AddToMyAudios_Text"],
                     Command = AddSelectedToMyAudiosCommand

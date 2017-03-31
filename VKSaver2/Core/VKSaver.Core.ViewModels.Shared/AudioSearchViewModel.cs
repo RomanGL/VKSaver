@@ -1,12 +1,11 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
 using Prism.Windows.Navigation;
-using Windows.UI.Xaml.Controls;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using Windows.UI.Xaml.Controls;
 #elif ANDROID
+using VkSaver.Core.Toolkit.Commands;
 #endif
 
 using ModernDev.InTouch;
@@ -22,8 +21,9 @@ using VKSaver.Core.Services.Common;
 using VKSaver.Core.ViewModels.Common;
 using Newtonsoft.Json;
 using VKSaver.Core.Models.Common;
-using VKSaver.Core.ViewModels.Common.Navigation;
-using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
+using VKSaver.Core.Toolkit.Controls;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -104,7 +104,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand<Audio> ShowTrackInfoCommand { get; private set; }
 
-        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.Back && _appLoaderService.IsShowed)
             {
@@ -114,7 +114,7 @@ namespace VKSaver.Core.ViewModels
                 return;
             }
 
-            base.AppOnNavigatingFrom(e, viewModelState, suspending);
+            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected override async Task<IEnumerable<Audio>> LoadMoreEverywhere(uint page)
@@ -179,16 +179,16 @@ namespace VKSaver.Core.ViewModels
         {
             base.CreateDefaultAppBarButtons();
 
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Select_Text"],
-                Icon = new FontIcon { Glyph = "\uE133", FontSize = 14 },
+                Icon = new FontButtonIcon() { Glyph = "\uE133", FontSize = 14 },
                 Command = ActivateSelectionModeCommand
             });
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Filter_Text"],
-                Icon = new FontIcon { Glyph = "\uE16E", FontSize = 14 },
+                Icon = new FontButtonIcon { Glyph = "\uE16E", FontSize = 14 },
                 Command = ShowPerformerFlyoutCommand
             });
         }
@@ -197,28 +197,28 @@ namespace VKSaver.Core.ViewModels
         {
             base.CreateSelectionAppBarButtons();
 
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Download_Text"],
-                Icon = new FontIcon { Glyph = "\uE118" },
+                Icon = new FontButtonIcon { Glyph = "\uE118" },
                 Command = DownloadSelectedCommand
             });
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Play_Text"],
-                Icon = new FontIcon { Glyph = "\uE102" },
+                Icon = new FontButtonIcon { Glyph = "\uE102" },
                 Command = PlaySelectedCommand
             });
-            PrimaryItems.Add(new AppBarButton
+            PrimaryItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_SelectAll_Text"],
-                Icon = new FontIcon { Glyph = "\uE0E7" },
+                Icon = new FontButtonIcon { Glyph = "\uE0E7" },
                 Command = SelectAllCommand
             });
 
             if (LastPivotIndex == 1 && UserId == _inTouch.Session.UserId)
             {
-                SecondaryItems.Add(new AppBarButton
+                SecondaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Delete_Text"],
                     Command = DeleteSelectedCommand
@@ -226,7 +226,7 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-                SecondaryItems.Add(new AppBarButton
+                SecondaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_AddToMyAudios_Text"],
                     Command = AddSelectedToMyAudiosCommand

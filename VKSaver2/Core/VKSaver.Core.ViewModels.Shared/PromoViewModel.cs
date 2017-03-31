@@ -1,10 +1,10 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
 #endif
 
 using PropertyChanged;
@@ -12,11 +12,12 @@ using System;
 using System.Collections.Generic;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class PromoViewModel : ViewModelBase
+    public sealed class PromoViewModel : VKSaverViewModel
     {
         public PromoViewModel(
             INavigationService navigationService, 

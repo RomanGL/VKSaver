@@ -1,10 +1,10 @@
 ﻿#if WINDOWS_UWP
 using Prism.Windows.Mvvm;
-using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
 #endif
 
 using System;

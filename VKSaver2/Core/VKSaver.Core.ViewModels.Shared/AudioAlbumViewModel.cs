@@ -1,13 +1,11 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
 using Prism.Windows.Navigation;
-using Windows.UI.Xaml.Controls;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using Windows.UI.Xaml.Controls;
 #elif ANDROID
-using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using ModernDev.InTouch;
@@ -22,9 +20,10 @@ using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.Services.Common;
-using VKSaver.Core.ViewModels.Common.Navigation;
-using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
-using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
+using VKSaver.Core.Toolkit.Controls;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
+using VKSaver.Core.Toolkit.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -60,7 +59,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand<Audio> DeleteAudioCommand { get; private set; }
 
-        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             Album = JsonConvert.DeserializeObject<AudioAlbum>(e.Parameter.ToString());
 
@@ -81,10 +80,10 @@ namespace VKSaver.Core.ViewModels
             if (Tracks.Count > 0)
                 SetDefaultMode();
 
-            base.AppOnNavigatedTo(e, viewModelState);
+            base.OnNavigatedTo(e, viewModelState);
         }
 
-        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.New)
             {
@@ -92,7 +91,7 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(_offset)] = _offset;
             }
 
-            base.AppOnNavigatingFrom(e, viewModelState, suspending);
+            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected override void OnReloadContentCommand()
@@ -125,7 +124,7 @@ namespace VKSaver.Core.ViewModels
         {
             if (!AddSelectedToMyAudiosSupported())
             {
-                SecondaryItems.Add(new AppBarButton
+                SecondaryItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Delete_Text"],
                     Command = DeleteSelectedCommand

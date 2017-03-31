@@ -5,6 +5,7 @@ using Prism.Windows.Navigation;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using PropertyChanged;
@@ -16,12 +17,14 @@ using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Database;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Common;
-using Windows.UI.Xaml.Navigation;
 using System.Collections;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {

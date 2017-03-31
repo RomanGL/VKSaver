@@ -1,30 +1,29 @@
-﻿using System.Resources;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// Общие сведения о сборке определяются следующим 
-// набором атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
-// связанные с этой сборкой.
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
 [assembly: AssemblyTitle("VKSaver.Core.FileSystem.UWP")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("VKSaver.Core.FileSystem.UWP")]
-[assembly: AssemblyCopyright("©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: NeutralResourcesLanguage("ru")]
 
-// Сведения о версии сборки состоят из следующих четырех значений:
+// Version information for an assembly consists of the following four values:
 //
-//      Основной номер версии
-//      Дополнительный номер версии 
-//   Номер сборки
-//      Редакция
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
 //
-// Можно задать все значения или принять номера сборки и редакции по умолчанию 
-// указав "*", как показано ниже:
+// You can specify all the values or you can default the Build and Revision Numbers 
+// by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: ComVisible(false)]

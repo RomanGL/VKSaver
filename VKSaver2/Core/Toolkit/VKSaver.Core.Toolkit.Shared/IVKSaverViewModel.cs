@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using VKSaver.Core.ViewModels.Common.Navigation;
+using VKSaver.Core.Toolkit.Navigation;
 
-namespace VKSaver.Core.ViewModels.Common
+namespace VKSaver.Core.Toolkit
 {
     public interface IVKSaverViewModel
     {
-        void AppOnNavigatedTo(NavigatedToEventArgs e, 
+        void OnNavigatedTo(NavigatedToEventArgs e, 
             Dictionary<string, object> viewModelState);
 
-        void AppOnNavigatingFrom(Navigation.NavigatingFromEventArgs e, 
+        void OnNavigatingFrom(NavigatingFromEventArgs e, 
             Dictionary<string, object> viewModelState, bool suspending);
     }
 }

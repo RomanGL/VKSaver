@@ -2,6 +2,7 @@
 using Prism.Windows.Navigation;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
 #endif
 
 using ModernDev.InTouch;

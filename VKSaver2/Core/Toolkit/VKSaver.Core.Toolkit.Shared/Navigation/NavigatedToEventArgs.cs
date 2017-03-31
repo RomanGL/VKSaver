@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VKSaver.Core.ViewModels.Common.Navigation
+namespace VKSaver.Core.Toolkit.Navigation
 {
     public sealed class NavigatedToEventArgs : EventArgs
     {

@@ -11,8 +11,8 @@ using System;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;
 using PropertyChanged;
-using VKSaver.Core.ViewModels.Common;
-using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
+using VKSaver.Core.Toolkit;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -32,7 +32,7 @@ namespace VKSaver.Core.ViewModels
         public string ActionText { get; private set; }
         public DelegateCommand ActionCommand { get; private set; }
 
-        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             string adName = e.Parameter.ToString();
 
@@ -44,7 +44,7 @@ namespace VKSaver.Core.ViewModels
 
             _adActionLink = _locService[String.Format(AD_ACTION_LINK_MASK, adName)];
 
-            base.AppOnNavigatedTo(e, viewModelState);
+            base.OnNavigatedTo(e, viewModelState);
         }
 
         private async void OnActionCommand()

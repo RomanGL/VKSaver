@@ -21,10 +21,10 @@ using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Api;
 using VKSaver.Core.Services.Json;
 using IF.Lastfm.Core.Api.Helpers;
-using VKSaver.Core.ViewModels.Common;
-using VKSaver.Core.ViewModels.Common.Navigation;
-using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
-using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
+using VKSaver.Core.Toolkit;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
+using VKSaver.Core.Toolkit.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -74,7 +74,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand FindArtistInVKCommand { get; private set; }
 
-        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (e.NavigationMode == NavigationMode.New)
                 LastPivotIndex = 0;
@@ -114,10 +114,10 @@ namespace VKSaver.Core.ViewModels
             Similar.Load();
             LoadArtistImage(Artist.Name);
             
-            base.AppOnNavigatedTo(e, viewModelState);
+            base.OnNavigatedTo(e, viewModelState);
         }
 
-        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.New)
             {
@@ -128,7 +128,7 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(LastPivotIndex)] = LastPivotIndex;
             }
 
-            base.AppOnNavigatingFrom(e, viewModelState, suspending);
+            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         private async Task<IEnumerable<LastTrack>> LoadTracks()

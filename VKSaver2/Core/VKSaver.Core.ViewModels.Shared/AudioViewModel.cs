@@ -1,12 +1,11 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
 using Prism.Windows.Navigation;
-using Windows.UI.Xaml.Controls;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
-using Windows.UI.Xaml.Controls;
 #elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using PropertyChanged;
@@ -15,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Toolkit.Controls;
 using VKSaver.Core.ViewModels.Common;
 
 namespace VKSaver.Core.ViewModels
@@ -78,10 +78,10 @@ namespace VKSaver.Core.ViewModels
         {
             if (IsShuffleButtonSupported)
             {
-                AppBarItems.Add(new AppBarButton
+                AppBarItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Shuffle_Text"],
-                    Icon = new FontIcon { Glyph = "\uE14B" },
+                    Icon = new FontButtonIcon { Glyph = "\uE14B" },
                     Command = PlayShuffleCommand
                 });
             }
@@ -93,10 +93,10 @@ namespace VKSaver.Core.ViewModels
         {
             if (IsPlayButtonSupported)
             {
-                AppBarItems.Add(new AppBarButton
+                AppBarItems.Add(new ButtonElement
                 {
                     Label = _locService["AppBarButton_Play_Text"],
-                    Icon = new FontIcon { Glyph = "\uE102" },
+                    Icon = new FontButtonIcon { Glyph = "\uE102" },
                     Command = PlaySelectedCommand
                 });
             }
@@ -176,12 +176,12 @@ namespace VKSaver.Core.ViewModels
                     var newTracks = tracks.GetFromCentre(0, _maxPlayingTracks, out newIndex);
 
                     PrepareTracksBeforePlay(newTracks);
-                    await _playerService.PlayNewTracks(newTracks.Select(t => ConvertToPlayerTrack(t)), newIndex);
+                    await _playerService.PlayNewTracks(newTracks.Select(ConvertToPlayerTrack), newIndex);
                 }
                 else
                 {
                     PrepareTracksBeforePlay(tracks);
-                    await _playerService.PlayNewTracks(tracks.Select(t => ConvertToPlayerTrack(t)), 0);
+                    await _playerService.PlayNewTracks(tracks.Select(ConvertToPlayerTrack), 0);
                 }                 
             });
 

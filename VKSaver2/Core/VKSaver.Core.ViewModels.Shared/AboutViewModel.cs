@@ -4,14 +4,15 @@ using Windows.ApplicationModel;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Windows.ApplicationModel;
-#else
+#elif ANDROID
 #endif
 
+using System;
 using PropertyChanged;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;
-using VKSaver.Core.ViewModels.Common;
-using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
+using VKSaver.Core.Toolkit;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -30,16 +31,16 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand SendEmailCommand { get; private set; }
 
-        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
 #if WINDOWS_UWP || WINDOWS_PHONE_APP
             var version = Package.Current.Id.Version;
-            Version = string.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
+            Version = String.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
 #else
             Version = "TODO";
 #endif
 
-            base.AppOnNavigatedTo(e, viewModelState);
+            base.OnNavigatedTo(e, viewModelState);
         }
 
         public async void OnSendEmailCommand()

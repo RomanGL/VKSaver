@@ -1,24 +1,27 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 using ModernDev.InTouch;
 using Newtonsoft.Json;
 using PropertyChanged;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Toolkit.Controls;
 using VKSaver.Core.ViewModels.Collections;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -128,10 +131,10 @@ namespace VKSaver.Core.ViewModels
         {
             base.CreateDefaultAppBarButtons();
 
-            AppBarItems.Add(new AppBarButton
+            AppBarItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Filter_Text"],
-                Icon = new FontIcon { Glyph = "\uE16E", FontSize = 14 },
+                Icon = new FontButtonIcon { Glyph = "\uE16E", FontSize = 14 },
                 Command = ShowFilterFlyoutCommand
             });
         }

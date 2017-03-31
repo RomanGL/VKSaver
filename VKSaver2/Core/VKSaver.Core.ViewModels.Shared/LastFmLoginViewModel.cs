@@ -5,6 +5,7 @@ using Windows.System;
 using Microsoft.Practices.Prism.StoreApps;
 using Windows.System;
 #elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using IF.Lastfm.Core.Api.Enums;
@@ -12,7 +13,7 @@ using PropertyChanged;
 using System;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
-using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels
 {

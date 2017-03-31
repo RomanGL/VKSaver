@@ -1,10 +1,8 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
-using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
-using Microsoft.Practices.Prism.StoreApps;
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
 #endif
 
 using ModernDev.InTouch;
@@ -17,7 +15,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
-using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.Toolkit.Navigation;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {

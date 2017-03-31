@@ -11,7 +11,7 @@ using Prism.Windows.Navigation;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #elif ANDROID
-using VKSaver.Core.ViewModels.Common;
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using System;
@@ -25,11 +25,12 @@ using PropertyChanged;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Json;
+using VKSaver.Core.Toolkit.Controls;
+using VKSaver.Core.Toolkit.Navigation;
 using VKSaver.Core.ViewModels.Collections;
-using VKSaver.Core.ViewModels.Common.Navigation;
 using VKSaver.Core.ViewModels.Search;
-using NavigatedToEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatedToEventArgs;
-using NavigatingFromEventArgs = VKSaver.Core.ViewModels.Common.Navigation.NavigatingFromEventArgs;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
+using NavigatingFromEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatingFromEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -62,7 +63,7 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand ReloadCommand { get; private set; }
 
-        public override void AppOnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             if (viewModelState.Count == 0)
             {
@@ -104,10 +105,10 @@ namespace VKSaver.Core.ViewModels
                     SetDefaultMode();
             }
 
-            base.AppOnNavigatedTo(e, viewModelState);
+            base.OnNavigatedTo(e, viewModelState);
         }
 
-        public override void AppOnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             if (e.NavigationMode == NavigationMode.New)
             {
@@ -118,15 +119,15 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(Artists) + "State"] = (int)Artists.ContentState;
             }
 
-            base.AppOnNavigatingFrom(e, viewModelState, suspending);
+            base.OnNavigatingFrom(e, viewModelState, suspending);
         }
 
         protected override void CreateDefaultAppBarButtons()
         {
-            AppBarItems.Add(new AppBarButton
+            AppBarItems.Add(new ButtonElement
             {
                 Label = _locService["AppBarButton_Refresh_Text"],
-                Icon = new FontIcon { Glyph = "\uE117", FontSize = 14 },
+                Icon = new FontButtonIcon { Glyph = "\uE117", FontSize = 14 },
                 Command = ReloadCommand
             });
 

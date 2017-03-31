@@ -1,20 +1,22 @@
 ﻿#if WINDOWS_UWP
 using Prism.Windows.Mvvm;
 using Prism.Commands;
-using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using ModernDev.InTouch;
 using System;
 using VKSaver.Core.Services.Interfaces;
 using Windows.System;
+using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels
 {
-    public sealed partial class LoginViewModel : ViewModelBase
+    public sealed partial class LoginViewModel : VKSaverViewModel
     {
         public LoginViewModel(
             IVKLoginService vkLoginService, 

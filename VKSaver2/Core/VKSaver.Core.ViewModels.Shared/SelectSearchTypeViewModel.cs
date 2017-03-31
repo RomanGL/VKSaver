@@ -1,20 +1,22 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
+using VKSaver.Core.Toolkit.Commands;
 #endif
 
 using ModernDev.InTouch;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels
 {
-    public sealed class SelectSearchTypeViewModel : ViewModelBase
+    public sealed class SelectSearchTypeViewModel : VKSaverViewModel
     {
         public SelectSearchTypeViewModel(INavigationService navigationService, InTouch inTouch,
             IPurchaseService purchaseService)
@@ -27,11 +29,6 @@ namespace VKSaver.Core.ViewModels
         }
 
         public DelegateCommand<string> GoToSearchCommand { get; private set; }
-
-        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
-        {     
-            base.OnNavigatingFrom(e, viewModelState, suspending);
-        }
 
         private void OnGoToSearchCommand(string type)
         {

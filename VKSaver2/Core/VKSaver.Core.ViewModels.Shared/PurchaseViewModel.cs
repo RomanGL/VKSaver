@@ -1,10 +1,10 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
-#else
+#elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+#elif ANDROID
 #endif
 
 using Newtonsoft.Json;
@@ -12,15 +12,20 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;
-using Windows.ApplicationModel.Store;
+using VKSaver.Core.Toolkit;
+using VKSaver.Core.Models.Common;
+using NavigatedToEventArgs = VKSaver.Core.Toolkit.Navigation.NavigatedToEventArgs;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class PurchaseViewModel : ViewModelBase
+    public sealed class PurchaseViewModel : VKSaverViewModel
     {
-        public PurchaseViewModel(IPurchaseService purchaseService, INavigationService navigationService,
-            IDialogsService dialogsService, ILocService locService)
+        public PurchaseViewModel(
+            IPurchaseService purchaseService, 
+            INavigationService navigationService,
+            IDialogsService dialogsService, 
+            ILocService locService)
         {
             _purchaseService = purchaseService;
             _navigationService = navigationService;

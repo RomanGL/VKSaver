@@ -30,12 +30,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Collections\StateSupportMultiSelectCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\IFileOpenPickerSupport.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\IVKSaverViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\JumpListGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\JumpListHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\Navigation\NavigatedToEventArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\Navigation\NavigatingFromEventArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\Navigation\NavigationMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\UploadType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKAudioWithLastFm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DirectAuth\DirectAuthViewModel.cs" />
@@ -73,7 +69,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)TransferViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Transfer\TransferItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UpdatingDatabaseViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UploadFileViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserCommViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserContentViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VideoAlbumViewModel.cs" />
