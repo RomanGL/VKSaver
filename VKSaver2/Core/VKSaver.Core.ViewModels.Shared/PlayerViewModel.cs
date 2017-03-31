@@ -1,11 +1,14 @@
 ﻿#if WINDOWS_UWP
 using Prism.Commands;
 using Prism.Windows.Navigation;
+using Windows.UI.Xaml;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.UI.Xaml;
 #elif ANDROID
 using VKSaver.Core.Toolkit.Commands;
+using System.Timers;
 #endif
 
 using Newtonsoft.Json;
@@ -20,11 +23,6 @@ using VKSaver.Core.Models.Player;
 using VKSaver.Core.Models.Transfer;
 using VKSaver.Core.Services;
 using VKSaver.Core.Services.Interfaces;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using ModernDev.InTouch;
 using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
@@ -54,7 +52,8 @@ namespace VKSaver.Core.ViewModels
             ILocService locService,
             IDialogsService dialogsService,
             IAppNotificationsService appNotificationsService,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            IDispatcherWrapper dispatcherWrapper)
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, 
                   playerService, locService, navigationService, purchaseService)
         {
@@ -72,8 +71,13 @@ namespace VKSaver.Core.ViewModels
             _lastFmLoginService = lastFmLoginService;
             _appNotificationsService = appNotificationsService;
             _settingsService = settingsService;
+            _dispatcherWrapper = dispatcherWrapper;
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
+#elif ANDROID
+            _timer = new Timer(500);
+#endif
 
             NextTrackCommand = new DelegateCommand(OnNextTrackCommand);
             PreviousTrackCommand = new DelegateCommand(OnPreviosTrackCommand);
@@ -85,9 +89,9 @@ namespace VKSaver.Core.ViewModels
 
         public PlayerItem CurrentTrack { get; private set; }
 
-        public ImageSource ArtistImage { get; private set; }
+        public string ArtistImage { get; private set; }
 
-        public ImageSource TrackImage { get; private set; }
+        public string TrackImage { get; private set; }
 
         public ObservableCollection<PlayerItem> Tracks { get; private set; }
 
@@ -159,8 +163,11 @@ namespace VKSaver.Core.ViewModels
             set
             {
                 _currentPivotIndex = value;
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                 OnPropertyChanged(nameof(CurrentPivotIndex));
-
+#elif ANDROID
+                RaisePropertyChanged(nameof(CurrentPivotIndex));
+#endif
                 UpdateAppBarState(value);
             }
         }
@@ -191,7 +198,12 @@ namespace VKSaver.Core.ViewModels
             {
                 _playerService.TrackChanged += PlayerService_TrackChanged;
                 _playerService.PlayerStateChanged += PlayerService_PlayerStateChanged;
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                 _timer.Tick += Timer_Tick;
+#elif ANDROID
+                _timer.Elapsed += Timer_Elapsed;
+#endif
 
                 _timer.Start();
                 _isSubscribed = true;
@@ -307,18 +319,23 @@ namespace VKSaver.Core.ViewModels
             _appLoaderService.Show();
             RepeatMode = _playerService.RepeatMode;
             _isShuffleMode = _playerService.IsShuffleMode;
-            OnPropertyChanged(nameof(IsShuffleMode));
-
             _isScrobbleMode = _playerService.IsScrobbleMode;
-            OnPropertyChanged(nameof(IsScrobbleMode));
                 
             IsPlaying = _playerService.CurrentState == PlayerState.Playing;
             _currentTrackId = _playerService.CurrentTrackID;
 
             Duration = _playerService.Duration;
-
             _position = _playerService.Position;
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+            OnPropertyChanged(nameof(IsShuffleMode));
+            OnPropertyChanged(nameof(IsScrobbleMode));
             OnPropertyChanged(nameof(Position));
+#elif ANDROID
+            RaisePropertyChanged(nameof(IsShuffleMode));
+            RaisePropertyChanged(nameof(IsScrobbleMode));
+            RaisePropertyChanged(nameof(Position));
+#endif
 
             IEnumerable<IPlayerTrack> loadedPlaylist = null;
             if (IsShuffleMode)
@@ -374,13 +391,30 @@ namespace VKSaver.Core.ViewModels
 
         private void Timer_Tick(object sender, object e)
         {
+            OnTimerTick();
+        }
+
+#if ANDROID
+        private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            await _dispatcherWrapper.RunOnUIThreadAsync(OnTimerTick);
+        }
+#endif
+
+        private void OnTimerTick()
+        {
             _position = _playerService.Position;
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
             OnPropertyChanged(nameof(Position));
+#elif ANDROID
+            RaisePropertyChanged(nameof(Position));
+#endif
 
             Duration = _playerService.Duration;
 
             var timeLeft = Duration - _position;
-            if ((int) timeLeft.TotalSeconds == 1)
+            if ((int)timeLeft.TotalSeconds == 1)
                 TimeLeft = TimeSpan.Zero;
             else
                 TimeLeft = timeLeft;
@@ -391,7 +425,7 @@ namespace VKSaver.Core.ViewModels
 
         private async void PlayerService_PlayerStateChanged(IPlayerService sender, PlayerStateChangedEventArgs e)
         {
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await _dispatcherWrapper.RunOnUIThreadAsync(() =>
             {
                 if (e.State == PlayerState.Playing)
                 {
@@ -414,7 +448,7 @@ namespace VKSaver.Core.ViewModels
 
             if (_currentTrackId >= 0)
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await _dispatcherWrapper.RunOnUIThreadAsync(() =>
                 {
                     if (CurrentTrack != null)
                         CurrentTrack.IsCurrent = false;
@@ -423,7 +457,12 @@ namespace VKSaver.Core.ViewModels
                     CurrentTrack.IsCurrent = true;
 
                     _position = TimeSpan.Zero;
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                     OnPropertyChanged(nameof(Position));
+#elif ANDROID
+                    RaisePropertyChanged(nameof(Position));
+#endif
 
                     Duration = TimeSpan.FromSeconds(1);
 
@@ -442,8 +481,7 @@ namespace VKSaver.Core.ViewModels
             string imagePath = await _imagesCacheService.GetCachedArtistImage(track.Artist);
             if (imagePath == null)
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                    () => ArtistImage = new BitmapImage(new Uri(AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE)));
+                await _dispatcherWrapper.RunOnUIThreadAsync(() => ArtistImage = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE);
                 _artistImageUrl = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
 
                 imagePath = await _imagesCacheService.CacheAndGetArtistImage(track.Artist);
@@ -451,8 +489,7 @@ namespace VKSaver.Core.ViewModels
 
             if (imagePath != null && ReferenceEquals(CurrentTrack.Track, track))
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                    () => ArtistImage = new BitmapImage(new Uri(imagePath)));
+                await _dispatcherWrapper.RunOnUIThreadAsync(() => ArtistImage = imagePath);
                 _artistImageUrl = imagePath;
             }
         }
@@ -462,16 +499,13 @@ namespace VKSaver.Core.ViewModels
             string imagePath = await _imagesCacheService.GetCachedAlbumImage(track.Title);
             if (imagePath == null)
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                    () => TrackImage = null);
-
+                await _dispatcherWrapper.RunOnUIThreadAsync(() => TrackImage = null);
                 imagePath = await _imagesCacheService.CacheAndGetAlbumImage(track.Title, track.Artist);
             }
 
             if (imagePath != null && ReferenceEquals(CurrentTrack.Track, track))
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                    () => TrackImage = new BitmapImage(new Uri(imagePath)));
+                await _dispatcherWrapper.RunOnUIThreadAsync(() => TrackImage = imagePath);
             }
         }
 
@@ -480,7 +514,11 @@ namespace VKSaver.Core.ViewModels
             if (CurrentTrack == null)
             {
                 _isShuffleMode = !_isShuffleMode;
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                 OnPropertyChanged(nameof(IsShuffleMode));
+#elif ANDROID
+                RaisePropertyChanged(nameof(IsShuffleMode));
+#endif
             }
 
             CanShuffle = false;
@@ -565,7 +603,12 @@ namespace VKSaver.Core.ViewModels
                 {
                     _isScrobbleMode = true;
                     _playerService.IsScrobbleMode = true;
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
                     OnPropertyChanged(nameof(IsScrobbleMode));
+#elif ANDROID
+                    RaisePropertyChanged(nameof(IsScrobbleMode));
+#endif
                 }
                 else
                 {
@@ -597,13 +640,19 @@ namespace VKSaver.Core.ViewModels
         private int _currentPivotIndex;
         private bool _noPositionUpdates;    // Позволяет убрать заикание при переходе на страницу с работающим плеером.
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
         private readonly DispatcherTimer _timer;
+#elif ANDROID
+        private readonly Timer _timer;
+#endif
+
         private readonly IPlayerPlaylistService _playerPlaylistService;
         private readonly IImagesCacheService _imagesCacheService;
         private readonly ITracksShuffleService _tracksShuffleSevice;
         private readonly ILastFmLoginService _lastFmLoginService;
         private readonly IAppNotificationsService _appNotificationsService;
         private readonly ISettingsService _settingsService;
+        private readonly IDispatcherWrapper _dispatcherWrapper;
 
         private const string LIKE_INFO_SHOWED_PARAMETER_NAME = "LikeInfo";
 

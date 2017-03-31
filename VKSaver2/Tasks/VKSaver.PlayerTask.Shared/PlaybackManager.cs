@@ -123,7 +123,7 @@ namespace VKSaver.PlayerTask
                 _scrobbler = new Scrobbler(_lastAuth);
 #else
                 var dbFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(
-                    "scrobbler.db", CreationCollisionOption.OpenIfExists);
+                    "scrobbler.db", Windows.Storage.CreationCollisionOption.OpenIfExists);
                 _scrobbler = new SQLiteScrobbler(_lastAuth, dbFile.Path);
 #endif
             }
@@ -259,7 +259,7 @@ namespace VKSaver.PlayerTask
 
 #endregion
 
-#region Приватные методы  
+        #region Приватные методы  
                
         private async void ScrobbleTrack(IPlayerTrack track)
         {
@@ -322,7 +322,7 @@ namespace VKSaver.PlayerTask
             Debug.WriteLine($"Track failed: {CurrentTrack.Title}\nInfo: {args.ExtendedErrorCode.Message}");
         }
 
-#endregion
+        #endregion
 
         private List<IPlayerTrack> _playlist;
         private bool _isShuffleMode;

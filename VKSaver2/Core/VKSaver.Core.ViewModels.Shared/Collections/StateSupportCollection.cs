@@ -8,6 +8,7 @@ using Windows.UI.Core;
 using VKSaver.Core.Toolkit.Commands;
 #endif
 
+using System;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -106,12 +107,12 @@ namespace VKSaver.Core.ViewModels.Collections
 #if WINDOWS_UWP || WINDOWS_PHONE_APP
         private async void OnStateChanged()
         {
-            await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, (() =>
+            await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 this.OnPropertyChanged(new PropertyChangedEventArgs("ContentState"));
                 if (this.StateChanged != null)
                     this.StateChanged(this, new StateChangedEventArgs(ContentState));
-            }));            
+            });            
         }
 #elif ANDROID
         private void OnStateChanged()

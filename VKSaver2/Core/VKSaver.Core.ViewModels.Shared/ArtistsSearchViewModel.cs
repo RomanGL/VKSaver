@@ -13,13 +13,13 @@ using Microsoft.Practices.Prism.StoreApps.Interfaces;
 #elif ANDROID
 using VKSaver.Core.Toolkit.Commands;
 using Android.Widget;
+using Android.Views.InputMethods;
 #endif
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Android.Views.InputMethods;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;

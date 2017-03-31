@@ -94,6 +94,10 @@
       <Project>{09d7d389-7d67-45b7-90ec-b1d20693dbc5}</Project>
       <Name>IF.Lastfm.SQLite</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\FileSystem\VKSaver.Core.FileSystem.WP\VKSaver.Core.FileSystem.WP.csproj">
+      <Project>{40A1882E-0394-4517-A908-265A2B943E41}</Project>
+      <Name>VKSaver.Core.FileSystem.WP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\VKSaver.Core.Models\VKSaver.Core.Models.csproj">
       <Project>{0c76fe69-8e32-4222-9fe4-c975a48edbd9}</Project>
       <Name>VKSaver.Core.Models</Name>

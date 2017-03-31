@@ -8,6 +8,7 @@ using Windows.ApplicationModel;
 using VKSaver.Core.Toolkit.Commands;
 #endif
 
+using System;
 using PropertyChanged;
 using System.Collections.Generic;
 using VKSaver.Core.Services.Interfaces;

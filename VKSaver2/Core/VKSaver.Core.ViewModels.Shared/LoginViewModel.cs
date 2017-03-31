@@ -1,9 +1,11 @@
 ﻿#if WINDOWS_UWP
-using Prism.Windows.Mvvm;
+using Prism.Windows.Navigation;
 using Prism.Commands;
+using Windows.System;
 #elif WINDOWS_PHONE_APP
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
+using Windows.System;
 #elif ANDROID
 using VKSaver.Core.Toolkit.Commands;
 #endif
@@ -11,7 +13,6 @@ using VKSaver.Core.Toolkit.Commands;
 using ModernDev.InTouch;
 using System;
 using VKSaver.Core.Services.Interfaces;
-using Windows.System;
 using VKSaver.Core.Toolkit;
 
 namespace VKSaver.Core.ViewModels
@@ -28,13 +29,19 @@ namespace VKSaver.Core.ViewModels
             _dialogsService = dialogsService;
             _locService = locService;
             _navigationService = navigationService;
-
-            JoinCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/join")));
-            RestoreCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/restore")));
+            
             GoToDirectAuthCommand = new DelegateCommand(OnGoToDirectAuthCommand);
 
 #if WINDOWS_UWP
             LoginCommand = new DelegateCommand(() => LoginUwp());
+#endif
+
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
+            JoinCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/join")));
+            RestoreCommand = new DelegateCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://vk.com/restore")));
+#elif ANDROID
+            JoinCommand = new DelegateCommand(() => { throw new NotImplementedException(); });
+            RestoreCommand = new DelegateCommand(() => { throw new NotImplementedException(); });
 #endif
         }
 

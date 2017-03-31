@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 
 namespace VKSaver.Core.Toolkit.Commands
@@ -14,6 +15,11 @@ namespace VKSaver.Core.Toolkit.Commands
             : base(execute, canExecute)
         {
         }
+
+        public Task Execute(object parameter)
+        {
+            return Task.Run(() => Execute(parameter));
+        }
     }
 
     public sealed class DelegateCommand<T> : RelayCommand<T>
@@ -26,6 +32,11 @@ namespace VKSaver.Core.Toolkit.Commands
         public DelegateCommand(Action<T> execute, Func<T, bool> canExecute) 
             : base(execute, canExecute)
         {
+        }
+
+        public Task Execute(T parameter)
+        {
+            return Task.Run(() => Execute(parameter));
         }
     }
 }
