@@ -134,7 +134,10 @@ namespace VKSaver.Android
 			public const int LoginActivity = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int SplashScreenActivity = 2130903041;
+			public const int MainActivity = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int SplashScreenActivity = 2130903042;
 			
 			static Layout()
 			{
@@ -148,6 +151,9 @@ namespace VKSaver.Android
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f040004
+			public const int AppLoader_PleaseWait = 2130968580;
 			
 			// aapt resource value: 0x7f040001
 			public const int ApplicationName = 2130968577;

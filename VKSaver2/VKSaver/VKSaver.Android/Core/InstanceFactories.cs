@@ -54,5 +54,10 @@ namespace VKSaver.Core
         {
             return new InTouch();
         }
+
+        public static INavigationService ResolveNavigationService(IUnityContainer container)
+        {
+            return null;
+        }
     }
 }

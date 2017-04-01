@@ -101,13 +101,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DialogsService.cs" />
+    <Compile Include="Interfaces\IActivityTypesResolver.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="LocService.cs" />
+    <Compile Include="NavigationService.cs" />
     <Compile Include="NetworkInfoService.cs" />
     <Compile Include="PurchaseService\PurchaseServiceFull.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsService.cs" />
+    <Compile Include="VKCaptchaHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -126,6 +130,10 @@
     <ProjectReference Include="..\FileSystem\VKSaver.Core.FileSystem.Android\VKSaver.Core.FileSystem.Android.csproj">
       <Project>{5f6f5a88-0f89-44d0-869e-7b4b880b2fad}</Project>
       <Name>VKSaver.Core.FileSystem.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Toolkit\VKSaver.Core.Toolkit.Android\VKSaver.Core.Toolkit.Android.csproj">
+      <Project>{967fa8af-9afe-4f8b-a15b-a1c62c638b91}</Project>
+      <Name>VKSaver.Core.Toolkit.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\VKSaver.Core.LinksExtractor.Android\VKSaver.Core.LinksExtractor.Android.csproj">
       <Project>{35d55ad7-be4b-47d4-b53b-8fdc223720e1}</Project>
