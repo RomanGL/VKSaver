@@ -20,7 +20,6 @@ namespace VKSaver.Android.Views
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.LoginActivity);
-
             // Create your application here
         }
     }

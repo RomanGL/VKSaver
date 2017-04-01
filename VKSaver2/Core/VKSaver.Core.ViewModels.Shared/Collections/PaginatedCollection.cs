@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿#if WINDOWS_UWP || WINDOWS_PHONE_APP
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
-using System.Linq;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+#endif
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 using VKSaver.Core.Models.Common;
 using Newtonsoft.Json;
 
@@ -14,7 +17,11 @@ namespace VKSaver.Core.ViewModels.Collections
     /// <summary>
     /// Paginated collection.
     /// </summary>
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
     public class PaginatedCollection<T> : StateSupportCollection<T>, ISupportIncrementalLoading
+#elif ANDROID
+    public class PaginatedCollection<T> : StateSupportCollection<T>
+#endif
     {
         #region Constructors
 
@@ -60,15 +67,16 @@ namespace VKSaver.Core.ViewModels.Collections
             this.LoadMoreItems = func;
         }
 
-        #endregion
+#endregion
 
-        #region ISupportIncrementalLoading members
+#region ISupportIncrementalLoading members
 
         /// <summary>
         /// Has more items?
         /// </summary>
         public bool HasMoreItems { get; set; }
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
         /// <summary>
         /// Loads more items synchronously
         /// </summary>
@@ -78,11 +86,13 @@ namespace VKSaver.Core.ViewModels.Collections
         {
             return LoadMore().AsAsyncOperation();
         }
+#endif
 
         #endregion
-        
+
         #region Private methods
 
+#if WINDOWS_UWP || WINDOWS_PHONE_APP
         /// <summary>
         /// Loads more.
         /// </summary>
@@ -116,6 +126,33 @@ namespace VKSaver.Core.ViewModels.Collections
                 return new LoadMoreItemsResult() { Count = 0 };
             }
         }
+#elif ANDROID
+        public async Task LoadMore()
+        {
+            try
+            {
+                ContentState = ContentState.Loading;
+                HasMoreItems = false;
+
+                List<T> data = new List<T>();
+                data = (await LoadMoreItems(Page)).ToList();
+                Page++;
+
+                foreach (var item in data)
+                    this.Add(item);
+
+                ContentState = this.Any() ? ContentState.Normal : ContentState.NoData;
+                this.HasMoreItems = data.Any();
+                //set page to previous state if no data
+                Page = data.Any() ? Page : Page - 1;
+            }
+            catch
+            {
+                this.HasMoreItems = false;
+                ContentState = ContentState.Error;
+            }
+        }
+#endif
 
         /// <summary>
         /// Load items.
@@ -139,9 +176,9 @@ namespace VKSaver.Core.ViewModels.Collections
             ContentState = ContentState.NoData;
         }
 
-        #endregion
+#endregion
 
-        #region Properties
+#region Properties
 
         /// <summary>
         /// Delegate for more items loading
@@ -159,7 +196,7 @@ namespace VKSaver.Core.ViewModels.Collections
 
         public uint Page { get; set; }
 
-        #endregion
+#endregion
 
         private Func<uint, Task<IEnumerable<T>>> _loadMoreItemsFunc;
     }

@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("VKSaver.Core.Toolkit.Android.Resource", IsApplication=false)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("VKSaver.Core.Toolkit.Resource", IsApplication=false)]
 
 namespace VKSaver.Core.Toolkit
 {

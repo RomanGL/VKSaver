@@ -171,6 +171,10 @@
       <Project>{070418b9-4fe7-46d3-af36-62f974d2e88a}</Project>
       <Name>VKSaver.Core.Services.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\VKSaver.Core.ViewModels.Android\VKSaver.Core.ViewModels.Android.csproj">
+      <Project>{b1952994-5280-446c-bbae-b72fca7287bc}</Project>
+      <Name>VKSaver.Core.ViewModels.Android</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />

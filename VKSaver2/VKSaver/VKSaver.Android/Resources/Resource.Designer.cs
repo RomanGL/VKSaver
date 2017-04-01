@@ -36,8 +36,10 @@ namespace VKSaver.Android
 			global::VKSaver.Core.LinksExtractor.Android.Resource.String.Hello = global::VKSaver.Android.Resource.String.Hello;
 			global::VKSaver.Core.Models.Resource.String.ApplicationName = global::VKSaver.Android.Resource.String.ApplicationName;
 			global::VKSaver.Core.Models.Resource.String.Hello = global::VKSaver.Android.Resource.String.Hello;
-			global::VKSaver.Core.Toolkit.Android.Resource.String.ApplicationName = global::VKSaver.Android.Resource.String.ApplicationName;
-			global::VKSaver.Core.Toolkit.Android.Resource.String.Hello = global::VKSaver.Android.Resource.String.Hello;
+			global::VKSaver.Core.Toolkit.Resource.String.ApplicationName = global::VKSaver.Android.Resource.String.ApplicationName;
+			global::VKSaver.Core.Toolkit.Resource.String.Hello = global::VKSaver.Android.Resource.String.Hello;
+			global::VKSaver.Core.ViewModels.Resource.String.ApplicationName = global::VKSaver.Android.Resource.String.ApplicationName;
+			global::VKSaver.Core.ViewModels.Resource.String.Hello = global::VKSaver.Android.Resource.String.Hello;
 		}
 		
 		public partial class Attribute

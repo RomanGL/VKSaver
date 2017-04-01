@@ -215,12 +215,16 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
-#if !WINDOWS_UWP
+#if WINDOWS_PHONE_APP && ANDROID
             if (!suspending && _isSubscribed)
             {
                 _playerService.TrackChanged -= PlayerService_TrackChanged;
                 _playerService.PlayerStateChanged -= PlayerService_PlayerStateChanged;
+#if WINDOWS_PHONE_APP
                 _timer.Tick -= Timer_Tick;
+#elif ANDROID
+                _timer.Elapsed -= Timer_Elapsed;
+#endif
 
                 _timer.Stop();
                 _isSubscribed = false;
