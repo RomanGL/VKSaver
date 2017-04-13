@@ -114,8 +114,11 @@ namespace VKSaver.Android
 			// aapt resource value: 0x7f060003
 			public const int PasswordEditText = 2131099651;
 			
+			// aapt resource value: 0x7f060006
+			public const int SplashImageView = 2131099654;
+			
 			// aapt resource value: 0x7f060005
-			public const int SplashImageView = 2131099653;
+			public const int TracksListView = 2131099653;
 			
 			static Id()
 			{

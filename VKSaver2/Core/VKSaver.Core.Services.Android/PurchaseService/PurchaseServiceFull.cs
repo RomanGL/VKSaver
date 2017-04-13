@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Interfaces;
 
-namespace VKSaver.Core.Services.PurchaseService
+namespace VKSaver.Core.Services
 {
 #if FULL
-    public sealed class PurchaseServiceFull : IPurchaseService
+    public sealed class PurchaseService : IPurchaseService
     {
         public bool IsFullVersionPurchased => true;
 

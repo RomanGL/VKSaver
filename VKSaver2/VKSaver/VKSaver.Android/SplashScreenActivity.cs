@@ -82,6 +82,7 @@ namespace VKSaver.Android
             _container.RegisterType<IDialogsService, DialogsService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IAppLoaderService, AppLoaderService>(new ContainerControlledLifetimeManager());
             _container.RegisterType<IVKCaptchaHandler, VKCaptchaHandler>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IPurchaseService, PurchaseService>(new ContainerControlledLifetimeManager());
         }
 
         private async Task OnLaunched()
