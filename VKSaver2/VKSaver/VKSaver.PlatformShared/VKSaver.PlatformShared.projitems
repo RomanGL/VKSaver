@@ -10,10 +10,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\ShowAttachedFlyoutAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\AudioGroupTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ContentViewItemContainerStyleSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ControlExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DataContextProxy.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\PurchaseViewTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\PromoViewTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\VideoGroupTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\VisualTreeHelperExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\AppNotificationControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Common\StoryboardServices.cs" />
@@ -49,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToLowerConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\UserContentGroupKeyToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\InstanceFactories.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\InTouchWrapper.cs" />

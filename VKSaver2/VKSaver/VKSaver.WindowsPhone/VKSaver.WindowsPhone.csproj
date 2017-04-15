@@ -170,11 +170,8 @@
     <Compile Include="Behaviors\KeyBehavior.cs" />
     <Compile Include="Behaviors\SelectedItemsBindingBehavior.cs" />
     <Compile Include="Behaviors\WithCommandDependencyObject.cs" />
-    <Compile Include="Common\AudioGroupTemplateSelector.cs" />
-    <Compile Include="Common\ContentViewItemContainerStyleSelector.cs" />
     <Compile Include="Common\LocalizationXamlWrapper.cs" />
     <Compile Include="Common\MultiSelector.cs" />
-    <Compile Include="Common\VideoGroupTemplateSelector.cs" />
     <Compile Include="Controls\BusyControl.cs" />
     <Compile Include="Controls\ContinuationManager.cs" />
     <Compile Include="Controls\EnterCaptcha.xaml.cs">
@@ -195,7 +192,6 @@
     <Compile Include="Converters\HalfSizeConverter.cs" />
     <Compile Include="Converters\OneItemsListSizeConverter.cs" />
     <Compile Include="Converters\TwoItemsListSizeConverter.cs" />
-    <Compile Include="Converters\UserContentGroupKeyToStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\VKAdInfoView.xaml.cs">
       <DependentUpon>VKAdInfoView.xaml</DependentUpon>

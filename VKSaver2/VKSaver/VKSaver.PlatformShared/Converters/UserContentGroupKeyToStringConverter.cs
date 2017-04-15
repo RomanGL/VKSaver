@@ -9,7 +9,13 @@ namespace VKSaver.Converters
     {
         public UserContentGroupKeyToStringConverter()
         {
-            _locService = ServiceLocator.Current.GetInstance<ILocService>();
+            try
+            {
+                _locService = ServiceLocator.Current.GetInstance<ILocService>();
+            }
+            catch (Exception e)
+            {
+            }
         }
 
         public object Convert(object value, Type targetType, object parameter, string language)

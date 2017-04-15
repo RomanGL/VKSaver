@@ -1,0 +1,151 @@
+﻿<mvvm:SessionStateAwarePage x:Class="VKSaver.Views.UserContentView"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:mvvm="using:Prism.Windows.Mvvm"
+                            xmlns:converters="using:VKSaver.Converters"
+                            xmlns:common="using:VKSaver.Common"
+                            xmlns:controls="using:VKSaver.Controls"
+                            mvvm:ViewModelLocator.AutoWireViewModel="True"
+                            mc:Ignorable="d">
+
+    <mvvm:SessionStateAwarePage.Resources>
+        <converters:UserContentGroupKeyToStringConverter x:Key="GroupKeyToStringConverter" />
+        <common:DataContextProxy x:Key="DataContextProxy" />
+
+        <DataTemplate x:Key="DocumentTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <controls:ImagePlaceholder Text="{Binding Title}"
+                                           Source="{Binding Photo100}"
+                                           Height="50"
+                                           Width="65"
+                                           Margin="0,0,10,0"
+                                           VerticalAlignment="Top" />
+
+                <TextBlock Style="{StaticResource ListLine1TextStyle}"
+                           Text="{Binding Title}"
+                           TextWrapping="WrapWholeWords"
+                           MaxLines="2"
+                           TextTrimming="CharacterEllipsis"
+                           Grid.Column="1"
+                           Pivot.SlideInAnimationGroup="GroupOne"
+                           LineStackingStrategy="MaxHeight" />
+            </Grid>
+        </DataTemplate>
+
+        <CollectionViewSource x:Key="AudioGroupSource"
+                              Source="{Binding AudioGroup}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding AudioGroup}" />
+        <CollectionViewSource x:Key="VideoGroupSource"
+                              Source="{Binding VideoGroup}"
+                              IsSourceGrouped="True"
+                              d:Source="{Binding VideoGroup}" />
+
+        <Style x:Key="AudioItemTemplate"
+               TargetType="ListViewItem">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="загрузить"
+                                        x:Uid="DownloadFlyoutItem"
+                                        Command="{Binding DataSource.DownloadItemCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="в мои аудиозаписи"
+                                        x:Uid="AddToMyAudiosFlyoutItem"
+                                        Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="информация о треке"
+                                        x:Uid="ShowTrackInfoFlyoutItem"
+                                        Command="{Binding DataSource.ShowTrackInfoCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
+                                        Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+
+        <Style x:Key="VideoItemTemplate"
+               TargetType="ListViewItem">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="в мои видеозаписи"
+                                        x:Uid="AddToMyVideosFlyoutItem"
+                                        Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
+                                        Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+
+        <Style x:Key="DocumentItemStyle"
+               TargetType="ListViewItem">
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="загрузить"
+                                        x:Uid="DownloadFlyoutItem"
+                                        Command="{Binding DataSource.DownloadItemCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="в мои документы"
+                                        x:Uid="AddToMyDocsFlyoutItem"
+                                        Command="{Binding DataSource.AddToMyCollectionCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                        <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
+                                        Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+
+        <Style x:Key="AlbumItemStyle"
+               TargetType="ListViewItem">
+            <Setter Property="Margin"
+                    Value="0,0,0,5" /> />
+            <Setter Property="FlyoutBase.AttachedFlyout">
+                <Setter.Value>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="удалить"
+                                        x:Uid="DeleteFlyoutItem"
+                                        Command="{Binding DataSource.DeleteCommand, Source={StaticResource DataContextProxy}}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
+                    Value="True" />
+        </Style>
+
+        <common:ContentViewItemContainerStyleSelector x:Key="AudioItemContainerSelector"
+                                                      DefaultStyle="{StaticResource AudioItemTemplate}"
+                                                      AlbumStyle="{StaticResource AlbumItemStyle}" />
+        <common:ContentViewItemContainerStyleSelector x:Key="VideoItemContainerSelector"
+                                                      DefaultStyle="{StaticResource VideoItemTemplate}"
+                                                      AlbumStyle="{StaticResource AlbumItemStyle}" />
+    </mvvm:SessionStateAwarePage.Resources>
+    
+    
+</mvvm:SessionStateAwarePage>
+
