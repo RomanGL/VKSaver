@@ -188,6 +188,7 @@
     <Compile Include="Controls\BackDrop.cs" />
     <Compile Include="Controls\EasyCarousel.cs" />
     <Compile Include="Controls\HamburgerButton.cs" />
+    <Compile Include="Controls\MenuListBox.cs" />
     <Compile Include="Controls\PlayerBackground.cs" />
     <Compile Include="Controls\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>

@@ -3,16 +3,18 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:controls="using:VKSaver.Controls"
                             xmlns:mvvm="using:Prism.Windows.Mvvm"
                             xmlns:viewModels="using:VKSaver.Core.ViewModels"
                             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                             xmlns:behaviors="using:VKSaver.Behaviors"
-                            xmlns:database="using:VKSaver.Core.Models.Database"
-                            xmlns:common="using:VKSaver.Core.ViewModels.Common"
+                            xmlns:controls="using:VKSaver.Controls"
                             mc:Ignorable="d"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
+                            controls:Shell.IsMenuButtonVisible="True"
+                            controls:Shell.IsTitleBarVisible="True"
+                            controls:Shell.IsPlayerBlockVisible="True"
+                            controls:Shell.Title="Локальная библиотека"
                             d:DataContext="{d:DesignInstance viewModels:LibraryViewModel}">
 
     <mvvm:SessionStateAwarePage.Resources>
@@ -39,17 +41,37 @@
                               d:Source="{Binding Cached}" />
     </mvvm:SessionStateAwarePage.Resources>
 
-    <Grid>
+    <Grid Margin="0,70,0,0">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="Size600">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Size0">
+                    <VisualState.Setters>
+                        <Setter Target="TracksListView.ItemTemplate"
+                                Value="{StaticResource VKSaverTrackLongHeightTemplate}" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Pivot Style="{StaticResource PivotRightHeadersStyle}"
                SelectedIndex="{Binding CurrentPivotIndex, Mode=TwoWay}">
 
             <!-- Композиции -->
 
             <PivotItem Header="Композиции"
-                       Margin="24,0,0,0">
+                       Margin="0">
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
-                        <ListView ItemsSource="{Binding Source={StaticResource TracksSource}}"
+                        <ListView x:Name="TracksListView" 
+                                  ItemsSource="{Binding Source={StaticResource TracksSource}}"
                                   IsItemClickEnabled="{Binding IsItemClickEnabled}"
                                   ItemTemplate="{StaticResource VKSaverTrackWideTemplate}"
                                   ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
@@ -83,7 +105,7 @@
             <!-- Исполнители -->
 
             <PivotItem Header="Исполнители"
-                       Margin="24,0,0,0">
+                       Margin="0">
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
                         <GridView ItemsSource="{Binding Source={StaticResource ArtistsSource}}"
@@ -117,7 +139,7 @@
             <!-- Альбомы -->
 
             <PivotItem Header="Альбомы"
-                       Margin="24,0,0,0">
+                       Margin="0">
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
                         <GridView ItemsSource="{Binding Source={StaticResource AlbumsSource}}"
@@ -151,7 +173,7 @@
             <!-- Жанры -->
             
             <PivotItem Header="Жанры"
-                       Margin="24,0,0,0">
+                       Margin="0">
                 <SemanticZoom>
                     <SemanticZoom.ZoomedInView>
                         <ListView ItemsSource="{Binding Source={StaticResource GenresSource}}"
@@ -184,7 +206,7 @@
             <!-- Папки -->
 
             <PivotItem Header="Папки"
-                       Margin="24,0,0,0">
+                       Margin="0">
                 <ListView ItemsSource="{Binding Folders}"
                           ItemTemplate="{StaticResource VKSaverFolderTemplate}"
                           ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"

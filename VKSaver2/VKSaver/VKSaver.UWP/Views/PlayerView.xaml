@@ -8,8 +8,10 @@
                             xmlns:viewModels="using:VKSaver.Core.ViewModels"
                             xmlns:converters="using:VKSaver.Converters"
                             mc:Ignorable="d"
-                            controls:SimpleShell.IsPlayerBlockVisible="False"
-                            controls:SimpleShell.IsMenuVisible="False"
+                            controls:Shell.IsPlayerBlockVisible="False"
+                            controls:Shell.IsTitleBarVisible="True"
+                            controls:Shell.IsMenuButtonVisible="True"
+                            controls:Shell.Title="Сейчас играет"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             d:DataContext="{d:DesignInstance viewModels:PlayerViewModel}"
                             RequestedTheme="Dark">

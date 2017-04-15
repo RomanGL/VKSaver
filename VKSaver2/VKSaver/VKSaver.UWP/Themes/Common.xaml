@@ -117,6 +117,17 @@
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="VKSaverTrackLongHeightTemplate"
+                  x:DataType="database:VKSaverTrack">
+        <StackPanel Margin="0,6">
+            <TextBlock Text="{x:Bind Title}" />
+            <TextBlock Text="{x:Bind Artist}"
+                       Opacity="0.7"/>
+            <TextBlock Text="{x:Bind Duration, Converter={StaticResource TimeConverter}}"
+                       Foreground="{ThemeResource AccentMediumBrush}" />
+        </StackPanel>
+    </DataTemplate>
+
     <DataTemplate x:Key="VKSaverArtistTemplate"
                   x:DataType="database:VKSaverArtist">
         <UserControl>

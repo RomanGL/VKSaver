@@ -63,7 +63,7 @@ namespace VKSaver
             Dispatcher = Window.Current.Dispatcher;
             SurfaceLoader.Initialize(ElementCompositionPreview.GetElementVisual(rootFrame).Compositor);
 
-            var shell = Container.Resolve<SimpleShell>();
+            var shell = Container.Resolve<Shell>();
             shell.CurrentFrame = rootFrame;
             return shell;
         }

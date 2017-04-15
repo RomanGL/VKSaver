@@ -1,28 +1,51 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Numerics;
 using Windows.ApplicationModel.Core;
+using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.Unity;
+using Prism.Windows.Navigation;
+using VKSaver.Common;
+using VKSaver.Core.ViewModels;
 
 namespace VKSaver.Controls
 {
     public sealed partial class Shell : UserControl
     {
-        public Shell(Frame frame)
+        [InjectionConstructor]
+        public Shell(INavigationService navigationService, PlayerViewModel playerViewModel)
             : this()
         {
-            CurrentFrame = frame;
+            _navigationService = navigationService;
+
+            PlayerBlock.DataContext = playerViewModel;
+            playerViewModel.OnNavigatedTo(null, null);
         }
 
         public Shell()
         {
             this.InitializeComponent();
 
+            MenuListBox.ItemsSource = _navigationItems;
+            MenuListBox.SelectionChanged += MenuListBox_SelectionChanged;
             MenuButton.Click += (s, e) => ShellSplitView.IsPaneOpen = !ShellSplitView.IsPaneOpen;
             this.SizeChanged += Shell_SizeChanged;
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
-            //Window.Current.SetTitleBar(GrabRect);
+
+            WindowThemeHelper.HideTitleBar();
+            _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
+
+            var connectedAnimationService = ConnectedAnimationService.GetForCurrentView();
+            connectedAnimationService.DefaultDuration = TimeSpan.FromSeconds(0.4);
+            connectedAnimationService.DefaultEasingFunction = _compositor.CreateCubicBezierEasingFunction(
+                new Vector2(0.41f, 0.52f),
+                new Vector2(0.00f, 0.94f));
         }
 
         public Frame CurrentFrame
@@ -71,6 +94,16 @@ namespace VKSaver.Controls
             obj.SetValue(IsTitleBarVisibleProperty, value);
         }
 
+        public static void SetIsPlayerBlockVisible(DependencyObject element, bool value)
+        {
+            element.SetValue(IsPlayerBlockVisibleProperty, value);
+        }
+
+        public static bool GetIsPlayerBlockVisible(DependencyObject element)
+        {
+            return (bool)element.GetValue(IsPlayerBlockVisibleProperty);
+        }
+
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.RegisterAttached("Title", typeof(string),
                 typeof(Shell), new PropertyMetadata(default(string), (x, e) => GetCurrentShell()?.UpdatePageTitle()));
@@ -83,14 +116,41 @@ namespace VKSaver.Controls
             DependencyProperty.RegisterAttached("IsTitleBarVisible", typeof(bool),
                 typeof(Shell), new PropertyMetadata(true, (s, e) => GetCurrentShell()?.UpdateTitleBar()));
 
+        public static readonly DependencyProperty IsPlayerBlockVisibleProperty = 
+            DependencyProperty.RegisterAttached("IsPlayerBlockVisible", typeof(bool), 
+                typeof(Shell), new PropertyMetadata(true,
+                (s, e) => GetCurrentShell()?.UpdatePlayerBlock()));
+
         #endregion
 
         private void CurentFrame_Navigated(object sender, NavigationEventArgs e)
         {
+            UpdatePlayerBlock();
             UpdatePageTitle();
             UpdateMenuButton();
             UpdateTitleBar();
             UpdateSplitViewState();
+        }
+
+        private void TrackBlock_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("TrackBlock", TrackBlock);
+            _navigationService.Navigate("PlayerView", null);
+        }
+
+        private void MenuListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (MenuListBox.SelectedItem == null)
+                return;
+
+            var item = (ShellNavigationItem)MenuListBox.SelectedItem;
+            if (item.DestinationView == "Hamburger")
+            {
+                ShellSplitView.IsPaneOpen = !ShellSplitView.IsPaneOpen;
+                MenuListBox.SelectedIndex = -1;
+            }
+            else
+                _navigationService.Navigate(item.DestinationView, item.NavigationParameter);
         }
 
         private void Shell_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -103,7 +163,9 @@ namespace VKSaver.Controls
             if (CurrentFrame.Content == null)
                 return;
             
-            PageTitle.Text = GetTitle(CurrentFrame.Content as DependencyObject) ?? String.Empty;
+            string title = GetTitle(CurrentFrame.Content as DependencyObject) ?? String.Empty;
+            PageTitle.Text = title;
+            _navigationItems[0].Name = title;
         }
 
         private void UpdateMenuButton()
@@ -121,15 +183,34 @@ namespace VKSaver.Controls
             }
         }
 
+        private void UpdatePlayerBlock()
+        {
+            if (CurrentFrame.Content == null)
+                return;
+
+            if (GetIsPlayerBlockVisible(CurrentFrame.Content as DependencyObject))
+            {
+                ShowPlayerBlockStoryboard.Begin();
+            }
+            else
+            {
+                HidePlayerBlockStoryboard.Begin();
+            }
+        }
+
         private void UpdateTitleBar()
         {
             if (CurrentFrame.Content == null)
                 return;
 
             if (GetIsTitleBarVisible(CurrentFrame.Content as DependencyObject))
+            {
                 ShowTitleBarStoryboard.Begin();
+            }
             else
+            {
                 HideTitleBarStoryboard.Begin();
+            }
         }
 
         private void UpdateSplitViewState()
@@ -137,16 +218,17 @@ namespace VKSaver.Controls
             if (CurrentFrame.Content == null)
                 return;
 
-            bool flag = GetIsMenuButtonVisible(CurrentFrame.Content as DependencyObject) &
-                GetIsTitleBarVisible(CurrentFrame.Content as DependencyObject);
+            bool flag = GetIsMenuButtonVisible(CurrentFrame.Content as DependencyObject);
 
-            if (flag && this.ActualWidth > 840)
+            if (flag && this.ActualWidth >= 600)
             {
                 ShellSplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
+                MenuButton.Visibility = Visibility.Collapsed;
             }
             else
             {
                 ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
+                MenuButton.Visibility = Visibility.Visible;
             }
         }
 
@@ -154,5 +236,19 @@ namespace VKSaver.Controls
         {
             return Window.Current.Content as Shell;
         }
+
+        private static ObservableCollection<ShellNavigationItem> GetNavigationCollection()
+        {
+            return new ObservableCollection<ShellNavigationItem>
+            {
+                new ShellNavigationItem { DestinationView = "Hamburger", Icon = "\uE700"},
+                new ShellNavigationItem { Name = "Главная", DestinationView = "MainView", Icon = "\uE10F"},
+                new ShellNavigationItem { Name = "Коллекция", DestinationView = "LibraryView", Icon = "\uE838"}
+            };
+        }
+
+        private readonly ObservableCollection<ShellNavigationItem> _navigationItems = GetNavigationCollection();
+        private readonly Compositor _compositor;
+        private readonly INavigationService _navigationService;
     }
 }
