@@ -69,6 +69,31 @@
         <controls:PlayerBackground x:Name="plBackground"
                                    ArtistImage="{Binding ArtistImage}" />
 
+        <Grid VerticalAlignment="Bottom"
+              HorizontalAlignment="Left"
+              Margin="0,0,0,118"
+              Background="{ThemeResource AccentMediumBrush}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <controls:ImagePlaceholder Source="{Binding TrackImage}"
+                                       Text="{Binding CurrentTrack.Track.Title}"
+                                       Height="150"
+                                       Width="150"
+                                       Margin="48,0,0,0" />
+            <AppBarButton LabelPosition="Collapsed"
+                          Grid.Column="2"
+                          Command="{Binding AddToMyAudiosCommand}"
+                          CommandParameter="{Binding CurrentTrack}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE006;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </Grid>
+
         <Grid x:Name="TracksGrid"
               HorizontalAlignment="Right"
               Margin="0,120,12,82"
@@ -86,78 +111,53 @@
                     Background="#CC171717">
                 <Grid>
                     <ListView ItemsSource="{Binding Tracks}">
-                        <ListView.HeaderTemplate>
-                            <DataTemplate>
-                                <Rectangle Height="0"
-                                           Margin="0,6,0,0"/>
-                            </DataTemplate>
-                        </ListView.HeaderTemplate>
-                        <ListView.FooterTemplate>
-                            <DataTemplate>
-                                <Rectangle Height="0"
-                                           Margin="0,0,0,6" />
-                            </DataTemplate>
-                        </ListView.FooterTemplate>
-
                         <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="12,6">
-                                    <TextBlock Text="{Binding Track.Title}"
-                                               Style="{StaticResource TitleTextBlockStyle}"
-                                               Foreground="{Binding IsCurrent, Converter={StaticResource CurrentTrackToStyleConverter}}"
-                                               TextTrimming="CharacterEllipsis"/>
-                                    <TextBlock Text="{Binding Track.Artist}"
-                                               Style="{StaticResource SubtitleTextBlockStyle}"
-                                               Foreground="{Binding IsCurrent, Converter={StaticResource CurrentTrackToStyleConverter}}"
+                            <DataTemplate x:DataType="viewModels:PlayerItem">
+                                <Grid Margin="0,6">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="&#xE102;"
+                                               FontFamily="Segoe MDL2 Assets"
+                                               FontSize="20"
+                                               Margin="0,2,6,0"
+                                               OpticalMarginAlignment="TrimSideBearings"
+                                               Grid.RowSpan="2"
+                                               VerticalAlignment="Center"
+                                               Foreground="{ThemeResource AccentHighBrush}"
+                                               Visibility="{x:Bind IsCurrent, Mode=OneWay}" />
+
+                                    <TextBlock Text="{x:Bind Track.Title, Mode=OneWay}"
+                                               Style="{StaticResource BodyTextBlockStyle}"
+                                               Foreground="{x:Bind IsCurrent, Converter={StaticResource CurrentTrackToStyleConverter}, Mode=OneWay}"
                                                TextTrimming="CharacterEllipsis"
-                                               Opacity="0.5"/>
-                                </StackPanel>
+                                               Grid.Column="1" />
+                                    <TextBlock Text="{x:Bind Track.Artist, Mode=OneWay}"
+                                               Style="{StaticResource BodyTextBlockStyle}"
+                                               Foreground="{x:Bind IsCurrent, Converter={StaticResource CurrentTrackToStyleConverter}, Mode=OneWay}"
+                                               TextTrimming="CharacterEllipsis"
+                                               Opacity="0.5"
+                                               Grid.Row="1"
+                                               Grid.Column="1" />
+                                </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
             </Border>
-            <Polygon Points="0,0 100,0, 65,35"
+            <Polygon Points="0,0 50,0, 15,25"
                      Fill="#CC171717"
                      VerticalAlignment="Bottom"
                      HorizontalAlignment="Right"
                      Grid.Row="1"
-                     Margin="0,-1,0,0" />
+                     Margin="0,-1,1,0" />
         </Grid>
-
-        <RelativePanel x:Name="TrackBlock"
-                       VerticalAlignment="Bottom"
-                       HorizontalAlignment="Left"
-                       Margin="48,0,0,118">
-            <controls:ImagePlaceholder Source="{Binding TrackImage}"
-                                       Text="{Binding CurrentTrack.Track.Title}"
-                                       Height="160"
-                                       Width="160"
-                                       x:Name="TrackImage"/>
-            <TextBlock Text="{Binding CurrentTrack.Track.Title}"
-                       Style="{StaticResource TitleTextBlockStyle}"
-                       RelativePanel.RightOf="TrackImage"
-                       x:Name="TrackTitleBlock"
-                       FontSize="32"
-                       FontWeight="Bold"
-                       Margin="12,0,0,0" />
-            <TextBlock Text="{Binding CurrentTrack.Track.Artist}"
-                       Style="{StaticResource TitleTextBlockStyle}"
-                       x:Name="ArtistNameBlock"
-                       FontWeight="Normal"
-                       RelativePanel.RightOf="TrackImage"
-                       RelativePanel.Below="TrackTitleBlock"
-                       Margin="12,-4,0,0" />
-            <AppBarButton LabelPosition="Collapsed"
-                          RelativePanel.Below="ArtistNameBlock"
-                          RelativePanel.RightOf="TrackImage"
-                          Command="{Binding AddToMyAudiosCommand}"
-                          CommandParameter="{Binding CurrentTrack}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE006;" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-        </RelativePanel>
 
         <Grid VerticalAlignment="Bottom"
               Height="70"
@@ -222,30 +222,18 @@
                     ThumbToolTipValueConverter="{StaticResource SecondsToTimeStringConverter}" />
         </Grid>
 
-        <Grid VerticalAlignment="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="32" />
-                <RowDefinition Height="48" />
-            </Grid.RowDefinitions>
+        <Grid VerticalAlignment="Top"
+              Margin="48,32,0,0"
+              Height="48"
+              HorizontalAlignment="Left"
+              Background="{ThemeResource AccentMediumBrush}">
             
-            <controls:BackDrop BlurAmount="15"
-                               Grid.RowSpan="2"/>
-            <Rectangle Grid.RowSpan="2"
-                       Fill="#66000000" />
-            
-            <TextBlock Text="Домашняя страница"
+            <TextBlock Text="Сейчас играет"
                        Style="{StaticResource BaseTextBlockStyle}"
                        FontWeight="Bold"
                        VerticalAlignment="Center"
                        TextLineBounds="Tight"
-                       Margin="60,0,0,1"
-                       Grid.Row="1" />
-            
-            <Rectangle Grid.Row="1"
-                       Height="1"
-                       Fill="#FF4F4F4F"
-                       VerticalAlignment="Bottom"
-                       Margin="0,0,0,-1" />
+                       Margin="12,0,12,1"/>
         </Grid>
     </Grid>
 </mvvm:SessionStateAwarePage>

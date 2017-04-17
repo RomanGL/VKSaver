@@ -35,6 +35,9 @@
         <ResourceDictionary x:Key="Dark">
             <Color x:Key="TitleBarForegroundThemeColor">#e52c2c</Color>
             
+            <SolidColorBrush x:Key="ListFirstItemBackgroundBrush"
+                             Color="#11FFFFFF" />
+            
             <ImageBrush x:Key="CatImageBrush"
                         ImageSource="../Assets/cat.dark.jpg"
                         Stretch="UniformToFill"
@@ -62,6 +65,9 @@
         <ResourceDictionary x:Key="Light">
             <Color x:Key="TitleBarForegroundThemeColor">#e52c2c</Color>
 
+            <SolidColorBrush x:Key="ListFirstItemBackgroundBrush"
+                             Color="#11000000" />
+            
             <ImageBrush x:Key="CatImageBrush"
                         ImageSource="../Assets/cat.light.jpg"
                         Stretch="UniformToFill" 

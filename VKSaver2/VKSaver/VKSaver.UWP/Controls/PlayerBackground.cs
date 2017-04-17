@@ -20,6 +20,8 @@ namespace VKSaver.Controls
             if (!DesignMode.DesignModeEnabled)
             {
                 _imagesCacheService = ServiceLocator.Current.GetInstance<IImagesCacheService>();
+                this.Loaded += PlayerBackground_Loaded;
+                this.Unloaded += PlayerBackground_Unloaded;
             }
 
             this.SizeChanged += (s, e) =>
@@ -36,6 +38,18 @@ namespace VKSaver.Controls
                     Rect = new Rect(0, 0, e.NewSize.Width, e.NewSize.Height)
                 };
             };
+        }
+
+        private void PlayerBackground_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Loaded -= PlayerBackground_Loaded;
+            Start();
+        }
+
+        private void PlayerBackground_Unloaded(object sender, RoutedEventArgs e)
+        {
+            this.Unloaded -= PlayerBackground_Unloaded;
+            Stop();
         }
     }
 }

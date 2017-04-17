@@ -8,9 +8,11 @@
                             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                             xmlns:objects="using:IF.Lastfm.Core.Objects"
+                            xmlns:viewModels="using:VKSaver.Core.ViewModels"
+                            xmlns:common="using:VKSaver.Common"
                             mc:Ignorable="d"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
-                            d:DataContext="{d:DesignData /SampleData/MainViewSampleData/MainViewSampleData.xaml}">
+                            d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
 
     <mvvm:SessionStateAwarePage.Resources>
         <DataTemplate x:Key="ArtistListTemplate"
@@ -49,58 +51,90 @@
 
         <DataTemplate x:Key="ArtistGridTemplate"
                       x:DataType="objects:LastArtist">
-            <UserControl>
-                <Border Padding="12"
-                        Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
-                        Width="170"
-                        Height="270">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+            <Border Padding="12"
+                    Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                    Width="170"
+                    Height="270">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                        <controls:ImagePlaceholder Height="170"
-                                                   Source="{x:Bind MainImage.Mega}"
-                                                   Text="{x:Bind Name}"
-                                                   x:Name="ArtistImage"
-                                                   Margin="-12,-12,-12,0" />
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="0,6,0,0"
-                                    Grid.Row="1">
-                            <TextBlock Text="&#xE102;"
-                                       FontFamily="Segoe MDL2 Assets"
-                                       FontSize="17"
-                                       Margin="0,2,0,0"
-                                       OpticalMarginAlignment="TrimSideBearings" />
-                            <TextBlock Text="{x:Bind PlayCount}"
-                                       Style="{StaticResource BaseTextBlockStyle}"
-                                       Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
-                                       TextTrimming="CharacterEllipsis"
-                                       FontWeight="SemiBold" />
-                        </StackPanel>
-                        <TextBlock Text="{x:Bind Name}"
-                                   Style="{StaticResource TitleTextBlockStyle}"
+                    <controls:ImagePlaceholder Height="170"
+                                               Source="{x:Bind MainImage.Mega}"
+                                               Text="{x:Bind Name}"
+                                               x:Name="ArtistImage"
+                                               Margin="-12,-12,-12,0" />
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,6,0,0"
+                                Grid.Row="1">
+                        <TextBlock Text="&#xE102;"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   FontSize="17"
+                                   Margin="0,2,0,0"
+                                   OpticalMarginAlignment="TrimSideBearings" />
+                        <TextBlock Text="{x:Bind PlayCount}"
+                                   Style="{StaticResource BaseTextBlockStyle}"
                                    Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
                                    TextTrimming="CharacterEllipsis"
-                                   TextWrapping="WrapWholeWords"
-                                   MaxLines="2"
-                                   Grid.Row="2"
-                                   TextLineBounds="TrimToCapHeight"
-                                   Margin="0,12,0,0" />
-                    </Grid>
-                </Border>
-            </UserControl>
+                                   FontWeight="SemiBold" />
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind Name}"
+                               Style="{StaticResource TitleTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="WrapWholeWords"
+                               MaxLines="2"
+                               Grid.Row="2"
+                               TextLineBounds="TrimToCapHeight"
+                               Margin="0,12,0,0" />
+                </Grid>
+            </Border>
         </DataTemplate>
 
-        <Style x:Key="RecommendedTrackContainerStyle"
-               TargetType="ListViewItem"
-               BasedOn="{StaticResource NarrowListViewItemStyle}">
-            <Setter Property="Padding"
-                    Value="12,0,24,0"/>
-        </Style>
+        <DataTemplate x:Key="ArtistGridSeeAlsoTemplate"
+                      x:DataType="objects:LastArtist">
+            <Border Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                    Width="170"
+                    Height="270">
+                <Grid>
+                    <controls:PlayerBackground DefaultTheme="Magenta"
+                                               DefaultShapesType="VerticalTriangles"
+                                               ChangeColorDuration="0.5"
+                                               NoAlbums="True" />
+                    <TextBlock Text="Показать больше"
+                               x:Uid="MainView_ShowMore"
+                               Style="{StaticResource TitleTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="WrapWholeWords"
+                               MaxLines="2"
+                               TextLineBounds="TrimToCapHeight"
+                               Margin="12" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="VKAudioSeeAlsoTemplate">
+            <TextBlock Text="Показать больше"
+                       x:Uid="MainView_ShowMore"
+                       Foreground="{ThemeResource AccentHighBrush}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontWeight="Bold" />
+        </DataTemplate>
+
+        <common:LastArtistSeeMoreTemplateSelector x:Key="LastArtistSeeMoreTemplateSelector"
+                                                  ArtistTemplate="{StaticResource ArtistGridTemplate}"
+                                                  SeeAlsoTemplate="{StaticResource ArtistGridSeeAlsoTemplate}" />
+        <common:VKAudioSeeMoreTemplateSelector x:Key="UserTracksSeeMoreTemplateSelector"
+                                               AudioTemplate="{StaticResource VKAudioLongHeightTemplate}"
+                                               SeeAlsoTemplate="{StaticResource VKAudioSeeAlsoTemplate}" />
+        <common:VKAudioSeeMoreTemplateSelector x:Key="RecommendedTracksSeeMoreTemplateSelector"
+                                               AudioTemplate="{StaticResource VKAudioWideTemplate}"
+                                               SeeAlsoTemplate="{StaticResource VKAudioSeeAlsoTemplate}" />
     </mvvm:SessionStateAwarePage.Resources>
 
     <Grid>
@@ -118,6 +152,7 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="12,0,0,12">
                             <TextBlock Text="Ваши треки"
+                                       x:Uid="MainView_HubSection_YourMusic"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        FontWeight="Bold" />
                             <TextBlock Text="{Binding TotalTracksCount}"
@@ -125,18 +160,23 @@
                                        Foreground="{ThemeResource AccentHighBrush}"
                                        Margin="12,0,0,0" />
                         </StackPanel>
-                        <ListView x:Name="TracksList"
-                                  ItemsSource="{Binding UserTracks}"
-                                  ItemTemplate="{StaticResource VKAudioLongHeightTemplate}"
-                                  ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
-                                  IsItemClickEnabled="True">
-                            <interactivity:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding PlayUserTracksCommand}"
-                                                              InputConverter="{StaticResource ItemClickEventArgsConverter}" />
-                                </core:EventTriggerBehavior>
-                            </interactivity:Interaction.Behaviors>
-                        </ListView>
+                        <controls:ContentContainer x:Uid="MainView_YourMusicLoader"
+                                                   State="{Binding UserTracks.ContentState}"
+                                                   ReloadCommand="{Binding UserTracks.RefreshCommand}">
+                            <ListView x:Name="TracksList"
+                                      ItemsSource="{Binding UserTracks}"
+                                      ItemTemplateSelector="{StaticResource UserTracksSeeMoreTemplateSelector}"
+                                      ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
+                                      IsItemClickEnabled="True"
+                                      SelectionMode="None">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding PlayUserTracksCommand}"
+                                                                  InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                            </ListView>
+                        </controls:ContentContainer>
                     </StackPanel>
 
                     <StackPanel x:Name="ArtistsBlock"
@@ -145,38 +185,111 @@
                         <StackPanel Orientation="Horizontal"
                                     Margin="12,0,0,12">
                             <TextBlock Text="Лучшие исполнители"
+                                       x:Uid="MainView_HubSection_TopArtists"
                                        Style="{StaticResource BaseTextBlockStyle}"
                                        FontWeight="Bold" />
                         </StackPanel>
-                        <GridView x:Name="ArtistsGrid"
-                                  Margin="12,0,0,0"
-                                  IsItemClickEnabled="True"
-                                  ItemsSource="{Binding TopArtistsLF}"
-                                  ItemTemplate="{StaticResource ArtistGridTemplate}"
-                                  ItemContainerStyle="{StaticResource DefaultGridViewItemStyle}"
-                                  ItemContainerTransitions="{StaticResource DefaultGridViewTransitions}" />
+                        <controls:ContentContainer x:Uid="TopArtistsLoader"
+                                                   State="{Binding TopArtistsLF.ContentState}"
+                                                   ReloadCommand="{Binding TopArtistsLF.RefreshCommand}">
+                            <GridView x:Name="ArtistsGrid"
+                                      Margin="12,0,0,0"
+                                      IsItemClickEnabled="True"
+                                      ItemsSource="{Binding TopArtistsLF}"
+                                      ItemTemplateSelector="{StaticResource LastArtistSeeMoreTemplateSelector}"
+                                      ItemContainerStyle="{StaticResource DefaultGridViewItemStyle}"
+                                      ItemContainerTransitions="{StaticResource DefaultGridViewTransitions}">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding GoToArtistInfoCommand}"
+                                                                  InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                            </GridView>
+                        </controls:ContentContainer>
                     </StackPanel>
                 </Grid>
 
-                <StackPanel x:Name="RecommendedTrackBlock"
-                            Margin="0,24,0,0">
-                    <TextBlock Text="Рекомендуем"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               FontWeight="Bold"
-                               Margin="12,0,0,12" />
-                    <ListView x:Name="RecommendedTracksList"
-                              ItemsSource="{Binding RecommendedTracksVK}"
-                              ItemTemplate="{StaticResource VKAudioWideTemplate}"
-                              ItemContainerStyle="{StaticResource RecommendedTrackContainerStyle}"
-                              IsItemClickEnabled="True">
-                        <interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="ItemClick">
-                                <core:InvokeCommandAction Command="{Binding PlayRecommendedTracksCommand}"
-                                                          InputConverter="{StaticResource ItemClickEventArgsConverter}" />
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
-                    </ListView>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel x:Name="RecommendedTrackBlock"
+                                Margin="0,24,0,0">
+                        <TextBlock Text="Рекомендуем"
+                                   x:Uid="MainView_HubSection_Recommendations"
+                                   Style="{StaticResource BaseTextBlockStyle}"
+                                   FontWeight="Bold"
+                                   Margin="12,0,0,12" />
+                        <controls:ContentContainer x:Uid="RecommendationsLoader"
+                                                   State="{Binding RecommendedTracksVK.ContentState}"
+                                                   ReloadCommand="{Binding RecommendedTracksVK.RefreshCommand}">
+                            <controls:AlternateListView x:Name="RecommendedTracksList"
+                                                        ItemsSource="{Binding RecommendedTracksVK}"
+                                                        ItemTemplateSelector="{StaticResource RecommendedTracksSeeMoreTemplateSelector}"
+                                                        ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
+                                                        IsItemClickEnabled="True"
+                                                        SelectionMode="None"
+                                                        FirstItemBackground="{ThemeResource ListFirstItemBackgroundBrush}">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding PlayRecommendedTracksCommand}"
+                                                                  InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                            </controls:AlternateListView>
+                        </controls:ContentContainer>
+                    </StackPanel>
+
+                    <StackPanel x:Name="SeeAlsoBlock"
+                                Margin="0,24,0,0"
+                                Grid.Column="1">
+                        <TextBlock Text="Смотрите также"
+                                   x:Uid="MainView_HubSection_SeeAlso"
+                                   Style="{StaticResource BaseTextBlockStyle}"
+                                   FontWeight="Bold"
+                                   Margin="12,0,0,12" />
+                        <ListView x:Name="SeeAlsoList"
+                                  ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
+                                  IsItemClickEnabled="True"
+                                  SelectionMode="None">
+                            <ListViewItem Content="Музыка"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                            <ListViewItem Content="Видео"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                            <ListViewItem Content="Документы"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                            <ListViewItem Content="Сообщества"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                            <ListViewItem Content="Друзья"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                            <ListViewItem Content="Новости"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                            <ListViewItem Content="Поиск"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+
+                            <ListViewItem Content="Топ треков"
+                                          Style="{StaticResource MenuListViewItemStyle}"
+                                          Margin="0,32,0,0" />
+                            <ListViewItem Content="Топ исполнителей"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                            <ListViewItem Content="Рекомендации"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                            <ListViewItem Content="Популярные"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+
+                            <ListViewItem Content="Менеджер загрузок"
+                                          Style="{StaticResource MenuListViewItemStyle}"
+                                          Margin="0,32,0,0" />
+                            <ListViewItem Content="Настройки"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                            <ListViewItem Content="О программе"
+                                          Style="{StaticResource MenuListViewItemStyle}" />
+                        </ListView>
+                    </StackPanel>
+                </Grid>
 
                 <Rectangle Height="82" />
             </StackPanel>

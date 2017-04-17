@@ -32,7 +32,7 @@ using System.Diagnostics;
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class PlayerViewModel : VKAudioViewModel<PlayerViewModel.PlayerItem>
+    public sealed class PlayerViewModel : VKAudioViewModel<PlayerItem>
     {
         public event TypedEventHandler<PlayerViewModel, PlayerItem> TrackChanged;
 
@@ -211,6 +211,8 @@ namespace VKSaver.Core.ViewModels
                 _isSubscribed = false;
             }
 #endif
+            if (!suspending)
+                ArtistImage = null;
 
             base.OnNavigatingFrom(e, viewModelState, suspending);
         }
@@ -603,18 +605,5 @@ namespace VKSaver.Core.ViewModels
         private readonly ISettingsService _settingsService;
 
         private const string LIKE_INFO_SHOWED_PARAMETER_NAME = "LikeInfo";
-
-        [ImplementPropertyChanged]
-        public sealed class PlayerItem : IEquatable<PlayerItem>
-        {
-            public IPlayerTrack Track { get; set; }
-
-            public bool IsCurrent { get; set; }
-
-            public bool Equals(PlayerItem other)
-            {
-                return Track.Equals(other.Track);
-            }
-        }
     }
 }

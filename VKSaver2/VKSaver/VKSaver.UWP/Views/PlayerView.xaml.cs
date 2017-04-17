@@ -21,7 +21,6 @@ namespace VKSaver.Views
         private void PlayerView_Loaded(object sender, RoutedEventArgs e)
         {
             this.Loaded -= PlayerView_Loaded;
-            plBackground.Start();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs navigationEventArgs)
@@ -31,13 +30,11 @@ namespace VKSaver.Views
             base.OnNavigatedTo(navigationEventArgs);
 
             var animationService = ConnectedAnimationService.GetForCurrentView();
-            animationService.GetAnimation("TrackBlock")?.TryStart(TrackBlock);
+            //animationService.GetAnimation("TrackBlock")?.TryStart(TrackBlock);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            plBackground.Stop();
-
             //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("TrackBlock", TrackBlock);
 
             base.OnNavigatingFrom(e);

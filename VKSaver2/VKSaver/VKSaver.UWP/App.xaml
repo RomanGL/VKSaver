@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="Themes/Slider.xaml"/>
                 <ResourceDictionary Source="Themes/ShellHeader.xaml" />
                 <ResourceDictionary Source="Themes/Controls.xaml"/>
+                <ResourceDictionary Source="Themes/ContentContainer.xaml"/>
                 
                 <themes:CommonDictionary/>
             </ResourceDictionary.MergedDictionaries>

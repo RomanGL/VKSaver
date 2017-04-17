@@ -134,7 +134,9 @@ namespace VKSaver.Core.ViewModels
                 }
             });
 
+#if !WINDOWS_UWP
             _navigationService.Navigate("PlayerView", null);
+#endif
             _appLoaderService.Hide();
         }
 

@@ -646,17 +646,17 @@ Eng: TB</comment>
   <data name="MainView_HubSection_LocalLibrary.Header" xml:space="preserve">
     <value>ЛОКАЛЬНАЯ БИБЛИОТЕКА</value>
   </data>
-  <data name="MainView_HubSection_Recommendations.Header" xml:space="preserve">
-    <value>РЕКОМЕНДУЕМ</value>
+  <data name="MainView_HubSection_Recommendations.Text" xml:space="preserve">
+    <value>Рекомендуем</value>
   </data>
-  <data name="MainView_HubSection_SeeAlso.Header" xml:space="preserve">
-    <value>СМОТРИТЕ ТАКЖЕ</value>
+  <data name="MainView_HubSection_SeeAlso.Text" xml:space="preserve">
+    <value>Смотрите также</value>
   </data>
-  <data name="MainView_HubSection_TopArtists.Header" xml:space="preserve">
-    <value>ЛУЧШИЕ ИСПОЛНИТЕЛИ</value>
+  <data name="MainView_HubSection_TopArtists.Text" xml:space="preserve">
+    <value>Лучшие исполнители</value>
   </data>
-  <data name="MainView_HubSection_YourMusic.Header" xml:space="preserve">
-    <value>ВАША МУЗЫКА</value>
+  <data name="MainView_HubSection_YourMusic.Text" xml:space="preserve">
+    <value>Ваши треки</value>
   </data>
   <data name="MainView_LocalTracksItem.Content" xml:space="preserve">
     <value>композиции</value>
@@ -678,9 +678,6 @@ Eng: TB</comment>
     <value>настройки</value>
   </data>
   <data name="MainView_ShowMore.Text" xml:space="preserve">
-    <value>показать больше</value>
-  </data>
-  <data name="MainView_ShowMoreItem.Content" xml:space="preserve">
     <value>показать больше</value>
   </data>
   <data name="MainView_TopArtistsItem.Content" xml:space="preserve">

@@ -229,7 +229,12 @@ namespace VKSaver.Core.ViewModels
 
 #if WINDOWS_UWP
                 TotalTracksCount = response.Data.Count;
-                return response.Data.Items;
+                var tracks = new List<Audio>(response.Data.Items);
+                tracks.Add(new Audio
+                {
+                    Title = VKSAVER_SEE_ALSO_TEXT
+                });
+                return tracks;
 #else
                 FirstTrack = new VKAudioWithImage
                 {
@@ -250,16 +255,23 @@ namespace VKSaver.Core.ViewModels
 
             int itemsPerPage = 8;
 #if WINDOWS_UWP
-            itemsPerPage = 12;
+            itemsPerPage = 11;
 #endif
 
             var response = await _lfClient.Chart.GetTopArtistsAsync(itemsPerPage: itemsPerPage);
             if (response.Success)
             {
-#if !WINDOWS_UWP
+#if WINDOWS_UWP
+                var artists = new List<LastArtist>(response.Content);
+                artists.Add(new LastArtist
+                {
+                    Name = VKSAVER_SEE_ALSO_TEXT
+                });
+                return artists;
+#else
                 TryLoadTopArtistBackground(response.First());
-#endif
                 return response;
+#endif
             }
             else
                 throw new Exception("LFChartArtistsResponse isn't valid.");
@@ -272,14 +284,23 @@ namespace VKSaver.Core.ViewModels
 
             int trackToLoad = 10;
 #if WINDOWS_UWP
-            trackToLoad = 10;
+            trackToLoad = 15;
 #endif
 
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetRecommendations(count: trackToLoad));
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
-            else
-                return response.Data.Items;
+
+#if WINDOWS_UWP
+            var tracks = new List<Audio>(response.Data.Items);
+            tracks.Add(new Audio
+            {
+                Title = VKSAVER_SEE_ALSO_TEXT
+            });
+            return tracks;
+#else
+            return response.Data.Items;
+#endif
         }
 
 #if !WINDOWS_UWP
@@ -347,8 +368,15 @@ namespace VKSaver.Core.ViewModels
 
         private void OnGoToTrackInfoCommand(LastTrack audio) => _navigationService.Navigate("TrackInfoView",
             JsonConvert.SerializeObject(audio, _lastImageSetConverter));
-        private void OnGoToArtistInfoCommand(LastArtist artist) => _navigationService.Navigate("ArtistInfoView",
-            JsonConvert.SerializeObject(artist, _lastImageSetConverter));
+
+        private void OnGoToArtistInfoCommand(LastArtist artist)
+        {
+            if (artist.Name == VKSAVER_SEE_ALSO_TEXT)
+                OnGoTopArtistsCommand();
+            else
+                _navigationService.Navigate("ArtistInfoView",
+                    JsonConvert.SerializeObject(artist, _lastImageSetConverter));
+        } 
 
         private void OnGoToUserContentCommand(string view) => _navigationService.Navigate("UserContentView", JsonConvert.SerializeObject(
                 new KeyValuePair<string, string>(view, "0")));
@@ -380,13 +408,28 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnPlayRecommendedTracksCommand(Audio track)
         {
+            if (track.Title == VKSAVER_SEE_ALSO_TEXT)
+            {
+               OnGoToRecommendedViewCommand();
+                return;
+            }
+
             await _playerService.PlayNewTracks(RecommendedTracksVK.Select(a => a.ToPlayerTrack()),
                 RecommendedTracksVK.IndexOf(track));
+
+#if !WINDOWS_UWP
             _navigationService.Navigate("PlayerView", null);
+#endif
         }
 
         private async void OnPlayUserTracksCommand(Audio track)
         {
+            if (track.Title == VKSAVER_SEE_ALSO_TEXT)
+            {
+                OnGoToUserContentCommand("audios");
+                return;
+            }
+
             List<IPlayerTrack> tracksToPlay = null;
             await Task.Run(() =>
             {
@@ -405,7 +448,9 @@ namespace VKSaver.Core.ViewModels
             IPlayerTrack plTrack = track.ToPlayerTrack();
             await _playerService.PlayNewTracks(tracksToPlay, tracksToPlay.IndexOf(plTrack));
 
+#if !WINDOWS_UWP
             _navigationService.Navigate("PlayerView", null);
+#endif
         }
 
         private async void OnDownloadTrackCommand(Audio track)
@@ -427,6 +472,7 @@ namespace VKSaver.Core.ViewModels
 
         private static readonly LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();
 
-        private const string HUB_BACKGROUND_DEFAULT = "ms-appx:///Assets/HubBackground.jpg";        
+        private const string HUB_BACKGROUND_DEFAULT = "ms-appx:///Assets/HubBackground.jpg";
+        public const string VKSAVER_SEE_ALSO_TEXT = "VKSaver_SeeAlso_123";
     }
 }

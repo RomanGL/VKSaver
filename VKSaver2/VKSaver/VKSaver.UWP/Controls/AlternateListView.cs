@@ -37,13 +37,13 @@ namespace VKSaver.Controls
             ListViewItem lvi = element as ListViewItem;
             if (index % 2 != 0)
             {
-                if (FirstItemBackground != null)
-                    lvi.Background = FirstItemBackground;
+                if (SecondItemBackground != null)
+                    lvi.Background = SecondItemBackground;
             }
             else
             {
-                if (SecondItemBackground != null)
-                    lvi.Background = SecondItemBackground;
+                if (FirstItemBackground != null)
+                    lvi.Background = FirstItemBackground;
             }
         }
     }
