@@ -214,7 +214,12 @@ namespace VKSaver.Core.ViewModels
             if (UserTracks.Any())
                 return new List<Audio>();
 
-            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Get(count: 10));
+            int trackToLoad = 10;
+#if WINDOWS_UWP
+            trackToLoad = 10;
+#endif
+
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Get(count: trackToLoad));
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
             else
@@ -243,7 +248,12 @@ namespace VKSaver.Core.ViewModels
             if (TopArtistsLF.Any())
                 return new List<LastArtist>();
 
-            var response = await _lfClient.Chart.GetTopArtistsAsync(itemsPerPage: 8);
+            int itemsPerPage = 8;
+#if WINDOWS_UWP
+            itemsPerPage = 12;
+#endif
+
+            var response = await _lfClient.Chart.GetTopArtistsAsync(itemsPerPage: itemsPerPage);
             if (response.Success)
             {
 #if !WINDOWS_UWP
@@ -260,7 +270,12 @@ namespace VKSaver.Core.ViewModels
             if (RecommendedTracksVK.Any())
                 return new List<Audio>();
 
-            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetRecommendations(count: 10));
+            int trackToLoad = 10;
+#if WINDOWS_UWP
+            trackToLoad = 10;
+#endif
+
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetRecommendations(count: trackToLoad));
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
             else

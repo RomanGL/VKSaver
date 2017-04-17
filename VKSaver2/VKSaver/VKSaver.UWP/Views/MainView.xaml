@@ -9,9 +9,6 @@
                             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                             xmlns:objects="using:IF.Lastfm.Core.Objects"
                             mc:Ignorable="d"
-                            controls:Shell.IsTitleBarVisible="True"
-                            controls:Shell.IsMenuButtonVisible="True"
-                            controls:Shell.Title="ВКачай"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             d:DataContext="{d:DesignData /SampleData/MainViewSampleData/MainViewSampleData.xaml}">
 
@@ -53,241 +50,71 @@
         <DataTemplate x:Key="ArtistGridTemplate"
                       x:DataType="objects:LastArtist">
             <UserControl>
-                <Grid x:Name="ArtistPanel"
-                      Width="120">
-                    <VisualStateManager.VisualStateGroups>
-                        <VisualStateGroup x:Name="WindowStates">
-                            <VisualState x:Name="Size3">
-                                <VisualState.StateTriggers>
-                                    <AdaptiveTrigger MinWindowWidth="1810" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Target="ArtistPanel.Width"
-                                            Value="210" />
-                                    <Setter Target="ArtistImage.Width"
-                                            Value="210" />
-                                    <Setter Target="ArtistImage.Height"
-                                            Value="210" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Size2">
-                                <VisualState.StateTriggers>
-                                    <AdaptiveTrigger MinWindowWidth="1430" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Target="ArtistPanel.Width"
-                                            Value="180" />
-                                    <Setter Target="ArtistImage.Width"
-                                            Value="180" />
-                                    <Setter Target="ArtistImage.Height"
-                                            Value="180" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Size1">
-                                <VisualState.StateTriggers>
-                                    <AdaptiveTrigger MinWindowWidth="1040" />
-                                </VisualState.StateTriggers>
-                                <VisualState.Setters>
-                                    <Setter Target="ArtistPanel.Width"
-                                            Value="120" />
-                                    <Setter Target="ArtistImage.Width"
-                                            Value="120" />
-                                    <Setter Target="ArtistImage.Height"
-                                            Value="120" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateManager.VisualStateGroups>
+                <Border Padding="12"
+                        Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                        Width="170"
+                        Height="270">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <controls:ImagePlaceholder Width="120"
-                                               Height="120"
-                                               Source="{x:Bind MainImage.Mega}"
-                                               Text="{x:Bind Name}"
-                                               x:Name="ArtistImage" />
-                    <TextBlock Text="{x:Bind Name}"
-                               x:Name="ArtistName"
-                               Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
-                               TextTrimming="CharacterEllipsis"
-                               FontWeight="SemiBold"
-                               Grid.Row="1"
-                               Margin="0,6,0,0" />
-                    <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
-                               TextTrimming="CharacterEllipsis"
-                               TextWrapping="NoWrap"
-                               FontWeight="Normal"
-                               x:Name="ArtistPlaybacks"
-                               Grid.Row="2">
-                                    <Run Text="{x:Bind PlayCount}" />
-                                    <Run Text="воспроизведений" />
-                    </TextBlock>
-                </Grid>
+                        <controls:ImagePlaceholder Height="170"
+                                                   Source="{x:Bind MainImage.Mega}"
+                                                   Text="{x:Bind Name}"
+                                                   x:Name="ArtistImage"
+                                                   Margin="-12,-12,-12,0" />
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,6,0,0"
+                                    Grid.Row="1">
+                            <TextBlock Text="&#xE102;"
+                                       FontFamily="Segoe MDL2 Assets"
+                                       FontSize="17"
+                                       Margin="0,2,0,0"
+                                       OpticalMarginAlignment="TrimSideBearings" />
+                            <TextBlock Text="{x:Bind PlayCount}"
+                                       Style="{StaticResource BaseTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                                       TextTrimming="CharacterEllipsis"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                        <TextBlock Text="{x:Bind Name}"
+                                   Style="{StaticResource TitleTextBlockStyle}"
+                                   Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="WrapWholeWords"
+                                   MaxLines="2"
+                                   Grid.Row="2"
+                                   TextLineBounds="TrimToCapHeight"
+                                   Margin="0,12,0,0" />
+                    </Grid>
+                </Border>
             </UserControl>
         </DataTemplate>
+
+        <Style x:Key="RecommendedTrackContainerStyle"
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource NarrowListViewItemStyle}">
+            <Setter Property="Padding"
+                    Value="12,0,24,0"/>
+        </Style>
     </mvvm:SessionStateAwarePage.Resources>
 
-    <Grid Margin="0,80,0,0">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="Size1040">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1040" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ArtistsList.(Visibility)"
-                                Value="Collapsed" />
-                        <Setter Target="ArtistsGrid.(Visibility)"
-                                Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Size940">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="940" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ArtistsList.(Visibility)"
-                                Value="Visible" />
-                        <Setter Target="ArtistsGrid.(Visibility)"
-                                Value="Collapsed" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Size0">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ArtistsList.(Visibility)"
-                                Value="Visible" />
-                        <Setter Target="ArtistsGrid.(Visibility)"
-                                Value="Collapsed" />
-
-                        <Setter Target="UserTracksBlock.(RelativePanel.AlignRightWithPanel)"
-                                Value="True" />
-                        <Setter Target="UserTracksBlock.(RelativePanel.Below)"
-                                Value="ArtistsFlipView" />
-                        <Setter Target="UserTracksBlock.(FrameworkElement.Width)"
-                                Value="Auto" />
-                        <Setter Target="ArtistsBlock.(RelativePanel.LeftOf)"
-                                Value="" />
-                        <Setter Target="ArtistsBlock.(RelativePanel.RightOf)"
-                                Value="" />
-                        <Setter Target="ArtistsBlock.(RelativePanel.AlignLeftWithPanel)"
-                                Value="True" />
-                        <Setter Target="ArtistsBlock.(RelativePanel.AlignRightWithPanel)"
-                                Value="True" />
-                        <Setter Target="ArtistsBlock.(RelativePanel.Below)"
-                                Value="UserTracksBlock" />
-                        <Setter Target="MenuList.(RelativePanel.AlignLeftWithPanel)"
-                                Value="True" />
-                        <Setter Target="MenuList.(RelativePanel.Below)"
-                                Value="ArtistsBlock" />
-                        <Setter Target="MenuList.(FrameworkElement.Width)"
-                                Value="Auto" />
-                        <Setter Target="ArtistsBlock.(FrameworkElement.Margin)">
-                            <Setter.Value>
-                                <Thickness>0,24,0,0</Thickness>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="MenuList.(FrameworkElement.Margin)">
-                            <Setter.Value>
-                                <Thickness>0,24,0,0</Thickness>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="UserTracksBlock.(FrameworkElement.Margin)">
-                            <Setter.Value>
-                                <Thickness>0,6,0,0</Thickness>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="ArtistsFlipView.(UIElement.Visibility)"
-                                Value="Visible" />
-                        <Setter Target="ArtistsBlock.(UIElement.Visibility)"
-                                Value="Collapsed" />
-                        <Setter Target="RootScrollViewer.(Control.Padding)">
-                            <Setter.Value>
-                                <Thickness>0</Thickness>
-                            </Setter.Value>
-                        </Setter>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Size600">
-                    <VisualState.Setters>
-                        <Setter Target="MenuList.(RelativePanel.AlignLeftWithPanel)"
-                                Value="True" />
-                        <Setter Target="MenuList.(RelativePanel.Below)"
-                                Value="UserTracksBlock" />
-                        <Setter Target="ArtistsBlock.(RelativePanel.RightOf)"
-                                Value="UserTracksBlock" />
-                        <Setter Target="ArtistsBlock.(RelativePanel.AlignRightWithPanel)"
-                                Value="True" />
-                        <Setter Target="ArtistsBlock.(RelativePanel.LeftOf)"
-                                Value="" />
-                        <Setter Target="MenuList.(FrameworkElement.Margin)">
-                            <Setter.Value>
-                                <Thickness>0,24,0,0</Thickness>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="MenuList.(RelativePanel.AlignRightWithPanel)"
-                                Value="False" />
-                        <Setter Target="ArtistsGrid.(UIElement.Visibility)"
-                                Value="Collapsed" />
-                        <Setter Target="ArtistsList.(UIElement.Visibility)"
-                                Value="Visible" />
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
-        <ScrollViewer x:Name="RootScrollViewer"
+    <Grid>
+        <ScrollViewer x:Name="WideRoot"
                       VerticalScrollBarVisibility="Auto"
-                      Padding="0,12,0,0">
-            <StackPanel>
-                <RelativePanel>
-                    <FlipView x:Name="ArtistsFlipView"
-                              ItemsSource="{Binding TopArtistsLF}"
-                              RelativePanel.AlignLeftWithPanel="True"
-                              RelativePanel.AlignRightWithPanel="True"
-                              RelativePanel.AlignTopWithPanel="True"
-                              Height="200"
-                              Visibility="Collapsed">
-                        <FlipView.ItemTemplate>
-                            <DataTemplate x:DataType="objects:LastArtist">
-                                <Grid>
-                                    <controls:ImagePlaceholder Text="{x:Bind Name}"
-                                                               Source="{x:Bind MainImage.Mega}" />
-                                    <StackPanel VerticalAlignment="Bottom"
-                                                Padding="12,0,12,12">
-                                        <TextBlock Text="{x:Bind Name}"
-                                                   Style="{StaticResource TitleTextBlockStyle}"
-                                                   TextAlignment="Center"
-                                                   TextWrapping="NoWrap"
-                                                   TextTrimming="CharacterEllipsis"
-                                                   Foreground="White" />
-                                        <TextBlock TextAlignment="Center"
-                                                   Style="{StaticResource BaseTextBlockStyle}"
-                                                   TextWrapping="NoWrap"
-                                                   TextTrimming="CharacterEllipsis"
-                                                   Foreground="White">
-                                                    <Run Text="{x:Bind PlayCount}" />
-                                                    <Run Text="воспроизведений" />
-                                        </TextBlock>
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </FlipView.ItemTemplate>
-                    </FlipView>
-                    <StackPanel x:Name="UserTracksBlock"
-                                Width="280"
-                                RelativePanel.AlignLeftWithPanel="True">
+                      Padding="0,80,0,0">
+            <StackPanel Margin="0,12,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel x:Name="UserTracksBlock">
                         <StackPanel Orientation="Horizontal"
                                     Margin="12,0,0,12">
                             <TextBlock Text="Ваши треки"
@@ -300,7 +127,7 @@
                         </StackPanel>
                         <ListView x:Name="TracksList"
                                   ItemsSource="{Binding UserTracks}"
-                                  ItemTemplate="{StaticResource VKAudioTemplate}"
+                                  ItemTemplate="{StaticResource VKAudioLongHeightTemplate}"
                                   ItemContainerStyle="{StaticResource NarrowListViewItemStyle}"
                                   IsItemClickEnabled="True">
                             <interactivity:Interaction.Behaviors>
@@ -313,8 +140,8 @@
                     </StackPanel>
 
                     <StackPanel x:Name="ArtistsBlock"
-                                RelativePanel.RightOf="UserTracksBlock"
-                                RelativePanel.LeftOf="MenuList">
+                                Grid.Column="1"
+                                HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal"
                                     Margin="12,0,0,12">
                             <TextBlock Text="Лучшие исполнители"
@@ -327,55 +154,49 @@
                                   ItemsSource="{Binding TopArtistsLF}"
                                   ItemTemplate="{StaticResource ArtistGridTemplate}"
                                   ItemContainerStyle="{StaticResource DefaultGridViewItemStyle}"
-                                  ItemContainerTransitions="{StaticResource DefaultGridViewTransitions}"/>
-                        <ListView x:Name="ArtistsList"
-                                  Visibility="Collapsed"
-                                  ItemsSource="{Binding TopArtistsLF}"
-                                  ItemTemplate="{StaticResource ArtistListTemplate}"
-                                  IsItemClickEnabled="True"
-                                  ItemContainerStyle="{StaticResource NarrowListViewItemStyle}" />
+                                  ItemContainerTransitions="{StaticResource DefaultGridViewTransitions}" />
                     </StackPanel>
+                </Grid>
 
-                    <ListView x:Name="MenuList"
-                              Width="280"
-                              RelativePanel.AlignRightWithPanel="True">
-                        <ListViewItem Content="Музыка"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-                        <ListViewItem Content="Видео"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-                        <ListViewItem Content="Документы"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-                        <ListViewItem Content="Сообщества"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-                        <ListViewItem Content="Друзья"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-                        <ListViewItem Content="Новости"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-                        <ListViewItem Content="Поиск"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-
-                        <ListViewItem Content="Топ треков"
-                                      Style="{StaticResource MenuListViewItemStyle}"
-                                      Margin="0,32,0,0" />
-                        <ListViewItem Content="Топ исполнителей"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-                        <ListViewItem Content="Рекомендации"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-                        <ListViewItem Content="Популярные"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-
-                        <ListViewItem Content="Менеджер загрузок"
-                                      Style="{StaticResource MenuListViewItemStyle}"
-                                      Margin="0,32,0,0" />
-                        <ListViewItem Content="Настройки"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
-                        <ListViewItem Content="О программе"
-                                      Style="{StaticResource MenuListViewItemStyle}" />
+                <StackPanel x:Name="RecommendedTrackBlock"
+                            Margin="0,24,0,0">
+                    <TextBlock Text="Рекомендуем"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               FontWeight="Bold"
+                               Margin="12,0,0,12" />
+                    <ListView x:Name="RecommendedTracksList"
+                              ItemsSource="{Binding RecommendedTracksVK}"
+                              ItemTemplate="{StaticResource VKAudioWideTemplate}"
+                              ItemContainerStyle="{StaticResource RecommendedTrackContainerStyle}"
+                              IsItemClickEnabled="True">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding PlayRecommendedTracksCommand}"
+                                                          InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
                     </ListView>
-                </RelativePanel>
+                </StackPanel>
+
                 <Rectangle Height="82" />
             </StackPanel>
         </ScrollViewer>
+
+        <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+              VerticalAlignment="Top"
+              Padding="12,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="48" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Домашняя страница"
+                       Style="{StaticResource BaseTextBlockStyle}"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       TextLineBounds="Tight"
+                       Margin="0,0,0,1"
+                       Grid.Row="1" />
+        </Grid>
     </Grid>
 </mvvm:SessionStateAwarePage>
 

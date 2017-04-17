@@ -8,7 +8,8 @@
                             xmlns:mvvm="using:Prism.Windows.Mvvm"
                             mc:Ignorable="d"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
-                            controls:SimpleShell.IsPlayerBlockVisible="False">
+                            controls:Shell.IsPlayerBlockVisible="False"
+                            controls:Shell.ChromeStyle="Hided">
 
     <Grid>
         <VisualStateManager.VisualStateGroups>

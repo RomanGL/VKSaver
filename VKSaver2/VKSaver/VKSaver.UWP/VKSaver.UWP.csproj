@@ -200,6 +200,7 @@
     <Compile Include="Controls\SurfaceLoader.cs" />
     <Compile Include="Controls\ChromeFrame.cs" />
     <Compile Include="Controls\SwipeableSplitView.cs" />
+    <Compile Include="Converters\BoolToBrushConverter.cs" />
     <Compile Include="Converters\HamburgerItemClickConverter.cs" />
     <Compile Include="Converters\SecondsToTimeString.cs" />
     <Compile Include="Core\Services\JsonSessionStateService.cs" />

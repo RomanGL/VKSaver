@@ -9,8 +9,8 @@
                             xmlns:common="using:VKSaver.Common"
                             mc:Ignorable="d"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
-                            controls:SimpleShell.IsPlayerBlockVisible="False"
-                            controls:SimpleShell.IsMenuVisible="False"
+                            controls:Shell.IsPlayerBlockVisible="False"
+                            controls:Shell.ChromeStyle="Hided"
                             d:DataContext="{d:DesignInstance viewModels:PromoViewModel}">
 
     <mvvm:SessionStateAwarePage.Resources>

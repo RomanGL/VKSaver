@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Numerics;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Composition;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
@@ -32,13 +34,18 @@ namespace VKSaver.Controls
         {
             this.InitializeComponent();
 
-            MenuListBox.ItemsSource = _navigationItems;
-            MenuListBox.SelectionChanged += MenuListBox_SelectionChanged;
-            MenuButton.Click += (s, e) => ShellSplitView.IsPaneOpen = !ShellSplitView.IsPaneOpen;
-            this.SizeChanged += Shell_SizeChanged;
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
-
             WindowThemeHelper.HideTitleBar();
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+
+            this.SizeChanged += Shell_SizeChanged;
+            MenuButton.Click += MenuButton_Click;
+
+            MenuListView.ItemsSource = _navigationItems;
+            MenuListView.ItemClick += NavigationListView_ItemClick;
+
+            BottomMenuListView.ItemsSource = _bottmNavigationItems;
+            BottomMenuListView.ItemClick += NavigationListView_ItemClick;
+
             _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
             var connectedAnimationService = ConnectedAnimationService.GetForCurrentView();
@@ -61,37 +68,17 @@ namespace VKSaver.Controls
                 ContentBorder.Child = value;
             }
         }
-        
+
         #region DependencyProperties
-        
-        public static string GetTitle(DependencyObject obj)
+
+        public static void SetChromeStyle(DependencyObject element, ChromeStyle value)
         {
-            return (string)obj.GetValue(TitleProperty);
+            element.SetValue(ChromeStyleProperty, value);
         }
 
-        public static void SetTitle(DependencyObject obj, string value)
+        public static ChromeStyle GetChromeStyle(DependencyObject element)
         {
-            obj.SetValue(TitleProperty, value);
-        }
-
-        public static bool GetIsMenuButtonVisible(DependencyObject obj)
-        {
-            return (bool)obj.GetValue(IsMenuButtonVisibleProperty);
-        }
-
-        public static void SetIsMenuButtonVisible(DependencyObject obj, bool value)
-        {
-            obj.SetValue(IsMenuButtonVisibleProperty, value);
-        }
-
-        public static bool GetIsTitleBarVisible(DependencyObject obj)
-        {
-            return (bool)obj.GetValue(IsTitleBarVisibleProperty);
-        }
-
-        public static void SetIsTitleBarVisible(DependencyObject obj, bool value)
-        {
-            obj.SetValue(IsTitleBarVisibleProperty, value);
+            return (ChromeStyle)element.GetValue(ChromeStyleProperty);
         }
 
         public static void SetIsPlayerBlockVisible(DependencyObject element, bool value)
@@ -104,31 +91,35 @@ namespace VKSaver.Controls
             return (bool)element.GetValue(IsPlayerBlockVisibleProperty);
         }
 
-        public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.RegisterAttached("Title", typeof(string),
-                typeof(Shell), new PropertyMetadata(default(string), (x, e) => GetCurrentShell()?.UpdatePageTitle()));
-
-        public static readonly DependencyProperty IsMenuButtonVisibleProperty =
-            DependencyProperty.RegisterAttached("IsMenuButtonVisible", typeof(bool),
-                typeof(Shell), new PropertyMetadata(true, (s, e) => GetCurrentShell()?.UpdateMenuButton()));
-
-        public static readonly DependencyProperty IsTitleBarVisibleProperty =
-            DependencyProperty.RegisterAttached("IsTitleBarVisible", typeof(bool),
-                typeof(Shell), new PropertyMetadata(true, (s, e) => GetCurrentShell()?.UpdateTitleBar()));
-
         public static readonly DependencyProperty IsPlayerBlockVisibleProperty = 
             DependencyProperty.RegisterAttached("IsPlayerBlockVisible", typeof(bool), 
                 typeof(Shell), new PropertyMetadata(true,
-                (s, e) => GetCurrentShell()?.UpdatePlayerBlock()));
+                    (s, e) => GetCurrentShell()?.UpdatePlayerBlock()));
+
+        public static readonly DependencyProperty ChromeStyleProperty = 
+            DependencyProperty.RegisterAttached("ChromeStyle", typeof(ChromeStyle), 
+                typeof(Shell), new PropertyMetadata(default(ChromeStyle),
+                    (s, e) => GetCurrentShell()?.UpdateSplitViewState()));
 
         #endregion
 
         private void CurentFrame_Navigated(object sender, NavigationEventArgs e)
         {
+            ShellSplitView.IsPaneOpen = false;
+
+            if (_currentNavigationItem != null)
+                _currentNavigationItem.IsCurrent = false;
+
+            string viewName = e.SourcePageType.Name;
+
+            _currentNavigationItem = _navigationItems.FirstOrDefault(item => item.DestinationView == viewName);
+            if (_currentNavigationItem == null)
+                _currentNavigationItem = _bottmNavigationItems.FirstOrDefault(item => item.DestinationView == viewName);
+
+            if (_currentNavigationItem != null)
+                _currentNavigationItem.IsCurrent = true;
+
             UpdatePlayerBlock();
-            UpdatePageTitle();
-            UpdateMenuButton();
-            UpdateTitleBar();
             UpdateSplitViewState();
         }
 
@@ -138,51 +129,17 @@ namespace VKSaver.Controls
             _navigationService.Navigate("PlayerView", null);
         }
 
-        private void MenuListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void NavigationListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (MenuListBox.SelectedItem == null)
-                return;
-
-            var item = (ShellNavigationItem)MenuListBox.SelectedItem;
-            if (item.DestinationView == "Hamburger")
-            {
-                ShellSplitView.IsPaneOpen = !ShellSplitView.IsPaneOpen;
-                MenuListBox.SelectedIndex = -1;
-            }
-            else
-                _navigationService.Navigate(item.DestinationView, item.NavigationParameter);
+            var item = (ShellNavigationItem)e.ClickedItem;
+            _navigationService.Navigate(item.DestinationView, item.NavigationParameter);
         }
 
         private void Shell_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            UpdateSplitViewState();
+            //UpdateSplitViewState();
         }
-
-        private void UpdatePageTitle()
-        {
-            if (CurrentFrame.Content == null)
-                return;
-            
-            string title = GetTitle(CurrentFrame.Content as DependencyObject) ?? String.Empty;
-            PageTitle.Text = title;
-            _navigationItems[0].Name = title;
-        }
-
-        private void UpdateMenuButton()
-        {
-            if (CurrentFrame.Content == null)
-                return;
-
-            if (GetIsMenuButtonVisible(CurrentFrame.Content as DependencyObject))
-            {
-                ShowMenuButtonStoryboard.Begin();
-            }
-            else
-            {
-                HideMenuButtonStoryboard.Begin();
-            }
-        }
-
+        
         private void UpdatePlayerBlock()
         {
             if (CurrentFrame.Content == null)
@@ -191,26 +148,18 @@ namespace VKSaver.Controls
             if (GetIsPlayerBlockVisible(CurrentFrame.Content as DependencyObject))
             {
                 ShowPlayerBlockStoryboard.Begin();
+                BottomMenuListView.Margin = new Thickness(0, 0, 0, 60);
             }
             else
             {
                 HidePlayerBlockStoryboard.Begin();
+                BottomMenuListView.Margin = new Thickness(0);
             }
         }
 
-        private void UpdateTitleBar()
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            if (CurrentFrame.Content == null)
-                return;
-
-            if (GetIsTitleBarVisible(CurrentFrame.Content as DependencyObject))
-            {
-                ShowTitleBarStoryboard.Begin();
-            }
-            else
-            {
-                HideTitleBarStoryboard.Begin();
-            }
+            ShellSplitView.IsPaneOpen = !ShellSplitView.IsPaneOpen;
         }
 
         private void UpdateSplitViewState()
@@ -218,17 +167,22 @@ namespace VKSaver.Controls
             if (CurrentFrame.Content == null)
                 return;
 
-            bool flag = GetIsMenuButtonVisible(CurrentFrame.Content as DependencyObject);
-
-            if (flag && this.ActualWidth >= 600)
+            var state = GetChromeStyle((DependencyObject)CurrentFrame.Content);
+            switch (state)
             {
-                ShellSplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
-                MenuButton.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
-                MenuButton.Visibility = Visibility.Visible;
+                case ChromeStyle.CompactOverlay:
+                    MenuButton.Visibility = Visibility.Visible;
+                    ShellSplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
+                    break;
+                case ChromeStyle.OnlyButton:
+                    MenuButton.Visibility = Visibility.Visible;
+                    ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
+                    break;
+                case ChromeStyle.Hided:
+                    MenuButton.Visibility = Visibility.Collapsed;
+                    ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
+                    ShellSplitView.IsPaneOpen = false;
+                    break;
             }
         }
 
@@ -241,14 +195,32 @@ namespace VKSaver.Controls
         {
             return new ObservableCollection<ShellNavigationItem>
             {
-                new ShellNavigationItem { DestinationView = "Hamburger", Icon = "\uE700"},
-                new ShellNavigationItem { Name = "Главная", DestinationView = "MainView", Icon = "\uE10F"},
-                new ShellNavigationItem { Name = "Коллекция", DestinationView = "LibraryView", Icon = "\uE838"}
+                new ShellNavigationItem { Name = "Домашняя страница", DestinationView = "MainView", Icon = "\uE10F"},
+                new ShellNavigationItem { Name = "Локальная библиотека", DestinationView = "LibraryView", Icon = "\uE838"}
             };
         }
 
+        private static ObservableCollection<ShellNavigationItem> GetBottomNavigationCollection()
+        {
+            return new ObservableCollection<ShellNavigationItem>
+            {
+                new ShellNavigationItem { Name = "Настройки", DestinationView = "SettingsView", Icon = "\uE115"},
+                new ShellNavigationItem { Name = "О программе", DestinationView = "AboutView", Icon = "\uE783"}
+            };
+        }
+
+        private ShellNavigationItem _currentNavigationItem;
+
         private readonly ObservableCollection<ShellNavigationItem> _navigationItems = GetNavigationCollection();
+        private readonly ObservableCollection<ShellNavigationItem> _bottmNavigationItems = GetBottomNavigationCollection();
         private readonly Compositor _compositor;
         private readonly INavigationService _navigationService;
+
+        public enum ChromeStyle
+        {
+            CompactOverlay,
+            OnlyButton,
+            Hided
+        }
     }
 }

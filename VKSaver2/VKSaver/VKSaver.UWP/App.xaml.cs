@@ -71,19 +71,24 @@ namespace VKSaver
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             var view = ApplicationView.GetForCurrentView();
-            view.SetPreferredMinSize(new Size(320, 500));
+            //view.SetPreferredMinSize(new Size(320, 500));
 
-            //view.TitleBar.ForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            //view.TitleBar.BackgroundColor = (Color)Resources["TitleBarBackgroundThemeColor"];
+            view.TitleBar.ForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            //view.TitleBar.InactiveBackgroundColor = (Color)Resources["TitleBarBackgroundThemeColor"];
             //view.TitleBar.InactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
-            //view.TitleBar.ButtonForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            view.TitleBar.ButtonForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
             //view.TitleBar.ButtonHoverForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
             //view.TitleBar.ButtonPressedForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
 
+            //view.TitleBar.ButtonHoverBackgroundColor = (Color)Resources["TitleBarButtonHoverBackgroundThemeColor"];
+            //view.TitleBar.ButtonPressedBackgroundColor = (Color)Resources["TitleBarButtonPressedBackgroundThemeColor"];
+
             //view.TitleBar.ButtonInactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
-            //view.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-            //view.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            //view.TitleBar.ButtonBackgroundColor = (Color)Resources["TitleBarBackgroundThemeColor"];
+            //view.TitleBar.ButtonInactiveBackgroundColor = (Color)Resources["TitleBarBackgroundThemeColor"];
             base.OnWindowCreated(args);
         }
 

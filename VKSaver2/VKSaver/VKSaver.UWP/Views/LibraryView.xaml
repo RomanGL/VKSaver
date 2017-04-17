@@ -11,10 +11,7 @@
                             xmlns:controls="using:VKSaver.Controls"
                             mc:Ignorable="d"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
-                            controls:Shell.IsMenuButtonVisible="True"
-                            controls:Shell.IsTitleBarVisible="True"
                             controls:Shell.IsPlayerBlockVisible="True"
-                            controls:Shell.Title="Локальная библиотека"
                             d:DataContext="{d:DesignInstance viewModels:LibraryViewModel}">
 
     <mvvm:SessionStateAwarePage.Resources>
@@ -41,7 +38,7 @@
                               d:Source="{Binding Cached}" />
     </mvvm:SessionStateAwarePage.Resources>
 
-    <Grid Margin="0,70,0,0">
+    <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
                 <VisualState x:Name="Size600">
@@ -61,8 +58,24 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Pivot Style="{StaticResource PivotRightHeadersStyle}"
-               SelectedIndex="{Binding CurrentPivotIndex, Mode=TwoWay}">
+        <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+              VerticalAlignment="Top"
+              Padding="12,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="48" />
+            </Grid.RowDefinitions>
+        </Grid>
+
+        <Pivot SelectedIndex="{Binding CurrentPivotIndex, Mode=TwoWay}"
+               Margin="0,32,0,0">
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontWeight="Bold"/>
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
 
             <!-- Композиции -->
 
@@ -113,7 +126,8 @@
                                   ItemContainerStyle="{StaticResource DefaultGridViewItemStyle}"
                                   FooterTemplate="{StaticResource DefaultFooterTemplate}"
                                   ItemContainerTransitions="{StaticResource DefaultGridViewTransitions}"
-                                  IsItemClickEnabled="True">
+                                  IsItemClickEnabled="True"
+                                  Margin="6,0,0,0">
                             <GridView.GroupStyle>
                                 <GroupStyle HidesIfEmpty="True"
                                             HeaderTemplate="{StaticResource GroupHeaderAlphaItemTemplate}" />

@@ -8,6 +8,7 @@ namespace VKSaver.Controls
     {
         public string Icon { get; set; }
         public string Name { get; set; }
+        public bool IsCurrent { get; set; }
 
         [DoNotNotify]
         public string DestinationView { get; set; }

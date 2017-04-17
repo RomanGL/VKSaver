@@ -3,34 +3,96 @@
       Этот файл обновляется средством разработки. Внесение
       изменений в этот файл может привести к ошибкам.
 -->
-<SampleData:MainViewSampleData xmlns:SampleData="using:Blend.SampleData.MainViewSampleData" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-  <SampleData:MainViewSampleData.TopArtistsLF>
-    <SampleData:TopArtistsLFItem Name="Lady Gaga" PlayCount="6452">
-      <SampleData:TopArtistsLFItem.MegaImage>
-        <SampleData:MegaImage URL="ms-appx:/SampleData/MainViewSampleData/MainViewSampleData_Files/image1.jpg" />
-      </SampleData:TopArtistsLFItem.MegaImage>
-    </SampleData:TopArtistsLFItem>
-    <SampleData:TopArtistsLFItem Name="Katy Perry" PlayCount="2950">
-      <SampleData:TopArtistsLFItem.MegaImage>
-        <SampleData:MegaImage URL="ms-appx:/SampleData/MainViewSampleData/MainViewSampleData_Files/image1.jpg" />
-      </SampleData:TopArtistsLFItem.MegaImage>
-    </SampleData:TopArtistsLFItem>
-    <SampleData:TopArtistsLFItem Name="K'Naan" PlayCount="5353">
-      <SampleData:TopArtistsLFItem.MegaImage>
-        <SampleData:MegaImage URL="ms-appx:/SampleData/MainViewSampleData/MainViewSampleData_Files/image1.jpg" />
-      </SampleData:TopArtistsLFItem.MegaImage>
-    </SampleData:TopArtistsLFItem>
-  </SampleData:MainViewSampleData.TopArtistsLF>
-  <SampleData:MainViewSampleData.UserTracks>
-    <SampleData:UserTracksItem Title="Nam aliquam aenean" Artist="Aliquam aenean integer cras" Duration="45765176" />
-    <SampleData:UserTracksItem Title="Sed mauris nullam" Artist="Nam maecenas" Duration="12807641" />
-    <SampleData:UserTracksItem Title="Integer dis cras duis" Artist="Sed duis quisque mauris" Duration="61350326" />
-    <SampleData:UserTracksItem Title="Quisque maecenas nunc amet" Artist="Class dis nullam" Duration="77607144" />
-    <SampleData:UserTracksItem Title="Class ante" Artist="Aptent nunc auctor est" Duration="97911648" />
-    <SampleData:UserTracksItem Title="Arcu est vivamus diam" Artist="Curae amet donec praesent" Duration="27132081" />
-    <SampleData:UserTracksItem Title="Curae aliquam hac" Artist="Hac etiam ante" Duration="97723428" />
-    <SampleData:UserTracksItem Title="Eget aliquet praesent" Artist="Congue arcu diam" Duration="79253856" />
-    <SampleData:UserTracksItem Title="Leo aptent" Artist="Cursus dictum eget accumsan" Duration="51967871" />
-    <SampleData:UserTracksItem Title="Elit accumsan donec mus" Artist="Fusce vivamus" Duration="86461245" />
-  </SampleData:MainViewSampleData.UserTracks>
+<SampleData:MainViewSampleData xmlns:SampleData="using:Blend.SampleData.MainViewSampleData"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <SampleData:MainViewSampleData.TopArtistsLF>
+        <SampleData:TopArtistsLFItem Name="Lady Gaga"
+                                     PlayCount="6452">
+            <SampleData:TopArtistsLFItem.MegaImage>
+                <SampleData:MegaImage URL="ms-appx:/SampleData/MainViewSampleData/MainViewSampleData_Files/image1.jpg" />
+            </SampleData:TopArtistsLFItem.MegaImage>
+        </SampleData:TopArtistsLFItem>
+        <SampleData:TopArtistsLFItem Name="Katy Perry"
+                                     PlayCount="2950">
+            <SampleData:TopArtistsLFItem.MegaImage>
+                <SampleData:MegaImage URL="ms-appx:/SampleData/MainViewSampleData/MainViewSampleData_Files/image1.jpg" />
+            </SampleData:TopArtistsLFItem.MegaImage>
+        </SampleData:TopArtistsLFItem>
+        <SampleData:TopArtistsLFItem Name="K'Naan"
+                                     PlayCount="5353">
+            <SampleData:TopArtistsLFItem.MegaImage>
+                <SampleData:MegaImage URL="ms-appx:/SampleData/MainViewSampleData/MainViewSampleData_Files/image1.jpg" />
+            </SampleData:TopArtistsLFItem.MegaImage>
+        </SampleData:TopArtistsLFItem>
+        <SampleData:TopArtistsLFItem Name="The White Tie Affair"
+                                     PlayCount="5353">
+            <SampleData:TopArtistsLFItem.MegaImage>
+                <SampleData:MegaImage URL="ms-appx:/SampleData/MainViewSampleData/MainViewSampleData_Files/image1.jpg" />
+            </SampleData:TopArtistsLFItem.MegaImage>
+        </SampleData:TopArtistsLFItem>
+    </SampleData:MainViewSampleData.TopArtistsLF>
+    <SampleData:MainViewSampleData.UserTracks>
+        <SampleData:UserTracksItem Title="Nam aliquam aenean"
+                                   Artist="Aliquam aenean integer cras"
+                                   Duration="45765176" />
+        <SampleData:UserTracksItem Title="Sed mauris nullam"
+                                   Artist="Nam maecenas"
+                                   Duration="12807641" />
+        <SampleData:UserTracksItem Title="Integer dis cras duis"
+                                   Artist="Sed duis quisque mauris"
+                                   Duration="61350326" />
+        <SampleData:UserTracksItem Title="Quisque maecenas nunc amet"
+                                   Artist="Class dis nullam"
+                                   Duration="77607144" />
+        <SampleData:UserTracksItem Title="Class ante"
+                                   Artist="Aptent nunc auctor est"
+                                   Duration="97911648" />
+        <SampleData:UserTracksItem Title="Arcu est vivamus diam"
+                                   Artist="Curae amet donec praesent"
+                                   Duration="27132081" />
+        <SampleData:UserTracksItem Title="Curae aliquam hac"
+                                   Artist="Hac etiam ante"
+                                   Duration="97723428" />
+        <SampleData:UserTracksItem Title="Eget aliquet praesent"
+                                   Artist="Congue arcu diam"
+                                   Duration="79253856" />
+        <SampleData:UserTracksItem Title="Leo aptent"
+                                   Artist="Cursus dictum eget accumsan"
+                                   Duration="51967871" />
+        <SampleData:UserTracksItem Title="Elit accumsan donec mus"
+                                   Artist="Fusce vivamus"
+                                   Duration="86461245" />
+    </SampleData:MainViewSampleData.UserTracks>
+    <SampleData:MainViewSampleData.RecommendedTracksVK>
+        <SampleData:UserTracksItem Title="Nam aliquam aenean"
+                                   Artist="Aliquam aenean integer cras"
+                                   Duration="45765176" />
+        <SampleData:UserTracksItem Title="Sed mauris nullam"
+                                   Artist="Nam maecenas"
+                                   Duration="12807641" />
+        <SampleData:UserTracksItem Title="Integer dis cras duis"
+                                   Artist="Sed duis quisque mauris"
+                                   Duration="61350326" />
+        <SampleData:UserTracksItem Title="Quisque maecenas nunc amet"
+                                   Artist="Class dis nullam"
+                                   Duration="77607144" />
+        <SampleData:UserTracksItem Title="Class ante"
+                                   Artist="Aptent nunc auctor est"
+                                   Duration="97911648" />
+        <SampleData:UserTracksItem Title="Arcu est vivamus diam"
+                                   Artist="Curae amet donec praesent"
+                                   Duration="27132081" />
+        <SampleData:UserTracksItem Title="Curae aliquam hac"
+                                   Artist="Hac etiam ante"
+                                   Duration="97723428" />
+        <SampleData:UserTracksItem Title="Eget aliquet praesent"
+                                   Artist="Congue arcu diam"
+                                   Duration="79253856" />
+        <SampleData:UserTracksItem Title="Leo aptent"
+                                   Artist="Cursus dictum eget accumsan"
+                                   Duration="51967871" />
+        <SampleData:UserTracksItem Title="Elit accumsan donec mus"
+                                   Artist="Fusce vivamus"
+                                   Duration="86461245" />
+    </SampleData:MainViewSampleData.RecommendedTracksVK>
 </SampleData:MainViewSampleData>

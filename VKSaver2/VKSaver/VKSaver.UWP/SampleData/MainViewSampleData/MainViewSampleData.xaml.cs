@@ -55,6 +55,16 @@ namespace Blend.SampleData.MainViewSampleData
                 return this._UserTracks;
             }
         }
+
+        private RecommendedTracksVK _RecommendedTracksVK = new RecommendedTracksVK();
+
+        public RecommendedTracksVK RecommendedTracksVK
+        {
+            get
+            {
+                return this._RecommendedTracksVK;
+            }
+        }
     }
 
     public class TopArtistsLF : System.Collections.ObjectModel.ObservableCollection<TopArtistsLFItem>
@@ -165,6 +175,10 @@ namespace Blend.SampleData.MainViewSampleData
 
     public class UserTracks : System.Collections.ObjectModel.ObservableCollection<UserTracksItem>
     { 
+    }
+
+    public class RecommendedTracksVK : System.Collections.ObjectModel.ObservableCollection<UserTracksItem>
+    {
     }
 
     public class UserTracksItem : INotifyPropertyChanged

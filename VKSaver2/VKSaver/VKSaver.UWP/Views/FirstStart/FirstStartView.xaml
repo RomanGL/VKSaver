@@ -8,8 +8,8 @@
                             xmlns:viewModels="using:VKSaver.Core.ViewModels"
                             mc:Ignorable="d"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
-                            controls:SimpleShell.IsPlayerBlockVisible="False"
-                            controls:SimpleShell.IsMenuVisible="false"
+                            controls:Shell.IsPlayerBlockVisible="False"
+                            controls:Shell.ChromeStyle="Hided"
                             d:DataContext="{d:DesignInstance viewModels:FirstStartViewModel}">
 
     <RelativePanel Background="{ThemeResource CatImageReflectedBrush}">

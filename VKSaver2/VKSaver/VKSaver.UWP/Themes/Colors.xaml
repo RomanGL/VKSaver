@@ -33,18 +33,7 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
-            <SolidColorBrush x:Key="ChromeHighBrush"
-                             Color="Black"
-                             Opacity="0.1" />
-            
-            <Color x:Key="AccentMediumTransparentColor">#00ffffff</Color>
-
-            <Color x:Key="TitleBarBackgroundThemeColor">#ff000000</Color>
-            <Color x:Key="TitleBarButtonHoverBackgroundThemeColor">#ffdddddd</Color>
-            <Color x:Key="TitleBarButtonPressedBackgroundThemeColor">#ffa6a6a6</Color>
-
-            <Color x:Key="TitleBarForegroundThemeColor">#ffffffff</Color>
-            <Color x:Key="TitleBarInactiveForegroundThemeColor">#ff989898</Color>
+            <Color x:Key="TitleBarForegroundThemeColor">#e52c2c</Color>
             
             <ImageBrush x:Key="CatImageBrush"
                         ImageSource="../Assets/cat.dark.jpg"
@@ -69,18 +58,9 @@
             
             <controls:PlayerTheme x:Key="PagePlayerTheme">Black</controls:PlayerTheme>
         </ResourceDictionary>
+        
         <ResourceDictionary x:Key="Light">
-            <SolidColorBrush x:Key="ChromeHighBrush"
-                             Color="White"
-                             Opacity="0.1" />
-
-            <Color x:Key="AccentMediumTransparentColor">#00000000</Color>
-
-            <Color x:Key="TitleBarBackgroundThemeColor">#ffffffff</Color>
-            <Color x:Key="TitleBarButtonHoverBackgroundThemeColor">#ff454545</Color>
-            <Color x:Key="TitleBarButtonPressedBackgroundThemeColor">#ff202020</Color>
-            <Color x:Key="TitleBarForegroundThemeColor">#ff000000</Color>
-            <Color x:Key="TitleBarInactiveForegroundThemeColor">#ff989898</Color>
+            <Color x:Key="TitleBarForegroundThemeColor">#e52c2c</Color>
 
             <ImageBrush x:Key="CatImageBrush"
                         ImageSource="../Assets/cat.light.jpg"

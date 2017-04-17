@@ -5,58 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="using:VKSaver.Core.ViewModels"
+             xmlns:converters="using:VKSaver.Converters"
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Storyboard x:Name="HideMenuButtonStoryboard">
-            <DoubleAnimation Duration="0:0:0.3"
-                             To="-48"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
-                             Storyboard.TargetName="TitleContent"
-                             d:IsOptimized="True">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="4" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-        <Storyboard x:Name="ShowMenuButtonStoryboard">
-            <DoubleAnimation Duration="0:0:0.3"
-                             To="0"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
-                             Storyboard.TargetName="TitleContent"
-                             d:IsOptimized="True">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="4" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-        <Storyboard x:Name="HideTitleBarStoryboard">
-            <DoubleAnimation Duration="0:0:0.3"
-                             To="-81"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
-                             Storyboard.TargetName="TitleBar"
-                             d:IsOptimized="True">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="4" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-        <Storyboard x:Name="ShowTitleBarStoryboard">
-            <DoubleAnimation Duration="0:0:0.3"
-                             To="0"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
-                             Storyboard.TargetName="TitleBar"
-                             d:IsOptimized="True">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="4" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-
         <Storyboard x:Name="HidePlayerBlockStoryboard">
             <DoubleAnimation Duration="0:0:0.2"
                              To="80"
@@ -91,7 +43,7 @@
         </Style>
 
         <Style x:Key="MenuListBoxItemStyle"
-               TargetType="ListBoxItem">
+               TargetType="ListViewItem">
             <Setter Property="Background"
                     Value="Transparent" />
             <Setter Property="TabNavigation"
@@ -102,7 +54,7 @@
                     Value="Left" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
+                    <ControlTemplate TargetType="ListViewItem">
                         <Border x:Name="LayoutRoot"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -239,7 +191,7 @@
             <Setter Property="FontFamily"
                     Value="Segoe MDL2 Assets" />
             <Setter Property="FontSize"
-                    Value="24" />
+                    Value="20" />
             <Setter Property="Width"
                     Value="48" />
             <Setter Property="HorizontalAlignment"
@@ -256,34 +208,71 @@
             <Setter Property="VerticalAlignment"
                     Value="Center" />
         </Style>
+
+        <DataTemplate x:Key="NavigationItemTemplate" 
+                      x:DataType="local:ShellNavigationItem">
+            <Grid Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Rectangle Width="4"
+                           Fill="{ThemeResource AccentHighBrush}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Stretch"
+                           Visibility="{x:Bind IsCurrent, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind Icon, Mode=OneWay}"
+                           Style="{StaticResource IconTextBlockStyle}"
+                           Foreground="{x:Bind IsCurrent, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}" />
+                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                           Style="{StaticResource MenuTitleTextBlockStyle}"
+                           Foreground="{x:Bind IsCurrent, Converter={StaticResource BoolToBrushConverter}, Mode=OneWay}"
+                           Margin="12,0,0,0"
+                           Grid.Column="1" />
+            </Grid>
+        </DataTemplate>
+
+        <converters:BoolToBrushConverter x:Name="BoolToBrushConverter"
+                                         TrueBrush="{ThemeResource AccentHighBrush}"
+                                         FalseBrush="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
     </UserControl.Resources>
 
-    <Grid>
-        <SplitView x:Name="ShellSplitView">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Rectangle Fill="{ThemeResource KoiBackground}" />
+
+        <SplitView x:Name="ShellSplitView"
+                   DisplayMode="CompactOverlay">
             <SplitView.Pane>
-                <local:MenuListBox Background="{x:Null}"
-                         ItemContainerStyle="{StaticResource MenuListBoxItemStyle}"
-                         Foreground="{ThemeResource AccentHighBrush}"
-                         Margin="0,32,0,0"
-                         x:Name="MenuListBox">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate x:DataType="local:ShellNavigationItem">
-                            <StackPanel Orientation="Horizontal"
-                                        Height="48">
-                                <TextBlock Text="{x:Bind Icon, Mode=OneWay}"
-                                           Style="{StaticResource IconTextBlockStyle}" />
-                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                           Style="{StaticResource MenuTitleTextBlockStyle}" 
-                                           Margin="12,0,0,0"
-                                           x:Name="NameTextBlock"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </local:MenuListBox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView Background="{x:Null}"
+                              ItemContainerStyle="{StaticResource MenuListBoxItemStyle}"
+                              Foreground="{ThemeResource AccentHighBrush}"
+                              x:Name="MenuListView"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              Margin="0,80,0,0"
+                              Grid.Row="0"
+                              ItemTemplate="{StaticResource NavigationItemTemplate}" />
+                    
+                    <ListView Background="{x:Null}"
+                              ItemContainerStyle="{StaticResource MenuListBoxItemStyle}"
+                              Foreground="{ThemeResource AccentHighBrush}"
+                              x:Name="BottomMenuListView"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              Margin="0,0,0,60"
+                              Grid.Row="1"
+                              ItemTemplate="{StaticResource NavigationItemTemplate}" />
+                </Grid>
             </SplitView.Pane>
             <SplitView.Content>
                 <UserControl>
-                    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                    <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="WindowStates">
                                 <VisualState x:Name="Size700">
@@ -313,147 +302,110 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <Rectangle Fill="{ThemeResource KoiBackground}" />
                         <Border x:Name="ContentBorder" />
-
-                        <Grid x:Name="TitleBar"
-                              Height="80"
-                              VerticalAlignment="Top"
-                              RenderTransformOrigin="0.5,0.5">
-                            <Grid.RenderTransform>
-                                <CompositeTransform />
-                            </Grid.RenderTransform>
-
-                            <Rectangle x:Name="GrabRect"
-                                       Fill="Transparent" />
-
-                            <Grid x:Name="TitleContent"
-                                  RenderTransformOrigin="0.5,0.5"
-                                  Height="48"
-                                  VerticalAlignment="Bottom">
-                                <Grid.RenderTransform>
-                                    <CompositeTransform />
-                                </Grid.RenderTransform>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-
-                                <local:HamburgerButton Width="48"
-                                                       Height="48"
-                                                       HorizontalAlignment="Left"
-                                                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                                       x:Name="MenuButton"
-                                                       Grid.Column="0"
-                                                       Visibility="Collapsed" />
-                                <TextBlock Text="Page title"
-                                           Grid.Column="1"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Left"
-                                           Margin="12,0,0,7"
-                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-                                           Style="{StaticResource BodyTextBlockStyle}"
-                                           FontSize="17"
-                                           FontWeight="Bold"
-                                           OpticalMarginAlignment="TrimSideBearings"
-                                           TextWrapping="NoWrap"
-                                           TextTrimming="CharacterEllipsis"
-                                           TextLineBounds="TrimToBaseline"
-                                           x:Name="PageTitle" />
-                            </Grid>
-                        </Grid>
-
-                        <Grid VerticalAlignment="Bottom"
-                              Height="60"
-                              x:Name="PlayerBlock"
-                              d:DataContext="{d:DesignInstance viewModels:PlayerViewModel }"
-                              RenderTransformOrigin="0.5,0.5"
-                              Grid.Row="1">
-                            <Grid.RenderTransform>
-                                <CompositeTransform />
-                            </Grid.RenderTransform>
-                            <local:BackDrop BlurAmount="20" />
-                            <Rectangle Fill="{ThemeResource AppGradientBrush}"
-                                       Opacity="0.2" />
-
-                            <Grid x:Name="PlayerContentGrid">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Orientation="Horizontal"
-                                            x:Name="TrackBlock"
-                                            Tapped="TrackBlock_OnTapped">
-                                    <local:ImagePlaceholder Text="{Binding CurrentTrack.Track.Title}"
-                                                            Source="{Binding TrackImage}"
-                                                            Width="60"
-                                                            x:Name="TrackImage" />
-
-                                    <StackPanel VerticalAlignment="Center"
-                                                Margin="12,-3,0,0">
-                                        <TextBlock Text="{Binding CurrentTrack.Track.Title}"
-                                                   Style="{StaticResource BaseTextBlockStyle}"
-                                                   FontWeight="SemiBold"
-                                                   TextWrapping="NoWrap"
-                                                   TextTrimming="CharacterEllipsis" />
-                                        <TextBlock Style="{StaticResource BaseTextBlockStyle}"
-                                                   Text="{Binding CurrentTrack.Track.Artist}"
-                                                   TextTrimming="CharacterEllipsis"
-                                                   FontWeight="Normal"
-                                                   TextWrapping="NoWrap" />
-                                    </StackPanel>
-                                </StackPanel>
-                                <StackPanel x:Name="PlayerCenterBlock"
-                                            Grid.Column="1"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                    <TextBlock x:Name="CurrentTime"
-                                               Text="{Binding Position, Converter={StaticResource TimeConverter}}"
-                                               Style="{StaticResource BodyTextBlockStyle}"
-                                               FontWeight="Bold"
-                                               VerticalAlignment="Center" />
-                                    <AppBarButton Icon="Previous"
-                                                  Style="{StaticResource PlayerButtonStyle}"
-                                                  Command="{Binding PreviousTrackCommand}" />
-                                    <AppBarButton Icon="Play"
-                                                  Style="{StaticResource PlayerButtonStyle}"
-                                                  Command="{Binding PlayPauseCommand}" />
-                                    <AppBarButton Icon="Next"
-                                                  Style="{StaticResource PlayerButtonStyle}"
-                                                  Command="{Binding NextTrackCommand}" />
-                                    <TextBlock x:Name="LeftTime"
-                                               Text="{Binding TimeLeft, Converter={StaticResource TimeConverter}}"
-                                               Style="{StaticResource BodyTextBlockStyle}"
-                                               FontWeight="Bold"
-                                               VerticalAlignment="Center" />
-                                </StackPanel>
-                                <StackPanel x:Name="PlayerRightBlock"
-                                            Grid.Column="2"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Right"
-                                            Orientation="Horizontal">
-                                    <AppBarToggleButton Icon="Shuffle"
-                                                        LabelPosition="Collapsed"
-                                                        IsChecked="{Binding IsShuffleMode, Mode=TwoWay}" />
-                                    <AppBarButton Icon="Refresh"
-                                                  LabelPosition="Collapsed"
-                                                  Command="{Binding NextTrackCommand}" />
-                                </StackPanel>
-                            </Grid>
-
-                            <Slider VerticalAlignment="Top"
-                                    Margin="0,-20,0,0"
-                                    x:Name="PlayerPositionSlider"
-                                    Value="{Binding Position, Converter={StaticResource TimespanToSecondsConverter}, Mode=TwoWay}"
-                                    Maximum="{Binding Duration, Converter={StaticResource TimespanToSecondsConverter}}"
-                                    Style="{StaticResource PlayerSliderStyle}"
-                                    ThumbToolTipValueConverter="{StaticResource SecondsToTimeStringConverter}" />
-                        </Grid>
                     </Grid>
                 </UserControl>
             </SplitView.Content>
         </SplitView>
+
+        <Grid VerticalAlignment="Bottom"
+              Height="60"
+              x:Name="PlayerBlock"
+              d:DataContext="{d:DesignInstance viewModels:PlayerViewModel }"
+              RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <CompositeTransform />
+            </Grid.RenderTransform>
+            <local:BackDrop BlurAmount="20" />
+            <Rectangle Fill="{ThemeResource AppGradientBrush}"
+                       Opacity="0.2" />
+
+            <Grid x:Name="PlayerContentGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            x:Name="TrackBlock"
+                            Tapped="TrackBlock_OnTapped">
+                    <local:ImagePlaceholder Text="{Binding CurrentTrack.Track.Title}"
+                                            Source="{Binding TrackImage}"
+                                            Width="60"
+                                            x:Name="TrackImage"/>
+
+                    <StackPanel VerticalAlignment="Center"
+                                Margin="12,-3,0,0">
+                        <TextBlock Text="{Binding CurrentTrack.Track.Title}"
+                                   Style="{StaticResource BaseTextBlockStyle}"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="NoWrap"
+                                   TextTrimming="CharacterEllipsis" />
+                        <TextBlock Style="{StaticResource BaseTextBlockStyle}"
+                                   Text="{Binding CurrentTrack.Track.Artist}"
+                                   TextTrimming="CharacterEllipsis"
+                                   FontWeight="Normal"
+                                   TextWrapping="NoWrap" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="PlayerCenterBlock"
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock x:Name="CurrentTime"
+                               Text="{Binding Position, Converter={StaticResource TimeConverter}}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center" />
+                    <AppBarButton Icon="Previous"
+                                  Style="{StaticResource PlayerButtonStyle}"
+                                  Command="{Binding PreviousTrackCommand}" />
+                    <AppBarButton Icon="Play"
+                                  Style="{StaticResource PlayerButtonStyle}"
+                                  Command="{Binding PlayPauseCommand}" />
+                    <AppBarButton Icon="Next"
+                                  Style="{StaticResource PlayerButtonStyle}"
+                                  Command="{Binding NextTrackCommand}" />
+                    <TextBlock x:Name="LeftTime"
+                               Text="{Binding TimeLeft, Converter={StaticResource TimeConverter}}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel x:Name="PlayerRightBlock"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <AppBarToggleButton Icon="Shuffle"
+                                        LabelPosition="Collapsed"
+                                        IsChecked="{Binding IsShuffleMode, Mode=TwoWay}" />
+                    <AppBarButton Icon="Refresh"
+                                  LabelPosition="Collapsed"
+                                  Command="{Binding NextTrackCommand}" />
+                </StackPanel>
+            </Grid>
+
+            <Slider VerticalAlignment="Top"
+                    Margin="0,-20,0,0"
+                    x:Name="PlayerPositionSlider"
+                    Value="{Binding Position, Converter={StaticResource TimespanToSecondsConverter}, Mode=TwoWay}"
+                    Maximum="{Binding Duration, Converter={StaticResource TimespanToSecondsConverter}}"
+                    Style="{StaticResource PlayerSliderStyle}"
+                    ThumbToolTipValueConverter="{StaticResource SecondsToTimeStringConverter}" />
+        </Grid>
+
+        <Button Width="48"
+                Height="48"
+                BorderBrush="{x:Null}"
+                Background="{ThemeResource AccentHighBrush}"
+                x:Name="MenuButton"
+                VerticalAlignment="Top"
+                Margin="0,32,0,0">
+            <TextBlock Style="{StaticResource IconTextBlockStyle}"
+                       Text="&#xE700;" />
+        </Button>
+
     </Grid>
 </UserControl>
