@@ -196,7 +196,8 @@ namespace VKSaver.Controls
             return new ObservableCollection<ShellNavigationItem>
             {
                 new ShellNavigationItem { Name = "Домашняя страница", DestinationView = "MainView", Icon = "\uE10F"},
-                new ShellNavigationItem { Name = "Локальная библиотека", DestinationView = "LibraryView", Icon = "\uE838"}
+                new ShellNavigationItem { Name = "Локальная библиотека", DestinationView = "LibraryView", Icon = "\uE838"},
+                new ShellNavigationItem { Name = "Локальная библиотека", DestinationView = "UserContentView", Icon = "\uE838"}
             };
         }
 

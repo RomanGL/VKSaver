@@ -39,6 +39,7 @@ namespace VKSaver
         {
             this.InitializeComponent();
             this.UnhandledException += App_UnhandledException;
+            //this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
             YandexMetrica.Config.CrashTracking = false;
         }
 
@@ -71,6 +72,7 @@ namespace VKSaver
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             var view = ApplicationView.GetForCurrentView();
+            view.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             //view.SetPreferredMinSize(new Size(320, 500));
 
             //view.TitleBar.BackgroundColor = (Color)Resources["TitleBarBackgroundThemeColor"];

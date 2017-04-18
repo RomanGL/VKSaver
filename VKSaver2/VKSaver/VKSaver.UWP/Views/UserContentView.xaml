@@ -7,6 +7,9 @@
                             xmlns:converters="using:VKSaver.Converters"
                             xmlns:common="using:VKSaver.Common"
                             xmlns:controls="using:VKSaver.Controls"
+                            xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                            xmlns:behaviors="using:VKSaver.Behaviors"
+                            xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             mc:Ignorable="d">
 
@@ -49,7 +52,8 @@
                               d:Source="{Binding VideoGroup}" />
 
         <Style x:Key="AudioItemTemplate"
-               TargetType="ListViewItem">
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource NarrowListViewItemStyle}">
             <Setter Property="FlyoutBase.AttachedFlyout">
                 <Setter.Value>
                     <MenuFlyout>
@@ -121,9 +125,8 @@
         </Style>
 
         <Style x:Key="AlbumItemStyle"
-               TargetType="ListViewItem">
-            <Setter Property="Margin"
-                    Value="0,0,0,5" />
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource NarrowListViewItemStyle}">
             <Setter Property="FlyoutBase.AttachedFlyout">
                 <Setter.Value>
                     <MenuFlyout>
@@ -138,6 +141,13 @@
                     Value="True" />
         </Style>
 
+        <common:AudioGroupTemplateSelector x:Key="AudioGroupTemplateSelector"
+                                           AudioTemplate="{StaticResource VKAudioWideTemplate}"
+                                           AlbumTemplate="{StaticResource VKAudioAlbumTitleTemplate}" />
+        <!--<common:VideoGroupTemplateSelector x:Key="VideoGroupTemplateSelector"
+                                           AlbumTemplate="{StaticResource OnlyTitleListItemTemplate}"
+                                           VideoTemplate="{StaticResource VideoTemplate}" />-->
+
         <common:ContentViewItemContainerStyleSelector x:Key="AudioItemContainerSelector"
                                                       DefaultStyle="{StaticResource AudioItemTemplate}"
                                                       AlbumStyle="{StaticResource AlbumItemStyle}" />
@@ -145,7 +155,96 @@
                                                       DefaultStyle="{StaticResource VideoItemTemplate}"
                                                       AlbumStyle="{StaticResource AlbumItemStyle}" />
     </mvvm:SessionStateAwarePage.Resources>
-    
-    
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="Size600">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Size0">
+                    <VisualState.Setters>
+                        <Setter Target="TracksListView.ItemTemplate"
+                                Value="{StaticResource VKSaverTrackLongHeightTemplate}" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+              VerticalAlignment="Top"
+              Padding="12,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="48" />
+            </Grid.RowDefinitions>
+        </Grid>
+
+        <Pivot SelectedIndex="{Binding CurrentPivotIndex, Mode=TwoWay}"
+               Margin="0,32,0,0">
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               FontWeight="Bold" />
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
+
+            <!-- Композиции -->
+
+            <PivotItem Header="Музыка"
+                       Margin="0">
+                <SemanticZoom>
+                    <SemanticZoom.ZoomedInView>
+                        <controls:FixedListView Style="{StaticResource NoSelectionListViewStyle}"
+                                                ItemsSource="{Binding Source={StaticResource AudioGroupSource}}"
+                                                ItemTemplateSelector="{StaticResource AudioGroupTemplateSelector}"
+                                                ItemContainerStyleSelector="{StaticResource AudioItemContainerSelector}"
+                                                IsItemClickEnabled="{Binding IsItemClickEnabled}"
+                                                SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
+                                                VerticalAlignment="Top">
+                            <ListView.GroupStyle>
+                                <GroupStyle HidesIfEmpty="True"
+                                            HeaderTemplate="{StaticResource GroupHeaderAlphaItemTemplate}" />
+                            </ListView.GroupStyle>
+                            <ListView.FooterTemplate>
+                                <DataTemplate>
+                                    <controls:StateBlock State="{Binding AudioGroup.ContentState}"
+                                                         ReloadCommand="{Binding AudioGroup.LoadCommand}"
+                                                         x:Uid="UserContentView_AudiosLoader"
+                                                         Margin="12,0,0,80"
+                                                         LoadingText="Загружаем список аудиозаписей..."
+                                                         ErrorText="Не удалось загрузить список аудиозаписей"
+                                                         NoDataText="Аудиозаписи отсутствуют либо доступ к ним закрыт" />
+                                </DataTemplate>
+                            </ListView.FooterTemplate>
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding ExecuteTracksListItemCommand}"
+                                                              InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                                </core:EventTriggerBehavior>
+                                <behaviors:IncrementalUpDownLoadingBehavior ScrollHeightTriggerOffset="1400"
+                                                                            ItemsSource="{Binding AudioGroup}" />
+                                <behaviors:SelectedItemsBindingBehavior SelectedItems="{Binding SelectedItems}"
+                                                                        SelectAll="{Binding SelectAllAudios}"
+                                                                        Command="{Binding SelectionChangedCommand}" />
+                            </interactivity:Interaction.Behaviors>
+                        </controls:FixedListView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CollectionGroups, Source={StaticResource AudioGroupSource}}"
+                                  ItemTemplate="{StaticResource JumpListAlphaItemTemplate}"
+                                  ItemsPanel="{StaticResource JumpListPanelTemplate}"
+                                  FooterTemplate="{StaticResource DefaultFooterTemplate}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
+            </PivotItem>
+        </Pivot>
+    </Grid>
 </mvvm:SessionStateAwarePage>
 

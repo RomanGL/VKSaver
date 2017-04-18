@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerShapesType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerTheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ServiceAuthBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\StateBlock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TextImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ArtistNameLocalizedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AuthServiceNameLocConverter.cs" />

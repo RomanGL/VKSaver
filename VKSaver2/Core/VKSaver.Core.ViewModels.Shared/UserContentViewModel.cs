@@ -337,9 +337,14 @@ namespace VKSaver.Core.ViewModels
 
         private async Task<IEnumerable<object>> LoadMoreAudios(uint page)
         {
+            int count = 50;
+#if WINDOWS_UWP
+            count = 6000;
+#endif
+
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Get(
                 _userID == 0 ? null : (int?)_userID, 
-                count: 50, offset: _audiosOffset));
+                count: count, offset: _audiosOffset));
 
             if (response.IsError)
             {
@@ -349,7 +354,7 @@ namespace VKSaver.Core.ViewModels
             }
             else
             {
-                _audiosOffset += 50;
+                _audiosOffset += count;
                 return response.Data.Items;
             }
         }

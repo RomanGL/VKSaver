@@ -39,16 +39,10 @@ namespace VKSaver.Common
                 Subscribe(control);
         }
 
-        private static void Control_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            var contControl = sender as ContentControl;
-            if (contControl != null && contControl.DataContext == null)
-            {
-                contControl.DataContext = contControl.Content;
-            }
-
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-        }
+        private static void Control_Holding(object sender, HoldingRoutedEventArgs e) => OpenFlyout(sender);
+#if WINDOWS_UWP
+        private static void Control_RightTapped(object sender, RightTappedRoutedEventArgs e) => OpenFlyout(sender);
+#endif
 
         private static void Control_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -59,12 +53,29 @@ namespace VKSaver.Common
         {
             //control.Unloaded += Control_Unloaded;
             control.Holding += Control_Holding;
+#if WINDOWS_UWP
+            control.RightTapped += Control_RightTapped;
+#endif
         }
 
         private static void Unsubscribe(Control control)
         {
             //control.Unloaded -= Control_Unloaded;
             control.Holding -= Control_Holding;
+#if WINDOWS_UWP
+            control.RightTapped -= Control_RightTapped;
+#endif
+        }
+
+        private static void OpenFlyout(object sender)
+        {
+            var contControl = sender as ContentControl;
+            if (contControl != null && contControl.DataContext == null)
+            {
+                contControl.DataContext = contControl.Content;
+            }
+
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
 
         public static Storyboard GetStoryboard(this FrameworkElement element, string name, string message = null)

@@ -357,7 +357,9 @@ namespace VKSaver.Core.Services
                         VKSaverAudio metadata = null;
                         _musicDownloads.TryGetValue(fileName, out metadata);
 
-                        await _musicCacheService.PostprocessAudioAsync((StorageFile)operation.ResultFile, metadata);
+                        // TODO!
+                        //await _musicCacheService.PostprocessAudioAsync((StorageFile)operation.ResultFile, metadata);
+                        await _musicCacheService.ConvertAudioToVKSaverFormat((StorageFile)operation.ResultFile, metadata);
                     }
                 }
             }

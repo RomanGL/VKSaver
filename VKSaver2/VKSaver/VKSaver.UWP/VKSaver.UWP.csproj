@@ -181,6 +181,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\IncrementalUpDownLoadingBehavior.cs" />
     <Compile Include="Behaviors\SelectedItemsBindingBehavior.cs" />
     <Compile Include="Behaviors\WithCommandDependencyObject.cs" />
     <Compile Include="Common\LastArtistSeeMoreTemplateSelector.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Controls\AlternateListView.cs" />
     <Compile Include="Controls\BackDrop.cs" />
     <Compile Include="Controls\EasyCarousel.cs" />
+    <Compile Include="Controls\FixedListView.cs" />
     <Compile Include="Controls\HamburgerButton.cs" />
     <Compile Include="Controls\MenuListBox.cs" />
     <Compile Include="Controls\PlayerBackground.cs" />

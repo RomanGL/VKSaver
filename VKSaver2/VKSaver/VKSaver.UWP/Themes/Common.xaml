@@ -38,6 +38,24 @@
                 Value="Top"/>
     </Style>
 
+    <Style x:Key="NoSelectionListViewStyle"
+           TargetType="ListView">
+        <Setter Property="IsSwipeEnabled"
+                Value="False" />
+        <Setter Property="IsItemClickEnabled"
+                Value="True" />
+        <Setter Property="SelectionMode"
+                Value="None" />
+        <Setter Property="ItemContainerTransitions">
+            <Setter.Value>
+                <TransitionCollection>
+                    <EntranceThemeTransition />
+                    <ContentThemeTransition />
+                </TransitionCollection>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <TransitionCollection x:Key="DefaultGridViewTransitions">
         <RepositionThemeTransition />
     </TransitionCollection>
@@ -119,6 +137,16 @@
 
     <DataTemplate x:Key="VKAudioTitleTemplate"
                   x:DataType="inTouch:Audio">
+        <TextBlock Text="{x:Bind Title}"
+                   Style="{StaticResource BaseTextBlockStyle}"
+                   Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap"
+                   FontWeight="SemiBold" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="VKAudioAlbumTitleTemplate"
+                  x:DataType="inTouch:AudioAlbum">
         <TextBlock Text="{x:Bind Title}"
                    Style="{StaticResource BaseTextBlockStyle}"
                    Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"

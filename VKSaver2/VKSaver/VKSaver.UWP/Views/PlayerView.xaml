@@ -70,28 +70,71 @@
                                    ArtistImage="{Binding ArtistImage}" />
 
         <Grid VerticalAlignment="Bottom"
-              HorizontalAlignment="Left"
-              Margin="0,0,0,118"
-              Background="{ThemeResource AccentMediumBrush}">
-
+                Margin="0,0,460,118"
+                Background="{ThemeResource AccentMediumBrush}"
+                MaxWidth="800"
+                MaxHeight="150"
+                HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition />
+                <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <controls:ImagePlaceholder Source="{Binding TrackImage}"
-                                       Text="{Binding CurrentTrack.Track.Title}"
-                                       Height="150"
-                                       Width="150"
-                                       Margin="48,0,0,0" />
-            <AppBarButton LabelPosition="Collapsed"
-                          Grid.Column="2"
-                          Command="{Binding AddToMyAudiosCommand}"
-                          CommandParameter="{Binding CurrentTrack}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE006;" />
-                </AppBarButton.Icon>
-            </AppBarButton>
+            
+            <Grid x:Name="TrackBlock">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <controls:ImagePlaceholder Source="{Binding TrackImage}"
+                                           Text="{Binding CurrentTrack.Track.Title}"
+                                           Height="150"
+                                           Width="150"
+                                           Margin="48,0,0,0"
+                                           Grid.RowSpan="2" />
+
+                <TextBlock Text="{Binding CurrentTrack.Track.Title}"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           FontWeight="Bold"
+                           Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           TextTrimming="CharacterEllipsis"
+                           MaxLines="2"
+                           Margin="12,0" />
+                <TextBlock Text="{Binding CurrentTrack.Track.Artist}"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           HorizontalAlignment="Left"
+                           Margin="12,0"
+                           MaxLines="2"
+                           TextTrimming="CharacterEllipsis"
+                           VerticalAlignment="Top" />
+            </Grid>
+            <StackPanel Grid.Column="1"
+                        Background="{ThemeResource AccentLowBrush}">
+                <AppBarButton LabelPosition="Collapsed"
+                              Command="{Binding AddToMyAudiosCommand}"
+                              CommandParameter="{Binding CurrentTrack}"
+                              Width="48">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE006;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton LabelPosition="Collapsed"
+                              Command="{Binding DownloadTrackCommand}"
+                              CommandParameter="{Binding CurrentTrack}"
+                              Width="48">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE118;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </StackPanel>
         </Grid>
 
         <Grid x:Name="TracksGrid"

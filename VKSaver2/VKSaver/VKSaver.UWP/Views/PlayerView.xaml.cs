@@ -30,7 +30,7 @@ namespace VKSaver.Views
             base.OnNavigatedTo(navigationEventArgs);
 
             var animationService = ConnectedAnimationService.GetForCurrentView();
-            //animationService.GetAnimation("TrackBlock")?.TryStart(TrackBlock);
+            animationService.GetAnimation("TrackBlock")?.TryStart(TrackBlock);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
