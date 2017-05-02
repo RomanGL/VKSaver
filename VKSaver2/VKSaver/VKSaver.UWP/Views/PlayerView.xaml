@@ -9,7 +9,7 @@
                             xmlns:converters="using:VKSaver.Converters"
                             mc:Ignorable="d"
                             controls:Shell.IsPlayerBlockVisible="False"
-                            controls:Shell.ChromeStyle="OnlyButton"
+                            controls:Shell.ChromeStyle="Hided"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             d:DataContext="{d:DesignInstance viewModels:PlayerViewModel}"
                             RequestedTheme="Dark">

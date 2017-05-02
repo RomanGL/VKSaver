@@ -194,12 +194,7 @@ namespace VKSaver.Controls
             var state = GetChromeStyle((DependencyObject)CurrentFrame.Content);
             switch (state)
             {
-                case ChromeStyle.CompactOverlay:
-                    //MenuButton.Visibility = Visibility.Visible;
-                    ShellSplitView.DisplayMode = SplitViewDisplayMode.Inline;
-                    ShellSplitView.IsPaneOpen = true;
-                    break;
-                case ChromeStyle.OnlyButton:
+                case ChromeStyle.Inline:
                     //MenuButton.Visibility = Visibility.Visible;
                     ShellSplitView.DisplayMode = SplitViewDisplayMode.Inline;
                     ShellSplitView.IsPaneOpen = true;
@@ -223,7 +218,7 @@ namespace VKSaver.Controls
             {
                 new ShellNavigationItem { Name = "Домашняя страница", DestinationView = "MainView", Icon = "\uE10F"},
                 new ShellNavigationItem { Name = "Локальная библиотека", DestinationView = "LibraryView", Icon = "\uE838"},
-                new ShellNavigationItem { Name = "Локальная библиотека", DestinationView = "UserContentView", Icon = "\uE838"}
+                new ShellNavigationItem { Name = "Музыка", DestinationView = "UserContentView", NavigationParameter = "{\"Key\":\"audios\",\"Value\":\"0\"}", Icon = "\uE189"}
             };
         }
 
@@ -245,8 +240,7 @@ namespace VKSaver.Controls
 
         public enum ChromeStyle
         {
-            CompactOverlay,
-            OnlyButton,
+            Inline,
             Hided
         }
     }

@@ -4,7 +4,7 @@
     "CompositionProToolkit": "0.5.1.1",
     "HtmlAgilityPack": "1.4.9.5",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Microsoft.Toolkit.Uwp.UI.Controls": "1.1.0",
+    "Microsoft.Toolkit.Uwp.UI.Controls": "1.4.1",
     "Newtonsoft.Json": "9.0.1",
     "NotificationsExtensions": "1.0.0",
     "Prism.Unity": "6.2.0",

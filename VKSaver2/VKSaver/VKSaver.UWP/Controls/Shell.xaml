@@ -8,6 +8,7 @@
              xmlns:converters="using:VKSaver.Converters"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:behaviors="using:VKSaver.Toolkit.Animations.Behaviors"
+             xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -251,6 +252,7 @@
 
         <SplitView x:Name="ShellSplitView"
                    DisplayMode="Inline"
+                   IsPaneOpen="True"
                    PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
             <SplitView.Pane>
                 <Grid>
@@ -264,9 +266,12 @@
 
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+
+                        <local:TextImage Height="140" />
 
                         <ListView Background="{x:Null}"
                                   ItemContainerStyle="{StaticResource MenuListBoxItemStyle}"
@@ -274,8 +279,7 @@
                                   x:Name="MenuListView"
                                   SelectionMode="None"
                                   IsItemClickEnabled="True"
-                                  Margin="0,32,0,0"
-                                  Grid.Row="0"
+                                  Grid.Row="1"
                                   ItemTemplate="{StaticResource NavigationItemTemplate}" />
 
                         <ListView Background="{x:Null}"
@@ -285,7 +289,7 @@
                                   SelectionMode="None"
                                   IsItemClickEnabled="True"
                                   Margin="0,0,0,60"
-                                  Grid.Row="1"
+                                  Grid.Row="2"
                                   ItemTemplate="{StaticResource NavigationItemTemplate}" />
                     </Grid>
                 </Grid>
@@ -338,9 +342,7 @@
                 <CompositeTransform />
             </Grid.RenderTransform>
 
-            <!--<local:BackDrop BlurAmount="15" />-->
-            <Rectangle Fill="{ThemeResource AccentMediumBrush}"
-                       Opacity="0.3" />
+            <local:BackDrop BlurAmount="15" />
 
             <Grid x:Name="PlayerContentGrid">
                 <Grid.ColumnDefinitions>
