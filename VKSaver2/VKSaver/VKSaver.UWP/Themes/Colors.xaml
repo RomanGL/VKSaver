@@ -58,7 +58,11 @@
                         AlignmentX="Right"
                         AlignmentY="Top"
                         Opacity="0.04"/>
-            
+            <ImageBrush x:Key="BackdropBrush"
+                        ImageSource="../Assets/Background/Backdrop.dark.jpg"
+                        Stretch="UniformToFill" 
+                        Opacity="0.7"/>
+
             <controls:PlayerTheme x:Key="PagePlayerTheme">Black</controls:PlayerTheme>
         </ResourceDictionary>
         
@@ -88,7 +92,11 @@
                         AlignmentX="Right"
                         AlignmentY="Top"
                         Opacity="0.04"/>
-            
+            <ImageBrush x:Key="BackdropBrush"
+                        ImageSource="../Assets/Background/Backdrop.light.jpg"
+                        Stretch="UniformToFill"
+                        Opacity="0.7"/>
+
             <controls:PlayerTheme x:Key="PagePlayerTheme">Gray</controls:PlayerTheme>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>

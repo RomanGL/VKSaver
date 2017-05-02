@@ -249,7 +249,6 @@
 
         <RelativePanel>
             <Grid x:Name="LeftPanel"
-                  Background="{ThemeResource CatImageBrush}"
                   RelativePanel.AlignTopWithPanel="True"
                   RelativePanel.AlignBottomWithPanel="True"
                   RelativePanel.AlignLeftWithPanel="True">
@@ -257,12 +256,11 @@
                 <Grid HorizontalAlignment="Left"
                       VerticalAlignment="Center"
                       Margin="24,0,24,0">
-                    <controls:BackDrop BlurAmount="30"
-                                       TintColor="#7F000000" />
+                    <!--<controls:BackDrop BlurAmount="30"
+                                       TintColor="#7F000000" />-->
                     <TextBlock Text="Вся лучшая музыка в вашем распоряжении!"
                                Style="{StaticResource HeaderTextBlockStyle}"
-                               Margin="24,6,24,12"
-                               Foreground="White" />
+                               Margin="24,6,24,12" />
                 </Grid>
             </Grid>
 

@@ -10,6 +10,7 @@
                             xmlns:objects="using:IF.Lastfm.Core.Objects"
                             xmlns:viewModels="using:VKSaver.Core.ViewModels"
                             xmlns:common="using:VKSaver.Common"
+                            xmlns:behaviors="using:VKSaver.Toolkit.Animations.Behaviors"
                             mc:Ignorable="d"
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
@@ -139,9 +140,8 @@
 
     <Grid>
         <ScrollViewer x:Name="WideRoot"
-                      VerticalScrollBarVisibility="Auto"
-                      Padding="0,80,0,0">
-            <StackPanel Margin="0,12,0,0">
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="0,92,0,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="300" />
@@ -295,8 +295,7 @@
             </StackPanel>
         </ScrollViewer>
 
-        <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
-              VerticalAlignment="Top"
+        <Grid VerticalAlignment="Top"
               Padding="12,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32" />

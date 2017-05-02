@@ -176,7 +176,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+        <Grid Background="{ThemeResource TextControlPlaceholderForegroundFocused}" 
               VerticalAlignment="Top"
               Padding="12,0,0,0">
             <Grid.RowDefinitions>
@@ -247,4 +247,6 @@
         </Pivot>
     </Grid>
 </mvvm:SessionStateAwarePage>
+
+
 

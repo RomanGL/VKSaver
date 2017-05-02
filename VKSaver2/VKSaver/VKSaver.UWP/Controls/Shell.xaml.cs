@@ -3,12 +3,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Numerics;
 using Windows.ApplicationModel.Core;
+using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Unity;
@@ -37,8 +39,9 @@ namespace VKSaver.Controls
             WindowThemeHelper.HideTitleBar();
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
+            ShellSplitView.PaneClosed += ShellSplitView_PaneClosed;
             this.SizeChanged += Shell_SizeChanged;
-            MenuButton.Click += MenuButton_Click;
+            //MenuButton.Click += MenuButton_Click;
 
             MenuListView.ItemsSource = _navigationItems;
             MenuListView.ItemClick += NavigationListView_ItemClick;
@@ -121,6 +124,7 @@ namespace VKSaver.Controls
 
             UpdatePlayerBlock();
             UpdateSplitViewState();
+            UpdateSplitViewPaneBackground();
         }
 
         private void TrackBlock_OnTapped(object sender, TappedRoutedEventArgs e)
@@ -139,7 +143,26 @@ namespace VKSaver.Controls
         {
             //UpdateSplitViewState();
         }
-        
+
+        private void ShellSplitView_PaneClosed(SplitView sender, object args)
+        {
+            UpdateSplitViewPaneBackground();
+        }
+
+        private void UpdateSplitViewPaneBackground()
+        {
+            //if (ShellSplitView.IsPaneOpen)
+            //{
+            //    ShellSplitView.PaneBackground = 
+            //        App.Current.Resources["SystemControlBackgroundChromeMediumBrush"] as Brush;
+            //}
+            //else
+            //{
+            //    ShellSplitView.PaneBackground =
+            //        App.Current.Resources["TextControlPlaceholderForegroundFocused"] as Brush;
+            //}
+        }
+
         private void UpdatePlayerBlock()
         {
             if (CurrentFrame.Content == null)
@@ -160,6 +183,7 @@ namespace VKSaver.Controls
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             ShellSplitView.IsPaneOpen = !ShellSplitView.IsPaneOpen;
+            UpdateSplitViewPaneBackground();
         }
 
         private void UpdateSplitViewState()
@@ -171,15 +195,17 @@ namespace VKSaver.Controls
             switch (state)
             {
                 case ChromeStyle.CompactOverlay:
-                    MenuButton.Visibility = Visibility.Visible;
-                    ShellSplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
+                    //MenuButton.Visibility = Visibility.Visible;
+                    ShellSplitView.DisplayMode = SplitViewDisplayMode.Inline;
+                    ShellSplitView.IsPaneOpen = true;
                     break;
                 case ChromeStyle.OnlyButton:
-                    MenuButton.Visibility = Visibility.Visible;
-                    ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
+                    //MenuButton.Visibility = Visibility.Visible;
+                    ShellSplitView.DisplayMode = SplitViewDisplayMode.Inline;
+                    ShellSplitView.IsPaneOpen = true;
                     break;
                 case ChromeStyle.Hided:
-                    MenuButton.Visibility = Visibility.Collapsed;
+                    //MenuButton.Visibility = Visibility.Collapsed;
                     ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
                     ShellSplitView.IsPaneOpen = false;
                     break;

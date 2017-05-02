@@ -6,6 +6,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="using:VKSaver.Core.ViewModels"
              xmlns:converters="using:VKSaver.Converters"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:behaviors="using:VKSaver.Toolkit.Animations.Behaviors"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -209,7 +211,7 @@
                     Value="Center" />
         </Style>
 
-        <DataTemplate x:Key="NavigationItemTemplate" 
+        <DataTemplate x:Key="NavigationItemTemplate"
                       x:DataType="local:ShellNavigationItem">
             <Grid Height="48">
                 <Grid.ColumnDefinitions>
@@ -234,40 +236,58 @@
 
         <converters:BoolToBrushConverter x:Name="BoolToBrushConverter"
                                          TrueBrush="{ThemeResource AccentHighBrush}"
-                                         FalseBrush="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+                                         FalseBrush="{ThemeResource SystemControlForegroundBaseHighBrush}" />
     </UserControl.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Rectangle Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                   Opacity="0.2">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Blur Value="1"
+                                AutomaticallyStart="True" />
+            </interactivity:Interaction.Behaviors>
+        </Rectangle>
         <Rectangle Fill="{ThemeResource KoiBackground}" />
 
         <SplitView x:Name="ShellSplitView"
-                   DisplayMode="CompactOverlay">
+                   DisplayMode="Inline"
+                   PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
             <SplitView.Pane>
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                    <Rectangle Fill="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                               Opacity="0.2">
+                        <interactivity:Interaction.Behaviors>
+                            <behaviors:Blur Value="1"
+                                            AutomaticallyStart="True" />
+                        </interactivity:Interaction.Behaviors>
+                    </Rectangle>
 
-                    <ListView Background="{x:Null}"
-                              ItemContainerStyle="{StaticResource MenuListBoxItemStyle}"
-                              Foreground="{ThemeResource AccentHighBrush}"
-                              x:Name="MenuListView"
-                              SelectionMode="None"
-                              IsItemClickEnabled="True"
-                              Margin="0,80,0,0"
-                              Grid.Row="0"
-                              ItemTemplate="{StaticResource NavigationItemTemplate}" />
-                    
-                    <ListView Background="{x:Null}"
-                              ItemContainerStyle="{StaticResource MenuListBoxItemStyle}"
-                              Foreground="{ThemeResource AccentHighBrush}"
-                              x:Name="BottomMenuListView"
-                              SelectionMode="None"
-                              IsItemClickEnabled="True"
-                              Margin="0,0,0,60"
-                              Grid.Row="1"
-                              ItemTemplate="{StaticResource NavigationItemTemplate}" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ListView Background="{x:Null}"
+                                  ItemContainerStyle="{StaticResource MenuListBoxItemStyle}"
+                                  Foreground="{ThemeResource AccentHighBrush}"
+                                  x:Name="MenuListView"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                  Margin="0,32,0,0"
+                                  Grid.Row="0"
+                                  ItemTemplate="{StaticResource NavigationItemTemplate}" />
+
+                        <ListView Background="{x:Null}"
+                                  ItemContainerStyle="{StaticResource MenuListBoxItemStyle}"
+                                  Foreground="{ThemeResource AccentHighBrush}"
+                                  x:Name="BottomMenuListView"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                  Margin="0,0,0,60"
+                                  Grid.Row="1"
+                                  ItemTemplate="{StaticResource NavigationItemTemplate}" />
+                    </Grid>
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
@@ -301,7 +321,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-
+                        
                         <Border x:Name="ContentBorder" />
                     </Grid>
                 </UserControl>
@@ -311,14 +331,16 @@
         <Grid VerticalAlignment="Bottom"
               Height="60"
               x:Name="PlayerBlock"
-              d:DataContext="{d:DesignInstance viewModels:PlayerViewModel }"
-              RenderTransformOrigin="0.5,0.5">
+              d:DataContext="{d:DesignInstance viewModels:PlayerViewModel}"
+              RenderTransformOrigin="0.5,0.5"
+              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <Grid.RenderTransform>
                 <CompositeTransform />
             </Grid.RenderTransform>
-            <local:BackDrop BlurAmount="20" />
-            <Rectangle Fill="{ThemeResource AppGradientBrush}"
-                       Opacity="0.2" />
+
+            <!--<local:BackDrop BlurAmount="15" />-->
+            <Rectangle Fill="{ThemeResource AccentMediumBrush}"
+                       Opacity="0.3" />
 
             <Grid x:Name="PlayerContentGrid">
                 <Grid.ColumnDefinitions>
@@ -333,7 +355,7 @@
                     <local:ImagePlaceholder Text="{Binding CurrentTrack.Track.Title}"
                                             Source="{Binding TrackImage}"
                                             Width="60"
-                                            x:Name="TrackImage"/>
+                                            x:Name="TrackImage" />
 
                     <StackPanel VerticalAlignment="Center"
                                 Margin="12,-3,0,0">
@@ -396,7 +418,7 @@
                     ThumbToolTipValueConverter="{StaticResource SecondsToTimeStringConverter}" />
         </Grid>
 
-        <Button Width="48"
+        <!--<Button Width="48"
                 Height="48"
                 BorderBrush="{x:Null}"
                 Background="{ThemeResource AccentHighBrush}"
@@ -405,7 +427,7 @@
                 Margin="0,32,0,0">
             <TextBlock Style="{StaticResource IconTextBlockStyle}"
                        Text="&#xE700;" />
-        </Button>
+        </Button>-->
 
     </Grid>
 </UserControl>

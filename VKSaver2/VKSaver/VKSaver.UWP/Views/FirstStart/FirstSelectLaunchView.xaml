@@ -17,7 +17,7 @@
         <converters:LaunchViewNameConverter x:Key="LaunchViewNameConverter" />
     </mvvm:SessionStateAwarePage.Resources>
     
-    <RelativePanel Background="{ThemeResource CatImageReflectedBrush}">
+    <RelativePanel>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
                 <VisualState x:Name="State2">
@@ -73,12 +73,12 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Rectangle Fill="{ThemeResource SystemControlBackgroundChromeBlackMediumBrush}"
+        <!--<Rectangle Fill="{ThemeResource SystemControlBackgroundChromeBlackMediumBrush}"
                    RelativePanel.AlignTopWithPanel="True"
                    RelativePanel.AlignBottomWithPanel="True"
                    RelativePanel.AlignLeftWithPanel="True"
                    RelativePanel.AlignRightWithPanel="True"
-                   Opacity="0.4" />
+                   Opacity="0.4" />-->
 
         <Grid x:Name="RootGrid"
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"

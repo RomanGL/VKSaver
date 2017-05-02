@@ -30,6 +30,8 @@ using VKSaver.Common;
 using VKSaver.Core.ViewModels;
 using Yandex.Metrica;
 using Yandex.Metrica.Push;
+using Windows.ApplicationModel.Store;
+using Windows.ApplicationModel;
 
 namespace VKSaver
 {
@@ -62,7 +64,9 @@ namespace VKSaver
         protected override UIElement CreateShell(Frame rootFrame)
         {
             Dispatcher = Window.Current.Dispatcher;
-            SurfaceLoader.Initialize(ElementCompositionPreview.GetElementVisual(rootFrame).Compositor);
+            var compositor = ElementCompositionPreview.GetElementVisual(rootFrame).Compositor;
+            SurfaceLoader.Initialize(compositor);
+            Toolkit.Animations.SurfaceLoader.Initialize(compositor);
 
             var shell = Container.Resolve<Shell>();
             shell.CurrentFrame = rootFrame;
@@ -300,6 +304,7 @@ namespace VKSaver
 
         protected override async void OnFileActivated(FileActivatedEventArgs args)
         {
+            await OnInitializeAsync(args);
             await OnFileActivatedAsync(args);
             base.OnFileActivated(args);
         }

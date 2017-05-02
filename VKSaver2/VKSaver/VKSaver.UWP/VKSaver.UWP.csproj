@@ -11,7 +11,7 @@
     <AssemblyName>VKSaver.UWP</AssemblyName>
     <DefaultLanguage>ru</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -262,6 +262,8 @@
     <None Include="VKSaver.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Background\Backdrop.dark.jpg" />
+    <Content Include="Assets\Background\Backdrop.light.jpg" />
     <Content Include="Assets\Background\Background.dark.jpg" />
     <Content Include="Assets\Background\Koi.dark.png" />
     <Content Include="Assets\Background\Koi.light.png" />
@@ -327,14 +329,18 @@
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
-    <SDKReference Include="WindowsDesktop, Version=10.0.14393.0">
+    <SDKReference Include="WindowsDesktop, Version=10.0.15063.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
+    <SDKReference Include="WindowsMobile, Version=10.0.15063.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\thirdparty\AcrylicToolkitBlur\Mika.Toolkit.Uwp.UI.Animations.csproj">
+      <Project>{b24a296c-b3eb-4e06-a64e-74ac2d1acc91}</Project>
+      <Name>Mika.Toolkit.Uwp.UI.Animations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\thirdparty\InTouch\ModernDev.InTouch.Portable\ModernDev.InTouch.Portable.csproj">
       <Project>{7887ebdb-a6b2-400e-9017-c47b606aa8d9}</Project>
       <Name>ModernDev.InTouch.Portable</Name>

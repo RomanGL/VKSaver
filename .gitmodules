@@ -4,3 +4,6 @@
 [submodule "thirdparty/InTouch"]
 	path = thirdparty/InTouch
 	url = https://github.com/RomanGL/InTouch.git
+[submodule "thirdparty/AcrylicToolkitBlur"]
+	path = thirdparty/AcrylicToolkitBlur
+	url = https://github.com/RomanGL/AcrylicToolkitBlur.git
