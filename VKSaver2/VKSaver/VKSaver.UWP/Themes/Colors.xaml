@@ -61,7 +61,7 @@
             <ImageBrush x:Key="BackdropBrush"
                         ImageSource="../Assets/Background/Backdrop.dark.jpg"
                         Stretch="UniformToFill" 
-                        Opacity="0.7"/>
+                        Opacity="0.6"/>
 
             <controls:PlayerTheme x:Key="PagePlayerTheme">Black</controls:PlayerTheme>
         </ResourceDictionary>
@@ -95,7 +95,7 @@
             <ImageBrush x:Key="BackdropBrush"
                         ImageSource="../Assets/Background/Backdrop.light.jpg"
                         Stretch="UniformToFill"
-                        Opacity="0.7"/>
+                        Opacity="0.6"/>
 
             <controls:PlayerTheme x:Key="PagePlayerTheme">Gray</controls:PlayerTheme>
         </ResourceDictionary>

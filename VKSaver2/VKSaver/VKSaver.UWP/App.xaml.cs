@@ -80,11 +80,11 @@ namespace VKSaver
             //view.SetPreferredMinSize(new Size(320, 500));
 
             //view.TitleBar.BackgroundColor = (Color)Resources["TitleBarBackgroundThemeColor"];
-            view.TitleBar.ForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            //view.TitleBar.ForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
             //view.TitleBar.InactiveBackgroundColor = (Color)Resources["TitleBarBackgroundThemeColor"];
             //view.TitleBar.InactiveForegroundColor = (Color)Resources["TitleBarInactiveForegroundThemeColor"];
 
-            view.TitleBar.ButtonForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
+            //view.TitleBar.ButtonForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
             //view.TitleBar.ButtonHoverForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
             //view.TitleBar.ButtonPressedForegroundColor = (Color)Resources["TitleBarForegroundThemeColor"];
 

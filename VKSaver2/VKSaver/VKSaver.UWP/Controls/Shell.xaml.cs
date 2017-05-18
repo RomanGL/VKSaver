@@ -41,7 +41,22 @@ namespace VKSaver.Controls
 
             ShellSplitView.PaneClosed += ShellSplitView_PaneClosed;
             this.SizeChanged += Shell_SizeChanged;
-            //MenuButton.Click += MenuButton_Click;
+            MenuButton.Click += MenuButton_Click;
+
+            Window.Current.CoreWindow.Activated += (sender, args) =>
+            {
+                if (args.WindowActivationState == CoreWindowActivationState.Deactivated)
+                {
+                    PaneBlur.Value = 0;
+                    WindowBlur.Value = 0;
+                }
+                else
+                {
+                    PaneBlur.Value = 1;
+                    WindowBlur.Value = 1;
+                }
+            };
+
 
             MenuListView.ItemsSource = _navigationItems;
             MenuListView.ItemClick += NavigationListView_ItemClick;
@@ -194,15 +209,23 @@ namespace VKSaver.Controls
             var state = GetChromeStyle((DependencyObject)CurrentFrame.Content);
             switch (state)
             {
-                case ChromeStyle.Inline:
-                    //MenuButton.Visibility = Visibility.Visible;
-                    ShellSplitView.DisplayMode = SplitViewDisplayMode.Inline;
-                    ShellSplitView.IsPaneOpen = true;
+                case ChromeStyle.Compact:
+                    MenuButton.Visibility = Visibility.Visible;
+                    ShellSplitView.DisplayMode = SplitViewDisplayMode.CompactOverlay;
+                    ShellSplitView.IsPaneOpen = false;
+                    PaneBlur.Value = 1;
                     break;
-                case ChromeStyle.Hided:
-                    //MenuButton.Visibility = Visibility.Collapsed;
+                case ChromeStyle.OnlyButton:
+                    MenuButton.Visibility = Visibility.Visible;
                     ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
                     ShellSplitView.IsPaneOpen = false;
+                    PaneBlur.Value = 0;
+                    break;
+                case ChromeStyle.Hided:
+                    MenuButton.Visibility = Visibility.Collapsed;
+                    ShellSplitView.DisplayMode = SplitViewDisplayMode.Overlay;
+                    ShellSplitView.IsPaneOpen = false;
+                    PaneBlur.Value = 1;
                     break;
             }
         }
@@ -240,7 +263,8 @@ namespace VKSaver.Controls
 
         public enum ChromeStyle
         {
-            Inline,
+            Compact,
+            OnlyButton,
             Hided
         }
     }
