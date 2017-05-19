@@ -44,13 +44,16 @@ namespace VKSaver.Core
         {
             var settingsService = container.Resolve<ISettingsService>();
             var inTouch = container.Resolve<InTouch>();
+            var vkBehaviorSimulator = container.Resolve<IVKBehaviorSimulator>();
 
-            return new VKLoginService(settingsService, inTouch);
+            return new VKLoginService(settingsService, inTouch, vkBehaviorSimulator);
         }
 
         public static InTouch ResolveInTouch(IUnityContainer container)
         {
-            return new InTouch();
+            var inTouch = new InTouch(userAgent: AppConstants.VK_USER_AGENT);
+            inTouch.Md5Func = Md5Helper.GetMd5Hash;
+            return inTouch;
         }
     }
 }

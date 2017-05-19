@@ -1,8 +1,10 @@
 ﻿using ModernDev.InTouch;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.Services.Common;
@@ -13,14 +15,28 @@ namespace VKSaver.Core.Services
 {
     public sealed class InTouchWrapper : IInTouchWrapper
     {
-        public InTouchWrapper(InTouch inTouch)
+        public InTouchWrapper(InTouch inTouch, IVKBehaviorSimulator vkBehaviorSimulator)
         {
             _inTouch = inTouch;
+            _vkBehaviorSimulator = vkBehaviorSimulator;
+            
             _queue = new TaskQueue();
         }
 
         public async Task<Response<T>> ExecuteRequest<T>(Task<Response<T>> inTouchRequestTask)
         {
+            await _semaphore.WaitAsync();
+            try
+            {
+                await _vkBehaviorSimulator.StartSimulation();
+                if (!_vkBehaviorSimulator.IsSimulationComplete)
+                    return new Response<T>(new ResponseError(1, "Preparing fail."), default(T), null);
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
+
             var response = await inTouchRequestTask;
             if (response.IsError && response.Error.Code == 14)
                 return await _queue.Enqueue(() => ProcessCaptcha(response));
@@ -56,10 +72,13 @@ namespace VKSaver.Core.Services
                 else
                     return response;
             }
-        } 
+        }
 #endif
 
+        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
         private readonly TaskQueue _queue;
+
         private readonly InTouch _inTouch;
+        private readonly IVKBehaviorSimulator _vkBehaviorSimulator;
     }
 }

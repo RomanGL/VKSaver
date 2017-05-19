@@ -29,5 +29,7 @@ namespace VKSaver.Core.Models.Common
         public int UserID { get; set; }
         [JsonProperty("expires_in")]
         public int ExpiresIn { get; set; }
+        [JsonProperty("secret")]
+        public string Secret { get; set; }
     }
 }

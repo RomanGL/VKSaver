@@ -45,6 +45,10 @@
         public const string ENABLE_IN_APP_VIBRATION = "EnableInAppVibration";
         public const string ENABLE_IN_APP_POPUPS = "EnableInAppPopup";
 
+        //public const string VK_USER_AGENT = "***REMOVED***)";    // Из Meridian Desktop.
+        //public const string VK_USER_AGENT = "***REMOVED***";      // из VK Windows
+        public const string VK_USER_AGENT = "***REMOVED***";
+
         public const string LAST_FM_API_KEY = "***REMOVED***";
         public const string LAST_FM_API_SECRET = "***REMOVED***";
 

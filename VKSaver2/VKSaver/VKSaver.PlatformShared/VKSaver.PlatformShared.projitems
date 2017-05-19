@@ -55,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TransferStatusConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\UserContentGroupKeyToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\InstanceFactories.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Md5Helper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\CultureProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\InTouchWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Services\MetricaService.cs" />

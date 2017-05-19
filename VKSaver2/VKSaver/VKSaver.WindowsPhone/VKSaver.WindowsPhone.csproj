@@ -183,7 +183,6 @@
       <DependentUpon>LogoElement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PlayerBackground.cs" />
-    <Compile Include="Controls\StateBlock.cs" />
     <Compile Include="Controls\TiltContainer.cs" />
     <Compile Include="Controls\TransferProgressIndicator.xaml.cs">
       <DependentUpon>TransferProgressIndicator.xaml</DependentUpon>

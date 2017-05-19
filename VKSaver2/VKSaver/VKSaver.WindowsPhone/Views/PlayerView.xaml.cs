@@ -79,7 +79,7 @@ namespace VKSaver.Views
             }
         }
 
-        private void TrackChanged(PlayerViewModel sender, PlayerViewModel.PlayerItem e)
+        private void TrackChanged(PlayerViewModel sender, PlayerItem e)
         {
             if (TracksList == null)
                 return;

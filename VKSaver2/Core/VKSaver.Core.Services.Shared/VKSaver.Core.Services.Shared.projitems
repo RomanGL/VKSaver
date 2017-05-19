@@ -85,6 +85,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUploadsServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVKAdService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVKBehaviorSimulator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVKCaptchaHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVKLoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IVksmExtractionService.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UploadsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UploadsServiceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKAdService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VKBehaviorSimulator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKLoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VKSaverNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)VksmExtractionService.cs" />

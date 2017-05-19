@@ -70,7 +70,7 @@ namespace VKSaver.Core.ViewModels
             switch (error)
             {
                 case DirectAuthErrors.None:
-                    _vkLoginService.Login(new APISession(result.AccessToken, result.UserID));                   
+                    _vkLoginService.Login(new APISession(result.AccessToken, result.UserID, result.Secret));                   
                     break;
                 case DirectAuthErrors.need_captcha:
                     try
