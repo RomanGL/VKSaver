@@ -393,7 +393,7 @@
     <value>удалить</value>
   </data>
   <data name="DetailsView_Subtitle.Text" xml:space="preserve">
-    <value>подробнее</value>
+    <value>ПОДРОБНЕЕ</value>
     <comment>details</comment>
   </data>
   <data name="DownloadFlyoutItem.Text" xml:space="preserve">

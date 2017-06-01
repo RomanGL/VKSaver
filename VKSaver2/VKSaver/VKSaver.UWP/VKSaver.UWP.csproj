@@ -217,6 +217,9 @@
     <Compile Include="Themes\Common.xaml.cs">
       <DependentUpon>Common.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VKAudioInfoView.xaml.cs">
+      <DependentUpon>VKAudioInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DirectAuth\DirectAuthView.xaml.cs">
       <DependentUpon>DirectAuthView.xaml</DependentUpon>
     </Compile>
@@ -476,6 +479,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\SwipeableSplitView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VKAudioInfoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
