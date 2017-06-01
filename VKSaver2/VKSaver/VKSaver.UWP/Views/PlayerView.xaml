@@ -13,7 +13,13 @@
                             mvvm:ViewModelLocator.AutoWireViewModel="True"
                             d:DataContext="{d:DesignInstance viewModels:PlayerViewModel}"
                             RequestedTheme="Dark">
-    
+
+    <mvvm:SessionStateAwarePage.Transitions>
+        <TransitionCollection>
+            <EdgeUIThemeTransition Edge="Bottom"/>
+        </TransitionCollection>
+    </mvvm:SessionStateAwarePage.Transitions>
+
     <mvvm:SessionStateAwarePage.Resources>
         <converters:CurrentTrackToStyleConverter x:Key="CurrentTrackToStyleConverter"
                                                  NormalBrush="White"

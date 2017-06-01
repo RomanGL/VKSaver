@@ -3,6 +3,7 @@
                     xmlns:inTouch="using:ModernDev.InTouch"
                     xmlns:database="using:VKSaver.Core.Models.Database"
                     xmlns:controls="using:VKSaver.Controls"
+                    xmlns:objects="using:IF.Lastfm.Core.Objects"
                     x:Class="VKSaver.Themes.CommonDictionary">
 
     <ResourceDictionary.MergedDictionaries>
@@ -86,6 +87,51 @@
         <Rectangle Height="80" />
     </DataTemplate>
 
+    <DataTemplate x:Key="ArtistGridTemplate"
+                  x:DataType="objects:LastArtist">
+        <Border Padding="12"
+                Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                Width="170"
+                Height="270">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls:ImagePlaceholder Height="170"
+                                           Source="{x:Bind MainImage.Mega}"
+                                           Text="{x:Bind Name}"
+                                           x:Name="ArtistImage"
+                                           Margin="-12,-12,-12,0" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,6,0,0"
+                            Grid.Row="1">
+                    <TextBlock Text="&#xE102;"
+                               FontFamily="Segoe MDL2 Assets"
+                               FontSize="17"
+                               Margin="0,2,0,0"
+                               OpticalMarginAlignment="TrimSideBearings" />
+                    <TextBlock Text="{x:Bind PlayCount}"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                               TextTrimming="CharacterEllipsis"
+                               FontWeight="SemiBold" />
+                </StackPanel>
+                <TextBlock Text="{x:Bind Name}"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="WrapWholeWords"
+                           MaxLines="2"
+                           Grid.Row="2"
+                           TextLineBounds="TrimToCapHeight"
+                           Margin="0,12,0,0" />
+            </Grid>
+        </Border>
+    </DataTemplate>
+
     <DataTemplate x:Key="VKAudioWideTemplate"
                   x:DataType="inTouch:Audio">
         <Grid>
@@ -153,6 +199,94 @@
                    TextTrimming="CharacterEllipsis"
                    TextWrapping="NoWrap"
                    FontWeight="SemiBold" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="VKVideoAlbumTemplate"
+                  x:DataType="inTouch:VideoAlbum">
+        <Border Padding="12"
+                Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                Height="270">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls:ImagePlaceholder Height="170"
+                                           Source="{x:Bind Photo320}"
+                                           Text="{x:Bind Title}"
+                                           x:Name="ArtistImage"
+                                           Margin="-12,-12,-12,0" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,6,0,0"
+                            Grid.Row="1">
+                    <TextBlock Text="&#xE786;"
+                               FontFamily="Segoe MDL2 Assets"
+                               FontSize="17"
+                               Margin="0,2,6,0"
+                               OpticalMarginAlignment="TrimSideBearings" />
+                    <TextBlock Text="{x:Bind Count}"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                               TextTrimming="CharacterEllipsis"
+                               FontWeight="SemiBold" />
+                </StackPanel>
+                <TextBlock Text="{x:Bind Title}"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="WrapWholeWords"
+                           MaxLines="2"
+                           Grid.Row="2"
+                           TextLineBounds="TrimToCapHeight"
+                           Margin="0,12,0,0" />
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="VKVideoTemplate"
+                  x:DataType="inTouch:Video">
+        <Border Padding="12"
+                Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                Height="270">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls:ImagePlaceholder Height="170"
+                                           Source="{x:Bind Photo320}"
+                                           Text="{x:Bind Title}"
+                                           x:Name="ArtistImage"
+                                           Margin="-12,-12,-12,0" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,6,0,0"
+                            Grid.Row="1">
+                    <TextBlock Text="&#xE102;"
+                               FontFamily="Segoe MDL2 Assets"
+                               FontSize="17"
+                               Margin="0,2,0,0"
+                               OpticalMarginAlignment="TrimSideBearings" />
+                    <TextBlock Text="{x:Bind Views}"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                               TextTrimming="CharacterEllipsis"
+                               FontWeight="SemiBold" />
+                </StackPanel>
+                <TextBlock Text="{x:Bind Title}"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                           TextTrimming="CharacterEllipsis"
+                           TextWrapping="WrapWholeWords"
+                           MaxLines="2"
+                           Grid.Row="2"
+                           TextLineBounds="TrimToCapHeight"
+                           Margin="0,12,0,0" />
+            </Grid>
+        </Border>
     </DataTemplate>
 
     <DataTemplate x:Key="VKSaverTrackWideTemplate"

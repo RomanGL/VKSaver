@@ -21,7 +21,8 @@
                 <ResourceDictionary Source="Themes/ContentContainer.xaml"/>
                 
                 <themes:CommonDictionary/>
-                <ResourceDictionary Source="Expander.xaml" />
+                <ResourceDictionary Source="Themes/Expander.xaml" />
+                <ResourceDictionary Source="Themes/BluredCommandBar.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </mvvm:PrismUnityApplication.Resources>

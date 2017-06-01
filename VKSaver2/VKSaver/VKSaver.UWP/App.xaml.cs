@@ -196,6 +196,7 @@ namespace VKSaver
             Container.RegisterType<IDownloadsService, DownloadsService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IUploadsService, UploadsService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IVKCaptchaHandler, VKCaptchaHandler>(new TransientLifetimeManager());
+            Container.RegisterType<IVKBehaviorSimulator, VKBehaviorSimulator>(new ContainerControlledLifetimeManager());
 
             Container.RegisterType<ISuspendingService, TransferNotificationsService>("s1",
                 new ContainerControlledLifetimeManager());

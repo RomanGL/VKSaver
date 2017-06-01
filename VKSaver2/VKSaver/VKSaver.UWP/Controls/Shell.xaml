@@ -342,6 +342,8 @@
                 <CompositeTransform />
             </Grid.RenderTransform>
 
+            <Rectangle Fill="{ThemeResource AppGradientBrush}"
+                       Opacity="0.1"/>
             <local:BackDrop BlurAmount="15" />
 
             <Grid x:Name="PlayerContentGrid">

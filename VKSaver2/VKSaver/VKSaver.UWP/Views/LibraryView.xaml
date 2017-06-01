@@ -38,6 +38,13 @@
                               d:Source="{Binding Cached}" />
     </mvvm:SessionStateAwarePage.Resources>
 
+    <mvvm:SessionStateAwarePage.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition FromHorizontalOffset="0"
+                                     FromVerticalOffset="140" />
+        </TransitionCollection>
+    </mvvm:SessionStateAwarePage.Transitions>
+
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">

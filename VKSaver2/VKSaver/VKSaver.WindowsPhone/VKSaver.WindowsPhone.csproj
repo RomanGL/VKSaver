@@ -165,7 +165,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Behaviors\CommandBarButtonsBindingBehavior.cs" />
     <Compile Include="Behaviors\FocusBehavior.cs" />
     <Compile Include="Behaviors\IncrementalUpDownLoadingBehavior.cs" />
     <Compile Include="Behaviors\KeyBehavior.cs" />
@@ -361,6 +360,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\LogoElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PlayerBackground.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

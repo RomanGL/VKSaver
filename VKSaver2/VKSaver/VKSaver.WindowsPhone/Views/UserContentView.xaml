@@ -72,8 +72,7 @@
                            MaxLines="2"
                            TextTrimming="CharacterEllipsis"
                            Grid.Column="1"
-                           Pivot.SlideInAnimationGroup="GroupOne"
-                           LineStackingStrategy="MaxHeight" />
+                           Pivot.SlideInAnimationGroup="GroupOne" />
             </Grid>
         </DataTemplate>
 

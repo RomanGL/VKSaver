@@ -23,7 +23,13 @@ namespace VKSaver.Core.Services
             
             EmailMessage mail = new EmailMessage();
             mail.Subject = _locService["Email_SupportTitle_Text"];
-            mail.Body = $"{_locService["AppNameText"]} {GetApplicationVersion()}";   
+
+#if WINDOWS_UWP
+            mail.Body = $"{_locService["AppNameText"]} UWP {GetApplicationVersion()}";
+#else
+            mail.Body = $"{_locService["AppNameText"]} {GetApplicationVersion()}"; 
+#endif
+
             mail.To.Add(recipient);
             
             await EmailManager.ShowComposeNewEmailAsync(mail);

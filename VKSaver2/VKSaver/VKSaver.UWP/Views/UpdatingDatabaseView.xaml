@@ -63,23 +63,24 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <!--<Rectangle Fill="{ThemeResource SystemControlBackgroundChromeBlackMediumBrush}"
-                   RelativePanel.AlignTopWithPanel="True"
+
+        <Rectangle RelativePanel.AlignTopWithPanel="True"
                    RelativePanel.AlignBottomWithPanel="True"
                    RelativePanel.AlignLeftWithPanel="True"
                    RelativePanel.AlignRightWithPanel="True"
-                   Opacity="0.4" />-->
+                   Fill="{ThemeResource AppGradientBrush}"
+                   Opacity="0.15" />
 
         <Grid x:Name="RootGrid"
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
               Width="650"
               RelativePanel.AlignTopWithPanel="True"
               RelativePanel.AlignBottomWithPanel="True"
-              Margin="50,0,0,0">
+              Margin="48,0,0,0">
             <Grid.Transitions>
                 <TransitionCollection>
                     <EntranceThemeTransition FromVerticalOffset="0"
-                                             FromHorizontalOffset="40" />
+                                             FromHorizontalOffset="140" />
                 </TransitionCollection>
             </Grid.Transitions>
 

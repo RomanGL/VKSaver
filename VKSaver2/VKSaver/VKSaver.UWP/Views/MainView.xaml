@@ -50,51 +50,6 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="ArtistGridTemplate"
-                      x:DataType="objects:LastArtist">
-            <Border Padding="12"
-                    Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
-                    Width="170"
-                    Height="270">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <controls:ImagePlaceholder Height="170"
-                                               Source="{x:Bind MainImage.Mega}"
-                                               Text="{x:Bind Name}"
-                                               x:Name="ArtistImage"
-                                               Margin="-12,-12,-12,0" />
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0,6,0,0"
-                                Grid.Row="1">
-                        <TextBlock Text="&#xE102;"
-                                   FontFamily="Segoe MDL2 Assets"
-                                   FontSize="17"
-                                   Margin="0,2,0,0"
-                                   OpticalMarginAlignment="TrimSideBearings" />
-                        <TextBlock Text="{x:Bind PlayCount}"
-                                   Style="{StaticResource BaseTextBlockStyle}"
-                                   Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
-                                   TextTrimming="CharacterEllipsis"
-                                   FontWeight="SemiBold" />
-                    </StackPanel>
-                    <TextBlock Text="{x:Bind Name}"
-                               Style="{StaticResource TitleTextBlockStyle}"
-                               Foreground="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
-                               TextTrimming="CharacterEllipsis"
-                               TextWrapping="WrapWholeWords"
-                               MaxLines="2"
-                               Grid.Row="2"
-                               TextLineBounds="TrimToCapHeight"
-                               Margin="0,12,0,0" />
-                </Grid>
-            </Border>
-        </DataTemplate>
-
         <DataTemplate x:Key="ArtistGridSeeAlsoTemplate"
                       x:DataType="objects:LastArtist">
             <Border Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
@@ -137,6 +92,13 @@
                                                AudioTemplate="{StaticResource VKAudioWideTemplate}"
                                                SeeAlsoTemplate="{StaticResource VKAudioSeeAlsoTemplate}" />
     </mvvm:SessionStateAwarePage.Resources>
+
+    <mvvm:SessionStateAwarePage.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition FromHorizontalOffset="0"
+                                     FromVerticalOffset="140" />
+        </TransitionCollection>
+    </mvvm:SessionStateAwarePage.Transitions>
 
     <Grid>
         <ScrollViewer x:Name="WideRoot"

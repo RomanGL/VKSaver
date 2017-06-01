@@ -419,8 +419,8 @@ Global
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|ARM.Build.0 = DebugFull|ARM
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x64.ActiveCfg = DebugFull|x64
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x64.Build.0 = DebugFull|x64
-		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x86.ActiveCfg = DebugFull|Any CPU
-		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x86.Build.0 = DebugFull|Any CPU
+		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x86.ActiveCfg = DebugFull|x86
+		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.DebugFull|x86.Build.0 = DebugFull|x86
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.Publish|Any CPU.ActiveCfg = Debug|Any CPU
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.Publish|Any CPU.Build.0 = Debug|Any CPU
 		{49B1DE23-1521-4447-A51E-E9337D0F0EB1}.Publish|ARM.ActiveCfg = ReleaseFull|ARM
@@ -881,8 +881,8 @@ Global
 		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.DebugFull|ARM.Build.0 = Debug (Anniversary Update)|Any CPU
 		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.DebugFull|x64.ActiveCfg = Debug (Anniversary Update)|Any CPU
 		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.DebugFull|x64.Build.0 = Debug (Anniversary Update)|Any CPU
-		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.DebugFull|x86.ActiveCfg = Debug (Anniversary Update)|Any CPU
-		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.DebugFull|x86.Build.0 = Debug (Anniversary Update)|Any CPU
+		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.DebugFull|x86.ActiveCfg = Debug|Any CPU
+		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.DebugFull|x86.Build.0 = Debug|Any CPU
 		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
 		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.Publish|Any CPU.Build.0 = Publish|Any CPU
 		{B24A296C-B3EB-4E06-A64E-74AC2D1ACC91}.Publish|ARM.ActiveCfg = Publish|Any CPU

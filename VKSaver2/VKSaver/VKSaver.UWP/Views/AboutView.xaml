@@ -1,0 +1,544 @@
+﻿<mvvm:SessionStateAwarePage x:Class="VKSaver.Views.AboutView"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:controls="using:VKSaver.Controls"
+                            xmlns:mvvm="using:Prism.Windows.Mvvm"
+                            xmlns:viewModels="using:VKSaver.Core.ViewModels"
+                            mc:Ignorable="d"
+                            mvvm:ViewModelLocator.AutoWireViewModel="True"
+                            controls:Shell.IsPlayerBlockVisible="False"
+                            controls:Shell.ChromeStyle="Hided"
+                            d:DataContext="{d:DesignInstance viewModels:AboutViewModel}">
+
+    <mvvm:SessionStateAwarePage.Resources>
+        <Style x:Key="PoweredByImageStyle"
+               TargetType="Image">
+            <Setter Property="Width"
+                    Value="60" />
+            <Setter Property="Height"
+                    Value="60" />
+            <Setter Property="Margin"
+                    Value="5,0,10,0" />
+        </Style>
+        <Style x:Key="PoweredByHyperlinkButtonStyle"
+               TargetType="HyperlinkButton">
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="Padding"
+                    Value="0" />
+            <Setter Property="Margin"
+                    Value="0,5" />
+        </Style>
+
+        <ImageBrush x:Key="ImagePlaceholderBrush"
+                    Stretch="UniformToFill"
+                    ImageSource="ms-appx:///Assets/ImagePlaceholder.png" />
+
+        <Storyboard x:Name="FadeInAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
+                                           Storyboard.TargetName="ColorSubstrateRect">
+                <EasingDoubleKeyFrame KeyTime="0"
+                                      Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                      Value="0.15" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </mvvm:SessionStateAwarePage.Resources>
+
+    <RelativePanel>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="State2">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="750" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="State1">
+                    <VisualState.Setters>
+                        <Setter Target="RootGrid.(RelativePanel.AlignLeftWithPanel)"
+                                Value="True" />
+                        <Setter Target="RootGrid.(RelativePanel.AlignRightWithPanel)"
+                                Value="True" />
+                        <Setter Target="RootGrid.(FrameworkElement.Width)"
+                                Value="NaN" />
+                        <Setter Target="RootGrid.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="470" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="State0">
+                    <VisualState.Setters>
+                        <Setter Target="RootGrid.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="RootGrid.(FrameworkElement.Width)"
+                                Value="NaN" />
+                        <Setter Target="RootGrid.(RelativePanel.AlignLeftWithPanel)"
+                                Value="True" />
+                        <Setter Target="RootGrid.(RelativePanel.AlignRightWithPanel)"
+                                Value="True" />
+                        <Setter Target="ContentPanel.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>12,24,0,12</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="TitlePanel.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>12,24,0,12</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Rectangle x:Name="ColorSubstrateRect"
+                   RelativePanel.AlignTopWithPanel="True"
+                   RelativePanel.AlignBottomWithPanel="True"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   RelativePanel.AlignRightWithPanel="True"
+                   Fill="{ThemeResource AppGradientBrush}"
+                   Opacity="0.15" />
+
+        <Grid x:Name="RootGrid"
+              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              Width="650"
+              RelativePanel.AlignTopWithPanel="True"
+              RelativePanel.AlignBottomWithPanel="True"
+              Margin="48,0,0,0"
+              RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <CompositeTransform />
+            </Grid.RenderTransform>
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition FromVerticalOffset="0"
+                                             FromHorizontalOffset="140" />
+                </TransitionCollection>
+            </Grid.Transitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="TitlePanel"
+                        Margin="24,50,0,0">
+                <Rectangle Fill="{ThemeResource AppGradientBrush}"
+                           Width="220"
+                           HorizontalAlignment="Left"
+                           Height="6" />
+                <TextBlock Text="О ПРИЛОЖЕНИИ"
+                           x:Uid="AboutView_About"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1"
+                          x:Name="ContentPanel"
+                          VerticalScrollBarVisibility="Auto"
+                          Margin="19,24,0,0">
+                <StackPanel Margin="0,0,0,60">
+                    <StackPanel.ChildrenTransitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition FromVerticalOffset="0"
+                                                     FromHorizontalOffset="40" />
+                        </TransitionCollection>
+                    </StackPanel.ChildrenTransitions>
+
+                    <Grid Margin="5,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle HorizontalAlignment="Left"
+                                   VerticalAlignment="Top"
+                                   Height="135"
+                                   Width="135"
+                                   Fill="{StaticResource ImagePlaceholderBrush}"
+                                   Margin="0,0,10,0" />
+                        <StackPanel Grid.Column="1">
+                            <StackPanel.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition />
+                                </TransitionCollection>
+                            </StackPanel.ChildrenTransitions>
+                            <TextBlock Text="ВКачай 2"
+                                       x:Uid="AboutView_AppName"
+                                       Style="{StaticResource TitleTextBlockStyle}"
+                                       FontWeight="Black"
+                                       TextWrapping="WrapWholeWords"
+                                       Margin="0,-8,0,0" />
+                            <TextBlock TextWrapping="WrapWholeWords"
+                                       Margin="0,2,0,0"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}">
+                                <Run Text="Версия:"
+                                     x:Uid="AboutView_Version" />
+                                <Run Text="{Binding Version}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Text="Поддержка"
+                               x:Uid="AboutView_Support_Block"
+                               Style="{StaticResource TitleTextBlockStyle}"
+                               Margin="5,10,0,5" />
+                    <ListView Margin="-12,0,24,0">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromVerticalOffset="0"
+                                                         FromHorizontalOffset="40"
+                                                         IsStaggeringEnabled="True" />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="https://vk.com/roman.gladkikh">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/ava-dev.jpg"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2"
+                                       Stretch="UniformToFill" />
+                                <TextBlock Text="Роман Гладких"
+                                           x:Uid="AboutView_Developer_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="Разработчик приложения"
+                                           x:Uid="AboutView_Developer_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="https://vk.com/vkmediadown">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/site-logo.png"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2" />
+                                <TextBlock Text="ВКачай"
+                                           x:Uid="AboutView_VKSaverGroup_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="Сообщество во ВКонтакте"
+                                           x:Uid="AboutView_VKSaverGroup_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         Command="{Binding SendEmailCommand, Mode=OneTime}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/email-logo.png"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2" />
+                                <TextBlock Text="Email"
+                                           x:Uid="AboutView_Email_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="Обратитесь к нам через Email"
+                                           x:Uid="AboutView_Email_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                    </ListView>
+
+                    <TextBlock Text="Выражаем благодарность"
+                               x:Uid="AboutView_SpecialThanks_Block"
+                               Margin="5,25,0,5"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                    <ListView Margin="-12,0,24,0">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromVerticalOffset="0"
+                                                         FromHorizontalOffset="40"
+                                                         IsStaggeringEnabled="True" />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="https://vk.com/hwghz_adm">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/ava-en.jpg"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2"
+                                       Stretch="UniformToFill" />
+                                <TextBlock Text="Григорий Лобода"
+                                           x:Uid="AboutView_TranslateEn_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="Перевод на английский"
+                                           x:Uid="AboutView_TranslateEn_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="https://vk.com/zarubit">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/ava-ua.jpg"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2"
+                                       Stretch="UniformToFill" />
+                                <TextBlock Text="Максим Денисенко"
+                                           x:Uid="AboutView_TranslateUA_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="Перевод на украинский"
+                                           x:Uid="AboutView_TranslateUA_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="https://vk.com/wolf_god">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/ava-be.jpg"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2"
+                                       Stretch="UniformToFill" />
+                                <TextBlock Text="Максим Романюк"
+                                           x:Uid="AboutView_TranslateBe_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="Перевод на белорусский"
+                                           x:Uid="AboutView_TranslateBe_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="https://vk.com/alex_deykun">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/ava-de.jpg"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2"
+                                       Stretch="UniformToFill" />
+                                <TextBlock Text="Алексей Дейкун"
+                                           x:Uid="AboutView_TranslateDe_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="Перевод на немецкий"
+                                           x:Uid="AboutView_TranslateDe_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                    </ListView>
+
+                    <TextBlock Text="Прочее"
+                               x:Uid="AboutView_Other_Title"
+                               Margin="5,25,0,5"
+                               Style="{StaticResource TitleTextBlockStyle}" />
+                    <ListView Margin="-12,0,24,0">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromVerticalOffset="0"
+                                                         FromHorizontalOffset="40"
+                                                         IsStaggeringEnabled="True" />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="https://github.com/virtyaluk/InTouch">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/it-logo.png"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2" />
+                                <TextBlock Text="InTouch"
+                                           x:Uid="AboutView_InTouch_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="C# wrapper for VK API"
+                                           x:Uid="AboutView_InTouch_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="https://github.com/RomanGL/lastfm">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/lf-logo.png"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2" />
+                                <TextBlock Text="Inflatable Last.fm"
+                                           x:Uid="AboutView_IF_LastFm_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="Inflatable Last.fm .NET SDK"
+                                           x:Uid="AboutView_IF_LastFm_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="https://music.microsoft.com">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="ms-appx:///Assets/About/groove-logo.png"
+                                       Style="{StaticResource PoweredByImageStyle}"
+                                       Grid.RowSpan="2" />
+                                <TextBlock Text="Groove Music"
+                                           x:Uid="AboutView_Groove_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                                <TextBlock Text="Love your music – set it free"
+                                           x:Uid="AboutView_Groove_Text"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                        <HyperlinkButton Style="{StaticResource PoweredByHyperlinkButtonStyle}"
+                                         NavigateUri="http://last.fm">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="ms-appx:///Assets/About/lf-logo.png"
+                                       Style="{StaticResource PoweredByImageStyle}" />
+                                <TextBlock Text="Last.fm"
+                                           x:Uid="AboutView_LastFm_Title"
+                                           Grid.Column="1"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+                            </Grid>
+                        </HyperlinkButton>
+                    </ListView>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </RelativePanel>
+</mvvm:SessionStateAwarePage>
+

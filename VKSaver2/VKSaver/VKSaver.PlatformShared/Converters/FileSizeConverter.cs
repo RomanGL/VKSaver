@@ -18,7 +18,13 @@ namespace VKSaver.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var size = (FileSize)value;
+            FileSize size;
+            if (value is int)
+                size = FileSize.FromBytes((ulong)(int)value);
+            else if (value is FileSize)
+                size = (FileSize) value;
+            else
+                return null;
 
             if (size.Kilobytes < 1024)
                 return String.Format(_locService.Value["FileSize_KB_Mask_Text"], size.Kilobytes);

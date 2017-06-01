@@ -191,6 +191,7 @@
     <Compile Include="Controls\AlternateListView.cs" />
     <Compile Include="Controls\BackDrop.cs" />
     <Compile Include="Controls\EasyCarousel.cs" />
+    <Compile Include="Controls\FixedAdaptiveGridView.cs" />
     <Compile Include="Controls\FixedListView.cs" />
     <Compile Include="Controls\HamburgerButton.cs" />
     <Compile Include="Controls\MenuListBox.cs" />
@@ -218,6 +219,9 @@
     </Compile>
     <Compile Include="Views\DirectAuth\DirectAuthView.xaml.cs">
       <DependentUpon>DirectAuthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstStart\FirstSelectLaunchView.xaml.cs">
       <DependentUpon>FirstSelectLaunchView.xaml</DependentUpon>
@@ -262,6 +266,16 @@
     <None Include="VKSaver.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\About\ava-be.jpg" />
+    <Content Include="Assets\About\ava-de.jpg" />
+    <Content Include="Assets\About\ava-dev.jpg" />
+    <Content Include="Assets\About\ava-en.jpg" />
+    <Content Include="Assets\About\ava-ua.jpg" />
+    <Content Include="Assets\About\email-logo.png" />
+    <Content Include="Assets\About\groove-logo.png" />
+    <Content Include="Assets\About\it-logo.png" />
+    <Content Include="Assets\About\lf-logo.png" />
+    <Content Include="Assets\About\site-logo.png" />
     <Content Include="Assets\Background\Backdrop.dark.jpg" />
     <Content Include="Assets\Background\Backdrop.light.jpg" />
     <Content Include="Assets\Background\Background.dark.jpg" />
@@ -384,6 +398,15 @@
     <Folder Include="Design\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\PlayerBackground.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\BluredCommandBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Controls\Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -397,7 +420,7 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Expander.xaml">
+    <Page Include="Themes\Expander.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -457,6 +480,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\DirectAuth\DirectAuthView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

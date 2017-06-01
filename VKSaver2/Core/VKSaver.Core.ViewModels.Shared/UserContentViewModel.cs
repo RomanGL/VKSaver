@@ -401,7 +401,7 @@ namespace VKSaver.Core.ViewModels
         {
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Videos.GetAlbums(
                 _userID == 0 ? null : (int?)_userID,
-                count: 50, offset: _videoAlbumsOffset, needSystem: true));
+                50, _videoAlbumsOffset, true, true));
 
             if (response.IsError)
             {
@@ -712,7 +712,9 @@ namespace VKSaver.Core.ViewModels
             _playerService.IsShuffleMode = true;
             await _playerService.PlayNewTracks(audios.Cast<Audio>().ToPlayerTracks(), 0);
 
+#if !WINDOWS_UWP
             _navigationService.Navigate("PlayerView", null);
+#endif
             _appLoaderService.Hide();
         }
 
@@ -733,7 +735,10 @@ namespace VKSaver.Core.ViewModels
                 await _playerService.PlayNewTracks(audios.Cast<Audio>().ToPlayerTracks(),
                     audios.IndexOf(item));
 
-                _navigationService.Navigate("PlayerView", null);
+#if !WINDOWS_UWP
+            _navigationService.Navigate("PlayerView", null);
+#endif
+
                 _appLoaderService.Hide();
             }
             else if (item is Video)
@@ -760,7 +765,10 @@ namespace VKSaver.Core.ViewModels
 
             var toPlay = SelectedItems.Where(o => o is Audio).Cast<Audio>().ToPlayerTracks();
             await _playerService.PlayNewTracks(toPlay, 0);
+
+#if !WINDOWS_UWP
             _navigationService.Navigate("PlayerView", null);
+#endif
 
             _appLoaderService.Hide();
             SetDefaultMode();
