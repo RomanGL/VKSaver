@@ -245,7 +245,8 @@
         <Pivot Title="{Binding PageTitle}"
                SelectedIndex="{Binding LastPivotIndex, Mode=TwoWay}"
                IsLocked="{Binding IsLockedPivot}"
-               Margin="6,-7,0,0">
+               Margin="6,-7,0,0"
+               x:Name="MainPivot">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"
@@ -267,7 +268,8 @@
                                                 ItemContainerStyleSelector="{StaticResource AudioItemContainerSelector}"
                                                 IsItemClickEnabled="{Binding IsItemClickEnabled}"
                                                 SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
-                                                VerticalAlignment="Top">
+                                                VerticalAlignment="Top"
+                                                x:Name="AudiosListView">
                             <ListView.GroupStyle>
                                 <GroupStyle HidesIfEmpty="True"
                                             HeaderTemplate="{StaticResource JumpListHeaderTemplate}" />
@@ -317,7 +319,8 @@
                                                         VerticalAlignment="Top"
                                                         IsItemClickEnabled="True"
                                                         ItemHeight="270"
-                                                        DesiredWidth="270">
+                                                        DesiredWidth="270"
+                                                        x:Name="VideosGridView">
                             <GridView.GroupStyle>
                                 <GroupStyle HidesIfEmpty="True"
                                             HeaderTemplate="{StaticResource JumpListHeaderTemplate}" />
@@ -366,7 +369,8 @@
                           ItemTemplate="{StaticResource DocumentTemplate}"
                           ItemContainerStyle="{StaticResource DocumentItemStyle}"
                           IsItemClickEnabled="{Binding IsItemClickEnabled}"
-                          SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}">
+                          SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
+                          x:Name="DocsListView">
                     <ListView.FooterTemplate>
                         <DataTemplate>
                             <controls:StateBlock State="{Binding Documents.ContentState}"
@@ -396,7 +400,7 @@
                     Margin="0,0,0,60"
                     Style="{StaticResource BluredCommandBar}">
             <CommandBar.Background>
-                <SolidColorBrush Opacity="0.4"
+                <SolidColorBrush Opacity="0.5"
                                  Color="{ThemeResource SystemChromeMediumColor}" />
             </CommandBar.Background>
             <interactivity:Interaction.Behaviors>

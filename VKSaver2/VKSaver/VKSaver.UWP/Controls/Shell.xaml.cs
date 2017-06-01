@@ -144,7 +144,7 @@ namespace VKSaver.Controls
 
         private void TrackBlock_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("TrackBlock", TrackBlock);
+            //ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("TrackBlock", TrackBlock);
             _navigationService.Navigate("PlayerView", null);
         }
 

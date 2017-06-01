@@ -162,11 +162,17 @@
                                 Grid.Column="1">
                         <TextBlock Text="{Binding Track.Title}" 
                                    Style="{StaticResource TitleTextBlockStyle}"
-                                   Margin="0,-8,0,0" />
+                                   MaxLines="2"
+                                   TextTrimming="CharacterEllipsis"
+                                   LineStackingStrategy="BaselineToBaseline"
+                                   TextLineBounds="TrimToCapHeight" />
                         <TextBlock Text="{Binding Track.Artist}" 
                                    Style="{StaticResource TitleTextBlockStyle}"
                                    FontWeight="Black"
-                                   Margin="0,-6,0,0" />
+                                   Margin="0,-6,0,0" 
+                                   MaxLines="1"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap"/>
                         <TextBlock Text="{Binding Track.Duration, Converter={StaticResource TimeConverter}}"
                                    Foreground="{ThemeResource AccentHighBrush}" 
                                    Style="{StaticResource BodyTextBlockStyle}"

@@ -46,6 +46,8 @@ namespace VKSaver.Core.ViewModels
             DeleteSelectedCommand = new DelegateCommand(OnDeleteSelectedCommand, HasSelectedItems);
         }
 
+        public double AudiosScrollPosition { get; set; }
+
         public AudioAlbum Album { get; private set; }
 
         public PaginatedCollection<Audio> Tracks { get; private set; }
@@ -67,6 +69,12 @@ namespace VKSaver.Core.ViewModels
                 _offset = (int)viewModelState[nameof(_offset)];
 
                 Tracks.LoadMoreItems = LoadMoreAudios;
+
+                object audiosScroll = null;
+                viewModelState.TryGetValue(nameof(AudiosScrollPosition), out audiosScroll);
+
+                if (audiosScroll != null)
+                    AudiosScrollPosition = (double)audiosScroll;
             }
             else
             {
@@ -86,6 +94,7 @@ namespace VKSaver.Core.ViewModels
             {
                 viewModelState[nameof(Tracks)] = JsonConvert.SerializeObject(Tracks.ToList());
                 viewModelState[nameof(_offset)] = _offset;
+                viewModelState[nameof(AudiosScrollPosition)] = AudiosScrollPosition;
             }
 
             base.OnNavigatingFrom(e, viewModelState, suspending);

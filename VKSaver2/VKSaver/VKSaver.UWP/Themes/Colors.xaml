@@ -30,6 +30,15 @@
     <SolidColorBrush x:Key="ListAccentLowBrush"
                      Color="{StaticResource AccentHighColor}"
                      Opacity="0.6" />
+    <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush"
+                     Color="{StaticResource AccentHighColor}"
+                     Opacity="0.3"/>
+    <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush"
+                     Color="{StaticResource AccentHighColor}"
+                     Opacity="0.5" />
+    <SolidColorBrush x:Key="SystemControlHighlightListAccentHighBrush"
+                     Color="{StaticResource AccentHighColor}"
+                     Opacity="0.8" />
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">

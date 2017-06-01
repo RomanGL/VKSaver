@@ -85,6 +85,14 @@ namespace VKSaver.Core.ViewModels
             ShowTrackInfoCommand = new DelegateCommand<Audio>(OnShowTrackInfoCommand);
         }
 
+        #region View positions
+
+        public double AudiosScrollPosition { get; set; }
+        public double VideosScrollPosition { get; set; }
+        public double DocsScrollPosition { get; set; }
+
+        #endregion
+
         public string PageTitle { get; private set; }
 
         public IncrementalLoadingJumpListCollection AudioGroup { get; private set; }
@@ -98,7 +106,7 @@ namespace VKSaver.Core.ViewModels
         public bool IsItemClickEnabled { get; private set; }
 
         public bool IsLockedPivot { get; private set; }
-
+        
         [DoNotCheckEquality]
         public bool SelectAllAudios { get; private set; }
 
@@ -243,6 +251,21 @@ namespace VKSaver.Core.ViewModels
                     viewModelState[nameof(Documents)].ToString());
                 Documents.LoadMoreItems = LoadMoreDocuments;
                 Documents.CollectionChanged += Downloadable_CollectionChanged;
+
+                object audiosScroll = null;
+                object videosScroll = null;
+                object docsScroll = null;
+
+                viewModelState.TryGetValue(nameof(AudiosScrollPosition), out audiosScroll);
+                viewModelState.TryGetValue(nameof(VideosScrollPosition), out videosScroll);
+                viewModelState.TryGetValue(nameof(DocsScrollPosition), out docsScroll);
+
+                if (audiosScroll != null)
+                    AudiosScrollPosition = (double)audiosScroll;
+                if (videosScroll != null)
+                    VideosScrollPosition = (double)videosScroll;
+                if (docsScroll != null)
+                    DocsScrollPosition = (double)docsScroll;
             }
             else
             {
@@ -322,7 +345,11 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(_audioAlbumsOffset)] = _audioAlbumsOffset;
                 viewModelState[nameof(_videosOffset)] = _videosOffset;
                 viewModelState[nameof(_videoAlbumsOffset)] = _videoAlbumsOffset;
-                viewModelState[nameof(_docsOffset)] = _docsOffset;           
+                viewModelState[nameof(_docsOffset)] = _docsOffset;
+
+                viewModelState[nameof(AudiosScrollPosition)] = AudiosScrollPosition;
+                viewModelState[nameof(VideosScrollPosition)] = VideosScrollPosition;
+                viewModelState[nameof(DocsScrollPosition)] = DocsScrollPosition;
             }
 
             if (!suspending)
