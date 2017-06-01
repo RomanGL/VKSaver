@@ -135,16 +135,13 @@
             <Grid x:Name="ContentPanel"
                   Grid.Row="1"
                   Margin="19,24,0,0">
-                <Grid.ChildrenTransitions>
-                    <TransitionCollection>
-                        <EntranceThemeTransition />
-                    </TransitionCollection>
-                </Grid.ChildrenTransitions>
 
                 <Grid>
                     <Grid.ChildrenTransitions>
                         <TransitionCollection>
-                            <EntranceThemeTransition />
+                            <EntranceThemeTransition FromVerticalOffset="0"
+                                                     FromHorizontalOffset="40"
+                                                     IsStaggeringEnabled="True" />
                         </TransitionCollection>
                     </Grid.ChildrenTransitions>
                     <Grid.RowDefinitions>

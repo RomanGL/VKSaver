@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -39,9 +40,11 @@ namespace VKSaver.Common
                 Subscribe(control);
         }
 
-        private static void Control_Holding(object sender, HoldingRoutedEventArgs e) => OpenFlyout(sender);
+        private static void Control_Holding(object sender, HoldingRoutedEventArgs e) => 
+            OpenFlyout(sender, e.GetPosition((UIElement)sender));
 #if WINDOWS_UWP
-        private static void Control_RightTapped(object sender, RightTappedRoutedEventArgs e) => OpenFlyout(sender);
+        private static void Control_RightTapped(object sender, RightTappedRoutedEventArgs e) => 
+            OpenFlyout(sender, e.GetPosition((UIElement)sender));
 #endif
 
         private static void Control_Unloaded(object sender, RoutedEventArgs e)
@@ -67,7 +70,7 @@ namespace VKSaver.Common
 #endif
         }
 
-        private static void OpenFlyout(object sender)
+        private static void OpenFlyout(object sender, Point position)
         {
             var contControl = sender as ContentControl;
             if (contControl != null && contControl.DataContext == null)
@@ -75,7 +78,9 @@ namespace VKSaver.Common
                 contControl.DataContext = contControl.Content;
             }
 
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            var tappedItem = (FrameworkElement)sender;
+            var attachedFlyout = (MenuFlyout)FlyoutBase.GetAttachedFlyout(tappedItem);
+            attachedFlyout.ShowAt(tappedItem, position);
         }
 
         public static Storyboard GetStoryboard(this FrameworkElement element, string name, string message = null)
