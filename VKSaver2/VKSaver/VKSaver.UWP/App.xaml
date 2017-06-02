@@ -23,6 +23,7 @@
                 <themes:CommonDictionary/>
                 <ResourceDictionary Source="Themes/Expander.xaml" />
                 <ResourceDictionary Source="Themes/BluredCommandBar.xaml" />
+                <ResourceDictionary Source="Themes/AppNotificationControl.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </mvvm:PrismUnityApplication.Resources>

@@ -433,5 +433,16 @@
                        Text="&#xE700;" />
         </Button>
 
+        <StackPanel x:Name="NotificationsPanel"
+                    Background="{x:Null}"
+                    Margin="100,32,100,0"
+                    VerticalAlignment="Top"
+                    MaxHeight="180">
+            <StackPanel.ChildrenTransitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </StackPanel.ChildrenTransitions>
+        </StackPanel>
     </Grid>
 </UserControl>

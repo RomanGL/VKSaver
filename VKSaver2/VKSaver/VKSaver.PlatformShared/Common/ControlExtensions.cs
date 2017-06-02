@@ -80,7 +80,11 @@ namespace VKSaver.Common
 
             var tappedItem = (FrameworkElement)sender;
             var attachedFlyout = (MenuFlyout)FlyoutBase.GetAttachedFlyout(tappedItem);
+#if WINDOWS_UWP
             attachedFlyout.ShowAt(tappedItem, position);
+#else
+            attachedFlyout.ShowAt(tappedItem);
+#endif
         }
 
         public static Storyboard GetStoryboard(this FrameworkElement element, string name, string message = null)

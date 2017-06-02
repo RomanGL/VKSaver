@@ -6,6 +6,12 @@
     <Color x:Key="AccentMediumColor">#ffb32222</Color>
     <Color x:Key="AccentLowColor">#ff801818</Color>
 
+    <Color x:Key="ErrorPopupBackground">#FFB40000</Color>
+    <Color x:Key="WarningPopupBackground">#FFFFAF00</Color>
+    <Color x:Key="InfoPopupBackground">#FF32A000</Color>
+    <SolidColorBrush x:Key="PopupBorderBrush"
+                     Color="#FF3C3C3C" />
+
     <SolidColorBrush x:Key="AccentHighBrush"
                      Color="{StaticResource AccentHighColor}" />
     <SolidColorBrush x:Key="AccentMediumBrush"

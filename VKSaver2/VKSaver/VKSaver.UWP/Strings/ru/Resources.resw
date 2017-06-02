@@ -400,7 +400,7 @@
     <value>загрузить</value>
   </data>
   <data name="ErrorView_Error.Text" xml:space="preserve">
-    <value>Произошла ошибка</value>
+    <value>ПРОИЗОШЛА ОШИБКА</value>
   </data>
   <data name="ErrorView_ErrorSorry.Text" xml:space="preserve">
     <value>Мы очень сожалеем о случившемся

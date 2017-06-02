@@ -67,10 +67,9 @@ namespace VKSaver
             var compositor = ElementCompositionPreview.GetElementVisual(rootFrame).Compositor;
             SurfaceLoader.Initialize(compositor);
             Toolkit.Animations.SurfaceLoader.Initialize(compositor);
-
-            var shell = Container.Resolve<Shell>();
-            shell.CurrentFrame = rootFrame;
-            return shell;
+            
+            _shell.CurrentFrame = rootFrame;
+            return _shell;
         }
 
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
@@ -142,7 +141,6 @@ namespace VKSaver
             Container.RegisterInstance(this.SessionStateService);
             Container.RegisterInstance<IDispatcherWrapper>(this);
             Container.RegisterInstance<IAppLoaderService>(_appLoaderService);
-            Container.RegisterInstance<IAppNotificationsPresenter>(new ChromeFrame());
 
             Container.RegisterType<INavigationService, VKSaverNavigationService>(
                 new ContainerControlledLifetimeManager(),
@@ -219,14 +217,13 @@ namespace VKSaver
                         new ResolvedParameter<ISuspendingService>("s4"))));
 
             Container.RegisterType<PlayerViewModel>(new ContainerControlledLifetimeManager());
-
-//#if DEBUG
-//            Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>("l1", new ContainerControlledLifetimeManager());
-//            Container.RegisterType<ILaunchViewResolver, DebugLaunchViewResolver>(new ContainerControlledLifetimeManager(),
-//                new InjectionConstructor(
-//                    new ResolvedParameter<ILaunchViewResolver>("l1"),
-//                    new ResolvedParameter<INavigationService>()));
-//#else
+            //#if DEBUG
+            //            Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>("l1", new ContainerControlledLifetimeManager());
+            //            Container.RegisterType<ILaunchViewResolver, DebugLaunchViewResolver>(new ContainerControlledLifetimeManager(),
+            //                new InjectionConstructor(
+            //                    new ResolvedParameter<ILaunchViewResolver>("l1"),
+            //                    new ResolvedParameter<INavigationService>()));
+            //#else
             Container.RegisterType<ILaunchViewResolver, LaunchViewResolver>(new ContainerControlledLifetimeManager());
 //#endif
 
@@ -243,6 +240,10 @@ namespace VKSaver
             var lastFmLoginService = Container.Resolve<ILastFmLoginService>();
             if (lastFmLoginService.IsAuthorized)
                 lastFmLoginService.InitializeLastAuth();
+
+            _shell = Container.Resolve<Shell>();
+            Container.RegisterInstance<IAppNotificationsPresenter>(_shell);
+            _shell.PlayerVM = Container.Resolve<PlayerViewModel>(); ;
 
             StartSuspendingServices();
 
@@ -472,6 +473,7 @@ namespace VKSaver
         private IMetricaService _metricaService;
         private UnityServiceLocator _unityServiceLocator;
         private Frame _frame;
+        private Shell _shell;
 
         private const string VIEW_MODEL_FORMAT = "VKSaver.Core.ViewModels.{0}Model, VKSaver.Core.ViewModels.UWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string VIEW_MODEL_CONTROLS_FORMAT = "VKSaver.Core.ViewModels.{0}ViewModel, VKSaver.Core.ViewModels.UWP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";

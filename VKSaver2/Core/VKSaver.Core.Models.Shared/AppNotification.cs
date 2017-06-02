@@ -1,5 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 
 namespace VKSaver.Core.Models
 {
@@ -10,7 +13,7 @@ namespace VKSaver.Core.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public event EventHandler HideRequested;
-
+        
         public bool IsHided { get; private set; }
 
         /// <summary>
@@ -136,9 +139,12 @@ namespace VKSaver.Core.Models
             HideRequested?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnPropertyChanged(string propertyName)
+        private async void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            });
         }
 
         private string _title;

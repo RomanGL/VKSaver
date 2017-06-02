@@ -18,7 +18,8 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            ErrorDetails = e.Parameter.ToString();
+            if (e.Parameter != null)
+                ErrorDetails = e.Parameter.ToString();
             base.OnNavigatedTo(e, viewModelState);
         }
     }

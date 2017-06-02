@@ -1,35 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Numerics;
 using Windows.ApplicationModel.Core;
-using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.Unity;
 using Prism.Windows.Navigation;
 using VKSaver.Common;
+using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels;
+using VKSaver.Core.Models;
 
 namespace VKSaver.Controls
 {
-    public sealed partial class Shell : UserControl
+    public sealed partial class Shell : UserControl, IAppNotificationsPresenter
     {
         [InjectionConstructor]
-        public Shell(INavigationService navigationService, PlayerViewModel playerViewModel)
+        public Shell(INavigationService navigationService)
             : this()
         {
             _navigationService = navigationService;
-
-            PlayerBlock.DataContext = playerViewModel;
-            playerViewModel.OnNavigatedTo(null, null);
         }
 
         public Shell()
@@ -87,6 +85,17 @@ namespace VKSaver.Controls
             }
         }
 
+        public PlayerViewModel PlayerVM
+        {
+            get { return _playerVM; }
+            set
+            {
+                _playerVM = value;
+                PlayerBlock.DataContext = _playerVM;
+                _playerVM.OnNavigatedTo(null, null);
+            }
+        }
+
         #region DependencyProperties
 
         public static void SetChromeStyle(DependencyObject element, ChromeStyle value)
@@ -120,6 +129,34 @@ namespace VKSaver.Controls
                     (s, e) => GetCurrentShell()?.UpdateSplitViewState()));
 
         #endregion
+
+        public async void ShowNotification(AppNotification notification)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (notification.IsHided)
+                    return;
+
+                if (NotificationsPanel == null)
+                {
+                    _waitingNotifications.Add(notification);
+                    return;
+                }
+
+                var anc = new AppNotificationControl { Message = notification };
+                anc.Loaded += (s, e) => anc.Show();
+                anc.Tapped += (s, e) =>
+                {
+                    anc.Hide();
+                    if (!String.IsNullOrWhiteSpace(anc.Message.DestinationView))
+                        _navigationService.Navigate(anc.Message.DestinationView, anc.Message.NavigationParameter);
+
+                    anc.Message.ActionToDo?.Invoke();
+                };
+                notification.HideRequested += (s, e) => anc.Hide();
+                NotificationsPanel.Children.Insert(0, anc);
+            });
+        }
 
         private void CurentFrame_Navigated(object sender, NavigationEventArgs e)
         {
@@ -256,10 +293,12 @@ namespace VKSaver.Controls
 
         private ShellNavigationItem _currentNavigationItem;
 
+        private readonly List<AppNotification> _waitingNotifications = new List<AppNotification>();
         private readonly ObservableCollection<ShellNavigationItem> _navigationItems = GetNavigationCollection();
         private readonly ObservableCollection<ShellNavigationItem> _bottmNavigationItems = GetBottomNavigationCollection();
         private readonly Compositor _compositor;
         private readonly INavigationService _navigationService;
+        private PlayerViewModel _playerVM;
 
         public enum ChromeStyle
         {
