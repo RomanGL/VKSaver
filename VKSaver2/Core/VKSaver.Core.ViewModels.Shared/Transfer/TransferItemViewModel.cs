@@ -38,12 +38,12 @@ namespace VKSaver.Core.ViewModels.Transfer
             }
         }
         
-        public Guid OperationGuid { get { return _operation.OperationGuid; } }
-        public string Name { get { return _operation.Name; } }
-        public FileContentType ContentType { get { return _operation.ContentType; } }
-        public BackgroundTransferStatus Status { get { return _operation.Status; } }
-        public FileSize TotalSize { get { return _operation.TotalSize; } }
-        public FileSize ProcessedSize { get { return _operation.ProcessedSize; } }
+        public Guid OperationGuid => _operation.OperationGuid;
+        public string Name => _operation.Name;
+        public FileContentType ContentType => _operation.ContentType;
+        public BackgroundTransferStatus Status => _operation.Status;
+        public FileSize TotalSize => _operation.TotalSize;
+        public FileSize ProcessedSize => _operation.ProcessedSize;
 
         public string SizeProgressText
         {
@@ -54,29 +54,17 @@ namespace VKSaver.Core.ViewModels.Transfer
             }
         }
 
-        public double Percentage
-        {
-            get
-            {
-                return TotalSize.Bytes == 0 ? 0: ProcessedSize.Bytes / (TotalSize.Bytes / 100);
-            }
-        }
+        public double Percentage => TotalSize.Bytes == 0 ? 0: ProcessedSize.Bytes / (TotalSize.Bytes / 100);
 
-        public bool IsIndicatorPaused
-        {
-            get
-            {
-                return Status == BackgroundTransferStatus.PausedByApplication ||
-                    Status == BackgroundTransferStatus.PausedCostedNetwork ||
-                    Status == BackgroundTransferStatus.PausedNoNetwork ||
-                    Status == BackgroundTransferStatus.Error ||
-                    Status == BackgroundTransferStatus.Idle;
-            }
-        }
+        public bool IsIndicatorPaused => Status == BackgroundTransferStatus.PausedByApplication ||
+                                         Status == BackgroundTransferStatus.PausedCostedNetwork ||
+                                         Status == BackgroundTransferStatus.PausedNoNetwork ||
+                                         Status == BackgroundTransferStatus.Error ||
+                                         Status == BackgroundTransferStatus.Idle;
 
-        public bool CanPause { get { return Status.IsRunning(); } }
+        public bool CanPause => Status.IsRunning();
 
-        public bool CanResume { get { return Status.IsPaused(); } }
+        public bool CanResume => Status.IsPaused();
 
         private TransferItem _operation;
         private readonly ILocService _locService;

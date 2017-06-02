@@ -206,6 +206,9 @@
     <Compile Include="Controls\SurfaceLoader.cs" />
     <Compile Include="Controls\ChromeFrame.cs" />
     <Compile Include="Controls\SwipeableSplitView.cs" />
+    <Compile Include="Controls\TransferProgressIndicator.xaml.cs">
+      <DependentUpon>TransferProgressIndicator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\BoolToBrushConverter.cs" />
     <Compile Include="Converters\HamburgerItemClickConverter.cs" />
     <Compile Include="Converters\SecondsToTimeString.cs" />
@@ -216,6 +219,9 @@
     </Compile>
     <Compile Include="Themes\Common.xaml.cs">
       <DependentUpon>Common.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransferView.xaml.cs">
+      <DependentUpon>TransferView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
@@ -411,6 +417,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\TransferProgressIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\AppNotificationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -490,6 +500,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\SwipeableSplitView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TransferView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

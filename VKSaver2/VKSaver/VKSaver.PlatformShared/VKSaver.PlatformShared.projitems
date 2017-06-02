@@ -25,7 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\DoubleTapLikeControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImagePlaceholder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MoreStatesOptionButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerBackground.xaml.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerBackground.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerShapesType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\PlayerBackground\PlayerTheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ServiceAuthBlock.cs" />

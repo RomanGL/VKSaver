@@ -20,6 +20,7 @@ using VKSaver.Core.Services.Transfer;
 using VKSaver.Core.ViewModels.Transfer;
 using Windows.Networking.BackgroundTransfer;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -63,6 +64,8 @@ namespace VKSaver.Core.ViewModels
         public ObservableCollection<TransferItemViewModel> Uploads { get; private set; }
 
         public int SelectedPivotIndex { get; set; }
+        public double DownloadsScrollPosition { get; set; }
+        public double UploadsScrollPosition { get; set; }
 
         public ContentState DownloadsState { get; private set; }
         public ContentState UploadsState { get; private set; }
@@ -105,6 +108,20 @@ namespace VKSaver.Core.ViewModels
                 }
             }
 
+            if (viewModelState.Count > 0)
+            {
+                object downloadsScroll = null;
+                object uploadsScroll = null;
+
+                viewModelState.TryGetValue(nameof(DownloadsScrollPosition), out downloadsScroll);
+                viewModelState.TryGetValue(nameof(UploadsScrollPosition), out uploadsScroll);
+
+                if (downloadsScroll != null)
+                    DownloadsScrollPosition = (double)downloadsScroll;
+                if (uploadsScroll != null)
+                    UploadsScrollPosition = (double)uploadsScroll;
+            }
+
             _downloadsService.ProgressChanged += OnDownloadProgressChanged;
             _downloadsService.DownloadsCompleted += OnDownloadsUploadsCompleted;
 
@@ -128,6 +145,12 @@ namespace VKSaver.Core.ViewModels
 
                 _uploadsService.ProgressChanged -= OnUploadProgressChanged;
                 _uploadsService.UploadsCompleted -= OnDownloadsUploadsCompleted;
+            }
+
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                viewModelState[nameof(DownloadsScrollPosition)] = DownloadsScrollPosition;
+                viewModelState[nameof(UploadsScrollPosition)] = UploadsScrollPosition;
             }
 
             base.OnNavigatingFrom(e, viewModelState, suspending);

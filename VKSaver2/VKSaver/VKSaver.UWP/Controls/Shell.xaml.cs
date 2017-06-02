@@ -286,6 +286,7 @@ namespace VKSaver.Controls
         {
             return new ObservableCollection<ShellNavigationItem>
             {
+                new ShellNavigationItem {Name = "Менеджер загрузок", DestinationView = "TransferView", Icon = "\uE118"},
                 new ShellNavigationItem { Name = "Настройки", DestinationView = "SettingsView", Icon = "\uE115"},
                 new ShellNavigationItem { Name = "О программе", DestinationView = "AboutView", Icon = "\uE783"}
             };

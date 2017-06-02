@@ -8,7 +8,7 @@
              MinHeight="85"
              MinWidth="85">
 
-    <Grid Background="{ThemeResource ContentDialogBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="CommonStates">
                 <VisualState x:Name="Normal" />
@@ -79,7 +79,7 @@
                      VerticalAlignment="Stretch"
                      Maximum="100"
                      Background="{x:Null}"
-                     Foreground="{StaticResource AccentBrush}" />
+                     Foreground="{StaticResource AccentHighBrush}" />
         <TextBlock x:Name="MusicBlock"
                    HorizontalAlignment="Center"
                    Text="&#xE189;"
