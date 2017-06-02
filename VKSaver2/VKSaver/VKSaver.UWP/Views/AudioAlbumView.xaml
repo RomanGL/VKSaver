@@ -82,32 +82,46 @@
                                 <Thickness>0</Thickness>
                             </Setter.Value>
                         </Setter>
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="470" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="State0">
-                    <VisualState.Setters>
-                        <Setter Target="RootGrid.(FrameworkElement.Margin)">
-                            <Setter.Value>
-                                <Thickness>0</Thickness>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="RootGrid.(FrameworkElement.Width)"
-                                Value="NaN" />
-                        <Setter Target="RootGrid.(RelativePanel.AlignLeftWithPanel)"
-                                Value="True" />
-                        <Setter Target="RootGrid.(RelativePanel.AlignRightWithPanel)"
-                                Value="True" />
-                        <Setter Target="TracksListView.(FrameworkElement.Margin)">
+                        <Setter Target="AudiosListView.(ItemsControl.ItemTemplate)"
+                                Value="{StaticResource VKAudioWideTemplate}" />
+                        <Setter Target="AudiosListView.(FrameworkElement.Margin)">
                             <Setter.Value>
                                 <Thickness>0,24,0,0</Thickness>
                             </Setter.Value>
                         </Setter>
                         <Setter Target="TitlePanel.(FrameworkElement.Margin)">
                             <Setter.Value>
-                                <Thickness>12,24,0,12</Thickness>
+                                <Thickness>12,50,0,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="570" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="State0">
+                    <VisualState.Setters>
+                        <Setter Target="RootGrid.(RelativePanel.AlignLeftWithPanel)"
+                                Value="True" />
+                        <Setter Target="RootGrid.(RelativePanel.AlignRightWithPanel)"
+                                Value="True" />
+                        <Setter Target="RootGrid.(FrameworkElement.Width)"
+                                Value="NaN" />
+                        <Setter Target="RootGrid.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="AudiosListView.(ItemsControl.ItemTemplate)"
+                                Value="{StaticResource VKAudioLongHeightTemplate}" />
+                        <Setter Target="AudiosListView.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0,24,0,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="TitlePanel.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>12,50,0,0</Thickness>
                             </Setter.Value>
                         </Setter>
                     </VisualState.Setters>
