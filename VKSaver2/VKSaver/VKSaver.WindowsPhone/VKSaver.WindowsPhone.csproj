@@ -184,6 +184,9 @@
     </Compile>
     <Compile Include="Controls\PlayerBackground.cs" />
     <Compile Include="Controls\TiltContainer.cs" />
+    <Compile Include="Controls\TransferProgressIndicator.xaml.cs">
+      <DependentUpon>TransferProgressIndicator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WithLoaderFrame.cs" />
     <Compile Include="Converters\HalfSizeConverter.cs" />
     <Compile Include="Converters\OneItemsListSizeConverter.cs" />
@@ -361,6 +364,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\PlayerBackground.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TransferProgressIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
