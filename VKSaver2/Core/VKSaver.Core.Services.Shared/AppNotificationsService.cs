@@ -161,7 +161,7 @@ namespace VKSaver.Core.Services
 
         private const string DEFAULT_NOTIFICATION_SOUND_SOURCE = "ms-appx:///Assets/Sounds/Default.wav";
         private const string WARNING_NOTIFICATION_SOUND_SOURCE = "ms-appx:///Assets/Sounds/Warning.wav";
-        private const string ERROR_NOTIFICATION_SOUND_SOURCE = "ms-appx:///Assets/Sounds/Fail.wav";
+        private const string ERROR_NOTIFICATION_SOUND_SOURCE = "ms-appx:///Assets/Sounds/Error.wav";
         private const string INFO_NOTIFICATION_SOUND_SOURCE = "ms-appx:///Assets/Sounds/Info.wav";
     }
 }

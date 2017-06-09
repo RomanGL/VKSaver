@@ -213,6 +213,9 @@
     <Compile Include="Converters\HamburgerItemClickConverter.cs" />
     <Compile Include="Converters\SecondsToTimeString.cs" />
     <Compile Include="Core\Services\JsonSessionStateService.cs" />
+    <Compile Include="Core\Services\Player\PlaybackManager.cs" />
+    <Compile Include="Core\Services\Player\PlayerTrack.cs" />
+    <Compile Include="Core\Services\Player\TrackChangedEventArgs.cs" />
     <Compile Include="Core\Services\UwpPlayerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData\MainViewSampleData\MainViewSampleData.xaml.cs">
@@ -398,10 +401,6 @@
     <ProjectReference Include="..\..\Core\VKSaver.Core.LinksExtractor.UWP\VKSaver.Core.LinksExtractor.UWP.csproj">
       <Project>{df4da91e-2448-4e8a-a62c-28a9f3aa779d}</Project>
       <Name>VKSaver.Core.LinksExtractor.UWP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tasks\VKSaver.PlayerTask.UWP\VKSaver.PlayerTask.UWP.csproj">
-      <Project>{49b1de23-1521-4447-a51e-e9337d0f0eb1}</Project>
-      <Name>VKSaver.PlayerTask.UWP</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

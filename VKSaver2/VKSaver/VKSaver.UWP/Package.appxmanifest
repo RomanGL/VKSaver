@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp uap3">
   <Identity Name="3693e503-d45e-43a4-bb66-ab70ef412c02" Publisher="CN=roman" Version="2.3.5.0" />
   <mp:PhoneIdentity PhoneProductId="3693e503-d45e-43a4-bb66-ab70ef412c02" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
@@ -26,11 +26,6 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#E52C2C" />
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="VKSaver.PlayerTask.AudioTask">
-          <BackgroundTasks>
-            <Task Type="audio" />
-          </BackgroundTasks>
-        </Extension>
         <uap:Extension Category="windows.fileTypeAssociation" EntryPoint="VKSaver.App">
           <uap:FileTypeAssociation Name="vksaver_music_file">
             <uap:DisplayName>VKSaver Music File</uap:DisplayName>
@@ -47,6 +42,7 @@
     <uap:Capability Name="musicLibrary" />
     <uap:Capability Name="picturesLibrary" />
     <uap:Capability Name="videosLibrary" />
+    <uap3:Capability Name="backgroundMediaPlayback" />
     <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

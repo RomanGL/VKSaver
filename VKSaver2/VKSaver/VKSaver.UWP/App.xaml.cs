@@ -192,7 +192,7 @@ namespace VKSaver
             Container.RegisterType<IProtocolHandler, ProtocolHandler>(new TransientLifetimeManager());
             Container.RegisterType<IHttpFileService, HttpFileService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IVKAdService, VKAdService>(new TransientLifetimeManager());
-            Container.RegisterType<IPlayerService, PlayerService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IPlayerService, UwpPlayerService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IDownloadsService, DownloadsService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IUploadsService, UploadsService>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IVKCaptchaHandler, VKCaptchaHandler>(new TransientLifetimeManager());
@@ -201,7 +201,7 @@ namespace VKSaver
             Container.RegisterType<ISuspendingService, TransferNotificationsService>("s1",
                 new ContainerControlledLifetimeManager());
             Container.RegisterType<ISuspendingService>("s2",
-                new InjectionFactory(c => c.Resolve<PlayerService>()));
+                new InjectionFactory(c => c.Resolve<UwpPlayerService>()));
             Container.RegisterType<ISuspendingService>("s3",
                 new InjectionFactory(c => c.Resolve<DownloadsService>()));
             Container.RegisterType<ISuspendingService>("s4",

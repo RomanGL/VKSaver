@@ -55,8 +55,8 @@ namespace VKSaver.Core.Services
                 _logService.LogException(ex);
                 
                 _database.CloseConnection();
-                var dbFile = await ApplicationData.Current.LocalFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);
-                await dbFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                //var dbFile = await ApplicationData.Current.LocalFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);
+                //await dbFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
             }
             finally
             {
