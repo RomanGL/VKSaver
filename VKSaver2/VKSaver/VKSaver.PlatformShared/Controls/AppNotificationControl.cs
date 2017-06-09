@@ -91,38 +91,51 @@ namespace VKSaver.Controls
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                parent.SizeChanged += Parent_SizeChanged;
-                rootGrid.ManipulationDelta += RootGrid_ManipulationDelta;
-                rootGrid.ManipulationCompleted += RootGrid_ManipulationCompleted;
-                timer.Tick += Timer_Tick;
+                try
+                {
+                    parent.SizeChanged += Parent_SizeChanged;
+                    rootGrid.ManipulationDelta += RootGrid_ManipulationDelta;
+                    rootGrid.ManipulationCompleted += RootGrid_ManipulationCompleted;
+                    timer.Tick += Timer_Tick;
 
-                rootGrid.Width = contentGrid.DesiredSize.Width;
-                ((DoubleAnimation) visibleStoryboard.Children[0]).To = contentGrid.DesiredSize.Width;
-                visibleStoryboard.Begin();
+                    rootGrid.Width = contentGrid.DesiredSize.Width;
+                    ((DoubleAnimation)visibleStoryboard.Children[0]).To = contentGrid.DesiredSize.Width;
+                    visibleStoryboard.Begin();
 
-                timer.Start();
+                    timer.Start();
+                }
+                catch (Exception e)
+                {
+                }
             });
         }
 
         private void RootGrid_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (rootGridTransform.TranslateX < MAX_MANIPULATION_X)
-                manipulationResetStoryboard.Begin();
-            else if (rootGridTransform.TranslateX >= MAX_MANIPULATION_X)
+            try
             {
-                this.IsHitTestVisible = false;
-                parent.SizeChanged -= Parent_SizeChanged;
-                this.ManipulationDelta -= RootGrid_ManipulationDelta;
-                this.ManipulationCompleted -= RootGrid_ManipulationCompleted;
-                timer?.Stop();
-                timer = null;
-
-                manipulationCompletedStoryboard.Completed += delegate
+                if (rootGridTransform.TranslateX < MAX_MANIPULATION_X)
+                    manipulationResetStoryboard.Begin();
+                else if (rootGridTransform.TranslateX >= MAX_MANIPULATION_X)
                 {
-                    var panel = this.GetFirstAncestorOfType<Panel>();
-                    panel.Children.Remove(this);
-                };
-                manipulationCompletedStoryboard.Begin();
+                    this.IsHitTestVisible = false;
+                    this.ManipulationDelta -= RootGrid_ManipulationDelta;
+                    this.ManipulationCompleted -= RootGrid_ManipulationCompleted;
+                    parent.SizeChanged -= Parent_SizeChanged;
+
+                    timer?.Stop();
+                    timer = null;
+
+                    manipulationCompletedStoryboard.Completed += delegate
+                    {
+                        var panel = this.GetFirstAncestorOfType<Panel>();
+                        panel.Children.Remove(this);
+                    };
+                    manipulationCompletedStoryboard.Begin();
+                }
+            }
+            catch (Exception ex)
+            {
             }
         }
 
@@ -153,13 +166,19 @@ namespace VKSaver.Controls
             {
                 if (timer == null) return;
 
-                parent.SizeChanged -= Parent_SizeChanged;
-                this.ManipulationDelta -= RootGrid_ManipulationDelta;
-                this.ManipulationCompleted -= RootGrid_ManipulationCompleted;
-                timer.Stop();
-                timer = null;
-                collapsedStoryboard.Completed += CollapsedStoryboard_Completed;
-                collapsedStoryboard.Begin();
+                try
+                {
+                    parent.SizeChanged -= Parent_SizeChanged;
+                    this.ManipulationDelta -= RootGrid_ManipulationDelta;
+                    this.ManipulationCompleted -= RootGrid_ManipulationCompleted;
+                    timer.Stop();
+                    timer = null;
+                    collapsedStoryboard.Completed += CollapsedStoryboard_Completed;
+                    collapsedStoryboard.Begin();
+                }
+                catch (Exception e)
+                {
+                }
             });
         }
 

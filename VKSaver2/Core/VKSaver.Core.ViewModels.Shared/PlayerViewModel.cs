@@ -2,6 +2,7 @@
 using Prism.Windows.Mvvm;
 using Prism.Commands;
 using Prism.Windows.Navigation;
+using VKSaver.Core.Services.Events;
 #else
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
@@ -28,6 +29,7 @@ using ModernDev.InTouch;
 using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using System.Diagnostics;
+using Prism.Events;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -51,7 +53,8 @@ namespace VKSaver.Core.ViewModels
             ILocService locService,
             IDialogsService dialogsService,
             IAppNotificationsService appNotificationsService,
-            ISettingsService settingsService)
+            ISettingsService settingsService,
+            IEventAggregator eventAggregator)
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, 
                   playerService, locService, navigationService, purchaseService)
         {
@@ -69,6 +72,7 @@ namespace VKSaver.Core.ViewModels
             _lastFmLoginService = lastFmLoginService;
             _appNotificationsService = appNotificationsService;
             _settingsService = settingsService;
+            _eventAggregator = eventAggregator;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
 
@@ -186,6 +190,10 @@ namespace VKSaver.Core.ViewModels
 
             if (!_isSubscribed)
             {
+#if WINDOWS_UWP
+                _eventAggregator.GetEvent<PlayNewTracksEvent>().Subscribe(LoadPlayerState, ThreadOption.UIThread);
+#endif
+
                 _playerService.TrackChanged += PlayerService_TrackChanged;
                 _playerService.PlayerStateChanged += PlayerService_PlayerStateChanged;
                 _timer.Tick += Timer_Tick;
@@ -603,6 +611,7 @@ namespace VKSaver.Core.ViewModels
         private readonly ILastFmLoginService _lastFmLoginService;
         private readonly IAppNotificationsService _appNotificationsService;
         private readonly ISettingsService _settingsService;
+        private readonly IEventAggregator _eventAggregator;
 
         private const string LIKE_INFO_SHOWED_PARAMETER_NAME = "LikeInfo";
     }

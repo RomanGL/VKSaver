@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             MinHeight="85"
-             MinWidth="85">
+             MinHeight="20"
+             MinWidth="20">
 
     <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
         <VisualStateManager.VisualStateGroups>
@@ -79,13 +79,14 @@
                      VerticalAlignment="Stretch"
                      Maximum="100"
                      Background="{x:Null}"
-                     Foreground="{StaticResource AccentHighBrush}" />
+                     Foreground="{StaticResource AccentHighBrush}" 
+                     Style="{StaticResource CustomColorProgressBarStyle}"/>
         <TextBlock x:Name="MusicBlock"
                    HorizontalAlignment="Center"
                    Text="&#xE189;"
                    VerticalAlignment="Center"
                    FontFamily="Segoe UI Symbol"
-                   FontSize="32"
+                   FontSize="28"
                    Visibility="Collapsed"
                    Foreground="White" />
         <TextBlock x:Name="ImageBlock"
@@ -93,7 +94,7 @@
                    Text="&#xE187;"
                    VerticalAlignment="Center"
                    FontFamily="Segoe UI Symbol"
-                   FontSize="42.667"
+                   FontSize="28"
                    Margin="0,0,0,10"
                    Visibility="Collapsed"
                    Foreground="White" />
@@ -102,7 +103,7 @@
                    Text="&#xE173;"
                    VerticalAlignment="Center"
                    FontFamily="Segoe UI Symbol"
-                   FontSize="42.667"
+                   FontSize="28"
                    Visibility="Collapsed"
                    Foreground="White" />
         <TextBlock x:Name="OtherBlock"
@@ -110,7 +111,7 @@
                    Text="&#xE132;"
                    VerticalAlignment="Center"
                    FontFamily="Segoe UI Symbol"
-                   FontSize="42.667"
+                   FontSize="28"
                    Foreground="White" />
     </Grid>
 </UserControl>

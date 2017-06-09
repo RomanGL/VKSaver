@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using Windows.ApplicationModel.Core;
@@ -54,8 +55,8 @@ namespace VKSaver.Controls
                     WindowBlur.Value = 1;
                 }
             };
-
-
+            
+            this.Loaded += Shell_Loaded;
             MenuListView.ItemsSource = _navigationItems;
             MenuListView.ItemClick += NavigationListView_ItemClick;
 
@@ -139,23 +140,62 @@ namespace VKSaver.Controls
 
                 if (NotificationsPanel == null)
                 {
-                    _waitingNotifications.Add(notification);
-                    return;
+                    lock (_lockObject)
+                    {
+                        _waitingNotifications.Add(notification);
+                        if (_waitingNotifications.Count >= 5)
+                            _waitingNotifications.RemoveAt(0);
+
+                        return;
+                    }
                 }
 
                 var anc = new AppNotificationControl { Message = notification };
                 anc.Loaded += (s, e) => anc.Show();
                 anc.Tapped += (s, e) =>
                 {
+                    lock (_lockObject)
+                        _notificationsCount--;
+
                     anc.Hide();
                     if (!String.IsNullOrWhiteSpace(anc.Message.DestinationView))
                         _navigationService.Navigate(anc.Message.DestinationView, anc.Message.NavigationParameter);
 
                     anc.Message.ActionToDo?.Invoke();
                 };
-                notification.HideRequested += (s, e) => anc.Hide();
-                NotificationsPanel.Children.Insert(0, anc);
+                notification.HideRequested += (s, e) =>
+                {
+                    lock (_lockObject)
+                        _notificationsCount--;
+                    anc.Hide();
+                };
+
+                lock (_lockObject)
+                {
+                    NotificationsPanel.Children.Insert(0, anc);
+                    _notificationsCount++;
+
+                    if (_notificationsCount >= 5)
+                    {
+                        //var notificationControl = NotificationsPanel.Children.LastOrDefault() as AppNotificationControl;
+                        NotificationsPanel.Children.RemoveAt(NotificationsPanel.Children.Count - 1);
+                        _notificationsCount--;
+                    }
+                }
+
+                Debug.WriteLine($"Count: {_notificationsCount}");
             });
+        }
+
+        private void Shell_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Loaded -= Shell_Loaded;
+            if (_waitingNotifications.Count > 0)
+            {
+                foreach (var notification in _waitingNotifications)
+                    ShowNotification(notification);
+                _waitingNotifications.Clear();
+            }
         }
 
         private void CurentFrame_Navigated(object sender, NavigationEventArgs e)
@@ -299,7 +339,10 @@ namespace VKSaver.Controls
         private readonly ObservableCollection<ShellNavigationItem> _bottmNavigationItems = GetBottomNavigationCollection();
         private readonly Compositor _compositor;
         private readonly INavigationService _navigationService;
+        private readonly object _lockObject = new object();
+
         private PlayerViewModel _playerVM;
+        private int _notificationsCount = 0;
 
         public enum ChromeStyle
         {

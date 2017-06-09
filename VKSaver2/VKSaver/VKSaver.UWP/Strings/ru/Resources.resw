@@ -1930,4 +1930,7 @@ Eng: upload</comment>
   <data name="PlayerView_LikeTrackInfo_Title" xml:space="preserve">
     <value>Дважды коснитесь изображения альбома</value>
   </data>
+  <data name="TransferView_Title.Text" xml:space="preserve">
+    <value>МЕНЕДЖЕР ЗАГРУЗОК</value>
+  </data>
 </root>

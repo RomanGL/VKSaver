@@ -213,6 +213,7 @@
     <Compile Include="Converters\HamburgerItemClickConverter.cs" />
     <Compile Include="Converters\SecondsToTimeString.cs" />
     <Compile Include="Core\Services\JsonSessionStateService.cs" />
+    <Compile Include="Core\Services\UwpPlayerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData\MainViewSampleData\MainViewSampleData.xaml.cs">
       <DependentUpon>MainViewSampleData.xaml</DependentUpon>
@@ -420,6 +421,11 @@
     <Page Include="Controls\TransferProgressIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\AppNotificationControl.xaml">
       <SubType>Designer</SubType>

@@ -27,6 +27,8 @@
                       Offset="1" />
     </LinearGradientBrush>
 
+    <SolidColorBrush x:Key="ProgressBarIndeterminateForegroundThemeBrush" 
+                     Color="{StaticResource AccentHighColor}"/>
     <SolidColorBrush x:Key="ListAccentHighBrush"
                      Color="{StaticResource AccentHighColor}"
                      Opacity="0.9" />

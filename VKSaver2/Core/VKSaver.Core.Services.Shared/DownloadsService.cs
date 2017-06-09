@@ -52,9 +52,15 @@ namespace VKSaver.Core.Services
 
             _transferGroup = BackgroundTransferGroup.CreateGroup(DOWNLOADS_TRANSFER_GROUP_NAME);
             _transferGroup.TransferBehavior = BackgroundTransferBehavior.Serialized;
-            _downloads = new List<DownloadOperation>(INIT_DOWNLOADS_LIST_CAPACITY);
-            _cts = new Dictionary<Guid, CancellationTokenSource>(INIT_DOWNLOADS_LIST_CAPACITY);
             _musicDownloads = new Dictionary<string, VKSaverAudio>();
+
+#if WINDOWS_UWP
+            _downloads = new List<DownloadOperation>();
+            _cts = new Dictionary<Guid, CancellationTokenSource>();
+#else
+            _downloads = new List<DownloadOperation>(MAX_DOWNLOADS_LIST_CAPACITY);
+            _cts = new Dictionary<Guid, CancellationTokenSource>(MAX_DOWNLOADS_LIST_CAPACITY);
+#endif
         }
 
         /// <summary>
@@ -216,7 +222,7 @@ namespace VKSaver.Core.Services
 
             for (int i = 0; i < items.Count; i++)
             {
-                if (_downloads.Count == INIT_DOWNLOADS_LIST_CAPACITY)
+                if (_downloads.Count == MAX_DOWNLOADS_LIST_CAPACITY)
                 {
                     errors.Add(new DownloadInitError(DownloadInitErrorType.MaxDownloadsExceeded, items[i]));
                     continue;
@@ -323,7 +329,7 @@ namespace VKSaver.Core.Services
             var tokenSource = new CancellationTokenSource();
             var callback = new Progress<DownloadOperation>(OnDownloadProgressChanged);
             _downloads.Add(operation);
-            _cts.Add(operation.Guid, tokenSource);
+            _cts[operation.Guid] = tokenSource;
 
             OnDownloadProgressChanged(operation);
 
@@ -481,6 +487,11 @@ namespace VKSaver.Core.Services
         private const string DOWNLOADS_OTHER_FOLDER_NAME = "VKSaver Other";
         private const string MUSIC_DOWNLOADS_PARAMETER = "MusicDownloads";
         private const string DOWNLOADS_METADATA_FILE_NAME = "DownloadsMetadata.txt";
-        private const int INIT_DOWNLOADS_LIST_CAPACITY = 60;        
+
+#if WINDOWS_UWP
+        private const int MAX_DOWNLOADS_LIST_CAPACITY = 1000;
+#else
+        private const int MAX_DOWNLOADS_LIST_CAPACITY = 60; 
+#endif
     }
 }

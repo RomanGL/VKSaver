@@ -68,7 +68,7 @@ namespace VKSaver.Core.Services
 
             if (notification == null)
             {
-                if (e.Status == BackgroundTransferStatus.Running)
+                if (e.Status == BackgroundTransferStatus.Running && e.ProcessedSize.Bytes > 0)
                 {
                     notification = new AppNotification
                     {

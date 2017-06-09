@@ -42,28 +42,26 @@ namespace VKSaver.Core.Services
                 }
 
                 UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Started });
+                _database.SetMaxVariablesLimit();
 
                 await _database.ClearDatabase();
                 await _database.Initialize();
 
                 await LoadFiles();
                 await UpdateDatabase();
-                ClearUpdateTemp();
-
-                UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Completed });
             }
             catch (Exception ex)
             {
                 _logService.LogException(ex);
-
+                
                 _database.CloseConnection();
                 var dbFile = await ApplicationData.Current.LocalFolder.GetFileAsync(LibraryDatabase.DATABASE_FILE_NAME);
                 await dbFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
-
-                UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Completed });
             }
             finally
             {
+                ClearUpdateTemp();
+                UpdateProgressChanged?.Invoke(this, new DBUpdateProgressChangedEventArgs { Step = DatabaseUpdateStepType.Completed });
                 lock (_lockObject)
                 {
                     _isUpdating = false;

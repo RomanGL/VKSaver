@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\VKAuthorization.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\DatabaseUpdateStepType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\DBUpdateProgressChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\IVKSaverSQLiteAPI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\LibraryDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\LibraryDatabaseCleaner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\SQLiteApiZ.cs" />

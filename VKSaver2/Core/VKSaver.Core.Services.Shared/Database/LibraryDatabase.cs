@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Models.Database;
@@ -164,6 +165,12 @@ namespace VKSaver.Core.Services.Database
             conn.Update(item);
         }
 
+        public void SetMaxVariablesLimit()
+        {
+            var conn = GetDbConnection();
+            _platform.VKSaverSQLiteApi.SetLimit(conn.Handle, 9, 5000);
+        }
+
         public void CloseConnection()
         {
             if (_connection != null)
@@ -180,8 +187,8 @@ namespace VKSaver.Core.Services.Database
             {
                 if (_connection == null)
                 {
-                    var pl = new SQLitePlatformZ();
-                    _connection = new SQLiteConnection(pl, DATABASE_FILE_NAME, SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite);
+                    _platform = new SQLitePlatformZ();
+                    _connection = new SQLiteConnection(_platform, DATABASE_FILE_NAME, SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite);
                 }
 
                 return _connection;
@@ -189,6 +196,7 @@ namespace VKSaver.Core.Services.Database
         }
 
         private SQLiteConnection _connection;
+        private SQLitePlatformZ _platform;
         private readonly object _lockObject = new object();
 
         public const string DATABASE_FILE_NAME = "library.db";

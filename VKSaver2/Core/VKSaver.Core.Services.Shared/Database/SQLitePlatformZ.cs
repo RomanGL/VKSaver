@@ -19,6 +19,7 @@ namespace VKSaver.Core.Services.Database
             get { return ApplicationData.Current.LocalFolder.Path; }
         }
 
+        public IVKSaverSQLiteAPI VKSaverSQLiteApi => SQLiteApi as IVKSaverSQLiteAPI;
         public ISQLiteApi SQLiteApi { get; private set; }
         public IStopwatchFactory StopwatchFactory { get; private set; }
         public IReflectionService ReflectionService { get; private set; }

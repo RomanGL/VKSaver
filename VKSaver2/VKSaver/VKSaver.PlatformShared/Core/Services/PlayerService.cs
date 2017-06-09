@@ -6,6 +6,8 @@ using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Foundation.Collections;
 using Windows.Media.Playback;
+using Prism.Events;
+using VKSaver.Core.Services.Events;
 using static VKSaver.Core.Services.PlayerConstants;
 
 namespace VKSaver.Core.Services
@@ -15,13 +17,18 @@ namespace VKSaver.Core.Services
         public event TypedEventHandler<IPlayerService, PlayerStateChangedEventArgs> PlayerStateChanged;
         public event TypedEventHandler<IPlayerService, TrackChangedEventArgs> TrackChanged;
 
-        public PlayerService(ILogService logService, IPlayerPlaylistService playerPlaylistService,
-            ITracksShuffleService tracksShuffleService, ISettingsService settingsService)
+        public PlayerService(
+            ILogService logService, 
+            IPlayerPlaylistService playerPlaylistService,
+            ITracksShuffleService tracksShuffleService, 
+            ISettingsService settingsService,
+            IEventAggregator eventAggregator)
         {
             _logService = logService;
             _playerPlaylistService = playerPlaylistService;
             _tracksShuffleService = tracksShuffleService;
             _settingsService = settingsService;
+            _eventAggregator = eventAggregator;
 
             _taskStarted = new AutoResetEvent(false);
         }
@@ -197,6 +204,7 @@ namespace VKSaver.Core.Services
             }
 
             SendMessageToBackground(message);
+            _eventAggregator.GetEvent<PlayNewTracksEvent>().Publish();
         }
 
         public void PlayPause()
@@ -327,6 +335,7 @@ namespace VKSaver.Core.Services
         private readonly IPlayerPlaylistService _playerPlaylistService;
         private readonly ITracksShuffleService _tracksShuffleService;
         private readonly ISettingsService _settingsService;
+        private readonly IEventAggregator _eventAggregator;
         private readonly AutoResetEvent _taskStarted;
 
         private const int RPC_S_SERVER_UNAVAILABLE = -2147023174; // 0x800706BA

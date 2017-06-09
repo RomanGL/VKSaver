@@ -40,33 +40,40 @@
                                                     IsPaused="{Binding IsIndicatorPaused}"
                                                     Margin="0,0,10,0"
                                                     Pivot.SlideInAnimationGroup="GroupOne"
-                                                    Width="82"
-                                                    Height="82" />
+                                                    Width="72"
+                                                    Height="72" />
                 <StackPanel Grid.Column="1">
                     <TextBlock Text="{Binding Name}"
-                               FontSize="28"
                                FontWeight="SemiLight"
                                Pivot.SlideInAnimationGroup="GroupOne"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
                                Margin="0,1,0,2" />
                     <ProgressBar Value="{Binding Percentage}"
                                  Maximum="100"
                                  ShowPaused="{Binding IsIndicatorPaused}"
                                  Foreground="{StaticResource AccentHighBrush}"
                                  Pivot.SlideInAnimationGroup="GroupTwo"
-                                 BorderBrush="{x:Null}">
+                                 BorderBrush="{x:Null}"
+                                 Style="{StaticResource CustomColorProgressBarStyle}">
                         <ProgressBar.Background>
                             <SolidColorBrush Color="{StaticResource AccentHighColor}"
                                              Opacity="0.15" />
                         </ProgressBar.Background>
                     </ProgressBar>
                     <TextBlock Text="{Binding Status, Converter={StaticResource TransferStatusConverter}}"
-                               FontSize="18"
                                Margin="0,5,0,0"
-                               Pivot.SlideInAnimationGroup="GroupTwo" />
-                    <TextBlock FontSize="18"
-                               Pivot.SlideInAnimationGroup="GroupThree"
+                               Pivot.SlideInAnimationGroup="GroupTwo" 
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"/>
+                    <TextBlock Pivot.SlideInAnimationGroup="GroupThree"
                                Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
-                               Text="{Binding SizeProgressText}" />
+                               Text="{Binding SizeProgressText}"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -96,6 +103,8 @@
             </Setter>
             <Setter Property="common:ControlExtensions.ShowFlyoutOnHolding"
                     Value="True" />
+            <Setter Property="Margin"
+                    Value="0,0,0,6"/>
         </Style>
 
         <Style x:Key="UploadItemContainerStyle"
@@ -152,6 +161,11 @@
                                 <Thickness>12,50,0,0</Thickness>
                             </Setter.Value>
                         </Setter>
+                        <Setter Target="MainPivot.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0</Thickness>
+                            </Setter.Value>
+                        </Setter>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="570" />
@@ -173,6 +187,11 @@
                         <Setter Target="TitlePanel.(FrameworkElement.Margin)">
                             <Setter.Value>
                                 <Thickness>12,50,0,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="MainPivot.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0</Thickness>
                             </Setter.Value>
                         </Setter>
                     </VisualState.Setters>
@@ -212,26 +231,24 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Rectangle Fill="{ThemeResource AppGradientBrush}"
-                       Width="220"
-                       HorizontalAlignment="Left"
-                       Height="6"
-                       x:Name="TitlePanel"
-                       Margin="24,50,0,0" />
+            <StackPanel x:Name="TitlePanel"
+                        Margin="24,50,0,0">
+                <Rectangle Fill="{ThemeResource AppGradientBrush}"
+                           Width="220"
+                           HorizontalAlignment="Left"
+                           Height="6" />
+                <TextBlock Text="МЕНЕДЖЕР ЗАГРУЗОК"
+                           x:Uid="TransferView_Title"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+            </StackPanel>
 
-            <Pivot SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}"
+            <Pivot x:Name="MainPivot"
+                   SelectedIndex="{Binding SelectedPivotIndex, Mode=TwoWay}"
                    Margin="12,0,12,0"
                    Grid.Row="1">
-                <Pivot.HeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource ToUpperConverter}}"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"/>
-                    </DataTemplate>
-                </Pivot.HeaderTemplate>
-                    
                 <PivotItem Header="загрузки"
                            x:Uid="TransferView_PivotSection_Downloads"
-                           Margin="0,24,0,0">
+                           Margin="0">
                     <controls:ContentContainer State="{Binding DownloadsState}"
                                                x:Uid="TransferView_DownloadsLoader"
                                                LoadingText="Получение списока текущих загрузок..."
@@ -263,7 +280,7 @@
                 </PivotItem>
                 <PivotItem Header="отправки"
                            x:Uid="TransferView_PivotSection_Uploads"
-                           Margin="0,24,0,0">
+                           Margin="0">
                     <controls:ContentContainer State="{Binding UploadsState}"
                                                x:Uid="TransferView_UploadsLoader">
                         <ListView Style="{StaticResource NoSelectionListViewStyle}"
@@ -300,8 +317,7 @@
         </PivotItem>-->
             </Pivot>
 
-            <CommandBar Visibility="Collapsed"
-                        Style="{StaticResource BluredCommandBar}"
+            <CommandBar Style="{StaticResource BluredCommandBar}"
                         Grid.Row="1"
                         VerticalAlignment="Bottom">
                 <CommandBar.Background>

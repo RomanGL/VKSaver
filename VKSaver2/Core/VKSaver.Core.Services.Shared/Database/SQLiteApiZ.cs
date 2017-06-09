@@ -7,7 +7,7 @@ using SQLite.Net;
 
 namespace VKSaver.Core.Services.Database
 {
-    public class SQLiteApiZ : ISQLiteApiExt
+    public class SQLiteApiZ : IVKSaverSQLiteAPI
     {
         public SQLiteApiZ(string tempFolderPath = null)
         {
@@ -87,7 +87,6 @@ namespace VKSaver.Core.Services.Database
         {
             return (Result)SQLite3.Config(option);
         }
-
 
         public byte[] ColumnBlob(IDbStatement stmt, int index)
         {
@@ -210,6 +209,13 @@ namespace VKSaver.Core.Services.Database
                 throw SQLiteException.New(r, SQLite3.GetErrmsg(dbHandle.InternalDbHandle));
             }
             return new DbStatement(stmt);
+        }
+
+        public int SetLimit(IDbHandle db, int id, int value)
+        {
+            var dbHandle = (DbHandle)db;
+            int result = SQLite3.SetLimit(dbHandle.InternalDbHandle, id, value);
+            return result;
         }
 
         public Result Reset(IDbStatement stmt)
@@ -377,6 +383,9 @@ namespace VKSaver.Core.Services.Database
         {
             return Marshal.PtrToStringUni(Errmsg(db));
         }
+
+        [DllImport("sqlite3", EntryPoint = "sqlite3_limit", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SetLimit(IntPtr db, int id, int value);
 
         [DllImport("sqlite3", EntryPoint = "sqlite3_bind_parameter_index", CallingConvention = CallingConvention.Cdecl)]
         public static extern int BindParameterIndex(IntPtr stmt, [MarshalAs(UnmanagedType.LPStr)] string name);

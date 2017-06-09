@@ -32,6 +32,7 @@ using Yandex.Metrica;
 using Yandex.Metrica.Push;
 using Windows.ApplicationModel.Store;
 using Windows.ApplicationModel;
+using Prism.Events;
 
 namespace VKSaver
 {
@@ -141,6 +142,7 @@ namespace VKSaver
             Container.RegisterInstance(this.SessionStateService);
             Container.RegisterInstance<IDispatcherWrapper>(this);
             Container.RegisterInstance<IAppLoaderService>(_appLoaderService);
+            Container.RegisterInstance<IEventAggregator>(this.EventAggregator);
 
             Container.RegisterType<INavigationService, VKSaverNavigationService>(
                 new ContainerControlledLifetimeManager(),
