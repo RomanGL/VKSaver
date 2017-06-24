@@ -29,13 +29,13 @@ namespace VKSaver.Core.ViewModels
     public sealed class MainViewModel : ViewModelBase
     {
         public MainViewModel(
-            InTouch inTouch, 
+            InTouch inTouch,
             LastfmClient lfClient,
             IInTouchWrapper inTouchWrapper,
             INavigationService navigationService,
-            IPurchaseService purchaseService, 
+            IPurchaseService purchaseService,
             IPlayerService playerService,
-            IDownloadsServiceHelper downloadsServiceHelper, 
+            IDownloadsServiceHelper downloadsServiceHelper,
             IImagesCacheService imagesCacheService,
             IAdsService adsService)
         {
@@ -376,7 +376,7 @@ namespace VKSaver.Core.ViewModels
             else
                 _navigationService.Navigate("ArtistInfoView",
                     JsonConvert.SerializeObject(artist, _lastImageSetConverter));
-        } 
+        }
 
         private void OnGoToUserContentCommand(string view) => _navigationService.Navigate("UserContentView", JsonConvert.SerializeObject(
                 new KeyValuePair<string, string>(view, "0")));
@@ -410,11 +410,13 @@ namespace VKSaver.Core.ViewModels
         {
             if (track.Title == VKSAVER_SEE_ALSO_TEXT)
             {
-               OnGoToRecommendedViewCommand();
+                OnGoToRecommendedViewCommand();
                 return;
             }
 
-            await _playerService.PlayNewTracks(RecommendedTracksVK.Select(a => a.ToPlayerTrack()),
+            await _playerService.PlayNewTracks(RecommendedTracksVK
+                .Where(a => a.Title != VKSAVER_SEE_ALSO_TEXT)
+                .Select(a => a.ToPlayerTrack()),
                 RecommendedTracksVK.IndexOf(track));
 
 #if !WINDOWS_UWP
@@ -434,7 +436,9 @@ namespace VKSaver.Core.ViewModels
             await Task.Run(() =>
             {
 #if WINDOWS_UWP
-                tracksToPlay = new List<IPlayerTrack>(UserTracks.Select(a => a.ToPlayerTrack()));
+                tracksToPlay = new List<IPlayerTrack>(UserTracks
+                    .Where(a => a.Title != VKSAVER_SEE_ALSO_TEXT)
+                    .Select(a => a.ToPlayerTrack()));
 #else
                 tracksToPlay = new List<IPlayerTrack>(UserTracks.Count + 1);
                 tracksToPlay.Add(FirstTrack.VKTrack.ToPlayerTrack());
