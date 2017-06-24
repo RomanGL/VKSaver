@@ -1,6 +1,7 @@
 ﻿#if WINDOWS_UWP
 using Prism.Windows.Mvvm;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Windows.Navigation;
 using VKSaver.Core.Services.Events;
 #else
@@ -29,7 +30,6 @@ using ModernDev.InTouch;
 using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 using System.Diagnostics;
-using Prism.Events;
 
 namespace VKSaver.Core.ViewModels
 {
@@ -38,6 +38,7 @@ namespace VKSaver.Core.ViewModels
     {
         public event TypedEventHandler<PlayerViewModel, PlayerItem> TrackChanged;
 
+#if WINDOWS_UWP
         public PlayerViewModel(
             InTouch inTouch,
             IInTouchWrapper inTouchWrapper,
@@ -55,6 +56,30 @@ namespace VKSaver.Core.ViewModels
             IAppNotificationsService appNotificationsService,
             ISettingsService settingsService,
             IEventAggregator eventAggregator)
+            : this(inTouch, inTouchWrapper, navigationService, playerService, playerPlaylistService, imagesCacheService,
+                  tracksShuffleService, downloadsServiceHelper, appLoaderService, lastFmLoginService, purchaseService,
+                  locService, dialogsService, appNotificationsService, settingsService)
+        {
+            _eventAggregator = eventAggregator;
+        }
+#endif
+
+        public PlayerViewModel(
+            InTouch inTouch,
+            IInTouchWrapper inTouchWrapper,
+            INavigationService navigationService, 
+            IPlayerService playerService,
+            IPlayerPlaylistService playerPlaylistService, 
+            IImagesCacheService imagesCacheService,
+            ITracksShuffleService tracksShuffleService, 
+            IDownloadsServiceHelper downloadsServiceHelper,
+            IAppLoaderService appLoaderService, 
+            ILastFmLoginService lastFmLoginService,
+            IPurchaseService purchaseService,
+            ILocService locService,
+            IDialogsService dialogsService,
+            IAppNotificationsService appNotificationsService,
+            ISettingsService settingsService)
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, downloadsServiceHelper, 
                   playerService, locService, navigationService, purchaseService)
         {
@@ -72,7 +97,6 @@ namespace VKSaver.Core.ViewModels
             _lastFmLoginService = lastFmLoginService;
             _appNotificationsService = appNotificationsService;
             _settingsService = settingsService;
-            _eventAggregator = eventAggregator;
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
 
@@ -611,7 +635,10 @@ namespace VKSaver.Core.ViewModels
         private readonly ILastFmLoginService _lastFmLoginService;
         private readonly IAppNotificationsService _appNotificationsService;
         private readonly ISettingsService _settingsService;
+
+#if WINDOWS_UWP
         private readonly IEventAggregator _eventAggregator;
+#endif
 
         private const string LIKE_INFO_SHOWED_PARAMETER_NAME = "LikeInfo";
     }

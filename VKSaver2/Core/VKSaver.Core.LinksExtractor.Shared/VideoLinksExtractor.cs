@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VideoExtractor.Models;
 using VideoExtractor.Vimeo;
+using YoutubeExtractor;
+using VideoType = VideoExtractor.Models.VideoType;
 
 namespace VKSaver.Core.LinksExtractor
 {
@@ -14,8 +15,8 @@ namespace VKSaver.Core.LinksExtractor
         {
             if (videoUrl.Contains("vk.com"))
                 return GetVKLinks(videoUrl);
-            //else if (videoUrl.Contains("youtube"))
-            //    return GetYouTubeLinks(videoUrl);
+            else if (videoUrl.Contains("youtube"))
+                return GetYouTubeLinks(videoUrl);
             else if (videoUrl.Contains("vimeo.com"))
                 return GetVimeoLinks(videoUrl);
             else
@@ -54,7 +55,12 @@ namespace VKSaver.Core.LinksExtractor
         {
             try
             {
-                return null;
+                var links = await DownloadUrlResolver.GetDownloadUrlsAsync(videoUrl.Replace("?__ref=vk.wphone", ""));
+                return links
+                    .Where(v => v.VideoType == YoutubeExtractor.VideoType.Mp4)
+                    .Select(v => new CommonVideoLink {Name = v.Resolution.ToString(), Source = v.DownloadUrl})
+                    .Cast<IVideoLink>()
+                    .ToList();
             }
             catch (Exception)
             {

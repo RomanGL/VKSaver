@@ -21,8 +21,7 @@
     "Win2D.uwp": "1.20.0",
     "XboxMusicSDK": "1.7.0",
     "Yandex.Metrica": "3.4.2",
-    "Yandex.Metrica.Push": "0.3.0",
-    "YoutubeExtractor": "0.10.11"
+    "Yandex.Metrica.Push": "0.3.0"
   },
   "frameworks": {
     "uap10.0": {}

@@ -727,10 +727,6 @@
       <HintPath>..\..\packages\Yandex.Metrica.3.4.1\lib\wpa\Yandex.Metrica.WP8.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="YoutubeExtractor, Version=0.10.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\YoutubeExtractor.0.10.11\lib\portable-net45+win8+wpa81+wp8\YoutubeExtractor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\VKSaver.PlatformShared.be.xlf" />

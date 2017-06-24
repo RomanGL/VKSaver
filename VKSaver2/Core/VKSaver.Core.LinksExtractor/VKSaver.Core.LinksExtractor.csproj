@@ -81,14 +81,16 @@
       <HintPath>..\..\packages\VideoExtractor.1.1.1\lib\portable-net45+win+wpa81+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\VideoExtractor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="YoutubeExtractor, Version=0.10.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\YoutubeExtractor.0.10.11\lib\portable-net45+win8+wpa81+wp8\YoutubeExtractor.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\thirdparty\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor_Portable.csproj">
+      <Project>{1bb4cf4d-3617-4a23-b51a-da7711e6f8eb}</Project>
+      <Name>YoutubeExtractor_Portable</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

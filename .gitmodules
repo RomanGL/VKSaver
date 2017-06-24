@@ -7,3 +7,6 @@
 [submodule "thirdparty/AcrylicToolkitBlur"]
 	path = thirdparty/AcrylicToolkitBlur
 	url = https://github.com/RomanGL/AcrylicToolkitBlur.git
+[submodule "thirdparty/YoutubeExtractor"]
+	path = thirdparty/YoutubeExtractor
+	url = https://github.com/RomanGL/YoutubeExtractor.git

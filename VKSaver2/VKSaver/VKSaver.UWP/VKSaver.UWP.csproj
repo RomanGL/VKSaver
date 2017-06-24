@@ -224,6 +224,9 @@
     <Compile Include="Themes\Common.xaml.cs">
       <DependentUpon>Common.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VideoInfoView.xaml.cs">
+      <DependentUpon>VideoInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TransferView.xaml.cs">
       <DependentUpon>TransferView.xaml</DependentUpon>
     </Compile>
@@ -505,6 +508,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\SwipeableSplitView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoInfoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

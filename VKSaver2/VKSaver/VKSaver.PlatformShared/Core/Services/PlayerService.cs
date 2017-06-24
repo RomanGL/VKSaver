@@ -1,4 +1,9 @@
-﻿using System;
+﻿#if WINDOWS_UWP
+using Prism.Events;
+using VKSaver.Core.Services.Events;
+#endif
+
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -6,8 +11,6 @@ using VKSaver.Core.Models.Player;
 using VKSaver.Core.Services.Interfaces;
 using Windows.Foundation.Collections;
 using Windows.Media.Playback;
-using Prism.Events;
-using VKSaver.Core.Services.Events;
 using static VKSaver.Core.Services.PlayerConstants;
 
 namespace VKSaver.Core.Services
@@ -17,23 +20,34 @@ namespace VKSaver.Core.Services
         public event TypedEventHandler<IPlayerService, PlayerStateChangedEventArgs> PlayerStateChanged;
         public event TypedEventHandler<IPlayerService, TrackChangedEventArgs> TrackChanged;
 
+#if WINDOWS_UWP
+        public PlayerService(
+            ILogService logService,
+            IPlayerPlaylistService playerPlaylistService,
+            ITracksShuffleService tracksShuffleService,
+            ISettingsService settingsService,
+            IEventAggregator eventAggregator)
+            : this(logService, playerPlaylistService, tracksShuffleService, settingsService)
+        {
+            _eventAggregator = eventAggregator;
+        }
+#endif
+
         public PlayerService(
             ILogService logService, 
             IPlayerPlaylistService playerPlaylistService,
             ITracksShuffleService tracksShuffleService, 
-            ISettingsService settingsService,
-            IEventAggregator eventAggregator)
+            ISettingsService settingsService)
         {
             _logService = logService;
             _playerPlaylistService = playerPlaylistService;
             _tracksShuffleService = tracksShuffleService;
             _settingsService = settingsService;
-            _eventAggregator = eventAggregator;
 
             _taskStarted = new AutoResetEvent(false);
         }
 
-        #region Свойства
+#region Свойства
 
         public PlayerState CurrentState
         {
@@ -153,7 +167,7 @@ namespace VKSaver.Core.Services
             }
         }
 
-        #endregion
+#endregion
 
         public void StartService()
         {
@@ -204,7 +218,10 @@ namespace VKSaver.Core.Services
             }
 
             SendMessageToBackground(message);
+
+#if WINDOWS_UWP
             _eventAggregator.GetEvent<PlayNewTracksEvent>().Publish();
+#endif
         }
 
         public void PlayPause()
@@ -335,8 +352,11 @@ namespace VKSaver.Core.Services
         private readonly IPlayerPlaylistService _playerPlaylistService;
         private readonly ITracksShuffleService _tracksShuffleService;
         private readonly ISettingsService _settingsService;
-        private readonly IEventAggregator _eventAggregator;
         private readonly AutoResetEvent _taskStarted;
+
+#if WINDOWS_UWP
+        private readonly IEventAggregator _eventAggregator;
+#endif
 
         private const int RPC_S_SERVER_UNAVAILABLE = -2147023174; // 0x800706BA
     }
