@@ -178,12 +178,12 @@
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <AppBarButton Content=""
+                                    <AppBarButton Content="П"
                                             BorderBrush="{StaticResource AppGradientBrush}"
                                             Foreground="{StaticResource AppGradientBrush}"
                                             Margin="0,0,10,0"
                                             Command="{Binding PlayVideoCommand}" />
-                                    <AppBarButton Content=""
+                                    <AppBarButton Content="З"
                                             BorderBrush="{StaticResource AppGradientBrush}"
                                             Foreground="{StaticResource AppGradientBrush}"
                                             Grid.Column="1"

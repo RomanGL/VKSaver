@@ -1,0 +1,35 @@
+﻿<mvvm:SessionStateAwarePage
+    x:Class="VKSaver.Views.VideoPlayerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VKSaver.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:mvvm="using:Prism.Windows.Mvvm"
+    xmlns:controls="using:VKSaver.Controls"
+    mc:Ignorable="d"
+    mvvm:ViewModelLocator.AutoWireViewModel="True"
+    controls:Shell.IsPlayerBlockVisible="False"
+    controls:Shell.ChromeStyle="Hided">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <MediaElement PosterSource="ms-appx:///Assets/Images/VideoPlayerPoster.png"
+                      Source="{Binding CurrentLink.Source}"
+                      AreTransportControlsEnabled="True"
+                      AutoPlay="True">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="MediaEnded">
+                    <core:InvokeCommandAction Command="{Binding MediaEndedCommand}" />
+                </core:EventTriggerBehavior>
+                <core:EventTriggerBehavior EventName="MediaFailed">
+                    <core:InvokeCommandAction Command="{Binding MediaFailedCommand}" />
+                </core:EventTriggerBehavior>
+                <core:EventTriggerBehavior EventName="MediaOpened">
+                    <core:InvokeCommandAction Command="{Binding MediaOpenedCommand}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </MediaElement>
+    </Grid>
+</mvvm:SessionStateAwarePage>

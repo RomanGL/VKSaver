@@ -236,6 +236,9 @@
     <Compile Include="Views\AudioAlbumView.xaml.cs">
       <DependentUpon>AudioAlbumView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VideoPlayerView.xaml.cs">
+      <DependentUpon>VideoPlayerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VKAudioInfoView.xaml.cs">
       <DependentUpon>VKAudioInfoView.xaml</DependentUpon>
     </Compile>
@@ -526,6 +529,10 @@
     <Page Include="Views\AudioAlbumView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoPlayerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VKAudioInfoView.xaml">
       <Generator>MSBuild:Compile</Generator>

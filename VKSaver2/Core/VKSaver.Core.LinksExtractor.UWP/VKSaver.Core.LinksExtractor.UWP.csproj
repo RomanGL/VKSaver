@@ -204,6 +204,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\VKSaver.Core.LinksExtractor.UWP.rd.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\thirdparty\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor\YoutubeExtractor_Portable.csproj">
+      <Project>{1bb4cf4d-3617-4a23-b51a-da7711e6f8eb}</Project>
+      <Name>YoutubeExtractor_Portable</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\VKSaver.Core.LinksExtractor.Shared\VKSaver.Core.LinksExtractor.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
