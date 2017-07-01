@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AudioAlbumViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AudioSearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AudioViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CachedViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\IMultiSelectCollectionView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\IncrementalLoadingJumpListCollection.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SelectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SelectSearchTypeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpecialMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TopArtistsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TopTracksViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TrackInfoViewModel.cs" />

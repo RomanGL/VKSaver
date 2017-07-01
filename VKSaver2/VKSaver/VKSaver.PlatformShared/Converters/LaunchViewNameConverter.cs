@@ -18,6 +18,8 @@ namespace VKSaver.Converters
             {
                 case "MainView":
                     return _locService.Value["LaunchView_MainView_Name"];
+                case "SpecialMainView":
+                    return _locService.Value["LaunchView_MainView_Name"];
                 case "UserContentView":
                     return _locService.Value["LaunchView_UserContentView_Name"];
                 default:

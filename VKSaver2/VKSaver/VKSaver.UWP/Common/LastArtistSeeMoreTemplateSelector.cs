@@ -16,7 +16,7 @@ namespace VKSaver.Common
             if (artist == null)
                 return null;
 
-            if (artist.Name == MainViewModel.VKSAVER_SEE_ALSO_TEXT)
+            if (artist.Name == BaseMainViewModel.VKSAVER_SEE_ALSO_TEXT)
                 return SeeAlsoTemplate;
             return ArtistTemplate;
         }

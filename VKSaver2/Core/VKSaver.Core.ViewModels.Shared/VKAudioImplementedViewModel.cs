@@ -47,7 +47,7 @@ namespace VKSaver.Core.ViewModels
 
         protected override VKAudioInfo GetAudioInfo(Audio track)
         {
-            return new VKAudioInfo(track.Id, track.OwnerId, track.Title, track.Artist, track.Url, track.Duration);
+            return new VKAudioInfo(track.Id, track.OwnerId, track.Title, track.Artist, track.Url, track.Duration, track.Album?.Thumb);
         }
     }
 }

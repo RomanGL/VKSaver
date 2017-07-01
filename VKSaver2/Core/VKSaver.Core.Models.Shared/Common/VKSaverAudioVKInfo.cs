@@ -25,5 +25,8 @@ namespace VKSaver.Core.Models.Common
 
         [JsonProperty("genre_id")]
         public AudioGenres Genre { get; set; }
+
+        [JsonProperty("thumb")]
+        public string Thumb { get; set; }
     }
 }

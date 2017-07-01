@@ -25,8 +25,8 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // с помощью символа '*', как показано ниже:
 // [сборка: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.3.5.0")]
-[assembly: AssemblyFileVersion("2.3.5.0")]
+[assembly: AssemblyVersion("2.4.0.0")]
+[assembly: AssemblyFileVersion("2.4.0.0")]
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en")]
 

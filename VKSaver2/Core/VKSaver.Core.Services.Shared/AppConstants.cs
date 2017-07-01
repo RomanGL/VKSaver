@@ -16,7 +16,7 @@
         #endregion
 
         public const string DEFAULT_MAIN_VIEW_PARAMETER = "DefaultMainView";
-        public const string DEFAULT_MAIN_VIEW = "MainView";
+        public const string DEFAULT_MAIN_VIEW = "SpecialMainView";
 
         public const int CONNECTION_ERROR_CODE = -1;
 

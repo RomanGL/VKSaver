@@ -76,7 +76,7 @@ namespace VKSaver.Core.ViewModels
             TrackImage = await _imagesCacheService.GetCachedAlbumImage(Track.Title);
             if (TrackImage == null)
             {
-                TrackImage = await _imagesCacheService.CacheAndGetAlbumImage(Track.Title, Track.Artist);
+                TrackImage = await _imagesCacheService.CacheAndGetAlbumImage(Track.Title, Track.AlbumThumb.Photo300);
             }
         }
 

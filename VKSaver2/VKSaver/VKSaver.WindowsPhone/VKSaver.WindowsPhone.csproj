@@ -192,6 +192,9 @@
     <Compile Include="Converters\OneItemsListSizeConverter.cs" />
     <Compile Include="Converters\TwoItemsListSizeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\SpecialMainView.xaml.cs">
+      <DependentUpon>SpecialMainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VKAdInfoView.xaml.cs">
       <DependentUpon>VKAdInfoView.xaml</DependentUpon>
     </Compile>
@@ -388,6 +391,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SpecialMainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -21,12 +21,11 @@ using VKSaver.Core.ViewModels.Common;
 using Windows.UI.Xaml.Navigation;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
-using VKSaver.Core.Services.Json;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class MainViewModel : ViewModelBase
+    public sealed class MainViewModel : BaseMainViewModel
     {
         public MainViewModel(
             InTouch inTouch,
@@ -38,38 +37,18 @@ namespace VKSaver.Core.ViewModels
             IDownloadsServiceHelper downloadsServiceHelper,
             IImagesCacheService imagesCacheService,
             IAdsService adsService)
+            : base(inTouch,
+                  lfClient,
+                  inTouchWrapper,
+                  navigationService,
+                  downloadsServiceHelper,
+                  purchaseService,
+                  adsService,
+                  playerService,
+                  imagesCacheService)
         {
-            _inTouch = inTouch;
-            _lfClient = lfClient;
-            _inTouchWrapper = inTouchWrapper;
-            _navigationService = navigationService;
-            _purchaseService = purchaseService;
-            _playerService = playerService;
-            _downloadsServiceHelper = downloadsServiceHelper;
-            _imagesCacheService = imagesCacheService;
-            _adsService = adsService;
-
-            GoToTrackInfoCommand = new DelegateCommand<LastTrack>(OnGoToTrackInfoCommand);
-            GoToArtistInfoCommand = new DelegateCommand<LastArtist>(OnGoToArtistInfoCommand);
-            GoToTopTracksCommand = new DelegateCommand(OnGoToTopTracksCommand);
-            GoToTopArtistsCommand = new DelegateCommand(OnGoTopArtistsCommand);
-            GoToUserContentCommand = new DelegateCommand<string>(OnGoToUserContentCommand);
-            GoToUserCommCommand = new DelegateCommand<string>(OnGoToUserCommCommand);
-            GoToTransferViewCommand = new DelegateCommand<string>(OnGoToTransferViewCommand);
-            GoToAboutViewCommand = new DelegateCommand(OnGoToAboutViewCommand);
-            GoToRecommendedViewCommand = new DelegateCommand(OnGoToRecommendedViewCommand);
-            GoToPlayerViewCommand = new DelegateCommand(OnGoToPlayerViewCommand);
             PlayRecommendedTracksCommand = new DelegateCommand<Audio>(OnPlayRecommendedTracksCommand);
             PlayUserTracksCommand = new DelegateCommand<Audio>(OnPlayUserTracksCommand);
-            DownloadTrackCommand = new DelegateCommand<Audio>(OnDownloadTrackCommand);
-            GoToSearchCommand = new DelegateCommand(OnGoToSearchCommand);
-            GoToSettingsViewCommand = new DelegateCommand(OnGoToSettingsViewCommand);
-            GoToNewsViewCommand = new DelegateCommand(OnGoToNewsViewCommand);
-            GoToLibraryViewCommand = new DelegateCommand<string>(OnGoToLibraryViewCommand);
-            GoToUploadFileViewCommand = new DelegateCommand(OnGoToUploadFileViewCommand);
-            GoToPopularVKViewCommand = new DelegateCommand(OnGoToPopularVKViewCommand);
-
-            NotImplementedCommand = new DelegateCommand(() => _navigationService.Navigate("AccessDeniedView", null));
         }
 
         public SimpleStateSupportCollection<Audio> UserTracks { get; private set; }
@@ -84,67 +63,10 @@ namespace VKSaver.Core.ViewModels
 #endif
 
         [DoNotNotify]
-        public DelegateCommand<LastTrack> GoToTrackInfoCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<LastArtist> GoToArtistInfoCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToBlankPageCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToTopTracksCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToTopArtistsCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<string> GoToUserContentCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<string> GoToUserCommCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<string> GoToTransferViewCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToAboutViewCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToRecommendedViewCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToPlayerViewCommand { get; private set; }
-
-        [DoNotNotify]
         public DelegateCommand<Audio> PlayRecommendedTracksCommand { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand<Audio> PlayUserTracksCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToSettingsViewCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand NotImplementedCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<Audio> DownloadTrackCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToSearchCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToNewsViewCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand<string> GoToLibraryViewCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToUploadFileViewCommand { get; private set; }
-
-        [DoNotNotify]
-        public DelegateCommand GoToPopularVKViewCommand { get; private set; }
 
 #if !WINDOWS_UWP
         public VKAudioWithImage FirstTrack { get; private set; }
@@ -366,46 +288,6 @@ namespace VKSaver.Core.ViewModels
 
 #endif
 
-        private void OnGoToTrackInfoCommand(LastTrack audio) => _navigationService.Navigate("TrackInfoView",
-            JsonConvert.SerializeObject(audio, _lastImageSetConverter));
-
-        private void OnGoToArtistInfoCommand(LastArtist artist)
-        {
-            if (artist.Name == VKSAVER_SEE_ALSO_TEXT)
-                OnGoTopArtistsCommand();
-            else
-                _navigationService.Navigate("ArtistInfoView",
-                    JsonConvert.SerializeObject(artist, _lastImageSetConverter));
-        }
-
-        private void OnGoToUserContentCommand(string view) => _navigationService.Navigate("UserContentView", JsonConvert.SerializeObject(
-                new KeyValuePair<string, string>(view, "0")));
-        private void OnGoToUserCommCommand(string view) => _navigationService.Navigate("UserCommView", JsonConvert.SerializeObject(
-                new KeyValuePair<string, string>(view, "0")));
-
-        private void OnGoToLibraryViewCommand(string view) => _navigationService.Navigate("LibraryView", view);
-        private void OnGoToUploadFileViewCommand() => _navigationService.Navigate("UploadFileView", null);
-        private void OnGoToTransferViewCommand(string view) => _navigationService.Navigate("TransferView", view);
-        private void OnGoToAboutViewCommand() => _navigationService.Navigate("AboutView", null);
-        private void OnGoToSearchCommand() => _navigationService.Navigate("SelectSearchTypeView", null);
-        private void OnGoToPlayerViewCommand() => _navigationService.Navigate("PlayerView", null);
-        private void OnGoToSettingsViewCommand() => _navigationService.Navigate("SettingsView", null);
-
-        private void OnGoToNewsViewCommand() => NavigateToPaidView("NewsMediaView");
-        private void OnGoToTopTracksCommand() => NavigateToPaidView("TopTracksView");
-        private void OnGoTopArtistsCommand() => NavigateToPaidView("TopArtistsView");
-        private void OnGoToRecommendedViewCommand() => NavigateToPaidView("RecommendedView", "0");
-        private void OnGoToPopularVKViewCommand() => NavigateToPaidView("PopularVKAudioView");
-
-        private void NavigateToPaidView(string viewName, string parameter = null)
-        {
-            if (_purchaseService.IsFullVersionPurchased)
-                _navigationService.Navigate(viewName, parameter);
-            else
-                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
-                    new KeyValuePair<string, string>(viewName, parameter)));
-        }
-
         private async void OnPlayRecommendedTracksCommand(Audio track)
         {
             if (track.Title == VKSAVER_SEE_ALSO_TEXT)
@@ -457,26 +339,6 @@ namespace VKSaver.Core.ViewModels
 #endif
         }
 
-        private async void OnDownloadTrackCommand(Audio track)
-        {
-            await _downloadsServiceHelper.StartDownloadingAsync(track.ToDownloadable());
-        }
-
         private bool _backgroundLoaded;
-
-        private readonly InTouch _inTouch;
-        private readonly LastfmClient _lfClient;
-        private readonly IInTouchWrapper _inTouchWrapper;
-        private readonly INavigationService _navigationService;
-        private readonly IPurchaseService _purchaseService;
-        private readonly IPlayerService _playerService;
-        private readonly IDownloadsServiceHelper _downloadsServiceHelper;
-        private readonly IImagesCacheService _imagesCacheService;
-        private readonly IAdsService _adsService;
-
-        private static readonly LastImageSetConverter _lastImageSetConverter = new LastImageSetConverter();
-
-        private const string HUB_BACKGROUND_DEFAULT = "ms-appx:///Assets/HubBackground.jpg";
-        public const string VKSAVER_SEE_ALSO_TEXT = "VKSaver_SeeAlso_123";
     }
 }

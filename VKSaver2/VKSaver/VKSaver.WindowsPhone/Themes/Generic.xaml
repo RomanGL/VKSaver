@@ -44,7 +44,7 @@
     <Style x:Key="MarginListViewItemStyle"
            TargetType="ListViewItem">
         <Setter Property="Margin"
-                Value="0,0,0,20" />
+                Value="0,0,0,6" />
     </Style>
 
     <DataTemplate x:Key="ListFooterTemplate">
@@ -173,24 +173,53 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WithDurationAudioTemplate">
-        <StackPanel Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
-            <TextBlock Text="{Binding Title}"
-                       Style="{StaticResource BaseItemStyle}"
-                       FontSize="28"
-                       FontWeight="SemiLight"
-                       ContinuumNavigationTransitionInfo.IsExitElement="True"
-                       Pivot.SlideInAnimationGroup="GroupOne" />
-            <TextBlock Text="{Binding Artist}"
-                       Style="{StaticResource BaseItemStyle}"
-                       FontSize="18"
-                       Margin="0,5,0,0"
-                       Pivot.SlideInAnimationGroup="GroupTwo" />
-            <TextBlock Text="{Binding Duration, Converter={StaticResource TimeConverter}}"
-                       Style="{StaticResource BaseItemStyle}"
-                       FontSize="18"
-                       Foreground="{StaticResource AccentBrush}"
-                       Pivot.SlideInAnimationGroup="GroupThree" />
-        </StackPanel>
+        <Grid Width="{Binding Converter={StaticResource OneItemsListSizeConverter}, ConverterParameter='19,0'}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid VerticalAlignment="Top"
+                  HorizontalAlignment="Left">
+                <controls:ImagePlaceholder Width="65"
+                                           Height="65"
+                                           Text="{Binding Title}"
+                                           Source="{Binding Album.Thumb.Photo135}"/>
+                <Border Background="{ThemeResource AccentDarkBrush}"
+                        Padding="3"
+                        Margin="4"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Visibility="{Binding IsHQ, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock Text="HQ"
+                               TextLineBounds="Tight" 
+                               Foreground="White"
+                               Style="{StaticResource BaseTextBlockStyle}"
+                               FontSize="14"
+                               FontWeight="Bold" />
+                </Border>
+            </Grid>
+            
+            <StackPanel Margin="8,0,0,0"
+                        Grid.Column="1">
+                <TextBlock Text="{Binding Title}"
+                           Style="{StaticResource BaseItemStyle}"
+                           FontSize="28"
+                           FontWeight="SemiLight"
+                           ContinuumNavigationTransitionInfo.IsExitElement="True"
+                           Pivot.SlideInAnimationGroup="GroupOne" />
+                <TextBlock Text="{Binding Artist}"
+                           Style="{StaticResource BaseItemStyle}"
+                           FontSize="18"
+                           Margin="0,5,0,0"
+                           Pivot.SlideInAnimationGroup="GroupTwo" />
+                <TextBlock Text="{Binding Duration, Converter={StaticResource TimeConverter}}"
+                           Style="{StaticResource BaseItemStyle}"
+                           FontSize="18"
+                           Foreground="{StaticResource AccentBrush}"
+                           Pivot.SlideInAnimationGroup="GroupThree" />
+            </StackPanel>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="OnlyNameListItemTemplate">

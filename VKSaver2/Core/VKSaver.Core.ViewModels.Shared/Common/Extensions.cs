@@ -68,7 +68,8 @@ namespace VKSaver.Core.ViewModels.Common
                     OwnerID = audio.OwnerId,
                     AlbumID = audio.AlbumId,
                     LyricsID = audio.LyricsId ?? 0,
-                    Genre = audio.GenreId
+                    Genre = audio.GenreId,
+                    Thumb = audio.Album?.Thumb?.Photo300
                 }
             };
         }

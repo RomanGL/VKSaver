@@ -253,7 +253,7 @@ namespace VKSaver.Core.ViewModels
 
         private void OnShowTrackInfoCommand(Audio track)
         {
-            var info = new VKAudioInfo(track.Id, track.OwnerId, track.Title, track.Artist, track.Url, track.Duration);
+            var info = new VKAudioInfo(track.Id, track.OwnerId, track.Title, track.Artist, track.Url, track.Duration, track.Album?.Thumb);
             string parameter = JsonConvert.SerializeObject(info);
 
             if (_purchaseService.IsFullVersionPurchased)

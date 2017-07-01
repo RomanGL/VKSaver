@@ -9,6 +9,7 @@ using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.Web.Http;
 using IF.Lastfm.Core.Api;
+using ModernDev.InTouch;
 
 namespace VKSaver.Core.Services
 {
@@ -40,6 +41,11 @@ namespace VKSaver.Core.Services
             return _albumsQueue.Enqueue(() => CacheAndGetAlbumImageInternal(trackTitle, artistName));
         }
 
+        public Task<string> CacheAndGetAlbumImageUrl(string trackTitle, string thumbUrl)
+        {
+            return _albumsQueue.Enqueue(() => CacheAndGetAlbumImageUrlInternal(trackTitle, thumbUrl));
+        }
+
         public async Task<string> GetCachedArtistImage(string artistName)
         {
             try
@@ -47,8 +53,9 @@ namespace VKSaver.Core.Services
                 if (artistName == LibraryDatabaseService.UNKNOWN_ARTIST_NAME)
                     return null;
 
+                string fileTitle = artistName.Length > 25 ? artistName.Remove(25) : artistName;
                 var folder = await GetCreateFolder(ARTISTS_FOLDER_NAME);
-                return await Get(artistName + ".jpg", folder);
+                return await Get(fileTitle + ".jpg", folder);
             }
             catch (Exception)
             {
@@ -60,8 +67,9 @@ namespace VKSaver.Core.Services
         {
             try
             {
+                string fileTitle = trackTitle.Length > 25 ? trackTitle.Remove(25) : trackTitle;
                 var folder = await GetCreateFolder(ALBUMS_FOLDER_NAME);
-                return await Get(trackTitle + ".jpg", folder);
+                return await Get(fileTitle + ".jpg", folder);
             }
             catch (Exception)
             {
@@ -162,8 +170,9 @@ namespace VKSaver.Core.Services
             {
                 try
                 {
+                    string fileTitle = artistName.Length > 25 ? artistName.Remove(25) : artistName;
                     result = await CacheAndGet(
-                        artistName, 
+                        fileTitle, 
                         imageUrl, 
                         await GetCreateFolder(ARTISTS_FOLDER_NAME));
                 }
@@ -195,14 +204,43 @@ namespace VKSaver.Core.Services
                 {
                     if (response.Content.Images != null)
                     {
+                        string fileTitle = trackTitle.Length > 25 ? trackTitle.Remove(25) : trackTitle;
                         result = await CacheAndGet(
-                            trackTitle,
+                            trackTitle.Remove(25),
                             response.Content.Images.Largest.ToString(),
                             await GetCreateFolder(ALBUMS_FOLDER_NAME));
                     }
                 }
                 catch (Exception) { }
             }
+
+            return result;
+        }
+
+        private async Task<string> CacheAndGetAlbumImageUrlInternal(string trackTitle, string thumbUrl)
+        {
+            string result = null;
+            try
+            {
+                result = await GetCachedAlbumImage(trackTitle);
+            }
+            catch (Exception) { }
+
+            if (result != null)
+                return result;
+
+            if (!_networkInfoService.CanAppUseInternet)
+                return null;
+
+            try
+            {
+                string fileTitle = trackTitle.Length > 25 ? trackTitle.Remove(25) : trackTitle;
+                result = await CacheAndGet(
+                    fileTitle,
+                    thumbUrl,
+                    await GetCreateFolder(ALBUMS_FOLDER_NAME));
+            }
+            catch (Exception) { }
 
             return result;
         }

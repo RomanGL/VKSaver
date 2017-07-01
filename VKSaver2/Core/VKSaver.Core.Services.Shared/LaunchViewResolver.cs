@@ -26,7 +26,17 @@ namespace VKSaver.Core.Services
 
         public string LaunchViewName
         {
-            get { return _settingsService.Get(AppConstants.DEFAULT_MAIN_VIEW_PARAMETER, AppConstants.DEFAULT_MAIN_VIEW); }
+            get
+            {
+                string viewName = _settingsService.Get(AppConstants.DEFAULT_MAIN_VIEW_PARAMETER, AppConstants.DEFAULT_MAIN_VIEW);
+                if (!AvailableLaunchViews.Contains(viewName))
+                {
+                    _settingsService.Set(AppConstants.DEFAULT_MAIN_VIEW_PARAMETER, AppConstants.DEFAULT_MAIN_VIEW);
+                    viewName = AppConstants.DEFAULT_MAIN_VIEW;
+                }
+
+                return viewName;
+            }
             set
             {
                 if (!AvailableLaunchViews.Contains(value))
@@ -36,7 +46,7 @@ namespace VKSaver.Core.Services
             }
         }
 
-        public List<string> AvailableLaunchViews { get { return _availableLaunchViews; } }
+        public List<string> AvailableLaunchViews => _availableLaunchViews;
 
         public void OpenDefaultView()
         {

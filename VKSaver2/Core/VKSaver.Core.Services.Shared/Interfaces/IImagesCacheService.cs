@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ModernDev.InTouch;
 using VKSaver.Core.Models;
 using VKSaver.Core.Models.Common;
 
@@ -15,6 +16,8 @@ namespace VKSaver.Core.Services.Interfaces
         Task<string> GetCachedArtistImage(string artistName);
 
         Task<string> CacheAndGetAlbumImage(string trackTitle, string artistName);
+
+        Task<string> CacheAndGetAlbumImageUrl(string trackTitle, string thumbUrl);
 
         Task<string> GetCachedAlbumImage(string trackTitle);
 

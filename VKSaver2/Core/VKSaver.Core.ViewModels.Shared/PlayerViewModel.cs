@@ -285,7 +285,7 @@ namespace VKSaver.Core.ViewModels
                 return null;
 
             return new VKAudioInfo(track.Track.VKInfo.ID, track.Track.VKInfo.OwnerID, 
-                track.Track.Title, track.Track.Artist, track.Track.Source, track.IsCurrent ? (int)Duration.TotalSeconds : -1);
+                track.Track.Title, track.Track.Artist, track.Track.Source, track.IsCurrent ? (int)Duration.TotalSeconds : -1, null);
         }
 
         protected override bool CanShowTrackInfo(PlayerItem track)
@@ -496,7 +496,11 @@ namespace VKSaver.Core.ViewModels
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                     () => TrackImage = null);
 
-                imagePath = await _imagesCacheService.CacheAndGetAlbumImage(track.Title, track.Artist);
+                if (track.VKInfo != null)
+                    imagePath = await _imagesCacheService.CacheAndGetAlbumImageUrl(track.Title, track.VKInfo.Thumb);
+
+                if (imagePath == null)
+                    imagePath = await _imagesCacheService.CacheAndGetAlbumImage(track.Title, track.Artist);
             }
 
             if (imagePath != null && ReferenceEquals(CurrentTrack.Track, track))

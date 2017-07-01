@@ -1,16 +1,18 @@
 ﻿using System;
+using ModernDev.InTouch;
 
 namespace VKSaver.Core.Models.Common
 {
     public sealed class VKAudioInfo
     {
-        public VKAudioInfo(int id, int ownerId, string title, string artist, string source, int duration)
+        public VKAudioInfo(int id, int ownerId, string title, string artist, string source, int duration, Thumb albumThumb)
             : this(id, ownerId)
         {
             Title = title;
             Artist = artist;
             Source = source;
             Duration = duration;
+            AlbumThumb = albumThumb;
         }
 
         public VKAudioInfo(int id, int ownerId)
@@ -29,5 +31,6 @@ namespace VKSaver.Core.Models.Common
         public string Artist { get; set; }
         public string Source { get; set; }
         public int Duration { get; set; }
+        public Thumb AlbumThumb { get; set; }
     }
 }
