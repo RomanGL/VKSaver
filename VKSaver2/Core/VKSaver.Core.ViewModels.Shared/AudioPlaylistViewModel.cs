@@ -21,13 +21,14 @@ using VKSaver.Core.Services.Interfaces;
 using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.Services.Common;
 using Windows.UI.Xaml.Navigation;
+using VKSaver.Core.Services;
 
 namespace VKSaver.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public sealed class AudioAlbumViewModel : VKAudioImplementedViewModel
+    public sealed class AudioPlaylistViewModel : VKAudioImplementedViewModel
     {
-        public AudioAlbumViewModel(
+        public AudioPlaylistViewModel(
             INavigationService navigationService, 
             IPlayerService playerService,
             IDownloadsServiceHelper downloadsServiceHelper, 
@@ -36,10 +37,13 @@ namespace VKSaver.Core.ViewModels
             IDialogsService dialogsService, 
             ILocService locService,
             IInTouchWrapper inTouchWrapper,
-            IPurchaseService purchaseService) 
+            IPurchaseService purchaseService,
+            IImagesCacheService imagesCacheService) 
             : base(inTouch, appLoaderService, dialogsService, inTouchWrapper, 
                   downloadsServiceHelper, playerService, locService, navigationService, purchaseService)
         {
+            _imagesCacheService = imagesCacheService;
+
             IsReloadButtonSupported = true;
 
             DeleteAudioCommand = new DelegateCommand<Audio>(OnDeleteAudioCommand, CanDeleteAudio);
@@ -48,7 +52,9 @@ namespace VKSaver.Core.ViewModels
 
         public double AudiosScrollPosition { get; set; }
 
-        public AudioAlbum Album { get; private set; }
+        public string ArtistImage { get; set; }
+
+        public Playlist Playlist { get; private set; }
 
         public PaginatedCollection<Audio> Tracks { get; private set; }
 
@@ -60,7 +66,7 @@ namespace VKSaver.Core.ViewModels
 
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            Album = JsonConvert.DeserializeObject<AudioAlbum>(e.Parameter.ToString());
+            Playlist = JsonConvert.DeserializeObject<Playlist>(e.Parameter.ToString());
 
             if (viewModelState.Count > 0)
             {
@@ -84,6 +90,9 @@ namespace VKSaver.Core.ViewModels
 
             if (Tracks.Count > 0)
                 SetDefaultMode();
+
+            if (!String.IsNullOrWhiteSpace(Playlist.MainArtist))
+                LoadArtistImage(Playlist.MainArtist);
 
             base.OnNavigatedTo(e, viewModelState);
         }
@@ -113,7 +122,7 @@ namespace VKSaver.Core.ViewModels
 
         protected override bool AddSelectedToMyAudiosSupported()
         {
-            return Album.OwnerId != _inTouch.Session.UserId;
+            return Playlist.OwnerId != _inTouch.Session.UserId;
         }
 
         protected override IList GetSelectionList()
@@ -146,6 +155,18 @@ namespace VKSaver.Core.ViewModels
             DeleteSelectedCommand.RaiseCanExecuteChanged();
         }
 
+        private async void LoadArtistImage(string artistName)
+        {
+            ArtistImage = await _imagesCacheService.GetCachedArtistImage(artistName);
+            if (ArtistImage == null)
+            {
+                ArtistImage = AppConstants.DEFAULT_PLAYER_BACKGROUND_IMAGE;
+                var img = await _imagesCacheService.CacheAndGetArtistImage(artistName);
+                if (img != null)
+                    ArtistImage = img;
+            }
+        }
+
         private bool CanDeleteAudio(Audio audio)
         {
             return audio != null && audio.OwnerId == _inTouch.Session.UserId;
@@ -154,7 +175,8 @@ namespace VKSaver.Core.ViewModels
         private async Task<IEnumerable<Audio>> LoadMoreAudios(uint page)
         {
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.Get(
-                Album.OwnerId, (int)Album.Id, count: 50, offset: _offset));
+                Playlist.OwnerId, (int)Playlist.Id, count: 50, offset: _offset,
+                accessKey: Playlist.AccessKey));
 
             if (response.IsError)
                 throw new Exception(response.Error.ToString());
@@ -261,5 +283,7 @@ namespace VKSaver.Core.ViewModels
         }
 
         private int _offset;
+
+        private readonly IImagesCacheService _imagesCacheService;
     }
 }

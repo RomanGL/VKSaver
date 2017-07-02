@@ -127,6 +127,15 @@ namespace VKSaver.Core.ViewModels
         protected void OnGoToUserContentCommand(string view) => _navigationService.Navigate("UserContentView", JsonConvert.SerializeObject(
             new KeyValuePair<string, string>(view, "0")));
 
+        protected void NavigateToPaidView(string viewName, string parameter = null)
+        {
+            if (_purchaseService.IsFullVersionPurchased)
+                _navigationService.Navigate(viewName, parameter);
+            else
+                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
+                    new KeyValuePair<string, string>(viewName, parameter)));
+        }
+
         #endregion
 
         #region Private methods
@@ -162,15 +171,6 @@ namespace VKSaver.Core.ViewModels
         private async void OnDownloadTrackCommand(Audio track)
         {
             await _downloadsServiceHelper.StartDownloadingAsync(track.ToDownloadable());
-        }
-
-        private void NavigateToPaidView(string viewName, string parameter = null)
-        {
-            if (_purchaseService.IsFullVersionPurchased)
-                _navigationService.Navigate(viewName, parameter);
-            else
-                _navigationService.Navigate("PurchaseView", JsonConvert.SerializeObject(
-                    new KeyValuePair<string, string>(viewName, parameter)));
         }
 
         #endregion

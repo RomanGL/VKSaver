@@ -1,4 +1,4 @@
-﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.AudioAlbumView"
+﻿<mvvm:VisualStateAwarePage x:Class="VKSaver.Views.AudioPlaylistView"
                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                            xmlns:local="using:VKSaver.Views"
@@ -15,7 +15,7 @@
                            mvvm:ViewModelLocator.AutoWireViewModel="True"
                            mc:Ignorable="d"
                            Style="{StaticResource DefaultPageStyle}" 
-                           d:DataContext="{d:DesignInstance viewModels:AudioAlbumViewModel}">
+                           d:DataContext="{d:DesignInstance viewModels:AudioPlaylistViewModel}">
 
     <mvvm:VisualStateAwarePage.Resources>
         <common:DataContextProxy x:Key="DataContextProxy" />
@@ -60,6 +60,11 @@
     </mvvm:VisualStateAwarePage.BottomAppBar>
     
     <Grid>
+        <controls:PlayerBackground ArtistImage="{Binding ArtistImage}"
+                                   NoAlbums="True"
+                                   DefaultTheme="{ThemeResource PagePlayerTheme}"
+                                   DefaultShapesType="VerticalTriangles"/>
+        
         <Grid>
             <Grid.ChildrenTransitions>
                 <TransitionCollection>
@@ -74,11 +79,11 @@
 
             <StackPanel Grid.Row="0"
                         Margin="19,0,0,0">
-                <TextBlock Text="ВКАЧАЙ"
-                           x:Uid="AppName"
+                <TextBlock Text="{Binding Playlist.Title, Converter={StaticResource ToUpperConverter}}"
                            Style="{ThemeResource TitleTextBlockStyle}"
                            Margin="0,12,0,0" />
-                <TextBlock Text="{Binding Album.Title, Converter={StaticResource ToLowerConverter}}"
+                <TextBlock Text="подробнее"
+                           x:Uid="DetailsView_Subtitle"
                            Margin="-3,-6.5,0,26.5"
                            Style="{ThemeResource HeaderTextBlockStyle}" />
             </StackPanel>
@@ -91,6 +96,53 @@
                       SelectionMode="{Binding IsSelectionMode, Converter={StaticResource BoolToSelectionModeConverter}}"
                       Grid.Row="1"
                       Margin="19,0,0,0">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,0,0,25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding Playlist.MainArtist}"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       Visibility="{Binding Playlist.MainArtist, Converter={StaticResource NotNullToVisibilityConverter}}"
+                                       FontWeight="Black"
+                                       TextLineBounds="Tight"
+                                       FontSize="55"
+                                       CharacterSpacing="-5"
+                                       TextWrapping="NoWrap" 
+                                       Grid.ColumnSpan="2"
+                                       Margin="0,0,0,25"/>
+
+                            <controls:ImagePlaceholder Source="{Binding Playlist.Photo.Photo300}"
+                                                       Thumbs="{Binding Playlist.Thumbs}"
+                                                       Text="{Binding Playlist.Title}"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Top"
+                                                       Height="120"
+                                                       Width="120"
+                                                       Grid.Row="1"/>
+
+                            <StackPanel Grid.Column="1"
+                                        Grid.Row="1"
+                                        Margin="6,0,0,0">
+                                <TextBlock Text="{Binding Playlist.Description}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           TextWrapping="WrapWholeWords"
+                                           TextTrimming="CharacterEllipsis"
+                                           MaxLines="4"
+                                           LineStackingStrategy="BaselineToBaseline"
+                                           Margin="0,-3,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                
                 <ListView.FooterTemplate>
                     <DataTemplate>
                         <controls:StateBlock State="{Binding Tracks.ContentState}"

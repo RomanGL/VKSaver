@@ -4,9 +4,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace VKSaver.Views
 {
-    public sealed partial class AudioAlbumView : VisualStateAwarePage
+    public sealed partial class AudioPlaylistView : VisualStateAwarePage
     {
-        public AudioAlbumView()
+        public AudioPlaylistView()
         {
             InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;

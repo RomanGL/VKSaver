@@ -21,7 +21,7 @@
         public const int CONNECTION_ERROR_CODE = -1;
 
         public const string CURRENT_LIBRARY_INDEX_PARAMETER = "CurrentLibraryIndex";
-        public const int CURRENT_LIBRARY_INDEX = 1;
+        public const int CURRENT_LIBRARY_INDEX = 2;
 
         public const string LAST_MUSIC_CHANGING_DATE = "LastMusicChangingDate";
 

@@ -219,14 +219,14 @@ namespace VKSaver.Core.ViewModels
 
                 PageTitle = (string)viewModelState[nameof(PageTitle)];
 
-                _audioAlbumsOffset = (int)viewModelState[nameof(_audioAlbumsOffset)];
+                _audioPlaylistsOffset = (int)viewModelState[nameof(_audioPlaylistsOffset)];
                 _audiosOffset = (int)viewModelState[nameof(_audiosOffset)];
                 _videoAlbumsOffset = (int)viewModelState[nameof(_videoAlbumsOffset)];
                 _videosOffset = (int)viewModelState[nameof(_videosOffset)];
                 _docsOffset = (int)viewModelState[nameof(_docsOffset)];
 
-                var audioAlbums = JsonConvert.DeserializeObject<List<AudioAlbum>>(
-                    viewModelState["AudioAlbums"].ToString());
+                var audioPlaylists = JsonConvert.DeserializeObject<List<Playlist>>(
+                    viewModelState["AudioPlaylists"].ToString());
                 var audios = JsonConvert.DeserializeObject<List<Audio>>(
                     viewModelState["Audios"].ToString());
 
@@ -235,7 +235,7 @@ namespace VKSaver.Core.ViewModels
                 audiosSection.CollectionChanged += Downloadable_CollectionChanged;
 
                 AudioGroup = new IncrementalLoadingJumpListCollection();
-                AudioGroup.Add(new PaginatedJumpListGroup<object>(audioAlbums, LoadMoreAudioAlbums) { Key = "albums" });
+                AudioGroup.Add(new PaginatedJumpListGroup<object>(audioPlaylists, LoadMoreAudioPlaylists) { Key = "albums" });
                 AudioGroup.Add(audiosSection);
 
                 var videoAlbums = JsonConvert.DeserializeObject<List<VideoAlbum>>(
@@ -273,7 +273,7 @@ namespace VKSaver.Core.ViewModels
                 audiosSection.CollectionChanged += Downloadable_CollectionChanged;
 
                 AudioGroup = new IncrementalLoadingJumpListCollection();
-                AudioGroup.Add(new PaginatedJumpListGroup<object>(LoadMoreAudioAlbums) { Key = "albums" });
+                AudioGroup.Add(new PaginatedJumpListGroup<object>(LoadMoreAudioPlaylists) { Key = "albums" });
                 AudioGroup.Add(audiosSection);
 
                 VideoGroup = new IncrementalLoadingJumpListCollection();
@@ -284,7 +284,7 @@ namespace VKSaver.Core.ViewModels
                 Documents.CollectionChanged += Downloadable_CollectionChanged;
 
                 _audiosOffset = 0;
-                _audioAlbumsOffset = 0;
+                _audioPlaylistsOffset = 0;
                 _videosOffset = 0;
                 _videoAlbumsOffset = 0;
                 _docsOffset = 0;
@@ -317,7 +317,7 @@ namespace VKSaver.Core.ViewModels
 
             if (e.NavigationMode == NavigationMode.New)
             {
-                var audioAlbums = AudioGroup.FirstOrDefault(g => (string)g.Key == "albums");
+                var audioPlaylists = AudioGroup.FirstOrDefault(g => (string)g.Key == "albums");
                 var audios = AudioGroup.FirstOrDefault(g => (string)g.Key == "audios");
 
                 if (audios != null)
@@ -325,8 +325,8 @@ namespace VKSaver.Core.ViewModels
                     audios.CollectionChanged -= Downloadable_CollectionChanged;
                     viewModelState["Audios"] = JsonConvert.SerializeObject(audios.ToList());
                 }
-                if (audioAlbums != null)
-                    viewModelState["AudioAlbums"] = JsonConvert.SerializeObject(audioAlbums.ToList());
+                if (audioPlaylists != null)
+                    viewModelState["AudioPlaylists"] = JsonConvert.SerializeObject(audioPlaylists.ToList());
 
                 var videoAlbums = VideoGroup.FirstOrDefault(g => (string)g.Key == "albums");
                 var videos = VideoGroup.FirstOrDefault(g => (string)g.Key == "videos");
@@ -342,7 +342,7 @@ namespace VKSaver.Core.ViewModels
                 viewModelState[nameof(LastPivotIndex)] = LastPivotIndex;
                 viewModelState[nameof(PageTitle)] = PageTitle;
                 viewModelState[nameof(_audiosOffset)] = _audiosOffset;
-                viewModelState[nameof(_audioAlbumsOffset)] = _audioAlbumsOffset;
+                viewModelState[nameof(_audioPlaylistsOffset)] = _audioPlaylistsOffset;
                 viewModelState[nameof(_videosOffset)] = _videosOffset;
                 viewModelState[nameof(_videoAlbumsOffset)] = _videoAlbumsOffset;
                 viewModelState[nameof(_docsOffset)] = _docsOffset;
@@ -386,21 +386,20 @@ namespace VKSaver.Core.ViewModels
             }
         }
 
-        private async Task<IEnumerable<object>> LoadMoreAudioAlbums(uint page)
+        private async Task<IEnumerable<object>> LoadMoreAudioPlaylists(uint page)
         {
-            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetAlbums(
-                _userID == 0 ? null : (int?)_userID,
-                count: 50, offset: _audioAlbumsOffset));
+            var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetPlaylists(
+                _userID == 0 ? null : (int?)_userID, 50, _audioPlaylistsOffset));
 
             if (response.IsError)
             {
                 if (response.Error.Message.StartsWith("Access"))
-                    return new List<AudioAlbum>(0);
+                    return new List<Playlist>(0);
                 throw new Exception(response.Error.ToString());
             }
             else
             {
-                _audioAlbumsOffset += 50;
+                _audioPlaylistsOffset += 50;
                 return response.Data.Items;
             }
         }
@@ -649,7 +648,7 @@ namespace VKSaver.Core.ViewModels
             switch (LastPivotIndex)
             {
                 case 0:
-                    _audioAlbumsOffset = 0;
+                    _audioPlaylistsOffset = 0;
                     _audiosOffset = 0;
                     AudioGroup.Refresh();
                     break;
@@ -747,9 +746,9 @@ namespace VKSaver.Core.ViewModels
 
         private async void OnExecuteTracksListItemCommand(object item)
         {     
-            if (item is AudioAlbum)
+            if (item is Playlist)
             {
-                _navigationService.Navigate("AudioAlbumView", JsonConvert.SerializeObject(item));
+                _navigationService.Navigate("AudioPlaylistView", JsonConvert.SerializeObject(item));
             }
             else if (item is Audio)
             {
@@ -875,10 +874,10 @@ namespace VKSaver.Core.ViewModels
                 var doc = (Doc)obj;
                 return doc.OwnerId == _inTouch.Session.UserId;
             }
-            else if (obj is AudioAlbum)
+            else if (obj is Playlist)
             {
-                var audioAlbum = (AudioAlbum)obj;
-                return audioAlbum.OwnerId == _inTouch.Session.UserId;
+                var playlist = (Playlist)obj;
+                return playlist.OwnerId == _inTouch.Session.UserId;
             }
             else if (obj is VideoAlbum)
             {
@@ -938,7 +937,7 @@ namespace VKSaver.Core.ViewModels
                     Documents.Remove((Doc)obj);
                 }
             }
-            else if (obj is AudioAlbum)
+            else if (obj is Playlist)
             {
                 if (!isSuccess)
                 {
@@ -947,8 +946,8 @@ namespace VKSaver.Core.ViewModels
                 }
                 else
                 {
-                    var audioAlbums = AudioGroup.FirstOrDefault(g => (string)g.Key == "albums");
-                    audioAlbums?.Remove(obj);
+                    var playlistsGroup = AudioGroup.FirstOrDefault(g => (string)g.Key == "albums");
+                    playlistsGroup?.Remove(obj);
                 }
             }
             else if (obj is VideoAlbum)
@@ -1144,11 +1143,11 @@ namespace VKSaver.Core.ViewModels
                 response = await _inTouchWrapper.ExecuteRequest(_inTouch.Docs.Delete(
                     doc.OwnerId, doc.Id));
             }
-            else if (obj is AudioAlbum)
+            else if (obj is Playlist)
             {
-                var audioAlbum = (AudioAlbum)obj;
-                response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.DeleteAlbum(
-                    (int)audioAlbum.Id));
+                var playlist = (Playlist)obj;
+                response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.DeletePlaylist(
+                    (int)playlist.Id));
             }
             else if (obj is VideoAlbum)
             {
@@ -1205,7 +1204,7 @@ namespace VKSaver.Core.ViewModels
         private int _userID;
         private int _audiosOffset;
         private int _videosOffset;
-        private int _audioAlbumsOffset;
+        private int _audioPlaylistsOffset;
         private int _videoAlbumsOffset;
         private int _docsOffset;
 

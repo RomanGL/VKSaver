@@ -18,6 +18,29 @@
     <Page.Resources>
         <common:DataContextProxy x:Key="DataContextProxy" />
 
+        <DataTemplate x:Key="TopArtistsFooterTemplate">
+            <Border Height="150"
+                    Width="150"
+                    Background="{StaticResource AccentBrush}"
+                    VerticalAlignment="Top">
+                <TextBlock Text="показать больше"
+                           x:Uid="MainView_ShowMore"
+                           FontSize="28"
+                           Style="{StaticResource BaseTextBlockStyle}"
+                           TextWrapping="WrapWholeWords"
+                           FontWeight="SemiLight"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Margin="10,0,0,5"
+                           Foreground="White" />
+                <i:Interaction.Behaviors>
+                    <c:EventTriggerBehavior EventName="Tapped">
+                        <c:InvokeCommandAction Command="{Binding GoToTopArtistsCommand}" />
+                    </c:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+            </Border>
+        </DataTemplate>
+        
         <Style x:Key="AudioItemContainerStyle" TargetType="ListViewItem"
                BasedOn="{StaticResource MarginListViewItemStyle}">
             <Setter Property="FlyoutBase.AttachedFlyout">
@@ -158,6 +181,35 @@
                     </ScrollViewer>
                 </DataTemplate>
             </HubSection>
+            <HubSection Header="ЛУЧШИЕ ИСПОЛНИТЕЛИ"
+                        x:Uid="MainView_HubSection_TopArtists"
+                        Width="Auto">
+                <DataTemplate>
+                    <controls:ContentContainer State="{Binding TopArtistsLF.ContentState}"
+                                               ReloadCommand="{Binding TopArtistsLF.LoadCommand}"
+                                               x:Uid="TopArtistsLoader">
+                        <GridView SelectionMode="None"
+                                  Width="Auto"
+                                  ItemsSource="{Binding TopArtistsLF}"
+                                  ItemTemplate="{StaticResource TopArtistItem}"
+                                  FooterTemplate="{StaticResource TopArtistsFooterTemplate}"
+                                  IncrementalLoadingTrigger="None"
+                                  IsItemClickEnabled="True">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid MaximumRowsOrColumns="3" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <i:Interaction.Behaviors>
+                                <c:EventTriggerBehavior EventName="ItemClick">
+                                    <c:InvokeCommandAction Command="{Binding GoToArtistInfoCommand}"
+                                                           InputConverter="{Binding Source={StaticResource ItemClickEventArgsConverter}}" />
+                                </c:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                        </GridView>
+                    </controls:ContentContainer>
+                </DataTemplate>
+            </HubSection>
             <HubSection HorizontalAlignment="Left"
                         Header="{Binding NewAudiosItem.Title, Converter={StaticResource ToUpperConverter}}">
                 <DataTemplate>
@@ -173,6 +225,27 @@
                         <i:Interaction.Behaviors>
                             <c:EventTriggerBehavior EventName="ItemClick">
                                 <c:InvokeCommandAction Command="{Binding PlayNewAudiosCommand}"
+                                                       InputConverter="{StaticResource ItemClickEventArgsConverter}" />
+                            </c:EventTriggerBehavior>
+                        </i:Interaction.Behaviors>
+                    </ListView>
+                </DataTemplate>
+            </HubSection>
+            <HubSection HorizontalAlignment="Left"
+                        Header="{Binding NewAlbumsItem.Title, Converter={StaticResource ToUpperConverter}}">
+                <DataTemplate>
+                    <ListView ItemsSource="{Binding NewAlbumsItem.Playlists}"
+                              ItemTemplate="{StaticResource PlaylistTemplate}"
+                              FooterTemplate="{StaticResource ListFooterTemplate}"
+                              ItemContainerStyle="{StaticResource MarginListViewItemStyle}"
+                              IncrementalLoadingTrigger="None"
+                              SelectionMode="None"
+                              IsSwipeEnabled="False"
+                              IsItemClickEnabled="True">
+
+                        <i:Interaction.Behaviors>
+                            <c:EventTriggerBehavior EventName="ItemClick">
+                                <c:InvokeCommandAction Command="{Binding OpenPlaylistCommand}"
                                                        InputConverter="{StaticResource ItemClickEventArgsConverter}" />
                             </c:EventTriggerBehavior>
                         </i:Interaction.Behaviors>

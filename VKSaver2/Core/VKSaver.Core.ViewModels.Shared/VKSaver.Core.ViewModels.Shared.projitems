@@ -14,7 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ArtistAlbumViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ArtistInfoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ArtistsSearchViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AudioAlbumViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AudioPlaylistViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AudioSearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AudioViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseMainViewModel.cs" />

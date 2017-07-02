@@ -87,11 +87,13 @@
 
         <common:AudioGroupTemplateSelector x:Key="AudioGroupTemplateSelector"
                                            AudioTemplate="{StaticResource WithDurationAudioTemplate}"
-                                           AlbumTemplate="{StaticResource OnlyTitleListItemTemplate}" />
+                                           PlaylistTemplate="{StaticResource PlaylistTemplate}" />
         <common:VideoGroupTemplateSelector x:Key="VideoGroupTemplateSelector"
                                            AlbumTemplate="{StaticResource OnlyTitleListItemTemplate}"
                                            VideoTemplate="{StaticResource VideoTemplate}" />
 
+        <!-- Item Container Styles -->
+        
         <Style x:Key="AudioItemTemplate"
                TargetType="ListViewItem"
                BasedOn="{StaticResource MarginListViewItemStyle}">
@@ -168,9 +170,8 @@
         </Style>
 
         <Style x:Key="AlbumItemStyle"
-               TargetType="ListViewItem">
-            <Setter Property="Margin"
-                    Value="0,0,0,5" />
+               TargetType="ListViewItem"
+               BasedOn="{StaticResource MarginListViewItemStyle}">
             <Setter Property="Template"
                     Value="{StaticResource NoSelectionListViewItem}" />
             <Setter Property="FlyoutBase.AttachedFlyout">
@@ -193,6 +194,8 @@
         <common:ContentViewItemContainerStyleSelector x:Key="VideoItemContainerSelector"
                                                       DefaultStyle="{StaticResource VideoItemTemplate}"
                                                       AlbumStyle="{StaticResource AlbumItemStyle}" />
+        <!-- Item Container Styles -->
+        
     </mvvm:VisualStateAwarePage.Resources>
 
     <mvvm:VisualStateAwarePage.BottomAppBar>

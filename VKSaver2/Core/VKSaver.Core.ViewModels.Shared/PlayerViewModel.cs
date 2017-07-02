@@ -285,7 +285,8 @@ namespace VKSaver.Core.ViewModels
                 return null;
 
             return new VKAudioInfo(track.Track.VKInfo.ID, track.Track.VKInfo.OwnerID, 
-                track.Track.Title, track.Track.Artist, track.Track.Source, track.IsCurrent ? (int)Duration.TotalSeconds : -1, null);
+                track.Track.Title, track.Track.Artist, track.Track.Source, track.IsCurrent ? (int)Duration.TotalSeconds : -1, 
+                new Thumb { Photo300 = track.Track.VKInfo.Thumb });
         }
 
         protected override bool CanShowTrackInfo(PlayerItem track)

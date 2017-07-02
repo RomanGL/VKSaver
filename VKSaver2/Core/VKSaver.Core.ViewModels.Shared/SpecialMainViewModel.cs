@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Appointments;
+using Windows.UI.Xaml.Navigation;
 using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Objects;
 using Microsoft.Practices.Prism.StoreApps;
 using Microsoft.Practices.Prism.StoreApps.Interfaces;
 using ModernDev.InTouch;
@@ -13,6 +15,7 @@ using PropertyChanged;
 using VKSaver.Core.Models.Common;
 using VKSaver.Core.Services.Common;
 using VKSaver.Core.Services.Interfaces;
+using VKSaver.Core.ViewModels.Collections;
 using VKSaver.Core.ViewModels.Common;
 
 namespace VKSaver.Core.ViewModels
@@ -52,15 +55,20 @@ namespace VKSaver.Core.ViewModels
             PlayNewAudiosCommand = new DelegateCommand<Audio>(OnPlayNewAudiosCommand);
             AddToMyAudiosCommand = new DelegateCommand<Audio>(OnAddToMyAudiosCommand, CanAddToMyAudios);
             ShowTrackInfoCommand = new DelegateCommand<Audio>(OnShowTrackInfoCommand);
+            OpenPlaylistCommand = new DelegateCommand<Playlist>(OnOpenPlaylistCommand);
         }
 
         public string HubBackgroundImage { get; private set; }
 
-        public ContentState CatalogState { get; private set; }
+        public SimpleStateSupportCollection<LastArtist> TopArtistsLF { get; private set; }
 
+        public ContentState CatalogState { get; private set; }
+        
         public AudioCatalogItem SpecialItem { get; private set; }
 
         public AudioCatalogItem NewAudiosItem { get; private set; }
+
+        public AudioCatalogItem NewAlbumsItem { get; private set; }
 
         [DoNotNotify]
         public DelegateCommand ReloadCatalogCommand { get; private set; }
@@ -77,18 +85,55 @@ namespace VKSaver.Core.ViewModels
         [DoNotNotify]
         public DelegateCommand<Audio> ShowTrackInfoCommand { get; private set; }
 
+        [DoNotNotify]
+        public DelegateCommand<Playlist> OpenPlaylistCommand { get; private set; }
+
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             _backgroundLoaded = false;
+            if (viewModelState.Count > 0)
+            {
+                SpecialItem = JsonConvert.DeserializeObject<AudioCatalogItem>(
+                    viewModelState[nameof(SpecialItem)].ToString());
+                NewAudiosItem = JsonConvert.DeserializeObject<AudioCatalogItem>(
+                    viewModelState[nameof(NewAudiosItem)].ToString());
+                NewAlbumsItem = JsonConvert.DeserializeObject<AudioCatalogItem>(
+                    viewModelState[nameof(NewAlbumsItem)].ToString());
 
-            await LoadCatalogAsync();
+                TopArtistsLF = JsonConvert.DeserializeObject<SimpleStateSupportCollection<LastArtist>>(
+                    viewModelState[nameof(TopArtistsLF)].ToString(), _lastImageSetConverter);
+                
+                TopArtistsLF.LoadItems = LoadTopArtists;
+            }
+            else
+            {
+                TopArtistsLF = new SimpleStateSupportCollection<LastArtist>(LoadTopArtists);
+            }
+            
+            if (SpecialItem == null || NewAudiosItem == null || NewAlbumsItem == null)
+                LoadCatalogAsync();
+
+            TopArtistsLF.Load();
 
             base.OnNavigatedTo(e, viewModelState);
             await Task.Delay(2000);
             _adsService.ActivateAds();
         }
 
-        private async Task LoadCatalogAsync()
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        {
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                viewModelState[nameof(SpecialItem)] = JsonConvert.SerializeObject(SpecialItem);
+                viewModelState[nameof(NewAudiosItem)] = JsonConvert.SerializeObject(NewAudiosItem);
+                viewModelState[nameof(NewAlbumsItem)] = JsonConvert.SerializeObject(NewAlbumsItem);
+                viewModelState[nameof(TopArtistsLF)] = JsonConvert.SerializeObject(TopArtistsLF.ToList(), _lastImageSetConverter);
+            }
+
+            base.OnNavigatingFrom(e, viewModelState, suspending);
+        }
+
+        private async void LoadCatalogAsync()
         {
             CatalogState = ContentState.Loading;
             var response = await _inTouchWrapper.ExecuteRequest(_inTouch.Audio.GetCatalog());
@@ -100,10 +145,39 @@ namespace VKSaver.Core.ViewModels
 
             SpecialItem = response.Data.Items.FirstOrDefault(c => c.Source == AudioCatalogItemSource.RecomsRecoms);
             NewAudiosItem = response.Data.Items.FirstOrDefault(c => c.Source == AudioCatalogItemSource.RecomsNewAudios);
+            NewAlbumsItem = response.Data.Items.FirstOrDefault(c => c.Source == AudioCatalogItemSource.RecomsNewAlbums);
 
             TryLoadBackground(SpecialItem?.Audios.FirstOrDefault());
 
             CatalogState = ContentState.Normal;
+        }
+
+        private async Task<IEnumerable<LastArtist>> LoadTopArtists()
+        {
+            if (TopArtistsLF.Any())
+                return new List<LastArtist>();
+
+            int itemsPerPage = 8;
+#if WINDOWS_UWP
+            itemsPerPage = 11;
+#endif
+
+            var response = await _lfClient.Chart.GetTopArtistsAsync(itemsPerPage: itemsPerPage);
+            if (response.Success)
+            {
+#if WINDOWS_UWP
+                var artists = new List<LastArtist>(response.Content);
+                artists.Add(new LastArtist
+                {
+                    Name = VKSAVER_SEE_ALSO_TEXT
+                });
+                return artists;
+#else
+                return response;
+#endif
+            }
+            else
+                throw new Exception("LFChartArtistsResponse isn't valid.");
         }
 
         private async void OnPlaySpecialCommand(Audio track)
@@ -128,15 +202,18 @@ namespace VKSaver.Core.ViewModels
 
         private async void TryLoadBackground(Audio specialTrack)
         {
-            if (_backgroundLoaded)
-                return;
-            else if (specialTrack == null)
+            lock (_lockObject)
             {
-                HubBackgroundImage = HUB_BACKGROUND_DEFAULT;
-                return;
-            }
+                if (_backgroundLoaded)
+                    return;
+                if (specialTrack == null)
+                {
+                    HubBackgroundImage = HUB_BACKGROUND_DEFAULT;
+                    return;
+                }
 
-            _backgroundLoaded = true;
+                _backgroundLoaded = true;
+            }
 
             string imagePath = await _imagesCacheService.GetCachedArtistImage(specialTrack.Artist);
             if (imagePath == null)
@@ -148,10 +225,46 @@ namespace VKSaver.Core.ViewModels
             if (imagePath != null)
                 HubBackgroundImage = imagePath;
             else
-                _backgroundLoaded = false;
+            {
+                lock (_lockObject)
+                    _backgroundLoaded = false;
+
+                TryLoadTopArtistBackground(TopArtistsLF.FirstOrDefault());
+            }
         }
 
-        private async void OnReloadCatalogCommand() => await LoadCatalogAsync();
+        private async void TryLoadTopArtistBackground(LastArtist artist)
+        {
+            lock (_lockObject)
+            {
+                if (_backgroundLoaded)
+                    return;
+                if (artist == null)
+                {
+                    HubBackgroundImage = HUB_BACKGROUND_DEFAULT;
+                    return;
+                }
+
+                _backgroundLoaded = true;
+            }
+
+            string imagePath = await _imagesCacheService.GetCachedArtistImage(artist.Name);
+            if (imagePath == null)
+            {
+                HubBackgroundImage = HUB_BACKGROUND_DEFAULT;
+                imagePath = await _imagesCacheService.CacheAndGetArtistImage(artist.Name);
+            }
+
+            if (imagePath != null)
+                HubBackgroundImage = imagePath;
+            else
+            {
+                lock (_lockObject)
+                    _backgroundLoaded = false;
+            }
+        }
+
+        private void OnReloadCatalogCommand() => LoadCatalogAsync();
         private bool CanAddToMyAudios(Audio audio) => audio?.OwnerId != _inTouch.Session.UserId;
 
         private void OnShowTrackInfoCommand(Audio track)
@@ -196,8 +309,14 @@ namespace VKSaver.Core.ViewModels
             return !response.IsError;
         }
 
+        private void OnOpenPlaylistCommand(Playlist playlist)
+        {
+            NavigateToPaidView("AudioPlaylistView", JsonConvert.SerializeObject(playlist));
+        }
+
         private bool _backgroundLoaded;
 
+        private readonly object _lockObject = new object();
         private readonly IDialogsService _dialogsService;
         private readonly ILocService _locService;
         private readonly IAppLoaderService _appLoaderService;

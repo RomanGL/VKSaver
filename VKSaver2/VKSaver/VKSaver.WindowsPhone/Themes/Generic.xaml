@@ -44,7 +44,7 @@
     <Style x:Key="MarginListViewItemStyle"
            TargetType="ListViewItem">
         <Setter Property="Margin"
-                Value="0,0,0,6" />
+                Value="0,0,0,8" />
     </Style>
 
     <DataTemplate x:Key="ListFooterTemplate">
@@ -181,8 +181,8 @@
 
             <Grid VerticalAlignment="Top"
                   HorizontalAlignment="Left">
-                <controls:ImagePlaceholder Width="65"
-                                           Height="65"
+                <controls:ImagePlaceholder Width="75"
+                                           Height="75"
                                            Text="{Binding Title}"
                                            Source="{Binding Album.Thumb.Photo135}"/>
                 <Border Background="{ThemeResource AccentDarkBrush}"
@@ -274,6 +274,39 @@
                        Grid.Column="1"
                        Grid.Row="1"
                        Pivot.SlideInAnimationGroup="GroupThree" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PlaylistTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <controls:ImagePlaceholder Text="{Binding Title}"
+                                       Source="{Binding Photo.Photo300}"
+                                       Thumbs="{Binding Thumbs}"
+                                       Width="100"
+                                       Height="100" />
+            <StackPanel Grid.Column="1"
+                        Margin="6,0,0,0">
+                <TextBlock Text="{Binding Title}"
+                           Style="{StaticResource ListLine1TextStyle}" />
+                <TextBlock Text="{Binding MainArtist}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           Margin="0,-2,0,0"
+                           MaxLines="3"
+                           TextTrimming="CharacterEllipsis"
+                           FontWeight="Black"
+                           Visibility="{Binding MainArtist, Converter={StaticResource NotNullToVisibilityConverter}}" />
+                <TextBlock Text="{Binding Description}"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                           Margin="0,-2,0,0"
+                           MaxLines="3"
+                           TextTrimming="CharacterEllipsis"
+                           Foreground="{ThemeResource PhoneMidBrush}" />
+            </StackPanel>
         </Grid>
     </DataTemplate>
 

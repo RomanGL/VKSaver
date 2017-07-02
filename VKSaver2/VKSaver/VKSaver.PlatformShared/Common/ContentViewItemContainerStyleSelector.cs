@@ -11,7 +11,7 @@ namespace VKSaver.Common
         
         protected override Style SelectStyleCore(object item, DependencyObject container)
         {
-            if (item is AudioAlbum || item is VideoAlbum)
+            if (item is AudioAlbum || item is Playlist || item is VideoAlbum)
                 return AlbumStyle;
             return DefaultStyle;
         }
